@@ -26,10 +26,10 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
+          install -m 600 -D /dev/null ~/.ssh/deploy_key
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           ssh-keyscan -p 2299 136.243.45.246 >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/deploy_key -p 2299 "${SSH_USER}@136.243.45.246" "true"
           rsync -avz \
             -e "ssh -i ~/.ssh/deploy_key -p 2299" \
             dist/ "${SSH_USER}@136.243.45.246:/home/${SSH_USER}/public_html/"

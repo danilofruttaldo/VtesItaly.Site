@@ -21,7 +21,7 @@ jobs:
         env:
           PUBLIC_GOOGLE_CALENDAR_API_KEY: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_API_KEY }}
 
-      - name: Deploy via rsync
+      - name: Deploy via scp
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
@@ -29,7 +29,4 @@ jobs:
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           ssh-keyscan -p 2299 136.243.45.246 >> ~/.ssh/known_hosts 2>/dev/null
-          ssh -i ~/.ssh/deploy_key -p 2299 "${SSH_USER}@136.243.45.246" "true"
-          rsync -avz \
-            -e "ssh -i ~/.ssh/deploy_key -p 2299" \
-            dist/ "${SSH_USER}@136.243.45.246:/home/${SSH_USER}/public_html/"
+          scp -i ~/.ssh/deploy_key -P 2299 -r dist/* "${SSH_USER}@136.243.45.246:/home/${SSH_USER}/public_html/"

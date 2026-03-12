@@ -1,0 +1,141 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const galleries = [
+  {
+    title: 'Week of Sabbat',
+    subtitle: 'Italy — October 2025',
+    images: [
+      { src: '/images/carte/crypt-crossbreaker.webp', alt: 'Crossbreaker' },
+      { src: '/images/carte/library-dia-de-los-muertos.webp', alt: 'Dia de los Muertos' },
+      { src: '/images/carte/library-fiorella-empty-one.webp', alt: 'Fiorella, Empty One' },
+    ],
+    cols: 3,
+  },
+  {
+    title: 'Iubilaeum Sabbaticum',
+    subtitle: 'Roma — October 2025',
+    images: [
+      { src: '/images/carte/library-on-the-qui-vive.webp', alt: 'On the Qui Vive' },
+      { src: '/images/carte/library-organized-resistance.webp', alt: 'Organized Resistance' },
+    ],
+    cols: 2,
+  },
+  {
+    title: 'Symposium Italicum MMXXV',
+    subtitle: 'Barga — August 2025',
+    images: [
+      { src: '/images/carte/library-canine-horde.webp', alt: 'Canine Horde' },
+      { src: '/images/carte/library-coordinate-attacks.webp', alt: 'Coordinate Attacks' },
+      { src: '/images/carte/library-pack-alpha.webp', alt: 'Pack Alpha' },
+      { src: '/images/carte/library-hidden-lurker.webp', alt: 'Hidden Lurker' },
+    ],
+    cols: 4,
+  },
+  {
+    title: 'Concilio di Pergine',
+    subtitle: 'Trento — June 2025',
+    images: [
+      { src: '/images/carte/crypt-angelo.webp', alt: 'Angelo' },
+      { src: '/images/carte/crypt-anneke.webp', alt: 'Anneke' },
+      { src: '/images/carte/crypt-danylo.webp', alt: 'Danylo' },
+      { src: '/images/carte/crypt-el-monsenor.webp', alt: 'El Monsenor' },
+      { src: '/images/carte/crypt-gavrylo.webp', alt: 'Gavrylo' },
+      { src: '/images/carte/crypt-kyrylo.webp', alt: 'Kyrylo' },
+      { src: '/images/carte/crypt-pavlo.webp', alt: 'Pavlo' },
+      { src: '/images/carte/crypt-volo.webp', alt: 'Volo' },
+    ],
+    cols: 4,
+  },
+  {
+    title: 'Truth in Darkness',
+    subtitle: 'Firenze — May 2025',
+    images: [
+      { src: '/images/carte/library-quicksilver-contemplation.webp', alt: 'Quicksilver Contemplation' },
+    ],
+    cols: 1,
+  },
+  {
+    title: 'Nazionale 2025',
+    subtitle: 'Pordenone — April 2025',
+    images: [
+      { src: '/images/carte/library-frico-drive.webp', alt: 'Frico Drive' },
+      { src: '/images/carte/library-walk-of-caine.webp', alt: 'Walk of Caine' },
+    ],
+    cols: 2,
+  },
+  {
+    title: 'Grand Prix 2025',
+    subtitle: 'Modena — March 2025',
+    images: [
+      { src: '/images/carte/library-seduction.webp', alt: 'Seduction' },
+    ],
+    cols: 1,
+  },
+  {
+    title: 'Fee Stake: Florence',
+    subtitle: 'Firenze — February 2025',
+    images: [
+      { src: '/images/carte/library-dual-form-1.webp', alt: 'Dual Form' },
+      { src: '/images/carte/library-dual-form-4.webp', alt: 'Dual Form' },
+    ],
+    cols: 2,
+  },
+  {
+    title: 'Grand Prix 2024',
+    subtitle: 'Milano — December 2024',
+    images: [
+      { src: '/images/carte/library-mind-rape.webp', alt: 'Mind Rape' },
+    ],
+    cols: 1,
+  },
+];
+---
+<Base title="Postcards" description="The ironic gallery of the VTES Italy community. Cards become photographic souvenirs.">
+  <PageHero title="Postcards" image="/images/headers/header-cartoline.webp" />
+  <section class="section"><div class="container container--narrow">
+    <p class="tagline">A deck of memories, not for playing</p>
+    <p>Welcome to the <strong>Postcards</strong> section, the ironic gallery of VTES Italy. Cards become photographic souvenirs: shots from events, tournaments and gatherings instead of original illustrations. These are community snapshots: serious, funny or epic moments, transformed into frames familiar to game players.</p>
+
+    <h2 class="section-subtitle">Why Postcards?</h2>
+    <p>Like postcards sent from a trip, meant to be shared memories: an alternative album of what makes the VTES community in Italy come alive. Browsing rediscovers friends, games, gags and small legends born around the tables.</p>
+
+    <hr class="divider" />
+
+    {galleries.map(gallery => (
+      <div class="gallery-section">
+        <h3 class="gallery-title">{gallery.title}</h3>
+        <p class="gallery-subtitle">{gallery.subtitle}</p>
+        <div class="gallery-grid" style={`--cols: ${Math.min(gallery.cols, gallery.images.length)}`}>
+          {gallery.images.map(img => (
+            <figure class="gallery-item">
+              <img src={img.src} alt={img.alt} loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div></section>
+</Base>
+
+<style>
+  .section { padding: 40px clamp(20px, 5vw, 80px) 48px; }
+  .tagline { font-size: 1.1rem; font-style: italic; color: var(--color-gold); margin-bottom: 16px; }
+  .section-subtitle { font-size: clamp(1rem, 3vw, 1.15rem); text-transform: uppercase; margin-top: 24px; margin-bottom: 8px; letter-spacing: 0.3px; }
+  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
+  .gallery-section { margin-bottom: 40px; }
+  .gallery-title { font-size: 1.1rem; font-weight: 700; color: var(--color-gold); margin-bottom: 2px; }
+  .gallery-subtitle { font-size: 0.8rem; color: var(--color-muted); margin-bottom: 12px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 3), 1fr);
+    gap: 12px;
+  }
+  .gallery-item { margin: 0; }
+  .gallery-item img { border-radius: var(--radius); width: 100%; }
+
+  @media (max-width: 544px) {
+    .gallery-grid { grid-template-columns: repeat(min(var(--cols, 2), 2), 1fr); }
+  }
+</style>

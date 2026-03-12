@@ -1,0 +1,51 @@
+{
+  "slug_map": {},
+  "page_titles": {
+    "Home": "Home",
+    "Principati": "Principati",
+    "Tour": "Italian Tour",
+    "Nazionale": "Nazionale",
+    "Grand Prix": "Grand Prix",
+    "Cartoline": "Cartoline",
+    "Gemelli": "Gemelli",
+    "Week of Sabbat": "Week of Sabbat",
+    "Blog": "Comunità"
+  },
+  "months": {
+    "1": "Gennaio", "2": "Febbraio", "3": "Marzo", "4": "Aprile",
+    "5": "Maggio", "6": "Giugno", "7": "Luglio", "8": "Agosto",
+    "9": "Settembre", "10": "Ottobre", "11": "Novembre", "12": "Dicembre"
+  },
+  "days_short": {
+    "Mon": "LUN", "Tue": "MAR", "Wed": "MER", "Thu": "GIO",
+    "Fri": "VEN", "Sat": "SAB", "Sun": "DOM"
+  },
+  "calendar": {
+    "all_day": "Tutto il giorno",
+    "no_events": "Nessun evento in programma nei prossimi %d mesi.",
+    "full_calendar": "Vedi il calendario completo su Google",
+    "open_google": "Apri in Google Calendar",
+    "sync_note": "Aggiornato automaticamente da Google Calendar"
+  },
+  "search": {
+    "aria_label": "Cerca",
+    "close_label": "Chiudi ricerca",
+    "placeholder": "Cerca articoli, eventi, principati...",
+    "submit": "Cerca"
+  },
+  "sticky_bar": {
+    "events": "Eventi",
+    "telegram": "Telegram"
+  },
+  "menu": {
+    "Home": "Home",
+    "Principati": "Principati",
+    "Tour": "Tour",
+    "Grand Prix": "Grand Prix",
+    "Nazionale": "Nazionale",
+    "Blog": "Comunità",
+    "Cartoline": "Cartoline",
+    "Gemelli": "Gemelli",
+    "Week of Sabbat": "Week of Sabbat"
+  }
+}

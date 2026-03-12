@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Calendar from '../components/Calendar.astro';
+import { cities } from '../data/cities';
+
+const description = 'La community italiana di Vampire: The Eternal Struggle. Tornei, raduni e campionati in tutta Italia.';
+---
+
+<Base title="Home" description={description}>
+  <PageHero title="" image="/images/headers/header-home.webp" />
+
+  <section class="hero-text">
+    <div class="container container--narrow">
+      <h1>La community italiana dei Matusalemme</h1>
+      <p class="subtitle">Tornei, raduni e campionati in tutta Italia. Trova il tuo principato, consulta il calendario e unisciti alla community.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section" id="eventi">
+    <div class="container container--narrow">
+      <h2 class="section-title">Prossimi eventi</h2>
+      <p class="section-subtitle">Tornei, raduni e campionati VTES in tutta Italia.</p>
+      <Calendar />
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Trova il tuo Principato</h2>
+      <p class="section-subtitle">15 citta in tutta Italia dove si gioca a VTES. Trova quella piu vicina a te.</p>
+      <div class="cities-quicklinks">
+        {cities.map(city => (
+          <a href={`/principati/${city.slug}/`}>{city.name}</a>
+        ))}
+      </div>
+      <div class="section-cta">
+        <a href="/principati/" class="btn">Tutti i Principati &rarr;</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-text {
+    padding: 56px clamp(20px, 5vw, 80px) 48px;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    color: var(--color-muted);
+    font-size: clamp(0.9rem, 3vw, 1.05rem);
+    line-height: 1.6;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-accent-light);
+    margin: 0;
+  }
+
+  .section {
+    padding: 40px clamp(20px, 5vw, 80px) 48px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .cities-quicklinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .cities-quicklinks a {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-accent-1);
+    transition: all 0.2s ease;
+  }
+
+  .cities-quicklinks a:hover {
+    background-color: var(--color-accent-1);
+    color: #fff;
+    border-color: var(--color-accent-1);
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: 24px;
+  }
+</style>

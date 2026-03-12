@@ -1,0 +1,82 @@
+---
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>VTES Italy</h4>
+      <p>{locale === 'it'
+        ? 'La community italiana di Vampire: The Eternal Struggle.'
+        : 'The Italian Vampire: The Eternal Struggle community.'
+      }</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="https://t.me/vtesitaly" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a href="https://www.facebook.com/groups/vtesitaly" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.vekn.net" target="_blank" rel="noopener">VEKN</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>{locale === 'it' ? 'Contatti' : 'Contacts'}</h4>
+      <p><a href="mailto:info@vtesitaly.com">info@vtesitaly.com</a></p>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; {new Date().getFullYear()} VTES Italy</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--spacing-xl);
+    padding-block: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: var(--font-size-small);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .footer-col h4 {
+    font-size: var(--font-size-small);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-contrast);
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li + li {
+    margin-top: 0.25rem;
+  }
+
+  .footer-bottom {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+  }
+</style>

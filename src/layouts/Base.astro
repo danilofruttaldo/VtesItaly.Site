@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SearchOverlay from '../components/SearchOverlay.astro';
+import StickyBar from '../components/StickyBar.astro';
+import { getLocaleFromUrl, getAlternateUrl } from '../utils/i18n';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'VTES Italy — La community italiana di Vampire: The Eternal Struggle' } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const alternateUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const alternateFullUrl = new URL(alternateUrl, Astro.site);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title} | VTES Italy</title>
+    <meta name="description" content={description} />
+
+    <!-- Canonical & hreflang -->
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
+    <link rel="alternate" hreflang={locale === 'it' ? 'en' : 'it'} href={alternateFullUrl.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | VTES Italy`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_US'} />
+    <meta property="og:site_name" content="VTES Italy" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#121416" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon-32.jpeg" />
+    <link rel="icon" type="image/jpeg" sizes="192x192" href="/logo-192.jpeg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.jpeg" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <SearchOverlay />
+    <StickyBar />
+  </body>
+</html>

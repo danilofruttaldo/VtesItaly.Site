@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Calendar from '../../components/Calendar.astro';
+import { cities } from '../../data/cities';
+
+const description = 'The Italian Methuselah community. Tournaments, gatherings and championships across Italy.';
+---
+
+<Base title="Home" description={description}>
+  <PageHero title="" image="/images/headers/header-home.webp" />
+
+  <section class="hero-text">
+    <div class="container container--narrow">
+      <h1>The Italian Methuselah community</h1>
+      <p class="subtitle">Tournaments, gatherings and championships across Italy. Find your domain, check the calendar and join the community.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section" id="eventi">
+    <div class="container container--narrow">
+      <h2 class="section-title">Upcoming events</h2>
+      <p class="section-subtitle">VTES tournaments, gatherings and championships across Italy.</p>
+      <Calendar />
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Find your Domain</h2>
+      <p class="section-subtitle">15 cities across Italy where VTES is played. Find the one closest to you.</p>
+      <div class="cities-quicklinks">
+        {cities.map(city => (
+          <a href={`/en/domains/${city.slugEn}/`}>{city.nameEn}</a>
+        ))}
+      </div>
+      <div class="section-cta">
+        <a href="/en/domains/" class="btn">All Domains &rarr;</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-text { padding: 56px clamp(20px, 5vw, 80px) 48px; text-align: center; }
+  .hero-text h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-bottom: 16px; }
+  .subtitle { color: var(--color-muted); font-size: clamp(0.9rem, 3vw, 1.05rem); line-height: 1.6; }
+  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 0; }
+  .section { padding: 40px clamp(20px, 5vw, 80px) 48px; }
+  .section-title { text-align: center; font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin-bottom: 8px; }
+  .section-subtitle { text-align: center; color: var(--color-muted); font-size: 0.9rem; margin-bottom: 24px; }
+  .cities-quicklinks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .cities-quicklinks a { font-size: 0.85rem; padding: 6px 12px; border: 1px solid var(--color-border); border-radius: var(--radius); color: var(--color-accent-1); transition: all 0.2s ease; }
+  .cities-quicklinks a:hover { background-color: var(--color-accent-1); color: #fff; border-color: var(--color-accent-1); }
+  .section-cta { text-align: center; margin-top: 24px; }
+</style>

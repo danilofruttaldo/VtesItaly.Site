@@ -1,0 +1,126 @@
+---
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<div class="vtesitaly-search-overlay" id="search-overlay">
+  <button class="vtesitaly-search-close" aria-label={t.search.close_label}>&times;</button>
+  <form action={locale === 'en' ? '/en/' : '/'} method="get" class="vtesitaly-search-form">
+    <input
+      type="search"
+      name="s"
+      class="vtesitaly-search-field"
+      placeholder={t.search.placeholder}
+      aria-label={t.search.aria_label}
+    />
+    <button type="submit" class="vtesitaly-search-submit">{t.search.submit}</button>
+  </form>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var overlay = document.getElementById('search-overlay');
+    if (!overlay) return;
+
+    var closeBtn = overlay.querySelector('.vtesitaly-search-close');
+    var field = overlay.querySelector('.vtesitaly-search-field');
+
+    // Open via custom event (triggered from header search button)
+    document.addEventListener('open-search', function() {
+      overlay.classList.add('open');
+      if (field) field.focus();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', function() { overlay.classList.remove('open'); });
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') overlay.classList.remove('open');
+    });
+  });
+</script>
+
+<style>
+  .vtesitaly-search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(18, 20, 22, 0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .vtesitaly-search-overlay:global(.open) {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .vtesitaly-search-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 2rem;
+    color: var(--color-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .vtesitaly-search-close:hover {
+    color: var(--color-contrast);
+  }
+
+  .vtesitaly-search-form {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    max-width: 560px;
+    padding-inline: var(--spacing-md);
+  }
+
+  .vtesitaly-search-field {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    font-family: var(--font-family);
+    color: var(--color-contrast);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-accent-light);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .vtesitaly-search-field:focus {
+    border-color: var(--color-gold);
+  }
+
+  .vtesitaly-search-field::placeholder {
+    color: var(--color-muted);
+  }
+
+  .vtesitaly-search-submit {
+    min-height: 52px;
+    padding-inline: 24px;
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .vtesitaly-search-submit:hover {
+    background-color: var(--color-accent-hover);
+  }
+</style>

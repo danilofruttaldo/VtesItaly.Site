@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: `${post.data.category}/${post.slug}` },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+const categoryLabels: Record<string, string> = {
+  'tour': 'Tour',
+  'grand-prix': 'Grand Prix',
+  'nazionale': 'Nazionale',
+  'eventi': 'Eventi',
+  'community': 'Community',
+  'contest': 'Contest',
+};
+---
+<Base title={post.data.title} description={post.data.excerpt || post.data.title}>
+  <article class="post">
+    <div class="container container--narrow">
+      <div class="post__meta">
+        <a href="/blog/" class="post__back">&larr; Blog</a>
+        <span class="post__category">{categoryLabels[post.data.category] || post.data.category}</span>
+        <time class="post__date" datetime={post.data.date.toISOString()}>
+          {formatDate(post.data.date)}
+        </time>
+      </div>
+
+      {post.data.featuredImage && (
+        <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" />
+      )}
+
+      <div class="post__content prose">
+        <Content />
+      </div>
+
+      <hr class="post__divider" />
+      <div class="post__footer">
+        <a href="/blog/" class="btn">&larr; Tutti gli articoli</a>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post { padding: 40px clamp(20px, 5vw, 80px) 48px; }
+  .post__meta {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .post__back {
+    font-size: 0.8rem; color: var(--color-muted);
+    text-decoration: none;
+  }
+  .post__back:hover { color: var(--color-accent-1); }
+  .post__category {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--color-gold);
+    background: rgba(201,168,76,0.1); padding: 2px 8px;
+    border-radius: var(--radius);
+  }
+  .post__date { font-size: 0.8rem; color: var(--color-muted); }
+  .post__hero {
+    width: 100%; border-radius: var(--radius);
+    margin-bottom: 32px; aspect-ratio: 16/9; object-fit: cover;
+  }
+
+  /* Prose styles for markdown content */
+  .prose :global(h1) { font-size: clamp(1.4rem, 4vw, 2rem); margin: 32px 0 16px; }
+  .prose :global(h2) { font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin: 28px 0 12px; }
+  .prose :global(h3) { font-size: clamp(1rem, 3vw, 1.2rem); margin: 24px 0 8px; }
+  .prose :global(p) { line-height: 1.7; margin-bottom: 16px; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 20px; margin-bottom: 16px; }
+  .prose :global(li) { margin-bottom: 6px; line-height: 1.6; }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--color-gold); padding-left: 16px;
+    color: var(--color-muted); font-style: italic; margin: 16px 0;
+  }
+  .prose :global(hr) { border: none; border-top: 1px solid rgba(139,26,43,0.15); margin: 24px 0; }
+  .prose :global(img) { max-width: 100%; border-radius: var(--radius); margin: 16px 0; }
+  .prose :global(a) { color: var(--color-accent-1); }
+  .prose :global(a:hover) { color: var(--color-accent-3); }
+  .prose :global(strong) { font-weight: 600; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .prose :global(th), .prose :global(td) {
+    padding: 8px 12px; border: 1px solid var(--color-border); text-align: left;
+  }
+  .prose :global(th) { font-weight: 600; background-color: var(--color-surface); }
+
+  .post__divider { border: none; border-top: 1px solid rgba(139,26,43,0.15); margin: 32px 0; }
+  .post__footer { text-align: center; }
+</style>

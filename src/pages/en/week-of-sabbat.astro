@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+<Base title="Week of Sabbat" description="The national event for the Sabbat deck launch. A week of tournaments across Italy.">
+  <PageHero title="Week of Sabbat" image="/images/headers/header-week-of-sabbat.webp" />
+  <section class="section"><div class="container container--narrow">
+    <p class="date-badge">October 2025</p>
+    <p class="lead">The new Sabbat expansion marks a special moment: <strong>all of Italy unites</strong> to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city. Not just competition, but a week of <strong>gathering, discovery and shared fun</strong>, in true Cainite spirit.</p>
+    <blockquote class="pullquote">"For one week, all of Italy plays as a single coterie"</blockquote>
+
+    <hr class="divider" />
+
+    <h2 class="section-title">What is it</h2>
+    <p>A national event for the Sabbat deck launch. From <strong>October 18 to 26</strong>, players compete in <strong>Sealed format</strong>, opening and playing prerelease decks simultaneously. An opportunity to try new cards, meet other Cainites, and participate in a shared national ranking in a fun atmosphere.</p>
+
+    <h2 class="section-title">How it works</h2>
+    <ul class="rules-list">
+      <li>Each participant receives a sealed Sabbat deck (no sleeves)</li>
+      <li>Played as-is, no modifications</li>
+      <li>Four-player tables with a different deck per Path: <strong>Caine</strong>, <strong>Cathari</strong>, <strong>Death and the Soul</strong>, <strong>Power and the Inner Voice</strong></li>
+      <li>Randomized deck and seating assignments</li>
+    </ul>
+
+    <h2 class="section-title">Scores and standings</h2>
+    <ul class="rules-list">
+      <li>Players earn Victory Points (VP) and Game Wins (GW)</li>
+      <li>Two levels: City standings + National standings by Path</li>
+      <li>After 3 rounds, total points determine the local winner (no final — experience and fun is what counts)</li>
+    </ul>
+
+    <h2 class="section-title">Deck and keepsake</h2>
+    <p>Participants take home their Sabbat prerelease deck as a memento of the event. Treat the cards with care: they are part of the official event kit and deserve respect... in true Sabbat style.</p>
+
+    <h2 class="section-title">Deck standings</h2>
+    <p>National deck standings are updated as results come in from local events. Only official Week of Sabbat tournaments count toward the standings.</p>
+  </div></section>
+</Base>
+
+<style>
+  .section { padding: 40px clamp(20px, 5vw, 80px) 48px; }
+  .section-title { font-size: clamp(1.1rem, 3vw, 1.3rem); text-transform: uppercase; margin-top: 32px; margin-bottom: 12px; letter-spacing: 0.5px; }
+  .lead { font-size: clamp(0.95rem, 3vw, 1.05rem); line-height: 1.7; }
+  .date-badge {
+    display: inline-block;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--color-gold); background: rgba(201,168,76,0.1);
+    padding: 4px 12px; border-radius: var(--radius); margin-bottom: 16px;
+  }
+  .pullquote {
+    font-size: 1.1rem; font-style: italic; color: var(--color-gold);
+    border-left: 3px solid var(--color-gold); padding-left: 16px; margin: 24px 0;
+  }
+  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
+  .rules-list { padding-left: 20px; margin-bottom: 16px; }
+  .rules-list li { margin-bottom: 8px; line-height: 1.6; }
+</style>

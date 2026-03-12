@@ -1,0 +1,21 @@
+{
+  "name": "VTES Italy",
+  "short_name": "VTES Italy",
+  "description": "La community italiana di Vampire: The Eternal Struggle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121416",
+  "theme_color": "#121416",
+  "icons": [
+    {
+      "src": "/favicon-32.jpeg",
+      "sizes": "32x32",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logo-192.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}

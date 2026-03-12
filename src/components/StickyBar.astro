@@ -1,0 +1,107 @@
+---
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<div class="vtesitaly-sticky-bar">
+  <div class="vtesitaly-sticky-bar-inner">
+    <a href="#eventi" class="vtesitaly-sticky-btn vtesitaly-sticky-btn-primary">
+      {t.sticky_bar.events}
+    </a>
+    <a href="https://t.me/vtesitaly" target="_blank" rel="noopener" class="vtesitaly-sticky-btn vtesitaly-sticky-btn-secondary">
+      {t.sticky_bar.telegram}
+    </a>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var bar = document.querySelector('.vtesitaly-sticky-bar');
+    if (!bar) return;
+
+    var lastY = 0;
+    var ticking = false;
+
+    window.addEventListener('scroll', function() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function() {
+        var y = window.scrollY;
+        if (y > 200 && y > lastY) {
+          bar.classList.add('hidden');
+        } else {
+          bar.classList.remove('hidden');
+        }
+        lastY = y;
+        ticking = false;
+      });
+    }, { passive: true });
+  });
+</script>
+
+<style>
+  .vtesitaly-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 8px 16px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(transparent, rgba(18, 20, 22, 0.95) 30%);
+    transition: transform 0.3s ease;
+  }
+
+  .vtesitaly-sticky-bar.hidden {
+    transform: translateY(100%);
+  }
+
+  .vtesitaly-sticky-bar-inner {
+    display: flex;
+    gap: 8px;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  .vtesitaly-sticky-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: var(--radius);
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .vtesitaly-sticky-btn-primary {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .vtesitaly-sticky-btn-primary:hover {
+    background-color: var(--color-accent-hover);
+    color: #fff;
+  }
+
+  .vtesitaly-sticky-btn-secondary {
+    background-color: transparent;
+    color: var(--color-gold);
+    border: 1px solid var(--color-gold);
+  }
+
+  .vtesitaly-sticky-btn-secondary:hover {
+    background-color: rgba(201, 168, 76, 0.1);
+    color: var(--color-gold-hover);
+  }
+
+  @media (min-width: 769px) {
+    .vtesitaly-sticky-bar {
+      display: none;
+    }
+  }
+</style>

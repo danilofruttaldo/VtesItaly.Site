@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const twins = [
+  { card: 'Maila', person: 'Maila Nurmi', image: '/images/gemelli/maila-nurmi.webp', description: 'Camarilla primogen inspired by the horror cinema icon. Same pose, same magnetic gaze.' },
+  { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'The Tremere witch irresistibly recalls Willow from Buffy — same red hair, same mystic power.' },
+  { card: 'Lady Zara Slatikov', person: 'Carrie-Anne Moss', image: '/images/gemelli/carrie-anne-moss.webp', description: 'The gothic charm of the Sabbat bishop recalls Trinity from The Matrix — dark elegance and lethal determination.' },
+  { card: 'Sir Walter Nash', person: 'Donald Trump (1980s)', image: '/images/gemelli/donald-trump.webp', description: 'The Prince of Chicago resembles the famous New York entrepreneur in his prime years. Coincidence?' },
+  { card: 'Ira Rivers', person: 'Dwayne "The Rock" Johnson', image: '/images/gemelli/dwayne-johnson.webp', description: 'The Prince of Dallas has the same imposing physique and intense gaze of the famous wrestler-actor.' },
+  { card: 'Monica Giovanni', person: 'Giorgia Meloni', image: '/images/gemelli/giorgia-meloni.webp', description: 'Icy touch and austere elegance of the independent vampire reflect Italy\'s prominent politician.' },
+  { card: 'Izhim abd Azrael', person: 'Kurt Cobain', image: '/images/gemelli/kurt-cobain.webp', description: 'The tormented Seraph of the Black Hand recalls the Nirvana frontman — same lost gaze, same intensity.' },
+  { card: 'Horst von Bruhl', person: 'Massimo Boldi', image: '/images/gemelli/massimo-boldi.webp', description: 'The Prince of Mannheim vs the king of Italian comedy. The resemblance is surprising.' },
+  { card: 'Massimiliano', person: 'Max Cavalera', image: '/images/gemelli/max-cavalera.webp', description: 'The anarchic Baron has the face and rebellious spirit of the Sepultura/Soulfly frontman.' },
+  { card: 'Madeleine Giovanni', person: 'Valentina Nappi', image: '/images/gemelli/valentina-nappi.webp', description: 'Dark sunglasses and confident bearing of the independent vampire recall a famous glamour shoot.' },
+];
+---
+<Base title="Twins" description="Fun comparisons between VTES card characters and real-world figures.">
+  <PageHero title="Twins" image="/images/headers/header-gemelli.webp" />
+  <section class="section"><div class="container container--narrow">
+    <p class="lead">The world of Vampire: The Eternal Struggle is populated by dark, enigmatic and fascinating faces. But looking closely at card illustrations, sometimes you spot surprising similarities with well-known figures: actors, musicians, politicians or pop culture icons. This section collects the coincidences in a light-hearted and ironic way.</p>
+    <p class="tagline">A fun way to discover that, perhaps, some vampires really do walk among us...</p>
+
+    <hr class="divider" />
+
+    {twins.map((twin, i) => (
+      <div class="twin-entry">
+        <div class="twin-image">
+          <img src={twin.image} alt={twin.person} loading="lazy" />
+        </div>
+        <div class="twin-info">
+          <h3 class="twin-card">{twin.card}</h3>
+          <p class="twin-vs">vs</p>
+          <h4 class="twin-person">{twin.person}</h4>
+          <p class="twin-desc">{twin.description}</p>
+        </div>
+      </div>
+    ))}
+  </div></section>
+</Base>
+
+<style>
+  .section { padding: 40px clamp(20px, 5vw, 80px) 48px; }
+  .lead { font-size: clamp(0.95rem, 3vw, 1.05rem); line-height: 1.7; }
+  .tagline { font-size: 1rem; font-style: italic; color: var(--color-gold); margin-bottom: 16px; }
+  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
+  .twin-entry {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .twin-entry:last-child { border-bottom: none; }
+  .twin-image img { border-radius: var(--radius); width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .twin-card { font-size: 1.1rem; font-weight: 700; color: var(--color-gold); margin-bottom: 0; }
+  .twin-vs { font-size: 0.75rem; color: var(--color-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
+  .twin-person { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+  .twin-desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; }
+
+  @media (max-width: 544px) {
+    .twin-entry { grid-template-columns: 120px 1fr; gap: 16px; }
+  }
+</style>

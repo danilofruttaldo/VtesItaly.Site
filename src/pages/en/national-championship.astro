@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(p => p.data.category === 'nazionale')
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+<Base title="National Championship" description="The Italian VTES National Championship, the most anticipated annual event in the community.">
+  <PageHero title="National Championship" image="/images/headers/header-nazionale.webp" />
+  <section class="section"><div class="container container--narrow">
+    <p class="lead">The <strong>Italian VTES National Championship</strong> is the most anticipated annual event in the community: a gathering that combines <strong>high-level competition</strong> and <strong>convivial spirit</strong>, a true ritual for Italian Cainites where <strong>strategy</strong>, <strong>passion</strong> and <strong>prestige</strong> intertwine.</p>
+    <p>The tournament features <strong>3 rounds + finals</strong>, with mandatory registration and decklist on BCN. The winner is crowned <strong>Italian Champion</strong>.</p>
+
+    <hr class="divider" />
+
+    <h2 class="section-title">Championship Editions</h2>
+    <div class="editions-list">
+      {posts.map(post => (
+        <a href={`/en/national-championship/${post.slug}/`} class="edition-card">
+          <span class="edition-year">{new Date(post.data.date).getFullYear()}</span>
+          <span class="edition-label">{post.data.title}</span>
+        </a>
+      ))}
+    </div>
+  </div></section>
+</Base>
+
+<style>
+  .section { padding: 40px clamp(20px, 5vw, 80px) 48px; }
+  .section-title { font-size: clamp(1.2rem, 3.5vw, 1.5rem); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.5px; }
+  .lead { font-size: clamp(0.95rem, 3vw, 1.05rem); line-height: 1.7; }
+  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
+  .editions-list { display: flex; flex-direction: column; gap: 12px; }
+  .edition-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px; border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    text-decoration: none; color: var(--color-contrast);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+  .edition-card:hover { background-color: rgba(255,255,255,0.04); transform: translateX(2px); color: var(--color-contrast); }
+  .edition-year { font-size: 1.5rem; font-weight: 700; color: var(--color-gold); min-width: 60px; }
+  .edition-label { font-size: 1rem; font-weight: 600; }
+</style>

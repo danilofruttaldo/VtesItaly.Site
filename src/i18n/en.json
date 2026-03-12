@@ -1,0 +1,56 @@
+{
+  "slug_map": {
+    "domains": "principati",
+    "national-championship": "nazionale",
+    "postcards": "cartoline",
+    "twins": "gemelli"
+  },
+  "page_titles": {
+    "Home": "Home",
+    "Principati": "The Domains",
+    "Tour": "Italian Tour",
+    "Nazionale": "National Championship",
+    "Grand Prix": "Grand Prix",
+    "Cartoline": "Postcards",
+    "Gemelli": "Twins",
+    "Week of Sabbat": "Week of Sabbat",
+    "Blog": "Blog"
+  },
+  "months": {
+    "1": "January", "2": "February", "3": "March", "4": "April",
+    "5": "May", "6": "June", "7": "July", "8": "August",
+    "9": "September", "10": "October", "11": "November", "12": "December"
+  },
+  "days_short": {
+    "Mon": "MON", "Tue": "TUE", "Wed": "WED", "Thu": "THU",
+    "Fri": "FRI", "Sat": "SAT", "Sun": "SUN"
+  },
+  "calendar": {
+    "all_day": "All day",
+    "no_events": "No events scheduled in the next %d months.",
+    "full_calendar": "See the full calendar on Google",
+    "open_google": "Open in Google Calendar",
+    "sync_note": "Automatically updated from Google Calendar"
+  },
+  "search": {
+    "aria_label": "Search",
+    "close_label": "Close search",
+    "placeholder": "Search articles, events, domains...",
+    "submit": "Search"
+  },
+  "sticky_bar": {
+    "events": "Events",
+    "telegram": "Telegram"
+  },
+  "menu": {
+    "Home": "Home",
+    "Principati": "Domains",
+    "Tour": "Tour",
+    "Grand Prix": "Grand Prix",
+    "Nazionale": "National Championship",
+    "Blog": "Community",
+    "Cartoline": "Postcards",
+    "Gemelli": "Twins",
+    "Week of Sabbat": "Week of Sabbat"
+  }
+}

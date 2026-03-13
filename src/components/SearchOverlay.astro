@@ -7,40 +7,105 @@ const t = useTranslations(locale);
 
 <div class="vtesitaly-search-overlay" id="search-overlay">
   <button class="vtesitaly-search-close" aria-label={t.search.close_label}>&times;</button>
-  <form action={locale === 'en' ? '/en/' : '/'} method="get" class="vtesitaly-search-form">
+  <div class="vtesitaly-search-container">
     <input
       type="search"
-      name="s"
+      id="pagefind-input"
       class="vtesitaly-search-field"
       placeholder={t.search.placeholder}
       aria-label={t.search.aria_label}
+      autocomplete="off"
     />
-    <button type="submit" class="vtesitaly-search-submit">{t.search.submit}</button>
-  </form>
+    <div id="pagefind-results" class="vtesitaly-search-results"></div>
+  </div>
 </div>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
+<script is:inline define:vars={{ locale }}>
+  (function() {
     var overlay = document.getElementById('search-overlay');
     if (!overlay) return;
 
     var closeBtn = overlay.querySelector('.vtesitaly-search-close');
-    var field = overlay.querySelector('.vtesitaly-search-field');
+    var input = document.getElementById('pagefind-input');
+    var resultsContainer = document.getElementById('pagefind-results');
+    var pagefind = null;
+    var debounceTimer = null;
 
-    // Open via custom event (triggered from header search button)
-    document.addEventListener('open-search', function() {
+    async function initPagefind() {
+      if (pagefind) return;
+      try {
+        pagefind = await import('/pagefind/pagefind.js');
+        await pagefind.init();
+      } catch (e) {
+        console.warn('Pagefind not available:', e);
+      }
+    }
+
+    async function doSearch(query) {
+      if (!pagefind || !query || query.length < 2) {
+        resultsContainer.innerHTML = '';
+        return;
+      }
+
+      var search = await pagefind.search(query, {
+        filters: {}
+      });
+
+      var results = await Promise.all(
+        search.results.slice(0, 8).map(function(r) { return r.data(); })
+      );
+
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<p class="search-no-results">' +
+          (locale === 'it' ? 'Nessun risultato trovato.' : 'No results found.') +
+          '</p>';
+        return;
+      }
+
+      var html = results.map(function(r) {
+        return '<a href="' + r.url + '" class="search-result">' +
+          '<span class="search-result__title">' + r.meta.title + '</span>' +
+          '<span class="search-result__excerpt">' + r.excerpt + '</span>' +
+          '</a>';
+      }).join('');
+
+      resultsContainer.innerHTML = html;
+    }
+
+    function openOverlay() {
       overlay.classList.add('open');
-      if (field) field.focus();
-    });
+      initPagefind();
+      if (input) {
+        input.value = '';
+        resultsContainer.innerHTML = '';
+        input.focus();
+      }
+    }
 
-    if (closeBtn) closeBtn.addEventListener('click', function() { overlay.classList.remove('open'); });
+    function closeOverlay() {
+      overlay.classList.remove('open');
+    }
+
+    document.addEventListener('open-search', openOverlay);
+
+    if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
     overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) overlay.classList.remove('open');
+      if (e.target === overlay) closeOverlay();
     });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') overlay.classList.remove('open');
+      if (e.key === 'Escape') closeOverlay();
     });
-  });
+
+    if (input) {
+      input.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        var query = input.value.trim();
+        debounceTimer = setTimeout(function() {
+          doSearch(query);
+        }, 200);
+      });
+    }
+  })();
 </script>
 
 <style>
@@ -49,12 +114,14 @@ const t = useTranslations(locale);
     inset: 0;
     z-index: 10000;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 10vh;
     background-color: rgba(18, 20, 22, 0.95);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
+    overflow-y: auto;
   }
 
   .vtesitaly-search-overlay:global(.open) {
@@ -78,16 +145,14 @@ const t = useTranslations(locale);
     color: var(--color-contrast);
   }
 
-  .vtesitaly-search-form {
-    display: flex;
-    gap: 8px;
+  .vtesitaly-search-container {
     width: 100%;
-    max-width: 560px;
+    max-width: 600px;
     padding-inline: var(--spacing-md);
   }
 
   .vtesitaly-search-field {
-    flex: 1;
+    width: 100%;
     padding: 14px 20px;
     font-size: 1.1rem;
     font-family: var(--font-family);
@@ -107,20 +172,52 @@ const t = useTranslations(locale);
     color: var(--color-muted);
   }
 
-  .vtesitaly-search-submit {
-    min-height: 52px;
-    padding-inline: 24px;
-    font-size: var(--font-size-small);
-    font-weight: 600;
-    color: #fff;
-    background-color: var(--color-accent);
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  .vtesitaly-search-results {
+    margin-top: var(--spacing-md);
   }
 
-  .vtesitaly-search-submit:hover {
-    background-color: var(--color-accent-hover);
+  .vtesitaly-search-results :global(.search-result) {
+    display: block;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--color-contrast);
+    transition: background-color 0.15s ease;
+  }
+
+  .vtesitaly-search-results :global(.search-result:hover) {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .vtesitaly-search-results :global(.search-result + .search-result) {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .vtesitaly-search-results :global(.search-result__title) {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-accent-1);
+    margin-bottom: 4px;
+  }
+
+  .vtesitaly-search-results :global(.search-result__excerpt) {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .vtesitaly-search-results :global(.search-result__excerpt mark) {
+    background-color: transparent;
+    color: var(--color-gold);
+    font-weight: 600;
+  }
+
+  .vtesitaly-search-results :global(.search-no-results) {
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    padding: var(--spacing-md);
   }
 </style>

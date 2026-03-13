@@ -10,8 +10,13 @@ import { cities } from '../../data/cities';
 
   <section class="section">
     <div class="container">
-      <h1 class="section-title">Principati</h1>
-      <p class="section-subtitle">Le citta dove si gioca a VTES in Italia. Ogni principato ha il suo Principe, un punto di riferimento per la community locale.</p>
+      <p class="section-subtitle">Da nord a sud, la rete dei Methuselah italiani è viva e pulsante!</p>
+      <p class="section-intro">Questa pagina mostra i Principati attivi: le città dove la community VTES si riunisce, gioca, organizza tornei e fa crescere la passione per il gioco.</p>
+      <p class="section-intro">Che tu sia un antico risvegliato o un neonato curioso, qui puoi trovare il tuo dominio... o invaderne uno!</p>
+      <div class="coordinator">
+        <img src="/images/principi/Principi-Miro-Albertazzi.webp" alt="Miro Albertazzi" class="coordinator-avatar" decoding="async" />
+        <p>Coordinatore Nazionale<br /><strong>Miro Albertazzi</strong></p>
+      </div>
       <div class="principati-grid">
         {cities.map(city => (
           <CityCard
@@ -29,9 +34,12 @@ import { cities } from '../../data/cities';
 
 <style>
   .section { padding: 40px clamp(16px, 4vw, 60px) 48px; }
-  .section-title { text-align: center; font-size: clamp(1.4rem, 4vw, 2rem); text-transform: uppercase; margin-bottom: 12px; }
-  .section-subtitle { text-align: center; color: var(--color-muted); font-size: clamp(0.875rem, 3vw, 1rem); line-height: 1.6; margin-bottom: 32px; }
-  .principati-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  @media (min-width: 600px) { .principati-grid { grid-template-columns: repeat(3, 1fr); } }
+  .section-subtitle { text-align: center; color: var(--color-muted); font-size: clamp(0.875rem, 3vw, 1rem); line-height: 1.6; margin-bottom: 8px; }
+  .section-intro { text-align: center; color: var(--color-muted); font-size: 0.9rem; line-height: 1.6; max-width: 640px; margin-inline: auto; margin-bottom: 8px; }
+  .coordinator { text-align: center; color: var(--color-gold); font-size: 0.9rem; margin-bottom: 32px; }
+  .coordinator-avatar { display: block; width: 120px; height: 120px; border-radius: 16px; object-fit: cover; margin-inline: auto; margin-bottom: 8px; }
+  .principati-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (max-width: 599px) { .section { padding-inline: 8px; } }
+  @media (min-width: 600px) { .principati-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
   @media (min-width: 1024px) { .principati-grid { grid-template-columns: repeat(4, 1fr); } }
 </style>

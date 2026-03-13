@@ -39,48 +39,68 @@ const categoryLabels: Record<string, string> = {
           <h3>{city.prince.name}</h3>
           <p class="prince-alias"><em>{city.prince.alias}</em></p>
           <p class="prince-role">Principe di {city.name}</p>
+          <div class="prince-actions">
+            {city.prince.email && (
+              <a href={`mailto:${city.prince.email}`} class="prince-btn prince-btn--email">Email</a>
+            )}
+            {city.whatsappUrl && (
+              <a href={city.whatsappUrl} target="_blank" rel="noopener noreferrer" class="prince-btn prince-btn--whatsapp">WhatsApp</a>
+            )}
+          </div>
         </aside>
         <div class="city-main">
-          <h2>Incontri settimanali</h2>
+          <h2>Ritrovi settimanali</h2>
           {city.meetupSchedule.length > 0 ? (
-            <table class="meetup-table">
-              <thead>
-                <tr>
-                  <th>Quando</th>
-                  <th>Dove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {city.meetupSchedule.map(m => (
+            <div class="meetup-table-wrap">
+              <table class="meetup-table">
+                <thead>
                   <tr>
-                    <td>
-                      <span class="meetup-day">{m.day}</span>
-                      {m.time && <span class="meetup-time">{m.time}</span>}
-                    </td>
-                    <td>
-                      <a href={m.mapUrl} target="_blank" rel="noopener noreferrer" class="meetup-place">{m.place}</a>
-                      {m.address && <span class="meetup-address">{m.address}</span>}
-                    </td>
+                    <th>Quando</th>
+                    <th>Dove</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {city.meetupSchedule.map(m => (
+                    <tr>
+                      <td>
+                        <span class="meetup-day">{m.day}</span>
+                        {m.time && <span class="meetup-time">{m.time}</span>}
+                      </td>
+                      <td>
+                        {m.mapUrl ? (
+                          <a href={m.mapUrl} target="_blank" rel="noopener noreferrer" class="meetup-place">{m.place}</a>
+                        ) : (
+                          <span class="meetup-place-nolink">{m.place}</span>
+                        )}
+                        {m.address && <span class="meetup-address">{m.address}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
-            <p class="meetup-tbd">Incontri da definire.</p>
+            <p class="meetup-tbd">Incontri da definire. Contatta il Principe per maggiori informazioni!</p>
           )}
           {city.meetupNote && <p class="meetup-note">{city.meetupNote}</p>}
 
-          {city.highlight && (
-            <div class="highlight-box">
-              <h3 class="highlight-title">{city.highlight.title}</h3>
-              <p class="highlight-text">{city.highlight.text}</p>
-              {city.highlight.link && (
-                <a href={city.highlight.link} class="highlight-link">Scopri di più →</a>
-              )}
-            </div>
-          )}
         </div>
       </div>
+
+      {city.highlight && (
+        <div class="highlight-box">
+          {city.highlight.image && (
+            <img src={city.highlight.image} alt={city.highlight.title} class="highlight-image" loading="lazy" decoding="async" />
+          )}
+          <div class="highlight-content">
+            <h3 class="highlight-title">{city.highlight.title}</h3>
+            <p class="highlight-text">{city.highlight.text}</p>
+            {city.highlight.link && (
+              <a href={city.highlight.link} class="highlight-link">Scopri di più →</a>
+            )}
+          </div>
+        </div>
+      )}
 
       <div class="related-posts">
         <hr class="divider" />
@@ -112,52 +132,70 @@ const categoryLabels: Record<string, string> = {
   .city-content { padding: 32px clamp(16px, 4vw, 60px); }
   .city-layout { display: grid; grid-template-columns: 30% 1fr; gap: 40px; max-width: 960px; margin-inline: auto; }
   .prince-card { background-color: var(--color-card); border: 1px solid var(--color-accent-light); border-radius: 12px; padding: 24px; text-align: center; }
-  .prince-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-inline: auto; margin-bottom: 8px; }
+  .prince-avatar { width: 120px; height: 120px; border-radius: 16px; object-fit: cover; margin-inline: auto; margin-bottom: 8px; }
   .prince-card h3 { font-size: 1.1rem; margin-bottom: 0; }
   .prince-alias { color: var(--color-muted); font-size: 0.9rem; }
-  .prince-role { color: #666; font-size: 0.8rem; }
-  .city-main h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .prince-role { color: var(--color-muted); font-size: 0.8rem; }
+  .prince-actions { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+  .prince-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 600;
+    text-decoration: none; transition: opacity 0.2s ease;
+  }
+  .prince-btn:hover, .prince-btn:focus-visible { opacity: 0.85; }
+  .prince-btn--email { background-color: var(--color-gold); color: #1a1a1a; }
+  .prince-btn--whatsapp { background-color: #25D366; color: #fff; }
+  .city-main h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; text-align: center; }
   .city-main p { font-size: 0.95rem; line-height: 1.7; }
 
+  .meetup-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .meetup-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
   .meetup-table th {
     text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;
     color: var(--color-muted); padding: 8px 12px; border-bottom: 1px solid var(--color-accent-light);
   }
-  .meetup-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
-  .meetup-day { font-size: 0.95rem; font-weight: 500; }
+  .meetup-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+  .meetup-table td:first-child { vertical-align: top; }
+  .meetup-day { font-size: 0.95rem; font-weight: 500; white-space: pre-line; }
   .meetup-time { display: block; font-size: 0.8rem; color: var(--color-muted); margin-top: 2px; }
   .meetup-place { font-size: 0.95rem; font-weight: 500; color: var(--color-gold); text-decoration: none; transition: opacity 0.2s ease; }
   .meetup-place:hover { opacity: 0.8; text-decoration: underline; }
+  .meetup-place-nolink { font-size: 0.95rem; font-weight: 500; }
   .meetup-address { display: block; font-size: 0.8rem; color: var(--color-muted); margin-top: 2px; }
   .meetup-tbd { color: var(--color-muted); font-size: 0.9rem; font-style: italic; text-align: center; }
   .meetup-note { font-size: 0.85rem; color: var(--color-muted); margin-top: 4px; }
 
   .highlight-box {
-    margin-top: 24px;
+    max-width: 960px; margin-inline: auto; margin-top: 32px;
+    display: flex; gap: 24px; align-items: center;
     padding: 20px 24px;
     background-color: rgba(201, 168, 76, 0.08);
     border: 1px solid rgba(201, 168, 76, 0.30);
     border-radius: 12px;
+    overflow: hidden;
   }
+  .highlight-image { width: 200px; min-height: 140px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+  .highlight-content { flex: 1; min-width: 0; }
   .highlight-title { font-size: 1.05rem; font-weight: 700; color: var(--color-gold); margin-bottom: 8px; }
   .highlight-text { font-size: 0.9rem; line-height: 1.6; margin-bottom: 0; }
   .highlight-link {
-    display: inline-block; margin-top: 12px;
+    display: inline-block; margin-top: 12px; padding: 4px 0;
     font-size: 0.85rem; font-weight: 600; color: var(--color-gold);
     text-decoration: none; transition: opacity 0.2s ease;
   }
-  .highlight-link:hover { opacity: 0.8; }
+  .highlight-link:hover, .highlight-link:focus-visible { opacity: 0.8; }
 
   @media (max-width: 768px) {
     .city-content { padding: 24px 12px; }
     .city-layout { grid-template-columns: 1fr; }
+    .highlight-box { flex-direction: column; }
+    .highlight-image { width: 100%; min-height: 160px; }
     .related-card { padding: 8px; gap: 12px; }
   }
 
   .related-posts { max-width: 960px; margin-inline: auto; }
   .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
-  .related-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+  .related-title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; text-align: center; }
   .related-list { display: flex; flex-direction: column; gap: 16px; }
   .related-card {
     display: flex; gap: 16px;

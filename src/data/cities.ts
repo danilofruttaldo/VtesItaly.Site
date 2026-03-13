@@ -2,9 +2,10 @@ export interface MeetupEntry {
   day: string;
   dayEn: string;
   time?: string;
+  timeEn?: string;
   place: string;
   address?: string;
-  mapUrl: string;
+  mapUrl?: string;
 }
 
 export interface City {
@@ -17,6 +18,7 @@ export interface City {
     name: string;
     alias: string;
     image: string;
+    email?: string;
   };
   headerImage: string;
   descriptionIt: string;
@@ -25,12 +27,14 @@ export interface City {
   meetupNote?: string;
   meetupNoteEn?: string;
   mapUrl?: string;
+  whatsappUrl?: string;
   tagId?: number;
   highlight?: {
     title: string;
     titleEn: string;
     text: string;
     textEn: string;
+    image?: string;
     link?: string;
   };
 }
@@ -42,7 +46,7 @@ export const cities: City[] = [
     name: 'Barga (LU)',
     nameEn: 'Barga (LU)',
     region: 'Toscana',
-    prince: { name: 'Alessandro Donati', alias: 'Nekrós', image: '/images/principi/Principi-Alessandro-Donati.webp' },
+    prince: { name: 'Alessandro Donati', alias: 'Nekrós', image: '/images/principi/Principi-Alessandro-Donati.webp', email: 'adonati1982@gmail.com' },
     headerImage: '/images/headers/header-barga.webp',
     descriptionIt: 'Partite settimanali e tornei nella valle del Serchio.',
     descriptionEn: 'Weekly games and tournaments in the Serchio valley.',
@@ -65,17 +69,12 @@ export const cities: City[] = [
     name: 'Bologna',
     nameEn: 'Bologna',
     region: 'Emilia-Romagna',
-    prince: { name: 'Federico Ferrarini', alias: 'Rip', image: '/images/principi/Principi-Federico-Ferrarini.webp' },
+    prince: { name: 'Federico Ferrarini', alias: 'Rip', image: '/images/principi/Principi-Federico-Ferrarini.webp', email: 'fedemail83@gmail.com' },
     headerImage: '/images/headers/header-bologna.webp',
     descriptionIt: 'Partite al circolo Barbanera.',
     descriptionEn: 'Games at circolo Barbanera.',
     meetupSchedule: [
-      {
-        day: 'Giovedì, venerdì e sabato',
-        dayEn: 'Thursday, Friday and Saturday',
-        place: 'Circolo Barbanera',
-        mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Bologna',
-      },
+      { day: 'Giovedì\nVenerdì\nSabato', dayEn: 'Thursday\nFriday\nSaturday', place: 'Circolo Barbanera', mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Bologna' },
     ],
     tagId: 17,
   },
@@ -85,7 +84,7 @@ export const cities: City[] = [
     name: 'Firenze',
     nameEn: 'Firenze',
     region: 'Toscana',
-    prince: { name: 'Leonardo Bensi', alias: 'Mr. Banks', image: '/images/principi/Principi-Leonardo-Bensi.webp' },
+    prince: { name: 'Leonardo Bensi', alias: 'Mr. Banks', image: '/images/principi/Principi-Leonardo-Bensi.webp', email: 'leobensi@gmail.com' },
     headerImage: '/images/headers/header-firenze.webp',
     descriptionIt: 'Partite settimanali a Firenze.',
     descriptionEn: 'Weekly games in Florence.',
@@ -98,7 +97,7 @@ export const cities: City[] = [
     name: 'Genova',
     nameEn: 'Genova',
     region: 'Liguria',
-    prince: { name: 'Alessandro Aprigliano', alias: 'Fan of Moss', image: '/images/principi/Principi-Alessandro-Aprigliano.webp' },
+    prince: { name: 'Alessandro Aprigliano', alias: 'Fan of Moss', image: '/images/principi/Principi-Alessandro-Aprigliano.webp', email: 'alexdottrhino@gmail.com' },
     headerImage: '/images/headers/header-genova.webp',
     descriptionIt: 'Incontri flessibili a Genova.',
     descriptionEn: 'Flexible meetups in Genova.',
@@ -111,25 +110,21 @@ export const cities: City[] = [
     name: 'Massa',
     nameEn: 'Massa',
     region: 'Toscana',
-    prince: { name: 'Davide Antoni', alias: 'The Look', image: '/images/principi/Principi-Davide-Antoni.webp' },
+    prince: { name: 'Davide Antoni', alias: 'The Look', image: '/images/principi/Principi-Davide-Antoni.webp', email: 'massabynight@gmail.com' },
     headerImage: '/images/headers/header-massa.webp',
     descriptionIt: 'Partite a Massa.',
     descriptionEn: 'Games in Massa.',
     meetupSchedule: [
-      {
-        day: 'Lunedì, mercoledì e venerdì',
-        dayEn: 'Monday, Wednesday and Friday',
-        place: 'Associazione Ludica Apuana — Sporting Club Le Pinete',
-        address: 'Via San Ginese 15 (Poveromo), 54100 Massa MS',
-        mapUrl: 'https://maps.google.com/?q=Sporting+Club+Le+Pinete+Via+San+Ginese+15+Poveromo+Massa',
-      },
+      { day: 'Lunedì\nMercoledì\nVenerdì', dayEn: 'Monday\nWednesday\nFriday', place: 'Associazione Ludica Apuana — Sporting Club Le Pinete', address: 'Via San Ginese 15 (Poveromo), 54100 Massa MS', mapUrl: 'https://maps.google.com/?q=Sporting+Club+Le+Pinete+Via+San+Ginese+15+Poveromo+Massa' },
     ],
+    whatsappUrl: 'https://chat.whatsapp.com/EPKZ9BlvW5lG8CLQ6KqTV8',
     tagId: 21,
     highlight: {
       title: 'Massa by Night – Comunità VTES',
       titleEn: 'Massa by Night – VTES Community',
       text: 'Sei appassionato di Vampire: the Eternal Struggle o vorresti scoprire questo gioco? Stiamo cercando nuovi giocatori per espandere la community locale! Dai veterani ai neonati che vogliono imparare le regole, se abiti tra Massa, Carrara, Montignoso, La Spezia, Sarzana, Viareggio e zone limitrofe, sei il benvenuto al tavolo!',
       textEn: 'Are you a fan of Vampire: the Eternal Struggle or would you like to discover this unique card game? We are looking for new players to expand our local community! From veterans to newcomers who want to learn the rules, if you live near Massa, Carrara, Montignoso, La Spezia, Sarzana, Viareggio and surrounding areas, you are welcome at the table!',
+      image: '/images/eventi/massa-by-night.webp',
     },
   },
   {
@@ -138,7 +133,7 @@ export const cities: City[] = [
     name: 'Milano',
     nameEn: 'Milano',
     region: 'Lombardia',
-    prince: { name: 'Massimo Vaccari', alias: 'Gandalf78', image: '/images/principi/Principi-Massimo-Vaccari.webp' },
+    prince: { name: 'Massimo Vaccari', alias: 'Gandalf78', image: '/images/principi/Principi-Massimo-Vaccari.webp', email: 'vtesmilano2019@gmail.com' },
     headerImage: '/images/headers/header-milano.webp',
     descriptionIt: 'Partite settimanali a Milano.',
     descriptionEn: 'Weekly games in Milan.',
@@ -153,12 +148,14 @@ export const cities: City[] = [
     ],
     meetupNote: 'Altri giorni in base alla partecipazione.',
     meetupNoteEn: 'Other days depending on attendance.',
+    whatsappUrl: 'https://chat.whatsapp.com/L15bwtkJQYx6OHceA7pLeW',
     tagId: 22,
     highlight: {
       title: 'Nuovo giocatore? Impara a giocare con noi!',
       titleEn: 'New player? Learn to play with us!',
       text: 'Sei un nuovo giocatore? Hai voglia di provare questo fantastico gioco? O semplicemente sei un vecchio giocatore a cui è tornata la voglia di bleedare? Contattaci: troverai la Community di Milano e dintorni (anche Bergamo) pronta ad accoglierti. Carte e segnalini sangue in omaggio per il tuo primo mazzo!',
       textEn: 'Are you a new player? Want to try this fantastic game? Or simply a veteran who got the urge to bleed again? Contact us: the Milano community (including Bergamo) is ready to welcome you. Free cards and blood counters for your first deck!',
+      image: '/images/eventi/nuovo-giocatore-milano.webp',
     },
   },
   {
@@ -167,14 +164,16 @@ export const cities: City[] = [
     name: 'Modena',
     nameEn: 'Modena',
     region: 'Emilia-Romagna',
-    prince: { name: 'Simone Parmeggiani', alias: 'Parmeg', image: '/images/principi/Principi-Simone-Parmeggiani.webp' },
+    prince: { name: 'Simone Parmeggiani', alias: 'Parmeg', image: '/images/principi/Principi-Simone-Parmeggiani.webp', email: 'parmeggiani.simone@gmail.com' },
     headerImage: '/images/headers/header-modena.webp',
     descriptionIt: 'Partite a Modena.',
     descriptionEn: 'Games in Modena.',
     meetupSchedule: [
       {
-        day: 'Giovedì sera',
-        dayEn: 'Thursday evening',
+        day: 'Giovedì',
+        dayEn: 'Thursday',
+        time: 'Orario serale',
+        timeEn: 'Evening',
         place: 'Alearum Mundus',
         address: 'Via Castelnuovo R. 796, 41057 Spilamberto MO',
         mapUrl: 'https://maps.google.com/?q=Alearum+Mundus+Via+Castelnuovo+Rangone+796+Spilamberto',
@@ -195,7 +194,7 @@ export const cities: City[] = [
     name: 'Parma',
     nameEn: 'Parma',
     region: 'Emilia-Romagna',
-    prince: { name: 'Leonardo Magri', alias: 'Kaiser', image: '/images/principi/Principi-Leonardo-Magri.webp' },
+    prince: { name: 'Leonardo Magri', alias: 'Kaiser', image: '/images/principi/Principi-Leonardo-Magri.webp', email: 'leonardo.magri13@gmail.com' },
     headerImage: '/images/headers/header-parma.webp',
     descriptionIt: 'Incontri flessibili a Parma.',
     descriptionEn: 'Flexible meetups in Parma.',
@@ -208,7 +207,7 @@ export const cities: City[] = [
     name: 'Pordenone',
     nameEn: 'Pordenone',
     region: 'Friuli-Venezia Giulia',
-    prince: { name: 'Danny Buset', alias: 'Debby', image: '/images/principi/Principi-Danny-Buset.webp' },
+    prince: { name: 'Danny Buset', alias: 'Debby', image: '/images/principi/Principi-Danny-Buset.webp', email: 'pordenonevtes@gmail.com' },
     headerImage: '/images/headers/header-pordenone.webp',
     descriptionIt: 'Partite a Pordenone.',
     descriptionEn: 'Games in Pordenone.',
@@ -230,7 +229,7 @@ export const cities: City[] = [
     name: 'Prato',
     nameEn: 'Prato',
     region: 'Toscana',
-    prince: { name: 'Lorenzo Ferri', alias: 'ComedaLore', image: '/images/principi/Principi-Lorenzo-Ferri.webp' },
+    prince: { name: 'Lorenzo Ferri', alias: 'ComedaLore', image: '/images/principi/Principi-Lorenzo-Ferri.webp', email: 'lorenzoferri82@gmail.com' },
     headerImage: '/images/headers/header-prato.webp',
     descriptionIt: 'Incontri flessibili a Prato.',
     descriptionEn: 'Flexible meetups in Prato.',
@@ -243,7 +242,7 @@ export const cities: City[] = [
     name: 'Roma',
     nameEn: 'Roma',
     region: 'Lazio',
-    prince: { name: 'Alessandro Spataro', alias: 'Loki', image: '/images/principi/Principi-Alessandro-Spataro.webp' },
+    prince: { name: 'Alessandro Spataro', alias: 'Loki', image: '/images/principi/Principi-Alessandro-Spataro.webp', email: 'ale.loki.spataro@gmail.com' },
     headerImage: '/images/headers/header-roma.webp',
     descriptionIt: 'Incontri flessibili a Roma.',
     descriptionEn: 'Flexible meetups in Roma.',
@@ -256,7 +255,7 @@ export const cities: City[] = [
     name: 'Torino',
     nameEn: 'Torino',
     region: 'Piemonte',
-    prince: { name: 'Paolo Pasqualin', alias: 'Pisqua', image: '/images/principi/Principi-Paolo-Pasqualin.webp' },
+    prince: { name: 'Paolo Pasqualin', alias: 'Pisqua', image: '/images/principi/Principi-Paolo-Pasqualin.webp', email: 'wraith70@tiscali.it' },
     headerImage: '/images/headers/header-torino.webp',
     descriptionIt: 'Incontri flessibili a Torino.',
     descriptionEn: 'Flexible meetups in Torino.',
@@ -269,14 +268,14 @@ export const cities: City[] = [
     name: 'Trento',
     nameEn: 'Trento',
     region: 'Trentino-Alto Adige',
-    prince: { name: 'Giulio De Cicco', alias: 'Black Fox', image: '/images/principi/Principi-Giulio-De-Cicco.webp' },
+    prince: { name: 'Giulio De Cicco', alias: 'Black Fox', image: '/images/principi/Principi-Giulio-De-Cicco.webp', email: 'asgard.aldeno@gmail.com' },
     headerImage: '/images/headers/header-trento.webp',
     descriptionIt: 'Partite a Trento.',
     descriptionEn: 'Games in Trento.',
     meetupSchedule: [
       {
-        day: 'Flessibile (di solito venerdì)',
-        dayEn: 'Flexible (usually Friday)',
+        day: 'Venerdì (principalmente)',
+        dayEn: 'Friday (mainly)',
         time: '20:30–01:00',
         place: 'Asgard Aldeno',
         address: 'Via Roma 1, Aldeno (TN)',
@@ -293,20 +292,24 @@ export const cities: City[] = [
     name: 'Treviso',
     nameEn: 'Treviso',
     region: 'Veneto',
-    prince: { name: 'Danilo Fruttaldo', alias: 'NOPEdanilo', image: '/images/principi/Principi-Danilo-Fruttaldo.webp' },
+    prince: { name: 'Danilo Fruttaldo', alias: 'NOPEdanilo', image: '/images/principi/Principi-Danilo-Fruttaldo.webp', email: 'vtes.treviso@gmail.com' },
     headerImage: '/images/headers/header-treviso.webp',
     descriptionIt: 'Gioco casual e tornei a Treviso.',
     descriptionEn: 'Casual play and tournaments in Treviso.',
     meetupSchedule: [
       {
-        day: 'Flessibile',
-        dayEn: 'Flexible',
-        place: 'GiOlly Comics (tornei ed eventi)',
+        day: 'Lunedì\nGiovedì',
+        dayEn: 'Monday\nThursday',
+        place: 'Sede privata',
+      },
+      {
+        day: 'Eventi',
+        dayEn: 'Events',
+        place: 'GiOlly Comics',
         mapUrl: 'https://maps.google.com/?q=GiOlly+Comics+Treviso',
       },
     ],
-    meetupNote: 'Gioco casual settimanale in giorno variabile, in base alla partecipazione.',
-    meetupNoteEn: 'Weekly casual play on a flexible day, based on attendance.',
+    whatsappUrl: 'https://chat.whatsapp.com/EIRaOH8PNlY3M8oUWjzGpO',
     tagId: 30,
   },
   {
@@ -315,7 +318,7 @@ export const cities: City[] = [
     name: 'Verona',
     nameEn: 'Verona',
     region: 'Veneto',
-    prince: { name: 'Nicola Lonardi', alias: 'Paffo', image: '/images/principi/Principi-Nicola-Lonardi.webp' },
+    prince: { name: 'Nicola Lonardi', alias: 'Paffo', image: '/images/principi/Principi-Nicola-Lonardi.webp', email: 'xeno83@gmail.com' },
     headerImage: '/images/headers/header-verona.webp',
     descriptionIt: 'Incontri flessibili a Verona.',
     descriptionEn: 'Flexible meetups in Verona.',

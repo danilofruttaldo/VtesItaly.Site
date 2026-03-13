@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  leadHtml: string;
+  editionsTitle: string;
+  baseUrl: string;
+}
+
+const { posts, leadHtml, editionsTitle, baseUrl } = Astro.props;
+---
+
+<section class="page-section">
+  <div class="container container--narrow">
+    <Fragment set:html={leadHtml} />
+
+    <hr class="page-divider" />
+
+    <h2 class="page-section-title">{editionsTitle}</h2>
+    <div class="editions-list">
+      {posts.map(post => (
+        <a href={`${baseUrl}${post.slug}/`} class="edition-card">
+          <span class="edition-year">{new Date(post.data.date).getFullYear()}</span>
+          <span class="edition-label">{post.data.title}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

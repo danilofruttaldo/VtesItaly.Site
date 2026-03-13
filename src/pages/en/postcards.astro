@@ -1,7 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import { mainPages } from '../../data/pages';
 
+const page = mainPages.find(p => p.slug === 'cartoline')!;
 const galleries = [
   {
     title: 'Week of Sabbat',
@@ -92,8 +94,8 @@ const galleries = [
   },
 ];
 ---
-<Base title="Postcards" description="The ironic gallery of the VTES Italy community. Cards become photographic souvenirs.">
-  <PageHero title="Postcards" image="/images/headers/header-cartoline.webp" />
+<Base title={page.titleEn} description={page.descriptionEn}>
+  <PageHero title={page.titleEn} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="tagline">A deck of memories, not a game deck</p>
     <p>Welcome to the <strong>Postcards</strong> section, the ironic gallery of VTES Italy. Cards become photographic souvenirs: shots from events, tournaments and gatherings instead of original illustrations. These are community snapshots: serious, funny or epic moments, transformed into frames familiar to game players.</p>

@@ -1,9 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import { mainPages } from '../data/pages';
+
+const page = mainPages.find(p => p.slug === 'week-of-sabbat')!;
 ---
-<Base title="Week of Sabbat" description="L'evento nazionale per il lancio dei mazzi Sabbat. Una settimana di tornei in tutta Italia.">
-  <PageHero title="Week of Sabbat" image="/images/headers/header-week-of-sabbat.webp" />
+<Base title={page.titleIt} description={page.descriptionIt}>
+  <PageHero title={page.titleIt} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="date-badge">Ottobre 2025</p>
     <p class="lead">La nuova espansione Sabbat segna un momento speciale: <strong>l'Italia intera si unisce</strong> per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni citta. Non e solo una competizione, ma una settimana di <strong>incontro, scoperta e divertimento condiviso</strong>, in puro spirito cainita.</p>

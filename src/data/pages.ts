@@ -81,4 +81,13 @@ export const mainPages: PageMeta[] = [
     descriptionIt: 'L\'evento speciale Week of Sabbat.',
     descriptionEn: 'The Week of Sabbat special event.',
   },
+  {
+    slug: 'comunita',
+    slugEn: 'community',
+    titleIt: 'Comunità',
+    titleEn: 'Community',
+    headerImage: '',
+    descriptionIt: 'Articoli, report e novità dalla comunità VTES Italia.',
+    descriptionEn: 'Articles, reports and news from the Italian VTES community.',
+  },
 ];

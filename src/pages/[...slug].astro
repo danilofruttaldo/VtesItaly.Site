@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
+import { categoryLabels, categoryUrls } from '../data/categories';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -18,14 +19,9 @@ function formatDate(date: Date): string {
   return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-const categoryLabels: Record<string, string> = {
-  'tour': 'Tour',
-  'grand-prix': 'Grand Prix',
-  'nazionale': 'Nazionale',
-  'eventi': 'Eventi',
-  'community': 'Community',
-  'contest': 'Contest',
-};
+const label = categoryLabels[post.data.category]?.it || post.data.category;
+const backUrl = categoryUrls[post.data.category]?.it || '/comunita/';
+const backLabel = categoryLabels[post.data.category]?.it || 'Comunità';
 ---
 <Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.featuredImage}>
   <JsonLd slot="head" data={{
@@ -40,8 +36,8 @@ const categoryLabels: Record<string, string> = {
   <article class="post">
     <div class="container container--narrow">
       <div class="post__meta">
-        <a href="/comunita/" class="post__back">&larr; Comunità</a>
-        <span class="post__category">{categoryLabels[post.data.category] || post.data.category}</span>
+        <a href={backUrl} class="post__back">&larr; {backLabel}</a>
+        <span class="post__category">{label}</span>
         <time class="post__date" datetime={post.data.date.toISOString()}>
           {formatDate(post.data.date)}
         </time>
@@ -57,7 +53,7 @@ const categoryLabels: Record<string, string> = {
 
       <hr class="post__divider" />
       <div class="post__footer">
-        <a href="/comunita/" class="btn">&larr; Tutti gli articoli</a>
+        <a href={backUrl} class="btn">&larr; {backLabel}</a>
       </div>
     </div>
   </article>

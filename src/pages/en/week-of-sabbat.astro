@@ -1,9 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import { mainPages } from '../../data/pages';
+
+const page = mainPages.find(p => p.slug === 'week-of-sabbat')!;
 ---
-<Base title="Week of Sabbat" description="The national event for the Sabbat deck launch. A week of tournaments across Italy.">
-  <PageHero title="Week of Sabbat" image="/images/headers/header-week-of-sabbat.webp" />
+<Base title={page.titleEn} description={page.descriptionEn}>
+  <PageHero title={page.titleEn} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="date-badge">October 2025</p>
     <p class="lead">The new Sabbat expansion marks a special moment: <strong>all of Italy unites</strong> to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city. Not just competition, but a week of <strong>gathering, discovery and shared fun</strong>, in true Cainite spirit.</p>

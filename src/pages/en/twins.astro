@@ -1,7 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import { mainPages } from '../../data/pages';
 
+const page = mainPages.find(p => p.slug === 'gemelli')!;
 const twins = [
   { card: 'Maila', person: 'Maila Nurmi', image: '/images/gemelli/maila-nurmi.webp', description: 'Camarilla primogen inspired by the horror cinema icon. Same pose, same magnetic gaze.' },
   { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'The Tremere witch irresistibly recalls Willow from Buffy — same red hair, same mystic power.' },
@@ -15,8 +17,8 @@ const twins = [
   { card: 'Madeleine Giovanni', person: 'Valentina Nappi', image: '/images/gemelli/valentina-nappi.webp', description: 'Dark sunglasses and confident bearing of the independent vampire recall a famous glamour shoot.' },
 ];
 ---
-<Base title="Twins" description="Fun comparisons between VTES card characters and real-world figures.">
-  <PageHero title="Twins" image="/images/headers/header-gemelli.webp" />
+<Base title={page.titleEn} description={page.descriptionEn}>
+  <PageHero title={page.titleEn} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="lead">The world of Vampire: The Eternal Struggle is populated by dark, enigmatic and fascinating faces. But looking closely at card illustrations, sometimes you spot surprising similarities with well-known figures: actors, musicians, politicians or pop culture icons. This section collects the coincidences in a light-hearted and ironic way.</p>
     <p class="tagline">A fun way to discover that, perhaps, some vampires really do walk among us...</p>

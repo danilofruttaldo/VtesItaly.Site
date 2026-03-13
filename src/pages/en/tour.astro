@@ -1,46 +1,21 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import TournamentPage from '../../components/TournamentPage.astro';
 import { getCollection } from 'astro:content';
+import { mainPages } from '../../data/pages';
 
+const page = mainPages.find(p => p.slug === 'tour')!;
 const posts = (await getCollection('blog'))
   .filter(p => p.data.category === 'tour')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
-<Base title="Italian Tour" description="The VTES tournament circuit across Italy. Earn points and climb the annual rankings.">
-  <PageHero title="Italian Tour" image="/images/headers/header-tour.webp" />
-  <section class="section"><div class="container container--narrow">
-    <p class="lead">The <strong>VTES Italian Tour</strong> is an exciting <strong>series of tournaments</strong> held throughout the year across <strong>Italy's main Domains</strong>. Each <strong>stop</strong> offers the chance to <strong>earn valuable points</strong> for the <strong>annual ranking</strong>, with the <strong>best players</strong> competing for <strong>the whole country</strong>.</p>
-    <p>Get ready for a <strong>thrilling and strategic competition</strong>, where <strong>every game can make the difference</strong> on the <strong>road to the final victory</strong>.</p>
-
-    <hr class="divider" />
-
-    <h2 class="section-title">Tour Editions</h2>
-    <div class="editions-list">
-      {posts.map(post => (
-        <a href={`/en/tour/${post.slug}/`} class="edition-card">
-          <span class="edition-year">{new Date(post.data.date).getFullYear()}</span>
-          <span class="edition-label">{post.data.title}</span>
-        </a>
-      ))}
-    </div>
-  </div></section>
+<Base title={page.titleEn} description={page.descriptionEn}>
+  <PageHero title={page.titleEn} image={page.headerImage} />
+  <TournamentPage
+    posts={posts}
+    leadHtml={`<p class="page-lead">The <strong>VTES Italian Tour</strong> is an exciting <strong>series of tournaments</strong> held throughout the year across <strong>Italy's main Domains</strong>. Each <strong>stop</strong> offers the chance to <strong>earn valuable points</strong> for the <strong>annual ranking</strong>, with the <strong>best players</strong> competing for <strong>the whole country</strong>.</p><p>Get ready for a <strong>thrilling and strategic competition</strong>, where <strong>every game can make the difference</strong> on the <strong>road to the final victory</strong>.</p>`}
+    editionsTitle="Tour Editions"
+    baseUrl="/en/tour/"
+  />
 </Base>
-
-<style>
-  .section { padding: 40px clamp(20px, 5vw, 80px) 48px; }
-  .section-title { font-size: clamp(1.2rem, 3.5vw, 1.5rem); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.5px; }
-  .lead { font-size: clamp(0.95rem, 3vw, 1.05rem); line-height: 1.7; }
-  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
-  .editions-list { display: flex; flex-direction: column; gap: 12px; }
-  .edition-card {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 20px; border-radius: var(--radius);
-    border: 1px solid var(--color-border);
-    text-decoration: none; color: var(--color-contrast);
-    transition: background-color 0.2s ease, transform 0.15s ease;
-  }
-  .edition-card:hover { background-color: rgba(255,255,255,0.04); transform: translateX(2px); color: var(--color-contrast); }
-  .edition-year { font-size: 1.5rem; font-weight: 700; color: var(--color-gold); min-width: 60px; }
-  .edition-label { font-size: 1rem; font-weight: 600; }
-</style>

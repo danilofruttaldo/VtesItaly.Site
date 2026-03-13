@@ -2,7 +2,9 @@
 import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import { getCollection } from 'astro:content';
+import { mainPages } from '../../../data/pages';
 
+const page = mainPages.find(p => p.slug === 'comunita')!;
 const posts = (await getCollection('blog'))
   .filter(p => p.data.category === 'comunita')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
@@ -11,8 +13,8 @@ function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 ---
-<Base title="Community" description="Articles, reports and news from the VTES Italy community.">
-  <PageHero title="Community" />
+<Base title={page.titleEn} description={page.descriptionEn}>
+  <PageHero title={page.titleEn} />
   <section class="section"><div class="container container--narrow">
     <p class="section-subtitle">Articles, reports and news from the community.</p>
 

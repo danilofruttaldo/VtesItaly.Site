@@ -3,6 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import PageHero from '../../../components/PageHero.astro';
 import { cities } from '../../../data/cities';
 import { getCollection } from 'astro:content';
+import { categoryLabels } from '../../../data/categories';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
@@ -19,13 +20,6 @@ export async function getStaticPaths() {
 }
 
 const { city, relatedPosts } = Astro.props;
-
-const categoryLabels: Record<string, string> = {
-  'comunita': 'Community',
-  'tour': 'Tour',
-  'grand-prix': 'Grand Prix',
-  'nazionale': 'National Championship',
-};
 ---
 
 <Base title={city.nameEn} description={city.descriptionEn}>
@@ -113,7 +107,7 @@ const categoryLabels: Record<string, string> = {
                   <img src={post.data.featuredImage} alt="" class="related-image" loading="lazy" decoding="async" />
                 )}
                 <div class="related-body">
-                  <span class="related-category">{categoryLabels[post.data.category] || post.data.category}</span>
+                  <span class="related-category">{categoryLabels[post.data.category]?.en || post.data.category}</span>
                   <span class="related-name">{post.data.title}</span>
                   {post.data.excerpt && <p class="related-excerpt">{post.data.excerpt}</p>}
                 </div>

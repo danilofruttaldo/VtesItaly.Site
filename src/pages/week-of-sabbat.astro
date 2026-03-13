@@ -37,6 +37,18 @@ const page = mainPages.find(p => p.slug === 'week-of-sabbat')!;
 
     <h2 class="section-title">Classifica dei mazzi</h2>
     <p>La classifica nazionale dei mazzi viene aggiornata man mano che arrivano i risultati dagli eventi locali. Solo i tornei ufficiali Week of Sabbat sono validi per la classifica.</p>
+
+    <div class="standings-frame">
+      <iframe src="https://docs.google.com/spreadsheets/d/1haGlL72KGpcU9bqPkPVNP4djl5mEdI7U8OJc0jGiimg/pubhtml?widget=true&headers=false" title="Classifica Week of Sabbat" loading="lazy"></iframe>
+    </div>
+
+    <hr class="divider" />
+
+    <h2 class="section-title">Download</h2>
+    <div class="downloads">
+      <a href="https://drive.google.com/uc?export=download&id=1YMFmpUSYcWwY6foPrW44jTz-MfL087xO" class="btn btn--outline" download>Infokit evento</a>
+      <a href="https://drive.google.com/uc?export=download&id=1u1FgSWPC9LPQzRNPh8Hxx7gzw578IOiw" class="btn btn--outline" download>Event report template</a>
+    </div>
   </div></section>
 </Base>
 
@@ -57,4 +69,21 @@ const page = mainPages.find(p => p.slug === 'week-of-sabbat')!;
   .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
   .rules-list { padding-left: 20px; margin-bottom: 16px; }
   .rules-list li { margin-bottom: 8px; line-height: 1.6; }
+  .standings-frame {
+    margin-top: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .standings-frame iframe {
+    width: 100%;
+    min-height: 500px;
+    border: none;
+    background: var(--color-surface);
+  }
+  .downloads {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
 </style>

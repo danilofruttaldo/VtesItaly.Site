@@ -1,0 +1,257 @@
+---
+import { cities } from '../data/cities';
+
+interface Stage {
+  name: string;
+  number: number;
+  date: Date;
+  cities: string[];
+  archonUrl?: string;
+  status: 'completed' | 'upcoming' | 'future' | 'cancelled';
+}
+
+interface Props {
+  stages: Stage[];
+  locale: 'it' | 'en';
+}
+
+const { stages, locale } = Astro.props;
+
+const cityMap = new Map(cities.map(c => [c.slug, {
+  nameIt: c.name,
+  nameEn: c.nameEn,
+  urlIt: `/principati/${c.slug}/`,
+  urlEn: `/en/domains/${c.slugEn}/`,
+}]));
+
+const statusLabels: Record<string, { it: string; en: string }> = {
+  completed: { it: 'Completata', en: 'Completed' },
+  upcoming: { it: 'Prossima', en: 'Next' },
+  future: { it: 'In programma', en: 'Scheduled' },
+  cancelled: { it: 'Annullata', en: 'Cancelled' },
+};
+
+function formatMonth(date: Date): string {
+  return date.toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', { month: 'short' }).toUpperCase();
+}
+
+function formatDay(date: Date): string {
+  return date.getDate().toString();
+}
+
+function formatFullDate(date: Date): string {
+  return date.toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<div class="stages-grid">
+  {stages.map(stage => {
+    const isUpcoming = stage.status === 'upcoming';
+    const isCompleted = stage.status === 'completed';
+    const isCancelled = stage.status === 'cancelled';
+    return (
+      <div class:list={['stage-card', { 'stage-card--upcoming': isUpcoming, 'stage-card--completed': isCompleted, 'stage-card--cancelled': isCancelled }]}>
+        <div class="stage-date">
+          <span class="stage-month">{formatMonth(stage.date)}</span>
+          <span class="stage-day">{formatDay(stage.date)}</span>
+        </div>
+        <div class="stage-body">
+          <div class="stage-header">
+            <span class="stage-number">#{stage.number}</span>
+            <span class="stage-name">{stage.name}</span>
+            <span class:list={['stage-status', `stage-status--${stage.status}`]}>
+              {statusLabels[stage.status]?.[locale] || stage.status}
+            </span>
+          </div>
+          <div class="stage-cities">
+            {stage.cities.map(slug => {
+              const city = cityMap.get(slug);
+              if (!city) return <span class="stage-city">{slug}</span>;
+              const name = locale === 'it' ? city.nameIt : city.nameEn;
+              const url = locale === 'it' ? city.urlIt : city.urlEn;
+              return <a href={url} class="stage-city">{name}</a>;
+            })}
+          </div>
+          {stage.archonUrl && (
+            <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class="stage-archon">
+              Archon &rarr;
+            </a>
+          )}
+        </div>
+        {isCompleted && <div class="stage-check" aria-label="Completata">&#10003;</div>}
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .stages-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stage-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    transition: background-color 0.2s ease;
+    position: relative;
+  }
+  .stage-card:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Upcoming highlight */
+  .stage-card--upcoming {
+    border-color: var(--color-gold);
+    background-color: rgba(201, 168, 76, 0.06);
+  }
+
+  /* Completed */
+  .stage-card--completed {
+    opacity: 0.7;
+  }
+
+  /* Cancelled */
+  .stage-card--cancelled {
+    opacity: 0.4;
+  }
+  .stage-card--cancelled .stage-name {
+    text-decoration: line-through;
+  }
+
+  /* Date block */
+  .stage-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 56px;
+    background-color: var(--color-accent-light);
+    border-radius: var(--radius);
+    flex-shrink: 0;
+  }
+  .stage-card--upcoming .stage-date {
+    background-color: rgba(201, 168, 76, 0.15);
+  }
+  .stage-month {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-accent-1);
+    line-height: 1;
+  }
+  .stage-card--upcoming .stage-month {
+    color: var(--color-gold);
+  }
+  .stage-day {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-contrast);
+  }
+
+  /* Body */
+  .stage-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .stage-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-muted);
+  }
+  .stage-name {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .stage-card--upcoming .stage-name {
+    color: var(--color-gold);
+  }
+
+  /* Status badge */
+  .stage-status {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: var(--radius);
+    margin-left: auto;
+  }
+  .stage-status--completed {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+  }
+  .stage-status--upcoming {
+    color: var(--color-gold);
+    background: rgba(201, 168, 76, 0.15);
+  }
+  .stage-status--future {
+    color: var(--color-muted);
+    background: rgba(155, 155, 155, 0.1);
+  }
+  .stage-status--cancelled {
+    color: var(--color-accent-1);
+    background: var(--color-accent-light);
+  }
+
+  /* Cities */
+  .stage-cities {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stage-city {
+    font-size: 0.8rem;
+    color: var(--color-accent-1);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  a.stage-city:hover {
+    color: var(--color-accent-2);
+  }
+
+  /* Archon link */
+  .stage-archon {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .stage-archon:hover {
+    opacity: 0.7;
+  }
+
+  /* Completed check */
+  .stage-check {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    color: #4ade80;
+  }
+
+  @media (max-width: 544px) {
+    .stage-card { padding: 12px; gap: 12px; }
+    .stage-date { width: 44px; height: 48px; }
+    .stage-day { font-size: 1.1rem; }
+    .stage-status { margin-left: 0; }
+  }
+</style>

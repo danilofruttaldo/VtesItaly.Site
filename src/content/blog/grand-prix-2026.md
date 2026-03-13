@@ -5,6 +5,7 @@ category: "grand-prix"
 tags: ["bologna", "italia"]
 excerpt: "IT GP 2026 — Bologna La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek e Mistlore, è [&hellip;]"
 featuredImage: "/images/headers/header-grand-prix.webp"
+galleryFolder: "gp-2026"
 ---
 
 # Grand Prix 2026
@@ -55,7 +56,10 @@ L'evento verrà gestito interamente sul portale **Archon Online**, pertanto sar�
 
 ### Pagamento
 
-EventoEntro il 10 AprileDopo il 10 AprileSabato 2 Maggio — Main Event + pranzo60,00 euro65,00 euroDomenica 3 Maggio — Side Event + pranzo35,00 euro40,00 euro
+| Evento | Entro il 10 Aprile | Dopo il 10 Aprile |
+|--------|-------------------|-------------------|
+| Sabato 2 Maggio — Main Event + pranzo | 60,00 euro | 65,00 euro |
+| Domenica 3 Maggio — Side Event + pranzo | 35,00 euro | 40,00 euro |
 
 I pagamenti per le iscrizioni dovranno essere effettuati tramite la piattaforma digitale **PayPal (modalità amici e parenti)** alla seguente e-mail: **info@vtesitaly.com**
 
@@ -66,6 +70,11 @@ Il pagamento è comprensivo di **pranzo** al ristorante dell'Hotel "alla bella I
 ### Premi
 
 I premi verranno comunicati nel corso dell'avvicinamento all'evento ma saranno tanti ed originali! Sono previsti, oltre al consueto **door prize**, premi per la **classifica**, ad **estrazione** e altre formule che verranno a mano a mano comunicate nei giorni a venire. Restate in contatto con noi per non perdervi alcuna novità!
+
+### Infopack
+
+- [Infopack Italiano (PDF)](https://drive.google.com/file/d/1yUv2fR57PXiv6-fTVck8WRxixwInK7Rq/view?usp=sharing)
+- [Infopack English (PDF)](https://drive.google.com/file/d/1Efb2StXjnRGUtDYw5qO_JComlNd8YDuM/view?usp=drive_link)
 
 ### Contatti
 

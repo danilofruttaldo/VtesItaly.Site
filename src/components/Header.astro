@@ -7,39 +7,53 @@ const altLocale = locale === 'it' ? 'en' : 'it';
 const altUrl = getAlternateUrl(Astro.url, altLocale);
 
 const prefix = locale === 'en' ? '/en' : '';
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const flagIt = `<svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg>`;
+const flagEn = `<svg class="flag-icon" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg>`;
 
 const navGroups = [
   [
-    { label: t.menu['Blog'], href: locale === 'en' ? '/en/community/' : '/comunita/' },
-    { label: t.menu['Principati'], href: locale === 'en' ? '/en/domains/' : '/principati/' },
+    { label: t.menu['Blog'], fullLabel: t.page_titles['Blog'], href: locale === 'en' ? '/en/community/' : '/comunita/' },
+    { label: t.menu['Principati'], fullLabel: t.page_titles['Principati'], href: locale === 'en' ? '/en/domains/' : '/principati/' },
   ],
   [
-    { label: t.menu['Tour'], href: `${prefix}/tour/` },
-    { label: t.menu['Nazionale'], href: locale === 'en' ? '/en/national-championship/' : '/nazionale/' },
-    { label: t.menu['Grand Prix'], href: `${prefix}/grand-prix/` },
+    { label: t.menu['Tour'], fullLabel: t.page_titles['Tour'], href: `${prefix}/tour/` },
+    { label: t.menu['Nazionale'], fullLabel: t.page_titles['Nazionale'], href: locale === 'en' ? '/en/national-championship/' : '/nazionale/' },
+    { label: t.menu['Grand Prix'], fullLabel: t.page_titles['Grand Prix'], href: `${prefix}/grand-prix/` },
   ],
   [
-    { label: t.menu['Week of Sabbat'], href: `${prefix}/week-of-sabbat/` },
-    { label: t.menu['Cartoline'], href: locale === 'en' ? '/en/postcards/' : '/cartoline/' },
-    { label: t.menu['Gemelli'], href: locale === 'en' ? '/en/twins/' : '/gemelli/' },
+    { label: t.menu['Cartoline'], fullLabel: t.page_titles['Cartoline'], href: locale === 'en' ? '/en/postcards/' : '/cartoline/' },
+    { label: t.menu['Gemelli'], fullLabel: t.page_titles['Gemelli'], href: locale === 'en' ? '/en/twins/' : '/gemelli/' },
   ],
 ];
+
+function isCurrent(href: string): boolean {
+  const normalized = href.replace(/\/$/, '') || '/';
+  return currentPath === normalized || currentPath.startsWith(normalized + '/');
+}
 ---
 
 <header class="site-header">
   <div class="container">
-    <a href={`${prefix}/`} class="site-title">
+    <a href={`${prefix}/`} class="site-title" aria-current={isCurrent(`${prefix}/`) ? 'page' : undefined}>
       <img src="/images/logo.jpeg" alt="VTES Italy" class="site-logo" width="36" height="36" />
     </a>
 
-    <nav class="site-nav" aria-label="Main navigation">
-      {navGroups.map((group, gi) => (
-        <Fragment>
-          {gi > 0 && <span class="nav-sep" aria-hidden="true">|</span>}
+    <nav class="site-nav" aria-label={t.nav.main_label}>
+      {navGroups.map((group) => (
+        <ul class="nav-group" role="list">
           {group.map(item => (
-            <a href={item.href} class="nav-link">{item.label}</a>
+            <li>
+              <a
+                href={item.href}
+                class="nav-link"
+                title={item.label !== item.fullLabel ? item.fullLabel : undefined}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >{item.label}</a>
+            </li>
           ))}
-        </Fragment>
+        </ul>
       ))}
     </nav>
 
@@ -50,22 +64,22 @@ const navGroups = [
     <div class="lang-dropdown" id="lang-dropdown">
       <button class="lang-dropdown__trigger nav-link" type="button" aria-expanded="false">
         {locale === 'it'
-          ? <Fragment><svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg> IT</Fragment>
-          : <Fragment><svg class="flag-icon" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg> EN</Fragment>
+          ? <Fragment><Fragment set:html={flagIt} /> IT</Fragment>
+          : <Fragment><Fragment set:html={flagEn} /> EN</Fragment>
         }
         <svg class="lang-dropdown__arrow" width="10" height="10" viewBox="0 0 10 10"><path d="M2 4l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
       <div class="lang-dropdown__menu">
         <a href={locale === 'it' ? '#' : altUrl} class={`lang-dropdown__item ${locale === 'it' ? 'is-current' : ''}`}>
-          <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg> Italiano
+          <Fragment set:html={flagIt} /> Italiano
         </a>
         <a href={locale === 'en' ? '#' : altUrl} class={`lang-dropdown__item ${locale === 'en' ? 'is-current' : ''}`}>
-          <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg> English
+          <Fragment set:html={flagEn} /> English
         </a>
       </div>
     </div>
 
-    <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false" type="button">
+    <button class="hamburger" id="hamburger-btn" aria-label={t.nav.menu_button} aria-expanded="false" type="button">
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -74,21 +88,29 @@ const navGroups = [
 </header>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <nav class="mobile-menu__nav">
+  <nav class="mobile-menu__nav" aria-label={t.nav.main_label}>
     {navGroups.map((group, gi) => (
       <Fragment>
         {gi > 0 && <hr class="mobile-menu__divider" />}
-        {group.map(item => (
-          <a href={item.href} class="mobile-menu__link">{item.label}</a>
-        ))}
+        <ul class="mobile-menu__group" role="list">
+          {group.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class="mobile-menu__link"
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >{item.fullLabel}</a>
+            </li>
+          ))}
+        </ul>
       </Fragment>
     ))}
     <hr class="mobile-menu__divider" />
     <div class="mobile-menu__bottom">
       <a href={altUrl} class="mobile-menu__lang">
-        <span class={locale === 'it' ? 'lang-active' : 'lang-inactive'}><svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg> IT</span>
+        <span class={locale === 'it' ? 'lang-active' : 'lang-inactive'}><Fragment set:html={flagIt} /> IT</span>
         <span class="lang-sep">|</span>
-        <span class={locale === 'en' ? 'lang-active' : 'lang-inactive'}><svg class="flag-icon" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg> EN</span>
+        <span class={locale === 'en' ? 'lang-active' : 'lang-inactive'}><Fragment set:html={flagEn} /> EN</span>
       </a>
     </div>
   </nav>
@@ -138,15 +160,23 @@ const navGroups = [
   .site-nav {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0;
     flex: 1;
   }
 
-  .nav-sep {
-    color: var(--color-border);
-    font-weight: 300;
-    opacity: 0.5;
-    user-select: none;
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-group + .nav-group {
+    margin-left: var(--spacing-sm);
+    padding-left: var(--spacing-sm);
+    border-left: 1px solid var(--color-border);
   }
 
   .flag-icon {
@@ -245,6 +275,24 @@ const navGroups = [
     font-weight: 300;
   }
 
+  /* Active page indicator */
+  .nav-link[aria-current="page"],
+  .mobile-menu__link[aria-current="page"] {
+    color: var(--color-accent-1);
+  }
+
+  /* Focus visible for keyboard navigation */
+  .nav-link:focus-visible,
+  .mobile-menu__link:focus-visible,
+  .search-trigger:focus-visible,
+  .hamburger:focus-visible,
+  .lang-dropdown__trigger:focus-visible,
+  .lang-dropdown__item:focus-visible {
+    outline: 2px solid var(--color-accent-1);
+    outline-offset: 2px;
+    border-radius: var(--radius);
+  }
+
   .search-trigger {
     min-width: 44px;
     min-height: 44px;
@@ -317,6 +365,12 @@ const navGroups = [
     padding: 16px 0;
   }
 
+  .mobile-menu__group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   .mobile-menu__link {
     display: block;
     padding: 14px 24px;
@@ -373,6 +427,15 @@ const navGroups = [
     opacity: 1;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .mobile-menu-backdrop,
+    .hamburger-line,
+    .lang-dropdown__arrow {
+      transition: none;
+    }
+  }
+
   @media (max-width: 768px) {
     .site-nav {
       display: none;
@@ -423,6 +486,10 @@ const navGroups = [
       mobileMenu.setAttribute('aria-hidden', String(isOpen));
       backdrop.classList.toggle('is-open', !isOpen);
       document.body.style.overflow = !isOpen ? 'hidden' : '';
+      if (!isOpen) {
+        var focusable = mobileMenu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length) focusable[0].focus();
+      }
     }
 
     function closeMenu() {
@@ -431,6 +498,23 @@ const navGroups = [
       mobileMenu.setAttribute('aria-hidden', 'true');
       backdrop.classList.remove('is-open');
       document.body.style.overflow = '';
+      hamburger.focus();
+    }
+
+    // Focus trap for mobile menu (registered once)
+    if (mobileMenu) {
+      mobileMenu.addEventListener('keydown', function(e) {
+        if (e.key !== 'Tab' || !mobileMenu.classList.contains('is-open')) return;
+        var focusable = mobileMenu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
     }
 
     if (hamburger) hamburger.addEventListener('click', toggleMenu);
@@ -443,15 +527,15 @@ const navGroups = [
       }
     }
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        if (mobileMenu && mobileMenu.classList.contains('is-open')) closeMenu();
-        closeLangDropdown();
-      }
-    });
-
     // Language dropdown
     var langDropdown = document.getElementById('lang-dropdown');
+
+    function closeLangDropdown() {
+      if (!langDropdown) return;
+      langDropdown.classList.remove('is-open');
+      langDropdown.setAttribute('aria-expanded', 'false');
+    }
+
     if (langDropdown) {
       var langTrigger = langDropdown.querySelector('.lang-dropdown__trigger');
 
@@ -465,16 +549,18 @@ const navGroups = [
         }
       }
 
-      function closeLangDropdown() {
-        langDropdown.classList.remove('is-open');
-        langDropdown.setAttribute('aria-expanded', 'false');
-      }
-
       if (langTrigger) langTrigger.addEventListener('click', toggleLangDropdown);
 
       document.addEventListener('click', function(e) {
         if (!langDropdown.contains(e.target)) closeLangDropdown();
       });
     }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (mobileMenu && mobileMenu.classList.contains('is-open')) closeMenu();
+        closeLangDropdown();
+      }
+    });
   });
 </script>

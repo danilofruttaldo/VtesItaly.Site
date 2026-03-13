@@ -33,6 +33,10 @@
     "placeholder": "Cerca articoli, eventi, principati...",
     "submit": "Cerca"
   },
+  "nav": {
+    "main_label": "Navigazione principale",
+    "menu_button": "Menu"
+  },
   "sticky_bar": {
     "events": "Eventi",
     "telegram": "Telegram"
@@ -41,8 +45,8 @@
     "Home": "Home",
     "Principati": "Principati",
     "Tour": "Tour",
-    "Grand Prix": "Grand Prix",
-    "Nazionale": "Nazionale",
+    "Grand Prix": "GP",
+    "Nazionale": "NC",
     "Blog": "Comunità",
     "Cartoline": "Cartoline",
     "Gemelli": "Gemelli",

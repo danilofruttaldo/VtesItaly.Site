@@ -10,7 +10,7 @@
     "Home": "Home",
     "Principati": "The Domains",
     "Tour": "Italian Tour",
-    "Nazionale": "National Championship",
+    "Nazionale": "Nationals",
     "Grand Prix": "Grand Prix",
     "Cartoline": "Postcards",
     "Gemelli": "Twins",
@@ -39,6 +39,10 @@
     "placeholder": "Search articles, events, domains...",
     "submit": "Search"
   },
+  "nav": {
+    "main_label": "Main navigation",
+    "menu_button": "Menu"
+  },
   "sticky_bar": {
     "events": "Events",
     "telegram": "Telegram"
@@ -47,8 +51,8 @@
     "Home": "Home",
     "Principati": "Domains",
     "Tour": "Tour",
-    "Grand Prix": "Grand Prix",
-    "Nazionale": "National Championship",
+    "Grand Prix": "GP",
+    "Nazionale": "NC",
     "Blog": "Community",
     "Cartoline": "Postcards",
     "Gemelli": "Twins",

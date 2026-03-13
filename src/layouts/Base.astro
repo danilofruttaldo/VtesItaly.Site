@@ -13,7 +13,7 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description = 'VTES Italy — La community italiana di Vampire: The Eternal Struggle', ogImage = '/images/headers/header-home.webp' } = Astro.props;
+const { title, description = 'VTES Italy, la community italiana di Vampire: The Eternal Struggle', ogImage = '/images/headers/header-home.webp' } = Astro.props;
 const locale = getLocaleFromUrl(Astro.url);
 const alternateUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);

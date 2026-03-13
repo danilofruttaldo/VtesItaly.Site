@@ -6,13 +6,13 @@ import { mainPages } from '../data/pages';
 const page = mainPages.find(p => p.slug === 'gemelli')!;
 const twins = [
   { card: 'Maila', person: 'Maila Nurmi', image: '/images/gemelli/maila-nurmi.webp', description: 'Primogena della Camarilla ispirata all\'icona del cinema horror. Stessa posa, stesso sguardo magnetico.' },
-  { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'La strega Tremere ricorda irresistibilmente Willow di Buffy — stessi capelli rossi, stesso potere mistico.' },
-  { card: 'Lady Zara Slatikov', person: 'Carrie-Anne Moss', image: '/images/gemelli/carrie-anne-moss.webp', description: 'Il fascino gotico del vescovo Sabbat richiama Trinity di Matrix — eleganza oscura e determinazione letale.' },
+  { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'La strega Tremere ricorda irresistibilmente Willow di Buffy. Stessi capelli rossi, stesso potere mistico.' },
+  { card: 'Lady Zara Slatikov', person: 'Carrie-Anne Moss', image: '/images/gemelli/carrie-anne-moss.webp', description: 'Il fascino gotico del vescovo Sabbat richiama Trinity di Matrix. Eleganza oscura e determinazione letale.' },
   { card: 'Sir Walter Nash', person: 'Donald Trump (anni \'80)', image: '/images/gemelli/donald-trump.webp', description: 'Il Principe di Chicago somiglia al celebre imprenditore newyorkese nei suoi anni d\'oro. Coincidenza?' },
   { card: 'Ira Rivers', person: 'Dwayne "The Rock" Johnson', image: '/images/gemelli/dwayne-johnson.webp', description: 'Il Principe di Dallas ha lo stesso fisico imponente e lo sguardo intenso del celebre wrestler-attore.' },
   { card: 'Monica Giovanni', person: 'Giorgia Meloni', image: '/images/gemelli/giorgia-meloni.webp', description: 'Tocco gelido ed eleganza austera del vampiro indipendente richiamano la nota politica italiana.' },
-  { card: 'Izhim abd Azrael', person: 'Kurt Cobain', image: '/images/gemelli/kurt-cobain.webp', description: 'Il tormentato Serafino della Mano Nera ricorda il frontman dei Nirvana — stesso sguardo perso, stessa intensita.' },
-  { card: 'Horst von Bruhl', person: 'Massimo Boldi', image: '/images/gemelli/massimo-boldi.webp', description: 'Il Principe di Mannheim vs il re della commedia italiana. La somiglianza e sorprendente.' },
+  { card: 'Izhim abd Azrael', person: 'Kurt Cobain', image: '/images/gemelli/kurt-cobain.webp', description: 'Il tormentato Serafino della Mano Nera ricorda il frontman dei Nirvana. Stesso sguardo perso, stessa intensità.' },
+  { card: 'Horst von Bruhl', person: 'Massimo Boldi', image: '/images/gemelli/massimo-boldi.webp', description: 'Il Principe di Mannheim vs il re della commedia italiana. La somiglianza è sorprendente.' },
   { card: 'Massimiliano', person: 'Max Cavalera', image: '/images/gemelli/max-cavalera.webp', description: 'Il barone anarchico ha il volto e lo spirito ribelle del frontman di Sepultura/Soulfly.' },
   { card: 'Madeleine Giovanni', person: 'Valentina Nappi', image: '/images/gemelli/valentina-nappi.webp', description: 'Occhiali scuri e portamento sicuro del vampiro indipendente ricordano un celebre scatto glamour.' },
 ];
@@ -20,7 +20,7 @@ const twins = [
 <Base title={page.titleIt} description={page.descriptionIt}>
   <PageHero title={page.titleIt} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
-    <p class="lead">Il mondo di Vampire: The Eternal Struggle e popolato da volti oscuri, enigmatici e affascinanti. Ma guardando bene le illustrazioni delle carte, a volte si scorgono somiglianze sorprendenti con personaggi noti: attori, musicisti, politici o icone della cultura pop. Questa sezione raccoglie le coincidenze in modo leggero e ironico.</p>
+    <p class="lead">Il mondo di Vampire: The Eternal Struggle è popolato da volti oscuri, enigmatici e affascinanti. Ma guardando bene le illustrazioni delle carte, a volte si scorgono somiglianze sorprendenti con personaggi noti: attori, musicisti, politici o icone della cultura pop. Questa sezione raccoglie le coincidenze in modo leggero e ironico.</p>
     <p class="tagline">Un modo divertente per scoprire che, forse, alcuni vampiri camminano davvero tra noi...</p>
 
     <hr class="divider" />
@@ -47,21 +47,15 @@ const twins = [
   .tagline { font-size: 1rem; font-style: italic; color: var(--color-gold); margin-bottom: 16px; }
   .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
   .twin-entry {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 24px;
-    align-items: center;
     padding: 24px 0;
     border-bottom: 1px solid var(--color-border);
   }
   .twin-entry:last-child { border-bottom: none; }
-  .twin-image img { border-radius: var(--radius); width: 100%; aspect-ratio: 1; object-fit: cover; }
-  .twin-card { font-size: 1.1rem; font-weight: 700; color: var(--color-gold); margin-bottom: 0; }
-  .twin-vs { font-size: 0.75rem; color: var(--color-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
-  .twin-person { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
-  .twin-desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; }
-
-  @media (max-width: 544px) {
-    .twin-entry { grid-template-columns: 120px 1fr; gap: 16px; }
-  }
+  .twin-image { text-align: center; }
+  .twin-image img { border-radius: var(--radius); width: 100%; max-width: 480px; margin-inline: auto; }
+  .twin-info { margin-top: 12px; text-align: center; max-width: 480px; margin-inline: auto; }
+  .twin-card { font-size: 1.1rem; font-weight: 700; color: var(--color-gold); margin-bottom: 0; display: inline; }
+  .twin-vs { font-size: 0.75rem; color: var(--color-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; display: inline; margin-inline: 8px; }
+  .twin-person { font-size: 1rem; font-weight: 600; margin-bottom: 8px; display: inline; }
+  .twin-desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; margin-top: 6px; }
 </style>

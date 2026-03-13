@@ -6,91 +6,91 @@ import { mainPages } from '../data/pages';
 const page = mainPages.find(p => p.slug === 'cartoline')!;
 const galleries = [
   {
+    title: 'Nazionale 2026',
+    subtitle: 'Trento, Febbraio 2026',
+    images: [
+      { src: '/images/carte/library-brothers-grimm.webp', alt: 'Brothers Grimm' },
+      { src: '/images/carte/library-derange.webp', alt: 'Derange' },
+      { src: '/images/carte/library-guard-dogs.webp', alt: 'Guard Dogs' },
+    ],
+  },
+  {
     title: 'Week of Sabbat',
-    subtitle: 'Italia — Ottobre 2025',
+    subtitle: 'Italia, Ottobre 2025',
     images: [
       { src: '/images/carte/crypt-crossbreaker.webp', alt: 'Crossbreaker' },
       { src: '/images/carte/library-dia-de-los-muertos.webp', alt: 'Dia de los Muertos' },
       { src: '/images/carte/library-fiorella-empty-one.webp', alt: 'Fiorella, Empty One' },
     ],
-    cols: 3,
   },
   {
     title: 'Iubilaeum Sabbaticum',
-    subtitle: 'Roma — Ottobre 2025',
+    subtitle: 'Roma, Ottobre 2025',
     images: [
       { src: '/images/carte/library-on-the-qui-vive.webp', alt: 'On the Qui Vive' },
       { src: '/images/carte/library-organized-resistance.webp', alt: 'Organized Resistance' },
     ],
-    cols: 2,
   },
   {
     title: 'Symposium Italicum MMXXV',
-    subtitle: 'Barga — Agosto 2025',
+    subtitle: 'Barga, Agosto 2025',
     images: [
       { src: '/images/carte/library-canine-horde.webp', alt: 'Canine Horde' },
       { src: '/images/carte/library-coordinate-attacks.webp', alt: 'Coordinate Attacks' },
       { src: '/images/carte/library-pack-alpha.webp', alt: 'Pack Alpha' },
       { src: '/images/carte/library-hidden-lurker.webp', alt: 'Hidden Lurker' },
     ],
-    cols: 4,
   },
   {
     title: 'Concilio di Pergine',
-    subtitle: 'Trento — Giugno 2025',
+    subtitle: 'Trento, Giugno 2025',
     images: [
-      { src: '/images/carte/crypt-angelo.webp', alt: 'Angelo' },
       { src: '/images/carte/crypt-anneke.webp', alt: 'Anneke' },
+      { src: '/images/carte/library-filchware-pawn-shop.webp', alt: 'Filchware Pawn Shop' },
       { src: '/images/carte/crypt-danylo.webp', alt: 'Danylo' },
-      { src: '/images/carte/crypt-el-monsenor.webp', alt: 'El Monsenor' },
       { src: '/images/carte/crypt-gavrylo.webp', alt: 'Gavrylo' },
       { src: '/images/carte/crypt-kyrylo.webp', alt: 'Kyrylo' },
       { src: '/images/carte/crypt-pavlo.webp', alt: 'Pavlo' },
       { src: '/images/carte/crypt-volo.webp', alt: 'Volo' },
+      { src: '/images/carte/crypt-angelo.webp', alt: 'Angelo' },
     ],
-    cols: 4,
   },
   {
     title: 'Truth in Darkness',
-    subtitle: 'Firenze — Maggio 2025',
+    subtitle: 'Firenze, Maggio 2025',
     images: [
       { src: '/images/carte/library-quicksilver-contemplation.webp', alt: 'Quicksilver Contemplation' },
     ],
-    cols: 1,
   },
   {
     title: 'Nazionale 2025',
-    subtitle: 'Pordenone — Aprile 2025',
+    subtitle: 'Pordenone, Aprile 2025',
     images: [
       { src: '/images/carte/library-frico-drive.webp', alt: 'Frico Drive' },
       { src: '/images/carte/library-walk-of-caine.webp', alt: 'Walk of Caine' },
     ],
-    cols: 2,
   },
   {
     title: 'Grand Prix 2025',
-    subtitle: 'Modena — Marzo 2025',
+    subtitle: 'Modena, Marzo 2025',
     images: [
       { src: '/images/carte/library-seduction.webp', alt: 'Seduction' },
     ],
-    cols: 1,
   },
   {
     title: 'Fee Stake: Florence',
-    subtitle: 'Firenze — Febbraio 2025',
+    subtitle: 'Firenze, Febbraio 2025',
     images: [
       { src: '/images/carte/library-dual-form-1.webp', alt: 'Dual Form' },
       { src: '/images/carte/library-dual-form-4.webp', alt: 'Dual Form' },
     ],
-    cols: 2,
   },
   {
     title: 'Grand Prix 2024',
-    subtitle: 'Milano — Dicembre 2023',
+    subtitle: 'Milano, Dicembre 2023',
     images: [
       { src: '/images/carte/library-mind-rape.webp', alt: 'Mind Rape' },
     ],
-    cols: 1,
   },
 ];
 ---
@@ -109,12 +109,18 @@ const galleries = [
       <div class="gallery-section">
         <h3 class="gallery-title">{gallery.title}</h3>
         <p class="gallery-subtitle">{gallery.subtitle}</p>
-        <div class="gallery-grid" style={`--cols: ${Math.min(gallery.cols, gallery.images.length)}`}>
-          {gallery.images.map(img => (
-            <figure class="gallery-item">
-              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-            </figure>
-          ))}
+        <div class="gallery-wrap">
+          <button class="gallery-arrow gallery-arrow--left" aria-label="Scorri a sinistra">&#8249;</button>
+          <div class="gallery-scroll">
+            <div class="gallery-row">
+              {gallery.images.map(img => (
+                <figure class="gallery-item">
+                  <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                </figure>
+              ))}
+            </div>
+          </div>
+          <button class="gallery-arrow gallery-arrow--right" aria-label="Scorri a destra">&#8250;</button>
         </div>
       </div>
     ))}
@@ -126,18 +132,79 @@ const galleries = [
   .tagline { font-size: 1.1rem; font-style: italic; color: var(--color-gold); margin-bottom: 16px; }
   .section-subtitle { font-size: clamp(1rem, 3vw, 1.15rem); text-transform: uppercase; margin-top: 24px; margin-bottom: 8px; letter-spacing: 0.3px; }
   .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
-  .gallery-section { margin-bottom: 40px; }
+  .gallery-section { margin-bottom: 40px; text-align: center; }
   .gallery-title { font-size: 1.1rem; font-weight: 700; color: var(--color-gold); margin-bottom: 2px; }
   .gallery-subtitle { font-size: 0.8rem; color: var(--color-muted); margin-bottom: 12px; }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(var(--cols, 3), 1fr);
+  .gallery-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .gallery-scroll {
+    overflow-x: auto;
+    flex: 1;
+    scrollbar-width: none;
+  }
+  .gallery-scroll::-webkit-scrollbar { display: none; }
+  .gallery-row {
+    display: flex;
     gap: 12px;
+    width: max-content;
+    min-width: 100%;
+    justify-content: center;
   }
-  .gallery-item { margin: 0; }
+  .gallery-arrow {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--color-gold);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+  .gallery-arrow:hover { opacity: 0.7; }
+  .gallery-wrap.has-overflow .gallery-arrow { display: flex; }
+  @media (max-width: 768px) {
+    .gallery-arrow { display: none !important; }
+  }
+  .gallery-item {
+    margin: 0;
+    flex: 0 0 220px;
+  }
   .gallery-item img { border-radius: var(--radius); width: 100%; }
-
-  @media (max-width: 544px) {
-    .gallery-grid { grid-template-columns: repeat(min(var(--cols, 2), 2), 1fr); }
-  }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gallery-wrap').forEach(wrap => {
+    const scroll = wrap.querySelector('.gallery-scroll');
+    const left = wrap.querySelector('.gallery-arrow--left');
+    const right = wrap.querySelector('.gallery-arrow--right');
+    if (!scroll || !left || !right) return;
+
+    function checkOverflow() {
+      if (scroll.scrollWidth > scroll.clientWidth + 2) {
+        wrap.classList.add('has-overflow');
+      } else {
+        wrap.classList.remove('has-overflow');
+      }
+    }
+
+    left.addEventListener('click', () => {
+      scroll.scrollBy({ left: -240, behavior: 'smooth' });
+    });
+    right.addEventListener('click', () => {
+      scroll.scrollBy({ left: 240, behavior: 'smooth' });
+    });
+
+    checkOverflow();
+    window.addEventListener('resize', checkOverflow);
+  });
+  });
+</script>

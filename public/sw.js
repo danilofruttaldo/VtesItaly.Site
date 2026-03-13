@@ -1,11 +1,11 @@
-const CACHE_NAME = 'vtesitaly-v1';
+const CACHE_NAME = 'vtesitaly-v2';
 
 const PRECACHE = [
   '/',
   '/manifest.json',
-  '/favicon-32.jpeg',
-  '/logo-192.jpeg',
-  '/apple-touch-icon.jpeg',
+  '/favicon-32.png',
+  '/logo-192.png',
+  '/apple-touch-icon.png',
   '/images/logo.jpeg',
   '/images/headers/header-home.webp',
   '/404.html',

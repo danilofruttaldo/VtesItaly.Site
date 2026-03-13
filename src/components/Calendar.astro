@@ -46,6 +46,12 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
     var CALENDAR_ID = 'vtesitaly@gmail.com';
     // API_KEY must be injected as a data attribute or global variable
     var API_KEY = container.getAttribute('data-api-key');
+
+    function esc(str) {
+      var d = document.createElement('div');
+      d.appendChild(document.createTextNode(str));
+      return d.innerHTML;
+    }
     if (!API_KEY) return;
 
     var now = new Date();
@@ -116,15 +122,16 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
               ? (locale === 'it' ? 'Tutto il giorno' : 'All day')
               : d.toLocaleTimeString(locale === 'it' ? 'it-IT' : 'en-US', { hour: '2-digit', minute: '2-digit' });
 
-            html += '<a href="' + e.link + '" target="_blank" rel="noopener" class="vtesitaly-cal-event">' +
+            var safeLink = e.link.indexOf('https://') === 0 ? esc(e.link) : '#';
+            html += '<a href="' + safeLink + '" target="_blank" rel="noopener" class="vtesitaly-cal-event">' +
               '<div class="vtesitaly-cal-event-date">' +
                 '<span class="vtesitaly-cal-day-name">' + dayName + '</span>' +
                 '<span class="vtesitaly-cal-day-num">' + dayNum + '</span>' +
               '</div>' +
               '<div class="vtesitaly-cal-event-info">' +
-                '<span class="vtesitaly-cal-event-title">' + e.title + '</span>' +
+                '<span class="vtesitaly-cal-event-title">' + esc(e.title) + '</span>' +
                 '<span class="vtesitaly-cal-event-meta">' +
-                  time + (e.location ? ' &middot; ' + e.location : '') +
+                  time + (e.location ? ' &middot; ' + esc(e.location) : '') +
                 '</span>' +
               '</div>' +
               '<span class="vtesitaly-cal-arrow">&rsaquo;</span>' +

@@ -7,15 +7,10 @@ import { mainPages } from '../data/pages';
 
 const page = mainPages.find(p => p.slug === 'tour')!;
 const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === 'tour')
+  .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 <Base title={page.titleIt} description={page.descriptionIt}>
   <PageHero title={page.titleIt} image={page.headerImage} />
-  <TournamentPage
-    posts={posts}
-    leadHtml={`<p class="page-lead">Il <strong>VTES Italian Tour</strong> è una serie di tornei che si svolgono durante tutto l'anno nei principali Principati italiani. Ogni tappa offre l'opportunità di guadagnare punti per la <strong>classifica annuale</strong>, con i migliori giocatori pronti a contendersi il territorio.</p><p>Una competizione avvincente e strategica, dove ogni partita può fare la differenza nel cammino verso la vittoria finale.</p>`}
-    editionsTitle="Edizioni del Tour"
-    baseUrl="/tour/"
-  />
+  <TournamentPage posts={posts} leadHtml={page.leadHtmlIt!} editionsTitle={page.editionsTitleIt!} baseUrl={page.baseUrlIt!} />
 </Base>

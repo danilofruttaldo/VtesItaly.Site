@@ -7,15 +7,10 @@ import { mainPages } from '../data/pages';
 
 const page = mainPages.find(p => p.slug === 'grand-prix')!;
 const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === 'grand-prix')
+  .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 <Base title={page.titleIt} description={page.descriptionIt}>
   <PageHero title={page.titleIt} image={page.headerImage} />
-  <TournamentPage
-    posts={posts}
-    leadHtml={`<p class="page-lead">Il <strong>Grand Prix italiano</strong> di Vampire: The Eternal Struggle è il <strong>torneo più atteso</strong> della stagione italiana. Appuntamento fisso del circuito europeo, aperto a tutti i Matusalemme pronti a mettersi alla prova tra <strong>intrighi</strong>, <strong>fragili alleanze</strong> e <strong>colpi di scena</strong>.</p><p>Porta il tuo mazzo, affila le strategie… e preparati a conquistare il potere nella <strong>lotta eterna per il dominio</strong>.</p>`}
-    editionsTitle="Edizioni del Grand Prix"
-    baseUrl="/grand-prix/"
-  />
+  <TournamentPage posts={posts} leadHtml={page.leadHtmlIt!} editionsTitle={page.editionsTitleIt!} baseUrl={page.baseUrlIt!} />
 </Base>

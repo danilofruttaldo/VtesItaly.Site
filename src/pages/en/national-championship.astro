@@ -7,15 +7,10 @@ import { mainPages } from '../../data/pages';
 
 const page = mainPages.find(p => p.slug === 'nazionale')!;
 const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === 'nazionale')
+  .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 <Base title={page.titleEn} description={page.descriptionEn}>
   <PageHero title={page.titleEn} image={page.headerImage} />
-  <TournamentPage
-    posts={posts}
-    leadHtml={`<p class="page-lead">The <strong>Italian VTES National Championship</strong> is the most anticipated annual event in the community: a gathering that combines <strong>high-level competition</strong> and <strong>convivial spirit</strong>, a true ritual for Italian Cainites where <strong>strategy</strong>, <strong>passion</strong> and <strong>prestige</strong> intertwine.</p><p>The tournament features <strong>3 rounds + finals</strong>, with mandatory registration and decklist on BCN. The winner is crowned <strong>Italian Champion</strong>.</p>`}
-    editionsTitle="Championship Editions"
-    baseUrl="/en/national-championship/"
-  />
+  <TournamentPage posts={posts} leadHtml={page.leadHtmlEn!} editionsTitle={page.editionsTitleEn!} baseUrl={page.baseUrlEn!} />
 </Base>

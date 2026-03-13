@@ -7,15 +7,10 @@ import { mainPages } from '../data/pages';
 
 const page = mainPages.find(p => p.slug === 'nazionale')!;
 const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === 'nazionale')
+  .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 <Base title={page.titleIt} description={page.descriptionIt}>
   <PageHero title={page.titleIt} image={page.headerImage} />
-  <TournamentPage
-    posts={posts}
-    leadHtml={`<p class="page-lead">Il <strong>Campionato Nazionale italiano di VTES</strong> è l'evento annuale più atteso dalla community: un raduno che unisce <strong>competizione di alto livello</strong> e <strong>spirito conviviale</strong>, un vero rituale per i Cainiti italiani dove <strong>strategia</strong>, <strong>passione</strong> e <strong>prestigio</strong> si intrecciano.</p><p>Il torneo prevede <strong>3 gironi + finale</strong>, con iscrizione e decklist obbligatorie su BCN. Il vincitore viene incoronato <strong>Campione d'Italia</strong>.</p>`}
-    editionsTitle="Edizioni del Campionato"
-    baseUrl="/nazionale/"
-  />
+  <TournamentPage posts={posts} leadHtml={page.leadHtmlIt!} editionsTitle={page.editionsTitleIt!} baseUrl={page.baseUrlIt!} />
 </Base>

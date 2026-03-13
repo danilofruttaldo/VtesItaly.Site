@@ -7,15 +7,10 @@ import { mainPages } from '../../data/pages';
 
 const page = mainPages.find(p => p.slug === 'tour')!;
 const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === 'tour')
+  .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 <Base title={page.titleEn} description={page.descriptionEn}>
   <PageHero title={page.titleEn} image={page.headerImage} />
-  <TournamentPage
-    posts={posts}
-    leadHtml={`<p class="page-lead">The <strong>VTES Italian Tour</strong> is a series of tournaments held throughout the year across Italy's main Domains. Each stop offers the chance to earn points for the <strong>annual ranking</strong>, with the best players competing across the country.</p><p>A thrilling and strategic competition, where every game can make the difference on the road to the final victory.</p>`}
-    editionsTitle="Tour Editions"
-    baseUrl="/en/tour/"
-  />
+  <TournamentPage posts={posts} leadHtml={page.leadHtmlEn!} editionsTitle={page.editionsTitleEn!} baseUrl={page.baseUrlEn!} />
 </Base>

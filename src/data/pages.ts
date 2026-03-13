@@ -24,7 +24,7 @@ export const mainPages: PageMeta[] = [
     titleIt: 'Principati',
     titleEn: 'The Domains',
     headerImage: '/images/headers/header-principati.webp',
-    descriptionIt: 'Le citta dove si gioca a VTES in Italia. Ogni principato ha il suo Principe.',
+    descriptionIt: 'Le città dove si gioca a VTES in Italia. Ogni principato ha il suo Principe.',
     descriptionEn: 'The cities where VTES is played in Italy. Each domain has its own Prince.',
   },
   {

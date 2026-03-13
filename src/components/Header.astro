@@ -10,7 +10,7 @@ const prefix = locale === 'en' ? '/en' : '';
 
 const navGroups = [
   [
-    { label: t.menu['Blog'], href: `${prefix}/blog/` },
+    { label: t.menu['Blog'], href: locale === 'en' ? '/en/community/' : '/comunita/' },
     { label: t.menu['Principati'], href: locale === 'en' ? '/en/domains/' : '/principati/' },
   ],
   [

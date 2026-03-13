@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import { mainPages } from '../../../data/pages';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('blog'))
+    .filter(p => p.data.category === 'comunita')
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  return paginate(posts, { pageSize: 8 });
+}) satisfies GetStaticPaths;
+
+const pageMeta = mainPages.find(p => p.slug === 'comunita')!;
+const { page } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+<Base title={pageMeta.titleEn} description={pageMeta.descriptionEn}>
+  <PageHero title={pageMeta.titleEn} image={pageMeta.headerImage} />
+  <section class="section"><div class="container container--narrow">
+    <p class="section-subtitle">Articles, reports and news from the community.</p>
+
+    <div class="post-list">
+      {page.data.map(post => (
+        <a href={`/en/${post.data.category}/${post.slug}/`} class="post-card">
+          {post.data.featuredImage && (
+            <img src={post.data.featuredImage} alt={post.data.title} class="post-card__image" loading="lazy" decoding="async" />
+          )}
+          <div class="post-card__content">
+            <h2 class="post-card__title">{post.data.title}</h2>
+            <time class="post-card__date" datetime={post.data.date.toISOString()}>
+              {formatDate(post.data.date)}
+            </time>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {page.lastPage > 1 && (
+      <nav class="pagination" aria-label="Pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev} class="pagination__link">&larr; Previous</a>
+        ) : (
+          <span class="pagination__link pagination__link--disabled">&larr; Previous</span>
+        )}
+        <span class="pagination__info">Page {page.currentPage} of {page.lastPage}</span>
+        {page.url.next ? (
+          <a href={page.url.next} class="pagination__link">Next &rarr;</a>
+        ) : (
+          <span class="pagination__link pagination__link--disabled">Next &rarr;</span>
+        )}
+      </nav>
+    )}
+  </div></section>
+</Base>
+
+<style>
+  .section-subtitle { margin-bottom: 32px; }
+</style>

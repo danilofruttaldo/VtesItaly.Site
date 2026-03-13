@@ -38,6 +38,7 @@ function isCurrent(href: string): boolean {
   <div class="container">
     <a href={`${prefix}/`} class="site-title" aria-current={isCurrent(`${prefix}/`) ? 'page' : undefined}>
       <img src="/images/logo.jpeg" alt="VTES Italy" class="site-logo" width="36" height="36" />
+      <span class="site-title__text">vtesitaly.com</span>
     </a>
 
     <nav class="site-nav" aria-label={t.nav.main_label}>
@@ -151,6 +152,13 @@ function isCurrent(href: string): boolean {
     height: 36px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  .site-title__text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: lowercase;
   }
 
   .site-title:hover {

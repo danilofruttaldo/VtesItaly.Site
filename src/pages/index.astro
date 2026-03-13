@@ -1,20 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
 import Calendar from '../components/Calendar.astro';
 import { cities } from '../data/cities';
+import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
+import { categoryLabels } from '../data/categories';
 
 const page = mainPages.find(p => p.slug === '')!;
+const latestPosts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 4);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+}
 ---
 
 <Base title={page.titleIt} description={page.descriptionIt}>
-  <PageHero title="" image={page.headerImage} />
+  <img src={page.headerImage} alt="VTES Italy" class="hero-banner" />
 
   <section class="hero-text">
     <div class="container container--narrow">
       <h1>La community dei Methuselah italiani non si ferma mai!</h1>
-      <p class="subtitle">Tornei, raduni e campionati in tutta Italia. Trova il tuo principato, consulta il calendario e unisciti alla community.</p>
+      <p class="hero-text__subtitle">Tornei, raduni e campionati in tutta Italia. Trova il tuo principato, consulta il calendario e unisciti alla community.</p>
     </div>
   </section>
 
@@ -23,7 +31,7 @@ const page = mainPages.find(p => p.slug === '')!;
   <section class="section" id="eventi">
     <div class="container container--narrow">
       <h2 class="section-title">Prossimi eventi</h2>
-      <p class="section-subtitle">Tornei, raduni e campionati VTES in tutta Italia.</p>
+      <p class="section-subtitle">Consulta il calendario e non perderti nessun evento.</p>
       <Calendar />
     </div>
   </section>
@@ -31,9 +39,35 @@ const page = mainPages.find(p => p.slug === '')!;
   <hr class="divider" />
 
   <section class="section">
-    <div class="container">
+    <div class="container container--narrow">
+      <h2 class="section-title">Ultime dalla community</h2>
+      <p class="section-subtitle">Report, articoli e novità dal mondo VTES Italia.</p>
+      <div class="latest-posts">
+        {latestPosts.map(post => (
+          <a href={`/${post.data.category}/${post.slug}/`} class="latest-post">
+            {post.data.featuredImage && (
+              <img src={post.data.featuredImage} alt={post.data.title} class="latest-post__image" loading="lazy" decoding="async" />
+            )}
+            <div class="latest-post__body">
+              <span class="latest-post__category">{categoryLabels[post.data.category]?.it || post.data.category}</span>
+              <h3 class="latest-post__title">{post.data.title}</h3>
+              <time class="latest-post__date" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-cta">
+        <a href="/comunita/" class="btn">Tutti gli articoli &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section">
+    <div class="container container--narrow">
       <h2 class="section-title">Trova il tuo Principato</h2>
-      <p class="section-subtitle">15 citta in tutta Italia dove si gioca a VTES. Trova quella piu vicina a te.</p>
+      <p class="section-subtitle">15 città in tutta Italia dove si gioca a VTES. Trova quella più vicina a te.</p>
       <div class="cities-quicklinks">
         {cities.map(city => (
           <a href={`/principati/${city.slug}/`}>{city.name}</a>
@@ -47,69 +81,43 @@ const page = mainPages.find(p => p.slug === '')!;
 </Base>
 
 <style>
-  .hero-text {
-    padding: 56px clamp(20px, 5vw, 80px) 48px;
-    text-align: center;
+  .hero-banner { width: 100%; display: block; object-fit: cover; max-height: 340px; }
+  .hero-text { padding: 48px clamp(20px, 5vw, 80px) 40px; text-align: center; }
+  .hero-text h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-bottom: 16px; }
+  .hero-text__subtitle {
+    color: var(--color-muted); font-size: clamp(0.9rem, 3vw, 1.05rem);
+    line-height: 1.6; margin-bottom: 24px;
   }
 
-  .hero-text h1 {
-    font-size: clamp(1.5rem, 5vw, 2.25rem);
-    margin-bottom: 16px;
+  .latest-posts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .latest-post {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--color-border); border-radius: var(--radius);
+    overflow: hidden; text-decoration: none; color: var(--color-contrast);
+    transition: background-color 0.2s ease, transform 0.15s ease;
   }
-
-  .subtitle {
-    color: var(--color-muted);
-    font-size: clamp(0.9rem, 3vw, 1.05rem);
-    line-height: 1.6;
+  .latest-post:hover { background-color: rgba(255,255,255,0.04); transform: translateY(-2px); color: var(--color-contrast); }
+  .latest-post__image { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .latest-post:not(:has(.latest-post__image)) .latest-post__body { min-height: 120px; display: flex; flex-direction: column; justify-content: center; }
+  .latest-post__body { padding: 12px 16px; }
+  .latest-post__category {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--color-gold);
   }
+  .latest-post__title { font-size: 0.95rem; font-weight: 600; margin: 4px 0; line-height: 1.3; }
+  .latest-post__date { font-size: 0.78rem; color: var(--color-muted); }
 
-  .divider {
-    border: none;
-    border-top: 1px solid var(--color-accent-light);
-    margin: 0;
-  }
-
-  .section {
-    padding: 40px clamp(20px, 5vw, 80px) 48px;
-  }
-
-  .section-title {
-    text-align: center;
-    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
-    margin-bottom: 8px;
-  }
-
-  .section-subtitle {
-    text-align: center;
-    color: var(--color-muted);
-    font-size: 0.9rem;
-    margin-bottom: 24px;
-  }
-
-  .cities-quicklinks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
+  .cities-quicklinks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
   .cities-quicklinks a {
-    font-size: 0.85rem;
-    padding: 6px 12px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    color: var(--color-accent-1);
-    transition: all 0.2s ease;
+    font-size: 0.85rem; padding: 6px 12px;
+    border: 1px solid var(--color-border); border-radius: var(--radius);
+    color: var(--color-accent-1); transition: all 0.2s ease;
   }
+  .cities-quicklinks a:hover { background-color: var(--color-accent-1); color: #fff; border-color: var(--color-accent-1); }
 
-  .cities-quicklinks a:hover {
-    background-color: var(--color-accent-1);
-    color: #fff;
-    border-color: var(--color-accent-1);
-  }
-
-  .section-cta {
-    text-align: center;
-    margin-top: 24px;
+  @media (max-width: 599px) {
+    .hero-text { padding-inline: 16px; }
+    .latest-posts { grid-template-columns: 1fr; gap: 10px; }
+    .latest-post { border-radius: 0; border-left: none; border-right: none; }
   }
 </style>

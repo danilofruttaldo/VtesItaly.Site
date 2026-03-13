@@ -86,7 +86,7 @@ export const mainPages: PageMeta[] = [
     slugEn: 'community',
     titleIt: 'Comunità',
     titleEn: 'Community',
-    headerImage: '',
+    headerImage: '/images/headers/header-home.webp',
     descriptionIt: 'Articoli, report e novità dalla comunità VTES Italia.',
     descriptionEn: 'Articles, reports and news from the Italian VTES community.',
   },

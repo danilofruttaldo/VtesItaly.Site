@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -26,7 +27,16 @@ const categoryLabels: Record<string, string> = {
   'contest': 'Contest',
 };
 ---
-<Base title={post.data.title} description={post.data.excerpt || post.data.title}>
+<Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.featuredImage}>
+  <JsonLd slot="head" data={{
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.data.title,
+    datePublished: post.data.date.toISOString(),
+    description: post.data.excerpt || post.data.title,
+    ...(post.data.featuredImage ? { image: new URL(post.data.featuredImage, Astro.site).href } : {}),
+    publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.jpeg', Astro.site).href } }
+  }} />
   <article class="post">
     <div class="container container--narrow">
       <div class="post__meta">
@@ -38,7 +48,7 @@ const categoryLabels: Record<string, string> = {
       </div>
 
       {post.data.featuredImage && (
-        <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" />
+        <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="lazy" decoding="async" />
       )}
 
       <div class="post__content prose">

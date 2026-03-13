@@ -4,6 +4,7 @@ date: 2025-08-01
 category: "comunita"
 tags: ["milano"]
 excerpt: "Si conclude con oggi 1° Agosto 2025 il 7° campionato di VTES della zona di Milano. È stato abbastanza combattuto [&hellip;]"
+featuredImage: "/images/eventi/7-campionato-milanese.webp"
 ---
 
 # 7° Campionato Milanese di VTES

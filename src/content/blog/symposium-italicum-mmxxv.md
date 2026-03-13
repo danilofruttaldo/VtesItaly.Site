@@ -4,6 +4,7 @@ date: 2025-08-01
 category: "comunita"
 tags: ["barga"]
 excerpt: "La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare un nuovo evento in collaborazione con l'Associazione [&hellip;]"
+featuredImage: "/images/eventi/symposium-italicum.webp"
 ---
 
 # Symposium Italicum MMXXV

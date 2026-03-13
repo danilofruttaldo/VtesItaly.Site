@@ -20,7 +20,7 @@ function formatDate(date: Date): string {
       {posts.map(post => (
         <a href={`/${post.data.category}/${post.slug}/`} class="post-card">
           {post.data.featuredImage && (
-            <img src={post.data.featuredImage} alt={post.data.title} class="post-card__image" loading="lazy" />
+            <img src={post.data.featuredImage} alt={post.data.title} class="post-card__image" loading="lazy" decoding="async" />
           )}
           <div class="post-card__content">
 

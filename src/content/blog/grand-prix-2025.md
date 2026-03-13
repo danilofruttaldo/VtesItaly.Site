@@ -4,6 +4,7 @@ date: 2025-01-01
 category: "grand-prix"
 tags: ["italia", "modena"]
 excerpt: "Quest'anno il Grand Prix Italiano di Vampire: The Eternal Struggle si è tenuto a Modena, sabato 1 marzo 2025. Una [&hellip;]"
+featuredImage: "/images/headers/header-grand-prix.webp"
 ---
 
 # Grand Prix 2025

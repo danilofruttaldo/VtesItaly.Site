@@ -4,6 +4,7 @@ date: 2026-03-01
 category: "grand-prix"
 tags: ["bologna", "italia"]
 excerpt: "IT GP 2026 — Bologna La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek e Mistlore, è [&hellip;]"
+featuredImage: "/images/headers/header-grand-prix.webp"
 ---
 
 # Grand Prix 2026

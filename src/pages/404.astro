@@ -5,13 +5,29 @@ import Base from '../layouts/Base.astro';
   <section class="not-found">
     <div class="container">
       <h1>404</h1>
-      <p>Pagina non trovata. / Page not found.</p>
-      <a href="/" class="btn">Home →</a>
+      <p class="subtitle">Pagina non trovata. / Page not found.</p>
+      <p class="hint">Il vampiro che cercavi si è nascosto nell'ombra...</p>
+      <nav class="not-found__links">
+        <a href="/" class="btn">Home</a>
+        <a href="/blog/" class="btn btn--outline">Blog</a>
+        <a href="/principati/" class="btn btn--outline">Principati</a>
+      </nav>
     </div>
   </section>
 </Base>
 <style>
-  .not-found { text-align: center; padding: 80px 20px; }
-  .not-found h1 { font-size: 4rem; color: var(--color-accent-1); margin-bottom: 16px; }
-  .not-found p { color: var(--color-muted); margin-bottom: 32px; }
+  .not-found { text-align: center; padding: 100px 20px; }
+  .not-found h1 { font-size: 5rem; color: var(--color-accent-1); margin-bottom: 8px; line-height: 1; }
+  .subtitle { color: var(--color-muted); margin-bottom: 8px; font-size: 1.1rem; }
+  .hint { color: var(--color-gold); font-style: italic; margin-bottom: 32px; font-size: 0.9rem; }
+  .not-found__links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn--outline {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent-1);
+  }
+  .btn--outline:hover {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
 </style>

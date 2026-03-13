@@ -6,6 +6,9 @@ const PRECACHE = [
   '/favicon-32.jpeg',
   '/logo-192.jpeg',
   '/apple-touch-icon.jpeg',
+  '/images/logo.jpeg',
+  '/images/headers/header-home.webp',
+  '/404.html',
 ];
 
 // Install: precache shell
@@ -49,7 +52,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           return response;
         })
-        .catch(() => caches.match(request).then((cached) => cached || caches.match('/')))
+        .catch(() => caches.match(request).then((cached) => cached || caches.match('/404.html') || caches.match('/')))
     );
   } else {
     // Cache-first for static assets (images, CSS, JS)

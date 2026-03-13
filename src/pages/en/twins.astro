@@ -26,7 +26,7 @@ const twins = [
     {twins.map((twin, i) => (
       <div class="twin-entry">
         <div class="twin-image">
-          <img src={twin.image} alt={twin.person} loading="lazy" />
+          <img src={twin.image} alt={twin.person} loading="lazy" decoding="async" />
         </div>
         <div class="twin-info">
           <h3 class="twin-card">{twin.card}</h3>

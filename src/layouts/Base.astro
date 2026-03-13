@@ -4,14 +4,16 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
 import StickyBar from '../components/StickyBar.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { getLocaleFromUrl, getAlternateUrl } from '../utils/i18n';
 
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = 'VTES Italy — La community italiana di Vampire: The Eternal Struggle' } = Astro.props;
+const { title, description = 'VTES Italy — La community italiana di Vampire: The Eternal Struggle', ogImage = '/images/headers/header-home.webp' } = Astro.props;
 const locale = getLocaleFromUrl(Astro.url);
 const alternateUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -40,6 +42,13 @@ const alternateFullUrl = new URL(alternateUrl, Astro.site);
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_US'} />
     <meta property="og:site_name" content="VTES Italy" />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | VTES Italy`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
@@ -51,10 +60,22 @@ const alternateFullUrl = new URL(alternateUrl, Astro.site);
     <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon-32.jpeg" />
     <link rel="icon" type="image/jpeg" sizes="192x192" href="/logo-192.jpeg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.jpeg" />
+
+    <JsonLd data={{
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'VTES Italy',
+      url: Astro.site?.href,
+      logo: new URL('/images/logo.jpeg', Astro.site).href,
+      description: 'La community italiana di Vampire: The Eternal Struggle',
+      sameAs: ['https://t.me/vtesitaly']
+    }} />
+    <slot name="head" />
   </head>
   <body>
+    <a href="#main-content" class="sr-only">{locale === 'it' ? 'Vai al contenuto' : 'Skip to content'}</a>
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <Footer />

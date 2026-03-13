@@ -110,7 +110,7 @@ const galleries = [
         <div class="gallery-grid" style={`--cols: ${Math.min(gallery.cols, gallery.images.length)}`}>
           {gallery.images.map(img => (
             <figure class="gallery-item">
-              <img src={img.src} alt={img.alt} loading="lazy" />
+              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
             </figure>
           ))}
         </div>

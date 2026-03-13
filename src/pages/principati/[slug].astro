@@ -35,7 +35,7 @@ const categoryLabels: Record<string, string> = {
     <div class="container">
       <div class="city-layout">
         <aside class="prince-card">
-          <img src={city.prince.image} alt={city.prince.name} class="prince-avatar" loading="lazy" />
+          <img src={city.prince.image} alt={city.prince.name} class="prince-avatar" loading="lazy" decoding="async" />
           <h3>{city.prince.name}</h3>
           <p class="prince-alias"><em>{city.prince.alias}</em></p>
           <p class="prince-role">Principe di {city.name}</p>
@@ -90,7 +90,7 @@ const categoryLabels: Record<string, string> = {
             {relatedPosts.map(post => (
               <a href={`/${post.data.category}/${post.slug}/`} class="related-card">
                 {post.data.featuredImage && (
-                  <img src={post.data.featuredImage} alt="" class="related-image" loading="lazy" />
+                  <img src={post.data.featuredImage} alt="" class="related-image" loading="lazy" decoding="async" />
                 )}
                 <div class="related-body">
                   <span class="related-category">{categoryLabels[post.data.category] || post.data.category}</span>

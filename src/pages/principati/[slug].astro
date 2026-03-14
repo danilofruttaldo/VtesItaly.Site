@@ -105,7 +105,7 @@ const { city, relatedPosts } = Astro.props;
             {relatedPosts.map(post => (
               <a href={`/${post.data.category}/${post.slug}/`} class="related-card">
                 {post.data.featuredImage && (
-                  <img src={post.data.featuredImage} alt="" class="related-image" loading="lazy" decoding="async" />
+                  <img src={post.data.featuredImage} alt={post.data.title} class="related-image" loading="lazy" decoding="async" />
                 )}
                 <div class="related-body">
                   <span class="related-category">{categoryLabels[post.data.category]?.it || post.data.category}</span>

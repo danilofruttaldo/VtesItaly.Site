@@ -55,7 +55,7 @@ const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status =
     datePublished: post.data.date.toISOString(),
     description: post.data.excerpt || post.data.title,
     ...(post.data.featuredImage ? { image: new URL(post.data.featuredImage, Astro.site).href } : {}),
-    publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.jpeg', Astro.site).href } }
+    publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href } }
   }} />
 
   <article class="post">

@@ -6,7 +6,7 @@ const PRECACHE = [
   '/favicon-32.png',
   '/logo-192.png',
   '/apple-touch-icon.png',
-  '/images/logo.jpeg',
+  '/images/logo.webp',
   '/images/headers/header-home.webp',
   '/404.html',
 ];

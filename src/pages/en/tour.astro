@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import TourEdition from '../../components/TourEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
@@ -59,6 +60,7 @@ const pastEditions = posts.filter(p => p !== current);
       </div>
     </section>
   )}
+  <section class="page-section"><div class="container container--narrow"><ShareButtons label="Share" /></div></section>
 </Base>
 
 <style>

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { mainPages } from '../data/pages';
 
 const page = mainPages.find(p => p.slug === 'cartoline')!;
@@ -124,6 +125,7 @@ const galleries = [
         </div>
       </div>
     ))}
+    <ShareButtons />
   </div></section>
 </Base>
 

@@ -8,7 +8,8 @@ interface Props {
 const { title, image, breadcrumb } = Astro.props;
 ---
 
-<section class="page-hero" style={image ? `background-image: url(${image})` : undefined}>
+<section class="page-hero">
+  {image && <img src={image} alt={title} class="page-hero__img" loading="eager" decoding="async" />}
   <div class="page-hero__overlay"></div>
   <div class="page-hero__content">
     {title && <h1>{title}</h1>}
@@ -24,19 +25,27 @@ const { title, image, breadcrumb } = Astro.props;
 <style>
   .page-hero {
     position: relative;
-    min-height: 300px;
+    height: 420px;
+    max-height: 420px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-size: cover;
-    background-position: center;
     background-color: var(--color-surface);
+  }
+
+  .page-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .page-hero__overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(18, 20, 22, 0.65);
+    background: linear-gradient(to bottom, rgba(18,20,22,0.4) 0%, rgba(18,20,22,0.3) 50%, var(--color-base) 100%);
   }
 
   .page-hero__content {
@@ -59,5 +68,12 @@ const { title, image, breadcrumb } = Astro.props;
 
   .breadcrumb a {
     color: var(--color-muted);
+  }
+
+  @media (max-width: 544px) {
+    .page-hero {
+      height: 260px;
+      max-height: 260px;
+    }
   }
 </style>

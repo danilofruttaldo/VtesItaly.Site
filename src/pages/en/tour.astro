@@ -1,17 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
-import StagesGrid from '../../components/StagesGrid.astro';
+import TourEdition from '../../components/TourEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
 
 const page = mainPages.find(p => p.slug === 'tour')!;
 const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === page.category)
+  .filter(p => p.data.category === page.category && (p.data.locale || 'it') === 'en')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-const current = posts.find(p => p.data.stages && p.data.stages.length > 0);
-const { Content: CurrentContent } = current ? await current.render() : { Content: null };
+const current = posts.find(p => p.data.stages && p.data.stages.length > 0 && !p.data.stages.every(s => s.status === 'completed'));
 const pastEditions = posts.filter(p => p !== current);
 ---
 <Base title={page.titleEn} description={page.descriptionEn}>
@@ -19,89 +18,104 @@ const pastEditions = posts.filter(p => p !== current);
 
   <section class="page-section">
     <div class="container container--narrow">
-      <Fragment set:html={page.leadHtmlEn!} />
-
-      {current && (
-        <>
-          <hr class="page-divider" />
-
-          <h2 class="page-section-title">{current.data.title}</h2>
-
-          {current.data.stages && current.data.stages.length > 0 && (
-            <StagesGrid stages={current.data.stages} locale="en" />
-          )}
-
-          {CurrentContent && (
-            <div class="edition-content prose">
-              <CurrentContent />
-            </div>
-          )}
-
-          {current.data.standingsUrl && (
-            <div class="standings">
-              <h3 class="standings-title">Standings</h3>
-              <div class="standings-frame">
-                <iframe src={current.data.standingsUrl} title="Tour Standings" loading="lazy"></iframe>
-              </div>
-            </div>
-          )}
-        </>
-      )}
-
-      {pastEditions.length > 0 && (
-        <>
-          <hr class="page-divider" />
-          <h2 class="page-section-title">{page.editionsTitleEn || 'Past Editions'}</h2>
-          <div class="editions-list">
-            {pastEditions.map(post => (
-              <a href={`/en/tour/${post.slug}/`} class="edition-card">
-                <span class="edition-year">{new Date(post.data.date).getFullYear()}</span>
-                <span class="edition-label">{post.data.title}</span>
-              </a>
-            ))}
-          </div>
-        </>
-      )}
+      <div class="intro-lead">
+        <Fragment set:html={page.leadHtmlEn!} />
+      </div>
     </div>
   </section>
+
+  {current && (
+    <section class="page-section">
+      <div class="container container--narrow">
+        <div class="edition-header">
+          <h2 class="edition-title">{current.data.title}</h2>
+          <span class="edition-label-tag">Ongoing</span>
+        </div>
+        <TourEdition post={current} locale="en" />
+      </div>
+    </section>
+  )}
+
+  {pastEditions.length > 0 && (
+    <section class="page-section">
+      <div class="container container--narrow">
+        <h2 class="page-section-title">Archive</h2>
+        <div class="editions-list">
+          {pastEditions.map(post => (
+            <a href={`/en/tour/${post.slug.replace(/-en$/, '')}/`} class="edition-card">
+              <span class="edition-year">{new Date(post.data.date).getFullYear()}</span>
+              {post.data.stages && post.data.stages.length > 0 && (() => {
+                const stg = post.data.stages!;
+                const citiesCount = new Set(stg.flatMap(s => s.cities)).size;
+                const first = stg[0].date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                const last = stg[stg.length - 1].date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+                return (
+                  <span class="edition-info">{stg.length} stages &middot; {citiesCount} cities &middot; {first} — {last}</span>
+                );
+              })()}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </Base>
 
 <style>
-  .edition-content {
-    margin-top: 28px;
+  .intro-lead :global(p) {
+    color: var(--color-muted);
+    text-align: justify;
   }
-
-  .prose :global(h1) { font-size: clamp(1.4rem, 4vw, 2rem); margin: 32px 0 16px; }
-  .prose :global(h2) { font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin: 28px 0 12px; }
-  .prose :global(h3) { font-size: clamp(1rem, 3vw, 1.2rem); margin: 24px 0 8px; }
-  .prose :global(p) { line-height: 1.7; margin-bottom: 16px; }
-  .prose :global(ul), .prose :global(ol) { padding-left: 20px; margin-bottom: 16px; }
-  .prose :global(li) { margin-bottom: 6px; line-height: 1.6; }
-  .prose :global(blockquote) {
-    border-left: 3px solid var(--color-gold); padding-left: 16px;
-    color: var(--color-muted); font-style: italic; margin: 16px 0;
-  }
-  .prose :global(hr) { border: none; border-top: 1px solid rgba(139,26,43,0.15); margin: 24px 0; }
-  .prose :global(strong) { font-weight: 600; }
-  .prose :global(a) { color: var(--color-accent-1); }
-  .prose :global(a:hover) { color: var(--color-accent-2); }
-
-  .standings { margin-top: 32px; }
-  .standings-title {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-  }
-  .standings-frame {
+  .edition-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 8px;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  .standings-frame iframe {
-    width: 100%;
-    min-height: 500px;
-    border: none;
     background: var(--color-surface);
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .edition-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.12);
+  }
+  .edition-year {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-gold);
+  }
+  .edition-info {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    flex-shrink: 0;
+  }
+  .edition-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .edition-label-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gold);
+    background: rgba(201,168,76,0.12);
+    padding: 4px 12px;
+    border-radius: var(--radius);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .edition-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: 0.5px;
   }
 </style>

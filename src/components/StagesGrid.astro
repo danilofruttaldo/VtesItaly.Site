@@ -7,6 +7,7 @@ interface Stage {
   date: Date;
   cities: string[];
   archonUrl?: string;
+  image?: string;
   status: 'completed' | 'upcoming' | 'future' | 'cancelled';
 }
 
@@ -31,6 +32,12 @@ const statusLabels: Record<string, { it: string; en: string }> = {
   cancelled: { it: 'Annullata', en: 'Cancelled' },
 };
 
+const ctaLabels: Record<string, { it: string; en: string }> = {
+  completed: { it: 'Risultati', en: 'Results' },
+  upcoming: { it: 'Iscriviti', en: 'Register' },
+  future: { it: 'Iscriviti', en: 'Register' },
+};
+
 function formatMonth(date: Date): string {
   return date.toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', { month: 'short' }).toUpperCase();
 }
@@ -39,219 +46,397 @@ function formatDay(date: Date): string {
   return date.getDate().toString();
 }
 
-function formatFullDate(date: Date): string {
-  return date.toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
+// First upcoming or first future = featured
+const featured = stages.find(s => s.status === 'upcoming') || stages.find(s => s.status === 'future') || stages[0];
 ---
 
-<div class="stages-grid">
-  {stages.map(stage => {
-    const isUpcoming = stage.status === 'upcoming';
-    const isCompleted = stage.status === 'completed';
-    const isCancelled = stage.status === 'cancelled';
-    return (
-      <div class:list={['stage-card', { 'stage-card--upcoming': isUpcoming, 'stage-card--completed': isCompleted, 'stage-card--cancelled': isCancelled }]}>
-        <div class="stage-date">
-          <span class="stage-month">{formatMonth(stage.date)}</span>
-          <span class="stage-day">{formatDay(stage.date)}</span>
+<div class="stages-gallery">
+  {/* Featured stage — large cover */}
+  {featured && (
+    <div class:list={['sg-featured', {
+      'sg-featured--upcoming': featured.status === 'upcoming',
+      'sg-featured--completed': featured.status === 'completed',
+      'sg-card--clickable': !!featured.archonUrl,
+    }]} data-href={featured.archonUrl || undefined}>
+      {featured.image && (
+        <div class="sg-featured-bg">
+          <img src={featured.image} alt="" loading="lazy" decoding="async" />
+          <div class="sg-featured-overlay"></div>
         </div>
-        <div class="stage-body">
-          <div class="stage-header">
-            <span class="stage-number">#{stage.number}</span>
-            <span class="stage-name">{stage.name}</span>
-            <span class:list={['stage-status', `stage-status--${stage.status}`]}>
-              {statusLabels[stage.status]?.[locale] || stage.status}
-            </span>
-          </div>
-          <div class="stage-cities">
-            {stage.cities.map(slug => {
-              const city = cityMap.get(slug);
-              if (!city) return <span class="stage-city">{slug}</span>;
-              const name = locale === 'it' ? city.nameIt : city.nameEn;
-              const url = locale === 'it' ? city.urlIt : city.urlEn;
-              return <a href={url} class="stage-city">{name}</a>;
-            })}
-          </div>
-          {stage.archonUrl && (
-            <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class="stage-archon">
-              Archon &rarr;
-            </a>
-          )}
+      )}
+      <div class="sg-featured-content">
+        <span class:list={['sg-badge', `sg-badge--${featured.status}`]}>
+          {statusLabels[featured.status]?.[locale]}
+        </span>
+        <div class="sg-featured-title">
+          <span class="sg-featured-number">#{featured.number}</span>
+          <span class="sg-featured-name">{featured.name}</span>
         </div>
-        {isCompleted && <div class="stage-check" aria-label="Completata">&#10003;</div>}
+        <div class="sg-featured-date">
+          {formatDay(featured.date)} {formatMonth(featured.date)}
+        </div>
+        <div class="sg-featured-cities">
+          {featured.cities.map(slug => {
+            const city = cityMap.get(slug);
+            if (!city) return <span class="sg-city">{slug}</span>;
+            const name = locale === 'it' ? city.nameIt : city.nameEn;
+            const url = locale === 'it' ? city.urlIt : city.urlEn;
+            return <a href={url} class="sg-city sg-city--featured">{name}</a>;
+          })}
+        </div>
+        {featured.archonUrl && (
+          <a href={featured.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['sg-cta', `sg-cta--${featured.status}`]}>
+            {ctaLabels[featured.status]?.[locale] || 'Archon'} &rarr;
+          </a>
+        )}
       </div>
-    );
-  })}
+    </div>
+  )}
+
+  {/* Other stages — grid of smaller covers */}
+  <div class="sg-grid">
+    {stages.filter(s => s !== featured).map(stage => {
+      const isUpcoming = stage.status === 'upcoming';
+      const isCompleted = stage.status === 'completed';
+      const isCancelled = stage.status === 'cancelled';
+      return (
+        <div class:list={['sg-card', {
+          'sg-card--upcoming': isUpcoming,
+          'sg-card--completed': isCompleted,
+          'sg-card--cancelled': isCancelled,
+          'sg-card--clickable': !!stage.archonUrl,
+        }]} data-href={stage.archonUrl || undefined}>
+          {stage.image && (
+            <div class="sg-card-bg">
+              <img src={stage.image} alt="" loading="lazy" decoding="async" />
+              <div class="sg-card-overlay"></div>
+            </div>
+          )}
+          <div class="sg-card-content">
+            <span class:list={['sg-badge sg-badge--sm', `sg-badge--${stage.status}`]}>
+              {statusLabels[stage.status]?.[locale]}
+            </span>
+            <div class="sg-card-title">
+              <span class="sg-card-number">#{stage.number}</span>
+              <span class="sg-card-name">{stage.name}</span>
+            </div>
+            <div class="sg-card-date">
+              {formatDay(stage.date)} {formatMonth(stage.date)}
+            </div>
+            <div class="sg-card-cities">
+              {stage.cities.map(slug => {
+                const city = cityMap.get(slug);
+                if (!city) return <span class="sg-city">{slug}</span>;
+                const name = locale === 'it' ? city.nameIt : city.nameEn;
+                const url = locale === 'it' ? city.urlIt : city.urlEn;
+                return <a href={url} class="sg-city">{name}</a>;
+              })}
+            </div>
+            {stage.archonUrl && (
+              <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['sg-cta sg-cta--sm', `sg-cta--${stage.status}`]}>
+                {ctaLabels[stage.status]?.[locale] || 'Archon'} &rarr;
+              </a>
+            )}
+          </div>
+          {isCompleted && <div class="sg-check">&#10003;</div>}
+        </div>
+      );
+    })}
+  </div>
 </div>
 
+<script>
+  document.querySelectorAll('.sg-card--clickable, .sg-featured.sg-card--clickable').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a')) return;
+      const href = (card as HTMLElement).dataset.href;
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+    });
+  });
+</script>
+
 <style>
-  .stages-grid {
+  /* ── Gallery layout ── */
+  .stages-gallery {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ── Featured (large cover) ── */
+  .sg-featured {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    min-height: 280px;
+    display: flex;
+    align-items: flex-end;
+  }
+  .sg-featured--upcoming {
+    border-color: var(--color-gold);
+  }
+  .sg-featured--completed {
+    opacity: 0.8;
+  }
+  .sg-featured-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .sg-featured-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .sg-featured-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0.4) 50%, rgba(18,18,18,0.1) 100%);
+  }
+  .sg-featured-content {
+    position: relative;
+    z-index: 1;
+    padding: 24px;
+    width: 100%;
+  }
+  .sg-featured-title {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 8px 0 4px;
+  }
+  .sg-featured-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-muted);
+  }
+  .sg-featured-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .sg-featured--upcoming .sg-featured-name {
+    color: var(--color-gold);
+  }
+  .sg-featured-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+  .sg-featured-cities {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  /* ── Grid of smaller cards ── */
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
-  .stage-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 20px;
-    border-radius: var(--radius);
-    border: 1px solid var(--color-border);
-    transition: background-color 0.2s ease;
+  .sg-card {
     position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.2s ease;
   }
-  .stage-card:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+  .sg-card:hover {
+    transform: translateY(-2px);
   }
-
-  /* Upcoming highlight */
-  .stage-card--upcoming {
+  .sg-card--upcoming {
     border-color: var(--color-gold);
-    background-color: rgba(201, 168, 76, 0.06);
   }
-
-  /* Completed */
-  .stage-card--completed {
+  .sg-card--completed {
     opacity: 0.7;
   }
-
-  /* Cancelled */
-  .stage-card--cancelled {
+  .sg-card--cancelled {
     opacity: 0.4;
   }
-  .stage-card--cancelled .stage-name {
+  .sg-card--cancelled .sg-card-name {
     text-decoration: line-through;
   }
 
-  /* Date block */
-  .stage-date {
+  .sg-card-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .sg-card-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .sg-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0.3) 60%, rgba(18,18,18,0.05) 100%);
+  }
+
+  .sg-card-content {
+    position: relative;
+    z-index: 1;
+    padding: 14px;
+    width: 100%;
+  }
+
+  .sg-card-title {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 52px;
-    height: 56px;
-    background-color: var(--color-accent-light);
-    border-radius: var(--radius);
-    flex-shrink: 0;
+    align-items: baseline;
+    gap: 6px;
+    margin: 6px 0 2px;
   }
-  .stage-card--upcoming .stage-date {
-    background-color: rgba(201, 168, 76, 0.15);
+  .sg-card-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-muted);
   }
-  .stage-month {
+  .sg-card-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .sg-card--upcoming .sg-card-name {
+    color: var(--color-gold);
+  }
+  .sg-card-date {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 4px;
+  }
+  .sg-card-cities {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  /* ── Shared elements ── */
+  .sg-card--clickable {
+    cursor: pointer;
+  }
+
+  /* Badge */
+  .sg-badge {
+    display: inline-block;
     font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--color-accent-1);
-    line-height: 1;
-  }
-  .stage-card--upcoming .stage-month {
-    color: var(--color-gold);
-  }
-  .stage-day {
-    font-size: 1.3rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--color-contrast);
-  }
-
-  /* Body */
-  .stage-body {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .stage-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 4px;
-  }
-  .stage-number {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--color-muted);
-  }
-  .stage-name {
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-  .stage-card--upcoming .stage-name {
-    color: var(--color-gold);
-  }
-
-  /* Status badge */
-  .stage-status {
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 2px 7px;
+    padding: 3px 8px;
     border-radius: var(--radius);
-    margin-left: auto;
   }
-  .stage-status--completed {
+  .sg-badge--sm {
+    font-size: 0.55rem;
+    padding: 2px 6px;
+  }
+  .sg-badge--completed {
     color: #4ade80;
-    background: rgba(74, 222, 128, 0.1);
+    background: rgba(74, 222, 128, 0.2);
   }
-  .stage-status--upcoming {
+  .sg-badge--upcoming {
     color: var(--color-gold);
-    background: rgba(201, 168, 76, 0.15);
+    background: rgba(201, 168, 76, 0.25);
   }
-  .stage-status--future {
+  .sg-badge--future {
     color: var(--color-muted);
-    background: rgba(155, 155, 155, 0.1);
+    background: rgba(155, 155, 155, 0.15);
   }
-  .stage-status--cancelled {
+  .sg-badge--cancelled {
     color: var(--color-accent-1);
-    background: var(--color-accent-light);
+    background: rgba(139, 26, 43, 0.2);
   }
 
-  /* Cities */
-  .stage-cities {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .stage-city {
-    font-size: 0.8rem;
-    color: var(--color-accent-1);
+  /* City links */
+  .sg-city {
+    font-size: 0.75rem;
+    color: #e8a0ad;
     text-decoration: none;
     transition: color 0.2s ease;
   }
-  a.stage-city:hover {
+  .sg-city--featured {
+    font-size: 0.85rem;
+  }
+  a.sg-city:hover {
     color: var(--color-accent-2);
   }
 
-  /* Archon link */
-  .stage-archon {
+  /* CTA */
+  .sg-cta {
     display: inline-block;
-    margin-top: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-gold);
+    margin-top: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    padding: 5px 14px;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
   }
-  .stage-archon:hover {
-    opacity: 0.7;
+  .sg-cta--sm {
+    font-size: 0.6rem;
+    padding: 4px 10px;
+    margin-top: 6px;
+  }
+  .sg-cta--upcoming,
+  .sg-cta--future {
+    color: var(--color-gold);
+    background: rgba(201, 168, 76, 0.2);
+    border: 1px solid rgba(201, 168, 76, 0.35);
+  }
+  .sg-cta--upcoming:hover,
+  .sg-cta--future:hover {
+    background: rgba(201, 168, 76, 0.3);
+  }
+  .sg-cta--completed {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.15);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+  }
+  .sg-cta--completed:hover {
+    background: rgba(74, 222, 128, 0.25);
   }
 
   /* Completed check */
-  .stage-check {
-    flex-shrink: 0;
-    font-size: 1.1rem;
+  .sg-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    font-size: 1rem;
     color: #4ade80;
   }
 
+  /* ── Mobile ── */
   @media (max-width: 544px) {
-    .stage-card { padding: 12px; gap: 12px; }
-    .stage-date { width: 44px; height: 48px; }
-    .stage-day { font-size: 1.1rem; }
-    .stage-status { margin-left: 0; }
+    .sg-featured {
+      min-height: 220px;
+    }
+    .sg-featured-content {
+      padding: 16px;
+    }
+    .sg-featured-name {
+      font-size: 1.3rem;
+    }
+    .sg-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .sg-card-content {
+      padding: 10px;
+    }
+    .sg-card-name {
+      font-size: 0.8rem;
+    }
   }
 </style>

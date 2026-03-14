@@ -17,9 +17,15 @@ const blog = defineCollection({
       date: z.coerce.date(),
       cities: z.array(z.string()),
       archonUrl: z.string().optional(),
+      image: z.string().optional(),
+      description: z.string().optional(),
       status: z.enum(['completed', 'upcoming', 'future', 'cancelled']).default('future'),
     })).optional().default([]),
+    rulesUrl: z.string().optional(),
+    stagesLabel: z.string().optional(),
+    stageItemLabel: z.string().optional(),
     standingsUrl: z.string().optional(),
+    locale: z.enum(['it', 'en']).default('it'),
   }),
 });
 

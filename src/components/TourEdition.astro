@@ -1,0 +1,317 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { cities } from '../data/cities';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  locale?: 'it' | 'en';
+}
+
+const { post, locale = 'it' } = Astro.props;
+const stagesLabel = post.data.stagesLabel || (locale === 'it' ? 'Le tappe' : 'The stages');
+const stageItemLabel = post.data.stageItemLabel || (locale === 'it' ? 'Tappa' : 'Stage');
+const { Content } = await post.render();
+const stages = post.data.stages || [];
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const computedStages = stages.map(s => {
+  if (s.status === 'cancelled') return s;
+  const stageDate = new Date(s.date);
+  stageDate.setHours(0, 0, 0, 0);
+  return { ...s, status: stageDate < today ? 'completed' : 'future' };
+});
+// Mark first future as upcoming
+const firstFuture = computedStages.findIndex(s => s.status === 'future');
+if (firstFuture !== -1) computedStages[firstFuture].status = 'upcoming';
+
+const cityMap = new Map(cities.map(c => [c.slug, {
+  name: locale === 'it' ? c.name : (c.nameEn || c.name),
+  url: locale === 'it' ? `/principati/${c.slug}/` : `/en/domains/${c.slugEn || c.slug}/`,
+}]));
+
+const statusLabels: Record<string, Record<string, string>> = {
+  completed: { it: 'Completata', en: 'Completed' },
+  upcoming: { it: 'Prossima', en: 'Next' },
+  future: { it: 'In programma', en: 'Scheduled' },
+  cancelled: { it: 'Annullata', en: 'Cancelled' },
+};
+
+const ctaLabels: Record<string, Record<string, string>> = {
+  completed: { it: 'Risultati', en: 'Results' },
+  upcoming: { it: 'Iscriviti', en: 'Register' },
+  future: { it: 'Iscriviti', en: 'Register' },
+};
+
+const soonLabel = locale === 'it' ? 'In arrivo' : 'Coming soon';
+
+function formatDate(date: Date): string {
+  const loc = locale === 'it' ? 'it-IT' : 'en-GB';
+  if (date.getDate() === 1) {
+    return date.toLocaleDateString(loc, { month: 'long', year: 'numeric' });
+  }
+  return date.toLocaleDateString(loc, { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<div class="tour-edition">
+  <div class="te-content prose">
+    <Content />
+  </div>
+
+  {post.data.rulesUrl && (
+    <div class="te-rules">
+      <a href={post.data.rulesUrl} target="_blank" rel="noopener noreferrer" class="te-rules-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        {locale === 'it' ? 'Regolamento' : 'Rules'} (PDF)
+      </a>
+    </div>
+  )}
+
+  {computedStages.length > 0 && (
+    <div class="te-stages">
+      <h3 class="te-stages-title">{stagesLabel}</h3>
+      <div class="te-stages-list">
+        {computedStages.map((stage, i) => (
+          <div class:list={['te-card', {
+            'te-card--upcoming': stage.status === 'upcoming',
+            'te-card--completed': stage.status === 'completed',
+            'te-card--cancelled': stage.status === 'cancelled',
+            'te-card--clickable': !!stage.archonUrl,
+          }]} data-href={stage.archonUrl || undefined}>
+            {stage.image && (
+              <div class="te-card-image">
+                <img src={stage.image} alt={stage.name} loading="lazy" decoding="async" />
+              </div>
+            )}
+            <div class="te-card-body">
+              <div class="te-card-top">
+                <div class="te-card-heading">
+                  <span class="te-number">{stageItemLabel} {i + 1}</span>
+                  <h3 class="te-name">{stage.name}</h3>
+                </div>
+                <span class:list={['te-badge', `te-badge--${stage.status}`]}>
+                  {statusLabels[stage.status]?.[locale]}
+                </span>
+              </div>
+              {stage.description && (
+                <p class="te-desc">{stage.description}</p>
+              )}
+              <div class="te-card-bottom">
+                <div class="te-meta">
+                  <time class="te-date">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    {formatDate(stage.date)}
+                  </time>
+                  <div class="te-cities">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {stage.cities.map((slug: string, ci: number) => {
+                      const city = cityMap.get(slug);
+                      if (!city) return <span class="te-city">{slug}</span>;
+                      return <><a href={city.url} class="te-city">{city.name}</a>{ci < stage.cities.length - 1 && <span class="te-sep">&middot;</span>}</>;
+                    })}
+                  </div>
+                </div>
+                {stage.archonUrl ? (
+                  <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['te-cta', `te-cta--${stage.status}`]}>
+                    {ctaLabels[stage.status]?.[locale] || 'Archon'} &rarr;
+                  </a>
+                ) : (
+                  <span class="te-cta te-cta--soon">{soonLabel}</span>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {post.data.standingsUrl && (
+    <div class="te-standings">
+      <h3 class="te-standings-title">{locale === 'it' ? 'Classifica' : 'Standings'}</h3>
+      <div class="te-standings-frame">
+        <iframe src={post.data.standingsUrl} title="Classifica Tour" loading="lazy"></iframe>
+      </div>
+    </div>
+  )}
+</div>
+
+<script>
+  document.querySelectorAll('.te-card--clickable').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a')) return;
+      const href = (card as HTMLElement).dataset.href;
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+    });
+  });
+</script>
+
+<style>
+  .tour-edition { }
+
+  /* Content */
+  .te-content { margin-bottom: 32px; }
+  .te-content :global(h1) { font-size: clamp(1.4rem, 4vw, 2rem); margin: 32px 0 16px; }
+  .te-content :global(h2) { font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin: 28px 0 12px; }
+  .te-content :global(h3) { font-size: clamp(1rem, 3vw, 1.2rem); margin: 24px 0 8px; }
+  .te-content :global(p) { line-height: 1.7; margin-bottom: 16px; text-align: justify; }
+  .te-content :global(ul), .te-content :global(ol) { padding-left: 20px; margin-bottom: 16px; }
+  .te-content :global(li) { margin-bottom: 6px; line-height: 1.6; }
+  .te-content :global(blockquote) {
+    border-left: 3px solid var(--color-gold); padding-left: 16px;
+    color: var(--color-muted); font-style: italic; margin: 16px 0;
+  }
+  .te-content :global(hr) { border: none; border-top: 1px solid rgba(139,26,43,0.15); margin: 24px 0; }
+  .te-content :global(img) { max-width: 100%; border-radius: var(--radius); margin: 16px 0; }
+  .te-content :global(strong) { font-weight: 600; }
+  .te-content :global(a) { color: var(--color-accent-1); }
+  .te-content :global(a:hover) { color: var(--color-accent-2); }
+  .te-content :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .te-content :global(th), .te-content :global(td) {
+    padding: 8px 12px; border: 1px solid var(--color-border); text-align: left;
+  }
+  .te-content :global(th) { font-weight: 600; background-color: var(--color-surface); }
+
+  /* Rules */
+  .te-rules {
+    margin-bottom: 28px;
+  }
+  .te-rules-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-decoration: none;
+    padding: 8px 18px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: var(--radius);
+    background: rgba(201,168,76,0.08);
+    transition: all 0.2s ease;
+  }
+  .te-rules-link:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: rgba(201,168,76,0.5);
+  }
+  .te-rules-link svg {
+    flex-shrink: 0;
+  }
+
+  /* Stages */
+  .te-stages { border-top: 1px solid var(--color-border); padding-top: 28px; }
+  .te-stages-title {
+    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--color-muted); margin-bottom: 20px; text-align: center;
+  }
+  .te-stages-list { display: flex; flex-direction: column; gap: 20px; }
+
+  /* Card */
+  .te-card {
+    display: flex; flex-direction: row; border-radius: 8px;
+    border: 1px solid var(--color-border); overflow: hidden; background: var(--color-surface);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .te-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.12);
+  }
+  .te-card--clickable { cursor: pointer; }
+  .te-card--upcoming { border-color: rgba(201,168,76,0.4); }
+  .te-card--upcoming:hover { border-color: var(--color-gold); box-shadow: 0 8px 24px rgba(201,168,76,0.15); }
+  .te-card--completed { opacity: 0.7; }
+  .te-card--completed:hover { opacity: 1; }
+  .te-card--cancelled { opacity: 0.35; }
+
+  /* Image */
+  .te-card-image { width: 220px; min-height: 220px; flex-shrink: 0; overflow: hidden; background: #0a0a0a; }
+  .te-card-image img {
+    width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;
+  }
+  .te-card:hover .te-card-image img { transform: scale(1.04); }
+
+  /* Body */
+  .te-card-body {
+    padding: 20px 24px; flex: 1; min-width: 0;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .te-card-top {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 4px;
+  }
+  .te-card-heading { display: flex; flex-direction: column; }
+  .te-number {
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--color-muted); margin-bottom: 2px;
+  }
+  .te-name {
+    font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 900;
+    text-transform: uppercase; letter-spacing: 1.5px; line-height: 1.1; margin: 0;
+  }
+  .te-card--upcoming .te-name { color: var(--color-gold); }
+  .te-card--cancelled .te-name { text-decoration: line-through; }
+
+  .te-badge {
+    display: inline-block; margin-left: auto; font-size: 0.6rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: var(--radius);
+  }
+  .te-badge--completed { color: #4ade80; background: rgba(74,222,128,0.12); }
+  .te-badge--upcoming { color: var(--color-gold); background: rgba(201,168,76,0.15); }
+  .te-badge--future { color: var(--color-muted); background: rgba(155,155,155,0.08); }
+  .te-badge--cancelled { color: var(--color-accent-1); background: rgba(139,26,43,0.12); }
+
+  .te-desc { font-size: 0.8rem; line-height: 1.6; color: var(--color-muted); margin: 0; flex: 1; }
+
+  /* Bottom */
+  .te-card-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .te-meta { display: flex; flex-direction: column; gap: 4px; }
+  .te-date { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 500; color: var(--color-muted); }
+  .te-date svg { flex-shrink: 0; opacity: 0.5; }
+  .te-cities { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .te-cities svg { flex-shrink: 0; color: var(--color-muted); opacity: 0.5; }
+  .te-city { font-size: 0.8rem; color: var(--color-accent-1); text-decoration: none; transition: color 0.2s ease; }
+  a.te-city:hover { color: var(--color-accent-2); }
+  .te-sep { color: var(--color-muted); opacity: 0.3; font-size: 0.7rem; }
+
+  /* CTA */
+  .te-cta {
+    display: inline-flex; align-items: center; align-self: flex-end;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    text-decoration: none; padding: 7px 18px; border-radius: var(--radius); transition: all 0.2s ease;
+  }
+  .te-cta--upcoming, .te-cta--future {
+    color: var(--color-gold); background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+  }
+  .te-cta--upcoming:hover, .te-cta--future:hover { background: rgba(201,168,76,0.22); border-color: rgba(201,168,76,0.4); }
+  .te-cta--completed {
+    color: #4ade80; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.18);
+  }
+  .te-cta--completed:hover { background: rgba(74,222,128,0.18); border-color: rgba(74,222,128,0.3); }
+  .te-cta--soon {
+    color: var(--color-muted); background: rgba(155,155,155,0.06);
+    border: 1px solid rgba(155,155,155,0.12); cursor: default; opacity: 0.6;
+  }
+
+  /* Standings */
+  .te-standings { margin-top: 36px; border-top: 1px solid var(--color-border); padding-top: 28px; }
+  .te-standings-title {
+    font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
+  }
+  .te-standings-frame { border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; }
+  .te-standings-frame iframe { width: 100%; min-height: 500px; border: none; background: var(--color-surface); }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .te-card { flex-direction: column; }
+    .te-card-image { width: 100%; }
+    .te-card-image img { width: 100%; height: auto; object-fit: contain; }
+    .te-card-body { padding: 12px 14px 14px; gap: 4px; }
+    .te-card-top { margin-bottom: 2px; }
+    .te-name { font-size: 1.3rem; letter-spacing: 1px; }
+    .te-card-bottom { flex-direction: row; align-items: center; gap: 12px; margin-top: 6px; }
+    .te-meta { gap: 2px; }
+    .te-cta { padding: 6px 14px; flex-shrink: 0; }
+  }
+</style>

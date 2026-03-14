@@ -3,52 +3,53 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import { mainPages } from '../data/pages';
+import { useTranslations } from '../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'week-of-sabbat')!;
+const page = mainPages.find(p => p.slug.it === 'week-of-sabbat')!;
+const t = useTranslations('it');
 ---
-<Base title={page.titleIt} description={page.descriptionIt}>
-  <PageHero title={page.titleIt} image={page.headerImage} />
+<Base title={page.title.it} description={page.description.it}>
+  <PageHero title={page.title.it} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
-    <p class="date-badge">Ottobre 2025</p>
-    <p class="lead">La nuova espansione Sabbat segna un momento speciale: <strong>l'Italia intera si unisce</strong> per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città. Non è solo una competizione, ma una settimana di <strong>incontro, scoperta e divertimento condiviso</strong>, in puro spirito cainita.</p>
-    <blockquote class="pullquote">"Per una settimana, tutta l'Italia gioca come un'unica coterie"</blockquote>
+    <p class="date-badge">{t.wos.date_badge}</p>
+    <p class="lead"><Fragment set:html={t.wos.lead} /></p>
+    <blockquote class="pullquote">"{t.wos.quote}"</blockquote>
 
     <hr class="divider" />
 
-    <h2 class="section-title">Cos'è</h2>
-    <p>Evento nazionale per il lancio dei mazzi Sabbat. Dal <strong>18 al 26 ottobre</strong>, i giocatori si sfidano in formato <strong>Sealed</strong>, aprendo e giocando i mazzi prerelease contemporaneamente. Un'opportunità per provare le nuove carte, incontrare altri Cainiti e partecipare a una classifica nazionale condivisa in un'atmosfera di divertimento.</p>
+    <h2 class="section-title">{t.wos.what_title}</h2>
+    <p><Fragment set:html={t.wos.what_text} /></p>
 
-    <h2 class="section-title">Come funziona</h2>
+    <h2 class="section-title">{t.wos.how_title}</h2>
     <ul class="rules-list">
-      <li>Ogni partecipante riceve un mazzo Sabbat sigillato (senza bustine)</li>
-      <li>Si gioca così com'è, senza modifiche</li>
-      <li>Tavoli da quattro giocatori con un mazzo diverso per Sentiero: <strong>Caine</strong>, <strong>Cathari</strong>, <strong>Death and the Soul</strong>, <strong>Power and the Inner Voice</strong></li>
-      <li>Assegnazione randomica del mazzo e del posto al tavolo</li>
+      {t.wos.how_items.map(item => (
+        <li><Fragment set:html={item} /></li>
+      ))}
     </ul>
 
-    <h2 class="section-title">Punteggi e classifiche</h2>
+    <h2 class="section-title">{t.wos.scores_title}</h2>
     <ul class="rules-list">
-      <li>I giocatori guadagnano Victory Points (VP) e Game Wins (GW)</li>
-      <li>Due livelli: classifica cittadina + classifica nazionale per Sentiero</li>
-      <li>Dopo 3 turni, il punteggio totale determina il vincitore locale (niente finale: conta l'esperienza e il divertimento)</li>
+      {t.wos.scores_items.map(item => (
+        <li><Fragment set:html={item} /></li>
+      ))}
     </ul>
 
-    <h2 class="section-title">Mazzo e ricordo</h2>
-    <p>I partecipanti portano a casa il proprio mazzo Sabbat prerelease come ricordo dell'evento. Tratta le carte con cura: fanno parte del kit ufficiale dell'evento e meritano rispetto... in puro stile Sabbat.</p>
+    <h2 class="section-title">{t.wos.deck_title}</h2>
+    <p>{t.wos.deck_text}</p>
 
-    <h2 class="section-title">Classifica dei mazzi</h2>
-    <p>La classifica nazionale dei mazzi viene aggiornata man mano che arrivano i risultati dagli eventi locali. Solo i tornei ufficiali Week of Sabbat sono validi per la classifica.</p>
+    <h2 class="section-title">{t.wos.standings_title}</h2>
+    <p>{t.wos.standings_text}</p>
 
     <div class="standings-frame">
-      <iframe src="https://docs.google.com/spreadsheets/d/1haGlL72KGpcU9bqPkPVNP4djl5mEdI7U8OJc0jGiimg/pubhtml?widget=true&headers=false" title="Classifica Week of Sabbat" loading="lazy"></iframe>
+      <iframe src="https://docs.google.com/spreadsheets/d/1haGlL72KGpcU9bqPkPVNP4djl5mEdI7U8OJc0jGiimg/pubhtml?widget=true&headers=false" title={t.wos.standings_title} loading="lazy"></iframe>
     </div>
 
     <hr class="divider" />
 
-    <h2 class="section-title">Download</h2>
+    <h2 class="section-title">{t.wos.download}</h2>
     <div class="downloads">
-      <a href="https://drive.google.com/uc?export=download&id=1YMFmpUSYcWwY6foPrW44jTz-MfL087xO" class="btn btn--outline" download>Infokit evento</a>
-      <a href="https://drive.google.com/uc?export=download&id=1u1FgSWPC9LPQzRNPh8Hxx7gzw578IOiw" class="btn btn--outline" download>Event report template</a>
+      <a href="https://drive.google.com/uc?export=download&id=1YMFmpUSYcWwY6foPrW44jTz-MfL087xO" class="btn btn--outline" download>{t.wos.infokit}</a>
+      <a href="https://drive.google.com/uc?export=download&id=1u1FgSWPC9LPQzRNPh8Hxx7gzw578IOiw" class="btn btn--outline" download>{t.wos.report_template}</a>
     </div>
     <ShareButtons />
   </div></section>

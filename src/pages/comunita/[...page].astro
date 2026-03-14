@@ -5,25 +5,25 @@ import PageHero from '../../components/PageHero.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
+import { filterByLocale, useTranslations, formatLocalDate } from '../../utils/i18n';
+
+const t = useTranslations('it');
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = (await getCollection('blog'))
+  const posts = filterByLocale(await getCollection('blog'), 'it')
     .filter(p => p.data.category === 'comunita')
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
   return paginate(posts, { pageSize: 8 });
 }) satisfies GetStaticPaths;
 
-const pageMeta = mainPages.find(p => p.slug === 'comunita')!;
+const pageMeta = mainPages.find(p => p.slug.it === 'comunita')!;
 const { page } = Astro.props;
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-}
 ---
-<Base title={pageMeta.titleIt} description={pageMeta.descriptionIt}>
-  <PageHero title={pageMeta.titleIt} image={pageMeta.headerImage} />
+<Base title={pageMeta.title.it} description={pageMeta.description.it}>
+  <PageHero title={pageMeta.title.it} image={pageMeta.headerImage} />
   <section class="section"><div class="container container--narrow">
-    <p class="section-subtitle">Articoli, report e novità dalla comunità.</p>
+    <p class="section-subtitle">{t.community.subtitle}</p>
 
     <div class="post-list">
       {page.data.map(post => (
@@ -34,7 +34,7 @@ function formatDate(date: Date): string {
           <div class="post-card__content">
             <h2 class="post-card__title">{post.data.title}</h2>
             <time class="post-card__date" datetime={post.data.date.toISOString()}>
-              {formatDate(post.data.date)}
+              {formatLocalDate(post.data.date, 'it')}
             </time>
           </div>
         </a>
@@ -42,17 +42,17 @@ function formatDate(date: Date): string {
     </div>
 
     {page.lastPage > 1 && (
-      <nav class="pagination" aria-label="Paginazione">
+      <nav class="pagination" aria-label={t.community.pagination}>
         {page.url.prev ? (
-          <a href={page.url.prev} class="pagination__link">&larr; Precedente</a>
+          <a href={page.url.prev} class="pagination__link">&larr; {t.community.previous}</a>
         ) : (
-          <span class="pagination__link pagination__link--disabled">&larr; Precedente</span>
+          <span class="pagination__link pagination__link--disabled">&larr; {t.community.previous}</span>
         )}
-        <span class="pagination__info">Pagina {page.currentPage} di {page.lastPage}</span>
+        <span class="pagination__info">{t.community.page_info.replace('%current%', String(page.currentPage)).replace('%last%', String(page.lastPage))}</span>
         {page.url.next ? (
-          <a href={page.url.next} class="pagination__link">Successiva &rarr;</a>
+          <a href={page.url.next} class="pagination__link">{t.community.next} &rarr;</a>
         ) : (
-          <span class="pagination__link pagination__link--disabled">Successiva &rarr;</span>
+          <span class="pagination__link pagination__link--disabled">{t.community.next} &rarr;</span>
         )}
       </nav>
     )}

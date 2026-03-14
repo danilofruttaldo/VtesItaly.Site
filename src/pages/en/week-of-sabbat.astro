@@ -3,42 +3,43 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { mainPages } from '../../data/pages';
+import { useTranslations } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'week-of-sabbat')!;
+const page = mainPages.find(p => p.slug.it === 'week-of-sabbat')!;
+const t = useTranslations('en');
 ---
-<Base title={page.titleEn} description={page.descriptionEn}>
-  <PageHero title={page.titleEn} image={page.headerImage} />
+<Base title={page.title.en} description={page.description.en}>
+  <PageHero title={page.title.en} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
-    <p class="date-badge">October 2025</p>
-    <p class="lead">The new Sabbat expansion marks a special moment: <strong>all of Italy unites</strong> to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city. Not just competition, but a week of <strong>gathering, discovery and shared fun</strong>, in true Cainite spirit.</p>
-    <blockquote class="pullquote">"For one week, all of Italy plays as a single coterie"</blockquote>
+    <p class="date-badge">{t.wos.date_badge}</p>
+    <p class="lead"><Fragment set:html={t.wos.lead} /></p>
+    <blockquote class="pullquote">"{t.wos.quote}"</blockquote>
 
     <hr class="divider" />
 
-    <h2 class="section-title">What is it</h2>
-    <p>A national event for the Sabbat deck launch. From <strong>October 18 to 26</strong>, players compete in <strong>Sealed format</strong>, opening and playing prerelease decks simultaneously. An opportunity to try new cards, meet other Cainites, and participate in a shared national ranking in a fun atmosphere.</p>
+    <h2 class="section-title">{t.wos.what_title}</h2>
+    <p><Fragment set:html={t.wos.what_text} /></p>
 
-    <h2 class="section-title">How it works</h2>
+    <h2 class="section-title">{t.wos.how_title}</h2>
     <ul class="rules-list">
-      <li>Each participant receives a sealed Sabbat deck (no sleeves)</li>
-      <li>Played as-is, no modifications</li>
-      <li>Four-player tables with a different deck per Path: <strong>Caine</strong>, <strong>Cathari</strong>, <strong>Death and the Soul</strong>, <strong>Power and the Inner Voice</strong></li>
-      <li>Randomized deck and seating assignments</li>
+      {t.wos.how_items.map(item => (
+        <li><Fragment set:html={item} /></li>
+      ))}
     </ul>
 
-    <h2 class="section-title">Scores and standings</h2>
+    <h2 class="section-title">{t.wos.scores_title}</h2>
     <ul class="rules-list">
-      <li>Players earn Victory Points (VP) and Game Wins (GW)</li>
-      <li>Two levels: City standings + National standings by Path</li>
-      <li>After 3 rounds, total points determine the local winner (no final: experience and fun is what counts)</li>
+      {t.wos.scores_items.map(item => (
+        <li><Fragment set:html={item} /></li>
+      ))}
     </ul>
 
-    <h2 class="section-title">Deck and keepsake</h2>
-    <p>Participants take home their Sabbat prerelease deck as a memento of the event. Treat the cards with care: they are part of the official event kit and deserve respect... in true Sabbat style.</p>
+    <h2 class="section-title">{t.wos.deck_title}</h2>
+    <p>{t.wos.deck_text}</p>
 
-    <h2 class="section-title">Deck standings</h2>
-    <p>National deck standings are updated as results come in from local events. Only official Week of Sabbat tournaments count toward the standings.</p>
-    <ShareButtons label="Share" />
+    <h2 class="section-title">{t.wos.standings_title}</h2>
+    <p>{t.wos.standings_text}</p>
+    <ShareButtons />
   </div></section>
 </Base>
 

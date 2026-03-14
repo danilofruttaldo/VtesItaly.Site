@@ -5,22 +5,25 @@ import ShareButtons from '../components/ShareButtons.astro';
 import TourEdition from '../components/TourEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
+import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'tour')!;
-const posts = (await getCollection('blog'))
-  .filter(p => p.data.category === page.category && (p.data.locale || 'it') === 'it')
+const t = useTranslations('it');
+
+const page = mainPages.find(p => p.slug.it === 'tour')!;
+const posts = filterByLocale(await getCollection('blog'), 'it')
+  .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const current = posts.find(p => p.data.stages && p.data.stages.length > 0 && !p.data.stages.every(s => s.status === 'completed'));
 const pastEditions = posts.filter(p => p !== current);
 ---
-<Base title={page.titleIt} description={page.descriptionIt}>
-  <PageHero title={page.titleIt} image={page.headerImage} />
+<Base title={page.title.it} description={page.description.it}>
+  <PageHero title={page.title.it} image={page.headerImage} />
 
   <section class="page-section">
     <div class="container container--narrow">
       <div class="intro-lead">
-        <Fragment set:html={page.leadHtmlIt!} />
+        <Fragment set:html={page.leadHtml.it!} />
       </div>
     </div>
   </section>
@@ -30,7 +33,7 @@ const pastEditions = posts.filter(p => p !== current);
       <div class="container container--narrow">
         <div class="edition-header">
           <h2 class="edition-title">{current.data.title}</h2>
-          <span class="edition-label-tag">In corso</span>
+          <span class="edition-label-tag">{t.tour.ongoing_label}</span>
         </div>
         <TourEdition post={current} />
       </div>
@@ -40,7 +43,7 @@ const pastEditions = posts.filter(p => p !== current);
   {pastEditions.length > 0 && (
     <section class="page-section">
       <div class="container container--narrow">
-        <h2 class="page-section-title">Archivio</h2>
+        <h2 class="page-section-title">{t.tour.archive}</h2>
         <div class="editions-list">
           {pastEditions.map(post => (
             <a href={`/tour/${post.slug}/`} class="edition-card">
@@ -48,10 +51,10 @@ const pastEditions = posts.filter(p => p !== current);
               {post.data.stages && post.data.stages.length > 0 && (() => {
                 const stg = post.data.stages!;
                 const citiesCount = new Set(stg.flatMap(s => s.cities)).size;
-                const first = stg[0].date.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
-                const last = stg[stg.length - 1].date.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
+                const first = formatLocalDate(stg[0].date, 'it', { day: 'numeric', month: 'short' });
+                const last = formatLocalDate(stg[stg.length - 1].date, 'it', { day: 'numeric', month: 'short' });
                 return (
-                  <span class="edition-info">{stg.length} tappe &middot; {citiesCount} città &middot; {first} — {last}</span>
+                  <span class="edition-info">{stg.length} {t.tour.stages_unit} &middot; {citiesCount} {t.tour.cities_unit} &middot; {first} — {last}</span>
                 );
               })()}
             </a>

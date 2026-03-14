@@ -5,24 +5,22 @@ import { cities } from '../data/cities';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
 import { categoryLabels } from '../data/categories';
+import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
 
-const page = mainPages.find(p => p.slug === '')!;
-const latestPosts = (await getCollection('blog'))
+const page = mainPages.find(p => p.slug.it === '')!;
+const t = useTranslations('it');
+const latestPosts = filterByLocale(await getCollection('blog'), 'it')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 4);
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-}
 ---
 
-<Base title={page.titleIt} description={page.descriptionIt}>
+<Base title={page.title.it} description={page.description.it}>
   <img src={page.headerImage} alt="VTES Italy" class="hero-banner" decoding="async" fetchpriority="high" />
 
   <section class="hero-text">
     <div class="container container--narrow">
-      <h1>La community dei Methuselah italiani non si ferma mai!</h1>
-      <p class="hero-text__subtitle">Tornei, raduni e campionati in tutta Italia. Trova il tuo principato, consulta il calendario e unisciti alla community.</p>
+      <h1>{t.home.hero_title}</h1>
+      <p class="hero-text__subtitle">{t.home.hero_subtitle}</p>
     </div>
   </section>
 
@@ -30,8 +28,8 @@ function formatDate(date: Date): string {
 
   <section class="section" id="eventi">
     <div class="container container--narrow">
-      <h2 class="section-title">Prossimi eventi</h2>
-      <p class="section-subtitle">Consulta il calendario e non perderti nessun evento.</p>
+      <h2 class="section-title">{t.home.events_title}</h2>
+      <p class="section-subtitle">{t.home.events_subtitle}</p>
       <Calendar />
     </div>
   </section>
@@ -40,8 +38,8 @@ function formatDate(date: Date): string {
 
   <section class="section">
     <div class="container container--narrow">
-      <h2 class="section-title">Ultime dalla community</h2>
-      <p class="section-subtitle">Report, articoli e novità dal mondo VTES Italia.</p>
+      <h2 class="section-title">{t.home.latest_title}</h2>
+      <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="latest-posts">
         {latestPosts.map(post => (
           <a href={`/${post.data.category}/${post.slug}/`} class="latest-post">
@@ -51,13 +49,13 @@ function formatDate(date: Date): string {
             <div class="latest-post__body">
               <span class="latest-post__category">{categoryLabels[post.data.category]?.it || post.data.category}</span>
               <h3 class="latest-post__title">{post.data.title}</h3>
-              <time class="latest-post__date" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <time class="latest-post__date" datetime={post.data.date.toISOString()}>{formatLocalDate(post.data.date, 'it')}</time>
             </div>
           </a>
         ))}
       </div>
       <div class="section-cta">
-        <a href="/comunita/" class="btn">Tutti gli articoli &rarr;</a>
+        <a href="/comunita/" class="btn">{t.home.all_articles} &rarr;</a>
       </div>
     </div>
   </section>
@@ -66,15 +64,15 @@ function formatDate(date: Date): string {
 
   <section class="section">
     <div class="container container--narrow">
-      <h2 class="section-title">Trova il tuo Principato</h2>
-      <p class="section-subtitle">15 città in tutta Italia dove si gioca a VTES. Trova quella più vicina a te.</p>
+      <h2 class="section-title">{t.home.domains_title}</h2>
+      <p class="section-subtitle">{t.home.domains_subtitle}</p>
       <div class="cities-quicklinks">
         {cities.map(city => (
-          <a href={`/principati/${city.slug}/`}>{city.name}</a>
+          <a href={`/principati/${city.slug.it}/`}>{city.name.it}</a>
         ))}
       </div>
       <div class="section-cta">
-        <a href="/principati/" class="btn">Tutti i Principati &rarr;</a>
+        <a href="/principati/" class="btn">{t.home.all_domains} &rarr;</a>
       </div>
     </div>
   </section>

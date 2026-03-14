@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
 import StickyBar from '../components/StickyBar.astro';
 import JsonLd from '../components/JsonLd.astro';
-import { getLocaleFromUrl, getAlternateUrl } from '../utils/i18n';
+import { getLocaleFromUrl, getAlternateUrl, useTranslations, getOtherLocales } from '../utils/i18n';
 
 interface Props {
   title: string;
@@ -13,11 +13,11 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description = 'VTES Italy, la community italiana di Vampire: The Eternal Struggle', ogImage = '/images/headers/header-home.webp' } = Astro.props;
 const locale = getLocaleFromUrl(Astro.url);
-const alternateUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
+const t = useTranslations(locale);
+const { title, description = t.default_description, ogImage = '/images/headers/header-home.webp' } = Astro.props;
+const otherLocales = getOtherLocales(locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const alternateFullUrl = new URL(alternateUrl, Astro.site);
 ---
 
 <!doctype html>
@@ -33,14 +33,16 @@ const alternateFullUrl = new URL(alternateUrl, Astro.site);
     <!-- Canonical & hreflang -->
     <link rel="canonical" href={canonicalUrl.href} />
     <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
-    <link rel="alternate" hreflang={locale === 'it' ? 'en' : 'it'} href={alternateFullUrl.href} />
+    {otherLocales.map(alt => (
+      <link rel="alternate" hreflang={alt} href={new URL(getAlternateUrl(Astro.url, alt), Astro.site).href} />
+    ))}
 
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | VTES Italy`} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl.href} />
-    <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_US'} />
+    <meta property="og:locale" content={t.og_locale} />
     <meta property="og:site_name" content="VTES Italy" />
     <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
 
@@ -67,13 +69,13 @@ const alternateFullUrl = new URL(alternateUrl, Astro.site);
       name: 'VTES Italy',
       url: Astro.site?.href,
       logo: new URL('/images/logo.webp', Astro.site).href,
-      description: 'La community italiana di Vampire: The Eternal Struggle',
+      description: t.default_description,
       sameAs: ['https://t.me/vtesitaly']
     }} />
     <slot name="head" />
   </head>
   <body>
-    <a href="#main-content" class="sr-only">{locale === 'it' ? 'Vai al contenuto' : 'Skip to content'}</a>
+    <a href="#main-content" class="sr-only">{t.skip_to_content}</a>
     <Header />
     <main id="main-content">
       <slot />

@@ -5,24 +5,22 @@ import { cities } from '../../data/cities';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
 import { categoryLabels } from '../../data/categories';
+import { filterByLocale, useTranslations, formatLocalDate } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === '')!;
-const latestPosts = (await getCollection('blog'))
+const page = mainPages.find(p => p.slug.it === '')!;
+const t = useTranslations('en');
+const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 4);
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
 ---
 
-<Base title={page.titleEn} description={page.descriptionEn}>
+<Base title={page.title.en} description={page.description.en}>
   <img src={page.headerImage} alt="VTES Italy" class="hero-banner" decoding="async" fetchpriority="high" />
 
   <section class="hero-text">
     <div class="container container--narrow">
-      <h1>The Italian Methuselah community never stops!</h1>
-      <p class="hero-text__subtitle">Tournaments, gatherings and championships across Italy. Find your domain, check the calendar and join the community.</p>
+      <h1>{t.home.hero_title}</h1>
+      <p class="hero-text__subtitle">{t.home.hero_subtitle}</p>
     </div>
   </section>
 
@@ -30,8 +28,8 @@ function formatDate(date: Date): string {
 
   <section class="section" id="eventi">
     <div class="container container--narrow">
-      <h2 class="section-title">Upcoming events</h2>
-      <p class="section-subtitle">Check the calendar and don't miss any event.</p>
+      <h2 class="section-title">{t.home.events_title}</h2>
+      <p class="section-subtitle">{t.home.events_subtitle}</p>
       <Calendar />
     </div>
   </section>
@@ -40,8 +38,8 @@ function formatDate(date: Date): string {
 
   <section class="section">
     <div class="container container--narrow">
-      <h2 class="section-title">Latest from the community</h2>
-      <p class="section-subtitle">Reports, articles and news from the Italian VTES world.</p>
+      <h2 class="section-title">{t.home.latest_title}</h2>
+      <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="latest-posts">
         {latestPosts.map(post => (
           <a href={`/en/${post.data.category}/${post.slug}/`} class="latest-post">
@@ -51,13 +49,13 @@ function formatDate(date: Date): string {
             <div class="latest-post__body">
               <span class="latest-post__category">{categoryLabels[post.data.category]?.en || post.data.category}</span>
               <h3 class="latest-post__title">{post.data.title}</h3>
-              <time class="latest-post__date" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <time class="latest-post__date" datetime={post.data.date.toISOString()}>{formatLocalDate(post.data.date, 'en')}</time>
             </div>
           </a>
         ))}
       </div>
       <div class="section-cta">
-        <a href="/en/community/" class="btn">All articles &rarr;</a>
+        <a href="/en/community/" class="btn">{t.home.all_articles} &rarr;</a>
       </div>
     </div>
   </section>
@@ -66,15 +64,15 @@ function formatDate(date: Date): string {
 
   <section class="section">
     <div class="container container--narrow">
-      <h2 class="section-title">Find your Domain</h2>
-      <p class="section-subtitle">15 cities across Italy where VTES is played. Find the one closest to you.</p>
+      <h2 class="section-title">{t.home.domains_title}</h2>
+      <p class="section-subtitle">{t.home.domains_subtitle}</p>
       <div class="cities-quicklinks">
         {cities.map(city => (
-          <a href={`/en/domains/${city.slugEn}/`}>{city.nameEn}</a>
+          <a href={`/en/domains/${city.slug.en}/`}>{city.name.en}</a>
         ))}
       </div>
       <div class="section-cta">
-        <a href="/en/domains/" class="btn">All Domains &rarr;</a>
+        <a href="/en/domains/" class="btn">{t.home.all_domains} &rarr;</a>
       </div>
     </div>
   </section>

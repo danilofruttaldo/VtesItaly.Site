@@ -5,16 +5,19 @@ import ShareButtons from '../../../components/ShareButtons.astro';
 import { cities } from '../../../data/cities';
 import { getCollection } from 'astro:content';
 import { categoryLabels } from '../../../data/categories';
+import { filterByLocale, useTranslations } from '../../../utils/i18n';
+
+const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const allPosts = filterByLocale(await getCollection('blog'), 'en');
   return cities.map(city => {
-    const cityTag = city.slug;
+    const cityTag = city.slug.it;
     const relatedPosts = allPosts
       .filter(p => p.data.tags?.includes(cityTag))
       .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
     return {
-      params: { slug: city.slugEn },
+      params: { slug: city.slug.en },
       props: { city, relatedPosts },
     };
   });
@@ -23,8 +26,8 @@ export async function getStaticPaths() {
 const { city, relatedPosts } = Astro.props;
 ---
 
-<Base title={city.nameEn} description={city.descriptionEn}>
-  <PageHero title={city.nameEn} image={city.headerImage} breadcrumb={{ label: 'All Domains', href: '/en/domains/' }} />
+<Base title={city.name.en} description={city.description.en}>
+  <PageHero title={city.name.en} image={city.headerImage} breadcrumb={{ label: t.domain.breadcrumb, href: '/en/domains/' }} />
 
   <section class="city-content">
     <div class="container">
@@ -33,7 +36,7 @@ const { city, relatedPosts } = Astro.props;
           <img src={city.prince.image} alt={city.prince.name} class="prince-avatar" loading="lazy" decoding="async" />
           <h3>{city.prince.name}</h3>
           <p class="prince-alias"><em>{city.prince.alias}</em></p>
-          <p class="prince-role">Prince of {city.nameEn}</p>
+          <p class="prince-role">{t.domain.prince_role} {city.name.en}</p>
           <div class="prince-actions">
             {city.prince.email && (
               <a href={`mailto:${city.prince.email}`} class="prince-btn prince-btn--email">Email</a>
@@ -44,22 +47,22 @@ const { city, relatedPosts } = Astro.props;
           </div>
         </aside>
         <div class="city-main">
-          <h2>Weekly Meetups</h2>
+          <h2>{t.domain.meetups_title}</h2>
           {city.meetupSchedule.length > 0 ? (
             <div class="meetup-table-wrap">
               <table class="meetup-table">
                 <thead>
                   <tr>
-                    <th>When</th>
-                    <th>Where</th>
+                    <th>{t.domain.meetups_when}</th>
+                    <th>{t.domain.meetups_where}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {city.meetupSchedule.map(m => (
                     <tr>
                       <td>
-                        <span class="meetup-day">{m.dayEn}</span>
-                        {(m.timeEn || m.time) && <span class="meetup-time">{m.timeEn || m.time}</span>}
+                        <span class="meetup-day">{m.day.en}</span>
+                        {m.time && <span class="meetup-time">{m.time.en}</span>}
                       </td>
                       <td>
                         {m.mapUrl ? (
@@ -75,9 +78,9 @@ const { city, relatedPosts } = Astro.props;
               </table>
             </div>
           ) : (
-            <p class="meetup-tbd">Flexible schedule. Contact the Prince for times and venues.</p>
+            <p class="meetup-tbd">{t.domain.meetups_tbd}</p>
           )}
-          {city.meetupNoteEn && <p class="meetup-note">{city.meetupNoteEn}</p>}
+          {city.meetupNote && <p class="meetup-note">{city.meetupNote.en}</p>}
 
         </div>
       </div>
@@ -85,13 +88,13 @@ const { city, relatedPosts } = Astro.props;
       {city.highlight && (
         <div class="highlight-box">
           {city.highlight.image && (
-            <img src={city.highlight.image} alt={city.highlight.titleEn} class="highlight-image" loading="lazy" decoding="async" />
+            <img src={city.highlight.image} alt={city.highlight.title.en} class="highlight-image" loading="lazy" decoding="async" />
           )}
           <div class="highlight-content">
-            <h3 class="highlight-title">{city.highlight.titleEn}</h3>
-            <p class="highlight-text">{city.highlight.textEn}</p>
+            <h3 class="highlight-title">{city.highlight.title.en}</h3>
+            <p class="highlight-text">{city.highlight.text.en}</p>
             {city.highlight.link && (
-              <a href={city.highlight.link} class="highlight-link">Learn more →</a>
+              <a href={city.highlight.link} class="highlight-link">{t.domain.highlight_cta} →</a>
             )}
           </div>
         </div>
@@ -99,7 +102,7 @@ const { city, relatedPosts } = Astro.props;
 
       <div class="related-posts">
         <hr class="divider" />
-        <h2 class="related-title">News from the Domain</h2>
+        <h2 class="related-title">{t.domain.news_title}</h2>
         {relatedPosts.length > 0 ? (
           <div class="related-list">
             {relatedPosts.map(post => (
@@ -116,10 +119,10 @@ const { city, relatedPosts } = Astro.props;
             ))}
           </div>
         ) : (
-          <p class="no-news">No news at the moment.</p>
+          <p class="no-news">{t.domain.no_news}</p>
         )}
       </div>
-      <ShareButtons label="Share" />
+      <ShareButtons />
     </div>
   </section>
 </Base>

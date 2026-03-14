@@ -1,5 +1,16 @@
 {
   "slug_map": {},
+  "routes": {
+    "home": "/",
+    "comunita": "/comunita/",
+    "principati": "/principati/",
+    "tour": "/tour/",
+    "nazionale": "/nazionale/",
+    "grand-prix": "/grand-prix/",
+    "cartoline": "/cartoline/",
+    "gemelli": "/gemelli/",
+    "week-of-sabbat": "/week-of-sabbat/"
+  },
   "page_titles": {
     "Home": "Home",
     "Principati": "Principati",
@@ -16,11 +27,16 @@
     "5": "Maggio", "6": "Giugno", "7": "Luglio", "8": "Agosto",
     "9": "Settembre", "10": "Ottobre", "11": "Novembre", "12": "Dicembre"
   },
+  "months_array": ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"],
   "days_short": {
     "Mon": "LUN", "Tue": "MAR", "Wed": "MER", "Thu": "GIO",
     "Fri": "VEN", "Sat": "SAB", "Sun": "DOM"
   },
+  "days_short_array": ["DOM","LUN","MAR","MER","GIO","VEN","SAB"],
+  "date_locale": "it-IT",
   "calendar": {
+    "loading": "Caricamento eventi...",
+    "embed_title": "Calendario eventi VTES Italy",
     "all_day": "Tutto il giorno",
     "no_events": "Nessun evento in programma nei prossimi %d mesi.",
     "full_calendar": "Vedi il calendario completo su Google",
@@ -31,7 +47,8 @@
     "aria_label": "Cerca",
     "close_label": "Chiudi ricerca",
     "placeholder": "Cerca articoli, eventi, principati...",
-    "submit": "Cerca"
+    "submit": "Cerca",
+    "no_results": "Nessun risultato trovato."
   },
   "nav": {
     "main_label": "Navigazione principale",
@@ -51,5 +68,123 @@
     "Cartoline": "Cartoline",
     "Gemelli": "Gemelli",
     "Week of Sabbat": "Week of Sabbat"
+  },
+  "footer": {
+    "about": "La community italiana di Vampire: The Eternal Struggle.",
+    "tagline": "Creato e gestito con passione dalla community italiana.",
+    "legal": "e tutti i relativi marchi sono di proprieta di Paradox Interactive AB. Pubblicato da Black Chantry Productions Ltd."
+  },
+  "skip_to_content": "Vai al contenuto",
+  "og_locale": "it_IT",
+  "default_description": "VTES Italy, la community italiana di Vampire: The Eternal Struggle",
+  "not_found": {
+    "subtitle": "Pagina non trovata.",
+    "hint": "Il vampiro che cercavi si è nascosto nell'ombra...",
+    "community": "Comunità",
+    "domains": "Principati"
+  },
+  "share": {
+    "label": "Condividi",
+    "copy_link": "Copia link",
+    "on": "su"
+  },
+  "home": {
+    "hero_title": "La community dei Methuselah italiani non si ferma mai!",
+    "hero_subtitle": "Tornei, raduni e campionati in tutta Italia. Trova il tuo principato, consulta il calendario e unisciti alla community.",
+    "events_title": "Prossimi eventi",
+    "events_subtitle": "Consulta il calendario e non perderti nessun evento.",
+    "latest_title": "Ultime dalla community",
+    "latest_subtitle": "Report, articoli e novità dal mondo VTES Italia.",
+    "all_articles": "Tutti gli articoli",
+    "domains_title": "Trova il tuo Principato",
+    "domains_subtitle": "15 città in tutta Italia dove si gioca a VTES. Trova quella più vicina a te.",
+    "all_domains": "Tutti i Principati"
+  },
+  "community": {
+    "subtitle": "Articoli, report e novità dalla comunità.",
+    "pagination": "Paginazione",
+    "previous": "Precedente",
+    "next": "Successiva",
+    "page_info": "Pagina %current% di %last%"
+  },
+  "post": {
+    "tour_finished": "Concluso",
+    "tour_ongoing": "In corso",
+    "gallery": "Galleria",
+    "photo": "foto"
+  },
+  "domain": {
+    "breadcrumb": "Tutti i Principati",
+    "prince_role": "Principe di",
+    "meetups_title": "Ritrovi settimanali",
+    "meetups_when": "Quando",
+    "meetups_where": "Dove",
+    "meetups_tbd": "Calendario flessibile. Contatta il Principe per orari e luoghi di ritrovo.",
+    "highlight_cta": "Scopri di più",
+    "news_title": "Notizie dal Principato",
+    "no_news": "Nessuna novità al momento."
+  },
+  "tour": {
+    "stages_label": "Le tappe",
+    "stage_item": "Tappa",
+    "status_completed": "Completata",
+    "status_upcoming": "Prossima",
+    "status_future": "In programma",
+    "status_cancelled": "Annullata",
+    "cta_results": "Risultati",
+    "cta_register": "Iscriviti",
+    "coming_soon": "In arrivo",
+    "rules": "Regolamento",
+    "standings": "Classifica",
+    "past_editions": "Edizioni passate",
+    "ongoing_label": "In corso",
+    "archive": "Archivio",
+    "stages_unit": "tappe",
+    "cities_unit": "città"
+  },
+  "postcards": {
+    "tagline": "Un mazzo di ricordi, non di gioco",
+    "intro": "Benvenuti nella sezione <strong>Cartoline</strong>, la gallery ironica di VTES Italy. Le carte diventano souvenir fotografici: scatti da eventi, tornei e raduni al posto delle illustrazioni originali. Sono istantanee di community: momenti seri, divertenti o epici, trasformati in cornici familiari ai giocatori.",
+    "why_title": "Perché Cartoline?",
+    "why_text": "Come cartoline spedite da un viaggio, pensate per essere ricordi condivisi: un album alternativo di ciò che anima la community VTES in Italia. Sfogliando si riscoprono amici, partite, gag e piccole leggende nate attorno ai tavoli.",
+    "scroll_left": "Scorri a sinistra",
+    "scroll_right": "Scorri a destra"
+  },
+  "wos": {
+    "date_badge": "Ottobre 2025",
+    "lead": "La nuova espansione Sabbat segna un momento speciale: <strong>l'Italia intera si unisce</strong> per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città. Non è solo una competizione, ma una settimana di <strong>incontro, scoperta e divertimento condiviso</strong>, in puro spirito cainita.",
+    "quote": "Per una settimana, tutta l'Italia gioca come un'unica coterie",
+    "what_title": "Cos'è",
+    "what_text": "Evento nazionale per il lancio dei mazzi Sabbat. Dal <strong>18 al 26 ottobre</strong>, i giocatori si sfidano in formato <strong>Sealed</strong>, aprendo e giocando i mazzi prerelease contemporaneamente. Un'opportunità per provare le nuove carte, incontrare altri Cainiti e partecipare a una classifica nazionale condivisa in un'atmosfera di divertimento.",
+    "how_title": "Come funziona",
+    "how_items": [
+      "Ogni partecipante riceve un mazzo Sabbat sigillato (senza bustine)",
+      "Si gioca così com'è, senza modifiche",
+      "Tavoli da quattro giocatori con un mazzo diverso per Sentiero: <strong>Caine</strong>, <strong>Cathari</strong>, <strong>Death and the Soul</strong>, <strong>Power and the Inner Voice</strong>",
+      "Assegnazione randomica del mazzo e del posto al tavolo"
+    ],
+    "scores_title": "Punteggi e classifiche",
+    "scores_items": [
+      "I giocatori guadagnano Victory Points (VP) e Game Wins (GW)",
+      "Due livelli: classifica cittadina + classifica nazionale per Sentiero",
+      "Dopo 3 turni, il punteggio totale determina il vincitore locale (niente finale: conta l'esperienza e il divertimento)"
+    ],
+    "deck_title": "Mazzo e ricordo",
+    "deck_text": "I partecipanti portano a casa il proprio mazzo Sabbat prerelease come ricordo dell'evento. Tratta le carte con cura: fanno parte del kit ufficiale dell'evento e meritano rispetto... in puro stile Sabbat.",
+    "standings_title": "Classifica dei mazzi",
+    "standings_text": "La classifica nazionale dei mazzi viene aggiornata man mano che arrivano i risultati dagli eventi locali. Solo i tornei ufficiali Week of Sabbat sono validi per la classifica.",
+    "download": "Download",
+    "infokit": "Infokit evento",
+    "report_template": "Event report template"
+  },
+  "twins": {
+    "lead": "Il mondo di Vampire: The Eternal Struggle è popolato da volti oscuri, enigmatici e affascinanti. Ma guardando bene le illustrazioni delle carte, a volte si scorgono somiglianze sorprendenti con personaggi noti: attori, musicisti, politici o icone della cultura pop. Questa sezione raccoglie le coincidenze in modo leggero e ironico.",
+    "tagline": "Un modo divertente per scoprire che, forse, alcuni vampiri camminano davvero tra noi..."
+  },
+  "domains_index": {
+    "subtitle": "Da nord a sud, la rete dei Methuselah italiani è viva e pulsante!",
+    "intro_1": "Questa pagina mostra i Principati attivi: le città dove la community VTES si riunisce, gioca, organizza tornei e fa crescere la passione per il gioco.",
+    "intro_2": "Che tu sia un antico risvegliato o un neonato curioso, qui puoi trovare il tuo dominio... o invaderne uno!",
+    "coordinator": "Coordinatore Nazionale"
   }
 }

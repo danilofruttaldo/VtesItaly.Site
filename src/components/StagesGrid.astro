@@ -1,5 +1,7 @@
 ---
 import { cities } from '../data/cities';
+import type { Locale } from '../utils/i18n';
+import { useTranslations, localePrefix, formatLocalDate } from '../utils/i18n';
 
 interface Stage {
   name: string;
@@ -13,33 +15,34 @@ interface Stage {
 
 interface Props {
   stages: Stage[];
-  locale: 'it' | 'en';
+  locale: Locale;
 }
 
 const { stages, locale } = Astro.props;
+const t = useTranslations(locale);
+const prefix = localePrefix(locale);
 
-const cityMap = new Map(cities.map(c => [c.slug, {
-  nameIt: c.name,
-  nameEn: c.nameEn,
-  urlIt: `/principati/${c.slug}/`,
-  urlEn: `/en/domains/${c.slugEn}/`,
+const domainsBase = t.routes.principati;
+const cityMap = new Map(cities.map(c => [c.slug.it, {
+  name: c.name[locale],
+  url: `${domainsBase}${c.slug[locale]}/`,
 }]));
 
-const statusLabels: Record<string, { it: string; en: string }> = {
-  completed: { it: 'Completata', en: 'Completed' },
-  upcoming: { it: 'Prossima', en: 'Next' },
-  future: { it: 'In programma', en: 'Scheduled' },
-  cancelled: { it: 'Annullata', en: 'Cancelled' },
+const statusLabels: Record<string, string> = {
+  completed: t.tour.status_completed,
+  upcoming: t.tour.status_upcoming,
+  future: t.tour.status_future,
+  cancelled: t.tour.status_cancelled,
 };
 
-const ctaLabels: Record<string, { it: string; en: string }> = {
-  completed: { it: 'Risultati', en: 'Results' },
-  upcoming: { it: 'Iscriviti', en: 'Register' },
-  future: { it: 'Iscriviti', en: 'Register' },
+const ctaLabels: Record<string, string> = {
+  completed: t.tour.cta_results,
+  upcoming: t.tour.cta_register,
+  future: t.tour.cta_register,
 };
 
 function formatMonth(date: Date): string {
-  return date.toLocaleDateString(locale === 'it' ? 'it-IT' : 'en-GB', { month: 'short' }).toUpperCase();
+  return formatLocalDate(date, locale, { month: 'short' }).toUpperCase();
 }
 
 function formatDay(date: Date): string {
@@ -66,7 +69,7 @@ const featured = stages.find(s => s.status === 'upcoming') || stages.find(s => s
       )}
       <div class="sg-featured-content">
         <span class:list={['sg-badge', `sg-badge--${featured.status}`]}>
-          {statusLabels[featured.status]?.[locale]}
+          {statusLabels[featured.status]}
         </span>
         <div class="sg-featured-title">
           <span class="sg-featured-number">#{featured.number}</span>
@@ -79,14 +82,12 @@ const featured = stages.find(s => s.status === 'upcoming') || stages.find(s => s
           {featured.cities.map(slug => {
             const city = cityMap.get(slug);
             if (!city) return <span class="sg-city">{slug}</span>;
-            const name = locale === 'it' ? city.nameIt : city.nameEn;
-            const url = locale === 'it' ? city.urlIt : city.urlEn;
-            return <a href={url} class="sg-city sg-city--featured">{name}</a>;
+            return <a href={city.url} class="sg-city sg-city--featured">{city.name}</a>;
           })}
         </div>
         {featured.archonUrl && (
           <a href={featured.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['sg-cta', `sg-cta--${featured.status}`]}>
-            {ctaLabels[featured.status]?.[locale] || 'Archon'} &rarr;
+            {ctaLabels[featured.status] || 'Archon'} &rarr;
           </a>
         )}
       </div>
@@ -114,7 +115,7 @@ const featured = stages.find(s => s.status === 'upcoming') || stages.find(s => s
           )}
           <div class="sg-card-content">
             <span class:list={['sg-badge sg-badge--sm', `sg-badge--${stage.status}`]}>
-              {statusLabels[stage.status]?.[locale]}
+              {statusLabels[stage.status]}
             </span>
             <div class="sg-card-title">
               <span class="sg-card-number">#{stage.number}</span>
@@ -127,14 +128,12 @@ const featured = stages.find(s => s.status === 'upcoming') || stages.find(s => s
               {stage.cities.map(slug => {
                 const city = cityMap.get(slug);
                 if (!city) return <span class="sg-city">{slug}</span>;
-                const name = locale === 'it' ? city.nameIt : city.nameEn;
-                const url = locale === 'it' ? city.urlIt : city.urlEn;
-                return <a href={url} class="sg-city">{name}</a>;
+                return <a href={city.url} class="sg-city">{city.name}</a>;
               })}
             </div>
             {stage.archonUrl && (
               <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['sg-cta sg-cta--sm', `sg-cta--${stage.status}`]}>
-                {ctaLabels[stage.status]?.[locale] || 'Archon'} &rarr;
+                {ctaLabels[stage.status] || 'Archon'} &rarr;
               </a>
             )}
           </div>

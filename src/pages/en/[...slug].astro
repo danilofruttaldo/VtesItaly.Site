@@ -6,9 +6,12 @@ import TourEdition from '../../components/TourEdition.astro';
 import { getCollection } from 'astro:content';
 import { categoryLabels, categoryUrls } from '../../data/categories';
 import { cities } from '../../data/cities';
+import { filterByLocale, useTranslations, formatLocalDate } from '../../utils/i18n';
+
+const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('blog')).filter(p => (p.data.locale || 'it') === 'en');
+  const posts = filterByLocale(await getCollection('blog'), 'en');
   return posts.map(post => {
     const cleanSlug = post.slug.replace(/-en$/, '');
     return {
@@ -32,16 +35,13 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
     .sort();
 }
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-}
 
 const label = categoryLabels[post.data.category]?.en || post.data.category;
-const backUrl = categoryUrls[post.data.category]?.en || '/en/community/';
-const backLabel = categoryLabels[post.data.category]?.en || 'Community';
+const backUrl = categoryUrls[post.data.category]?.en || t.routes.comunita;
+const backLabel = categoryLabels[post.data.category]?.en || t.not_found.community;
 
 // Map city slugs to their domain page
-const cityMap = new Map(cities.map(c => [c.slug, { name: c.nameEn, url: `/en/domains/${c.slugEn}/` }]));
+const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.en, url: `/en/domains/${c.slug.en}/` }]));
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status === 'completed');
@@ -77,7 +77,7 @@ const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status =
           <h1 class="post__title">{post.data.title}</h1>
           {isTourWithStages && (
             <span class:list={['post__status', tourFinished ? 'post__status--finished' : 'post__status--active']}>
-              {tourFinished ? 'Finished' : 'Ongoing'}
+              {tourFinished ? t.post.tour_finished : t.post.tour_ongoing}
             </span>
           )}
         </div>
@@ -90,7 +90,7 @@ const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status =
       <div class="post__meta">
         <span class="post__category">{label}</span>
         <time class="post__date" datetime={post.data.date.toISOString()}>
-          {formatDate(post.data.date)}
+          {formatLocalDate(post.data.date, 'en')}
         </time>
         {post.data.tags && post.data.tags.length > 0 && (
           <div class="post__tags">
@@ -120,11 +120,11 @@ const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status =
       {/* Image gallery */}
       {galleryImages.length > 0 && (
         <section class="post__gallery">
-          <h2 class="post__gallery-title">Gallery</h2>
+          <h2 class="post__gallery-title">{t.post.gallery}</h2>
           <div class="post__gallery-grid">
             {galleryImages.map((img, i) => (
               <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
-                <img src={img} alt={`${post.data.title} — photo ${i + 1}`} loading="lazy" decoding="async" />
+                <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
               </a>
             ))}
           </div>
@@ -133,7 +133,7 @@ const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status =
 
       <hr class="post__divider" />
 
-      <ShareButtons label="Share" />
+      <ShareButtons />
 
       {/* Footer */}
       <div class="post__footer">

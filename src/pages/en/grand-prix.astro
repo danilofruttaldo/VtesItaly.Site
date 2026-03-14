@@ -5,14 +5,15 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import TournamentPage from '../../components/TournamentPage.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
+import { filterByLocale } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'grand-prix')!;
-const posts = (await getCollection('blog'))
+const page = mainPages.find(p => p.slug.it === 'grand-prix')!;
+const posts = filterByLocale(await getCollection('blog'), 'en')
   .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
-<Base title={page.titleEn} description={page.descriptionEn}>
-  <PageHero title={page.titleEn} image={page.headerImage} />
-  <TournamentPage posts={posts} leadHtml={page.leadHtmlEn!} editionsTitle={page.editionsTitleEn!} baseUrl={page.baseUrlEn!} />
-  <section class="page-section"><div class="container container--narrow"><ShareButtons label="Share" /></div></section>
+<Base title={page.title.en} description={page.description.en}>
+  <PageHero title={page.title.en} image={page.headerImage} />
+  <TournamentPage posts={posts} leadHtml={page.leadHtml.en!} editionsTitle={page.editionsTitle.en!} baseUrl={page.baseUrl.en!} />
+  <section class="page-section"><div class="container container--narrow"><ShareButtons /></div></section>
 </Base>

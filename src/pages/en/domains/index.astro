@@ -5,34 +5,36 @@ import ShareButtons from '../../../components/ShareButtons.astro';
 import CityCard from '../../../components/CityCard.astro';
 import { cities } from '../../../data/cities';
 import { mainPages } from '../../../data/pages';
+import { useTranslations } from '../../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'principati')!;
+const page = mainPages.find(p => p.slug.it === 'principati')!;
+const t = useTranslations('en');
 ---
 
-<Base title={page.titleEn} description={page.descriptionEn}>
-  <PageHero title={page.titleEn} image={page.headerImage} />
+<Base title={page.title.en} description={page.description.en}>
+  <PageHero title={page.title.en} image={page.headerImage} />
 
   <section class="section">
     <div class="container">
-      <p class="section-subtitle">From north to south, the Italian Methuselah network is alive and thriving!</p>
-      <p class="section-intro">This page shows the active Domains: the cities where the VTES community gathers, plays, organizes tournaments and nurtures the passion for the game.</p>
-      <p class="section-intro">Whether you are an awakened ancient or a curious neonate, here you can find your domain... or invade one!</p>
+      <p class="section-subtitle">{t.domains_index.subtitle}</p>
+      <p class="section-intro">{t.domains_index.intro_1}</p>
+      <p class="section-intro">{t.domains_index.intro_2}</p>
       <div class="coordinator">
         <img src="/images/principi/principi-miro-albertazzi.webp" alt="Miro Albertazzi" class="coordinator-avatar" loading="lazy" decoding="async" />
-        <p>National Coordinator<br /><strong>Miro Albertazzi</strong></p>
+        <p>{t.domains_index.coordinator}<br /><strong>Miro Albertazzi</strong></p>
       </div>
       <div class="principati-grid">
         {cities.map(city => (
           <CityCard
-            name={city.nameEn}
-            href={`/en/domains/${city.slugEn}/`}
+            name={city.name.en}
+            href={`/en/domains/${city.slug.en}/`}
             princeName={city.prince.name}
             princeAlias={city.prince.alias}
             princeImage={city.prince.image}
           />
         ))}
       </div>
-      <ShareButtons label="Share" />
+      <ShareButtons />
     </div>
   </section>
 </Base>

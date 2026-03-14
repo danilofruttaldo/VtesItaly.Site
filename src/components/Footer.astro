@@ -9,13 +9,7 @@ const t = useTranslations(locale);
   <div class="container footer-inner">
     <div class="footer-about">
       <h4>VTES Italy</h4>
-      <p>{locale === 'it'
-        ? 'La community italiana di Vampire: The Eternal Struggle.'
-        : 'The Italian Vampire: The Eternal Struggle community.'
-      }<br />{locale === 'it'
-        ? 'Creato e gestito con passione dalla community italiana.'
-        : 'Created and maintained with passion by the Italian community.'
-      }</p>
+      <p>{t.footer.about}<br />{t.footer.tagline}</p>
     </div>
 
     <div class="social-icons">
@@ -39,10 +33,7 @@ const t = useTranslations(locale);
 
   <div class="container footer-bottom">
     <p>&copy; 2025–{new Date().getFullYear()} VTES Italy</p>
-    <p class="legal">Vampire: The Eternal Struggle&trade; {locale === 'it'
-      ? 'e tutti i relativi marchi sono di proprieta di Paradox Interactive AB. Pubblicato da Black Chantry Productions Ltd.'
-      : 'and all related trademarks are property of Paradox Interactive AB. Published by Black Chantry Productions Ltd.'
-    }</p>
+    <p class="legal">Vampire: The Eternal Struggle&trade; {t.footer.legal}</p>
   </div>
 </footer>
 

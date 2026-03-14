@@ -3,8 +3,10 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { mainPages } from '../../data/pages';
+import { useTranslations } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'gemelli')!;
+const page = mainPages.find(p => p.slug.it === 'gemelli')!;
+const t = useTranslations('en');
 const twins = [
   { card: 'Maila', person: 'Maila Nurmi', image: '/images/gemelli/maila-nurmi.webp', description: 'Camarilla primogen inspired by the horror cinema icon. Same pose, same magnetic gaze.' },
   { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'The Tremere witch irresistibly recalls Willow from Buffy. Same red hair, same mystic power.' },
@@ -18,11 +20,11 @@ const twins = [
   { card: 'Madeleine Giovanni', person: 'Valentina Nappi', image: '/images/gemelli/valentina-nappi.webp', description: 'Dark sunglasses and confident bearing of the independent vampire recall a famous glamour shoot.' },
 ];
 ---
-<Base title={page.titleEn} description={page.descriptionEn}>
-  <PageHero title={page.titleEn} image={page.headerImage} />
+<Base title={page.title.en} description={page.description.en}>
+  <PageHero title={page.title.en} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
-    <p class="lead">The world of Vampire: The Eternal Struggle is populated by dark, enigmatic and fascinating faces. But looking closely at card illustrations, sometimes you spot surprising similarities with well-known figures: actors, musicians, politicians or pop culture icons. This section collects the coincidences in a light-hearted and ironic way.</p>
-    <p class="tagline">A fun way to discover that, perhaps, some vampires really do walk among us...</p>
+    <p class="lead">{t.twins.lead}</p>
+    <p class="tagline">{t.twins.tagline}</p>
 
     <hr class="divider" />
 
@@ -39,7 +41,7 @@ const twins = [
         </div>
       </div>
     ))}
-    <ShareButtons label="Share" />
+    <ShareButtons />
   </div></section>
 </Base>
 

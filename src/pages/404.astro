@@ -1,20 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getLocaleFromUrl } from '../utils/i18n';
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
 
 const locale = getLocaleFromUrl(Astro.url);
-const isEn = locale === 'en';
+const t = useTranslations(locale);
 ---
 <Base title="404">
   <section class="not-found">
     <div class="container">
       <h1>404</h1>
-      <p class="subtitle">{isEn ? 'Page not found.' : 'Pagina non trovata.'}</p>
-      <p class="hint">{isEn ? 'The vampire you were looking for has hidden in the shadows...' : 'Il vampiro che cercavi si è nascosto nell\'ombra...'}</p>
+      <p class="subtitle">{t.not_found.subtitle}</p>
+      <p class="hint">{t.not_found.hint}</p>
       <nav class="not-found__links">
-        <a href={isEn ? '/en/' : '/'} class="btn">Home</a>
-        <a href={isEn ? '/en/community/' : '/comunita/'} class="btn btn--outline">{isEn ? 'Community' : 'Comunità'}</a>
-        <a href={isEn ? '/en/domains/' : '/principati/'} class="btn btn--outline">{isEn ? 'Domains' : 'Principati'}</a>
+        <a href={t.routes.home} class="btn">Home</a>
+        <a href={t.routes.comunita} class="btn btn--outline">{t.not_found.community}</a>
+        <a href={t.routes.principati} class="btn btn--outline">{t.not_found.domains}</a>
       </nav>
     </div>
   </section>

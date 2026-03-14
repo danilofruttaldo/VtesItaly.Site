@@ -6,6 +6,17 @@
     "twins": "gemelli",
     "community": "comunita"
   },
+  "routes": {
+    "home": "/en/",
+    "comunita": "/en/community/",
+    "principati": "/en/domains/",
+    "tour": "/en/tour/",
+    "nazionale": "/en/national-championship/",
+    "grand-prix": "/en/grand-prix/",
+    "cartoline": "/en/postcards/",
+    "gemelli": "/en/twins/",
+    "week-of-sabbat": "/en/week-of-sabbat/"
+  },
   "page_titles": {
     "Home": "Home",
     "Principati": "The Domains",
@@ -22,11 +33,16 @@
     "5": "May", "6": "June", "7": "July", "8": "August",
     "9": "September", "10": "October", "11": "November", "12": "December"
   },
+  "months_array": ["January","February","March","April","May","June","July","August","September","October","November","December"],
   "days_short": {
     "Mon": "MON", "Tue": "TUE", "Wed": "WED", "Thu": "THU",
     "Fri": "FRI", "Sat": "SAT", "Sun": "SUN"
   },
+  "days_short_array": ["SUN","MON","TUE","WED","THU","FRI","SAT"],
+  "date_locale": "en-GB",
   "calendar": {
+    "loading": "Loading events...",
+    "embed_title": "VTES Italy events calendar",
     "all_day": "All day",
     "no_events": "No events scheduled in the next %d months.",
     "full_calendar": "See the full calendar on Google",
@@ -37,7 +53,8 @@
     "aria_label": "Search",
     "close_label": "Close search",
     "placeholder": "Search articles, events, domains...",
-    "submit": "Search"
+    "submit": "Search",
+    "no_results": "No results found."
   },
   "nav": {
     "main_label": "Main navigation",
@@ -57,5 +74,123 @@
     "Cartoline": "Postcards",
     "Gemelli": "Twins",
     "Week of Sabbat": "Week of Sabbat"
+  },
+  "footer": {
+    "about": "The Italian Vampire: The Eternal Struggle community.",
+    "tagline": "Created and maintained with passion by the Italian community.",
+    "legal": "and all related trademarks are property of Paradox Interactive AB. Published by Black Chantry Productions Ltd."
+  },
+  "skip_to_content": "Skip to content",
+  "og_locale": "en_US",
+  "default_description": "VTES Italy, the Italian Vampire: The Eternal Struggle community",
+  "not_found": {
+    "subtitle": "Page not found.",
+    "hint": "The vampire you were looking for has hidden in the shadows...",
+    "community": "Community",
+    "domains": "Domains"
+  },
+  "share": {
+    "label": "Share",
+    "copy_link": "Copy link",
+    "on": "on"
+  },
+  "home": {
+    "hero_title": "The Italian Methuselah community never stops!",
+    "hero_subtitle": "Tournaments, gatherings and championships across Italy. Find your domain, check the calendar and join the community.",
+    "events_title": "Upcoming events",
+    "events_subtitle": "Check the calendar and don't miss any event.",
+    "latest_title": "Latest from the community",
+    "latest_subtitle": "Reports, articles and news from the Italian VTES world.",
+    "all_articles": "All articles",
+    "all_domains": "All Domains",
+    "domains_title": "Find your Domain",
+    "domains_subtitle": "15 cities across Italy where VTES is played. Find the one closest to you."
+  },
+  "community": {
+    "subtitle": "Articles, reports and news from the community.",
+    "pagination": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page_info": "Page %current% of %last%"
+  },
+  "post": {
+    "tour_finished": "Finished",
+    "tour_ongoing": "Ongoing",
+    "gallery": "Gallery",
+    "photo": "photo"
+  },
+  "domain": {
+    "breadcrumb": "All Domains",
+    "prince_role": "Prince of",
+    "meetups_title": "Weekly Meetups",
+    "meetups_when": "When",
+    "meetups_where": "Where",
+    "meetups_tbd": "Flexible schedule. Contact the Prince for times and venues.",
+    "highlight_cta": "Learn more",
+    "news_title": "News from the Domain",
+    "no_news": "No news at the moment."
+  },
+  "tour": {
+    "stages_label": "The stages",
+    "stage_item": "Stage",
+    "status_completed": "Completed",
+    "status_upcoming": "Next",
+    "status_future": "Scheduled",
+    "status_cancelled": "Cancelled",
+    "cta_results": "Results",
+    "cta_register": "Register",
+    "coming_soon": "Coming soon",
+    "rules": "Rules",
+    "standings": "Standings",
+    "past_editions": "Past editions",
+    "ongoing_label": "Ongoing",
+    "archive": "Archive",
+    "stages_unit": "stages",
+    "cities_unit": "cities"
+  },
+  "postcards": {
+    "tagline": "A deck of memories, not a game deck",
+    "intro": "Welcome to the <strong>Postcards</strong> section, the ironic gallery of VTES Italy. Cards become photographic souvenirs: shots from events, tournaments and gatherings instead of original illustrations. These are community snapshots: serious, funny or epic moments, transformed into frames familiar to game players.",
+    "why_title": "Why Postcards?",
+    "why_text": "Like postcards sent from a trip, meant to be shared memories: an alternative album of what makes the VTES community in Italy come alive. Browsing rediscovers friends, games, gags and small legends born around the tables.",
+    "scroll_left": "Scroll left",
+    "scroll_right": "Scroll right"
+  },
+  "wos": {
+    "date_badge": "October 2025",
+    "lead": "The new Sabbat expansion marks a special moment: <strong>all of Italy unites</strong> to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city. Not just competition, but a week of <strong>gathering, discovery and shared fun</strong>, in true Cainite spirit.",
+    "quote": "For one week, all of Italy plays as a single coterie",
+    "what_title": "What is it",
+    "what_text": "A national event for the Sabbat deck launch. From <strong>October 18 to 26</strong>, players compete in <strong>Sealed format</strong>, opening and playing prerelease decks simultaneously. An opportunity to try new cards, meet other Cainites, and participate in a shared national ranking in a fun atmosphere.",
+    "how_title": "How it works",
+    "how_items": [
+      "Each participant receives a sealed Sabbat deck (no sleeves)",
+      "Played as-is, no modifications",
+      "Four-player tables with a different deck per Path: <strong>Caine</strong>, <strong>Cathari</strong>, <strong>Death and the Soul</strong>, <strong>Power and the Inner Voice</strong>",
+      "Randomized deck and seating assignments"
+    ],
+    "scores_title": "Scores and standings",
+    "scores_items": [
+      "Players earn Victory Points (VP) and Game Wins (GW)",
+      "Two levels: City standings + National standings by Path",
+      "After 3 rounds, total points determine the local winner (no final: experience and fun is what counts)"
+    ],
+    "deck_title": "Deck and keepsake",
+    "deck_text": "Participants take home their Sabbat prerelease deck as a memento of the event. Treat the cards with care: they are part of the official event kit and deserve respect... in true Sabbat style.",
+    "standings_title": "Deck standings",
+    "standings_text": "National deck standings are updated as results come in from local events. Only official Week of Sabbat tournaments count toward the standings.",
+    "download": "Download",
+    "infokit": "Event infokit",
+    "report_template": "Event report template"
+  },
+  "twins": {
+    "lead": "The world of Vampire: The Eternal Struggle is populated by dark, enigmatic and fascinating faces. But looking closely at card illustrations, sometimes you spot surprising similarities with well-known figures: actors, musicians, politicians or pop culture icons. This section collects the coincidences in a light-hearted and ironic way.",
+    "tagline": "A fun way to discover that, perhaps, some vampires really do walk among us..."
+  },
+  "domains_index": {
+    "subtitle": "From north to south, the Italian Methuselah network is alive and thriving!",
+    "intro_1": "This page shows the active Domains: the cities where the VTES community gathers, plays, organizes tournaments and nurtures the passion for the game.",
+    "intro_2": "Whether you are an awakened ancient or a curious neonate, here you can find your domain... or invade one!",
+    "coordinator": "National Coordinator"
   }
 }

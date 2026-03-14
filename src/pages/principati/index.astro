@@ -5,27 +5,29 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import CityCard from '../../components/CityCard.astro';
 import { cities } from '../../data/cities';
 import { mainPages } from '../../data/pages';
+import { useTranslations } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'principati')!;
+const page = mainPages.find(p => p.slug.it === 'principati')!;
+const t = useTranslations('it');
 ---
 
-<Base title={page.titleIt} description={page.descriptionIt}>
-  <PageHero title={page.titleIt} image={page.headerImage} />
+<Base title={page.title.it} description={page.description.it}>
+  <PageHero title={page.title.it} image={page.headerImage} />
 
   <section class="section">
     <div class="container">
-      <p class="section-subtitle">Da nord a sud, la rete dei Methuselah italiani è viva e pulsante!</p>
-      <p class="section-intro">Questa pagina mostra i Principati attivi: le città dove la community VTES si riunisce, gioca, organizza tornei e fa crescere la passione per il gioco.</p>
-      <p class="section-intro">Che tu sia un antico risvegliato o un neonato curioso, qui puoi trovare il tuo dominio... o invaderne uno!</p>
+      <p class="section-subtitle">{t.domains_index.subtitle}</p>
+      <p class="section-intro">{t.domains_index.intro_1}</p>
+      <p class="section-intro">{t.domains_index.intro_2}</p>
       <div class="coordinator">
         <img src="/images/principi/principi-miro-albertazzi.webp" alt="Miro Albertazzi" class="coordinator-avatar" loading="lazy" decoding="async" />
-        <p>Coordinatore Nazionale<br /><strong>Miro Albertazzi</strong></p>
+        <p>{t.domains_index.coordinator}<br /><strong>Miro Albertazzi</strong></p>
       </div>
       <div class="principati-grid">
         {cities.map(city => (
           <CityCard
-            name={city.name}
-            href={`/principati/${city.slug}/`}
+            name={city.name.it}
+            href={`/principati/${city.slug.it}/`}
             princeName={city.prince.name}
             princeAlias={city.prince.alias}
             princeImage={city.prince.image}

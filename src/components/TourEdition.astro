@@ -1,15 +1,19 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { cities } from '../data/cities';
+import type { Locale } from '../utils/i18n';
+import { useTranslations, localePrefix, formatLocalDate } from '../utils/i18n';
 
 interface Props {
   post: CollectionEntry<'blog'>;
-  locale?: 'it' | 'en';
+  locale?: Locale;
 }
 
 const { post, locale = 'it' } = Astro.props;
-const stagesLabel = post.data.stagesLabel || (locale === 'it' ? 'Le tappe' : 'The stages');
-const stageItemLabel = post.data.stageItemLabel || (locale === 'it' ? 'Tappa' : 'Stage');
+const t = useTranslations(locale);
+const prefix = localePrefix(locale);
+const stagesLabel = post.data.stagesLabel || t.tour.stages_label;
+const stageItemLabel = post.data.stageItemLabel || t.tour.stage_item;
 const { Content } = await post.render();
 const stages = post.data.stages || [];
 
@@ -25,32 +29,30 @@ const computedStages = stages.map(s => {
 const firstFuture = computedStages.findIndex(s => s.status === 'future');
 if (firstFuture !== -1) computedStages[firstFuture].status = 'upcoming';
 
-const cityMap = new Map(cities.map(c => [c.slug, {
-  name: locale === 'it' ? c.name : (c.nameEn || c.name),
-  url: locale === 'it' ? `/principati/${c.slug}/` : `/en/domains/${c.slugEn || c.slug}/`,
+const domainsBase = t.routes.principati;
+const cityMap = new Map(cities.map(c => [c.slug.it, {
+  name: c.name[locale],
+  url: `${domainsBase}${c.slug[locale]}/`,
 }]));
 
-const statusLabels: Record<string, Record<string, string>> = {
-  completed: { it: 'Completata', en: 'Completed' },
-  upcoming: { it: 'Prossima', en: 'Next' },
-  future: { it: 'In programma', en: 'Scheduled' },
-  cancelled: { it: 'Annullata', en: 'Cancelled' },
+const statusLabels: Record<string, string> = {
+  completed: t.tour.status_completed,
+  upcoming: t.tour.status_upcoming,
+  future: t.tour.status_future,
+  cancelled: t.tour.status_cancelled,
 };
 
-const ctaLabels: Record<string, Record<string, string>> = {
-  completed: { it: 'Risultati', en: 'Results' },
-  upcoming: { it: 'Iscriviti', en: 'Register' },
-  future: { it: 'Iscriviti', en: 'Register' },
+const ctaLabels: Record<string, string> = {
+  completed: t.tour.cta_results,
+  upcoming: t.tour.cta_register,
+  future: t.tour.cta_register,
 };
-
-const soonLabel = locale === 'it' ? 'In arrivo' : 'Coming soon';
 
 function formatDate(date: Date): string {
-  const loc = locale === 'it' ? 'it-IT' : 'en-GB';
   if (date.getDate() === 1) {
-    return date.toLocaleDateString(loc, { month: 'long', year: 'numeric' });
+    return formatLocalDate(date, locale, { month: 'long', year: 'numeric' });
   }
-  return date.toLocaleDateString(loc, { day: 'numeric', month: 'long', year: 'numeric' });
+  return formatLocalDate(date, locale);
 }
 ---
 
@@ -63,7 +65,7 @@ function formatDate(date: Date): string {
     <div class="te-rules">
       <a href={post.data.rulesUrl} target="_blank" rel="noopener noreferrer" class="te-rules-link">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        {locale === 'it' ? 'Regolamento' : 'Rules'} (PDF)
+        {t.tour.rules} (PDF)
       </a>
     </div>
   )}
@@ -91,7 +93,7 @@ function formatDate(date: Date): string {
                   <h3 class="te-name">{stage.name}</h3>
                 </div>
                 <span class:list={['te-badge', `te-badge--${stage.status}`]}>
-                  {statusLabels[stage.status]?.[locale]}
+                  {statusLabels[stage.status]}
                 </span>
               </div>
               {stage.description && (
@@ -114,10 +116,10 @@ function formatDate(date: Date): string {
                 </div>
                 {stage.archonUrl ? (
                   <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['te-cta', `te-cta--${stage.status}`]}>
-                    {ctaLabels[stage.status]?.[locale] || 'Archon'} &rarr;
+                    {ctaLabels[stage.status] || 'Archon'} &rarr;
                   </a>
                 ) : (
-                  <span class="te-cta te-cta--soon">{soonLabel}</span>
+                  <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>
                 )}
               </div>
             </div>
@@ -129,9 +131,9 @@ function formatDate(date: Date): string {
 
   {post.data.standingsUrl && (
     <div class="te-standings">
-      <h3 class="te-standings-title">{locale === 'it' ? 'Classifica' : 'Standings'}</h3>
+      <h3 class="te-standings-title">{t.tour.standings}</h3>
       <div class="te-standings-frame">
-        <iframe src={post.data.standingsUrl} title="Classifica Tour" loading="lazy"></iframe>
+        <iframe src={post.data.standingsUrl} title={t.tour.standings} loading="lazy"></iframe>
       </div>
     </div>
   )}

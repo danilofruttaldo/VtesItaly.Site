@@ -6,9 +6,12 @@ import TourEdition from '../components/TourEdition.astro';
 import { getCollection } from 'astro:content';
 import { categoryLabels, categoryUrls } from '../data/categories';
 import { cities } from '../data/cities';
+import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
+
+const t = useTranslations('it');
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('blog')).filter(p => (p.data.locale || 'it') === 'it');
+  const posts = filterByLocale(await getCollection('blog'), 'it');
   return posts.map(post => ({
     params: { slug: `${post.data.category}/${post.slug}` },
     props: { post },
@@ -29,19 +32,16 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
     .sort();
 }
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-}
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status === 'completed');
 
 const label = categoryLabels[post.data.category]?.it || post.data.category;
-const backUrl = categoryUrls[post.data.category]?.it || '/comunita/';
-const backLabel = categoryLabels[post.data.category]?.it || 'Comunità';
+const backUrl = categoryUrls[post.data.category]?.it || t.routes.comunita;
+const backLabel = categoryLabels[post.data.category]?.it || t.not_found.community;
 
 // Map city slugs to their principato page
-const cityMap = new Map(cities.map(c => [c.slug, { name: c.name, url: `/principati/${c.slug}/` }]));
+const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/principati/${c.slug.it}/` }]));
 
 ---
 <Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.featuredImage}>
@@ -74,7 +74,7 @@ const cityMap = new Map(cities.map(c => [c.slug, { name: c.name, url: `/principa
           <h1 class="post__title">{post.data.title}</h1>
           {isTourWithStages && (
             <span class:list={['post__status', tourFinished ? 'post__status--finished' : 'post__status--active']}>
-              {tourFinished ? 'Concluso' : 'In corso'}
+              {tourFinished ? t.post.tour_finished : t.post.tour_ongoing}
             </span>
           )}
         </div>
@@ -87,7 +87,7 @@ const cityMap = new Map(cities.map(c => [c.slug, { name: c.name, url: `/principa
       <div class="post__meta">
         <span class="post__category">{label}</span>
         <time class="post__date" datetime={post.data.date.toISOString()}>
-          {formatDate(post.data.date)}
+          {formatLocalDate(post.data.date, 'it')}
         </time>
         {post.data.tags && post.data.tags.length > 0 && (
           <div class="post__tags">
@@ -117,11 +117,11 @@ const cityMap = new Map(cities.map(c => [c.slug, { name: c.name, url: `/principa
       {/* Image gallery (not for tour) */}
       {galleryImages.length > 0 && (
         <section class="post__gallery">
-          <h2 class="post__gallery-title">Galleria</h2>
+          <h2 class="post__gallery-title">{t.post.gallery}</h2>
           <div class="post__gallery-grid">
             {galleryImages.map((img, i) => (
               <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
-                <img src={img} alt={`${post.data.title} — foto ${i + 1}`} loading="lazy" decoding="async" />
+                <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
               </a>
             ))}
           </div>

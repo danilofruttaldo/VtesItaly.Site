@@ -16,7 +16,7 @@ const t = useTranslations(locale);
       aria-label={t.search.aria_label}
       autocomplete="off"
     />
-    <div id="pagefind-results" class="vtesitaly-search-results"></div>
+    <div id="pagefind-results" class="vtesitaly-search-results" data-no-results={t.search.no_results}></div>
   </div>
 </div>
 
@@ -57,7 +57,7 @@ const t = useTranslations(locale);
 
       if (results.length === 0) {
         resultsContainer.innerHTML = '<p class="search-no-results">' +
-          (locale === 'it' ? 'Nessun risultato trovato.' : 'No results found.') +
+          (resultsContainer.getAttribute('data-no-results') || '') +
           '</p>';
         return;
       }

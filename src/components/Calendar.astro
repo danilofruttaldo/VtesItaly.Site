@@ -9,9 +9,19 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
 ---
 
 {hasApiKey ? (
-  <div class="vtesitaly-calendar" data-locale={locale} data-months="3" data-api-key={import.meta.env.PUBLIC_GOOGLE_CALENDAR_API_KEY}>
+  <div class="vtesitaly-calendar"
+    data-locale={locale}
+    data-months="3"
+    data-api-key={import.meta.env.PUBLIC_GOOGLE_CALENDAR_API_KEY}
+    data-no-events={t.calendar.no_events}
+    data-all-day={t.calendar.all_day}
+    data-open-google={t.calendar.open_google}
+    data-months-json={JSON.stringify(t.months_array)}
+    data-days-json={JSON.stringify(t.days_short_array)}
+    data-date-locale={t.date_locale}
+  >
     <div class="vtesitaly-calendar__loading">
-      <p>{locale === 'it' ? 'Caricamento eventi...' : 'Loading events...'}</p>
+      <p>{t.calendar.loading}</p>
     </div>
   </div>
 ) : (
@@ -22,7 +32,7 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
       height="500"
       frameborder="0"
       scrolling="no"
-      title={locale === 'it' ? 'Calendario eventi VTES Italy' : 'VTES Italy events calendar'}
+      title={t.calendar.embed_title}
     ></iframe>
   </div>
 )}
@@ -31,7 +41,7 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
 
 <div class="vtesitaly-cal-footer">
   <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=Europe/Rome`} target="_blank" rel="noopener" class="btn">
-    {locale === 'it' ? 'Vedi il calendario completo su Google' : 'See the full calendar on Google'}
+    {t.calendar.full_calendar}
   </a>
 </div>
 
@@ -40,11 +50,15 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
     var container = document.querySelector('.vtesitaly-calendar');
     if (!container) return;
 
-    var locale = container.getAttribute('data-locale') || 'it';
+    var dateLocale = container.getAttribute('data-date-locale') || 'it-IT';
     var months = parseInt(container.getAttribute('data-months') || '3');
+    var noEventsTemplate = container.getAttribute('data-no-events') || '';
+    var allDayLabel = container.getAttribute('data-all-day') || '';
+    var openGoogleLabel = container.getAttribute('data-open-google') || '';
+    var monthNames = JSON.parse(container.getAttribute('data-months-json') || '[]');
+    var dayNames = JSON.parse(container.getAttribute('data-days-json') || '[]');
 
     var CALENDAR_ID = 'vtesitaly@gmail.com';
-    // API_KEY must be injected as a data attribute or global variable
     var API_KEY = container.getAttribute('data-api-key');
 
     function esc(str) {
@@ -81,20 +95,10 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
 
         if (events.length === 0) {
           container.innerHTML = '<p class="vtesitaly-calendar__empty">' +
-            (locale === 'it'
-              ? 'Nessun evento in programma nei prossimi ' + months + ' mesi.'
-              : 'No events scheduled in the next ' + months + ' months.') +
+            noEventsTemplate.replace('%d', months) +
             '</p>';
           return;
         }
-
-        var monthNames = locale === 'it'
-          ? ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre']
-          : ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-        var dayNames = locale === 'it'
-          ? ['DOM','LUN','MAR','MER','GIO','VEN','SAB']
-          : ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 
         var grouped = {};
         for (var i = 0; i < events.length; i++) {
@@ -119,8 +123,8 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
             var dayName = dayNames[d.getDay()];
             var dayNum = d.getDate();
             var time = e.allDay
-              ? (locale === 'it' ? 'Tutto il giorno' : 'All day')
-              : d.toLocaleTimeString(locale === 'it' ? 'it-IT' : 'en-US', { hour: '2-digit', minute: '2-digit' });
+              ? allDayLabel
+              : d.toLocaleTimeString(dateLocale, { hour: '2-digit', minute: '2-digit' });
 
             var safeLink = e.link.indexOf('https://') === 0 ? esc(e.link) : '#';
             html += '<a href="' + safeLink + '" target="_blank" rel="noopener" class="vtesitaly-cal-event">' +
@@ -145,7 +149,7 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
       .catch(function() {
         container.innerHTML = '<p class="vtesitaly-calendar__empty">' +
           '<a href="https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(CALENDAR_ID) + '" target="_blank" rel="noopener">' +
-            (locale === 'it' ? 'Apri in Google Calendar' : 'Open in Google Calendar') +
+            openGoogleLabel +
           '</a></p>';
       });
   });

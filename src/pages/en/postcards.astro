@@ -3,8 +3,10 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { mainPages } from '../../data/pages';
+import { useTranslations } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug === 'cartoline')!;
+const page = mainPages.find(p => p.slug.it === 'cartoline')!;
+const t = useTranslations('en');
 const galleries = [
   {
     title: 'Nazionale 2026',
@@ -96,14 +98,14 @@ const galleries = [
   },
 ];
 ---
-<Base title={page.titleEn} description={page.descriptionEn}>
-  <PageHero title={page.titleEn} image={page.headerImage} />
+<Base title={page.title.en} description={page.description.en}>
+  <PageHero title={page.title.en} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
-    <p class="tagline">A deck of memories, not a game deck</p>
-    <p>Welcome to the <strong>Postcards</strong> section, the ironic gallery of VTES Italy. Cards become photographic souvenirs: shots from events, tournaments and gatherings instead of original illustrations. These are community snapshots: serious, funny or epic moments, transformed into frames familiar to game players.</p>
+    <p class="tagline">{t.postcards.tagline}</p>
+    <p><Fragment set:html={t.postcards.intro} /></p>
 
-    <h2 class="section-subtitle">Why Postcards?</h2>
-    <p>Like postcards sent from a trip, meant to be shared memories: an alternative album of what makes the VTES community in Italy come alive. Browsing rediscovers friends, games, gags and small legends born around the tables.</p>
+    <h2 class="section-subtitle">{t.postcards.why_title}</h2>
+    <p>{t.postcards.why_text}</p>
 
     <hr class="divider" />
 
@@ -112,7 +114,7 @@ const galleries = [
         <h3 class="gallery-title">{gallery.title}</h3>
         <p class="gallery-subtitle">{gallery.subtitle}</p>
         <div class="gallery-wrap">
-          <button class="gallery-arrow gallery-arrow--left" aria-label="Scroll left">&#8249;</button>
+          <button class="gallery-arrow gallery-arrow--left" aria-label={t.postcards.scroll_left}>&#8249;</button>
           <div class="gallery-scroll">
             <div class="gallery-row">
               {gallery.images.map(img => (
@@ -122,11 +124,11 @@ const galleries = [
               ))}
             </div>
           </div>
-          <button class="gallery-arrow gallery-arrow--right" aria-label="Scroll right">&#8250;</button>
+          <button class="gallery-arrow gallery-arrow--right" aria-label={t.postcards.scroll_right}>&#8250;</button>
         </div>
       </div>
     ))}
-    <ShareButtons label="Share" />
+    <ShareButtons />
   </div></section>
 </Base>
 

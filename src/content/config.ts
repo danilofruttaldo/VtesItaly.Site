@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { LOCALES, DEFAULT_LOCALE } from '../utils/i18n';
 
 const blog = defineCollection({
   type: 'content',
@@ -25,7 +26,7 @@ const blog = defineCollection({
     stagesLabel: z.string().optional(),
     stageItemLabel: z.string().optional(),
     standingsUrl: z.string().optional(),
-    locale: z.enum(['it', 'en']).default('it'),
+    locale: z.enum(LOCALES).default(DEFAULT_LOCALE),
   }),
 });
 

@@ -115,15 +115,6 @@ export const mainPages: PageMeta[] = [
     },
   },
   {
-    slug: { it: 'week-of-sabbat', en: 'week-of-sabbat' },
-    title: { it: 'Week of Sabbat', en: 'Week of Sabbat' },
-    headerImage: '/images/headers/header-week-of-sabbat.webp',
-    description: {
-      it: 'L\'evento speciale Week of Sabbat.',
-      en: 'The Week of Sabbat special event.',
-    },
-  },
-  {
     slug: { it: 'comunita', en: 'community' },
     title: { it: 'Comunità', en: 'Community' },
     headerImage: '/images/headers/header-home.webp',

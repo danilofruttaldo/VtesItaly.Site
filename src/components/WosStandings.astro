@@ -1,0 +1,355 @@
+---
+interface PathStanding {
+  rank: number;
+  name: string;
+  points: number;
+}
+interface CityWinner {
+  city: string;
+  winner: string;
+}
+interface CityPathStanding {
+  rank: number;
+  name: string;
+  players: string;
+  gw: number;
+  vp: number;
+  points: number;
+}
+interface WosData {
+  paths: PathStanding[];
+  cityWinners: CityWinner[];
+  cities: Record<string, CityPathStanding[]>;
+}
+
+interface Props {
+  dataUrl: string;
+  locale?: 'it' | 'en';
+}
+
+const { dataUrl, locale = 'it' } = Astro.props;
+
+const t = {
+  it: {
+    pathsTitle: 'Classifica Sentieri',
+    nationalTitle: 'Classifica Nazionale',
+    localTitle: 'Classifiche Locali',
+    city: 'Principato',
+    winnerPath: 'Sentiero vincitore',
+    path: 'Path',
+    players: 'Giocatori',
+    points: 'Punti',
+    noData: 'Nessun risultato disponibile',
+  },
+  en: {
+    pathsTitle: 'Path Standings',
+    nationalTitle: 'National Standings',
+    localTitle: 'Local Standings',
+    city: 'Domain',
+    winnerPath: 'Winning Path',
+    path: 'Path',
+    players: 'Players',
+    points: 'Points',
+    noData: 'No results available',
+  },
+}[locale];
+
+const allData = import.meta.glob('/public/data/standings-wos-*.json', { eager: true }) as Record<string, { default: WosData }>;
+const key = Object.keys(allData).find(k => k.includes(dataUrl.replace('/data/', '')));
+const data: WosData | null = key ? allData[key].default : null;
+
+const pathShortNames: Record<string, string> = {
+  'Path of Caine': 'Caine',
+  'Path of Cathari': 'Cathari',
+  'Path of Death and the Soul': 'Death & the Soul',
+  'Path of Power and the Inner Voice': 'Power & Inner Voice',
+};
+
+const pathImages: Record<string, string> = {
+  'Path of Caine': '/images/wos/path-caine.webp',
+  'Path of Cathari': '/images/wos/path-cathari.webp',
+  'Path of Death and the Soul': '/images/wos/path-death.webp',
+  'Path of Power and the Inner Voice': '/images/wos/path-power.webp',
+};
+
+const cityTabs = data ? Object.keys(data.cities).map(city => ({
+  id: city.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+  label: city,
+})) : [];
+---
+
+{data && (
+  <section class="wos-standings">
+    {/* Path standings */}
+    <div class="wos-paths">
+      <h3 class="wos-subtitle">{t.pathsTitle}</h3>
+      <div class="wos-paths-grid">
+        {data.paths.map((p, i) => (
+          <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
+            {pathImages[p.name] && (
+              <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
+            )}
+            <div class="wos-path-info">
+              <span class="wos-path-rank">#{p.rank}</span>
+              <span class="wos-path-name">{pathShortNames[p.name] || p.name.replace('Path of ', '')}</span>
+            </div>
+            <span class="wos-path-points">{p.points} pt</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Classifica Nazionale */}
+    <h3 class="wos-subtitle">{t.nationalTitle}</h3>
+    <div class="wos-nazionale">
+      <table class="wos-table">
+        <thead>
+          <tr>
+            <th>{t.city}</th>
+            <th>{t.winnerPath}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.cityWinners.map(cw => (
+            <tr>
+              <td>{cw.city}</td>
+              <td class="wos-winner-path">{cw.winner.replace('Path of ', '')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Classifiche Locali */}
+    <h3 class="wos-subtitle">{t.localTitle}</h3>
+    <div class="wos-tabs" id="wos-tabs">
+      <div class="wos-tab-bar">
+        {cityTabs.map((tab, i) => (
+          <button
+            class:list={['wos-tab-btn', i === 0 && 'is-active']}
+            data-tab={tab.id}
+            type="button"
+          >{tab.label}</button>
+        ))}
+      </div>
+
+      {Object.entries(data.cities).map(([cityName, players], i) => {
+        const tabId = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        return (
+          <div class:list={['wos-tab-panel', i === 0 && 'is-active']} data-panel={tabId}>
+            {players.length > 0 ? (
+              <table class="wos-table">
+                <thead>
+                  <tr>
+                    <th class="tc">#</th>
+                    <th>{t.path}</th>
+                    <th>{t.players}</th>
+                    <th class="tc">GW</th>
+                    <th class="tc">VP</th>
+                    <th class="tc">{t.points}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {players.map(p => (
+                    <tr class:list={[p.rank === 1 && 'wos-row-winner']}>
+                      <td class="tc">{p.rank}</td>
+                      <td class="wos-path-cell-name">{p.name}</td>
+                      <td class="wos-players-cell"><Fragment set:html={p.players.split(', ').join('<br />')} /></td>
+                      <td class="tc">{p.gw}</td>
+                      <td class="tc">{p.vp}</td>
+                      <td class="tc">{p.points}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p class="wos-no-data">{t.noData}</p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </section>
+)}
+
+<style>
+  .wos-standings { margin-top: 32px; }
+
+  /* Path cards */
+  .wos-subtitle {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .wos-paths-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .wos-path-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .wos-path-card--winner {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08);
+  }
+  .wos-path-img {
+    width: 100%;
+    max-width: 160px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .wos-path-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-height: 2.8em;
+    justify-content: center;
+  }
+  .wos-path-rank {
+    font-weight: 800;
+    color: var(--color-gold);
+    font-size: 0.8rem;
+  }
+  .wos-path-name {
+    font-weight: 600;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    min-height: 2.1em;
+    display: flex;
+    align-items: center;
+  }
+  .wos-path-points {
+    font-weight: 700;
+    color: var(--color-gold);
+    font-size: 1rem;
+  }
+
+  /* Nazionale */
+  .wos-nazionale {
+    margin-bottom: 32px;
+  }
+
+  /* Tabs */
+  .wos-tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 8px;
+  }
+  .wos-tab-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius) var(--radius) 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .wos-tab-btn:hover {
+    color: var(--color-contrast);
+    background: rgba(255,255,255,0.04);
+  }
+  .wos-tab-btn.is-active {
+    color: var(--color-gold);
+    border-color: var(--color-border);
+    border-bottom-color: var(--color-base);
+    background: var(--color-surface);
+  }
+  .wos-tab-panel {
+    display: none;
+  }
+  .wos-tab-panel.is-active {
+    display: block;
+  }
+
+  /* Table */
+  .wos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  .wos-table th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-gold);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--color-border);
+    text-align: left;
+  }
+  .wos-table th.tc { text-align: center; }
+  .wos-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .wos-table tr:hover td {
+    background: rgba(201,168,76,0.05);
+  }
+  .wos-row-winner td {
+    color: var(--color-gold);
+    font-weight: 700;
+  }
+  .wos-winner-path {
+    font-weight: 600;
+    color: var(--color-gold);
+  }
+  .wos-path-cell-name {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .wos-players-cell {
+    font-size: 0.72rem;
+    color: var(--color-muted);
+  }
+  .tc { text-align: center; }
+  .wos-no-data {
+    color: var(--color-muted);
+    font-style: italic;
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  @media (max-width: 640px) {
+    .wos-paths-grid { grid-template-columns: repeat(2, 1fr); }
+    .wos-tab-btn { font-size: 0.7rem; padding: 4px 8px; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var container = document.getElementById('wos-tabs');
+    if (!container) return;
+    var btns = container.querySelectorAll('.wos-tab-btn');
+    var panels = container.querySelectorAll('.wos-tab-panel');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('is-active'); });
+        panels.forEach(function(p) { p.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        var panel = container.querySelector('[data-panel="' + btn.dataset.tab + '"]');
+        if (panel) panel.classList.add('is-active');
+      });
+    });
+  });
+</script>

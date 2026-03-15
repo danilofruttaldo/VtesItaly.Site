@@ -5,6 +5,7 @@ import ShareButtons from '../components/ShareButtons.astro';
 import TourEdition from '../components/TourEdition.astro';
 import GpEdition from '../components/GpEdition.astro';
 import PageHero from '../components/PageHero.astro';
+import WosStandings from '../components/WosStandings.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
 import { categoryLabels, categoryUrls } from '../data/categories';
@@ -35,6 +36,9 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
     .sort();
 }
 
+
+const postLinks = (post.data.links ?? []).filter(l => !l.locale || l.locale === 'it');
+const postLinksAfter = (post.data.linksAfter ?? []).filter(l => !l.locale || l.locale === 'it');
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourToday = new Date(); tourToday.setHours(0, 0, 0, 0);
@@ -144,6 +148,32 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
           <div class="post__content prose">
             <Content />
           </div>
+          {postLinks.length > 0 && (
+            <div class="post__links">
+              {postLinks.map(link => (
+                <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+          {post.data.standingsUrl && post.data.standingsUrl.includes('wos') && (
+            <>
+              <hr class="post__divider" />
+              <WosStandings dataUrl={post.data.standingsUrl} />
+            </>
+          )}
+          {postLinksAfter.length > 0 && (
+            <div class="post__links">
+              {postLinksAfter.map(link => (
+                <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
           {galleryImages.length > 0 && (
             <section class="post__gallery">
               <h2 class="post__gallery-title">{t.post.gallery}</h2>
@@ -333,6 +363,34 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
   .prose :global(th) { font-weight: 600; background-color: var(--color-surface); }
 
   /* Gallery */
+  /* Links */
+  .post__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+  .post__link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-decoration: none;
+    padding: 8px 18px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: var(--radius);
+    background: rgba(201,168,76,0.08);
+    transition: all 0.2s ease;
+  }
+  .post__link-btn:hover {
+    background: rgba(201,168,76,0.18);
+    border-color: rgba(201,168,76,0.5);
+  }
+  .post__link-btn svg { flex-shrink: 0; }
+
   .post__gallery { margin-top: 32px; }
   .post__gallery-title {
     font-size: 1.1rem;

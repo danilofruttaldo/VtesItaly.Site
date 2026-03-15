@@ -67,6 +67,11 @@ const blog = defineCollection({
       url: z.string(),
       locale: z.enum(LOCALES).optional(),
     })).optional().default([]),
+    linksAfter: z.array(z.object({
+      label: z.string(),
+      url: z.string(),
+      locale: z.enum(LOCALES).optional(),
+    })).optional().default([]),
     locale: z.enum(LOCALES).default(DEFAULT_LOCALE),
   }),
 });

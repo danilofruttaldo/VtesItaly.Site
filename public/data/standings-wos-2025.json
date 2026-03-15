@@ -1,0 +1,522 @@
+{
+  "paths": [
+    {
+      "rank": 1,
+      "name": "Path of Power and the Inner Voice",
+      "points": 155.5
+    },
+    {
+      "rank": 2,
+      "name": "Path of Death and the Soul",
+      "points": 100
+    },
+    {
+      "rank": 3,
+      "name": "Path of Cathari",
+      "points": 95.5
+    },
+    {
+      "rank": 4,
+      "name": "Path of Caine",
+      "points": 72.5
+    }
+  ],
+  "cityWinners": [
+    {
+      "city": "Barga (8 giocatori)",
+      "winner": "Path of Death and the Soul"
+    },
+    {
+      "city": "Bologna (11 giocatori)",
+      "winner": "Path of Power and the Inner Voice"
+    },
+    {
+      "city": "Firenze-Prato (9 giocatori)",
+      "winner": "Path of Cathari"
+    },
+    {
+      "city": "Massa (4 giocatori)",
+      "winner": "Path of Death and the Soul"
+    },
+    {
+      "city": "Milano (8 giocatori)",
+      "winner": "Path of Death and the Soul"
+    },
+    {
+      "city": "Modena (8 giocatori)",
+      "winner": "Path of Death and the Soul"
+    },
+    {
+      "city": "Parma (8 giocatori)",
+      "winner": "Path of Power and the Inner Voice"
+    },
+    {
+      "city": "Pordenone (11 giocatori)",
+      "winner": "Path of Caine"
+    },
+    {
+      "city": "Roma (4 giocatori)",
+      "winner": "Path of Cathari"
+    },
+    {
+      "city": "Torino-Genova (12 giocatori)",
+      "winner": "Path of Power and the Inner Voice"
+    },
+    {
+      "city": "Trento (8 giocatori)",
+      "winner": "Path of Caine"
+    },
+    {
+      "city": "Treviso (4 giocatori)",
+      "winner": "Path of Power and the Inner Voice"
+    },
+    {
+      "city": "Verona-Mantova (5 giocatori)",
+      "winner": "Path of Cathari"
+    }
+  ],
+  "cities": {
+    "Barga": [
+      {
+        "name": "Death & Soul",
+        "players": "Davide B., Livio B.",
+        "gw": 2,
+        "vp": 10,
+        "points": 16,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Niccolò S., Andrea C.",
+        "gw": 1,
+        "vp": 7,
+        "points": 10,
+        "rank": 2
+      },
+      {
+        "name": "Cathari",
+        "players": "Gian Marco P., Flavio C.",
+        "gw": 1,
+        "vp": 6,
+        "points": 9,
+        "rank": 3
+      },
+      {
+        "name": "Caine",
+        "players": "Andrea P., Simone B.",
+        "gw": 0,
+        "vp": 1,
+        "points": 1,
+        "rank": 4
+      }
+    ],
+    "Bologna": [
+      {
+        "name": "Power & Voice",
+        "players": "Filippo M., Federico F.",
+        "gw": 6,
+        "vp": 18,
+        "points": 36,
+        "rank": 1
+      },
+      {
+        "name": "Cathari",
+        "players": "Diego Di N., Simone Z., Stefano T., Arturo P.",
+        "gw": 0,
+        "vp": 3,
+        "points": 3,
+        "rank": 2
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Alessandro D., Giulio R., Tommaso C.",
+        "gw": 0,
+        "vp": 1,
+        "points": 1,
+        "rank": 3
+      },
+      {
+        "name": "Caine",
+        "players": "Tommaso C., Andrea P., Miro A., Diego Di N.",
+        "gw": 0,
+        "vp": 1,
+        "points": 1,
+        "rank": 4
+      }
+    ],
+    "Firenze-Prato": [
+      {
+        "name": "Cathari",
+        "players": "Matteo F., Cristiano F.",
+        "gw": 2,
+        "vp": 10.5,
+        "points": 16.5,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Filippo Del R., Francesco La R., Leonardo B.",
+        "gw": 2,
+        "vp": 9,
+        "points": 15,
+        "rank": 2
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Lorenzo F., Nicola P., Andrea C.",
+        "gw": 0,
+        "vp": 4.5,
+        "points": 4.5,
+        "rank": 3
+      },
+      {
+        "name": "Caine",
+        "players": "Leonardo B., Miro A.",
+        "gw": 0,
+        "vp": 2,
+        "points": 2,
+        "rank": 4
+      }
+    ],
+    "Massa": [
+      {
+        "name": "Death & Soul",
+        "players": "Davide A.",
+        "gw": 1,
+        "vp": 3.5,
+        "points": 6.5,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Niccolò P.",
+        "gw": 1,
+        "vp": 3,
+        "points": 6,
+        "rank": 2
+      },
+      {
+        "name": "Cathari",
+        "players": "Fabrizio B.",
+        "gw": 0,
+        "vp": 3.5,
+        "points": 3.5,
+        "rank": 3
+      },
+      {
+        "name": "Caine",
+        "players": "Gabriele B.",
+        "gw": 0,
+        "vp": 0.5,
+        "points": 0.5,
+        "rank": 4
+      }
+    ],
+    "Milano": [
+      {
+        "name": "Death & Soul",
+        "players": "Manuel S., Tito L.",
+        "gw": 3,
+        "vp": 11,
+        "points": 20,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Henry H., Gianluca M.",
+        "gw": 1,
+        "vp": 5,
+        "points": 8,
+        "rank": 2
+      },
+      {
+        "name": "Cathari",
+        "players": "Riccardo F., Massimo V.",
+        "gw": 1,
+        "vp": 4,
+        "points": 7,
+        "rank": 3
+      },
+      {
+        "name": "Caine",
+        "players": "Enrico De S., Nicolò A.",
+        "gw": 1,
+        "vp": 4,
+        "points": 7,
+        "rank": 4
+      }
+    ],
+    "Modena": [
+      {
+        "name": "Death & Soul",
+        "players": "Federico N., Enrico B.",
+        "gw": 4,
+        "vp": 12,
+        "points": 24,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Luca M., Damiano G.",
+        "gw": 0,
+        "vp": 3,
+        "points": 3,
+        "rank": 2
+      },
+      {
+        "name": "Caine",
+        "players": "Simone P., Stefano C.",
+        "gw": 0,
+        "vp": 1,
+        "points": 1,
+        "rank": 3
+      },
+      {
+        "name": "Cathari",
+        "players": "Francesco R., Gianluca B.",
+        "gw": 0,
+        "vp": 0,
+        "points": 0,
+        "rank": 4
+      }
+    ],
+    "Parma": [
+      {
+        "name": "Power & Voice",
+        "players": "Luca S., Fabiana Q., Emanuele D.",
+        "gw": 1,
+        "vp": 7,
+        "points": 10,
+        "rank": 1
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Leonardo M., Giacomo R., Fabiana Q., Emanuele D.",
+        "gw": 1,
+        "vp": 6.5,
+        "points": 9.5,
+        "rank": 2
+      },
+      {
+        "name": "Caine",
+        "players": "Tiziano M., Emanuele D., Giacomo R.",
+        "gw": 0,
+        "vp": 2.5,
+        "points": 2.5,
+        "rank": 3
+      },
+      {
+        "name": "Cathari",
+        "players": "Vincenzo F., Giacomo P.",
+        "gw": 0,
+        "vp": 2,
+        "points": 2,
+        "rank": 4
+      }
+    ],
+    "Pordenone": [
+      {
+        "name": "Caine",
+        "players": "Davor, Matteo S., Denis",
+        "gw": 3,
+        "vp": 11.5,
+        "points": 20.5,
+        "rank": 1
+      },
+      {
+        "name": "Cathari",
+        "players": "Danny B., Matteo F., Stefano C.",
+        "gw": 4,
+        "vp": 5,
+        "points": 17,
+        "rank": 2
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Paolo C., Kristian L., Ines",
+        "gw": 2,
+        "vp": 7.5,
+        "points": 13.5,
+        "rank": 3
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Drazen, Kristian K.",
+        "gw": 0,
+        "vp": 2.5,
+        "points": 2.5,
+        "rank": 4
+      }
+    ],
+    "Roma": [
+      {
+        "name": "Cathari",
+        "players": "Gregory, Marco B.",
+        "gw": 0,
+        "vp": 2,
+        "points": 2,
+        "rank": 1
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Marco B., Simone M.",
+        "gw": 0,
+        "vp": 1.5,
+        "points": 1.5,
+        "rank": 2
+      },
+      {
+        "name": "Caine",
+        "players": "Diego P., Gregory",
+        "gw": 0,
+        "vp": 1.5,
+        "points": 1.5,
+        "rank": 3
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Simone M., Diego P.",
+        "gw": 0,
+        "vp": 0.5,
+        "points": 0.5,
+        "rank": 4
+      }
+    ],
+    "Torino-Genova": [
+      {
+        "name": "Power & Voice",
+        "players": "Patrizio, Fabry, Dario M., Andrea R., Alessandro, Max, Carlo",
+        "gw": 4,
+        "vp": 15,
+        "points": 27,
+        "rank": 1
+      },
+      {
+        "name": "Caine",
+        "players": "Max, Andrea B., Fabry, Dario, Patrizio",
+        "gw": 3,
+        "vp": 10,
+        "points": 19,
+        "rank": 2
+      },
+      {
+        "name": "Cathari",
+        "players": "Beppe, Carlo, Patrizio, Max, Fede, Alessandro",
+        "gw": 1,
+        "vp": 7,
+        "points": 10,
+        "rank": 3
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Dario M., Dario, Carlo, Beppe, Roberto, Andrea B.",
+        "gw": 1,
+        "vp": 4,
+        "points": 7,
+        "rank": 4
+      }
+    ],
+    "Trento": [
+      {
+        "name": "Caine",
+        "players": "Giocatore 4, Giocatore 7, Giocatore 3, Giocatore 6, Giocatore 5",
+        "gw": 2,
+        "vp": 9,
+        "points": 15,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Giocatore 1, Giocatore 5, Giocatore 2, Giocatore 7",
+        "gw": 1,
+        "vp": 7,
+        "points": 10,
+        "rank": 2
+      },
+      {
+        "name": "Cathari",
+        "players": "Giocatore 2, Giocatore 8, Giocatore 1, Giocatore 7, Giocatore 3",
+        "gw": 1,
+        "vp": 5,
+        "points": 8,
+        "rank": 3
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Giocatore 3, Giocatore 6, Giocatore 4, Giocatore 8, Giocatore 1",
+        "gw": 1,
+        "vp": 3,
+        "points": 6,
+        "rank": 4
+      }
+    ],
+    "Treviso": [
+      {
+        "name": "Power & Voice",
+        "players": "Eleonora B.",
+        "gw": 1,
+        "vp": 4.5,
+        "points": 7.5,
+        "rank": 1
+      },
+      {
+        "name": "Cathari",
+        "players": "Nicola D.",
+        "gw": 1,
+        "vp": 2.5,
+        "points": 5.5,
+        "rank": 2
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Marco L.",
+        "gw": 0,
+        "vp": 1.5,
+        "points": 1.5,
+        "rank": 3
+      },
+      {
+        "name": "Caine",
+        "players": "Giorgio S.",
+        "gw": 0,
+        "vp": 1.5,
+        "points": 1.5,
+        "rank": 4
+      }
+    ],
+    "Verona-Mantova": [
+      {
+        "name": "Cathari",
+        "players": "Manuel De S., Luca D.",
+        "gw": 2,
+        "vp": 6,
+        "points": 12,
+        "rank": 1
+      },
+      {
+        "name": "Power & Voice",
+        "players": "Filippo T., Manuel De S.",
+        "gw": 1,
+        "vp": 6,
+        "points": 9,
+        "rank": 2
+      },
+      {
+        "name": "Caine",
+        "players": "Francesco C., Filippo T.",
+        "gw": 0,
+        "vp": 0,
+        "points": 0,
+        "rank": 3
+      },
+      {
+        "name": "Death & Soul",
+        "players": "Nicola L.",
+        "gw": 0,
+        "vp": 0,
+        "points": 0,
+        "rank": 4
+      }
+    ]
+  }
+}

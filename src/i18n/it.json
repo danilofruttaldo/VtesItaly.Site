@@ -9,7 +9,7 @@
     "grand-prix": "/grand-prix/",
     "cartoline": "/cartoline/",
     "gemelli": "/gemelli/",
-    "week-of-sabbat": "/week-of-sabbat/"
+    "week-of-sabbat": "/comunita/week-of-sabbat-2025/"
   },
   "page_titles": {
     "Home": "Home",
@@ -175,33 +175,6 @@
     "why_text": "Come cartoline spedite da un viaggio, pensate per essere ricordi condivisi: un album alternativo di ciò che anima la community VTES in Italia. Sfogliando si riscoprono amici, partite, gag e piccole leggende nate attorno ai tavoli.",
     "scroll_left": "Scorri a sinistra",
     "scroll_right": "Scorri a destra"
-  },
-  "wos": {
-    "date_badge": "Ottobre 2025",
-    "lead": "La nuova espansione Sabbat segna un momento speciale: <strong>l'Italia intera si unisce</strong> per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città. Non è solo una competizione, ma una settimana di <strong>incontro, scoperta e divertimento condiviso</strong>, in puro spirito cainita.",
-    "quote": "Per una settimana, tutta l'Italia gioca come un'unica coterie",
-    "what_title": "Cos'è",
-    "what_text": "Evento nazionale per il lancio dei mazzi Sabbat. Dal <strong>18 al 26 ottobre</strong>, i giocatori si sfidano in formato <strong>Sealed</strong>, aprendo e giocando i mazzi prerelease contemporaneamente. Un'opportunità per provare le nuove carte, incontrare altri Cainiti e partecipare a una classifica nazionale condivisa in un'atmosfera di divertimento.",
-    "how_title": "Come funziona",
-    "how_items": [
-      "Ogni partecipante riceve un mazzo Sabbat sigillato (senza bustine)",
-      "Si gioca così com'è, senza modifiche",
-      "Tavoli da quattro giocatori con un mazzo diverso per Sentiero: <strong>Caine</strong>, <strong>Cathari</strong>, <strong>Death and the Soul</strong>, <strong>Power and the Inner Voice</strong>",
-      "Assegnazione randomica del mazzo e del posto al tavolo"
-    ],
-    "scores_title": "Punteggi e classifiche",
-    "scores_items": [
-      "I giocatori guadagnano Victory Points (VP) e Game Wins (GW)",
-      "Due livelli: classifica cittadina + classifica nazionale per Sentiero",
-      "Dopo 3 turni, il punteggio totale determina il vincitore locale (niente finale: conta l'esperienza e il divertimento)"
-    ],
-    "deck_title": "Mazzo e ricordo",
-    "deck_text": "I partecipanti portano a casa il proprio mazzo Sabbat prerelease come ricordo dell'evento. Tratta le carte con cura: fanno parte del kit ufficiale dell'evento e meritano rispetto... in puro stile Sabbat.",
-    "standings_title": "Classifica dei mazzi",
-    "standings_text": "La classifica nazionale dei mazzi viene aggiornata man mano che arrivano i risultati dagli eventi locali. Solo i tornei ufficiali Week of Sabbat sono validi per la classifica.",
-    "download": "Download",
-    "infokit": "Infokit evento",
-    "report_template": "Event report template"
   },
   "twins": {
     "lead": "Il mondo di Vampire: The Eternal Struggle è popolato da volti oscuri, enigmatici e affascinanti. Ma guardando bene le illustrazioni delle carte, a volte si scorgono somiglianze sorprendenti con personaggi noti: attori, musicisti, politici o icone della cultura pop. Questa sezione raccoglie le coincidenze in modo leggero e ironico.",

@@ -24,6 +24,14 @@ export async function getStaticPaths() {
 }
 
 const { city, relatedPosts } = Astro.props;
+
+function getCardImage(post: any): { src: string | undefined; isPoster: boolean } {
+  if (post.data.category === 'tour' && post.data.stages?.length > 0) {
+    const stage = post.data.stages.find((s: any) => s.cities?.includes(city.slug.it));
+    if (stage?.image) return { src: stage.image, isPoster: false };
+  }
+  return { src: post.data.poster || post.data.featuredImage, isPoster: !!post.data.poster };
+}
 ---
 
 <Base title={city.name.en} description={city.description.en}>
@@ -105,10 +113,12 @@ const { city, relatedPosts } = Astro.props;
         <h2 class="related-title">{t.domain.news_title}</h2>
         {relatedPosts.length > 0 ? (
           <div class="related-list">
-            {relatedPosts.map(post => (
+            {relatedPosts.map(post => {
+              const cardImg = getCardImage(post);
+              return (
               <a href={`/en/${post.data.category}/${post.slug}/`} class="related-card">
-                {(post.data.poster || post.data.featuredImage) && (
-                  <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class="related-image" loading="lazy" decoding="async" />
+                {cardImg.src && (
+                  <img src={cardImg.src} alt={post.data.title} class:list={['related-image', cardImg.isPoster && 'related-image--poster']} loading="lazy" decoding="async" />
                 )}
                 <div class="related-body">
                   <span class="related-category">{categoryLabels[post.data.category]?.en || post.data.category}</span>
@@ -116,7 +126,8 @@ const { city, relatedPosts } = Astro.props;
                   {post.data.excerpt && <p class="related-excerpt">{post.data.excerpt}</p>}
                 </div>
               </a>
-            ))}
+            );
+            })}
           </div>
         ) : (
           <p class="no-news">{t.domain.no_news}</p>
@@ -206,6 +217,7 @@ const { city, relatedPosts } = Astro.props;
   }
   .related-card:hover { background-color: rgba(255,255,255,0.04); transform: translateX(2px); color: var(--color-contrast); }
   .related-image { width: 120px; min-height: 90px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+  .related-image--poster { object-position: top; }
   .related-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .related-category { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-gold); }
   .related-name { font-size: 0.95rem; font-weight: 600; }

@@ -43,8 +43,8 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
       <div class="latest-posts">
         {latestPosts.map(post => (
           <a href={`/en/${post.data.category}/${post.slug}/`} class="latest-post">
-            {post.data.featuredImage && (
-              <img src={post.data.featuredImage} alt={post.data.title} class="latest-post__image" loading="lazy" decoding="async" />
+            {(post.data.poster || post.data.featuredImage) && (
+              <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['latest-post__image', post.data.poster && 'latest-post__image--poster']} loading="lazy" decoding="async" />
             )}
             <div class="latest-post__body">
               <span class="latest-post__category">{categoryLabels[post.data.category]?.en || post.data.category}</span>
@@ -96,6 +96,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   }
   .latest-post:hover { background-color: rgba(255,255,255,0.04); transform: translateY(-2px); color: var(--color-contrast); }
   .latest-post__image { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .latest-post__image--poster { object-position: top; }
   .latest-post:not(:has(.latest-post__image)) .latest-post__body { min-height: 120px; display: flex; flex-direction: column; justify-content: center; }
   .latest-post__body { padding: 12px 16px; }
   .latest-post__category {

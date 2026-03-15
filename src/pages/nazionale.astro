@@ -78,7 +78,7 @@ function getCardMeta(post: any) {
             return (
             <a href={`/nazionale/${post.slug}/`} class="edition-card">
               {(post.data.poster || post.data.featuredImage) && (
-                <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class="edition-thumb" loading="lazy" decoding="async" />
+                <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']} loading="lazy" decoding="async" />
               )}
               <div class="edition-card-body">
                 <div class="edition-card-header">
@@ -157,6 +157,8 @@ function getCardMeta(post: any) {
     height: 64px;
     object-fit: cover;
     flex-shrink: 0;
+  }
+  .edition-thumb--poster { object-position: top;
   }
   .edition-card-body {
     display: flex;

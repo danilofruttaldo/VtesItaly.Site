@@ -72,14 +72,14 @@ const usePageHero = isTourWithStages || isEventPage;
 const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.category) : null;
 
 ---
-<Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.featuredImage}>
+<Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.poster || post.data.featuredImage}>
   <JsonLd slot="head" data={{
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.data.title,
     datePublished: post.data.date.toISOString(),
     description: post.data.excerpt || post.data.title,
-    ...(post.data.featuredImage ? { image: new URL(post.data.featuredImage, Astro.site).href } : {}),
+    ...((post.data.poster || post.data.featuredImage) ? { image: new URL((post.data.poster || post.data.featuredImage)!, Astro.site).href } : {}),
     publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href } }
   }} />
 

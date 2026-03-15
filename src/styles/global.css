@@ -370,6 +370,7 @@ img {
   object-fit: cover;
   flex-shrink: 0;
 }
+.post-card__image--poster { object-position: top; }
 
 .post-card__content {
   flex: 1;

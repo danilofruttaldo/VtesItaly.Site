@@ -28,8 +28,8 @@ const { page } = Astro.props;
     <div class="post-list">
       {page.data.map(post => (
         <a href={`/en/${post.data.category}/${post.slug}/`} class="post-card">
-          {post.data.featuredImage && (
-            <img src={post.data.featuredImage} alt={post.data.title} class="post-card__image" loading="lazy" decoding="async" />
+          {(post.data.poster || post.data.featuredImage) && (
+            <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['post-card__image', post.data.poster && 'post-card__image--poster']} loading="lazy" decoding="async" />
           )}
           <div class="post-card__content">
             <h2 class="post-card__title">{post.data.title}</h2>

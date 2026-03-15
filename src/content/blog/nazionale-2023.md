@@ -3,23 +3,43 @@ title: "Nazionale 2023"
 date: 2023-04-30
 category: "nazionale"
 tags: ["italia", "bologna"]
-featuredImage: "/images/eventi/header-nazionale.webp"
-excerpt: "Il Campionato Nazionale Italiano VTES 2023 si è tenuto il 30 aprile a Bologna."
-galleryFolder: "nazionale-2023"
+featuredImage: "/images/headers/header-nazionale.webp"
+excerpt: "Il Campionato Nazionale Italiano VTES 2023 si terrà il 30 aprile a Bologna."
+gallerySections:
+  - title: "Preparazione"
+    images:
+      - "/images/gallery/nc-2023/nc-2023-preparazione-01.webp"
+      - "/images/gallery/nc-2023/nc-2023-preparazione-02.webp"
+  - title: "Round"
+    images:
+      - "/images/gallery/nc-2023/nc-2023-round-01.webp"
+      - "/images/gallery/nc-2023/nc-2023-round-02.webp"
+      - "/images/gallery/nc-2023/nc-2023-round-03.webp"
+      - "/images/gallery/nc-2023/nc-2023-round-04.webp"
+      - "/images/gallery/nc-2023/nc-2023-round-05.webp"
+      - "/images/gallery/nc-2023/nc-2023-round-06.webp"
+venue:
+  name: "The Sydney Hotel"
+  address: "Via Michelino, 74 — Bologna"
+events:
+  - name: "MAIN EVENT: Italian Championship 2023"
+    date: "Domenica 30 Aprile"
+    time: "09:00"
+    format: "Standard Constructed, No Proxies — 3 Round + Finale"
+    archonUrl: "http://bcncrisis.com/tournament/125"
+standingsUrl: "/data/standings-nc-2023.json"
+links:
+  - label: "Infopack (PDF)"
+    url: "/docs/nc-2023/infopack-nc-2023-it.pdf"
+    locale: it
+  - label: "Infopack (PDF)"
+    url: "/docs/nc-2023/infopack-nc-2023-en.pdf"
+    locale: en
+registration: "Preiscrizione e decklist obbligatorie"
+contact: "info@vtesitaly.com"
+payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
 ---
 
-# Nazionale 2023
+Il **Campionato Nazionale Italiano VTES 2023** si terrà **domenica 30 aprile** a **Bologna**, crocevia perfetto per i Methuselah di tutta la penisola.
 
-Il **Campionato Nazionale Italiano VTES 2023** si è tenuto il **30 aprile** a **Bologna**.
-
-Un'edizione che ha visto la community riunirsi nel cuore dell'Emilia-Romagna per il tradizionale appuntamento annuale con il torneo più prestigioso del calendario italiano.
-
----
-
-### La giornata
-
-Bologna, crocevia perfetto per i giocatori di tutta la penisola, ha ospitato un'edizione del Nazionale ricca di emozioni. I Methuselah si sono dati battaglia in una sala gremita, tra round preliminari combattuti e una finale al cardiopalma.
-
-### Risultati
-
-Un Nazionale 2023 all'insegna della competizione e della convivialità. Complimenti al campione e a tutti i finalisti che hanno reso questa edizione indimenticabile.
+La domenica sarà dedicata al **Main Event**, che incoronerà il nuovo **Campione Nazionale 2023**, in un'edizione all'insegna della competizione e della convivialità.

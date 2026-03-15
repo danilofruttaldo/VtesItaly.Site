@@ -59,6 +59,8 @@ const blog = defineCollection({
     registration: z.string().optional(),
     contact: z.string().optional(),
     standingsUrl: z.string().optional(),
+    playersCount: z.number().optional(),
+    streamingUrl: z.string().optional(),
     notes: z.array(z.string()).optional().default([]),
     links: z.array(z.object({
       label: z.string(),

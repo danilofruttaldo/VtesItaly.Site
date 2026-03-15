@@ -2,18 +2,202 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ShareButtons from '../components/ShareButtons.astro';
-import TournamentPage from '../components/TournamentPage.astro';
+import GpEdition from '../components/GpEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
-import { filterByLocale } from '../utils/i18n';
+import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
+
+const t = useTranslations('it');
 
 const page = mainPages.find(p => p.slug.it === 'nazionale')!;
 const posts = filterByLocale(await getCollection('blog'), 'it')
   .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const now = new Date();
+const current = posts.find(p => new Date(p.data.date) >= now) || posts[0];
+const pastEditions = posts.filter(p => p !== current);
+
+const currentDate = current ? new Date(current.data.date) : null;
+const ncIsToday = currentDate && currentDate.toDateString() === now.toDateString();
+const ncStatus = currentDate ? (ncIsToday ? 'live' : (currentDate > now ? 'upcoming' : 'past')) : null;
+
+// Load standings data for archive cards
+interface Standing { rank: number; name: string; gw: number; vp: number; fvp: number | null; tp: number; }
+const allStandings = import.meta.glob('/public/data/standings-nc-*.json', { eager: true }) as Record<string, { default: Standing[] }>;
+function getCardMeta(post: any) {
+  const eventDate = post.data.events?.[0]?.date || '';
+  let winner = '';
+  let players = 0;
+  if (post.data.standingsUrl) {
+    const key = Object.keys(allStandings).find(k => k.includes(post.data.standingsUrl.replace('/data/', '')));
+    if (key) {
+      const data = allStandings[key].default;
+      players = data.length;
+      const first = data.find((s: Standing) => s.rank === 1);
+      if (first) winner = first.name;
+    }
+  }
+  if (!players && post.data.playersCount) players = post.data.playersCount;
+  return { eventDate, winner, players };
+}
 ---
 <Base title={page.title.it} description={page.description.it}>
   <PageHero title={page.title.it} image={page.headerImage} />
-  <TournamentPage posts={posts} leadHtml={page.leadHtml.it!} editionsTitle={page.editionsTitle.it!} baseUrl={page.baseUrl.it!} />
+
+  {/* Parte fissa: intro */}
+  <section class="page-section">
+    <div class="container container--narrow">
+      <div class="intro-lead">
+        <Fragment set:html={page.leadHtml.it!} />
+      </div>
+    </div>
+  </section>
+
+  {/* Parte variabile: edizione corrente */}
+  {current && (
+    <section class="page-section">
+      <div class="container container--narrow">
+        <div class="edition-header">
+          <h2 class="edition-title">{current.data.title}</h2>
+          <span class="edition-label-tag">{ncStatus === 'live' ? t.status.live : ncStatus === 'upcoming' ? t.status.upcoming : t.status.past}</span>
+        </div>
+        <GpEdition post={current} locale="it" />
+      </div>
+    </section>
+  )}
+
+  {/* Parte fissa: archivio + condivisione */}
+  {pastEditions.length > 0 && (
+    <section class="page-section">
+      <div class="container container--narrow">
+        <h2 class="page-section-title">{t.gp.archive}</h2>
+        <div class="editions-list">
+          {pastEditions.map(post => {
+            const meta = getCardMeta(post);
+            return (
+            <a href={`/nazionale/${post.slug}/`} class="edition-card">
+              {(post.data.poster || post.data.featuredImage) && (
+                <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class="edition-thumb" loading="lazy" decoding="async" />
+              )}
+              <div class="edition-card-body">
+                <div class="edition-card-header">
+                  <span class="edition-year">{post.slug.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
+                  {meta.winner && (
+                    <span class="edition-winner">&#127942; {meta.winner}</span>
+                  )}
+                </div>
+                <span class="edition-info">
+                  {post.data.tags && post.data.tags.filter(tag => tag !== 'italia').length > 0 && (
+                    <>{post.data.tags.filter(tag => tag !== 'italia').map(tag => tag.charAt(0).toUpperCase() + tag.slice(1)).join(', ')}</>
+                  )}
+                  {meta.eventDate && <> &middot; {meta.eventDate}</>}
+                  {meta.players > 0 && <> &middot; {meta.players} {t.gp.players_label}</>}
+                </span>
+              </div>
+            </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
   <section class="page-section"><div class="container container--narrow"><ShareButtons /></div></section>
 </Base>
+
+<style>
+  .intro-lead :global(p) {
+    color: var(--color-muted);
+    text-align: justify;
+  }
+  .edition-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .edition-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .edition-label-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gold);
+    background: rgba(201,168,76,0.12);
+    padding: 4px 12px;
+    border-radius: var(--radius);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .edition-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .edition-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.12);
+  }
+  .edition-thumb {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .edition-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    padding: 12px 16px 12px 0;
+    min-width: 0;
+  }
+  .edition-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .edition-year {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+  .edition-info {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+  }
+  .edition-winner {
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    font-weight: 600;
+  }
+  @media (min-width: 640px) {
+    .edition-card-body {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .edition-card-header {
+      flex-shrink: 0;
+    }
+    .edition-info {
+      text-align: right;
+    }
+  }
+</style>

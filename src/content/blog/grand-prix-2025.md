@@ -4,8 +4,8 @@ date: 2025-03-01
 category: "grand-prix"
 tags: ["italia", "modena"]
 excerpt: "Il Grand Prix Italiano 2025 si è tenuto a Modena, sabato 1 marzo 2025. Vince Federico! Complimenti ai finalisti."
-featuredImage: "/images/gallery/gp-2025/gp-2025-001.webp"
-poster: "/images/gallery/gp-2025/gp-2025-002.webp"
+featuredImage: "/images/gallery/gp-2025/gp-2025-featured.webp"
+poster: "/images/gallery/gp-2025/gp-2025-poster.webp"
 venue:
   name: "Hotel Baia del Re ****"
   address: "Str. Vignolese, 1684, 41126 Modena (MO)"
@@ -26,7 +26,7 @@ pricing:
     regular: "60,00 euro"
   - label: "Side Event + pranzo"
     regular: "35,00 euro"
-payment: "PayPal (amici e parenti) — info@vtesitaly.com"
+payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
 hotel:
   - room: "Hotel Baia del Re **** (sede evento)"
     price: "convenzione codice VTES25"
@@ -56,35 +56,35 @@ links:
 gallerySections:
   - title: "Preparazione"
     images:
-      - "/images/gallery/gp-2025/gp-2025-014.webp"
-      - "/images/gallery/gp-2025/gp-2025-029.webp"
-      - "/images/gallery/gp-2025/gp-2025-130.webp"
+      - "/images/gallery/gp-2025/gp-2025-preparazione-01.webp"
+      - "/images/gallery/gp-2025/gp-2025-preparazione-02.webp"
+      - "/images/gallery/gp-2025/gp-2025-preparazione-03.webp"
     wideImages:
-      - "/images/gallery/gp-2025/gp-2025-130.webp"
+      - "/images/gallery/gp-2025/gp-2025-preparazione-03.webp"
   - title: "Round"
     images:
-      - "/images/gallery/gp-2025/gp-2025-015.webp"
-      - "/images/gallery/gp-2025/gp-2025-040.webp"
-      - "/images/gallery/gp-2025/gp-2025-042.webp"
-      - "/images/gallery/gp-2025/gp-2025-044.webp"
-      - "/images/gallery/gp-2025/gp-2025-046.webp"
-      - "/images/gallery/gp-2025/gp-2025-048.webp"
+      - "/images/gallery/gp-2025/gp-2025-round-01.webp"
+      - "/images/gallery/gp-2025/gp-2025-round-02.webp"
+      - "/images/gallery/gp-2025/gp-2025-round-03.webp"
+      - "/images/gallery/gp-2025/gp-2025-round-04.webp"
+      - "/images/gallery/gp-2025/gp-2025-round-05.webp"
+      - "/images/gallery/gp-2025/gp-2025-round-06.webp"
   - title: "Finale"
     images:
-      - "/images/gallery/gp-2025/gp-2025-009.webp"
-      - "/images/gallery/gp-2025/gp-2025-064.webp"
-      - "/images/gallery/gp-2025/gp-2025-066.webp"
-      - "/images/gallery/gp-2025/gp-2025-068.webp"
-      - "/images/gallery/gp-2025/gp-2025-069.webp"
-      - "/images/gallery/gp-2025/gp-2025-075.webp"
+      - "/images/gallery/gp-2025/gp-2025-finale-01.webp"
+      - "/images/gallery/gp-2025/gp-2025-finale-02.webp"
+      - "/images/gallery/gp-2025/gp-2025-finale-03.webp"
+      - "/images/gallery/gp-2025/gp-2025-finale-04.webp"
+      - "/images/gallery/gp-2025/gp-2025-finale-05.webp"
+      - "/images/gallery/gp-2025/gp-2025-finale-06.webp"
   - title: "Bonus"
     images:
-      - "/images/gallery/gp-2025/gp-2025-003.webp"
-      - "/images/gallery/gp-2025/gp-2025-013.webp"
-      - "/images/gallery/gp-2025/gp-2025-050.webp"
-      - "/images/gallery/gp-2025/gp-2025-061.webp"
-      - "/images/gallery/gp-2025/gp-2025-090.webp"
-      - "/images/gallery/gp-2025/gp-2025-093.webp"
+      - "/images/gallery/gp-2025/gp-2025-bonus-01.webp"
+      - "/images/gallery/gp-2025/gp-2025-bonus-02.webp"
+      - "/images/gallery/gp-2025/gp-2025-bonus-03.webp"
+      - "/images/gallery/gp-2025/gp-2025-bonus-04.webp"
+      - "/images/gallery/gp-2025/gp-2025-bonus-05.webp"
+      - "/images/gallery/gp-2025/gp-2025-bonus-06.webp"
 ---
 
 La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, **Kraken Nest**, **Card Game Geek** e **Mistlore**, è felice di presentare il **GP 2025** a **Modena** presso l'**Hotel Baia del Re**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

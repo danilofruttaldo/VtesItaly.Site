@@ -16,9 +16,14 @@ const t = useTranslations('en');
 export async function getStaticPaths() {
   const posts = filterByLocale(await getCollection('blog'), 'en');
   return posts.map(post => {
-    const cleanSlug = post.slug.replace(/-en$/, '');
+    let cleanSlug = post.slug.replace(/-en$/, '');
+    let catSlug = post.data.category;
+    if (catSlug === 'nazionale') {
+      catSlug = 'national-championship';
+      cleanSlug = cleanSlug.replace('nazionale-', 'nc-');
+    }
     return {
-      params: { slug: `${post.data.category}/${cleanSlug}` },
+      params: { slug: `${catSlug}/${cleanSlug}` },
       props: { post },
     };
   });
@@ -57,11 +62,13 @@ const tourAllCompleted = tourComputedStatuses.filter(s => s !== 'cancelled').eve
 const tourAllFuture = tourComputedStatuses.filter(s => s !== 'cancelled').every(s => s === 'future');
 const tourStatus = isTourWithStages ? (tourAllCompleted ? 'past' : tourAllFuture ? 'upcoming' : 'live') : null;
 const isGp = post.data.category === 'grand-prix';
-const gpEventDate = isGp ? new Date(post.data.date) : null;
-const gpToday = isGp ? new Date() : null;
+const isNc = post.data.category === 'nazionale';
+const isEventPage = isGp || isNc;
+const gpEventDate = isEventPage ? new Date(post.data.date) : null;
+const gpToday = isEventPage ? new Date() : null;
 const gpIsToday = gpEventDate && gpToday && gpEventDate.toDateString() === gpToday.toDateString();
-const gpStatus = isGp ? (gpIsToday ? 'live' : (gpEventDate! > gpToday! ? 'upcoming' : 'past')) : null;
-const usePageHero = isTourWithStages || isGp;
+const gpStatus = isEventPage ? (gpIsToday ? 'live' : (gpEventDate! > gpToday! ? 'upcoming' : 'past')) : null;
+const usePageHero = isTourWithStages || isEventPage;
 const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.category) : null;
 
 ---
@@ -101,7 +108,7 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
               {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
             </span>
           )}
-          {isGp && gpStatus && (
+          {isEventPage && gpStatus && (
             <span class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}>
               {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
             </span>
@@ -138,7 +145,7 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
       {/* Layout per categoria */}
       {isTourWithStages ? (
         <TourEdition post={post} locale="en" />
-      ) : isGp ? (
+      ) : isEventPage ? (
         <GpEdition post={post} locale="en" />
       ) : (
         <>

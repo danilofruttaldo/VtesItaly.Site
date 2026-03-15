@@ -38,6 +38,7 @@ function getCardMeta(post: any) {
       if (first) winner = first.name;
     }
   }
+  if (!players && post.data.playersCount) players = post.data.playersCount;
   return { eventDate, winner, players };
 }
 ---

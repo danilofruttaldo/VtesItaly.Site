@@ -4,8 +4,8 @@ date: 2026-05-02
 category: "grand-prix"
 tags: ["bologna", "italia"]
 excerpt: "IT GP 2026 — Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek and Mistlore, presents the GP 2026!"
-featuredImage: "/images/gallery/gp-2026/gp-2026-001.webp"
-poster: "/images/gallery/gp-2026/gp-2026-002.webp"
+featuredImage: "/images/gallery/gp-2026/gp-2026-featured.webp"
+poster: "/images/gallery/gp-2026/gp-2026-poster.webp"
 venue:
   name: "Hotel Airport Bologna ****"
   address: "Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)"
@@ -29,7 +29,7 @@ pricing:
     early: "35.00 euro"
     regular: "40.00 euro"
 earlyDeadline: "April 10"
-payment: "PayPal (friends and family) — info@vtesitaly.com"
+payment: "PayPal (friends and family) — vtesitaly@gmail.com"
 hotel:
   - room: "Double room single use + breakfast"
     price: "78.00 euro"

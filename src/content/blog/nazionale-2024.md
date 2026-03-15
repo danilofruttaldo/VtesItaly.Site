@@ -3,13 +3,30 @@ title: "Nazionale 2024"
 date: 2024-04-27
 category: "nazionale"
 tags: ["italia", "trento"]
-featuredImage: "/images/eventi/header-nazionale.webp"
-excerpt: "Il Campionato Nazionale Italiano VTES 2024 si è tenuto sabato 27 aprile presso l'Hotel Paoli a Lochere (TN), immerso nel verde del Trentino."
-galleryFolder: "nazionale-2024"
+featuredImage: "/images/headers/header-nazionale.webp"
+excerpt: "Il Campionato Nazionale Italiano VTES 2024 si terrà sabato 27 aprile presso l'Hotel Paoli a Caldonazzo (TN), immerso nel cuore del Trentino."
+poster: "/images/gallery/nc-2024/nc-2024-poster.webp"
+venue:
+  name: "Hotel Paoli"
+  address: "Caldonazzo (TN)"
+  mapUrl: "https://www.paolihotel.com/"
+events:
+  - name: "MAIN EVENT: Italian Championship 2024"
+    date: "Sabato 27 Aprile"
+    time: "09:00"
+    format: "Standard Constructed, No Proxies — 3 Round + Finale"
+    archonUrl: "http://bcncrisis.com/tournament/294"
+  - name: "SIDE EVENT: Italian Tour - Tappa di Trento"
+    date: "Domenica 28 Aprile"
+    time: "09:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
+    archonUrl: "http://bcncrisis.com/tournament/295"
+standingsUrl: "/data/standings-nc-2024.json"
+registration: "Preiscrizione e decklist obbligatorie"
+contact: "info@vtesitaly.com"
+payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
 ---
 
-# Nazionale 2024
+Il **Campionato Nazionale Italiano VTES 2024** si terrà **sabato 27 aprile** presso l'**Hotel Paoli** a **Caldonazzo (TN)**, immerso nel cuore del Trentino.
 
-Il **Campionato Nazionale Italiano VTES 2024** si è tenuto **sabato 27 aprile** presso l'**Hotel Paoli** a **Lochere (TN)**, immerso nel verde tra i paesaggi montani del Trentino.
-
-Il torneo ha previsto **3 round + finale**, con iscrizione e decklist obbligatorie su **BCN**. Un'edizione ricca di premi, sorprese e tutta la passione della community italiana.
+Il sabato sarà dedicato al **Main Event**, che incoronerà il nuovo **Campione Nazionale 2024**, mentre la domenica ospiterà il side event della tappa **Italian Tour** di Trento.

@@ -1,0 +1,29 @@
+---
+title: "Grand Prix 2023"
+date: 2022-12-10
+category: "grand-prix"
+tags: ["italia", "bologna"]
+excerpt: "Il Grand Prix Italiano 2023 si è tenuto a Bologna, sabato 10 dicembre 2022. Vince Danilo Torrisi! Complimenti ai finalisti."
+featuredImage: "/images/gallery/gp-2023/gp-2023-001.webp"
+poster: "/images/gallery/gp-2023/gp-2023-001.webp"
+venue:
+  name: "UNA Hotel Fiera"
+  address: "Piazza della Costituzione 1, Bologna"
+  mapUrl: "https://maps.google.com/?q=UNA+Hotel+Fiera+Piazza+della+Costituzione+1+Bologna"
+events:
+  - name: "MAIN EVENT: Italian Grand Prix 2023"
+    date: "10 Dicembre 2022"
+    time: "09:00"
+    format: "Standard Constructed, No Proxies — 3 Round + Finale"
+    archonUrl: "http://bcncrisis.com/tournament/92"
+pricing:
+  - label: "Iscrizione"
+    regular: ""
+payment: "PayPal (amici e parenti) — info@vtesitaly.com"
+registration: "Preiscrizione e decklist obbligatorie"
+contact: "info@vtesitaly.com"
+standingsUrl: "/data/standings-gp-2023.json"
+links: []
+---
+
+La **Comunità Italiana di V:TES** è felice di presentare il **GP 2023** a **Bologna**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

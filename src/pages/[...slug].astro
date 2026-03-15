@@ -3,7 +3,10 @@ import Base from '../layouts/Base.astro';
 import JsonLd from '../components/JsonLd.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import TourEdition from '../components/TourEdition.astro';
+import GpEdition from '../components/GpEdition.astro';
+import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
+import { mainPages } from '../data/pages';
 import { categoryLabels, categoryUrls } from '../data/categories';
 import { cities } from '../data/cities';
 import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
@@ -34,7 +37,22 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
 
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
-const tourFinished = isTourWithStages && post.data.stages!.every(s => s.status === 'completed');
+const tourToday = new Date(); tourToday.setHours(0, 0, 0, 0);
+const tourComputedStatuses = isTourWithStages ? post.data.stages!.map(s => {
+  if (s.status === 'cancelled') return 'cancelled';
+  const d = new Date(s.date); d.setHours(0, 0, 0, 0);
+  return d < tourToday ? 'completed' : 'future';
+}) : [];
+const tourAllCompleted = tourComputedStatuses.filter(s => s !== 'cancelled').every(s => s === 'completed');
+const tourAllFuture = tourComputedStatuses.filter(s => s !== 'cancelled').every(s => s === 'future');
+const tourStatus = isTourWithStages ? (tourAllCompleted ? 'past' : tourAllFuture ? 'upcoming' : 'live') : null;
+const isGp = post.data.category === 'grand-prix';
+const gpEventDate = isGp ? new Date(post.data.date) : null;
+const gpToday = isGp ? new Date() : null;
+const gpIsToday = gpEventDate && gpToday && gpEventDate.toDateString() === gpToday.toDateString();
+const gpStatus = isGp ? (gpIsToday ? 'live' : (gpEventDate! > gpToday! ? 'upcoming' : 'past')) : null;
+const usePageHero = isTourWithStages || isGp;
+const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.category) : null;
 
 const label = categoryLabels[post.data.category]?.it || post.data.category;
 const backUrl = categoryUrls[post.data.category]?.it || t.routes.comunita;
@@ -55,14 +73,17 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href } }
   }} />
 
+  {/* PageHero per tour e GP, hero classico per il resto */}
+  {usePageHero && pageMeta ? (
+    <PageHero title="" image={pageMeta.headerImage} />
+  ) : post.data.featuredImage && (
+    <div class="post__hero-wrap">
+      <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="eager" decoding="async" />
+      <div class="post__hero-overlay"></div>
+    </div>
+  )}
+
   <article class="post">
-    {/* Hero image — full width */}
-    {post.data.featuredImage && (
-      <div class="post__hero-wrap">
-        <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="eager" decoding="async" />
-        <div class="post__hero-overlay"></div>
-      </div>
-    )}
 
     <div class="container container--narrow">
       {/* Back link */}
@@ -72,24 +93,31 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
       <header class="post__header">
         <div class="post__title-row">
           <h1 class="post__title">{post.data.title}</h1>
-          {isTourWithStages && (
-            <span class:list={['post__status', tourFinished ? 'post__status--finished' : 'post__status--active']}>
-              {tourFinished ? t.post.tour_finished : t.post.tour_ongoing}
+          {isTourWithStages && tourStatus && (
+            <span class:list={['post__status', tourStatus === 'past' ? 'post__status--finished' : 'post__status--active']}>
+              {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
+            </span>
+          )}
+          {isGp && gpStatus && (
+            <span class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}>
+              {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
             </span>
           )}
         </div>
-        {!isTourWithStages && post.data.excerpt && (
+        {!usePageHero && post.data.excerpt && (
           <p class="post__excerpt">{post.data.excerpt}</p>
         )}
       </header>
 
-      {/* Metadata: category, date, tags */}
-      <div class="post__meta">
+      {/* Metadata: category + date, then tags */}
+      <div class="post__meta-row">
         <span class="post__category">{label}</span>
         <time class="post__date" datetime={post.data.date.toISOString()}>
           {formatLocalDate(post.data.date, 'it')}
         </time>
-        {post.data.tags && post.data.tags.length > 0 && (
+      </div>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="post__tags-row">
           <div class="post__tags">
             {post.data.tags.map(tag => {
               const city = cityMap.get(tag);
@@ -100,39 +128,38 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
               );
             })}
           </div>
-        )}
-      </div>
-
-      <hr class="post__divider" />
-
-      {/* Tour edition layout */}
-      {isTourWithStages ? (
-        <TourEdition post={post} />
-      ) : (
-        <div class="post__content prose">
-          <Content />
         </div>
       )}
-
-      {/* Image gallery (not for tour) */}
-      {galleryImages.length > 0 && (
-        <section class="post__gallery">
-          <h2 class="post__gallery-title">{t.post.gallery}</h2>
-          <div class="post__gallery-grid">
-            {galleryImages.map((img, i) => (
-              <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
-                <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
       <hr class="post__divider" />
+
+      {/* Layout per categoria */}
+      {isTourWithStages ? (
+        <TourEdition post={post} />
+      ) : isGp ? (
+        <GpEdition post={post} />
+      ) : (
+        <>
+          <div class="post__content prose">
+            <Content />
+          </div>
+          {galleryImages.length > 0 && (
+            <section class="post__gallery">
+              <h2 class="post__gallery-title">{t.post.gallery}</h2>
+              <div class="post__gallery-grid">
+                {galleryImages.map((img, i) => (
+                  <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
+                    <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+        </>
+      )}
 
       <ShareButtons />
 
-      {/* Footer */}
+      {/* Footer: back button */}
       <div class="post__footer">
         <a href={backUrl} class="btn">&larr; {backLabel}</a>
       </div>
@@ -158,6 +185,20 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, rgba(18,20,22,0.4) 0%, rgba(18,20,22,0.3) 50%, var(--color-base) 100%);
+  }
+  .post__hero-wrap--poster {
+    max-height: none;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+    background: radial-gradient(ellipse at center, rgba(40,20,20,0.5) 0%, var(--color-base) 70%);
+  }
+  .post__hero-poster {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   }
 
   /* Layout */
@@ -197,13 +238,17 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     margin: 0;
   }
 
-  /* Meta: category, date, tags */
-  .post__meta {
+  /* Meta: category + date row, tags row */
+  .post__meta-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .post__tags-row {
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 8px;
   }
   .post__category {
@@ -315,7 +360,7 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
   }
 
   /* Footer */
-  .post__footer { text-align: center; }
+  .post__footer { text-align: center; margin: 40px 0; }
 
   @media (max-width: 544px) {
     .post__hero { height: 260px; }

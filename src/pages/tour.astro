@@ -14,8 +14,20 @@ const posts = filterByLocale(await getCollection('blog'), 'it')
   .filter(p => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-const current = posts.find(p => p.data.stages && p.data.stages.length > 0 && !p.data.stages.every(s => s.status === 'completed'));
+const current = posts[0];
 const pastEditions = posts.filter(p => p !== current);
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const stages = current?.data.stages || [];
+const computedStatuses = stages.map(s => {
+  if (s.status === 'cancelled') return 'cancelled';
+  const d = new Date(s.date); d.setHours(0, 0, 0, 0);
+  return d < today ? 'completed' : 'future';
+});
+const allCompleted = computedStatuses.length > 0 && computedStatuses.filter(s => s !== 'cancelled').every(s => s === 'completed');
+const allFuture = computedStatuses.length > 0 && computedStatuses.filter(s => s !== 'cancelled').every(s => s === 'future');
+const tourStatus = computedStatuses.length > 0 ? (allCompleted ? 'past' : allFuture ? 'upcoming' : 'live') : null;
 ---
 <Base title={page.title.it} description={page.description.it}>
   <PageHero title={page.title.it} image={page.headerImage} />
@@ -33,7 +45,7 @@ const pastEditions = posts.filter(p => p !== current);
       <div class="container container--narrow">
         <div class="edition-header">
           <h2 class="edition-title">{current.data.title}</h2>
-          <span class="edition-label-tag">{t.tour.ongoing_label}</span>
+          {tourStatus && <span class="edition-label-tag">{tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}</span>}
         </div>
         <TourEdition post={current} />
       </div>
@@ -47,7 +59,7 @@ const pastEditions = posts.filter(p => p !== current);
         <div class="editions-list">
           {pastEditions.map(post => (
             <a href={`/tour/${post.slug}/`} class="edition-card">
-              <span class="edition-year">{new Date(post.data.date).getFullYear()}</span>
+              <span class="edition-year">{post.slug.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
               {post.data.stages && post.data.stages.length > 0 && (() => {
                 const stg = post.data.stages!;
                 const citiesCount = new Set(stg.flatMap(s => s.cities)).size;

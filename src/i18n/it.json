@@ -107,9 +107,12 @@
     "next": "Successiva",
     "page_info": "Pagina %current% di %last%"
   },
+  "status": {
+    "upcoming": "In programma",
+    "live": "In corso",
+    "past": "Concluso"
+  },
   "post": {
-    "tour_finished": "Concluso",
-    "tour_ongoing": "In corso",
     "gallery": "Galleria",
     "photo": "foto"
   },
@@ -124,10 +127,30 @@
     "news_title": "Notizie dal Principato",
     "no_news": "Nessuna novità al momento."
   },
+  "gp": {
+    "archive": "Archivio",
+    "links_label": "Link utili",
+    "venue_label": "Sede",
+    "program_label": "Programma",
+    "registration_label": "Iscrizione",
+    "contact_label": "Contatti",
+    "time_prefix": "ore",
+    "pricing_label": "Costi",
+    "early_col": "Entro il",
+    "regular_col": "Dopo il",
+    "payment_label": "Pagamento",
+    "hotel_label": "Hotel",
+    "prizes_label": "Premi",
+    "notes_label": "Note",
+    "standings_label": "Classifica",
+    "standings_player": "Giocatore",
+    "winner_label": "Vincitore",
+    "players_label": "giocatori"
+  },
   "tour": {
     "stages_label": "Le tappe",
     "stage_item": "Tappa",
-    "status_completed": "Completata",
+    "status_completed": "Conclusa",
     "status_upcoming": "Prossima",
     "status_future": "In programma",
     "status_cancelled": "Annullata",
@@ -137,7 +160,6 @@
     "rules": "Regolamento",
     "standings": "Classifica",
     "past_editions": "Edizioni passate",
-    "ongoing_label": "In corso",
     "archive": "Archivio",
     "stages_unit": "tappe",
     "cities_unit": "città"

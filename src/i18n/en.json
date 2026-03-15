@@ -113,9 +113,12 @@
     "next": "Next",
     "page_info": "Page %current% of %last%"
   },
+  "status": {
+    "upcoming": "Scheduled",
+    "live": "Ongoing",
+    "past": "Finished"
+  },
   "post": {
-    "tour_finished": "Finished",
-    "tour_ongoing": "Ongoing",
     "gallery": "Gallery",
     "photo": "photo"
   },
@@ -130,6 +133,26 @@
     "news_title": "News from the Domain",
     "no_news": "No news at the moment."
   },
+  "gp": {
+    "archive": "Archive",
+    "links_label": "Useful links",
+    "venue_label": "Venue",
+    "program_label": "Program",
+    "registration_label": "Registration",
+    "contact_label": "Contact",
+    "time_prefix": "at",
+    "pricing_label": "Pricing",
+    "early_col": "Before",
+    "regular_col": "After",
+    "payment_label": "Payment",
+    "hotel_label": "Hotel",
+    "prizes_label": "Prizes",
+    "notes_label": "Notes",
+    "standings_label": "Standings",
+    "standings_player": "Player",
+    "winner_label": "Winner",
+    "players_label": "players"
+  },
   "tour": {
     "stages_label": "The stages",
     "stage_item": "Stage",
@@ -143,7 +166,6 @@
     "rules": "Rules",
     "standings": "Standings",
     "past_editions": "Past editions",
-    "ongoing_label": "Ongoing",
     "archive": "Archive",
     "stages_unit": "stages",
     "cities_unit": "cities"

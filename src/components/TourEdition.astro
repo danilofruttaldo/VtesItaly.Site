@@ -23,7 +23,8 @@ const computedStages = stages.map(s => {
   if (s.status === 'cancelled') return s;
   const stageDate = new Date(s.date);
   stageDate.setHours(0, 0, 0, 0);
-  return { ...s, status: stageDate < today ? 'completed' : 'future' };
+  const status = stageDate.getTime() === today.getTime() ? 'upcoming' : stageDate < today ? 'completed' : 'future';
+  return { ...s, status };
 });
 // Mark first future as upcoming
 const firstFuture = computedStages.findIndex(s => s.status === 'future');
@@ -259,7 +260,7 @@ function formatDate(date: Date): string {
     display: inline-block; margin-left: auto; font-size: 0.6rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: var(--radius);
   }
-  .te-badge--completed { color: #4ade80; background: rgba(74,222,128,0.12); }
+  .te-badge--completed { color: var(--color-muted); background: rgba(155,155,155,0.08); }
   .te-badge--upcoming { color: var(--color-gold); background: rgba(201,168,76,0.15); }
   .te-badge--future { color: var(--color-muted); background: rgba(155,155,155,0.08); }
   .te-badge--cancelled { color: var(--color-accent-1); background: rgba(139,26,43,0.12); }

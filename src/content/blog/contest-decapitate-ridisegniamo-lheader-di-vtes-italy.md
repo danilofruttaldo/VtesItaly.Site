@@ -24,6 +24,7 @@ notes:
 links:
   - label: "Partecipa"
     url: "https://forms.gle/JmC581Jy13Y9Bq837"
+locale: it
 ---
 
 ---

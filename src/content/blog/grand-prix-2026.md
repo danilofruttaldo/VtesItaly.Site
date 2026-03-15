@@ -53,6 +53,7 @@ links:
   - label: "Infopack (PDF)"
     url: "/gp/gp-2026/infopack-gp-2026-en.pdf"
     locale: en
+locale: it
 ---
 
 La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, **Card Game Geek** e **Mistlore**, è felice di annunciare il **GP 2026**!

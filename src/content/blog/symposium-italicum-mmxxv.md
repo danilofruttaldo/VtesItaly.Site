@@ -47,6 +47,7 @@ notes:
 links:
   - label: "Iscrizione"
     url: "https://docs.google.com/forms/d/e/1FAIpQLScfE33u75H7woUdxFXBJFIbi1fLWMC611Vox2BCWJLb5dAwIg/viewform"
+locale: it
 ---
 
 Garfaludica sarà presente con tavoli da gioco dedicati a tutti gli accompagnatori, bambini e non! Mistlore sarà presente per tutta la durata dell'evento con i prodotti Black Chantry. Kraken Nest sarà presente come le scorse edizioni con il loro "banchetto" di carte sfuse! The Pot Still gestirà un punto ristoro dove potersi idratare, con stile, per tutta la durata dell'evento!

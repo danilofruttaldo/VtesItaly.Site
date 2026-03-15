@@ -58,6 +58,7 @@ gallerySections:
       - "/gp/gp-2024/gp-2024-bonus-02.webp"
       - "/gp/gp-2024/gp-2024-bonus-03.webp"
       - "/gp/gp-2024/gp-2024-bonus-04.webp"
+locale: it
 ---
 
 La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, è felice di presentare il **GP 2024** a **Milano**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

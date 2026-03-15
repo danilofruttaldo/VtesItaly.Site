@@ -24,6 +24,7 @@ registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 standingsUrl: "/gp/gp-2023/standings-gp-2023.json"
 links: []
+locale: it
 ---
 
 La **Comunità Italiana di V:TES** è felice di presentare il **GP 2023** a **Bologna**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

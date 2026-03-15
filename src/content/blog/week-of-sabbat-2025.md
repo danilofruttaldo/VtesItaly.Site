@@ -20,6 +20,7 @@ linksAfter:
   - label: "Event report template (PDF)"
     url: "/ev/wos-2025/report-wos-2025-en.pdf"
     locale: en
+locale: it
 ---
 
 La nuova espansione Sabbat segna un momento speciale: **l'Italia intera si unisce** per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città. Non è solo una competizione, ma una settimana di **incontro, scoperta e divertimento condiviso**, in puro spirito cainita.

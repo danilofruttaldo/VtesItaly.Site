@@ -25,6 +25,7 @@ standingsUrl: "/nc/nc-2024/standings-nc-2024.json"
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
+locale: it
 ---
 
 Il **Campionato Nazionale Italiano VTES 2024** si terrà **sabato 27 aprile** presso l'**Hotel Paoli** a **Caldonazzo (TN)**, immerso nel cuore del Trentino.

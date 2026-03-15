@@ -6,21 +6,16 @@ import { mainPages } from '../../data/pages';
 import { useTranslations } from '../../utils/i18n';
 
 const page = mainPages.find(p => p.slug.it === 'gemelli')!;
+import { twins as twinsData } from '../../data/twins';
 const t = useTranslations('en');
-const twins = [
-  { card: 'Maila', person: 'Maila Nurmi', image: '/images/gemelli/maila-nurmi.webp', description: 'Camarilla primogen inspired by the horror cinema icon. Same pose, same magnetic gaze.' },
-  { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'The Tremere witch irresistibly recalls Willow from Buffy. Same red hair, same mystic power.' },
-  { card: 'Lady Zara Slatikov', person: 'Carrie-Anne Moss', image: '/images/gemelli/carrie-anne-moss.webp', description: 'The gothic charm of the Sabbat bishop recalls Trinity from The Matrix. Dark elegance and lethal determination.' },
-  { card: 'Sir Walter Nash', person: 'Donald Trump (1980s)', image: '/images/gemelli/donald-trump.webp', description: 'The Prince of Chicago resembles the famous New York entrepreneur in his prime years. Coincidence?' },
-  { card: 'Ira Rivers', person: 'Dwayne "The Rock" Johnson', image: '/images/gemelli/dwayne-johnson.webp', description: 'The Prince of Dallas has the same imposing physique and intense gaze of the famous wrestler-actor.' },
-  { card: 'Monica Giovanni', person: 'Giorgia Meloni', image: '/images/gemelli/giorgia-meloni.webp', description: 'Icy touch and austere elegance of the independent vampire reflect Italy\'s prominent politician.' },
-  { card: 'Izhim abd Azrael', person: 'Kurt Cobain', image: '/images/gemelli/kurt-cobain.webp', description: 'The tormented Seraph of the Black Hand recalls the Nirvana frontman. Same lost gaze, same intensity.' },
-  { card: 'Horst von Bruhl', person: 'Massimo Boldi', image: '/images/gemelli/massimo-boldi.webp', description: 'The Prince of Mannheim vs the king of Italian comedy. The resemblance is surprising.' },
-  { card: 'Massimiliano', person: 'Max Cavalera', image: '/images/gemelli/max-cavalera.webp', description: 'The anarchic Baron has the face and rebellious spirit of the Sepultura/Soulfly frontman.' },
-  { card: 'Madeleine Giovanni', person: 'Valentina Nappi', image: '/images/gemelli/valentina-nappi.webp', description: 'Dark sunglasses and confident bearing of the independent vampire recall a famous glamour shoot.' },
-];
+const twins = twinsData.map(tw => ({
+  card: tw.card,
+  person: tw.person.en,
+  image: tw.image,
+  description: tw.description.en,
+}));
 ---
-<Base title={page.title.en} description={page.description.en}>
+<Base title={page.title.en} description={page.description.en} ogImage={page.headerImage}>
   <PageHero title={page.title.en} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="lead">{t.twins.lead}</p>

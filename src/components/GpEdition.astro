@@ -1,7 +1,9 @@
 ---
+import '../styles/prose.css';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
+import { resolvePlatformLabel } from '../utils/status';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -18,9 +20,7 @@ const isPast = eventDate < new Date();
 const statusLabel = isPast ? t.gp.results_label : t.gp.registration_label;
 const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale).map(l => ({
   ...l,
-  label: l.url.includes('bcncrisis') ? 'BCN Crisis'
-       : l.url.includes('archon') ? 'Archon'
-       : l.label,
+  label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
 }));
 
 // Build gallery (exclude poster)
@@ -129,7 +129,7 @@ const hasFvp = standings.some(s => s.fvp != null);
           <div>{h.room}: <strong>{h.price}</strong></div>
         ))}
         {post.data.hotelNote && (
-          <div class="gp-muted" style="margin-top:6px">{post.data.hotelNote}</div>
+          <div class="gp-muted gp-hotel-note">{post.data.hotelNote}</div>
         )}
       </div>
     </div>
@@ -154,7 +154,7 @@ const hasFvp = standings.some(s => s.fvp != null);
         {post.data.events.some(ev => ev.archonUrl) && (
           <div class="gp-archon-links">
             {post.data.events.filter(ev => ev.archonUrl).map(ev => {
-              const platform = ev.archonUrl!.includes('bcncrisis') ? 'BCN Crisis' : 'Archon';
+              const platform = resolvePlatformLabel(ev.archonUrl!);
               const hasMultiple = post.data.events.filter(e => e.archonUrl).length > 1;
               return (
               <a href={ev.archonUrl} target="_blank" rel="noopener noreferrer" class="gp-link-btn">
@@ -263,6 +263,7 @@ const hasFvp = standings.some(s => s.fvp != null);
     <h2 class="gp-standings-title">{t.gp.standings_label}</h2>
     <div class="gp-standings-wrap">
       <table class="gp-standings-table">
+        <caption class="sr-only">{t.gp.standings_label}</caption>
         <thead>
           <tr>
             <th class="tc">#</th>
@@ -311,26 +312,6 @@ const hasFvp = standings.some(s => s.fvp != null);
   /* Prose */
   .gp-excerpt { font-size: 0.95rem; line-height: 1.7; color: var(--color-text); margin-bottom: 24px; text-align: justify; }
   .gp-content { margin-bottom: 28px; }
-  .prose :global(p) { line-height: 1.7; margin-bottom: 16px; text-align: justify; }
-  .prose :global(h1) { font-size: clamp(1.4rem, 4vw, 2rem); margin: 32px 0 16px; }
-  .prose :global(h2) { font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin: 28px 0 12px; }
-  .prose :global(h3) { font-size: clamp(1rem, 3vw, 1.2rem); margin: 24px 0 8px; }
-  .prose :global(ul), .prose :global(ol) { padding-left: 20px; margin-bottom: 16px; }
-  .prose :global(li) { margin-bottom: 6px; line-height: 1.6; }
-  .prose :global(blockquote) {
-    border-left: 3px solid var(--color-gold); padding-left: 16px;
-    color: var(--color-muted); font-style: italic; margin: 16px 0;
-  }
-  .prose :global(hr) { border: none; border-top: 1px solid rgba(139,26,43,0.15); margin: 24px 0; }
-  .prose :global(img) { max-width: 100%; border-radius: var(--radius); margin: 16px 0; }
-  .prose :global(a) { color: var(--color-accent-1); }
-  .prose :global(a:hover) { color: var(--color-accent-2); }
-  .prose :global(strong) { font-weight: 600; }
-  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; }
-  .prose :global(th), .prose :global(td) {
-    padding: 8px 12px; border: 1px solid var(--color-border); text-align: left;
-  }
-  .prose :global(th) { font-weight: 600; background-color: var(--color-surface); }
 
   /* Info block */
   .gp-info {
@@ -369,6 +350,7 @@ const hasFvp = standings.some(s => s.fvp != null);
   .gp-event:last-child { margin-bottom: 0; }
   .gp-link-btn--inline { margin-top: 6px; font-size: 0.75rem; padding: 4px 12px; }
   .gp-muted { font-size: 0.75rem; color: var(--color-muted); }
+  .gp-hotel-note { margin-top: 6px; }
   .gp-table {
     width: 100%;
     border-collapse: collapse;

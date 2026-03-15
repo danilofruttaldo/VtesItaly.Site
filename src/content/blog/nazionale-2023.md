@@ -38,6 +38,7 @@ links:
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
+locale: it
 ---
 
 Il **Campionato Nazionale Italiano VTES 2023** si terrà **domenica 30 aprile** a **Bologna**, crocevia perfetto per i Methuselah di tutta la penisola.

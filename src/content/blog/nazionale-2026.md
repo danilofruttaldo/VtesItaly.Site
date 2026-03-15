@@ -100,6 +100,7 @@ notes:
   - "Sala disponibile per tutto il weekend. Possibilità di mangiare in struttura a tariffa agevolata."
   - "Giochi da tavolo e in legno disponibili grazie all'Associazione Asgard Aldeno."
   - "Referente logistica: Giulio De Cicco. Referente ludico: Miro Albertazzi (National Coordinator)."
+locale: it
 ---
 
 Il **Campionato Nazionale Italiano VTES 2026** si terrà nel weekend dal **27 febbraio al 1 marzo** a **Caldonazzo (TN)**, presso l'**Hotel Paoli**, immerso nel cuore del Trentino.

@@ -1,5 +1,13 @@
 import type { Locale } from '../utils/i18n';
 
+/** Labels for post type tags (torneo, lega, etc.) */
+export const typeTagLabels: Record<string, Record<Locale, string>> = {
+  contest: { it: 'Contest', en: 'Contest' },
+  torneo: { it: 'Torneo', en: 'Tournament' },
+  lega: { it: 'Lega', en: 'League' },
+  prerelease: { it: 'Prerelease', en: 'Prerelease' },
+};
+
 export const categoryLabels: Record<string, Record<Locale, string>> = {
   'comunita': { it: 'Comunità', en: 'Community' },
   'tour': { it: 'Tour', en: 'Tour' },

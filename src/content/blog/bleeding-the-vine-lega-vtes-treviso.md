@@ -83,6 +83,7 @@ standingsUrl: "standings-bleeding-the-vine-2025"
 links:
   - label: "Lega"
     url: "https://is.gd/qUKfeT"
+locale: it
 ---
 
 La prima lega di *Vampire: The Eternal Struggle* a Treviso accoglie volti nuovi e antiche ambizioni. Tra colpi bassi e grandi giocate, si forgiano alleanze, si spezzano legami e si costruisce una nuova tradizione non-morta.

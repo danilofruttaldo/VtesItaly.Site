@@ -85,6 +85,7 @@ gallerySections:
       - "/gp/gp-2025/gp-2025-bonus-04.webp"
       - "/gp/gp-2025/gp-2025-bonus-05.webp"
       - "/gp/gp-2025/gp-2025-bonus-06.webp"
+locale: it
 ---
 
 La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, **Kraken Nest**, **Card Game Geek** e **Mistlore**, è felice di presentare il **GP 2025** a **Modena** presso l'**Hotel Baia del Re**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

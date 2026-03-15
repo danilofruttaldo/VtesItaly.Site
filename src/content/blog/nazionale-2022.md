@@ -30,6 +30,7 @@ playersCount: 40
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
+locale: it
 ---
 
 Il **Campionato Nazionale Italiano VTES 2022** si terrà **sabato 15 ottobre** presso il **Circolo Barbanera** a **Bologna**, l'appuntamento annuale più atteso dalla community italiana.

@@ -36,6 +36,7 @@ links:
     url: "https://forms.gle/UtbzKoqJzbGvVW4A8"
   - label: "Torneo"
     url: "https://is.gd/CuDSbU"
+locale: it
 ---
 
 La Comunità Italiana di *Vampire: The Eternal Struggle* con il supporto di **Mistlore** ha il piacere di presentare **Taste of Spritzae**, il torneo di inaugurazione del nuovo **Principato di Treviso**.

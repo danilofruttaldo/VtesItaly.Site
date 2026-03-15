@@ -6,21 +6,16 @@ import { mainPages } from '../data/pages';
 import { useTranslations } from '../utils/i18n';
 
 const page = mainPages.find(p => p.slug.it === 'gemelli')!;
+import { twins as twinsData } from '../data/twins';
 const t = useTranslations('it');
-const twins = [
-  { card: 'Maila', person: 'Maila Nurmi', image: '/images/gemelli/maila-nurmi.webp', description: 'Primogena della Camarilla ispirata all\'icona del cinema horror. Stessa posa, stesso sguardo magnetico.' },
-  { card: 'Carna, The Princess Witch', person: 'Alyson Hannigan', image: '/images/gemelli/alyson-hannigan.webp', description: 'La strega Tremere ricorda irresistibilmente Willow di Buffy. Stessi capelli rossi, stesso potere mistico.' },
-  { card: 'Lady Zara Slatikov', person: 'Carrie-Anne Moss', image: '/images/gemelli/carrie-anne-moss.webp', description: 'Il fascino gotico del vescovo Sabbat richiama Trinity di Matrix. Eleganza oscura e determinazione letale.' },
-  { card: 'Sir Walter Nash', person: 'Donald Trump (anni \'80)', image: '/images/gemelli/donald-trump.webp', description: 'Il Principe di Chicago somiglia al celebre imprenditore newyorkese nei suoi anni d\'oro. Coincidenza?' },
-  { card: 'Ira Rivers', person: 'Dwayne "The Rock" Johnson', image: '/images/gemelli/dwayne-johnson.webp', description: 'Il Principe di Dallas ha lo stesso fisico imponente e lo sguardo intenso del celebre wrestler-attore.' },
-  { card: 'Monica Giovanni', person: 'Giorgia Meloni', image: '/images/gemelli/giorgia-meloni.webp', description: 'Tocco gelido ed eleganza austera del vampiro indipendente richiamano la nota politica italiana.' },
-  { card: 'Izhim abd Azrael', person: 'Kurt Cobain', image: '/images/gemelli/kurt-cobain.webp', description: 'Il tormentato Serafino della Mano Nera ricorda il frontman dei Nirvana. Stesso sguardo perso, stessa intensità.' },
-  { card: 'Horst von Bruhl', person: 'Massimo Boldi', image: '/images/gemelli/massimo-boldi.webp', description: 'Il Principe di Mannheim vs il re della commedia italiana. La somiglianza è sorprendente.' },
-  { card: 'Massimiliano', person: 'Max Cavalera', image: '/images/gemelli/max-cavalera.webp', description: 'Il barone anarchico ha il volto e lo spirito ribelle del frontman di Sepultura/Soulfly.' },
-  { card: 'Madeleine Giovanni', person: 'Valentina Nappi', image: '/images/gemelli/valentina-nappi.webp', description: 'Occhiali scuri e portamento sicuro del vampiro indipendente ricordano un celebre scatto glamour.' },
-];
+const twins = twinsData.map(tw => ({
+  card: tw.card,
+  person: tw.person.it,
+  image: tw.image,
+  description: tw.description.it,
+}));
 ---
-<Base title={page.title.it} description={page.description.it}>
+<Base title={page.title.it} description={page.description.it} ogImage={page.headerImage}>
   <PageHero title={page.title.it} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="lead">{t.twins.lead}</p>

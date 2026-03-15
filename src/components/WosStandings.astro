@@ -27,32 +27,11 @@ interface Props {
   locale?: 'it' | 'en';
 }
 
+import { useTranslations } from '../utils/i18n';
+
 const { dataUrl, locale = 'it' } = Astro.props;
 
-const t = {
-  it: {
-    pathsTitle: 'Classifica Sentieri',
-    nationalTitle: 'Classifica Nazionale',
-    localTitle: 'Classifiche Locali',
-    city: 'Principato',
-    winnerPath: 'Sentiero vincitore',
-    path: 'Path',
-    players: 'Giocatori',
-    points: 'Punti',
-    noData: 'Nessun risultato disponibile',
-  },
-  en: {
-    pathsTitle: 'Path Standings',
-    nationalTitle: 'National Standings',
-    localTitle: 'Local Standings',
-    city: 'Domain',
-    winnerPath: 'Winning Path',
-    path: 'Path',
-    players: 'Players',
-    points: 'Points',
-    noData: 'No results available',
-  },
-}[locale];
+const t = useTranslations(locale).wos;
 
 const allData = import.meta.glob('/src/data/standings/ev/standings-wos-*.json', { eager: true }) as Record<string, { default: WosData }>;
 const key = Object.keys(allData).find(k => k.includes(dataUrl.replace(/^.*\//, '')));
@@ -82,7 +61,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
   <section class="wos-standings">
     {/* Path standings */}
     <div class="wos-paths">
-      <h3 class="wos-subtitle">{t.pathsTitle}</h3>
+      <h3 class="wos-subtitle">{t.paths_title}</h3>
       <div class="wos-paths-grid">
         {data.paths.map((p, i) => (
           <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
@@ -100,13 +79,14 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
     </div>
 
     {/* Classifica Nazionale */}
-    <h3 class="wos-subtitle">{t.nationalTitle}</h3>
+    <h3 class="wos-subtitle">{t.national_title}</h3>
     <div class="wos-nazionale">
       <table class="wos-table">
+        <caption class="sr-only">{t.national_title}</caption>
         <thead>
           <tr>
             <th>{t.city}</th>
-            <th>{t.winnerPath}</th>
+            <th>{t.winner_path}</th>
           </tr>
         </thead>
         <tbody>
@@ -121,14 +101,18 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
     </div>
 
     {/* Classifiche Locali */}
-    <h3 class="wos-subtitle">{t.localTitle}</h3>
+    <h3 class="wos-subtitle">{t.local_title}</h3>
     <div class="wos-tabs" id="wos-tabs">
-      <div class="wos-tab-bar">
+      <div class="wos-tab-bar" role="tablist" aria-label={t.local_title}>
         {cityTabs.map((tab, i) => (
           <button
             class:list={['wos-tab-btn', i === 0 && 'is-active']}
             data-tab={tab.id}
             type="button"
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`wos-panel-${tab.id}`}
+            id={`wos-tab-${tab.id}`}
           >{tab.label}</button>
         ))}
       </div>
@@ -136,9 +120,10 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
       {Object.entries(data.cities).map(([cityName, players], i) => {
         const tabId = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
         return (
-          <div class:list={['wos-tab-panel', i === 0 && 'is-active']} data-panel={tabId}>
+          <div class:list={['wos-tab-panel', i === 0 && 'is-active']} data-panel={tabId} role="tabpanel" id={`wos-panel-${tabId}`} aria-labelledby={`wos-tab-${tabId}`}>
             {players.length > 0 ? (
               <table class="wos-table">
+                <caption class="sr-only">{cityName}</caption>
                 <thead>
                   <tr>
                     <th class="tc">#</th>
@@ -163,7 +148,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
                 </tbody>
               </table>
             ) : (
-              <p class="wos-no-data">{t.noData}</p>
+              <p class="wos-no-data">{t.no_data}</p>
             )}
           </div>
         );
@@ -340,15 +325,35 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
   document.addEventListener('DOMContentLoaded', function() {
     var container = document.getElementById('wos-tabs');
     if (!container) return;
-    var btns = container.querySelectorAll('.wos-tab-btn');
+    var btns = Array.from(container.querySelectorAll('.wos-tab-btn'));
     var panels = container.querySelectorAll('.wos-tab-panel');
+
+    function activateTab(btn) {
+      btns.forEach(function(b) {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(function(p) { p.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-selected', 'true');
+      var panel = container.querySelector('[data-panel="' + btn.dataset.tab + '"]');
+      if (panel) panel.classList.add('is-active');
+    }
+
     btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        btns.forEach(function(b) { b.classList.remove('is-active'); });
-        panels.forEach(function(p) { p.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-        var panel = container.querySelector('[data-panel="' + btn.dataset.tab + '"]');
-        if (panel) panel.classList.add('is-active');
+      btn.addEventListener('click', function() { activateTab(btn); });
+      btn.addEventListener('keydown', function(e) {
+        var idx = btns.indexOf(btn);
+        var next = -1;
+        if (e.key === 'ArrowRight') next = (idx + 1) % btns.length;
+        else if (e.key === 'ArrowLeft') next = (idx - 1 + btns.length) % btns.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = btns.length - 1;
+        if (next >= 0) {
+          e.preventDefault();
+          btns[next].focus();
+          activateTab(btns[next]);
+        }
       });
     });
   });

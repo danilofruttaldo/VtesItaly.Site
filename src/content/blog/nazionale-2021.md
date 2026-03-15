@@ -17,6 +17,7 @@ events:
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
+locale: it
 ---
 
 Il **Campionato Nazionale Italiano VTES 2021** si terrà **sabato 8 gennaio 2022** presso il **Circolo Arci Benassi** a **Bologna**, l'appuntamento annuale più atteso dalla community italiana.

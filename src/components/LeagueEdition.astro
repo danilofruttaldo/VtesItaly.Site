@@ -1,7 +1,9 @@
 ---
+import '../styles/prose.css';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
+import { resolvePlatformLabel } from '../utils/status';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -15,7 +17,7 @@ const { Content } = await post.render();
 // Links (same pattern as GpEdition)
 const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale).map(l => ({
   ...l,
-  label: l.url.includes('bcncrisis') ? 'BCN Crisis' : l.url.includes('archon') ? 'Archon' : l.label,
+  label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
 }));
 
 // Gallery (same pattern as GpEdition)
@@ -198,6 +200,7 @@ function fmt(n: number): string { return n % 1 === 0 ? String(n) : n.toFixed(2).
     <h2 class="le-section-title">{t.league.standings_label}</h2>
     <div class="le-standings-wrap">
       <table class="le-standings-table">
+        <caption class="sr-only">{t.league.standings_label}</caption>
         <thead>
           <tr>
             <th class="tc">#</th>
@@ -272,11 +275,6 @@ function fmt(n: number): string { return n % 1 === 0 ? String(n) : n.toFixed(2).
 
   /* Prose */
   .le-content { margin-bottom: 28px; }
-  .prose :global(p) { line-height: 1.7; margin-bottom: 16px; text-align: justify; }
-  .prose :global(h2) { font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin: 28px 0 12px; }
-  .prose :global(strong) { font-weight: 600; }
-  .prose :global(a) { color: var(--color-accent-1); }
-  .prose :global(a:hover) { color: var(--color-accent-2); }
 
   /* Stats bar */
   .le-stats {

@@ -6,99 +6,15 @@ import { mainPages } from '../data/pages';
 import { useTranslations } from '../utils/i18n';
 
 const page = mainPages.find(p => p.slug.it === 'cartoline')!;
+import { postcardGalleries } from '../data/postcards';
 const t = useTranslations('it');
-const galleries = [
-  {
-    title: 'Nazionale 2026',
-    subtitle: 'Trento, Febbraio 2026',
-    images: [
-      { src: '/images/carte/library-brothers-grimm.webp', alt: 'Brothers Grimm' },
-      { src: '/images/carte/library-derange.webp', alt: 'Derange' },
-      { src: '/images/carte/library-guard-dogs.webp', alt: 'Guard Dogs' },
-      { src: '/images/carte/library-concert-tour.webp', alt: 'Concert Tour' },
-    ],
-  },
-  {
-    title: 'Week of Sabbat',
-    subtitle: 'Italia, Ottobre 2025',
-    images: [
-      { src: '/images/carte/crypt-crossbreaker.webp', alt: 'Crossbreaker' },
-      { src: '/images/carte/library-dia-de-los-muertos.webp', alt: 'Dia de los Muertos' },
-      { src: '/images/carte/library-fiorella-empty-one.webp', alt: 'Fiorella, Empty One' },
-    ],
-  },
-  {
-    title: 'Iubilaeum Sabbaticum',
-    subtitle: 'Roma, Ottobre 2025',
-    images: [
-      { src: '/images/carte/library-on-the-qui-vive.webp', alt: 'On the Qui Vive' },
-      { src: '/images/carte/library-organized-resistance.webp', alt: 'Organized Resistance' },
-    ],
-  },
-  {
-    title: 'Symposium Italicum MMXXV',
-    subtitle: 'Barga, Agosto 2025',
-    images: [
-      { src: '/images/carte/library-canine-horde.webp', alt: 'Canine Horde' },
-      { src: '/images/carte/library-coordinate-attacks.webp', alt: 'Coordinate Attacks' },
-      { src: '/images/carte/library-pack-alpha.webp', alt: 'Pack Alpha' },
-      { src: '/images/carte/library-hidden-lurker.webp', alt: 'Hidden Lurker' },
-    ],
-  },
-  {
-    title: 'Concilio di Pergine',
-    subtitle: 'Trento, Giugno 2025',
-    images: [
-      { src: '/images/carte/crypt-anneke.webp', alt: 'Anneke' },
-      { src: '/images/carte/library-filchware-pawn-shop.webp', alt: 'Filchware Pawn Shop' },
-      { src: '/images/carte/crypt-danylo.webp', alt: 'Danylo' },
-      { src: '/images/carte/crypt-gavrylo.webp', alt: 'Gavrylo' },
-      { src: '/images/carte/crypt-kyrylo.webp', alt: 'Kyrylo' },
-      { src: '/images/carte/crypt-pavlo.webp', alt: 'Pavlo' },
-      { src: '/images/carte/crypt-volo.webp', alt: 'Volo' },
-      { src: '/images/carte/crypt-angelo.webp', alt: 'Angelo' },
-    ],
-  },
-  {
-    title: 'Truth in Darkness',
-    subtitle: 'Firenze, Maggio 2025',
-    images: [
-      { src: '/images/carte/library-quicksilver-contemplation.webp', alt: 'Quicksilver Contemplation' },
-    ],
-  },
-  {
-    title: 'Nazionale 2025',
-    subtitle: 'Pordenone, Aprile 2025',
-    images: [
-      { src: '/images/carte/library-frico-drive.webp', alt: 'Frico Drive' },
-      { src: '/images/carte/library-walk-of-caine.webp', alt: 'Walk of Caine' },
-    ],
-  },
-  {
-    title: 'Grand Prix 2025',
-    subtitle: 'Modena, Marzo 2025',
-    images: [
-      { src: '/images/carte/library-seduction.webp', alt: 'Seduction' },
-    ],
-  },
-  {
-    title: 'Fee Stake: Florence',
-    subtitle: 'Firenze, Febbraio 2025',
-    images: [
-      { src: '/images/carte/library-dual-form-1.webp', alt: 'Dual Form' },
-      { src: '/images/carte/library-dual-form-4.webp', alt: 'Dual Form' },
-    ],
-  },
-  {
-    title: 'Grand Prix 2024',
-    subtitle: 'Milano, Dicembre 2023',
-    images: [
-      { src: '/images/carte/library-mind-rape.webp', alt: 'Mind Rape' },
-    ],
-  },
-];
+const galleries = postcardGalleries.map(g => ({
+  title: g.title.it,
+  subtitle: g.subtitle.it,
+  images: g.images,
+}));
 ---
-<Base title={page.title.it} description={page.description.it}>
+<Base title={page.title.it} description={page.description.it} ogImage={page.headerImage}>
   <PageHero title={page.title.it} image={page.headerImage} />
   <section class="section"><div class="container container--narrow">
     <p class="tagline">{t.postcards.tagline}</p>

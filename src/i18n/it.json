@@ -199,5 +199,16 @@
     "standings_label": "Classifica finale",
     "standings_player": "Nome",
     "top_lists_title": "Statistiche"
+  },
+  "wos": {
+    "paths_title": "Classifica Sentieri",
+    "national_title": "Classifica Nazionale",
+    "local_title": "Classifiche Locali",
+    "city": "Principato",
+    "winner_path": "Sentiero vincitore",
+    "path": "Path",
+    "players": "Giocatori",
+    "points": "Punti",
+    "no_data": "Nessun risultato disponibile"
   }
 }

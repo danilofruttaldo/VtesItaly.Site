@@ -205,5 +205,16 @@
     "standings_label": "Final standings",
     "standings_player": "Name",
     "top_lists_title": "Statistics"
+  },
+  "wos": {
+    "paths_title": "Path Standings",
+    "national_title": "National Standings",
+    "local_title": "Local Standings",
+    "city": "Domain",
+    "winner_path": "Winning Path",
+    "path": "Path",
+    "players": "Players",
+    "points": "Points",
+    "no_data": "No results available"
   }
 }

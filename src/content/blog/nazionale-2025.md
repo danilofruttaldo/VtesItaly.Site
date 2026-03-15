@@ -75,6 +75,7 @@ links:
 notes:
   - "Possibilità di pernottamento e pasti in loco presso la tenuta Gelindo dei Magredi."
   - "Contattare direttamente la struttura per prenotare."
+locale: it
 ---
 
 Il **Campionato Nazionale Italiano VTES 2025** si terrà **sabato 12 aprile** presso la **suggestiva tenuta Gelindo dei Magredi** a **Vivaro (PN)**, immersa nella campagna friulana, con possibilità di pernottamento e pasti in loco.

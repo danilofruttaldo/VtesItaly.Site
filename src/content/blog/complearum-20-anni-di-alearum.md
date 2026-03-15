@@ -21,6 +21,7 @@ playersCount: 25
 links:
   - label: "Evento su BCN Crisis"
     url: "http://bcncrisis.com/tournament/574"
+locale: it
 ---
 
 Per celebrare i 20 anni di attività della nostra associazione ricreativa, 25 Metuselah si raduneranno per darsi battaglia in una sfida senza tempo. Sarà un evento speciale, ricco di tensione e colpi di scena, dove ogni giocatore avrà l'occasione di lasciare il segno… o cadere sotto i colpi dei propri rivali.

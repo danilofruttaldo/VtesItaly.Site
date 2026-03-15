@@ -11,11 +11,12 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
-const { title, description = t.default_description, ogImage = '/images/headers/header-home.webp' } = Astro.props;
+const { title, description = t.default_description, ogImage = '/images/headers/header-home.webp', noindex = false } = Astro.props;
 const otherLocales = getOtherLocales(locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -29,6 +30,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
     <title>{title} | VTES Italy</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!-- Canonical & hreflang -->
     <link rel="canonical" href={canonicalUrl.href} />

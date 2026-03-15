@@ -20,6 +20,7 @@ playersCount: 39
 links:
   - label: "BCN Crisis"
     url: "http://bcncrisis.com/tournament/546"
+locale: it
 ---
 
 Asgard Aldeno è lieta di invitarvi all'evento Nazionale del gioco di carte di V:TES.

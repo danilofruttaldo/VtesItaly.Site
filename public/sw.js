@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vtesitaly-v2';
+const CACHE_NAME = 'vtesitaly-v3';
 
 const PRECACHE = [
   '/',

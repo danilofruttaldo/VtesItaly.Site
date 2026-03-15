@@ -1,8 +1,10 @@
 ---
+import '../styles/prose.css';
 import type { CollectionEntry } from 'astro:content';
 import { cities } from '../data/cities';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, localePrefix, formatLocalDate } from '../utils/i18n';
+import { resolvePlatformLabel } from '../utils/status';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -117,7 +119,7 @@ function formatDate(date: Date): string {
                 </div>
                 {stage.archonUrl ? (
                   <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['te-cta', `te-cta--${stage.status}`]}>
-                    {stage.archonUrl.includes('bcncrisis') ? 'BCN Crisis' : 'Archon'} &rarr;
+                    {resolvePlatformLabel(stage.archonUrl)} &rarr;
                   </a>
                 ) : (
                   <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>
@@ -156,26 +158,6 @@ function formatDate(date: Date): string {
 
   /* Content */
   .te-content { margin-bottom: 32px; }
-  .te-content :global(h1) { font-size: clamp(1.4rem, 4vw, 2rem); margin: 32px 0 16px; }
-  .te-content :global(h2) { font-size: clamp(1.2rem, 3.5vw, 1.5rem); margin: 28px 0 12px; }
-  .te-content :global(h3) { font-size: clamp(1rem, 3vw, 1.2rem); margin: 24px 0 8px; }
-  .te-content :global(p) { line-height: 1.7; margin-bottom: 16px; text-align: justify; }
-  .te-content :global(ul), .te-content :global(ol) { padding-left: 20px; margin-bottom: 16px; }
-  .te-content :global(li) { margin-bottom: 6px; line-height: 1.6; }
-  .te-content :global(blockquote) {
-    border-left: 3px solid var(--color-gold); padding-left: 16px;
-    color: var(--color-muted); font-style: italic; margin: 16px 0;
-  }
-  .te-content :global(hr) { border: none; border-top: 1px solid rgba(139,26,43,0.15); margin: 24px 0; }
-  .te-content :global(img) { max-width: 100%; border-radius: var(--radius); margin: 16px 0; }
-  .te-content :global(strong) { font-weight: 600; }
-  .te-content :global(a) { color: var(--color-accent-1); }
-  .te-content :global(a:hover) { color: var(--color-accent-2); }
-  .te-content :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; }
-  .te-content :global(th), .te-content :global(td) {
-    padding: 8px 12px; border: 1px solid var(--color-border); text-align: left;
-  }
-  .te-content :global(th) { font-weight: 600; background-color: var(--color-surface); }
 
   /* Rules */
   .te-rules {

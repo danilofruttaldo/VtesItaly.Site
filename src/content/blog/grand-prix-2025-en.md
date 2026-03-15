@@ -4,8 +4,8 @@ date: 2025-03-01
 category: "grand-prix"
 tags: ["italia", "modena"]
 excerpt: "The Italian Grand Prix 2025 was held in Modena on Saturday 1 March 2025. Federico wins! Congratulations to the finalists."
-featuredImage: "/images/gallery/gp-2025/gp-2025-featured.webp"
-poster: "/images/gallery/gp-2025/gp-2025-poster.webp"
+featuredImage: "/gp/gp-2025/gp-2025-featured.webp"
+poster: "/gp/gp-2025/gp-2025-poster.webp"
 venue:
   name: "Hotel Baia del Re ****"
   address: "Str. Vignolese, 1684, 41126 Modena (MO)"
@@ -43,48 +43,48 @@ prizes:
   - "Timer for 3rd round winners"
 registration: "Pre-registration and decklist required"
 contact: "info@vtesitaly.com"
-standingsUrl: "/data/standings-gp-2025.json"
+standingsUrl: "/gp/gp-2025/standings-gp-2025.json"
 notes:
   - "200m from 'Modena Sud' highway exit. Bologna Marconi airport 35 km away. Extra-urban bus #731 to Vignola, 'Ponte Guerro' stop 500m from venue."
 links:
   - label: "Modulo Prenotazione Hotel"
-    url: "/docs/gp-2025/modulo-prenotazione-gp-2025.doc"
+    url: "/gp/gp-2025/modulo-prenotazione-gp-2025.doc"
     locale: it
   - label: "Hotel Reservation Form"
-    url: "/docs/gp-2025/reservation-form-gp-2025.doc"
+    url: "/gp/gp-2025/reservation-form-gp-2025.doc"
     locale: en
 gallerySections:
   - title: "Setup"
     images:
-      - "/images/gallery/gp-2025/gp-2025-preparazione-01.webp"
-      - "/images/gallery/gp-2025/gp-2025-preparazione-02.webp"
-      - "/images/gallery/gp-2025/gp-2025-preparazione-03.webp"
+      - "/gp/gp-2025/gp-2025-preparazione-01.webp"
+      - "/gp/gp-2025/gp-2025-preparazione-02.webp"
+      - "/gp/gp-2025/gp-2025-preparazione-03.webp"
     wideImages:
-      - "/images/gallery/gp-2025/gp-2025-preparazione-03.webp"
+      - "/gp/gp-2025/gp-2025-preparazione-03.webp"
   - title: "Rounds"
     images:
-      - "/images/gallery/gp-2025/gp-2025-round-01.webp"
-      - "/images/gallery/gp-2025/gp-2025-round-02.webp"
-      - "/images/gallery/gp-2025/gp-2025-round-03.webp"
-      - "/images/gallery/gp-2025/gp-2025-round-04.webp"
-      - "/images/gallery/gp-2025/gp-2025-round-05.webp"
-      - "/images/gallery/gp-2025/gp-2025-round-06.webp"
+      - "/gp/gp-2025/gp-2025-round-01.webp"
+      - "/gp/gp-2025/gp-2025-round-02.webp"
+      - "/gp/gp-2025/gp-2025-round-03.webp"
+      - "/gp/gp-2025/gp-2025-round-04.webp"
+      - "/gp/gp-2025/gp-2025-round-05.webp"
+      - "/gp/gp-2025/gp-2025-round-06.webp"
   - title: "Final"
     images:
-      - "/images/gallery/gp-2025/gp-2025-finale-01.webp"
-      - "/images/gallery/gp-2025/gp-2025-finale-02.webp"
-      - "/images/gallery/gp-2025/gp-2025-finale-03.webp"
-      - "/images/gallery/gp-2025/gp-2025-finale-04.webp"
-      - "/images/gallery/gp-2025/gp-2025-finale-05.webp"
-      - "/images/gallery/gp-2025/gp-2025-finale-06.webp"
+      - "/gp/gp-2025/gp-2025-finale-01.webp"
+      - "/gp/gp-2025/gp-2025-finale-02.webp"
+      - "/gp/gp-2025/gp-2025-finale-03.webp"
+      - "/gp/gp-2025/gp-2025-finale-04.webp"
+      - "/gp/gp-2025/gp-2025-finale-05.webp"
+      - "/gp/gp-2025/gp-2025-finale-06.webp"
   - title: "Bonus"
     images:
-      - "/images/gallery/gp-2025/gp-2025-bonus-01.webp"
-      - "/images/gallery/gp-2025/gp-2025-bonus-02.webp"
-      - "/images/gallery/gp-2025/gp-2025-bonus-03.webp"
-      - "/images/gallery/gp-2025/gp-2025-bonus-04.webp"
-      - "/images/gallery/gp-2025/gp-2025-bonus-05.webp"
-      - "/images/gallery/gp-2025/gp-2025-bonus-06.webp"
+      - "/gp/gp-2025/gp-2025-bonus-01.webp"
+      - "/gp/gp-2025/gp-2025-bonus-02.webp"
+      - "/gp/gp-2025/gp-2025-bonus-03.webp"
+      - "/gp/gp-2025/gp-2025-bonus-04.webp"
+      - "/gp/gp-2025/gp-2025-bonus-05.webp"
+      - "/gp/gp-2025/gp-2025-bonus-06.webp"
 locale: en
 ---
 

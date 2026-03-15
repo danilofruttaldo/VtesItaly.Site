@@ -54,8 +54,8 @@ const t = {
   },
 }[locale];
 
-const allData = import.meta.glob('/public/data/standings-wos-*.json', { eager: true }) as Record<string, { default: WosData }>;
-const key = Object.keys(allData).find(k => k.includes(dataUrl.replace('/data/', '')));
+const allData = import.meta.glob('/src/data/standings/ev/standings-wos-*.json', { eager: true }) as Record<string, { default: WosData }>;
+const key = Object.keys(allData).find(k => k.includes(dataUrl.replace(/^.*\//, '')));
 const data: WosData | null = key ? allData[key].default : null;
 
 const pathShortNames: Record<string, string> = {
@@ -66,10 +66,10 @@ const pathShortNames: Record<string, string> = {
 };
 
 const pathImages: Record<string, string> = {
-  'Path of Caine': '/images/wos/path-caine.webp',
-  'Path of Cathari': '/images/wos/path-cathari.webp',
-  'Path of Death and the Soul': '/images/wos/path-death.webp',
-  'Path of Power and the Inner Voice': '/images/wos/path-power.webp',
+  'Path of Caine': '/ev/wos-2025/path-caine.webp',
+  'Path of Cathari': '/ev/wos-2025/path-cathari.webp',
+  'Path of Death and the Soul': '/ev/wos-2025/path-death.webp',
+  'Path of Power and the Inner Voice': '/ev/wos-2025/path-power.webp',
 };
 
 const cityTabs = data ? Object.keys(data.cities).map(city => ({

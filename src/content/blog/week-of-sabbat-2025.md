@@ -2,23 +2,23 @@
 title: "Week of Sabbat 2025"
 date: 2025-10-18
 category: "comunita"
-tags: ["barga", "bologna", "firenze", "genova", "Mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona"]
+tags: ["barga", "bologna", "firenze", "genova", "Mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona", "prerelease"]
 featuredImage: "/images/headers/header-week-of-sabbat.webp"
 excerpt: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
-standingsUrl: "/data/standings-wos-2025.json"
+standingsUrl: "/ev/wos-2025/standings-wos-2025.json"
 links:
   - label: "Infokit (PDF)"
-    url: "/docs/wos-2025/infokit-wos-2025-it.pdf"
+    url: "/ev/wos-2025/infokit-wos-2025-it.pdf"
     locale: it
   - label: "Event infokit (PDF)"
-    url: "/docs/wos-2025/infokit-wos-2025-en.pdf"
+    url: "/ev/wos-2025/infokit-wos-2025-en.pdf"
     locale: en
 linksAfter:
   - label: "Report (PDF)"
-    url: "/docs/wos-2025/report-wos-2025-it.pdf"
+    url: "/ev/wos-2025/report-wos-2025-it.pdf"
     locale: it
   - label: "Event report template (PDF)"
-    url: "/docs/wos-2025/report-wos-2025-en.pdf"
+    url: "/ev/wos-2025/report-wos-2025-en.pdf"
     locale: en
 ---
 

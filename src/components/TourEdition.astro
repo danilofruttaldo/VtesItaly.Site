@@ -117,7 +117,7 @@ function formatDate(date: Date): string {
                 </div>
                 {stage.archonUrl ? (
                   <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['te-cta', `te-cta--${stage.status}`]}>
-                    {ctaLabels[stage.status] || 'Archon'} &rarr;
+                    {stage.archonUrl.includes('bcncrisis') ? 'BCN Crisis' : 'Archon'} &rarr;
                   </a>
                 ) : (
                   <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>

@@ -117,7 +117,7 @@ export const cities: City[] = [
         it: 'Sei appassionato di Vampire: the Eternal Struggle o vorresti scoprire questo gioco? Stiamo cercando nuovi giocatori per espandere la community locale! Dai veterani ai neonati che vogliono imparare le regole, se abiti tra Massa, Carrara, Montignoso, La Spezia, Sarzana, Viareggio e zone limitrofe, sei il benvenuto al tavolo!',
         en: 'Are you a fan of Vampire: the Eternal Struggle or would you like to discover this unique card game? We are looking for new players to expand our local community! From veterans to newcomers who want to learn the rules, if you live near Massa, Carrara, Montignoso, La Spezia, Sarzana, Viareggio and surrounding areas, you are welcome at the table!',
       },
-      image: '/images/eventi/massa-by-night.webp',
+      image: '/images/comunita/massa/by-night.webp',
     },
   },
   {
@@ -147,7 +147,7 @@ export const cities: City[] = [
         it: 'Sei un nuovo giocatore? Hai voglia di provare questo fantastico gioco? O semplicemente sei un vecchio giocatore a cui è tornata la voglia di bleedare? Contattaci: troverai la Community di Milano e dintorni (anche Bergamo) pronta ad accoglierti. Carte e segnalini sangue in omaggio per il tuo primo mazzo!',
         en: 'Are you a new player? Want to try this fantastic game? Or simply a veteran who got the urge to bleed again? Contact us: the Milano community (including Bergamo) is ready to welcome you. Free cards and blood counters for your first deck!',
       },
-      image: '/images/eventi/nuovo-giocatore-milano.webp',
+      image: '/images/comunita/milano/nuovo-giocatore.webp',
     },
   },
   {

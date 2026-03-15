@@ -5,7 +5,7 @@ category: "nazionale"
 tags: ["italia", "bologna"]
 featuredImage: "/images/headers/header-nazionale.webp"
 excerpt: "Il Campionato Nazionale Italiano VTES 2021 si terrà sabato 8 gennaio 2022 a Bologna."
-poster: "/images/gallery/nc-2021/nc-2021-poster.webp"
+poster: "/nc/nc-2021/nc-2021-poster.webp"
 venue:
   name: "Circolo Arci Benassi"
   address: "Viale Sergio Cavina 4 — Bologna"

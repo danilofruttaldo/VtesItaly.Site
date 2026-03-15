@@ -104,7 +104,7 @@
     "all_domains": "Tutti i Principati"
   },
   "community": {
-    "subtitle": "Articoli, report e novità dalla comunità.",
+    "subtitle": "Report dai tornei, prerelease, contest e tutte le novità dalla comunità italiana di VTES.",
     "pagination": "Paginazione",
     "previous": "Precedente",
     "next": "Successiva",
@@ -117,7 +117,8 @@
   },
   "post": {
     "gallery": "Galleria",
-    "photo": "foto"
+    "photo": "foto",
+    "read_cta": "Leggi"
   },
   "domain": {
     "breadcrumb": "Tutti i Principati",
@@ -136,6 +137,7 @@
     "venue_label": "Sede",
     "program_label": "Programma",
     "registration_label": "Iscrizione",
+    "results_label": "Risultati",
     "contact_label": "Contatti",
     "time_prefix": "ore",
     "pricing_label": "Costi",
@@ -185,5 +187,17 @@
     "intro_1": "Questa pagina mostra i Principati attivi: le città dove la community VTES si riunisce, gioca, organizza tornei e fa crescere la passione per il gioco.",
     "intro_2": "Che tu sia un antico risvegliato o un neonato curioso, qui puoi trovare il tuo dominio... o invaderne uno!",
     "coordinator": "Coordinatore Nazionale"
+  },
+  "league": {
+    "players": "giocatori iscritti",
+    "games": "partite giocate",
+    "tables": "tavoli disputati",
+    "period_label": "Periodo",
+    "format_label": "Formato",
+    "rules_title": "Regole e punteggi",
+    "bonus_title": "Bonus Point",
+    "standings_label": "Classifica finale",
+    "standings_player": "Nome",
+    "top_lists_title": "Statistiche"
   }
 }

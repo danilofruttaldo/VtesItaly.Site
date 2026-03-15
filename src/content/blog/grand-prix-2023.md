@@ -4,8 +4,8 @@ date: 2022-12-10
 category: "grand-prix"
 tags: ["italia", "bologna"]
 excerpt: "Il Grand Prix Italiano 2023 si è tenuto a Bologna, sabato 10 dicembre 2022. Vince Danilo Torrisi! Complimenti ai finalisti."
-featuredImage: "/images/gallery/gp-2023/gp-2023-poster.webp"
-poster: "/images/gallery/gp-2023/gp-2023-poster.webp"
+featuredImage: "/gp/gp-2023/gp-2023-poster.webp"
+poster: "/gp/gp-2023/gp-2023-poster.webp"
 venue:
   name: "UNA Hotel Fiera"
   address: "Piazza della Costituzione 1, Bologna"
@@ -22,7 +22,7 @@ pricing:
 payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
-standingsUrl: "/data/standings-gp-2023.json"
+standingsUrl: "/gp/gp-2023/standings-gp-2023.json"
 links: []
 ---
 

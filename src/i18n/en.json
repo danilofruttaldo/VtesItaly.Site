@@ -26,7 +26,7 @@
     "Cartoline": "Postcards",
     "Gemelli": "Twins",
     "Week of Sabbat": "Week of Sabbat",
-    "Blog": "Blog"
+    "Blog": "Community"
   },
   "months": {
     "1": "January", "2": "February", "3": "March", "4": "April",
@@ -110,7 +110,7 @@
     "domains_subtitle": "15 cities across Italy where VTES is played. Find the one closest to you."
   },
   "community": {
-    "subtitle": "Articles, reports and news from the community.",
+    "subtitle": "Tournament reports, prereleases, contests and all the latest from the Italian VTES community.",
     "pagination": "Pagination",
     "previous": "Previous",
     "next": "Next",
@@ -119,11 +119,12 @@
   "status": {
     "upcoming": "Scheduled",
     "live": "Ongoing",
-    "past": "Finished"
+    "past": "Closed"
   },
   "post": {
     "gallery": "Gallery",
-    "photo": "photo"
+    "photo": "photo",
+    "read_cta": "Read"
   },
   "domain": {
     "breadcrumb": "All Domains",
@@ -142,6 +143,7 @@
     "venue_label": "Venue",
     "program_label": "Program",
     "registration_label": "Registration",
+    "results_label": "Results",
     "contact_label": "Contact",
     "time_prefix": "at",
     "pricing_label": "Pricing",
@@ -191,5 +193,17 @@
     "intro_1": "This page shows the active Domains: the cities where the VTES community gathers, plays, organizes tournaments and nurtures the passion for the game.",
     "intro_2": "Whether you are an awakened ancient or a curious neonate, here you can find your domain... or invade one!",
     "coordinator": "National Coordinator"
+  },
+  "league": {
+    "players": "registered players",
+    "games": "games played",
+    "tables": "tables played",
+    "period_label": "Period",
+    "format_label": "Format",
+    "rules_title": "Rules & scoring",
+    "bonus_title": "Bonus Points",
+    "standings_label": "Final standings",
+    "standings_player": "Name",
+    "top_lists_title": "Statistics"
   }
 }

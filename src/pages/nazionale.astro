@@ -24,13 +24,13 @@ const ncStatus = currentDate ? (ncIsToday ? 'live' : (currentDate > now ? 'upcom
 
 // Load standings data for archive cards
 interface Standing { rank: number; name: string; gw: number; vp: number; fvp: number | null; tp: number; }
-const allStandings = import.meta.glob('/public/data/standings-nc-*.json', { eager: true }) as Record<string, { default: Standing[] }>;
+const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.json', { eager: true }) as Record<string, { default: Standing[] }>;
 function getCardMeta(post: any) {
   const eventDate = post.data.events?.[0]?.date || '';
   let winner = '';
   let players = 0;
   if (post.data.standingsUrl) {
-    const key = Object.keys(allStandings).find(k => k.includes(post.data.standingsUrl.replace('/data/', '')));
+    const key = Object.keys(allStandings).find(k => k.includes(post.data.standingsUrl.replace(/^.*\//, '')));
     if (key) {
       const data = allStandings[key].default;
       players = data.length;

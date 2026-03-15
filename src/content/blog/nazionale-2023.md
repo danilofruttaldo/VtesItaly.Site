@@ -8,16 +8,16 @@ excerpt: "Il Campionato Nazionale Italiano VTES 2023 si terrà il 30 aprile a Bo
 gallerySections:
   - title: "Preparazione"
     images:
-      - "/images/gallery/nc-2023/nc-2023-preparazione-01.webp"
-      - "/images/gallery/nc-2023/nc-2023-preparazione-02.webp"
+      - "/nc/nc-2023/nc-2023-preparazione-01.webp"
+      - "/nc/nc-2023/nc-2023-preparazione-02.webp"
   - title: "Round"
     images:
-      - "/images/gallery/nc-2023/nc-2023-round-01.webp"
-      - "/images/gallery/nc-2023/nc-2023-round-02.webp"
-      - "/images/gallery/nc-2023/nc-2023-round-03.webp"
-      - "/images/gallery/nc-2023/nc-2023-round-04.webp"
-      - "/images/gallery/nc-2023/nc-2023-round-05.webp"
-      - "/images/gallery/nc-2023/nc-2023-round-06.webp"
+      - "/nc/nc-2023/nc-2023-round-01.webp"
+      - "/nc/nc-2023/nc-2023-round-02.webp"
+      - "/nc/nc-2023/nc-2023-round-03.webp"
+      - "/nc/nc-2023/nc-2023-round-04.webp"
+      - "/nc/nc-2023/nc-2023-round-05.webp"
+      - "/nc/nc-2023/nc-2023-round-06.webp"
 venue:
   name: "The Sydney Hotel"
   address: "Via Michelino, 74 — Bologna"
@@ -27,13 +27,13 @@ events:
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/125"
-standingsUrl: "/data/standings-nc-2023.json"
+standingsUrl: "/nc/nc-2023/standings-nc-2023.json"
 links:
   - label: "Infopack (PDF)"
-    url: "/docs/nc-2023/infopack-nc-2023-it.pdf"
+    url: "/nc/nc-2023/infopack-nc-2023-it.pdf"
     locale: it
   - label: "Infopack (PDF)"
-    url: "/docs/nc-2023/infopack-nc-2023-en.pdf"
+    url: "/nc/nc-2023/infopack-nc-2023-en.pdf"
     locale: en
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"

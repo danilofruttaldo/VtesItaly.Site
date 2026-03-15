@@ -347,8 +347,8 @@ img {
 
 .post-card {
   display: flex;
-  gap: 16px;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;
   padding: 16px;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
@@ -372,18 +372,23 @@ img {
 }
 .post-card__image--poster { object-position: top; }
 
+.post-card__body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
 .post-card__content {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .post-card__title {
   font-size: 1rem;
   font-weight: 600;
-  margin: 4px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .post-card__date {

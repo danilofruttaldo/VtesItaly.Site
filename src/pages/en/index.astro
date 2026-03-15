@@ -12,6 +12,14 @@ const t = useTranslations('en');
 const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 4);
+
+function getEnPostUrl(post: any): string {
+  let cleanSlug = post.slug.replace(/-en$/, '');
+  let catSlug = post.data.category;
+  if (catSlug === 'nazionale') { catSlug = 'national-championship'; cleanSlug = cleanSlug.replace('nazionale-', 'nc-'); }
+  else if (catSlug === 'comunita') { catSlug = 'community'; }
+  return `/en/${catSlug}/${cleanSlug}/`;
+}
 ---
 
 <Base title={page.title.en} description={page.description.en}>
@@ -42,7 +50,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
       <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="latest-posts">
         {latestPosts.map(post => (
-          <a href={`/en/${post.data.category}/${post.slug}/`} class="latest-post">
+          <a href={getEnPostUrl(post)} class="latest-post">
             {(post.data.poster || post.data.featuredImage) && (
               <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['latest-post__image', post.data.poster && 'latest-post__image--poster']} loading="lazy" decoding="async" />
             )}

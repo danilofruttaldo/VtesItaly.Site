@@ -2,18 +2,18 @@
 title: "Week of Sabbat 2025"
 date: 2025-10-18
 category: "comunita"
-tags: ["barga", "bologna", "firenze", "genova", "Mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona"]
+tags: ["barga", "bologna", "firenze", "genova", "Mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona", "prerelease"]
 featuredImage: "/images/headers/header-week-of-sabbat.webp"
 excerpt: "From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event."
-standingsUrl: "/data/standings-wos-2025.json"
+standingsUrl: "/ev/wos-2025/standings-wos-2025.json"
 locale: en
 links:
   - label: "Infokit (PDF)"
-    url: "/docs/wos-2025/infokit-wos-2025-en.pdf"
+    url: "/ev/wos-2025/infokit-wos-2025-en.pdf"
     locale: en
 linksAfter:
   - label: "Report (PDF)"
-    url: "/docs/wos-2025/report-wos-2025-en.pdf"
+    url: "/ev/wos-2025/report-wos-2025-en.pdf"
     locale: en
 ---
 

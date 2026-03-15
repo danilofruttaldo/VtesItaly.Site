@@ -4,6 +4,7 @@ import JsonLd from '../../components/JsonLd.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import TourEdition from '../../components/TourEdition.astro';
 import GpEdition from '../../components/GpEdition.astro';
+import LeagueEdition from '../../components/LeagueEdition.astro';
 import PageHero from '../../components/PageHero.astro';
 import WosStandings from '../../components/WosStandings.astro';
 import { getCollection } from 'astro:content';
@@ -39,7 +40,7 @@ const { Content } = await post.render();
 let galleryImages: string[] = post.data.gallery || [];
 if (post.data.galleryFolder && galleryImages.length === 0) {
   const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
-  const allImages = import.meta.glob('/public/images/gallery/**/*.{webp,jpg,jpeg,png}');
+  const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
   galleryImages = Object.keys(allImages)
     .filter(p => p.includes(`/${folder}/`))
     .map(p => p.replace('/public', ''))
@@ -47,12 +48,23 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
 }
 
 
-const postLinks = (post.data.links ?? []).filter(l => !l.locale || l.locale === 'en');
-const postLinksAfter = (post.data.linksAfter ?? []).filter(l => !l.locale || l.locale === 'en');
+const postIsPast = new Date(post.data.date) < new Date();
+const postStatusLabel = postIsPast ? t.gp.results_label : t.gp.registration_label;
+function resolveLabel(l: { label: string; url: string }) {
+  if (l.url.includes('bcncrisis')) return 'BCN Crisis';
+  if (l.url.includes('archon')) return 'Archon';
+  return l.label;
+}
+const postLinks = (post.data.links ?? []).filter(l => !l.locale || l.locale === 'en').map(l => ({ ...l, label: resolveLabel(l) }));
+const postLinksAfter = (post.data.linksAfter ?? []).filter(l => !l.locale || l.locale === 'en').map(l => ({ ...l, label: resolveLabel(l) }));
 
 const label = categoryLabels[post.data.category]?.en || post.data.category;
 const backUrl = categoryUrls[post.data.category]?.en || t.routes.comunita;
 const backLabel = categoryLabels[post.data.category]?.en || t.not_found.community;
+
+const typeTagLabels: Record<string, string> = { contest: 'Contest', torneo: 'Tournament', lega: 'League', prerelease: 'Prerelease' };
+const typeTag = post.data.tags?.find((t: string) => typeTagLabels[t]);
+const typeLabel = typeTag ? typeTagLabels[typeTag] : null;
 
 // Map city slugs to their domain page
 const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.en, url: `/en/domains/${c.slug.en}/` }]));
@@ -69,13 +81,16 @@ const tourAllFuture = tourComputedStatuses.filter(s => s !== 'cancelled').every(
 const tourStatus = isTourWithStages ? (tourAllCompleted ? 'past' : tourAllFuture ? 'upcoming' : 'live') : null;
 const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
-const isEventPage = isGp || isNc;
+const isLeague = post.data.category === 'comunita' && !!post.data.leagueStats;
+const isCommunityEvent = post.data.category === 'comunita' && !post.data.leagueStats && (post.data.venue || post.data.events.length > 0);
+const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
 const gpEventDate = isEventPage ? new Date(post.data.date) : null;
 const gpToday = isEventPage ? new Date() : null;
 const gpIsToday = gpEventDate && gpToday && gpEventDate.toDateString() === gpToday.toDateString();
 const gpStatus = isEventPage ? (gpIsToday ? 'live' : (gpEventDate! > gpToday! ? 'upcoming' : 'past')) : null;
+const communityCity = (isCommunityEvent || isLeague) ? cities.find(c => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
-const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.category) : null;
+const pageMeta = usePageHero && !isCommunityEvent && !isLeague ? mainPages.find(p => p.category === post.data.category) : null;
 
 ---
 <Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.poster || post.data.featuredImage}>
@@ -89,9 +104,11 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
     publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href } }
   }} />
 
-  {/* PageHero for tour and GP, classic hero for the rest */}
+  {/* PageHero for tour, GP/NC and community events (with principato header) */}
   {usePageHero && pageMeta ? (
     <PageHero title="" image={pageMeta.headerImage} />
+  ) : (isCommunityEvent || isLeague) && communityCity ? (
+    <PageHero title="" image={communityCity.headerImage} />
   ) : post.data.featuredImage && (
     <div class="post__hero-wrap">
       <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="eager" decoding="async" />
@@ -120,22 +137,25 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
             </span>
           )}
         </div>
-        {!usePageHero && post.data.excerpt && (
+        {!usePageHero && !isCommunityEvent && !isLeague && post.data.excerpt && (
           <p class="post__excerpt">{post.data.excerpt}</p>
         )}
       </header>
 
       {/* Metadata: category + date, then tags */}
       <div class="post__meta-row">
-        <span class="post__category">{label}</span>
+        <div class="post__meta-left">
+          <span class="post__category">{label}</span>
+          {typeLabel && <span class="post__type-tag">{typeLabel}</span>}
+        </div>
         <time class="post__date" datetime={post.data.date.toISOString()}>
           {formatLocalDate(post.data.date, 'en')}
         </time>
       </div>
-      {post.data.tags && post.data.tags.length > 0 && (
+      {post.data.tags && post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease'].includes(t)).length > 0 && (
         <div class="post__tags-row">
           <div class="post__tags">
-            {post.data.tags.map(tag => {
+            {post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease'].includes(t)).map(tag => {
               const city = cityMap.get(tag);
               return city ? (
                 <a href={city.url} class="post__tag post__tag--city">{city.name}</a>
@@ -151,8 +171,10 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
       {/* Layout per categoria */}
       {isTourWithStages ? (
         <TourEdition post={post} locale="en" />
+      ) : isLeague ? (
+        <LeagueEdition post={post} locale="en" />
       ) : isEventPage ? (
-        <GpEdition post={post} locale="en" />
+        <GpEdition post={post} locale="en" showExcerpt={isCommunityEvent} />
       ) : (
         <>
           <div class="post__content prose">
@@ -304,6 +326,7 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
     gap: 10px;
     margin-bottom: 6px;
   }
+  .post__meta-left { display: flex; align-items: center; gap: 8px; }
   .post__tags-row {
     display: flex;
     justify-content: flex-end;
@@ -318,6 +341,11 @@ const pageMeta = usePageHero ? mainPages.find(p => p.category === post.data.cate
     background: rgba(201,168,76,0.1);
     padding: 2px 8px;
     border-radius: var(--radius);
+  }
+  .post__type-tag {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--color-gold); background: rgba(201,168,76,0.1);
+    padding: 2px 8px; border-radius: var(--radius);
   }
   .post__date { font-size: 0.8rem; color: var(--color-muted); }
   .post__tags {

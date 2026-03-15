@@ -3,9 +3,9 @@ title: "Grand Prix 2026"
 date: 2026-05-02
 category: "grand-prix"
 tags: ["bologna", "italia"]
-excerpt: "IT GP 2026 — Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek and Mistlore, presents the GP 2026!"
-featuredImage: "/images/gallery/gp-2026/gp-2026-featured.webp"
-poster: "/images/gallery/gp-2026/gp-2026-poster.webp"
+excerpt: "Italian GP 2026 — Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek and Mistlore, presents the GP 2026!"
+featuredImage: "/gp/gp-2026/gp-2026-featured.webp"
+poster: "/gp/gp-2026/gp-2026-poster.webp"
 venue:
   name: "Hotel Airport Bologna ****"
   address: "Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)"
@@ -48,10 +48,10 @@ notes:
   - "Over 40 side event registrations: two parallel twin tournaments ASINELLI and GARISENDA."
 links:
   - label: "Infopack (PDF)"
-    url: "/docs/gp-2026/infopack-gp-2026-it.pdf"
+    url: "/gp/gp-2026/infopack-gp-2026-it.pdf"
     locale: it
   - label: "Infopack (PDF)"
-    url: "/docs/gp-2026/infopack-gp-2026-en.pdf"
+    url: "/gp/gp-2026/infopack-gp-2026-en.pdf"
     locale: en
 locale: en
 ---

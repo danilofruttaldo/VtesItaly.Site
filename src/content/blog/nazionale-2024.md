@@ -5,7 +5,7 @@ category: "nazionale"
 tags: ["italia", "trento"]
 featuredImage: "/images/headers/header-nazionale.webp"
 excerpt: "Il Campionato Nazionale Italiano VTES 2024 si terrà sabato 27 aprile presso l'Hotel Paoli a Caldonazzo (TN), immerso nel cuore del Trentino."
-poster: "/images/gallery/nc-2024/nc-2024-poster.webp"
+poster: "/nc/nc-2024/nc-2024-poster.webp"
 venue:
   name: "Hotel Paoli"
   address: "Caldonazzo (TN)"
@@ -21,7 +21,7 @@ events:
     time: "09:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/295"
-standingsUrl: "/data/standings-nc-2024.json"
+standingsUrl: "/nc/nc-2024/standings-nc-2024.json"
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 payment: "PayPal (amici e parenti) — vtesitaly@gmail.com"

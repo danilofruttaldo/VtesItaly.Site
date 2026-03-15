@@ -31,6 +31,7 @@ const blog = defineCollection({
       wideImages: z.array(z.string()).optional().default([]),
     })).optional().default([]),
     poster: z.string().optional(),
+    posterCaption: z.string().optional(),
     venue: z.object({
       name: z.string(),
       address: z.string(),
@@ -61,6 +62,27 @@ const blog = defineCollection({
     standingsUrl: z.string().optional(),
     playersCount: z.number().optional(),
     streamingUrl: z.string().optional(),
+    leagueStats: z.object({
+      players: z.number(),
+      games: z.number(),
+      tables: z.number(),
+    }).optional(),
+    leagueTopLists: z.array(z.object({
+      label: z.string(),
+      items: z.array(z.object({
+        name: z.string(),
+        count: z.number(),
+      })),
+    })).optional().default([]),
+    leagueBonusPoints: z.array(z.object({
+      name: z.string(),
+      description: z.string(),
+    })).optional().default([]),
+    leagueRules: z.array(z.object({
+      acronym: z.string(),
+      label: z.string(),
+      description: z.string(),
+    })).optional().default([]),
     notes: z.array(z.string()).optional().default([]),
     links: z.array(z.object({
       label: z.string(),

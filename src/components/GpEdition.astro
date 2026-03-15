@@ -6,19 +6,28 @@ import { useTranslations } from '../utils/i18n';
 interface Props {
   post: CollectionEntry<'blog'>;
   locale?: Locale;
+  showExcerpt?: boolean;
 }
 
-const { post, locale = 'it' } = Astro.props;
+const { post, locale = 'it', showExcerpt = false } = Astro.props;
 const t = useTranslations(locale);
 
 const { Content } = await post.render();
-const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale);
+const eventDate = new Date(post.data.date);
+const isPast = eventDate < new Date();
+const statusLabel = isPast ? t.gp.results_label : t.gp.registration_label;
+const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale).map(l => ({
+  ...l,
+  label: l.url.includes('bcncrisis') ? 'BCN Crisis'
+       : l.url.includes('archon') ? 'Archon'
+       : l.label,
+}));
 
 // Build gallery (exclude poster)
 let galleryImages: string[] = post.data.gallery || [];
 if (post.data.galleryFolder && galleryImages.length === 0) {
   const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
-  const allImages = import.meta.glob('/public/images/gallery/**/*.{webp,jpg,jpeg,png}');
+  const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
   galleryImages = Object.keys(allImages)
     .filter(p => p.includes(`/${folder}/`))
     .map(p => p.replace('/public', ''))
@@ -32,24 +41,25 @@ if (post.data.poster) {
 interface Standing { rank: number; name: string; gw: number; vp: number; fvp: number | null; tp: number; }
 let standings: Standing[] = [];
 if (post.data.standingsUrl) {
-  const allData = import.meta.glob('/public/data/*.json', { eager: true }) as Record<string, { default: Standing[] }>;
-  const key = Object.keys(allData).find(k => k.includes(post.data.standingsUrl!.replace('/data/', '')));
-  if (key) standings = allData[key].default;
+  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<string, { default: unknown }>;
+  const key = Object.keys(allData).find(k => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
+  if (key && Array.isArray(allData[key].default)) standings = allData[key].default as Standing[];
 }
 const hasFvp = standings.some(s => s.fvp != null);
 ---
 
 {/* Poster / locandina */}
 {post.data.poster && (
-  <div class="gp-poster">
+  <figure class="gp-poster">
     <img src={post.data.poster} alt={post.data.title} loading="eager" decoding="async" />
-  </div>
+    {post.data.posterCaption && <figcaption class="gp-poster-caption">{post.data.posterCaption}</figcaption>}
+  </figure>
 )}
 
-{/* Contenuto introduttivo */}
-<div class="gp-content prose">
-  <Content />
-</div>
+{/* Descrizione breve */}
+{showExcerpt && post.data.excerpt && (
+  <p class="gp-excerpt">{post.data.excerpt}</p>
+)}
 
 {/* Info di servizio */}
 <div class="gp-info">
@@ -136,19 +146,23 @@ const hasFvp = standings.some(s => s.fvp != null);
       </div>
     </div>
   )}
-  {post.data.registration && (
+  {(post.data.registration || post.data.events.some(ev => ev.archonUrl)) && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.registration_label}</span>
       <div class="gp-value">
         {post.data.registration}
         {post.data.events.some(ev => ev.archonUrl) && (
           <div class="gp-archon-links">
-            {post.data.events.filter(ev => ev.archonUrl).map(ev => (
+            {post.data.events.filter(ev => ev.archonUrl).map(ev => {
+              const platform = ev.archonUrl!.includes('bcncrisis') ? 'BCN Crisis' : 'Archon';
+              const hasMultiple = post.data.events.filter(e => e.archonUrl).length > 1;
+              return (
               <a href={ev.archonUrl} target="_blank" rel="noopener noreferrer" class="gp-link-btn">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                {ev.name}
+                {hasMultiple ? `${ev.name} — ${platform}` : platform}
               </a>
-            ))}
+            );
+            })}
           </div>
         )}
       </div>
@@ -162,11 +176,20 @@ const hasFvp = standings.some(s => s.fvp != null);
       ) : post.data.contact}</span>
     </div>
   )}
-  {post.data.notes.length > 0 && (
+  {post.data.notes.filter(n => /^[A-Za-zÀ-ú\s]{2,25}:/.test(n)).map(n => {
+    const idx = n.indexOf(':');
+    return (
+    <div class="gp-row">
+      <span class="gp-label">{n.slice(0, idx).trim()}</span>
+      <span class="gp-value">{n.slice(idx + 1).trim()}</span>
+    </div>
+    );
+  })}
+  {post.data.notes.filter(n => !/^[A-Za-zÀ-ú\s]{2,25}:/.test(n)).length > 0 && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.notes_label}</span>
       <div class="gp-value">
-        {post.data.notes.map(n => (
+        {post.data.notes.filter(n => !/^[A-Za-zÀ-ú\s]{2,25}:/.test(n)).map(n => (
           <div class="gp-muted">{n}</div>
         ))}
       </div>
@@ -185,6 +208,11 @@ const hasFvp = standings.some(s => s.fvp != null);
     ))}
   </div>
 )}
+
+{/* Contenuto */}
+<div class="gp-content prose">
+  <Content />
+</div>
 
 {/* Streaming finale */}
 {post.data.streamingUrl && (
@@ -265,8 +293,11 @@ const hasFvp = standings.some(s => s.fvp != null);
 <style>
   /* Poster */
   .gp-poster {
-    margin-bottom: 28px;
-    text-align: center;
+    margin: 0 0 28px; text-align: center;
+  }
+  .gp-poster-caption {
+    font-size: 0.75rem; color: var(--color-muted);
+    font-style: italic; margin-top: 8px;
   }
   .gp-poster img {
     max-width: 360px;
@@ -278,6 +309,7 @@ const hasFvp = standings.some(s => s.fvp != null);
   }
 
   /* Prose */
+  .gp-excerpt { font-size: 0.95rem; line-height: 1.7; color: var(--color-text); margin-bottom: 24px; text-align: justify; }
   .gp-content { margin-bottom: 28px; }
   .prose :global(p) { line-height: 1.7; margin-bottom: 16px; text-align: justify; }
   .prose :global(h1) { font-size: clamp(1.4rem, 4vw, 2rem); margin: 32px 0 16px; }
@@ -335,6 +367,7 @@ const hasFvp = standings.some(s => s.fvp != null);
   .gp-value a:hover { color: var(--color-accent-2); text-decoration: underline; }
   .gp-event { margin-bottom: 10px; }
   .gp-event:last-child { margin-bottom: 0; }
+  .gp-link-btn--inline { margin-top: 6px; font-size: 0.75rem; padding: 4px 12px; }
   .gp-muted { font-size: 0.75rem; color: var(--color-muted); }
   .gp-table {
     width: 100%;

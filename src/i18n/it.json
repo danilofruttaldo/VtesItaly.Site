@@ -72,7 +72,10 @@
   "footer": {
     "about": "La community italiana di Vampire: The Eternal Struggle.",
     "tagline": "Creato e gestito con passione dalla community italiana.",
-    "legal": "e tutti i relativi marchi sono di proprieta di Paradox Interactive AB. Pubblicato da Black Chantry Productions Ltd."
+    "legal": "e tutti i relativi marchi sono di proprieta di Paradox Interactive AB. Pubblicato da Black Chantry Productions Ltd.",
+    "disclaimer": "Questo sito è un progetto non ufficiale realizzato dai giocatori, senza fini di lucro, e non è affiliato né sponsorizzato da Paradox Interactive AB o Black Chantry Productions Ltd.",
+    "contact": "Per informazioni o segnalazioni:",
+    "credits": "Design e contenuti a cura della community italiana di VTES."
   },
   "skip_to_content": "Vai al contenuto",
   "og_locale": "it_IT",

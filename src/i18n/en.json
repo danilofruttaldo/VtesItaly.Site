@@ -78,7 +78,10 @@
   "footer": {
     "about": "The Italian Vampire: The Eternal Struggle community.",
     "tagline": "Created and maintained with passion by the Italian community.",
-    "legal": "and all related trademarks are property of Paradox Interactive AB. Published by Black Chantry Productions Ltd."
+    "legal": "and all related trademarks are property of Paradox Interactive AB. Published by Black Chantry Productions Ltd.",
+    "disclaimer": "This is an unofficial, non-profit project made by players. It is not affiliated with or sponsored by Paradox Interactive AB or Black Chantry Productions Ltd.",
+    "contact": "For information or inquiries:",
+    "credits": "Design and content by the Italian VTES community."
   },
   "skip_to_content": "Skip to content",
   "og_locale": "en_US",

@@ -124,7 +124,7 @@ export const cities: City[] = [
     slug: { it: 'milano', en: 'milano' },
     name: { it: 'Milano', en: 'Milano' },
     region: 'Lombardia',
-    prince: { name: 'Henry Hinde', alias: 'Acca', image: '/images/principi/principi-henry-hinde.webp', email: 'vtesmilano2019@gmail.com' },
+    prince: { name: 'Henry Hinde', alias: 'Acca', image: '/images/principi/principi-henry-hinde.webp', email: 'henry.hinde1973@gmail.com' },
     headerImage: '/images/headers/header-milano.webp',
     description: {
       it: 'Uno dei principati più attivi d\'Italia, con ritrovi settimanali alla Casa dei Giochi. Community accogliente con prestito mazzi per i nuovi giocatori.',

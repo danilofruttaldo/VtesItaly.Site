@@ -72,7 +72,7 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
                 </div>
                 <span class="edition-info">
                   {post.data.tags && post.data.tags.filter(tag => tag !== 'italia').length > 0 && (
-                    <>{post.data.tags.filter(tag => tag !== 'italia').map(tag => tag.charAt(0).toUpperCase() + tag.slice(1)).join(', ')}</>
+                    <>{post.data.tags.filter(tag => tag !== 'italia').join(', ')}</>
                   )}
                   {meta.eventDate && <> &middot; {meta.eventDate}</>}
                   {meta.players > 0 && <> &middot; {meta.players} {t.gp.players_label}</>}

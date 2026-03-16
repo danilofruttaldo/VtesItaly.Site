@@ -2,7 +2,7 @@
 title: "Week of Sabbat 2025"
 date: 2025-10-18
 category: "comunita"
-tags: ["barga", "bologna", "firenze", "genova", "Mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona", "prerelease"]
+tags: ["barga", "bologna", "firenze", "genova", "mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona", "prerelease"]
 featuredImage: "/images/headers/header-week-of-sabbat.webp"
 excerpt: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
 standingsUrl: "/ev/wos-2025/standings-wos-2025.json"

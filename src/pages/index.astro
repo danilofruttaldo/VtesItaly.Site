@@ -41,19 +41,23 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'it')
       <h2 class="section-title">{t.home.latest_title}</h2>
       <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="post-list">
-        {latestPosts.map(post => (
+        {latestPosts.map(post => {
+          const usesPoster = (post.data.category === 'grand-prix' || post.data.category === 'nazionale') && !!post.data.poster;
+          const cardImage = usesPoster ? post.data.poster : (post.data.featuredImage || post.data.poster);
+          return (
           <PostCard
             href={`/${post.data.category}/${post.id}/`}
             title={post.data.title}
-            image={post.data.featuredImage || post.data.poster}
-            isPoster={!post.data.featuredImage && !!post.data.poster}
+            image={cardImage}
+            isPoster={usesPoster || (!post.data.featuredImage && !!post.data.poster)}
             date={post.data.date}
             category={post.data.category}
             tags={post.data.tags}
             excerpt={post.data.excerpt}
             locale="it"
           />
-        ))}
+          );
+        })}
       </div>
       <div class="section-cta">
         <a href="/comunita/" class="btn">{t.home.all_articles} &rarr;</a>
@@ -81,7 +85,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'it')
 
 <style>
   .hero-banner { width: 100%; display: block; object-fit: cover; max-height: 340px; }
-  .hero-text { padding: 48px clamp(20px, 5vw, 80px) 40px; text-align: center; }
+  .hero-text { padding: 48px 0 40px; text-align: center; }
   .hero-text h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-bottom: 16px; }
   .hero-text__subtitle {
     color: var(--color-muted); font-size: clamp(0.9rem, 3vw, 1.05rem);
@@ -115,6 +119,6 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'it')
   }
 
   @media (max-width: 599px) {
-    .hero-text { padding-inline: 16px; }
+    .hero-text { padding-inline: 0; }
   }
 </style>

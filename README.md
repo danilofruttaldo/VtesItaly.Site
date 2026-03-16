@@ -2,7 +2,7 @@
 
 Official website for the Italian VTES (Vampire: The Eternal Struggle) community.
 
-Built with [Astro](https://astro.build/) — static, fast, multilingual (IT/EN).
+Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN).
 
 ## Development
 
@@ -19,26 +19,42 @@ npm run build
 
 The static site is generated in `dist/`.
 
-## Environment Variables
+## Deployment
 
-| Variable | Description |
-|----------|-------------|
-| `PUBLIC_GOOGLE_CALENDAR_API_KEY` | Google Calendar API key (restricted to Calendar API + referrer) |
+The site is deployed via GitHub Actions (`.github/workflows/deploy.yml`).
+On push to `main`, it builds and syncs to the production server via rsync over SSH.
 
 ## Structure
 
 ```
 src/
-  components/    # Astro components (Header, Footer, Calendar, etc.)
-  content/blog/  # Blog posts (MDX/MD)
-  data/          # Cities and pages data (TypeScript)
-  i18n/          # Translation files (IT/EN)
+  components/    # Astro components (Header, Footer, Calendar, GpEdition, TourEdition, etc.)
+  content/blog/  # Blog posts in Markdown (IT + EN variants)
+  data/          # Cities, pages, twins, postcards data (TypeScript)
+  i18n/          # Translation files (it.json, en.json)
   layouts/       # Base layout
   pages/         # IT pages (default) + en/ for English
-  styles/        # Global CSS with design tokens
-  utils/         # i18n utilities
-public/images/   # Static assets (headers, prince avatars, event images)
+  styles/        # Global CSS + page-specific stylesheets
+  utils/         # i18n, calendar, standings, status utilities
+public/
+  fonts/         # Self-hosted Manrope font
+  images/        # Headers, prince avatars, event images
+  gp/            # Grand Prix assets (posters, galleries)
+  nc/            # National Championship assets
+  tour/          # Tour assets (stage images)
 ```
+
+## Content
+
+Events are defined in blog post frontmatter (stages, events, standings). The site is the **source of truth** — the calendar component reads directly from content collections.
+
+### Categories
+
+- `grand-prix` — Grand Prix editions
+- `tour` — Tour editions with stages
+- `nazionale` — National Championship editions
+- `comunita` — Community events (tournaments, contests, prereleases)
+- `lega` — League seasons
 
 ## License
 

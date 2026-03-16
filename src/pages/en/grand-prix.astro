@@ -40,7 +40,7 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
   {/* Variable: current edition */}
   {current && (
     <section class="page-section">
-      <div class="container container--narrow">
+      <div class="container">
         <div class="edition-header">
           <h2 class="edition-title">{current.data.title}</h2>
           <span class="edition-label-tag">{gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}</span>
@@ -51,13 +51,14 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
   )}
 
   {/* Fixed: archive + share */}
+
   {pastEditions.length > 0 && (
     <section class="page-section">
       <div class="container container--narrow">
         <h2 class="page-section-title">{t.gp.archive}</h2>
         <div class="editions-list">
           {pastEditions.map(post => {
-            const meta = getCardMeta(post, allStandings);
+            const meta = getCardMeta(post, allStandings, 'en');
             return (
             <a href={`/en/grand-prix/${post.id.replace(/-en$/, '')}/`} class="edition-card">
               {(post.data.poster || post.data.featuredImage) && (

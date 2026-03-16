@@ -40,7 +40,7 @@ const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.jso
   {/* Variable: current edition */}
   {current && (
     <section class="page-section">
-      <div class="container container--narrow">
+      <div class="container">
         <div class="edition-header">
           <h2 class="edition-title">{current.data.title}</h2>
           <span class="edition-label-tag">{ncStatus === 'live' ? t.status.live : ncStatus === 'upcoming' ? t.status.upcoming : t.status.past}</span>
@@ -57,7 +57,7 @@ const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.jso
         <h2 class="page-section-title">{t.gp.archive}</h2>
         <div class="editions-list">
           {pastEditions.map(post => {
-            const meta = getCardMeta(post, allStandings);
+            const meta = getCardMeta(post, allStandings, 'en');
             return (
             <a href={`/en/national-championship/${post.id.replace(/-en$/, '').replace('nazionale', 'nc')}/`} class="edition-card">
               {(post.data.poster || post.data.featuredImage) && (

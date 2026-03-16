@@ -2,7 +2,6 @@
 import '../styles/prose.css';
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import { cities } from '../data/cities';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
@@ -31,12 +30,6 @@ const computedStages = stages.map(s => {
 // Mark first future as upcoming
 const firstFuture = computedStages.findIndex(s => s.status === 'future');
 if (firstFuture !== -1) computedStages[firstFuture].status = 'upcoming';
-
-const domainsBase = t.routes.principati;
-const cityMap = new Map(cities.map(c => [c.slug.it, {
-  name: c.name[locale],
-  url: `${domainsBase}${c.slug[locale]}/`,
-}]));
 
 const statusLabels: Record<string, string> = {
   completed: t.tour.status_completed,
@@ -98,18 +91,25 @@ function formatDate(date: Date): string {
               )}
               <div class="te-card-bottom">
                 <div class="te-meta">
-                  <time class="te-date">
+                  <div class="te-date">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                    {formatDate(stage.date)}
-                  </time>
-                  <div class="te-cities">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    {(stage.cities || []).map((slug: string, ci: number) => {
-                      const city = cityMap.get(slug);
-                      if (!city) return <span class="te-city">{slug}</span>;
-                      return <><a href={city.url} class="te-city">{city.name}</a>{ci < stage.cities.length - 1 && <span class="te-sep">&middot;</span>}</>;
-                    })}
+                    <time>{formatDate(stage.date)}</time>
                   </div>
+                  {stage.time && (
+                    <div class="te-time">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      {stage.time}
+                    </div>
+                  )}
+                  {(stage.venue || stage.location) && (
+                    <div class="te-venue-block">
+                      <div class="te-venue-name">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        {stage.venue || stage.location}
+                      </div>
+                      {stage.venue && stage.location && <div class="te-venue-address">{stage.location}</div>}
+                    </div>
+                  )}
                 </div>
                 {stage.archonUrl ? (
                   <a href={stage.archonUrl} target="_blank" rel="noopener noreferrer" class:list={['te-cta', `te-cta--${stage.status}`]}>
@@ -242,16 +242,25 @@ function formatDate(date: Date): string {
   .te-desc { font-size: 0.8rem; line-height: 1.6; color: var(--color-muted); margin: 0; flex: 1; }
 
   /* Bottom */
-  .te-card-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .te-card-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: 12px; }
   .te-meta { display: flex; flex-direction: column; gap: 4px; }
   .te-date { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 500; color: var(--color-muted); }
   .te-date svg { flex-shrink: 0; opacity: 0.5; }
-  .te-cities { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .te-cities svg { flex-shrink: 0; color: var(--color-muted); opacity: 0.5; }
-  .te-city { font-size: 0.8rem; color: var(--color-accent-1); text-decoration: none; transition: color 0.2s ease; }
-  a.te-city:hover { color: var(--color-accent-2); }
-  .te-sep { color: var(--color-muted); opacity: 0.3; font-size: 0.7rem; }
-
+  .te-time {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.8rem; font-weight: 500; color: var(--color-muted);
+  }
+  .te-time svg { flex-shrink: 0; opacity: 0.5; }
+  .te-venue-block { display: flex; flex-direction: column; gap: 2px; }
+  .te-venue-name {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.8rem; font-weight: 500; color: var(--color-muted);
+  }
+  .te-venue-name svg { flex-shrink: 0; opacity: 0.5; }
+  .te-venue-address {
+    font-size: 0.7rem; color: var(--color-muted); opacity: 0.6;
+    padding-left: 20px;
+  }
   /* CTA */
   .te-cta {
     display: inline-flex; align-items: center; align-self: flex-end;
@@ -287,8 +296,8 @@ function formatDate(date: Date): string {
     .te-card-body { padding: 12px 14px 14px; gap: 4px; }
     .te-card-top { margin-bottom: 2px; }
     .te-name { font-size: 1.3rem; letter-spacing: 1px; }
-    .te-card-bottom { flex-direction: row; align-items: center; gap: 12px; margin-top: 6px; }
+    .te-card-bottom { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 6px; }
     .te-meta { gap: 2px; }
-    .te-cta { padding: 6px 14px; flex-shrink: 0; }
+    .te-cta { padding: 6px 14px; align-self: flex-end; }
   }
 </style>

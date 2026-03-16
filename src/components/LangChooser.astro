@@ -3,14 +3,15 @@
  * Language chooser popup — shown on first visit when no preference is saved.
  * Redirect logic lives in Base.astro <head> for instant redirect without flash.
  */
-import { getLocaleFromUrl, getAlternateUrl } from '../utils/i18n';
+import { getLocaleFromUrl, getAlternateUrl, useTranslations } from '../utils/i18n';
 
 const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
 ---
 
 <div class="lang-chooser-overlay" id="lang-chooser" aria-hidden="true">
-  <div class="lang-chooser" role="dialog" aria-label="Choose language">
+  <div class="lang-chooser" role="dialog" aria-label={t.nav.choose_language}>
     <div class="lang-chooser__options">
       <button class="lang-chooser__btn" type="button" data-lang="it" data-href={locale === 'it' ? '' : altUrl} aria-label="Italiano">
         <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg>

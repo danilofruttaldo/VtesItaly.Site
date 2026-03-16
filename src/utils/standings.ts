@@ -1,4 +1,6 @@
 import { anonymizeName } from './anonymize';
+import type { Locale } from './i18n';
+import { formatLocalDate } from './i18n';
 
 export interface Standing {
   rank: number;
@@ -13,8 +15,10 @@ export interface Standing {
 export function getCardMeta(
   post: any,
   allStandings: Record<string, { default: Standing[] }>,
+  locale: Locale = 'it',
 ): { eventDate: string; winner: string; players: number } {
-  const eventDate = post.data.events?.[0]?.date || '';
+  const rawDate = post.data.events?.[0]?.date;
+  const eventDate = rawDate instanceof Date ? formatLocalDate(rawDate, locale) : (rawDate || '');
   let winner = '';
   let players = 0;
   if (post.data.standingsUrl) {

@@ -157,7 +157,7 @@ button {
   width: 100%;
   max-width: var(--wide-width);
   margin-inline: auto;
-  padding-inline: var(--spacing-md);
+  padding-inline: 2.5%;
 }
 
 .container--narrow {
@@ -204,116 +204,11 @@ img {
 }
 
 /* ========================================
-   Calendar
-   ======================================== */
-
-.vtesitaly-cal-month {
-  margin-bottom: var(--spacing-lg);
-}
-
-.vtesitaly-cal-month-title {
-  font-size: var(--font-size-large);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.20);
-  margin-bottom: 12px;
-}
-
-.vtesitaly-cal-event {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 8px;
-  border-radius: var(--radius);
-  color: var(--color-contrast);
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-}
-
-.vtesitaly-cal-event:hover {
-  background-color: rgba(255, 255, 255, 0.04);
-  transform: translateX(2px);
-  color: var(--color-contrast);
-}
-
-.vtesitaly-cal-event-date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 52px;
-  background-color: var(--color-accent-light);
-  border-radius: var(--radius);
-  flex-shrink: 0;
-}
-
-.vtesitaly-cal-day-name {
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  color: var(--color-accent-1);
-  font-weight: 600;
-}
-
-.vtesitaly-cal-day-num {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-contrast);
-  line-height: 1;
-}
-
-.vtesitaly-cal-event-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex: 1;
-  min-width: 0;
-}
-
-.vtesitaly-cal-event-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.vtesitaly-cal-event-meta {
-  font-size: 0.78rem;
-  color: var(--color-muted);
-}
-
-.vtesitaly-cal-arrow {
-  font-size: 1.5rem;
-  color: var(--color-muted);
-  transition: color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.vtesitaly-cal-event:hover .vtesitaly-cal-arrow {
-  color: var(--color-gold);
-}
-
-.vtesitaly-cal-footer {
-  text-align: center;
-  margin-top: var(--spacing-lg);
-}
-
-@media (max-width: 544px) {
-  .vtesitaly-cal-event { padding: 10px 4px; gap: 10px; }
-  .vtesitaly-cal-arrow { display: none; }
-  .vtesitaly-cal-event-title { white-space: normal; }
-  .vtesitaly-cal-event-meta { font-size: 0.72rem; }
-}
-
-/* ========================================
    Common Section Layout
    ======================================== */
 
 .section {
-  padding: 40px clamp(20px, 5vw, 80px) 48px;
+  padding: 40px 0 48px;
 }
 
 .section-title {
@@ -484,7 +379,7 @@ img {
    ======================================== */
 
 .page-section {
-  padding: 40px clamp(20px, 5vw, 80px) 48px;
+  padding: 40px 0 48px;
 }
 
 .page-section-title {

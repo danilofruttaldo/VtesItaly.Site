@@ -34,7 +34,7 @@ const tourStatus = computeTourStatus(current?.data.stages || []);
 
   {current && (
     <section class="page-section">
-      <div class="container container--narrow">
+      <div class="container">
         <div class="edition-header">
           <h2 class="edition-title">{current.data.title}</h2>
           {tourStatus && <span class="edition-label-tag">{tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}</span>}

@@ -1,32 +1,6 @@
-.intro-lead p {
-  color: var(--color-muted);
-  text-align: justify;
-}
-.edition-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.edition-title {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-.edition-label-tag {
-  display: inline-block;
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-gold);
-  background: rgba(201,168,76,0.12);
-  padding: 4px 12px;
-  border-radius: var(--radius);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+@import './edition-common.css';
+
+/* Tour-specific: simple edition card (no thumbnail) */
 .edition-card {
   display: flex;
   align-items: center;
@@ -45,15 +19,4 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   border-color: rgba(255,255,255,0.12);
   color: var(--color-contrast);
-}
-.edition-year {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--color-gold);
-}
-.edition-info {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  flex-shrink: 0;
-  text-transform: capitalize;
 }

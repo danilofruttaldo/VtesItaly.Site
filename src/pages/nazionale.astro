@@ -40,7 +40,7 @@ const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.jso
   {/* Parte variabile: edizione corrente */}
   {current && (
     <section class="page-section">
-      <div class="container container--narrow">
+      <div class="container">
         <div class="edition-header">
           <h2 class="edition-title">{current.data.title}</h2>
           <span class="edition-label-tag">{ncStatus === 'live' ? t.status.live : ncStatus === 'upcoming' ? t.status.upcoming : t.status.past}</span>

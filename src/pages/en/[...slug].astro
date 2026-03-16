@@ -61,7 +61,7 @@ const backUrl = categoryUrls[post.data.category]?.en || t.routes.comunita;
 const backLabel = categoryLabels[post.data.category]?.en || t.not_found.community;
 
 const localTypeTags = Object.fromEntries(Object.entries(typeTagLabelsMap).map(([k, v]) => [k, v.en]));
-const typeTag = post.data.tags?.find((t: string) => localTypeTags[t]);
+const typeTag = post.data.tags?.find((tag: string) => localTypeTags[tag]);
 const typeLabel = typeTag ? localTypeTags[typeTag] : null;
 
 // Map city slugs to their domain page

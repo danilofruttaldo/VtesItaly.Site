@@ -11,15 +11,14 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
 
 <div class="lang-chooser-overlay" id="lang-chooser" aria-hidden="true">
   <div class="lang-chooser" role="dialog" aria-label="Choose language">
-    <p class="lang-chooser__title">Scegli la lingua / Choose your language</p>
     <div class="lang-chooser__options">
-      <button class="lang-chooser__btn" type="button" data-lang="it" data-href={locale === 'it' ? '' : altUrl}>
+      <button class="lang-chooser__btn" type="button" data-lang="it" data-href={locale === 'it' ? '' : altUrl} aria-label="Italiano">
         <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg>
-        Italiano
+        IT
       </button>
-      <button class="lang-chooser__btn" type="button" data-lang="en" data-href={locale === 'en' ? '' : altUrl}>
+      <button class="lang-chooser__btn" type="button" data-lang="en" data-href={locale === 'en' ? '' : altUrl} aria-label="English">
         <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg>
-        English
+        EN
       </button>
     </div>
   </div>
@@ -56,13 +55,6 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
   @keyframes lang-chooser-in {
     from { opacity: 0; transform: scale(0.95); }
     to   { opacity: 1; transform: scale(1); }
-  }
-
-  .lang-chooser__title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-contrast);
-    margin-bottom: 24px;
   }
 
   .lang-chooser__options {

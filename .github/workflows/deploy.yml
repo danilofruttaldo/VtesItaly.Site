@@ -17,6 +17,7 @@ jobs:
           cache: npm
 
       - run: npm ci
+      - run: npm audit --omit=dev || true
       - run: npm run build
         env:
           PUBLIC_GOOGLE_CALENDAR_API_KEY: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_API_KEY }}
@@ -25,8 +26,10 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
         run: |
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
-          ssh-keyscan -p 2299 136.243.45.246 >> ~/.ssh/known_hosts 2>/dev/null
-          scp -i ~/.ssh/deploy_key -P 2299 -r dist/* "${SSH_USER}@136.243.45.246:/home/${SSH_USER}/public_html/"
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          scp -i ~/.ssh/deploy_key -P "$SSH_PORT" -r dist/* "${SSH_USER}@${SSH_HOST}:/home/${SSH_USER}/public_html/"

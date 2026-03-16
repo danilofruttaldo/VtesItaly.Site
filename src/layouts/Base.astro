@@ -39,6 +39,7 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     {otherLocales.map(alt => (
       <link rel="alternate" hreflang={alt} href={new URL(getAlternateUrl(Astro.url, alt), Astro.site).href} />
     ))}
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl.href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | VTES Italy`} />

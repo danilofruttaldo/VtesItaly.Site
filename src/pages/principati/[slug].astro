@@ -74,12 +74,24 @@ function getCardImage(post: any): { src: string | undefined; isPoster: boolean }
                         {m.time && <span class="meetup-time">{m.time.it}</span>}
                       </td>
                       <td>
-                        {m.mapUrl ? (
+                        {m.places && m.places.length > 0 ? (
+                          m.places.map((p, i) => (
+                            <Fragment>
+                              {i > 0 && <br />}
+                              {p.mapUrl ? (
+                                <a href={p.mapUrl} target="_blank" rel="noopener noreferrer" class="meetup-place">{p.name}</a>
+                              ) : (
+                                <span class="meetup-place-nolink">{p.name}</span>
+                              )}
+                              {p.address && <span class="meetup-address">{p.address}</span>}
+                            </Fragment>
+                          ))
+                        ) : m.mapUrl ? (
                           <a href={m.mapUrl} target="_blank" rel="noopener noreferrer" class="meetup-place">{m.place}</a>
                         ) : (
                           <span class="meetup-place-nolink">{m.place}</span>
                         )}
-                        {m.address && <span class="meetup-address">{m.address}</span>}
+                        {!m.places && m.address && <span class="meetup-address">{m.address}</span>}
                       </td>
                     </tr>
                   ))}

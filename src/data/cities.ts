@@ -1,11 +1,18 @@
 import type { Locale } from '../utils/i18n';
 
+export interface MeetupPlace {
+  name: string;
+  address?: string;
+  mapUrl?: string;
+}
+
 export interface MeetupEntry {
   day: Record<Locale, string>;
   time?: Record<Locale, string>;
   place: string;
   address?: string;
   mapUrl?: string;
+  places?: MeetupPlace[];
 }
 
 export interface City {
@@ -69,6 +76,27 @@ export const cities: City[] = [
       { day: { it: 'Giovedì\nVenerdì\nSabato', en: 'Thursday\nFriday\nSaturday' }, place: 'Circolo Barbanera', mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Bologna' },
     ],
     tagId: 17,
+  },
+  {
+    slug: { it: 'elba', en: 'elba' },
+    name: { it: 'Elba (LI)', en: 'Elba (LI)' },
+    region: 'Toscana',
+    prince: { name: 'Stefano Orlandini', alias: 'Ischemose', image: '/images/principi/principi-stefano-orlandini.webp', email: 'mordechaistrix@gmail.com' },
+    headerImage: '/images/headers/header-elba.webp',
+    description: {
+      it: 'Nuovo principato all\'Elba con ritrovi settimanali il lunedì. Un punto di riferimento per i giocatori dell\'arcipelago toscano.',
+      en: 'New domain on Elba with weekly meetups on Mondays. A hub for players in the Tuscan archipelago.',
+    },
+    meetupSchedule: [
+      {
+        day: { it: 'Lunedì', en: 'Monday' },
+        place: 'Scoglio-nati Viola Club / Sir Williams Pub',
+        places: [
+          { name: 'Scoglio-nati Viola Club', mapUrl: 'https://maps.google.com/?q=Scoglio-nati+Viola+Club+Elba' },
+          { name: 'Sir Williams Pub', mapUrl: 'https://maps.google.com/?q=Sir+Williams+Pub+Elba' },
+        ],
+      },
+    ],
   },
   {
     slug: { it: 'firenze', en: 'firenze' },

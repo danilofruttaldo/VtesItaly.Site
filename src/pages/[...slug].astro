@@ -132,10 +132,10 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
           {formatLocalDate(post.data.date, 'it')}
         </time>
       </div>
-      {post.data.tags && post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease'].includes(t)).length > 0 && (
+      {post.data.tags && post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).length > 0 && (
         <div class="post__tags-row">
           <div class="post__tags">
-            {post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease'].includes(t)).map(tag => {
+            {post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).map(tag => {
               const city = cityMap.get(tag);
               return city ? (
                 <a href={city.url} class="post__tag post__tag--city">{city.name}</a>

@@ -6,6 +6,7 @@ export const typeTagLabels: Record<string, Record<Locale, string>> = {
   torneo: { it: 'Torneo', en: 'Tournament' },
   lega: { it: 'Lega', en: 'League' },
   prerelease: { it: 'Prerelease', en: 'Prerelease' },
+  annuncio: { it: 'Annuncio', en: 'Announcement' },
 };
 
 export const categoryLabels: Record<string, Record<Locale, string>> = {

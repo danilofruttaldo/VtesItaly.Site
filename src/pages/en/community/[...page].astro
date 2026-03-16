@@ -3,10 +3,10 @@ import '../../../styles/community-page.css';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../../layouts/Base.astro';
 import ShareButtons from '../../../components/ShareButtons.astro';
+import PostCard from '../../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../../data/pages';
-import { filterByLocale, useTranslations, formatLocalDate } from '../../../utils/i18n';
-import { typeTagLabels } from '../../../data/categories';
+import { filterByLocale, useTranslations } from '../../../utils/i18n';
 
 const t = useTranslations('en');
 
@@ -19,8 +19,6 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const pageMeta = mainPages.find(p => p.slug.it === 'comunita')!;
 const { page } = Astro.props;
-
-const typeTags = Object.fromEntries(Object.entries(typeTagLabels).map(([k, v]) => [k, v.en]));
 
 function getEnPostUrl(post: any): string {
   let cleanSlug = post.slug.replace(/-en$/, '');
@@ -42,27 +40,16 @@ function getEnPostUrl(post: any): string {
 
     <div class="post-list">
       {page.data.map(post => (
-        <a href={getEnPostUrl(post)} class="post-card">
-          <h2 class="post-card__title">{post.data.title}</h2>
-          <div class="post-card__body">
-            {(post.data.featuredImage || post.data.poster) && (
-              <img src={post.data.featuredImage || post.data.poster} alt={post.data.title} class:list={['post-card__image', !post.data.featuredImage && post.data.poster && 'post-card__image--poster']} loading="lazy" decoding="async" />
-            )}
-            <div class="post-card__content">
-              <div class="post-card__date-row">
-                <time class="post-card__date" datetime={post.data.date.toISOString()}>
-                  {formatLocalDate(post.data.date, 'en')}
-                </time>
-                {(() => {
-                  const typeTag = post.data.tags?.find((t: string) => typeTags[t]);
-                  return typeTag ? <span class="post-card__type">{typeTags[typeTag]}</span> : null;
-                })()}
-              </div>
-              {post.data.excerpt && <p class="post-card__excerpt">{post.data.excerpt}</p>}
-              <span class="post-card__cta">{t.post.read_cta} &rarr;</span>
-            </div>
-          </div>
-        </a>
+        <PostCard
+          href={getEnPostUrl(post)}
+          title={post.data.title}
+          image={post.data.featuredImage || post.data.poster}
+          isPoster={!post.data.featuredImage && !!post.data.poster}
+          date={post.data.date}
+          tags={post.data.tags}
+          excerpt={post.data.excerpt}
+          locale="en"
+        />
       ))}
     </div>
 

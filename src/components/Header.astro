@@ -136,7 +136,7 @@ function isCurrent(href: string): boolean {
   .site-header .container {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: clamp(8px, 2vw, var(--spacing-md));
     height: 60px;
   }
 
@@ -358,7 +358,7 @@ function isCurrent(href: string): boolean {
     position: fixed;
     top: 60px;
     right: 0;
-    width: 280px;
+    width: min(280px, 85vw);
     max-height: calc(100vh - 60px);
     background-color: var(--color-surface);
     border-left: 1px solid var(--color-border);
@@ -387,7 +387,7 @@ function isCurrent(href: string): boolean {
 
   .mobile-menu__link {
     display: block;
-    padding: 14px 24px;
+    padding: 14px clamp(16px, 5vw, 24px);
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;

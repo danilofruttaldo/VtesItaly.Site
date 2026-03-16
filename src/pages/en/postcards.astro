@@ -96,7 +96,7 @@ const galleries = postcardGalleries.map(g => ({
   }
   .gallery-item {
     margin: 0;
-    flex: 0 0 220px;
+    flex: 0 0 clamp(150px, 40vw, 220px);
   }
   .gallery-item img { border-radius: var(--radius); width: 100%; }
 </style>

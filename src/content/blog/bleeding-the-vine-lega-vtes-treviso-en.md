@@ -1,6 +1,6 @@
 ---
 title: "Bleeding the Vine – Treviso League"
-date: 2025-07-03
+date: 2025-04-30
 category: "comunita"
 tags: ["treviso", "lega"]
 featuredImage: "/images/comunita/treviso/bleeding-the-vine.webp"

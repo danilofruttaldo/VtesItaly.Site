@@ -55,4 +55,11 @@ const { name, href, princeName, princeAlias, princeImage } = Astro.props;
     color: var(--color-muted);
     margin: 0;
   }
+
+  @media (max-width: 399px) {
+    .city-card { padding: 12px 8px; gap: 8px; }
+    .city-card__avatar { width: 64px; height: 64px; }
+    .city-card__title { font-size: 0.9rem; }
+    .city-card__prince { font-size: 0.72rem; }
+  }
 </style>

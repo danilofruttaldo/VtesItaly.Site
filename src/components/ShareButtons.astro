@@ -118,4 +118,10 @@ const pageUrl = Astro.url.href;
   .share__btn--copy.copied { color: var(--color-gold); border-color: var(--color-gold); }
   .share__btn--copy.copied .share__copy-icon { display: none; }
   .share__btn--copy.copied .share__check-icon { display: block; }
+
+  @media (max-width: 544px) {
+    .share { flex-direction: column; align-items: center; gap: 8px; }
+    .share__buttons { flex-wrap: wrap; justify-content: center; }
+    .share__btn { width: 44px; height: 44px; }
+  }
 </style>

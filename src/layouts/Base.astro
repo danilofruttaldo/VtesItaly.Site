@@ -3,7 +3,6 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
-import StickyBar from '../components/StickyBar.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { getLocaleFromUrl, getAlternateUrl, useTranslations, getOtherLocales } from '../utils/i18n';
 
@@ -89,7 +88,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     </main>
     <Footer />
     <SearchOverlay />
-    <StickyBar />
     <script is:inline>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js');

@@ -80,7 +80,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
 
     {/* Classifica Nazionale */}
     <h3 class="wos-subtitle">{t.national_title}</h3>
-    <div class="wos-nazionale">
+    <div class="wos-table-wrap">
       <table class="wos-table">
         <caption class="sr-only">{t.national_title}</caption>
         <thead>
@@ -100,7 +100,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
       </table>
     </div>
 
-    {/* Classifiche Locali */}
+    {/* Classifiche Locali - wrapping city tables too */}
     <h3 class="wos-subtitle">{t.local_title}</h3>
     <div class="wos-tabs" id="wos-tabs">
       <div class="wos-tab-bar" role="tablist" aria-label={t.local_title}>
@@ -122,7 +122,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
         return (
           <div class:list={['wos-tab-panel', i === 0 && 'is-active']} data-panel={tabId} role="tabpanel" id={`wos-panel-${tabId}`} aria-labelledby={`wos-tab-${tabId}`}>
             {players.length > 0 ? (
-              <table class="wos-table">
+              <div class="wos-table-wrap"><table class="wos-table">
                 <caption class="sr-only">{cityName}</caption>
                 <thead>
                   <tr>
@@ -146,7 +146,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             ) : (
               <p class="wos-no-data">{t.no_data}</p>
             )}
@@ -224,8 +224,10 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
     font-size: 1rem;
   }
 
-  /* Nazionale */
-  .wos-nazionale {
+  /* Table wrap */
+  .wos-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     margin-bottom: 32px;
   }
 
@@ -301,7 +303,6 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
   }
   .wos-path-cell-name {
     font-weight: 600;
-    white-space: nowrap;
   }
   .wos-players-cell {
     font-size: 0.72rem;
@@ -318,6 +319,11 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
   @media (max-width: 640px) {
     .wos-paths-grid { grid-template-columns: repeat(2, 1fr); }
     .wos-tab-btn { font-size: 0.7rem; padding: 4px 8px; }
+    .wos-table { font-size: 0.75rem; }
+    .wos-table th, .wos-table td { padding: 5px 6px; }
+    .wos-path-card { padding: 8px; gap: 6px; }
+    .wos-path-name { font-size: 0.7rem; }
+    .wos-path-points { font-size: 0.85rem; }
   }
 </style>
 

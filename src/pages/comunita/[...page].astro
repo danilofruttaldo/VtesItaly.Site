@@ -3,10 +3,10 @@ import '../../styles/community-page.css';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
+import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
-import { filterByLocale, useTranslations, formatLocalDate } from '../../utils/i18n';
-import { typeTagLabels } from '../../data/categories';
+import { filterByLocale, useTranslations } from '../../utils/i18n';
 
 const t = useTranslations('it');
 
@@ -20,7 +20,6 @@ export const getStaticPaths = (async ({ paginate }) => {
 const pageMeta = mainPages.find(p => p.slug.it === 'comunita')!;
 const { page } = Astro.props;
 
-const typeTags = Object.fromEntries(Object.entries(typeTagLabels).map(([k, v]) => [k, v.it]));
 ---
 <Base title={pageMeta.title.it} description={pageMeta.description.it} noindex={page.currentPage > 1}>
   <img src={pageMeta.headerImage} alt={pageMeta.title.it} class="hero-banner" decoding="async" fetchpriority="high" />
@@ -34,27 +33,16 @@ const typeTags = Object.fromEntries(Object.entries(typeTagLabels).map(([k, v]) =
 
     <div class="post-list">
       {page.data.map(post => (
-        <a href={`/${post.data.category}/${post.slug}/`} class="post-card">
-          <h2 class="post-card__title">{post.data.title}</h2>
-          <div class="post-card__body">
-            {(post.data.featuredImage || post.data.poster) && (
-              <img src={post.data.featuredImage || post.data.poster} alt={post.data.title} class:list={['post-card__image', !post.data.featuredImage && post.data.poster && 'post-card__image--poster']} loading="lazy" decoding="async" />
-            )}
-            <div class="post-card__content">
-              <div class="post-card__date-row">
-                <time class="post-card__date" datetime={post.data.date.toISOString()}>
-                  {formatLocalDate(post.data.date, 'it')}
-                </time>
-                {(() => {
-                  const typeTag = post.data.tags?.find((t: string) => typeTags[t]);
-                  return typeTag ? <span class="post-card__type">{typeTags[typeTag]}</span> : null;
-                })()}
-              </div>
-              {post.data.excerpt && <p class="post-card__excerpt">{post.data.excerpt}</p>}
-              <span class="post-card__cta">{t.post.read_cta} &rarr;</span>
-            </div>
-          </div>
-        </a>
+        <PostCard
+          href={`/${post.data.category}/${post.slug}/`}
+          title={post.data.title}
+          image={post.data.featuredImage || post.data.poster}
+          isPoster={!post.data.featuredImage && !!post.data.poster}
+          date={post.data.date}
+          tags={post.data.tags}
+          excerpt={post.data.excerpt}
+          locale="it"
+        />
       ))}
     </div>
 

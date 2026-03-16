@@ -14,8 +14,14 @@
 .prose :global(a) { color: var(--color-accent-1); }
 .prose :global(a:hover) { color: var(--color-accent-2); }
 .prose :global(strong) { font-weight: 600; }
+.prose :global(.table-wrap) { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; }
 .prose :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.prose :global(.table-wrap) > :global(table) { margin: 0; }
 .prose :global(th), .prose :global(td) {
   padding: 8px 12px; border: 1px solid var(--color-border); text-align: left;
 }
 .prose :global(th) { font-weight: 600; background-color: var(--color-surface); }
+
+@media (max-width: 544px) {
+  .prose :global(th), .prose :global(td) { padding: 6px 8px; font-size: 0.8rem; }
+}

@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
+import { anonymizeName } from '../utils/anonymize';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -218,7 +219,7 @@ function fmt(n: number): string { return n % 1 === 0 ? String(n) : n.toFixed(2).
           {standings.map(s => (
             <tr class:list={[s.rank === 1 && 'le-standings-winner', s.rank >= 2 && s.rank <= 5 && 'le-standings-finalist']}>
               <td class="tc">{s.rank}</td>
-              <td>{s.name}</td>
+              <td>{anonymizeName(s.name)}</td>
               {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
               <td class="tc">{fmt(s.lp)}</td>
               <td class="tc">{s.gw}</td>
@@ -402,5 +403,9 @@ function fmt(n: number): string { return n % 1 === 0 ? String(n) : n.toFixed(2).
     .le-label { width: auto; }
     .le-tops-grid { grid-template-columns: 1fr; }
     .le-poster img { max-width: 100%; }
+    .le-standings-table { font-size: 0.72rem; }
+    .le-standings-table th, .le-standings-table td { padding: 5px 4px; }
+    .le-section-title { font-size: 1.1rem; }
+    .le-gallery-grid { grid-template-columns: 1fr; }
   }
 </style>

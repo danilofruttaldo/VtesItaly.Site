@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
+import { anonymizeName } from '../utils/anonymize';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -278,7 +279,7 @@ const hasFvp = standings.some(s => s.fvp != null);
           {standings.map(s => (
             <tr class:list={[s.rank <= 1 && 'gp-standings-winner', s.rank >= 2 && s.rank <= 5 && 'gp-standings-finalist']}>
               <td class="tc">{s.rank}</td>
-              <td>{s.name}</td>
+              <td>{anonymizeName(s.name)}</td>
               <td class="tc">{s.gw}</td>
               <td class="tc">{s.vp}</td>
               {hasFvp && <td class="tc">{s.fvp ?? ''}</td>}
@@ -557,5 +558,11 @@ const hasFvp = standings.some(s => s.fvp != null);
     .gp-poster { margin-left: -16px; margin-right: -16px; }
     .gp-poster img { border-radius: 0; }
     .gp-gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .gp-table { font-size: 0.75rem; }
+    .gp-table th, .gp-table td { padding: 4px 6px; }
+    .gp-standings-table { font-size: 0.72rem; }
+    .gp-standings-table th, .gp-standings-table td { padding: 5px 6px; }
+    .gp-standings-title { font-size: 1.1rem; }
+    .gp-collage { grid-template-columns: 1fr; }
   }
 </style>

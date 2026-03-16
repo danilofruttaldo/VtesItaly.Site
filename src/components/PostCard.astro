@@ -1,0 +1,53 @@
+---
+import type { Locale } from '../utils/i18n';
+import { useTranslations, formatLocalDate } from '../utils/i18n';
+import { categoryLabels, typeTagLabels } from '../data/categories';
+
+interface Props {
+  href: string;
+  title: string;
+  image?: string;
+  isPoster?: boolean;
+  date?: Date;
+  category?: string;
+  tags?: string[];
+  excerpt?: string;
+  locale?: Locale;
+}
+
+const { href, title, image, isPoster = false, date, category, tags = [], excerpt, locale = 'it' } = Astro.props;
+const t = useTranslations(locale);
+
+const typeTags = Object.fromEntries(Object.entries(typeTagLabels).map(([k, v]) => [k, v[locale]]));
+const typeTag = tags.find(t => typeTags[t]);
+
+const badges: { label: string }[] = [];
+if (category) {
+  const catLabel = categoryLabels[category]?.[locale];
+  if (catLabel) badges.push({ label: catLabel });
+}
+if (typeTag) badges.push({ label: typeTags[typeTag] });
+---
+
+<a href={href} class="post-card">
+  {image && (
+    <img src={image} alt={title} class:list={['post-card__image', isPoster && 'post-card__image--poster']} loading="lazy" decoding="async" />
+  )}
+  <div class="post-card__body">
+    {date && (
+      <time class="post-card__date" datetime={date.toISOString()}>
+        {formatLocalDate(date, locale)}
+      </time>
+    )}
+    {badges.length > 0 && (
+      <div class="post-card__tags">
+        {badges.map(b => (
+          <span class="post-card__tag">{b.label}</span>
+        ))}
+      </div>
+    )}
+    <span class="post-card__title">{title}</span>
+    {excerpt && <p class="post-card__excerpt">{excerpt}</p>}
+    <span class="post-card__cta">{t.post.read_cta} &rarr;</span>
+  </div>
+</a>

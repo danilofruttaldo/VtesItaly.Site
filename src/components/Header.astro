@@ -541,6 +541,18 @@ function isCurrent(href: string): boolean {
       }
     }
 
+    // Save language preference on any lang switch link
+    var STORAGE_KEY = 'vtesitaly-lang';
+    var langLinks = document.querySelectorAll('.lang-dropdown__item:not(.is-current), .mobile-menu__lang');
+    for (var li = 0; li < langLinks.length; li++) {
+      langLinks[li].addEventListener('click', function() {
+        // Determine target locale from the href
+        var href = this.getAttribute('href') || '';
+        var targetLang = href.match(/^\/en(\/|$)/) ? 'en' : 'it';
+        try { localStorage.setItem(STORAGE_KEY, targetLang); } catch(e) {}
+      });
+    }
+
     // Language dropdown
     var langDropdown = document.getElementById('lang-dropdown');
 

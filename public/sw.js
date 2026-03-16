@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vtesitaly-v3';
+const CACHE_NAME = 'vtesitaly-v4';
 
 const PRECACHE = [
   '/',
@@ -8,7 +8,6 @@ const PRECACHE = [
   '/apple-touch-icon.png',
   '/images/logo.webp',
   '/images/headers/header-home.webp',
-  '/404.html',
 ];
 
 // Install: precache shell
@@ -52,7 +51,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           return response;
         })
-        .catch(() => caches.match(request).then((cached) => cached || caches.match('/404.html') || caches.match('/')))
+        .catch(() => caches.match(request).then((cached) => cached || caches.match('/')))
     );
   } else {
     // Cache-first for static assets (images, CSS, JS)

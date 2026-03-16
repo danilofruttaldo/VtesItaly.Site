@@ -39,12 +39,12 @@ venue:
   mapUrl: "https://maps.google.com/?q=Gelindo+dei+Magredi+Via+Roma+14+Vivaro+PN"
 events:
   - name: "MAIN EVENT: Italian Championship 2025"
-    date: "Sabato 12 Aprile"
+    date: 2025-04-12
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/446"
   - name: "SIDE EVENT: Italian Tour 2025 - Pordenone"
-    date: "Domenica 13 Aprile"
+    date: 2025-04-13
     time: "09:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/447"

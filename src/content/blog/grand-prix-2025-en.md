@@ -12,12 +12,12 @@ venue:
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Hotel+Baia+del+Re+Str.+Vignolese+1684+Modena"
 events:
   - name: "MAIN EVENT: Italian Grand Prix 2025"
-    date: "Saturday 1 March"
+    date: 2025-03-01
     time: "09:30"
     format: "Standard Constructed, No Proxies — 3 Rounds + Final"
     archonUrl: "https://gp2025.vtesitaly.com/"
   - name: "SIDE EVENT: Italian Tour 2025 - Modena"
-    date: "Sunday 2 March"
+    date: 2025-03-02
     time: "09:00"
     format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     archonUrl: "http://bcncrisis.com/tournament/462"

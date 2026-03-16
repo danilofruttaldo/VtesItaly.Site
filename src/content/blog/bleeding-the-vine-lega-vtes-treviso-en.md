@@ -8,7 +8,8 @@ poster: "/images/comunita/treviso/bleeding-the-vine.webp"
 excerpt: "The first Vampire the Eternal Struggle league in Treviso: 8 players, 18 games, 24 tables played between April and July 2025."
 events:
   - name: "Constructed League"
-    date: "April – July 2025"
+    date: 2025-04-01
+    period: "April – July 2025"
     time: "evening"
     format: "Unsanctioned league — weekly games + final"
 playersCount: 8

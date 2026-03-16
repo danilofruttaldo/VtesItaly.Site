@@ -8,7 +8,8 @@ poster: "/images/comunita/treviso/bleeding-the-vine.webp"
 excerpt: "La prima lega di Vampire the Eternal Struggle a Treviso: 8 giocatori, 18 partite, 24 tavoli disputati tra aprile e luglio 2025."
 events:
   - name: "Lega Constructed"
-    date: "Aprile – Luglio 2025"
+    date: 2025-04-01
+    period: "Aprile – Luglio 2025"
     time: "serale"
     format: "Lega non sanzionata — partite settimanali + finale"
 playersCount: 8

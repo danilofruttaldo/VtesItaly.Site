@@ -12,7 +12,7 @@ venue:
   mapUrl: "https://maps.google.com/?q=Via+Castelnuovo+R.+796+41057+Spilamberto+MO"
 events:
   - name: "Standard Constructed"
-    date: "July 13, 2025"
+    date: 2025-07-13
     time: "10:00"
     format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
 contact: "parmeggiani.simone@gmail.com"

@@ -1,5 +1,5 @@
 ---
-title: "Contest: Decapitate!"
+title: "Decapitate!"
 date: 2025-12-08
 category: "comunita"
 tags: ["italia", "contest"]
@@ -8,10 +8,11 @@ poster: "/images/comunita/decapitate/old-header.webp"
 posterCaption: "The old header to \"decapitate\""
 excerpt: "The VTES Italy community is invited to participate in Decapitate!, a creative contest to design the new site header. The goal is to create a graphic proposal that represents the spirit of the game and the Italian community. The selected graphic will become the new official site header."
 events:
-  - name: "Graphic contest"
-    date: "December 8, 2025"
+  - name: "Decapitate!"
+    date: 2025-12-08
+    endDate: 2026-01-06
     time: "—"
-    format: "Creative contest open to the community"
+    format: "The VTES Italy community is invited to participate in Decapitate!, a creative contest to design the new site header. The goal is to create a graphic proposal that represents the spirit of the game and the Italian community. The selected graphic will become the new official site header."
 registration: "Create a graphic proposal · Prepare a preview image · Upload the file to an external service (Google Drive, WeTransfer, etc.) · Fill out the dedicated Google Form"
 prizes:
   - "Potence pin"

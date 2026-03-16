@@ -49,16 +49,16 @@ venue:
   mapUrl: "https://www.paolihotel.com/"
 events:
   - name: "Evento Serale: \"Non mi dire di dimenticare!\""
-    date: "Venerdì 27 Febbraio"
+    date: 2026-02-27
     time: "21:00"
     format: "Mono partita — VP + Punti Pestaggio"
   - name: "MAIN EVENT: Italian Championship 2026"
-    date: "Sabato 28 Febbraio"
+    date: 2026-02-28
     time: "09:15"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "https://archon.vekn.net/tournament/66a39cdc-f873-43f5-bd5e-b4c03fee716f/display.html"
   - name: "SIDE EVENT: Trento the day after..."
-    date: "Domenica 1 Marzo"
+    date: 2026-03-01
     time: "09:30"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "https://archon.vekn.net/tournament/04f7a1df-82f6-4c73-8d3c-c43f75f1a88b/display.html"

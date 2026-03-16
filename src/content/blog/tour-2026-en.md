@@ -14,6 +14,9 @@ stages:
     number: 1
     date: 2026-02-15
     cities: ["modena", "parma"]
+    time: "10:00"
+    venue: "Polisportiva Sacca"
+    location: "Via Alfonso Paltrinieri 80, 41122 Modena (MO)"
     image: "/tour/tour-2026/tour-2026-001.webp"
     archonUrl: "https://archon.vekn.net/tournament/5bd9a77f-4ea3-491b-89dd-851bf4fe735d/display.html"
     description: "The first sin opens the Tour. Accumulate power, resources and advantage: Greed is the engine of every ambition. Those who take everything from the start set the pace of the season."
@@ -21,6 +24,9 @@ stages:
     number: 2
     date: 2026-03-28
     cities: ["barga", "massa"]
+    time: "10:00"
+    venue: "Lucca Collezionando"
+    location: "Via della Chiesa XXXII, 237, 55100 Lucca (LU)"
     image: "/tour/tour-2026/tour-2026-002.webp"
     archonUrl: "https://archon.vekn.net/tournament/dfa8a0e3-8b02-4bf5-897e-0f7c54a0dd1b/display.html"
     description: "Envy watches and learns. Wanting what others have is the first step to taking it. A subtle sin, but lethal, at the heart of competition."

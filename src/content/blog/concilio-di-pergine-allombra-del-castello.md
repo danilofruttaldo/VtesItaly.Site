@@ -11,7 +11,7 @@ venue:
   address: "Pergine Valsugana (TN)"
 events:
   - name: "Standard Constructed"
-    date: "21 Giugno 2025"
+    date: 2025-06-21
     time: "10:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
 contact: "asgard.aldeno@gmail.com"

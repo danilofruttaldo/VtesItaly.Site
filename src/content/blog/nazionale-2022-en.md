@@ -22,7 +22,7 @@ venue:
   address: "Via Ranzani 13/2 — Bologna"
 events:
   - name: "MAIN EVENT: Italian Championship 2022"
-    date: "Saturday 15 October"
+    date: 2022-10-15
     time: "09:30"
     format: "Standard Constructed, No Proxies — 3 Rounds + Final"
 standingsUrl: "/nc/nc-2022/standings-nc-2022.json"

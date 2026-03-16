@@ -12,12 +12,12 @@ venue:
   mapUrl: "https://www.paolihotel.com/"
 events:
   - name: "MAIN EVENT: Italian Championship 2024"
-    date: "Sabato 27 Aprile"
+    date: 2024-04-27
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/294"
   - name: "SIDE EVENT: Italian Tour - Tappa di Trento"
-    date: "Domenica 28 Aprile"
+    date: 2024-04-28
     time: "09:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/295"

@@ -12,12 +12,12 @@ venue:
   mapUrl: "https://maps.app.goo.gl/YDqFGMkVhBBnJwbx7"
 events:
   - name: "MAIN EVENT: Italian Grand Prix 2026"
-    date: "Sabato 2 Maggio"
+    date: 2026-05-02
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "https://archon.vekn.net/tournament/1808ea53-e5a0-428a-8dd4-905a394b7124/display.html"
   - name: "SIDE EVENT: Le Due Torri"
-    date: "Domenica 3 Maggio"
+    date: 2026-05-03
     time: "09:30"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "https://archon.vekn.net/tournament/84cbe147-3c9a-4d79-97b4-f7cf51958eb0/display.html"

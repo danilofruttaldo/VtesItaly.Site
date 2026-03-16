@@ -12,7 +12,7 @@ venue:
   mapUrl: "https://maps.google.com/?q=UNA+Hotel+Fiera+Piazza+della+Costituzione+1+Bologna"
 events:
   - name: "MAIN EVENT: Italian Grand Prix 2023"
-    date: "10 Dicembre 2022"
+    date: 2022-12-10
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/92"

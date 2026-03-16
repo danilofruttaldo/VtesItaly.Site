@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'zod';
 import { glob } from 'astro/loaders';
 
 const LOCALES = ['it', 'en'] as const;
@@ -20,6 +21,9 @@ const blog = defineCollection({
       number: z.number(),
       date: z.coerce.date(),
       cities: z.array(z.string()),
+      time: z.string().optional(),
+      venue: z.string().optional(),
+      location: z.string().optional(),
       archonUrl: z.string().optional(),
       image: z.string().optional(),
       description: z.string().optional(),
@@ -42,10 +46,12 @@ const blog = defineCollection({
     }).optional(),
     events: z.array(z.object({
       name: z.string(),
-      date: z.string(),
+      date: z.coerce.date(),
+      endDate: z.coerce.date().optional(),
       time: z.string(),
       format: z.string(),
       archonUrl: z.string().optional(),
+      period: z.string().optional(),
     })).optional().default([]),
     pricing: z.array(z.object({
       label: z.string(),

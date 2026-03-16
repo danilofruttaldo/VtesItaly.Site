@@ -13,12 +13,12 @@ venue:
   mapUrl: "https://maps.google.com/?q=Wipeout+via+Castelletto+45+Paderno+Dugnano+MI"
 events:
   - name: "MAIN EVENT: Italian Grand Prix 2024"
-    date: "9 Dicembre 2023"
+    date: 2023-12-09
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/178"
   - name: "SIDE EVENT: Italian Tour 2023 Stage 9 Milano"
-    date: "8 Dicembre 2023"
+    date: 2023-12-08
     time: "09:30"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/176"

@@ -12,7 +12,7 @@ venue:
   mapUrl: "https://maps.google.com/?q=Strada+dei+Biscari+2+31100+Treviso"
 events:
   - name: "Constructed (Proxy Legal)"
-    date: "5 Luglio 2025"
+    date: 2025-07-05
     time: "10:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
 pricing:

@@ -12,17 +12,17 @@ venue:
   mapUrl: "https://maps.google.com/?q=Agriturismo+Il+Musaccio+Barga"
 events:
   - name: "Field Training"
-    date: "29 Agosto 2025"
+    date: 2025-08-29
     time: "14:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/593"
   - name: "Symposium Italicum MMXXV"
-    date: "30 Agosto 2025"
+    date: 2025-08-30
     time: "08:30"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
     archonUrl: "http://bcncrisis.com/tournament/591"
   - name: "Pool Party"
-    date: "31 Agosto 2025"
+    date: 2025-08-31
     time: "09:30"
     format: "Giornata di relax e partite libere"
 pricing:

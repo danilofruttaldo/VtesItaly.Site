@@ -11,7 +11,7 @@ venue:
   address: "Viale Sergio Cavina 4 — Bologna"
 events:
   - name: "MAIN EVENT: Italian Championship 2021"
-    date: "Sabato 8 Gennaio 2022"
+    date: 2022-01-08
     time: "10:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
 registration: "Preiscrizione e decklist obbligatorie"

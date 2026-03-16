@@ -23,7 +23,7 @@ venue:
   address: "Via Michelino, 74 — Bologna"
 events:
   - name: "MAIN EVENT: Italian Championship 2023"
-    date: "Sunday 30 April"
+    date: 2023-04-30
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Rounds + Final"
     archonUrl: "http://bcncrisis.com/tournament/125"

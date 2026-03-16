@@ -41,13 +41,19 @@
   "days_short_array": ["SUN","MON","TUE","WED","THU","FRI","SAT"],
   "date_locale": "en-GB",
   "calendar": {
-    "loading": "Loading events...",
-    "embed_title": "VTES Italy events calendar",
-    "all_day": "All day",
-    "no_events": "No events scheduled in the next %d months.",
-    "full_calendar": "See the full calendar on Google",
-    "open_google": "Open in Google Calendar",
-    "sync_note": "Automatically updated from Google Calendar"
+    "no_events_month": "No events this month.",
+    "prev_month": "Previous month",
+    "next_month": "Next month",
+    "today": "Today",
+    "add_google": "GCal",
+    "starts": "Starts",
+    "ends": "Ends",
+    "cat_gp": "Grand Prix",
+    "cat_tour": "Italian Tour",
+    "cat_nc": "National Championship",
+    "cat_community": "Community",
+    "legend_events": "Events",
+    "legend_other": "Other"
   },
   "search": {
     "aria_label": "Search",
@@ -58,7 +64,8 @@
   },
   "nav": {
     "main_label": "Main navigation",
-    "menu_button": "Menu"
+    "menu_button": "Menu",
+    "choose_language": "Choose language"
   },
   "sticky_bar": {
     "events": "Events",
@@ -135,7 +142,8 @@
     "meetups_tbd": "Flexible schedule. Contact the Prince for times and venues.",
     "highlight_cta": "Learn more",
     "news_title": "News from the Domain",
-    "no_news": "No news at the moment."
+    "no_news": "No news at the moment.",
+    "whatsapp_group": "WhatsApp group"
   },
   "gp": {
     "archive": "Archive",

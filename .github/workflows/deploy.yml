@@ -21,7 +21,6 @@ jobs:
       - run: npm run build
         env:
           NODE_ENV: production
-          PUBLIC_GOOGLE_CALENDAR_API_KEY: ${{ secrets.PUBLIC_GOOGLE_CALENDAR_API_KEY }}
 
       - name: Deploy via scp
         env:

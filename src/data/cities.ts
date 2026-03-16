@@ -24,6 +24,9 @@ export interface City {
     alias: string;
     image: string;
     email?: string;
+    instagramUrl?: string;
+    facebookUrl?: string;
+    whatsappUrl?: string;
   };
   headerImage: string;
   description: Record<Locale, string>;
@@ -209,14 +212,31 @@ export const cities: City[] = [
     slug: { it: 'parma', en: 'parma' },
     name: { it: 'Parma', en: 'Parma' },
     region: 'Emilia-Romagna',
-    prince: { name: 'Leonardo Magri', alias: 'Kaiser', image: '/images/principi/principi-leonardo-magri.webp', email: 'leonardo.magri13@gmail.com' },
+    prince: { name: 'Leonardo Magri', alias: 'Kaiser', image: '/images/principi/principi-leonardo-magri.webp', email: 'leonardo.magri13@gmail.com', instagramUrl: 'https://www.instagram.com/leokaiser94/', facebookUrl: 'https://www.facebook.com/leonardo.l.magri', whatsappUrl: 'https://api.whatsapp.com/send/?phone=393341674036&text&type=phone_number&app_absent=0' },
     headerImage: '/images/headers/header-parma.webp',
     description: {
       it: 'Dominio emiliano con incontri su richiesta. Contatta il Principe per organizzare partite e conoscere la community locale.',
       en: 'Emilian domain with meetups on request. Contact the Prince to arrange games and meet the local community.',
     },
-    meetupSchedule: [],
+    meetupSchedule: [
+      {
+        day: { it: 'Su richiesta', en: 'On request' },
+        place: 'Pub "La Corte di Odino" / Circolo Arci Argonne',
+        places: [
+          { name: 'Pub "La Corte di Odino"', address: 'Via Mantova 72, Parma', mapUrl: 'https://maps.google.com/?q=La+Corte+di+Odino+Via+Mantova+72+Parma' },
+          { name: 'Circolo Arci Argonne', address: 'Via Argonne 4, Parma', mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Argonne+Via+Argonne+4+Parma' },
+        ],
+      },
+    ],
     tagId: 24,
+    highlight: {
+      title: { it: 'Principato, Gioco e Community', en: 'Domain, Game and Community' },
+      text: {
+        it: 'Il Principato di Parma si basa su tre regole fondamentali: Divertimento, Compagnia e Gruppo. La cosa più importante è mantenere il sorriso e vivere il gioco come un\'esperienza di svago. "Uno per tutti, tutti per uno" — e quando capita un\'incomprensione, si risolve tutto con una birra!<br/><br/>Nessuno pretende di essere il migliore: l\'obiettivo è crescere insieme nella qualità del gioco, tra conoscenza delle regole, visione di gioco e capacità di dialogo.<br/><br/>Sei curioso di provare, vuoi conoscere persone nuove o sei appassionato del mondo dei Vampiri? Contatta il Principe: ti aspettiamo per una demo e un\'ottima serata in compagnia!',
+        en: 'The Domain of Parma is built on three fundamental rules: Fun, Fellowship and Teamwork. The most important thing is to keep smiling and enjoy the game as a fun experience. "All for one, one for all" — and when a misunderstanding arises, we settle it over a beer!<br/><br/>Nobody claims to be the best: the goal is to grow together in game quality, through rules knowledge, game vision and communication skills.<br/><br/>Curious to try, want to meet new people or passionate about the world of Vampires? Contact the Prince: we\'re waiting for you for a demo and a great evening together!',
+      },
+      image: '/images/comunita/parma/gruppo.webp',
+    },
   },
   {
     slug: { it: 'pordenone', en: 'pordenone' },

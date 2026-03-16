@@ -27,7 +27,7 @@ const tourStatus = computeTourStatus(current?.data.stages || []);
   <section class="page-section">
     <div class="container container--narrow">
       <div class="intro-lead">
-        <Fragment set:html={page.leadHtml.en!} />
+        <Fragment set:html={page.leadHtml?.en ?? ''} />
       </div>
     </div>
   </section>
@@ -50,8 +50,8 @@ const tourStatus = computeTourStatus(current?.data.stages || []);
         <h2 class="page-section-title">{t.tour.archive}</h2>
         <div class="editions-list">
           {pastEditions.map(post => (
-            <a href={`/en/tour/${post.slug.replace(/-en$/, '')}/`} class="edition-card">
-              <span class="edition-year">{post.slug.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
+            <a href={`/en/tour/${post.id.replace(/-en$/, '')}/`} class="edition-card">
+              <span class="edition-year">{post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
               {post.data.stages && post.data.stages.length > 0 && (() => {
                 const stg = post.data.stages!;
                 const citiesCount = new Set(stg.flatMap(s => s.cities)).size;

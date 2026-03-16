@@ -35,6 +35,8 @@
   --color-gold: #C9A84C;
   --color-gold-hover: #E0C36A;
   --color-border: rgba(255, 255, 255, 0.08);
+  --color-streaming: #ff0000;
+  --color-success: #4ade80;
 
   /* Typography */
   --font-family: 'Manrope', system-ui, -apple-system, sans-serif;
@@ -509,36 +511,6 @@ img {
   gap: 12px;
 }
 
-.edition-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  border-radius: var(--radius);
-  border: 1px solid var(--color-border);
-  text-decoration: none;
-  color: var(--color-contrast);
-  transition: background-color 0.2s ease, transform 0.15s ease;
-}
-
-.edition-card:hover {
-  background-color: rgba(255, 255, 255, 0.04);
-  transform: translateX(2px);
-  color: var(--color-contrast);
-}
-
-.edition-year {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  min-width: 60px;
-}
-
-.edition-label {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
 .btn--outline {
   background: transparent;
   border: 1px solid var(--color-accent);
@@ -556,4 +528,28 @@ img {
 
 @media (max-width: 768px) {
   body { padding-bottom: 72px; }
+}
+
+/* ========================================
+   Rendering Performance
+   ======================================== */
+
+.page-section + .page-section,
+.gp-gallery,
+.gp-standings {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ========================================
+   Reduced Motion (global)
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

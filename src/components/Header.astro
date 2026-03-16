@@ -1,12 +1,11 @@
 ---
-import { getLocaleFromUrl, useTranslations, getAlternateUrl, getOtherLocales, localePrefix } from '../utils/i18n';
+import { getLocaleFromUrl, useTranslations, getAlternateUrl, getOtherLocales } from '../utils/i18n';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 const otherLocales = getOtherLocales(locale);
 const altUrl = getAlternateUrl(Astro.url, otherLocales[0]);
 
-const prefix = localePrefix(locale);
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const flags: Record<string, string> = {
@@ -44,7 +43,7 @@ function isCurrent(href: string): boolean {
 <header class="site-header">
   <div class="container">
     <a href={`${t.routes.home}`} class="site-title" aria-current={isCurrent(`${t.routes.home}`) ? 'page' : undefined}>
-      <img src="/images/logo.webp" alt="VTES Italy" class="site-logo" width="36" height="36" />
+      <img src="/images/logo.webp" alt="VTES Italy" class="site-logo" width="36" height="36" decoding="async" />
       <span class="site-title__text">vtesitaly.com</span>
     </a>
 

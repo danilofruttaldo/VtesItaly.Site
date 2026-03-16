@@ -1,5 +1,6 @@
 ---
 import '../styles/prose.css';
+import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
@@ -13,7 +14,7 @@ interface Props {
 
 const { post, locale = 'it' } = Astro.props;
 const t = useTranslations(locale);
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 // Links (same pattern as GpEdition)
 const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale).map(l => ({

@@ -5,9 +5,9 @@ import ShareButtons from '../components/ShareButtons.astro';
 import GpEdition from '../components/GpEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
-import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
+import { filterByLocale, useTranslations } from '../utils/i18n';
 import { computeEventStatus } from '../utils/status';
-import { anonymizeName } from '../utils/anonymize';
+import { getCardMeta, type Standing } from '../utils/standings';
 import '../styles/edition-archive.css';
 
 const t = useTranslations('it');
@@ -23,25 +23,7 @@ const pastEditions = posts.filter(p => p !== current);
 
 const ncStatus = current ? computeEventStatus(new Date(current.data.date)) : null;
 
-// Load standings data for archive cards
-interface Standing { rank: number; name: string; gw: number; vp: number; fvp: number | null; tp: number; }
 const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.json', { eager: true }) as Record<string, { default: Standing[] }>;
-function getCardMeta(post: any) {
-  const eventDate = post.data.events?.[0]?.date || '';
-  let winner = '';
-  let players = 0;
-  if (post.data.standingsUrl) {
-    const key = Object.keys(allStandings).find(k => k.includes(post.data.standingsUrl.replace(/^.*\//, '')));
-    if (key) {
-      const data = allStandings[key].default;
-      players = data.length;
-      const first = data.find((s: Standing) => s.rank === 1);
-      if (first) winner = anonymizeName(first.name);
-    }
-  }
-  if (!players && post.data.playersCount) players = post.data.playersCount;
-  return { eventDate, winner, players };
-}
 ---
 <Base title={page.title.it} description={page.description.it}>
   <PageHero title={page.title.it} image={page.headerImage} />
@@ -50,7 +32,7 @@ function getCardMeta(post: any) {
   <section class="page-section">
     <div class="container container--narrow">
       <div class="intro-lead">
-        <Fragment set:html={page.leadHtml.it!} />
+        <Fragment set:html={page.leadHtml?.it ?? ''} />
       </div>
     </div>
   </section>
@@ -75,15 +57,15 @@ function getCardMeta(post: any) {
         <h2 class="page-section-title">{t.gp.archive}</h2>
         <div class="editions-list">
           {pastEditions.map(post => {
-            const meta = getCardMeta(post);
+            const meta = getCardMeta(post, allStandings);
             return (
-            <a href={`/nazionale/${post.slug}/`} class="edition-card">
+            <a href={`/nazionale/${post.id}/`} class="edition-card">
               {(post.data.poster || post.data.featuredImage) && (
-                <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']} loading="lazy" decoding="async" />
+                <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']} loading="lazy" decoding="async" width="64" height="64" />
               )}
               <div class="edition-card-body">
                 <div class="edition-card-header">
-                  <span class="edition-year">{post.slug.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
+                  <span class="edition-year">{post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
                   {meta.winner && (
                     <span class="edition-winner">&#127942; {meta.winner}</span>
                   )}

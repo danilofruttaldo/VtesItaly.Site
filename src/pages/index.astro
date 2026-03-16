@@ -43,7 +43,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'it')
       <div class="post-list">
         {latestPosts.map(post => (
           <PostCard
-            href={`/${post.data.category}/${post.slug}/`}
+            href={`/${post.data.category}/${post.id}/`}
             title={post.data.title}
             image={post.data.featuredImage || post.data.poster}
             isPoster={!post.data.featuredImage && !!post.data.poster}

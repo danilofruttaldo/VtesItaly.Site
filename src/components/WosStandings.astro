@@ -139,7 +139,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
                     <tr class:list={[p.rank === 1 && 'wos-row-winner']}>
                       <td class="tc">{p.rank}</td>
                       <td class="wos-path-cell-name">{p.name}</td>
-                      <td class="wos-players-cell"><Fragment set:html={p.players.split(', ').join('<br />')} /></td>
+                      <td class="wos-players-cell"><Fragment set:html={p.players.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').split(', ').join('<br />')} /></td>
                       <td class="tc">{p.gw}</td>
                       <td class="tc">{p.vp}</td>
                       <td class="tc">{p.points}</td>

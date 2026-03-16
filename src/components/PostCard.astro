@@ -31,7 +31,7 @@ if (typeTag) badges.push({ label: typeTags[typeTag] });
 
 <a href={href} class="post-card">
   {image && (
-    <img src={image} alt={title} class:list={['post-card__image', isPoster && 'post-card__image--poster']} loading="lazy" decoding="async" />
+    <img src={image} alt={title} class:list={['post-card__image', isPoster && 'post-card__image--poster']} loading="lazy" decoding="async" width="120" height="120" />
   )}
   <div class="post-card__body">
     {date && (

@@ -1,8 +1,11 @@
 import { defineCollection, z } from 'astro:content';
-import { LOCALES, DEFAULT_LOCALE } from '../utils/i18n';
+import { glob } from 'astro/loaders';
+
+const LOCALES = ['it', 'en'] as const;
+const DEFAULT_LOCALE = 'it';
 
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),

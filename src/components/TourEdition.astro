@@ -1,9 +1,10 @@
 ---
 import '../styles/prose.css';
+import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { cities } from '../data/cities';
 import type { Locale } from '../utils/i18n';
-import { useTranslations, localePrefix, formatLocalDate } from '../utils/i18n';
+import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
 
 interface Props {
@@ -13,10 +14,9 @@ interface Props {
 
 const { post, locale = 'it' } = Astro.props;
 const t = useTranslations(locale);
-const prefix = localePrefix(locale);
 const stagesLabel = post.data.stagesLabel || t.tour.stages_label;
 const stageItemLabel = post.data.stageItemLabel || t.tour.stage_item;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const stages = post.data.stages || [];
 
 const today = new Date();
@@ -43,12 +43,6 @@ const statusLabels: Record<string, string> = {
   upcoming: t.tour.status_upcoming,
   future: t.tour.status_future,
   cancelled: t.tour.status_cancelled,
-};
-
-const ctaLabels: Record<string, string> = {
-  completed: t.tour.cta_results,
-  upcoming: t.tour.cta_register,
-  future: t.tour.cta_register,
 };
 
 function formatDate(date: Date): string {
@@ -110,7 +104,7 @@ function formatDate(date: Date): string {
                   </time>
                   <div class="te-cities">
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    {stage.cities.map((slug: string, ci: number) => {
+                    {(stage.cities || []).map((slug: string, ci: number) => {
                       const city = cityMap.get(slug);
                       if (!city) return <span class="te-city">{slug}</span>;
                       return <><a href={city.url} class="te-city">{city.name}</a>{ci < stage.cities.length - 1 && <span class="te-sep">&middot;</span>}</>;
@@ -269,7 +263,7 @@ function formatDate(date: Date): string {
   }
   .te-cta--upcoming:hover, .te-cta--future:hover { background: rgba(201,168,76,0.22); border-color: rgba(201,168,76,0.4); }
   .te-cta--completed {
-    color: #4ade80; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.18);
+    color: var(--color-success); background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.18);
   }
   .te-cta--completed:hover { background: rgba(74,222,128,0.18); border-color: rgba(74,222,128,0.3); }
   .te-cta--soon {

@@ -6,6 +6,7 @@ import { cities } from '../../../data/cities';
 import { getCollection } from 'astro:content';
 import PostCard from '../../../components/PostCard.astro';
 import { filterByLocale, useTranslations } from '../../../utils/i18n';
+import { getEnPostUrl, getCardImage } from '../../../utils/url';
 
 const t = useTranslations('en');
 
@@ -24,26 +25,6 @@ export async function getStaticPaths() {
 }
 
 const { city, relatedPosts } = Astro.props;
-
-function getEnPostUrl(post: any): string {
-  let cleanSlug = post.slug.replace(/-en$/, '');
-  let catSlug = post.data.category;
-  if (catSlug === 'nazionale') {
-    catSlug = 'national-championship';
-    cleanSlug = cleanSlug.replace('nazionale-', 'nc-');
-  } else if (catSlug === 'comunita') {
-    catSlug = 'community';
-  }
-  return `/en/${catSlug}/${cleanSlug}/`;
-}
-
-function getCardImage(post: any): { src: string | undefined; isPoster: boolean } {
-  if (post.data.category === 'tour' && post.data.stages?.length > 0) {
-    const stage = post.data.stages.find((s: any) => s.cities?.includes(city.slug.it));
-    if (stage?.image) return { src: stage.image, isPoster: false };
-  }
-  return { src: post.data.poster || post.data.featuredImage, isPoster: !!post.data.poster };
-}
 ---
 
 <Base title={city.name.en} description={city.description.en}>
@@ -158,7 +139,7 @@ function getCardImage(post: any): { src: string | undefined; isPoster: boolean }
         {relatedPosts.length > 0 ? (
           <div class="post-list">
             {relatedPosts.map(post => {
-              const cardImg = getCardImage(post);
+              const cardImg = getCardImage(post, city.slug.it);
               return (
                 <PostCard
                   href={getEnPostUrl(post)}

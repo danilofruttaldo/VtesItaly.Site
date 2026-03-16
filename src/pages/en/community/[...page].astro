@@ -7,6 +7,7 @@ import PostCard from '../../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../../data/pages';
 import { filterByLocale, useTranslations } from '../../../utils/i18n';
+import { getEnPostUrl } from '../../../utils/url';
 
 const t = useTranslations('en');
 
@@ -19,14 +20,6 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 const pageMeta = mainPages.find(p => p.slug.it === 'comunita')!;
 const { page } = Astro.props;
-
-function getEnPostUrl(post: any): string {
-  let cleanSlug = post.slug.replace(/-en$/, '');
-  let catSlug = post.data.category;
-  if (catSlug === 'nazionale') { catSlug = 'national-championship'; cleanSlug = cleanSlug.replace('nazionale-', 'nc-'); }
-  else if (catSlug === 'comunita') { catSlug = 'community'; }
-  return `/en/${catSlug}/${cleanSlug}/`;
-}
 ---
 <Base title={pageMeta.title.en} description={pageMeta.description.en} noindex={page.currentPage > 1}>
   <img src={pageMeta.headerImage} alt={pageMeta.title.en} class="hero-banner" decoding="async" fetchpriority="high" />

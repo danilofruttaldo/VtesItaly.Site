@@ -1,5 +1,6 @@
 ---
 import '../styles/prose.css';
+import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
@@ -15,10 +16,8 @@ interface Props {
 const { post, locale = 'it', showExcerpt = false } = Astro.props;
 const t = useTranslations(locale);
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 const eventDate = new Date(post.data.date);
-const isPast = eventDate < new Date();
-const statusLabel = isPast ? t.gp.results_label : t.gp.registration_label;
 const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale).map(l => ({
   ...l,
   label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
@@ -413,7 +412,7 @@ const hasFvp = standings.some(s => s.fvp != null);
     border-color: rgba(201,168,76,0.5);
   }
   .gp-link-btn--streaming {
-    color: #ff0000;
+    color: var(--color-streaming);
     border-color: rgba(255,0,0,0.3);
     background: rgba(255,0,0,0.08);
   }

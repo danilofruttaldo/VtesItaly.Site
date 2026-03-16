@@ -34,7 +34,7 @@ const { page } = Astro.props;
     <div class="post-list">
       {page.data.map(post => (
         <PostCard
-          href={`/${post.data.category}/${post.slug}/`}
+          href={`/${post.data.category}/${post.id}/`}
           title={post.data.title}
           image={post.data.featuredImage || post.data.poster}
           isPoster={!post.data.featuredImage && !!post.data.poster}

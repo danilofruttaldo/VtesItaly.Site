@@ -39,7 +39,7 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
 <p class="vtesitaly-calendar__sync">{t.calendar.sync_note}</p>
 
 <div class="vtesitaly-cal-footer">
-  <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=Europe/Rome`} target="_blank" rel="noopener" class="btn">
+  <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=Europe/Rome`} target="_blank" rel="noopener noreferrer" class="btn">
     {t.calendar.full_calendar}
   </a>
 </div>
@@ -126,7 +126,7 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
               : d.toLocaleTimeString(dateLocale, { hour: '2-digit', minute: '2-digit' });
 
             var safeLink = e.link.indexOf('https://') === 0 ? esc(e.link) : '#';
-            html += '<a href="' + safeLink + '" target="_blank" rel="noopener" class="vtesitaly-cal-event">' +
+            html += '<a href="' + safeLink + '" target="_blank" rel="noopener noreferrer" class="vtesitaly-cal-event">' +
               '<div class="vtesitaly-cal-event-date">' +
                 '<span class="vtesitaly-cal-day-name">' + dayName + '</span>' +
                 '<span class="vtesitaly-cal-day-num">' + dayNum + '</span>' +
@@ -147,7 +147,7 @@ const embedUrl = `https://calendar.google.com/calendar/embed?src=${encodeURIComp
       })
       .catch(function() {
         container.innerHTML = '<p class="vtesitaly-calendar__empty">' +
-          '<a href="https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(CALENDAR_ID) + '" target="_blank" rel="noopener">' +
+          '<a href="https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(CALENDAR_ID) + '" target="_blank" rel="noopener noreferrer">' +
             openGoogleLabel +
           '</a></p>';
       });

@@ -6,20 +6,13 @@ import { cities } from '../../data/cities';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
+import { getEnPostUrl } from '../../utils/url';
 
 const page = mainPages.find(p => p.slug.it === '')!;
 const t = useTranslations('en');
 const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 4);
-
-function getEnPostUrl(post: any): string {
-  let cleanSlug = post.slug.replace(/-en$/, '');
-  let catSlug = post.data.category;
-  if (catSlug === 'nazionale') { catSlug = 'national-championship'; cleanSlug = cleanSlug.replace('nazionale-', 'nc-'); }
-  else if (catSlug === 'comunita') { catSlug = 'community'; }
-  return `/en/${catSlug}/${cleanSlug}/`;
-}
 ---
 
 <Base title={page.title.en} description={page.description.en}>

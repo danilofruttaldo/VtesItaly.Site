@@ -23,15 +23,17 @@ linksAfter:
 locale: it
 ---
 
-La nuova espansione Sabbat segna un momento speciale: **l'Italia intera si unisce** per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città. Non è solo una competizione, ma una settimana di **incontro, scoperta e divertimento condiviso**, in puro spirito cainita.
+La nuova espansione Sabbat segna un momento speciale: **l'Italia intera si unisce** per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città.
+
+Non è solo una competizione, ma una settimana di **incontro, scoperta e divertimento condiviso**, in puro spirito cainita.
 
 > *"Per una settimana, tutta l'Italia gioca come un'unica cotérie"*
 
----
-
 ## Cos'è
 
-La Week of Sabbat è l'evento nazionale dedicato al lancio dei nuovi mazzi Sabbat. Dal **18 al 26 ottobre**, i giocatori di tutta Italia si sfidano in formato **Sealed**, aprendo e giocando mazzi prerelease in contemporanea. È un'occasione per provare le nuove carte, incontrare altri cainiti e partecipare a una classifica condivisa a livello nazionale, in un clima di divertimento e scoperta.
+La Week of Sabbat è l'evento nazionale dedicato al lancio dei nuovi mazzi Sabbat. Dal **18 al 26 ottobre**, i giocatori di tutta Italia si sfidano in formato **Sealed**, aprendo e giocando mazzi prerelease in contemporanea.
+
+È un'occasione per provare le nuove carte, incontrare altri cainiti e partecipare a una classifica condivisa a livello nazionale, in un clima di divertimento e scoperta.
 
 ## Come funziona
 
@@ -42,10 +44,7 @@ La Week of Sabbat è l'evento nazionale dedicato al lancio dei nuovi mazzi Sabba
 
 ## Punteggi e classifiche
 
-Durante la Week of Sabbat i giocatori ottengono punti attraverso:
-
-- Victory Points (VP)
-- Game Wins (GW)
+Durante la Week of Sabbat i giocatori ottengono punti attraverso Victory Points (VP) e Game Wins (GW).
 
 I risultati confluiscono in due livelli di classifica:
 
@@ -56,4 +55,6 @@ Dopo tre round, il totale dei punti determina il vincitore locale. Non è previs
 
 ## Mazzo e ricordo
 
-Al termine dell'evento, ogni partecipante porta a casa il proprio mazzo prerelease Sabbat come ricordo della Week of Sabbat. Tratta le carte con cura: fanno parte del kit ufficiale dell'evento e meritano rispetto… in puro stile Sabbat.
+Al termine dell'evento, ogni partecipante porta a casa il proprio mazzo prerelease Sabbat come ricordo della Week of Sabbat.
+
+Tratta le carte con cura: fanno parte del kit ufficiale dell'evento e meritano rispetto… in puro stile Sabbat.

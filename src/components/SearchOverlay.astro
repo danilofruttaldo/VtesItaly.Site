@@ -36,8 +36,8 @@ const t = useTranslations(locale);
       try {
         pagefind = await import('/pagefind/pagefind.js');
         await pagefind.init();
-      } catch (e) {
-        console.warn('Pagefind not available:', e);
+      } catch {
+        /* Pagefind not available in dev mode */
       }
     }
 

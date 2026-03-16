@@ -6,10 +6,11 @@ interface Props {
 }
 
 const { title, image, breadcrumb } = Astro.props;
+const has2x = image?.includes('header-home');
 ---
 
 <section class="page-hero">
-  {image && <img src={image} alt={title} class="page-hero__img" loading="eager" decoding="async" />}
+  {image && <img src={image} srcset={has2x ? `${image} 1x, ${image.replace('.webp', '-2x.webp')} 2x` : undefined} alt={title} class="page-hero__img" loading="eager" decoding="async" />}
   <div class="page-hero__overlay"></div>
   <div class="page-hero__content">
     {title && <h1>{title}</h1>}

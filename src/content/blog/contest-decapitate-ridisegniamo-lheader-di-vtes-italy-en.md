@@ -1,5 +1,5 @@
 ---
-title: "Contest Decapitate!"
+title: "Contest: Decapitate!"
 date: 2025-12-08
 category: "comunita"
 tags: ["italia", "contest"]
@@ -29,8 +29,14 @@ locale: "en"
 
 ---
 
-## Winner: Eleonora Basso
+## The contest is over!
 
-Congratulations to **Eleonora Basso**, whose proposal was selected as the new official header for the VTES Italy website!
+Here is the new official VTES Italy header: a panorama bringing together the landmarks of Italian cities where VTES is played, dotted with clan symbols hidden among the architecture, with the community logo at the centre. An image that tells the story of the game's journey across Italy.
 
-![New VTES Italy header](/images/headers/header-home.webp)
+<div class="winner-header">
+
+<img src="/images/headers/header-home.webp" srcset="/images/headers/header-home.webp 1x, /images/headers/header-home-2x.webp 2x" alt="New VTES Italy header" loading="lazy" decoding="async" />
+
+</div>
+
+Congratulations to **Eleonora**, author of the winning proposal!

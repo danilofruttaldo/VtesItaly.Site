@@ -17,15 +17,17 @@ linksAfter:
     locale: en
 ---
 
-The new Sabbat expansion marks a special moment: **all of Italy unites** to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city. Not just competition, but a week of **gathering, discovery and shared fun**, in true Cainite spirit.
+The new Sabbat expansion marks a special moment: **all of Italy unites** to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city.
+
+Not just competition, but a week of **gathering, discovery and shared fun**, in true Cainite spirit.
 
 > *"For one week, all of Italy plays as a single coterie"*
 
----
-
 ## What is it
 
-The Week of Sabbat is the national event dedicated to the launch of the new Sabbat decks. From **October 18 to 26**, players across Italy compete in **Sealed format**, opening and playing prerelease decks simultaneously. An opportunity to try new cards, meet other Cainites, and participate in a shared national ranking in a fun atmosphere.
+The Week of Sabbat is the national event dedicated to the launch of the new Sabbat decks. From **October 18 to 26**, players across Italy compete in **Sealed format**, opening and playing prerelease decks simultaneously.
+
+An opportunity to try new cards, meet other Cainites, and participate in a shared national ranking in a fun atmosphere.
 
 ## How it works
 
@@ -36,10 +38,7 @@ The Week of Sabbat is the national event dedicated to the launch of the new Sabb
 
 ## Scores and standings
 
-During the Week of Sabbat, players earn points through:
-
-- Victory Points (VP)
-- Game Wins (GW)
+During the Week of Sabbat, players earn points through Victory Points (VP) and Game Wins (GW).
 
 Results feed into two levels of standings:
 
@@ -50,5 +49,7 @@ After three rounds, total points determine the local winner. There is no final: 
 
 ## Deck and keepsake
 
-At the end of the event, each participant takes home their Sabbat prerelease deck as a memento of the Week of Sabbat. Treat the cards with care: they are part of the official event kit and deserve respect… in true Sabbat style.
+At the end of the event, each participant takes home their Sabbat prerelease deck as a memento of the Week of Sabbat.
+
+Treat the cards with care: they are part of the official event kit and deserve respect… in true Sabbat style.
 

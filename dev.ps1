@@ -37,7 +37,7 @@ while ($true) {
 
     $status = if ($DevProcess -and -not $DevProcess.HasExited) { "IN ESECUZIONE ($($DevProcess.Id))" } else { "TERMINATO" }
     Write-Host "Astro: $status" -ForegroundColor $(if ($status -match "IN ESECUZIONE") { "Green" } else { "Red" })
-    Write-Host "URL:   http://localhost:4321" -ForegroundColor Cyan
+    Write-Host "URL:   http://localhost:4322" -ForegroundColor Cyan
     Write-Host "------------------------------------------"
 
     $running = $DevProcess -and -not $DevProcess.HasExited

@@ -20,7 +20,7 @@ events:
     date: 2025-03-02
     time: "09:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
-    archonUrl: "http://bcncrisis.com/tournament/462"
+    archonUrl: "https://archon.vekn.net/tournament/5e7c9f73-b30e-4657-90a9-f60545309b82/display.html"
 pricing:
   - label: "Main Event + pranzo"
     regular: "60,00 euro"

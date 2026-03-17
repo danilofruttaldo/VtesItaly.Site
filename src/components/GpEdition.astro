@@ -66,7 +66,9 @@ const hasFvp = standings.some(s => s.fvp != null);
     <div class="gp-row">
       <span class="gp-label">{t.gp.venue_label}</span>
       <span class="gp-value">
-        <strong>{post.data.venue.name}</strong><br />
+        <strong>{post.data.venue.siteUrl ? (
+          <a href={post.data.venue.siteUrl} target="_blank" rel="noopener noreferrer">{post.data.venue.name}</a>
+        ) : post.data.venue.name}</strong><br />
         {post.data.venue.mapUrl ? (
           <a href={post.data.venue.mapUrl} target="_blank" rel="noopener noreferrer">{post.data.venue.address}</a>
         ) : post.data.venue.address}
@@ -87,7 +89,7 @@ const hasFvp = standings.some(s => s.fvp != null);
       </div>
     </div>
   )}
-  {post.data.pricing.length > 0 && (
+  {post.data.pricing.length > 0 && post.data.pricing.some(p => p.regular || p.early) && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.pricing_label}</span>
       <div class="gp-value">

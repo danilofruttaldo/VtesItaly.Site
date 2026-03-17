@@ -16,12 +16,12 @@ events:
     date: 2023-12-09
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Round + Finale"
-    archonUrl: "http://bcncrisis.com/tournament/178"
+    archonUrl: "https://archon.vekn.net/tournament/03ffef51-cd10-4b76-a950-94d37675f068/display.html"
   - name: "SIDE EVENT: Italian Tour 2023 Stage 9 Milano"
     date: 2023-12-08
     time: "09:30"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
-    archonUrl: "http://bcncrisis.com/tournament/176"
+    archonUrl: "https://archon.vekn.net/tournament/646c6d6d-e774-4d62-a775-3f9c6a75ca5f/display.html"
 pricing:
   - label: "Iscrizione"
     regular: "25,00 euro"

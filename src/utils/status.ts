@@ -46,5 +46,6 @@ export function computeEventStatus(eventDate: Date): EventStatus {
 export function resolvePlatformLabel(url: string): string {
   if (url.includes('bcncrisis')) return 'BCN Crisis';
   if (url.includes('archon')) return 'Archon';
+  if (url.includes('vtesitaly')) return 'Site';
   return url;
 }

@@ -21,12 +21,13 @@ gallerySections:
 venue:
   name: "The Sydney Hotel"
   address: "Via Michelino, 74 — Bologna"
+  mapUrl: "https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+74+Bologna"
 events:
   - name: "MAIN EVENT: Italian Championship 2023"
     date: 2023-04-30
     time: "09:00"
     format: "Standard Constructed, No Proxies — 3 Rounds + Final"
-    archonUrl: "http://bcncrisis.com/tournament/125"
+    archonUrl: "https://archon.vekn.net/tournament/5637b81d-bb5b-4f74-85b5-3c58d119e99d/display.html"
 standingsUrl: "/nc/nc-2023/standings-nc-2023.json"
 links:
   - label: "Infopack (PDF)"

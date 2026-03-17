@@ -45,10 +45,11 @@ gallerySections:
       - "/nc/nc-2026/nc-2026-bonus-05.webp"
 venue:
   name: "Hotel Paoli"
-  address: "Caldonazzo (TN)"
-  mapUrl: "https://www.paolihotel.com/"
+  address: "Località Lochere, 6, 38052 Caldonazzo (TN)"
+  siteUrl: "https://www.paolihotel.com/"
+  mapUrl: "https://maps.google.com/?q=Hotel+Paoli+Caldonazzo+TN"
 events:
-  - name: "Evening Event: \"Don't Tell Me to Forget!\""
+  - name: "SIDE EVENT: Don't Tell Me to Forget!"
     date: 2026-02-27
     time: "21:00"
     format: "Single game — VP + Beating Points"

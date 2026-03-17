@@ -43,6 +43,7 @@ const blog = defineCollection({
       name: z.string(),
       address: z.string(),
       mapUrl: z.string().optional(),
+      siteUrl: z.string().optional(),
     }).optional(),
     events: z.array(z.object({
       name: z.string(),

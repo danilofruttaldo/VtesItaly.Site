@@ -2,7 +2,7 @@ import { defineConfig, passthroughImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://wp.vtesitaly.com',
+  site: 'https://vtesitaly.com',
   integrations: [sitemap()],
   prefetch: {
     prefetchAll: false,

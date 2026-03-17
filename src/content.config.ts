@@ -109,6 +109,7 @@ const blog = defineCollection({
       url: z.string(),
       locale: z.enum(LOCALES).optional(),
     })).optional().default([]),
+    pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
     cardHidden: z.boolean().optional().default(false),
     locale: z.enum(LOCALES).default(DEFAULT_LOCALE),
   }),

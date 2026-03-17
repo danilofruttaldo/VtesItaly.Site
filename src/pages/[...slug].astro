@@ -50,8 +50,9 @@ const isTourWithStages = post.data.category === 'tour' && post.data.stages && po
 const tourStatus = isTourWithStages ? computeTourStatus(post.data.stages!) : null;
 const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
-const isLeague = post.data.category === 'comunita' && !!post.data.leagueStats;
-const isCommunityEvent = post.data.category === 'comunita' && !post.data.leagueStats && !!(post.data.venue || post.data.events.length > 0);
+const forceArticle = post.data.pageLayout === 'article';
+const isLeague = !forceArticle && post.data.category === 'comunita' && !!post.data.leagueStats;
+const isCommunityEvent = !forceArticle && post.data.category === 'comunita' && !post.data.leagueStats && !!(post.data.venue || post.data.events.length > 0);
 const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
 const gpStatus = isEventPage ? computeEventStatus(new Date(post.data.date)) : null;
 const communityCity = (isCommunityEvent || isLeague) ? cities.find(c => post.data.tags.includes(c.slug.it)) : null;

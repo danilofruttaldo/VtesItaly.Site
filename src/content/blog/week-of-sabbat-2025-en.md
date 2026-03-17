@@ -17,6 +17,7 @@ links:
   - label: "Infokit (PDF)"
     url: "/ev/wos-2025/infokit-wos-2025-en.pdf"
     locale: en
+pageLayout: "article"
 linksAfter:
   - label: "Report (PDF)"
     url: "/ev/wos-2025/report-wos-2025-en.pdf"

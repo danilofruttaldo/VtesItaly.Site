@@ -17,6 +17,7 @@ export interface CalendarEvent {
   image?: string;     // featured image or poster URL
   archonUrl?: string; // Archon or BCN Crisis link
   tags?: string[];    // post tags for sub-category coloring
+  cardHidden?: boolean; // hide "read" CTA and don't link to page
 }
 
 /** Build the page URL for a post in a given locale */
@@ -111,10 +112,12 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           format: ev.format,
           image,
           archonUrl: ev.archonUrl,
+          cardHidden: post.data.cardHidden || false,
         };
 
-        // Start date entry
-        const startTitle = hasEndDate ? `${t.calendar.starts}: ${ev.name}` : ev.name;
+        // Start date entry — for single-event community posts, use the post title
+        const displayName = (category === 'comunita' && post.data.events!.length === 1) ? postTitle : ev.name;
+        const startTitle = hasEndDate ? `${t.calendar.starts}: ${displayName}` : displayName;
         events.push({
           ...baseEvent,
           id: `${category}/${post.id}/${toIsoDate(d)}`,
@@ -132,7 +135,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
             date: toIsoDate(endD),
             endDate: toIsoDate(endD),
             time: '',
-            title: `${t.calendar.ends}: ${ev.name}`,
+            title: `${t.calendar.ends}: ${displayName}`,
           });
         }
       }

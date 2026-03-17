@@ -10,6 +10,7 @@ import { filterByLocale, useTranslations } from '../utils/i18n';
 const page = mainPages.find(p => p.slug.it === '')!;
 const t = useTranslations('it');
 const latestPosts = filterByLocale(await getCollection('blog'), 'it')
+  .filter(p => !p.data.cardHidden)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 4);
 ---

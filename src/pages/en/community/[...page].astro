@@ -13,7 +13,7 @@ const t = useTranslations('en');
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = filterByLocale(await getCollection('blog'), 'en')
-    .filter(p => p.data.category === 'comunita')
+    .filter(p => p.data.category === 'comunita' && !p.data.cardHidden)
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
   return paginate(posts, { pageSize: 8 });
 }) satisfies GetStaticPaths;

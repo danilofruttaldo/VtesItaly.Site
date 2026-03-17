@@ -18,7 +18,7 @@ import { computeTourStatus, computeEventStatus, resolvePlatformLabel } from '../
 const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const posts = filterByLocale(await getCollection('blog'), 'en');
+  const posts = filterByLocale(await getCollection('blog'), 'en').filter(p => !p.data.cardHidden);
   return posts.map(post => {
     let cleanSlug = post.id.replace(/-en$/, '');
     let catSlug = post.data.category;

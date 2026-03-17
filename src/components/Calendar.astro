@@ -145,15 +145,20 @@ const currentMonth = now.getMonth();
     h += '</div>';
 
     // Actions row
+    var hasTBD = ts === 'TBD' || !ts || (ev.format && ev.format === 'TBD') || (ev.venue && ev.venue === 'TBD');
     h += '<div class="cal__popup-actions">';
-    h += '<a href="' + googleUrl(ev) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
-    h += '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
-    h += ' ' + addGoogle + '</a>';
+    if (!hasTBD) {
+      h += '<a href="' + googleUrl(ev) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
+      h += '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+      h += ' ' + addGoogle + '</a>';
+    }
     if (ev.archonUrl) {
       var platform = ev.archonUrl.indexOf('bcncrisis') !== -1 ? 'BCN Crisis' : 'Archon';
       h += '<a href="' + esc(ev.archonUrl) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">' + platform + '</a>';
     }
-    h += '<a href="' + esc(ev.url) + '" class="cal__popup-cta">' + readCta + ' &rarr;</a>';
+    if (!ev.cardHidden) {
+      h += '<a href="' + esc(ev.url) + '" class="cal__popup-cta">' + readCta + ' &rarr;</a>';
+    }
     h += '</div>';
 
     h += '</div>';

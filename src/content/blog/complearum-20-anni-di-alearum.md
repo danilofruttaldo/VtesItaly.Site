@@ -15,12 +15,11 @@ events:
     date: 2025-07-13
     time: "10:00"
     format: "Standard Constructed, Proxies Allowed — 2 Round + Finale"
+    archonUrl: "https://archon.vekn.net/tournament/c5ca42a2-3aca-4cbd-b4b2-3e5343eb017e/display.html"
+registration: "Preiscrizione e decklist obbligatorie"
 contact: "parmeggiani.simone@gmail.com"
 standingsUrl: "/ev/complearum-2025/standings-complearum-2025.json"
 playersCount: 25
-links:
-  - label: "Evento su BCN Crisis"
-    url: "http://bcncrisis.com/tournament/574"
 locale: it
 ---
 

@@ -52,6 +52,7 @@
     "cat_tour": "Italian Tour",
     "cat_nc": "National Championship",
     "cat_community": "Community",
+    "cat_local": "Local tournament",
     "legend_events": "Tournaments",
     "legend_other": "Other"
   },
@@ -150,6 +151,7 @@
     "links_label": "Useful links",
     "venue_label": "Venue",
     "program_label": "Program",
+    "schedule_label": "Schedule",
     "registration_label": "Registration",
     "results_label": "Results",
     "contact_label": "Contact",

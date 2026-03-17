@@ -44,7 +44,7 @@ prizes:
 registration: "Pre-registration and decklist required"
 contact: "info@vtesitaly.com"
 notes:
-  - "Lunch included: Saturday first and second courses, Sunday double first course with dessert. Water and coffee included."
+  - "Saturday first and second courses, Sunday double first course with dessert. Water and coffee included."
   - "Over 40 side event registrations: two parallel twin tournaments ASINELLI and GARISENDA."
 links:
   - label: "Infopack (PDF)"

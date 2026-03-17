@@ -8,13 +8,13 @@ excerpt: "SABBAT'S BACK! Seven Deadly Sins — The Sabbat has returned, wielding
 rulesUrl: "/tour/tour-2026/rules-tour-2026.pdf"
 stagesLabel: "The sins"
 stageItemLabel: "Sin"
-locale: "en"
 stages:
   - name: "GREED"
     number: 1
     date: 2026-02-15
     cities: ["modena", "parma"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Polisportiva Sacca"
     location: "Via Alfonso Paltrinieri 80, 41122 Modena (MO)"
     image: "/tour/tour-2026/tour-2026-001.webp"
@@ -25,6 +25,7 @@ stages:
     date: 2026-03-28
     cities: ["barga", "massa"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Lucca Collezionando"
     location: "Via della Chiesa XXXII, 237, 55100 Lucca (LU)"
     image: "/tour/tour-2026/tour-2026-002.webp"
@@ -34,6 +35,7 @@ stages:
     number: 3
     date: 2026-04-12
     cities: ["pordenone", "treviso"]
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     image: "/tour/tour-2026/tour-2026-000.webp"
     description: "Wrath doesn't plan: it explodes. Quick decisions, direct clashes, tables on fire. Only those who can channel their fury survive."
 
@@ -41,6 +43,7 @@ stages:
     number: 4
     date: 2026-05-01
     cities: ["genova", "torino"]
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     image: "/tour/tour-2026/tour-2026-000.webp"
     description: "Desire for victory, control, blood. Lust seduces and corrupts, pushing you to risk more than you should. Those who yield often pay. Those who dominate, conquer."
 
@@ -48,6 +51,7 @@ stages:
     number: 5
     date: 2026-10-01
     cities: ["roma"]
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     image: "/tour/tour-2026/tour-2026-000.webp"
     description: "Devour everything: points, opponents, opportunities. Gluttony knows no measure and turns excess into strength. An extended stage, for those who can't stop."
 
@@ -55,6 +59,7 @@ stages:
     number: 6
     date: 2026-11-15
     cities: ["milano", "verona"]
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     image: "/tour/tour-2026/tour-2026-000.webp"
     description: "Sloth waits. Survives, endures, strikes only when needed. A deceptive sin that rewards patience and persistence."
 
@@ -62,9 +67,11 @@ stages:
     number: 7
     date: 2026-12-05
     cities: ["firenze", "prato"]
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     image: "/tour/tour-2026/tour-2026-000.webp"
     description: "Pride closes the circle. Here the marks collected and the valor shown are displayed. Only those who have come this far can claim their name."
 
+locale: en
 ---
 
 ## SABBAT'S BACK! — Seven Deadly Sins

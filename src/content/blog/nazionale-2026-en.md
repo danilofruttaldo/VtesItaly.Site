@@ -80,7 +80,6 @@ hotel:
     price: "book by calling the hotel"
 hotelNote: "Mention you are booking for the Asgard Aldeno event on February 28. Pick-up service from Trento station available upon request."
 prizes:
-  - "National Champion title"
   - "Prizes for Main Event top 10"
   - "Raffle prizes"
   - "Welcome kit for each event"
@@ -100,7 +99,6 @@ links:
 notes:
   - "Venue available for the whole weekend. Meals available on-site at discounted rates."
   - "Board games and wooden games available thanks to Associazione Asgard Aldeno."
-  - "Logistics contact: Giulio De Cicco. Game contact: Miro Albertazzi (National Coordinator)."
 locale: en
 ---
 

@@ -44,7 +44,7 @@ prizes:
 registration: "Preiscrizione e decklist obbligatorie"
 contact: "info@vtesitaly.com"
 notes:
-  - "Pranzo incluso: sabato primi e secondi a scelta, domenica bis di primi con dolce. Acqua e caffe inclusi."
+  - "Sabato primi e secondi a scelta, domenica bis di primi con dolce. Acqua e caffè inclusi."
   - "Oltre 40 iscritti al side event: due tornei paralleli ASINELLI e GARISENDA."
 links:
   - label: "Infopack (PDF)"

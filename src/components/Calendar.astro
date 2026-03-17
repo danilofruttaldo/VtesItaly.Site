@@ -27,6 +27,7 @@ const currentMonth = now.getMonth();
     'tour': t.calendar.cat_tour,
     'nazionale': t.calendar.cat_nc,
     'comunita': t.calendar.cat_community,
+    'local': t.calendar.cat_local,
   })}
   data-initial-year={currentYear}
   data-initial-month={currentMonth}
@@ -193,12 +194,13 @@ const currentMonth = now.getMonth();
     if (ev.category === 'grand-prix') return '#CE2B37';
     if (ev.category === 'tour') return '#009246';
     if (ev.category === 'nazionale') return '#F0E6D3';
+    if (ev.category === 'local') return '#4A90D9';
     if (ev.category === 'comunita') {
       var t = ev.tags || [];
       if (t.indexOf('contest') !== -1 || t.indexOf('prerelease') !== -1) return '#9B59B6';
       return '#4A90D9';
     }
-    return 'var(--color-muted)';
+    return '#9B59B6';
   }
 
   function render() {

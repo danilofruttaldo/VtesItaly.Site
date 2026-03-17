@@ -1,6 +1,19 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './i18n';
 import { localePrefix, useTranslations } from './i18n';
+import localEventsData from '../data/local-events.json';
+
+export interface LocalEvent {
+  name: string;
+  date: string;       // YYYY-MM-DD
+  city: string;
+  time?: string;
+  venue?: string;
+  location?: string;
+  format?: string;
+  archonUrl?: string;
+  image?: string;
+}
 
 export interface CalendarEvent {
   id: string;
@@ -82,6 +95,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           url,
           venue: stage.venue || stage.cities?.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(', ') || 'TBD',
           location: stage.location || 'TBD',
+          format: stage.format,
           image: (stage as any).image || image,
           archonUrl: stage.archonUrl,
         });
@@ -140,6 +154,28 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         }
       }
     }
+  }
+
+  // Local events (calendar-only, no dedicated page)
+  const localEvents = localEventsData as LocalEvent[];
+  for (const le of localEvents) {
+    const d = new Date(le.date);
+    if (isNaN(d.getTime())) continue;
+    events.push({
+      id: `local/${le.city}/${le.date}`,
+      date: le.date,
+      time: le.time || 'TBD',
+      title: le.name,
+      postTitle: le.name,
+      category: 'local',
+      url: '',
+      venue: le.venue || le.city.charAt(0).toUpperCase() + le.city.slice(1),
+      location: le.location,
+      format: le.format,
+      archonUrl: le.archonUrl,
+      image: le.image,
+      cardHidden: true,
+    });
   }
 
   events.sort((a, b) => a.date.localeCompare(b.date));

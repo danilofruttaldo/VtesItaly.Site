@@ -46,6 +46,7 @@
     "cat_tour": "Italian Tour",
     "cat_nc": "Nazionale",
     "cat_community": "Community",
+    "cat_local": "Torneo locale",
     "legend_events": "Tornei",
     "legend_other": "Altro"
   },
@@ -144,6 +145,7 @@
     "links_label": "Link utili",
     "venue_label": "Sede",
     "program_label": "Programma",
+    "schedule_label": "Orari",
     "registration_label": "Iscrizione",
     "results_label": "Risultati",
     "contact_label": "Contatti",

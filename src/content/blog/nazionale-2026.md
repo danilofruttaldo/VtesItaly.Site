@@ -80,7 +80,6 @@ hotel:
     price: "prenotare chiamando in struttura"
 hotelNote: "Indicare che si prenota per l'evento di Asgard Aldeno del 28 febbraio. Servizio recupero dalla stazione di Trento disponibile previa comunicazione."
 prizes:
-  - "Titolo di Campione Nazionale"
   - "Premi per la top 10 del Main Event"
   - "Premi a estrazione"
   - "Welcome kit per ogni evento"
@@ -100,7 +99,6 @@ links:
 notes:
   - "Sala disponibile per tutto il weekend. Possibilità di mangiare in struttura a tariffa agevolata."
   - "Giochi da tavolo e in legno disponibili grazie all'Associazione Asgard Aldeno."
-  - "Referente logistica: Giulio De Cicco. Referente ludico: Miro Albertazzi (National Coordinator)."
 locale: it
 ---
 

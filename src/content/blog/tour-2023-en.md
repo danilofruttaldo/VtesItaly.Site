@@ -11,6 +11,7 @@ stages:
     date: 2023-01-22
     cities: ["prato"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Magic Maze"
     location: "Via Francesco Ferrucci 95g, Prato (PO)"
     image: "/images/headers/header-prato.webp"
@@ -21,6 +22,7 @@ stages:
     date: 2023-02-19
     cities: ["torino"]
     time: "10:30"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Asilo Nido Prever"
     location: "Via Prever 1, Coazze (TO)"
     image: "/images/headers/header-torino.webp"
@@ -31,6 +33,7 @@ stages:
     date: 2023-03-12
     cities: ["genova"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Il Dado Errante Ludopub"
     location: "Corso Galliera 97R, Genova (GE)"
     image: "/images/headers/header-genova.webp"
@@ -41,6 +44,7 @@ stages:
     date: 2023-04-29
     cities: ["bologna"]
     time: "09:30"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "The Sydney Hotel"
     location: "Via Michelino 73, Bologna (BO)"
     image: "/images/headers/header-bologna.webp"
@@ -51,6 +55,7 @@ stages:
     date: 2023-06-02
     cities: ["verona"]
     time: "09:30"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Asgard Aldeno"
     location: "Via Roma 1, Aldeno (TN)"
     image: "/images/headers/header-verona.webp"
@@ -61,6 +66,7 @@ stages:
     date: 2023-06-03
     cities: ["trento"]
     time: "09:30"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Asgard Aldeno"
     location: "Via Roma 1, Aldeno (TN)"
     image: "/images/headers/header-trento.webp"
@@ -71,6 +77,7 @@ stages:
     date: 2023-06-25
     cities: ["massa"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Associazione A.L.A."
     location: "Via San Ginese 15, 54100 Massa (MS)"
     image: "/images/headers/header-massa.webp"
@@ -81,6 +88,7 @@ stages:
     date: 2023-09-03
     cities: ["barga"]
     time: "09:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Agriturismo Il Musaccio"
     location: "Località Pian di Gragno, 15, Barga (LU)"
     image: "/images/headers/header-barga.webp"
@@ -91,6 +99,7 @@ stages:
     date: 2023-12-08
     cities: ["milano"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Secret Base"
     location: "Via Roma 62/c, Paderno Dugnano (MI)"
     image: "/images/headers/header-milano.webp"

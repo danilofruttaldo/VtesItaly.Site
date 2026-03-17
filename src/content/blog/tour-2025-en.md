@@ -5,13 +5,13 @@ category: "tour"
 tags: ["barga", "bologna", "massa", "milano", "modena", "pordenone", "prato", "roma", "trento"]
 featuredImage: "/images/headers/header-tour.webp"
 excerpt: "A year of challenges across Italy. The Italian Tour 2025 brings Vampire: The Eternal Struggle to major Italian cities with a series of stages linked by an overall ranking."
-locale: "en"
 stages:
   - name: "Trento"
     number: 1
     date: 2025-01-11
     cities: ["trento"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     location: "Via Roma 1, Aldeno (TN)"
     image: "/tour/tour-2025/tour-2025-001.webp"
     archonUrl: "https://archon.vekn.net/tournament/76901c84-40c1-4a19-9154-f15a017f169c/display.html"
@@ -22,6 +22,7 @@ stages:
     date: 2025-03-02
     cities: ["modena"]
     time: "09:30"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Hotel Real Fini Baia del Re"
     location: "Strada Vignolese 1684, 41126 Modena (MO)"
     image: "/tour/tour-2025/tour-2025-002.webp"
@@ -33,6 +34,7 @@ stages:
     date: 2025-03-23
     cities: ["barga"]
     time: "09:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Lucca Collezionando — Polo Fiere"
     location: "Via della Chiesa XXXII, trav. I, 237, 55100 Lucca (LU)"
     image: "/tour/tour-2025/tour-2025-003.webp"
@@ -44,6 +46,7 @@ stages:
     date: 2025-04-13
     cities: ["pordenone"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Gelindo dei Magredi"
     location: "Via Roma 14, 33099 Vivaro (PN)"
     image: "/tour/tour-2025/tour-2025-004.webp"
@@ -55,6 +58,7 @@ stages:
     date: 2025-05-24
     cities: ["massa"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Sporting Club Le Pinete"
     location: "Via San Ginese 15, 54100 Massa (MS)"
     image: "/tour/tour-2025/tour-2025-005.webp"
@@ -66,6 +70,7 @@ stages:
     date: 2025-09-20
     cities: ["prato"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Ippodromo del Visarno"
     location: "Viale del Pegaso 3, 50144 Firenze (FI)"
     image: "/tour/tour-2025/tour-2025-006.webp"
@@ -77,6 +82,7 @@ stages:
     date: 2025-10-12
     cities: ["roma"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "La Civetta sul Comò"
     location: "Via Cereate 8, 00183 Roma (RM)"
     image: "/tour/tour-2025/tour-2025-007.webp"
@@ -88,6 +94,7 @@ stages:
     date: 2025-11-16
     cities: ["milano"]
     time: "10:00"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Wipeout"
     location: "Via Castelletto 45, 20037 Paderno Dugnano (MI)"
     image: "/tour/tour-2025/tour-2025-008.webp"
@@ -99,12 +106,14 @@ stages:
     date: 2025-11-29
     cities: ["bologna"]
     time: "09:30"
+    format: "Standard Constructed, Proxies Allowed — 2 Rounds + Final"
     venue: "Circolo Barbanera"
     location: "Via Ranzani 13/2, Bologna (BO)"
     image: "/tour/tour-2025/tour-2025-009.webp"
     archonUrl: "https://archon.vekn.net/tournament/49c0db2f-08e3-40fa-aad5-8a23ea07f972/display.html"
     description: "The ninth and final stage of the Italian Tour 2025 takes place in Bologna, closing an intense and hard-fought season. A concluding event that celebrates the players' journey throughout the year, awards the last ranking points, and crowns the Tour champions."
 
+locale: en
 ---
 
 **A year of challenges across Italy**

@@ -24,6 +24,7 @@ const blog = defineCollection({
       time: z.string().optional(),
       venue: z.string().optional(),
       location: z.string().optional(),
+      format: z.string().optional(),
       archonUrl: z.string().optional(),
       image: z.string().optional(),
       description: z.string().optional(),
@@ -53,6 +54,10 @@ const blog = defineCollection({
       format: z.string(),
       archonUrl: z.string().optional(),
       period: z.string().optional(),
+    })).optional().default([]),
+    schedule: z.array(z.object({
+      label: z.string(),
+      time: z.string(),
     })).optional().default([]),
     pricing: z.array(z.object({
       label: z.string(),

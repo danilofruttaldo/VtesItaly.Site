@@ -89,6 +89,16 @@ const hasFvp = standings.some(s => s.fvp != null);
       </div>
     </div>
   )}
+  {post.data.schedule.length > 0 && (
+    <div class="gp-row">
+      <span class="gp-label">{t.gp.schedule_label}</span>
+      <div class="gp-value">
+        {post.data.schedule.map(s => (
+          <div class="gp-schedule-item"><span class="gp-muted">{s.time}</span> — {s.label}</div>
+        ))}
+      </div>
+    </div>
+  )}
   {post.data.pricing.length > 0 && post.data.pricing.some(p => p.regular || p.early) && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.pricing_label}</span>

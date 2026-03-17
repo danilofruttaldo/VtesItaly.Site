@@ -2,8 +2,12 @@
 export function getEnPostUrl(post: { id: string; data: { category: string } }): string {
   let cleanSlug = post.id.replace(/-en$/, '');
   let catSlug = post.data.category;
-  if (catSlug === 'nazionale') { catSlug = 'national-championship'; cleanSlug = cleanSlug.replace('nazionale-', 'nc-'); }
-  else if (catSlug === 'comunita') { catSlug = 'community'; }
+  if (catSlug === 'nazionale') {
+    catSlug = 'national-championship';
+    cleanSlug = cleanSlug.replace('nazionale-', 'nc-');
+  } else if (catSlug === 'comunita') {
+    catSlug = 'community';
+  }
   return `/en/${catSlug}/${cleanSlug}/`;
 }
 

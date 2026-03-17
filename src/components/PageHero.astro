@@ -10,18 +10,32 @@ const has2x = image?.includes('header-home');
 ---
 
 <section class="page-hero">
-  {image && <img src={image} srcset={has2x ? `${image} 1x, ${image.replace('.webp', '-2x.webp')} 2x` : undefined} alt={title} class="page-hero__img" loading="eager" decoding="async" fetchpriority="high" />}
+  {
+    image && (
+      <img
+        src={image}
+        srcset={has2x ? `${image} 1x, ${image.replace('.webp', '-2x.webp')} 2x` : undefined}
+        alt={title}
+        class="page-hero__img"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    )
+  }
   <div class="page-hero__overlay"></div>
   <div class="page-hero__content">
     {title && <h1>{title}</h1>}
   </div>
 </section>
 
-{breadcrumb && (
-  <div class="container breadcrumb">
-    <a href={breadcrumb.href}>&larr; {breadcrumb.label}</a>
-  </div>
-)}
+{
+  breadcrumb && (
+    <div class="container breadcrumb">
+      <a href={breadcrumb.href}>&larr; {breadcrumb.label}</a>
+    </div>
+  )
+}
 
 <style>
   .page-hero {
@@ -41,13 +55,12 @@ const has2x = image?.includes('header-home');
     width: 100%;
     height: 100%;
     object-fit: cover;
-
   }
 
   .page-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(18,20,22,0.4) 0%, rgba(18,20,22,0.3) 50%, var(--color-base) 100%);
+    background: linear-gradient(to bottom, rgba(18, 20, 22, 0.4) 0%, rgba(18, 20, 22, 0.3) 50%, var(--color-base) 100%);
   }
 
   .page-hero__content {

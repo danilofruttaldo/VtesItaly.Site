@@ -16,17 +16,17 @@ export function computeTourStatus(stages: Stage[]): TourStatus | null {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const statuses = stages.map(s => {
+  const statuses = stages.map((s) => {
     if (s.status === 'cancelled') return 'cancelled';
     const d = new Date(s.date);
     d.setHours(0, 0, 0, 0);
     return d < today ? 'completed' : 'future';
   });
 
-  const active = statuses.filter(s => s !== 'cancelled');
+  const active = statuses.filter((s) => s !== 'cancelled');
   if (active.length === 0) return null;
-  if (active.every(s => s === 'completed')) return 'past';
-  if (active.every(s => s === 'future')) return 'upcoming';
+  if (active.every((s) => s === 'completed')) return 'past';
+  if (active.every((s) => s === 'future')) return 'upcoming';
   return 'live';
 }
 

@@ -17,10 +17,12 @@ const t = useTranslations(locale);
 const { Content } = await render(post);
 
 // Links (same pattern as GpEdition)
-const links = (post.data.links ?? []).filter(l => !l.locale || l.locale === locale).map(l => ({
-  ...l,
-  label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
-}));
+const links = (post.data.links ?? [])
+  .filter((l) => !l.locale || l.locale === locale)
+  .map((l) => ({
+    ...l,
+    label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
+  }));
 
 // Gallery (same pattern as GpEdition)
 let galleryImages: string[] = post.data.gallery || [];
@@ -28,12 +30,12 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
   const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
   const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
   galleryImages = Object.keys(allImages)
-    .filter(p => p.includes(`/${folder}/`))
-    .map(p => p.replace('/public', ''))
+    .filter((p) => p.includes(`/${folder}/`))
+    .map((p) => p.replace('/public', ''))
     .sort();
 }
 if (post.data.poster) {
-  galleryImages = galleryImages.filter(img => img !== post.data.poster);
+  galleryImages = galleryImages.filter((img) => img !== post.data.poster);
 }
 
 // League standings
@@ -50,20 +52,27 @@ interface LeagueStanding {
 }
 let standings: LeagueStanding[] = [];
 if (post.data.standingsUrl) {
-  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<string, { default: unknown }>;
-  const key = Object.keys(allData).find(k => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
+  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
+    string,
+    { default: unknown }
+  >;
+  const key = Object.keys(allData).find((k) => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
   if (key && Array.isArray(allData[key].default)) standings = allData[key].default as LeagueStanding[];
 }
-const hasFp = standings.some(s => s.fp != null);
-function fmt(n: number): string { return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/0+$/, '').replace(/\.$/, ''); }
+const hasFp = standings.some((s) => s.fp != null);
+function fmt(n: number): string {
+  return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+}
 ---
 
 {/* Poster */}
-{post.data.poster && (
-  <div class="le-poster">
-    <img src={post.data.poster} alt={post.data.title} loading="eager" decoding="async" />
-  </div>
-)}
+{
+  post.data.poster && (
+    <div class="le-poster">
+      <img src={post.data.poster} alt={post.data.title} loading="eager" decoding="async" />
+    </div>
+  )
+}
 
 {/* Content */}
 <div class="le-content prose">
@@ -71,342 +80,604 @@ function fmt(n: number): string { return n % 1 === 0 ? String(n) : n.toFixed(2).
 </div>
 
 {/* Stats bar */}
-{post.data.leagueStats && (
-  <div class="le-stats">
-    <div class="le-stat">
-      <span class="le-stat-value">{post.data.leagueStats.players}</span>
-      <span class="le-stat-label">{t.league.players}</span>
+{
+  post.data.leagueStats && (
+    <div class="le-stats">
+      <div class="le-stat">
+        <span class="le-stat-value">{post.data.leagueStats.players}</span>
+        <span class="le-stat-label">{t.league.players}</span>
+      </div>
+      <div class="le-stat">
+        <span class="le-stat-value">{post.data.leagueStats.games}</span>
+        <span class="le-stat-label">{t.league.games}</span>
+      </div>
+      <div class="le-stat">
+        <span class="le-stat-value">{post.data.leagueStats.tables}</span>
+        <span class="le-stat-label">{t.league.tables}</span>
+      </div>
     </div>
-    <div class="le-stat">
-      <span class="le-stat-value">{post.data.leagueStats.games}</span>
-      <span class="le-stat-label">{t.league.games}</span>
-    </div>
-    <div class="le-stat">
-      <span class="le-stat-value">{post.data.leagueStats.tables}</span>
-      <span class="le-stat-label">{t.league.tables}</span>
-    </div>
-  </div>
-)}
+  )
+}
 
 {/* Top Lists */}
-{post.data.leagueTopLists && post.data.leagueTopLists.length > 0 && (
-  <section class="le-tops">
-    <h2 class="le-section-title">{t.league.top_lists_title}</h2>
-    <div class="le-tops-grid">
-      {post.data.leagueTopLists.map(list => (
-        <div class="le-top-col">
-          <h3 class="le-top-label">{list.label}</h3>
-          <ul class="le-top-list">
-            {list.items.map(item => (
-              <li>{item.name} <span class="le-top-count">({item.count})</span></li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </section>
-)}
+{
+  post.data.leagueTopLists && post.data.leagueTopLists.length > 0 && (
+    <section class="le-tops">
+      <h2 class="le-section-title">{t.league.top_lists_title}</h2>
+      <div class="le-tops-grid">
+        {post.data.leagueTopLists.map((list) => (
+          <div class="le-top-col">
+            <h3 class="le-top-label">{list.label}</h3>
+            <ul class="le-top-list">
+              {list.items.map((item) => (
+                <li>
+                  {item.name} <span class="le-top-count">({item.count})</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 {/* Info block */}
 <div class="le-info">
-  {post.data.events.length > 0 && (
-    <div class="le-row">
-      <span class="le-label">{t.league.period_label}</span>
-      <span class="le-value">{post.data.events[0].period ?? post.data.events[0].date}</span>
-    </div>
-  )}
-  {post.data.events.length > 0 && (
-    <div class="le-row">
-      <span class="le-label">{t.league.format_label}</span>
-      <span class="le-value">{post.data.events[0].format}</span>
-    </div>
-  )}
-  {post.data.pricing.length > 0 && (
-    <div class="le-row">
-      <span class="le-label">{t.gp.pricing_label}</span>
-      <div class="le-value">
-        {post.data.pricing.map(p => (
-          <div>{p.label}: <strong>{p.regular}</strong></div>
-        ))}
+  {
+    post.data.events.length > 0 && (
+      <div class="le-row">
+        <span class="le-label">{t.league.period_label}</span>
+        <span class="le-value">{post.data.events[0].period ?? post.data.events[0].date}</span>
       </div>
-    </div>
-  )}
-  {post.data.prizes && (
-    <div class="le-row">
-      <span class="le-label">{t.gp.prizes_label}</span>
-      <div class="le-value">
-        {Array.isArray(post.data.prizes) ? (
-          <ul class="le-prizes-list">
-            {post.data.prizes.map(p => <li>{p}</li>)}
-          </ul>
-        ) : post.data.prizes}
+    )
+  }
+  {
+    post.data.events.length > 0 && (
+      <div class="le-row">
+        <span class="le-label">{t.league.format_label}</span>
+        <span class="le-value">{post.data.events[0].format}</span>
       </div>
-    </div>
-  )}
-  {post.data.contact && (
-    <div class="le-row">
-      <span class="le-label">{t.gp.contact_label}</span>
-      <span class="le-value">{post.data.contact?.includes('@') ? (
-        <a href={`mailto:${post.data.contact}`}>{post.data.contact}</a>
-      ) : post.data.contact}</span>
-    </div>
-  )}
+    )
+  }
+  {
+    post.data.pricing.length > 0 && (
+      <div class="le-row">
+        <span class="le-label">{t.gp.pricing_label}</span>
+        <div class="le-value">
+          {post.data.pricing.map((p) => (
+            <div>
+              {p.label}: <strong>{p.regular}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    post.data.prizes && (
+      <div class="le-row">
+        <span class="le-label">{t.gp.prizes_label}</span>
+        <div class="le-value">
+          {Array.isArray(post.data.prizes) ? (
+            <ul class="le-prizes-list">
+              {post.data.prizes.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          ) : (
+            post.data.prizes
+          )}
+        </div>
+      </div>
+    )
+  }
+  {
+    post.data.contact && (
+      <div class="le-row">
+        <span class="le-label">{t.gp.contact_label}</span>
+        <span class="le-value">
+          {post.data.contact?.includes('@') ? (
+            <a href={`mailto:${post.data.contact}`}>{post.data.contact}</a>
+          ) : (
+            post.data.contact
+          )}
+        </span>
+      </div>
+    )
+  }
 </div>
 
 {/* Links */}
-{links.length > 0 && (
-  <div class="le-links">
-    {links.map(link => (
-      <a href={link.url} target="_blank" rel="noopener noreferrer" class="le-link-btn">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        {link.label}
-      </a>
-    ))}
-  </div>
-)}
-
-{/* Rules */}
-{post.data.leagueRules && post.data.leagueRules.length > 0 && (
-  <section class="le-rules">
-    <h2 class="le-section-title">{t.league.rules_title}</h2>
-    <div class="le-rules-list">
-      {post.data.leagueRules.map(rule => (
-        <div class="le-rule">
-          <span class="le-rule-acronym">{rule.acronym}</span>
-          <span class="le-rule-label">({rule.label})</span>
-          <span class="le-rule-desc">{rule.description}</span>
-        </div>
-      ))}
-    </div>
-  </section>
-)}
-
-{/* Bonus Points */}
-{post.data.leagueBonusPoints && post.data.leagueBonusPoints.length > 0 && (
-  <section class="le-bonus">
-    <h2 class="le-section-title">{t.league.bonus_title}</h2>
-    <div class="le-bonus-list">
-      {post.data.leagueBonusPoints.map(bp => (
-        <div class="le-bonus-item">
-          <strong class="le-bonus-name">{bp.name}</strong>
-          <span class="le-bonus-desc">{bp.description}</span>
-        </div>
-      ))}
-    </div>
-  </section>
-)}
-
-{/* League Standings */}
-{standings.length > 0 && (
-  <section class="le-standings">
-    <h2 class="le-section-title">{t.league.standings_label}</h2>
-    <div class="le-standings-wrap">
-      <table class="le-standings-table">
-        <caption class="sr-only">{t.league.standings_label}</caption>
-        <thead>
-          <tr>
-            <th class="tc">#</th>
-            <th>{t.league.standings_player}</th>
-            {hasFp && <th class="tc">FVP</th>}
-            <th class="tc">LP</th>
-            <th class="tc">GW</th>
-            <th class="tc">VP</th>
-            <th class="tc">PP</th>
-            <th class="tc">BP</th>
-            <th class="tc">G</th>
-          </tr>
-        </thead>
-        <tbody>
-          {standings.map(s => (
-            <tr class:list={[s.rank === 1 && 'le-standings-winner', s.rank >= 2 && s.rank <= 5 && 'le-standings-finalist']}>
-              <td class="tc">{s.rank}</td>
-              <td>{anonymizeName(s.name)}</td>
-              {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
-              <td class="tc">{fmt(s.lp)}</td>
-              <td class="tc">{s.gw}</td>
-              <td class="tc">{fmt(s.vp)}</td>
-              <td class="tc">{fmt(s.pp)}</td>
-              <td class="tc">{s.bp}</td>
-              <td class="tc">{s.games}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
-)}
-
-{/* Gallery */}
-{post.data.gallerySections.length > 0 && (
-  <section class="le-gallery">
-    <h2 class="le-section-title">{t.post.gallery}</h2>
-    {post.data.gallerySections.map(section => (
-      <div class="le-gallery-section">
-        <h3 class="le-gallery-section-title">{section.title}</h3>
-        <div class="le-gallery-grid">
-          {section.images.map((img, i) => (
-            <a href={img} class={`le-gallery-item${(section.wideImages || []).includes(img) ? ' wide' : ''}`} target="_blank" rel="noopener noreferrer">
-              <img src={img} alt={`${section.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
-            </a>
-          ))}
-        </div>
-      </div>
-    ))}
-  </section>
-)}
-{post.data.gallerySections.length === 0 && galleryImages.length > 0 && (
-  <section class="le-gallery">
-    <h2 class="le-section-title">{t.post.gallery}</h2>
-    <div class="le-gallery-grid">
-      {galleryImages.map((img, i) => (
-        <a href={img} class="le-gallery-item" target="_blank" rel="noopener noreferrer">
-          <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+{
+  links.length > 0 && (
+    <div class="le-links">
+      {links.map((link) => (
+        <a href={link.url} target="_blank" rel="noopener noreferrer" class="le-link-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+          {link.label}
         </a>
       ))}
     </div>
-  </section>
-)}
+  )
+}
+
+{/* Rules */}
+{
+  post.data.leagueRules && post.data.leagueRules.length > 0 && (
+    <section class="le-rules">
+      <h2 class="le-section-title">{t.league.rules_title}</h2>
+      <div class="le-rules-list">
+        {post.data.leagueRules.map((rule) => (
+          <div class="le-rule">
+            <span class="le-rule-acronym">{rule.acronym}</span>
+            <span class="le-rule-label">({rule.label})</span>
+            <span class="le-rule-desc">{rule.description}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+{/* Bonus Points */}
+{
+  post.data.leagueBonusPoints && post.data.leagueBonusPoints.length > 0 && (
+    <section class="le-bonus">
+      <h2 class="le-section-title">{t.league.bonus_title}</h2>
+      <div class="le-bonus-list">
+        {post.data.leagueBonusPoints.map((bp) => (
+          <div class="le-bonus-item">
+            <strong class="le-bonus-name">{bp.name}</strong>
+            <span class="le-bonus-desc">{bp.description}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+{/* League Standings */}
+{
+  standings.length > 0 && (
+    <section class="le-standings">
+      <h2 class="le-section-title">{t.league.standings_label}</h2>
+      <div class="le-standings-wrap">
+        <table class="le-standings-table">
+          <caption class="sr-only">{t.league.standings_label}</caption>
+          <thead>
+            <tr>
+              <th class="tc">#</th>
+              <th>{t.league.standings_player}</th>
+              {hasFp && <th class="tc">FVP</th>}
+              <th class="tc">LP</th>
+              <th class="tc">GW</th>
+              <th class="tc">VP</th>
+              <th class="tc">PP</th>
+              <th class="tc">BP</th>
+              <th class="tc">G</th>
+            </tr>
+          </thead>
+          <tbody>
+            {standings.map((s) => (
+              <tr
+                class:list={[
+                  s.rank === 1 && 'le-standings-winner',
+                  s.rank >= 2 && s.rank <= 5 && 'le-standings-finalist',
+                ]}
+              >
+                <td class="tc">{s.rank}</td>
+                <td>{anonymizeName(s.name)}</td>
+                {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
+                <td class="tc">{fmt(s.lp)}</td>
+                <td class="tc">{s.gw}</td>
+                <td class="tc">{fmt(s.vp)}</td>
+                <td class="tc">{fmt(s.pp)}</td>
+                <td class="tc">{s.bp}</td>
+                <td class="tc">{s.games}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
+{/* Gallery */}
+{
+  post.data.gallerySections.length > 0 && (
+    <section class="le-gallery">
+      <h2 class="le-section-title">{t.post.gallery}</h2>
+      {post.data.gallerySections.map((section) => (
+        <div class="le-gallery-section">
+          <h3 class="le-gallery-section-title">{section.title}</h3>
+          <div class="le-gallery-grid">
+            {section.images.map((img, i) => (
+              <a
+                href={img}
+                class={`le-gallery-item${(section.wideImages || []).includes(img) ? ' wide' : ''}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={img} alt={`${section.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  )
+}
+{
+  post.data.gallerySections.length === 0 && galleryImages.length > 0 && (
+    <section class="le-gallery">
+      <h2 class="le-section-title">{t.post.gallery}</h2>
+      <div class="le-gallery-grid">
+        {galleryImages.map((img, i) => (
+          <a href={img} class="le-gallery-item" target="_blank" rel="noopener noreferrer">
+            <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 <style>
   /* Poster */
-  .le-poster { margin-bottom: 28px; text-align: center; }
+  .le-poster {
+    margin-bottom: 28px;
+    text-align: center;
+  }
   .le-poster img {
-    max-width: 360px; width: 100%; margin: 0 auto; display: block;
-    border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 
   /* Prose */
-  .le-content { margin-bottom: 28px; }
+  .le-content {
+    margin-bottom: 28px;
+  }
 
   /* Stats bar */
   .le-stats {
-    display: flex; justify-content: center; gap: 40px;
-    margin-bottom: 28px; padding: 20px;
-    background: var(--color-surface); border: 1px solid var(--color-border);
-    border-radius: var(--radius); text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 28px;
+    padding: 20px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    text-align: center;
   }
-  .le-stat { display: flex; flex-direction: column; align-items: center; }
-  .le-stat-value { font-size: 2rem; font-weight: 800; color: var(--color-gold); line-height: 1; }
-  .le-stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-muted); margin-top: 4px; }
+  .le-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .le-stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    line-height: 1;
+  }
+  .le-stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-muted);
+    margin-top: 4px;
+  }
 
   /* Top Lists */
-  .le-tops { margin-bottom: 28px; }
-  .le-tops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .le-tops {
+    margin-bottom: 28px;
+  }
+  .le-tops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
   .le-top-col {
-    background: var(--color-surface); border: 1px solid var(--color-border);
-    border-radius: var(--radius); padding: 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 16px;
   }
   .le-top-label {
-    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.5px; color: var(--color-gold); margin-bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-gold);
+    margin-bottom: 8px;
   }
-  .le-top-list { list-style: none; padding: 0; margin: 0; font-size: 0.85rem; }
-  .le-top-list li { padding: 3px 0; }
-  .le-top-count { color: var(--color-muted); }
+  .le-top-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  .le-top-list li {
+    padding: 3px 0;
+  }
+  .le-top-count {
+    color: var(--color-muted);
+  }
 
   /* Info block */
   .le-info {
-    border: 1px solid var(--color-border); border-radius: var(--radius);
-    background: var(--color-surface); overflow: hidden; margin-bottom: 28px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    overflow: hidden;
+    margin-bottom: 28px;
   }
   .le-row {
-    display: flex; gap: 16px; padding: 14px 20px;
-    border-bottom: 1px solid var(--color-border); align-items: baseline;
+    display: flex;
+    gap: 16px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
   }
-  .le-row:last-child { border-bottom: none; }
+  .le-row:last-child {
+    border-bottom: none;
+  }
   .le-label {
-    flex-shrink: 0; width: 100px; font-size: 0.7rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-gold); padding-top: 2px;
+    flex-shrink: 0;
+    width: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-gold);
+    padding-top: 2px;
   }
-  .le-value { font-size: 0.85rem; line-height: 1.6; color: var(--color-contrast); }
-  .le-value a { color: var(--color-accent-1); text-decoration: none; }
-  .le-value a:hover { color: var(--color-accent-2); text-decoration: underline; }
-  .le-prizes-list { list-style: disc; padding-left: 18px; margin: 0; }
-  .le-prizes-list li { padding: 2px 0; }
+  .le-value {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-contrast);
+  }
+  .le-value a {
+    color: var(--color-accent-1);
+    text-decoration: none;
+  }
+  .le-value a:hover {
+    color: var(--color-accent-2);
+    text-decoration: underline;
+  }
+  .le-prizes-list {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0;
+  }
+  .le-prizes-list li {
+    padding: 2px 0;
+  }
 
   /* Links */
-  .le-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
-  .le-link-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.8rem; font-weight: 600; color: var(--color-gold);
-    text-decoration: none; padding: 8px 18px;
-    border: 1px solid rgba(201,168,76,0.3); border-radius: var(--radius);
-    background: rgba(201,168,76,0.08); transition: all 0.2s ease;
+  .le-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
   }
-  .le-link-btn:hover { background: rgba(201,168,76,0.18); border-color: rgba(201,168,76,0.5); }
-  .le-link-btn svg { flex-shrink: 0; }
+  .le-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-decoration: none;
+    padding: 8px 18px;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: var(--radius);
+    background: rgba(201, 168, 76, 0.08);
+    transition: all 0.2s ease;
+  }
+  .le-link-btn:hover {
+    background: rgba(201, 168, 76, 0.18);
+    border-color: rgba(201, 168, 76, 0.5);
+  }
+  .le-link-btn svg {
+    flex-shrink: 0;
+  }
 
   /* Section titles */
   .le-section-title {
-    font-size: 1.3rem; font-weight: 800; text-transform: uppercase;
-    letter-spacing: 1px; text-align: center; margin-bottom: 16px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 16px;
   }
 
   /* Rules */
-  .le-rules { margin-bottom: 28px; }
-  .le-rules-list { display: flex; flex-direction: column; gap: 10px; }
-  .le-rule { font-size: 0.85rem; line-height: 1.6; }
-  .le-rule-acronym { font-weight: 800; color: var(--color-gold); }
-  .le-rule-label { font-weight: 600; margin-left: 4px; }
-  .le-rule-desc { margin-left: 4px; }
+  .le-rules {
+    margin-bottom: 28px;
+  }
+  .le-rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .le-rule {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .le-rule-acronym {
+    font-weight: 800;
+    color: var(--color-gold);
+  }
+  .le-rule-label {
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  .le-rule-desc {
+    margin-left: 4px;
+  }
 
   /* Bonus Points */
-  .le-bonus { margin-bottom: 28px; }
-  .le-bonus-list { display: flex; flex-direction: column; gap: 8px; }
-  .le-bonus-item { font-size: 0.85rem; line-height: 1.6; }
-  .le-bonus-name { font-style: italic; color: var(--color-gold); }
-  .le-bonus-desc { margin-left: 4px; }
+  .le-bonus {
+    margin-bottom: 28px;
+  }
+  .le-bonus-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .le-bonus-item {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .le-bonus-name {
+    font-style: italic;
+    color: var(--color-gold);
+  }
+  .le-bonus-desc {
+    margin-left: 4px;
+  }
 
   /* Standings */
-  .le-standings { margin-bottom: 32px; }
+  .le-standings {
+    margin-bottom: 32px;
+  }
   .le-standings-wrap {
-    overflow: auto; max-height: 480px;
-    border: 1px solid var(--color-border); border-radius: var(--radius);
+    overflow: auto;
+    max-height: 480px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
     scrollbar-width: none;
   }
-  .le-standings-wrap::-webkit-scrollbar { display: none; }
-  .le-standings-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-  .le-standings-table th {
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.5px; color: var(--color-gold); padding: 8px 10px;
-    border-bottom: 2px solid var(--color-border); position: sticky; top: 0; background: var(--color-base);
+  .le-standings-wrap::-webkit-scrollbar {
+    display: none;
   }
-  .le-standings-table td { padding: 6px 10px; border-bottom: 1px solid var(--color-border); }
-  .le-standings-table tr:hover td { background: rgba(201,168,76,0.05); }
-  .le-standings-winner td { color: var(--color-gold); font-weight: 700; }
-  .le-standings-finalist td { font-weight: 600; }
-  .le-standings-table th, .le-standings-table td { text-align: center; }
-  .le-standings-table th:nth-child(2), .le-standings-table td:nth-child(2) { text-align: left; }
-  .tc { text-align: center; }
+  .le-standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  .le-standings-table th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-gold);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-base);
+  }
+  .le-standings-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .le-standings-table tr:hover td {
+    background: rgba(201, 168, 76, 0.05);
+  }
+  .le-standings-winner td {
+    color: var(--color-gold);
+    font-weight: 700;
+  }
+  .le-standings-finalist td {
+    font-weight: 600;
+  }
+  .le-standings-table th,
+  .le-standings-table td {
+    text-align: center;
+  }
+  .le-standings-table th:nth-child(2),
+  .le-standings-table td:nth-child(2) {
+    text-align: left;
+  }
+  .tc {
+    text-align: center;
+  }
 
   /* Gallery */
-  .le-gallery { margin-top: 32px; }
-  .le-gallery-section { margin-bottom: 28px; }
+  .le-gallery {
+    margin-top: 32px;
+  }
+  .le-gallery-section {
+    margin-bottom: 28px;
+  }
   .le-gallery-section-title {
-    font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.5px; color: var(--color-gold); margin-bottom: 12px; text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+    text-align: center;
   }
   .le-gallery-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
   .le-gallery-item {
-    display: block; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3;
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/3;
   }
-  .le-gallery-item.wide { grid-column: 1 / -1; }
+  .le-gallery-item.wide {
+    grid-column: 1 / -1;
+  }
   .le-gallery-item img {
-    width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
   }
-  .le-gallery-item:hover img { transform: scale(1.05); }
+  .le-gallery-item:hover img {
+    transform: scale(1.05);
+  }
 
   @media (max-width: 544px) {
-    .le-stats { gap: 20px; flex-wrap: wrap; }
-    .le-row { flex-direction: column; gap: 4px; padding: 12px 16px; }
-    .le-label { width: auto; }
-    .le-tops-grid { grid-template-columns: 1fr; }
-    .le-poster img { max-width: 100%; }
-    .le-standings-table { font-size: 0.72rem; }
-    .le-standings-table th, .le-standings-table td { padding: 5px 4px; }
-    .le-section-title { font-size: 1.1rem; }
-    .le-gallery-grid { grid-template-columns: 1fr; }
+    .le-stats {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .le-row {
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+    .le-label {
+      width: auto;
+    }
+    .le-tops-grid {
+      grid-template-columns: 1fr;
+    }
+    .le-poster img {
+      max-width: 100%;
+    }
+    .le-standings-table {
+      font-size: 0.72rem;
+    }
+    .le-standings-table th,
+    .le-standings-table td {
+      padding: 5px 4px;
+    }
+    .le-section-title {
+      font-size: 1.1rem;
+    }
+    .le-gallery-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

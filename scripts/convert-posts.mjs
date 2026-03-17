@@ -69,7 +69,7 @@ for (const post of posts) {
   const catSlug = catSlugMap[catId] || 'blog';
 
   // Get tags
-  const postTags = (post.tags || []).map(id => tagMap[id]?.slug).filter(Boolean);
+  const postTags = (post.tags || []).map((id) => tagMap[id]?.slug).filter(Boolean);
 
   // Get featured image
   let featuredImage = '';
@@ -103,11 +103,13 @@ for (const post of posts) {
     `slug: "${post.slug}"`,
     `date: ${date}`,
     `category: "${catSlug}"`,
-    postTags.length ? `tags: [${postTags.map(t => `"${t}"`).join(', ')}]` : '',
+    postTags.length ? `tags: [${postTags.map((t) => `"${t}"`).join(', ')}]` : '',
     featuredImage ? `featuredImage: "${featuredImage}"` : '',
     excerpt ? `excerpt: "${excerpt.replace(/"/g, '\\"').replace(/\n/g, ' ')}"` : '',
     '---',
-  ].filter(Boolean).join('\n');
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   const fileContent = frontmatter + '\n\n' + content;
   const filename = `${outDir}/${post.slug}.md`;

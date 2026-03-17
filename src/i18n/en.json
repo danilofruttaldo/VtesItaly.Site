@@ -29,16 +29,43 @@
     "Blog": "Community"
   },
   "months": {
-    "1": "January", "2": "February", "3": "March", "4": "April",
-    "5": "May", "6": "June", "7": "July", "8": "August",
-    "9": "September", "10": "October", "11": "November", "12": "December"
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
   },
-  "months_array": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+  "months_array": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
   "days_short": {
-    "Mon": "MON", "Tue": "TUE", "Wed": "WED", "Thu": "THU",
-    "Fri": "FRI", "Sat": "SAT", "Sun": "SUN"
+    "Mon": "MON",
+    "Tue": "TUE",
+    "Wed": "WED",
+    "Thu": "THU",
+    "Fri": "FRI",
+    "Sat": "SAT",
+    "Sun": "SUN"
   },
-  "days_short_array": ["SUN","MON","TUE","WED","THU","FRI","SAT"],
+  "days_short_array": ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
   "date_locale": "en-GB",
   "calendar": {
     "no_events_month": "No events this month.",
@@ -54,7 +81,8 @@
     "cat_community": "Community",
     "cat_local": "Local tournament",
     "legend_events": "Tournaments",
-    "legend_other": "Other"
+    "legend_other": "Other",
+    "event_details": "Event details"
   },
   "search": {
     "aria_label": "Search",

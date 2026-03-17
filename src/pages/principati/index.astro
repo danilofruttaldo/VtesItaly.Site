@@ -8,7 +8,7 @@ import { cities } from '../../data/cities';
 import { mainPages } from '../../data/pages';
 import { useTranslations } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug.it === 'principati')!;
+const page = mainPages.find((p) => p.slug.it === 'principati')!;
 const t = useTranslations('it');
 ---
 
@@ -21,22 +21,29 @@ const t = useTranslations('it');
       <p class="section-intro">{t.domains_index.intro_1}</p>
       <p class="section-intro">{t.domains_index.intro_2}</p>
       <div class="coordinator">
-        <img src="/images/principi/principi-miro-albertazzi.webp" alt="Miro Albertazzi" class="coordinator-avatar" loading="lazy" decoding="async" />
+        <img
+          src="/images/principi/principi-miro-albertazzi.webp"
+          alt="Miro Albertazzi"
+          class="coordinator-avatar"
+          loading="lazy"
+          decoding="async"
+        />
         <p>{t.domains_index.coordinator}<br /><strong>Miro Albertazzi</strong></p>
       </div>
       <div class="principati-grid">
-        {cities.map(city => (
-          <CityCard
-            name={city.name.it}
-            href={`/principati/${city.slug.it}/`}
-            princeName={city.prince.name}
-            princeAlias={city.prince.alias}
-            princeImage={city.prince.image}
-          />
-        ))}
+        {
+          cities.map((city) => (
+            <CityCard
+              name={city.name.it}
+              href={`/principati/${city.slug.it}/`}
+              princeName={city.prince.name}
+              princeAlias={city.prince.alias}
+              princeImage={city.prince.image}
+            />
+          ))
+        }
       </div>
       <ShareButtons />
     </div>
   </section>
 </Base>
-

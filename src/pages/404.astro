@@ -1,36 +1,77 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
+
 <Base title="404">
   <section class="not-found">
     <div class="container">
       <h1>404</h1>
       <p class="subtitle" data-it="Pagina non trovata." data-en="Page not found.">Pagina non trovata.</p>
-      <p class="hint" data-it="Il vampiro che cercavi si è nascosto nell'ombra..." data-en="The vampire you were looking for has hidden in the shadows...">Il vampiro che cercavi si è nascosto nell'ombra...</p>
+      <p
+        class="hint"
+        data-it="Il vampiro che cercavi si è nascosto nell'ombra..."
+        data-en="The vampire you were looking for has hidden in the shadows..."
+      >
+        Il vampiro che cercavi si è nascosto nell'ombra...
+      </p>
       <nav class="not-found__links">
         <a href="/" class="btn" data-en-href="/en/">Home</a>
-        <a href="/comunita/" class="btn btn--outline" data-en-href="/en/community/" data-it="Comunità" data-en="Community">Comunità</a>
-        <a href="/principati/" class="btn btn--outline" data-en-href="/en/domains/" data-it="Principati" data-en="Domains">Principati</a>
+        <a
+          href="/comunita/"
+          class="btn btn--outline"
+          data-en-href="/en/community/"
+          data-it="Comunità"
+          data-en="Community">Comunità</a
+        >
+        <a
+          href="/principati/"
+          class="btn btn--outline"
+          data-en-href="/en/domains/"
+          data-it="Principati"
+          data-en="Domains">Principati</a
+        >
       </nav>
     </div>
   </section>
 </Base>
 <script>
   if (window.location.pathname.startsWith('/en/') || window.location.pathname === '/en') {
-    document.querySelectorAll('[data-en]').forEach(el => {
+    document.querySelectorAll('[data-en]').forEach((el) => {
       el.textContent = el.getAttribute('data-en')!;
     });
-    document.querySelectorAll('[data-en-href]').forEach(el => {
+    document.querySelectorAll('[data-en-href]').forEach((el) => {
       (el as HTMLAnchorElement).href = el.getAttribute('data-en-href')!;
     });
   }
 </script>
 <style>
-  .not-found { text-align: center; padding: 100px 20px; }
-  .not-found h1 { font-size: 5rem; color: var(--color-accent-1); margin-bottom: 8px; line-height: 1; }
-  .subtitle { color: var(--color-muted); margin-bottom: 8px; font-size: 1.1rem; }
-  .hint { color: var(--color-gold); font-style: italic; margin-bottom: 32px; font-size: 0.9rem; }
-  .not-found__links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .not-found {
+    text-align: center;
+    padding: 100px 20px;
+  }
+  .not-found h1 {
+    font-size: 5rem;
+    color: var(--color-accent-1);
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .subtitle {
+    color: var(--color-muted);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  .hint {
+    color: var(--color-gold);
+    font-style: italic;
+    margin-bottom: 32px;
+    font-size: 0.9rem;
+  }
+  .not-found__links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
   .btn--outline {
     background: transparent;
     border: 1px solid var(--color-accent);

@@ -29,7 +29,9 @@ const { name, href, princeName, princeAlias, princeImage } = Astro.props;
     text-align: center;
     text-decoration: none;
     color: var(--color-contrast);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .city-card:hover {
@@ -57,9 +59,19 @@ const { name, href, princeName, princeAlias, princeImage } = Astro.props;
   }
 
   @media (max-width: 399px) {
-    .city-card { padding: 12px 8px; gap: 8px; }
-    .city-card__avatar { width: 64px; height: 64px; }
-    .city-card__title { font-size: 0.9rem; }
-    .city-card__prince { font-size: 0.72rem; }
+    .city-card {
+      padding: 12px 8px;
+      gap: 8px;
+    }
+    .city-card__avatar {
+      width: 64px;
+      height: 64px;
+    }
+    .city-card__title {
+      font-size: 0.9rem;
+    }
+    .city-card__prince {
+      font-size: 0.72rem;
+    }
   }
 </style>

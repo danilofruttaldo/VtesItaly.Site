@@ -11,16 +11,17 @@ import '../styles/edition-page.css';
 
 const t = useTranslations('it');
 
-const page = mainPages.find(p => p.slug.it === 'tour')!;
+const page = mainPages.find((p) => p.slug.it === 'tour')!;
 const posts = filterByLocale(await getCollection('blog'), 'it')
-  .filter(p => p.data.category === page.category)
+  .filter((p) => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const current = posts[0];
-const pastEditions = posts.filter(p => p !== current);
+const pastEditions = posts.filter((p) => p !== current);
 
 const tourStatus = computeTourStatus(current?.data.stages || []);
 ---
+
 <Base title={page.title.it} description={page.description.it}>
   <PageHero title={page.title.it} image={page.headerImage} />
 
@@ -32,40 +33,55 @@ const tourStatus = computeTourStatus(current?.data.stages || []);
     </div>
   </section>
 
-  {current && (
-    <section class="page-section">
-      <div class="container">
-        <div class="edition-header">
-          <h2 class="edition-title">{current.data.title}</h2>
-          {tourStatus && <span class="edition-label-tag">{tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}</span>}
+  {
+    current && (
+      <section class="page-section">
+        <div class="container">
+          <div class="edition-header">
+            <h2 class="edition-title">{current.data.title}</h2>
+            {tourStatus && (
+              <span class="edition-label-tag">
+                {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
+              </span>
+            )}
+          </div>
+          <TourEdition post={current} />
         </div>
-        <TourEdition post={current} />
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
-  {pastEditions.length > 0 && (
-    <section class="page-section">
-      <div class="container container--narrow">
-        <h2 class="page-section-title">{t.tour.archive}</h2>
-        <div class="editions-list">
-          {pastEditions.map(post => (
-            <a href={`/tour/${post.id}/`} class="edition-card">
-              <span class="edition-year">{post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
-              {post.data.stages && post.data.stages.length > 0 && (() => {
-                const stg = post.data.stages!;
-                const citiesCount = new Set(stg.flatMap(s => s.cities)).size;
-                const first = formatLocalDate(stg[0].date, 'it', { day: 'numeric', month: 'short' });
-                const last = formatLocalDate(stg[stg.length - 1].date, 'it', { day: 'numeric', month: 'short' });
-                return (
-                  <span class="edition-info">{stg.length} {t.tour.stages_unit} &middot; {citiesCount} {t.tour.cities_unit} &middot; {first} — {last}</span>
-                );
-              })()}
-            </a>
-          ))}
+  {
+    pastEditions.length > 0 && (
+      <section class="page-section">
+        <div class="container container--narrow">
+          <h2 class="page-section-title">{t.tour.archive}</h2>
+          <div class="editions-list">
+            {pastEditions.map((post) => (
+              <a href={`/tour/${post.id}/`} class="edition-card">
+                <span class="edition-year">
+                  {post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}
+                </span>
+                {post.data.stages &&
+                  post.data.stages.length > 0 &&
+                  (() => {
+                    const stg = post.data.stages!;
+                    const citiesCount = new Set(stg.flatMap((s) => s.cities)).size;
+                    const first = formatLocalDate(stg[0].date, 'it', { day: 'numeric', month: 'short' });
+                    const last = formatLocalDate(stg[stg.length - 1].date, 'it', { day: 'numeric', month: 'short' });
+                    return (
+                      <span class="edition-info">
+                        {stg.length} {t.tour.stages_unit} &middot; {citiesCount} {t.tour.cities_unit} &middot; {first} —{' '}
+                        {last}
+                      </span>
+                    );
+                  })()}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
   <section class="page-section"><div class="container container--narrow"><ShareButtons /></div></section>
 </Base>

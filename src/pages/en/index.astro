@@ -8,10 +8,10 @@ import { mainPages } from '../../data/pages';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { getEnPostUrl } from '../../utils/url';
 
-const page = mainPages.find(p => p.slug.it === '')!;
+const page = mainPages.find((p) => p.slug.it === '')!;
 const t = useTranslations('en');
 const latestPosts = filterByLocale(await getCollection('blog'), 'en')
-  .filter(p => !p.data.cardHidden)
+  .filter((p) => !p.data.cardHidden)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
   .slice(0, 4);
 ---
@@ -43,23 +43,26 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
       <h2 class="section-title">{t.home.latest_title}</h2>
       <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="post-list">
-        {latestPosts.map(post => {
-          const usesPoster = (post.data.category === 'grand-prix' || post.data.category === 'nazionale') && !!post.data.poster;
-          const cardImage = usesPoster ? post.data.poster : (post.data.featuredImage || post.data.poster);
-          return (
-          <PostCard
-            href={getEnPostUrl(post)}
-            title={post.data.title}
-            image={cardImage}
-            isPoster={usesPoster || (!post.data.featuredImage && !!post.data.poster)}
-            date={post.data.date}
-            category={post.data.category}
-            tags={post.data.tags}
-            excerpt={post.data.excerpt}
-            locale="en"
-          />
-          );
-        })}
+        {
+          latestPosts.map((post) => {
+            const usesPoster =
+              (post.data.category === 'grand-prix' || post.data.category === 'nazionale') && !!post.data.poster;
+            const cardImage = usesPoster ? post.data.poster : post.data.featuredImage || post.data.poster;
+            return (
+              <PostCard
+                href={getEnPostUrl(post)}
+                title={post.data.title}
+                image={cardImage}
+                isPoster={usesPoster || (!post.data.featuredImage && !!post.data.poster)}
+                date={post.data.date}
+                category={post.data.category}
+                tags={post.data.tags}
+                excerpt={post.data.excerpt}
+                locale="en"
+              />
+            );
+          })
+        }
       </div>
       <div class="section-cta">
         <a href="/en/community/" class="btn">{t.home.all_articles} &rarr;</a>
@@ -74,9 +77,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
       <h2 class="section-title">{t.home.domains_title}</h2>
       <p class="section-subtitle">{t.home.domains_subtitle}</p>
       <div class="cities-quicklinks">
-        {cities.map(city => (
-          <a href={`/en/domains/${city.slug.en}/`}>{city.name.en}</a>
-        ))}
+        {cities.map((city) => <a href={`/en/domains/${city.slug.en}/`}>{city.name.en}</a>)}
       </div>
       <div class="section-cta">
         <a href="/en/domains/" class="btn">{t.home.all_domains} &rarr;</a>
@@ -86,12 +87,25 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
 </Base>
 
 <style>
-  .hero-banner { width: 100%; display: block; object-fit: cover; max-height: 340px; }
-  .hero-text { padding: 48px 0 40px; text-align: center; }
-  .hero-text h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); margin-bottom: 16px; }
+  .hero-banner {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 340px;
+  }
+  .hero-text {
+    padding: 48px 0 40px;
+    text-align: center;
+  }
+  .hero-text h1 {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    margin-bottom: 16px;
+  }
   .hero-text__subtitle {
-    color: var(--color-muted); font-size: clamp(0.9rem, 3vw, 1.05rem);
-    line-height: 1.6; margin-bottom: 24px;
+    color: var(--color-muted);
+    font-size: clamp(0.9rem, 3vw, 1.05rem);
+    line-height: 1.6;
+    margin-bottom: 24px;
   }
 
   .cities-quicklinks {
@@ -121,6 +135,8 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   }
 
   @media (max-width: 599px) {
-    .hero-text { padding-inline: 0; }
+    .hero-text {
+      padding-inline: 0;
+    }
   }
 </style>

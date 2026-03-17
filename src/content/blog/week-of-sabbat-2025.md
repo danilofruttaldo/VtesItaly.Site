@@ -1,31 +1,50 @@
 ---
-title: "Week of Sabbat 2025"
+title: 'Week of Sabbat 2025'
 date: 2025-10-18
-category: "comunita"
-tags: ["barga", "bologna", "firenze", "genova", "mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona", "prerelease"]
-featuredImage: "/images/headers/header-week-of-sabbat.webp"
+category: 'comunita'
+tags:
+  [
+    'barga',
+    'bologna',
+    'firenze',
+    'genova',
+    'mantova',
+    'massa',
+    'milano',
+    'modena',
+    'parma',
+    'pordenone',
+    'prato',
+    'roma',
+    'torino',
+    'trento',
+    'treviso',
+    'verona',
+    'prerelease',
+  ]
+featuredImage: '/images/headers/header-week-of-sabbat.webp'
 excerpt: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
 events:
-  - name: "Week of Sabbat 2025"
+  - name: 'Week of Sabbat 2025'
     date: 2025-10-18
     endDate: 2025-10-26
-    time: "—"
+    time: '—'
     format: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
-standingsUrl: "/ev/wos-2025/standings-wos-2025.json"
+standingsUrl: '/ev/wos-2025/standings-wos-2025.json'
 links:
-  - label: "Infokit (PDF)"
-    url: "/ev/wos-2025/infokit-wos-2025-it.pdf"
+  - label: 'Infokit (PDF)'
+    url: '/ev/wos-2025/infokit-wos-2025-it.pdf'
     locale: it
-  - label: "Event infokit (PDF)"
-    url: "/ev/wos-2025/infokit-wos-2025-en.pdf"
+  - label: 'Event infokit (PDF)'
+    url: '/ev/wos-2025/infokit-wos-2025-en.pdf'
     locale: en
-pageLayout: "article"
+pageLayout: 'article'
 linksAfter:
-  - label: "Report (PDF)"
-    url: "/ev/wos-2025/report-wos-2025-it.pdf"
+  - label: 'Report (PDF)'
+    url: '/ev/wos-2025/report-wos-2025-it.pdf'
     locale: it
-  - label: "Event report template (PDF)"
-    url: "/ev/wos-2025/report-wos-2025-en.pdf"
+  - label: 'Event report template (PDF)'
+    url: '/ev/wos-2025/report-wos-2025-en.pdf'
     locale: en
 locale: it
 ---
@@ -34,7 +53,7 @@ La nuova espansione Sabbat segna un momento speciale: **l'Italia intera si unisc
 
 Non è solo una competizione, ma una settimana di **incontro, scoperta e divertimento condiviso**, in puro spirito cainita.
 
-> *"Per una settimana, tutta l'Italia gioca come un'unica cotérie"*
+> _"Per una settimana, tutta l'Italia gioca come un'unica cotérie"_
 
 ## Cos'è
 

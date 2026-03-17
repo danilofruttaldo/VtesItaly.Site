@@ -5,7 +5,7 @@ import localEventsData from '../data/local-events.json';
 
 export interface LocalEvent {
   name: string;
-  date: string;       // YYYY-MM-DD
+  date: string; // YYYY-MM-DD
   city: string;
   time?: string;
   venue?: string;
@@ -17,9 +17,9 @@ export interface LocalEvent {
 
 export interface CalendarEvent {
   id: string;
-  date: string;       // ISO date string YYYY-MM-DD
-  endDate?: string;   // ISO date string YYYY-MM-DD (for range events)
-  time: string;       // "09:00" or ""
+  date: string; // ISO date string YYYY-MM-DD
+  endDate?: string; // ISO date string YYYY-MM-DD (for range events)
+  time: string; // "09:00" or ""
   title: string;
   postTitle: string;
   category: string;
@@ -27,9 +27,9 @@ export interface CalendarEvent {
   venue?: string;
   location?: string;
   format?: string;
-  image?: string;     // featured image or poster URL
+  image?: string; // featured image or poster URL
   archonUrl?: string; // Archon or BCN Crisis link
-  tags?: string[];    // post tags for sub-category coloring
+  tags?: string[]; // post tags for sub-category coloring
   cardHidden?: boolean; // hide "read" CTA and don't link to page
 }
 
@@ -74,8 +74,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     const location = post.data.venue?.address;
     const usesPoster = category === 'grand-prix' || category === 'nazionale';
     const image = usesPoster
-      ? (post.data.poster || post.data.featuredImage)
-      : (post.data.featuredImage || post.data.poster);
+      ? post.data.poster || post.data.featuredImage
+      : post.data.featuredImage || post.data.poster;
 
     // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
@@ -93,7 +93,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           postTitle,
           category,
           url,
-          venue: stage.venue || stage.cities?.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(', ') || 'TBD',
+          venue: stage.venue || stage.cities?.map((c) => c.charAt(0).toUpperCase() + c.slice(1)).join(', ') || 'TBD',
           location: stage.location || 'TBD',
           format: stage.format,
           image: (stage as any).image || image,
@@ -130,14 +130,14 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         };
 
         // Start date entry — for single-event community posts, use the post title
-        const displayName = (category === 'comunita' && post.data.events!.length === 1) ? postTitle : ev.name;
+        const displayName = category === 'comunita' && post.data.events!.length === 1 ? postTitle : ev.name;
         const startTitle = hasEndDate ? `${t.calendar.starts}: ${displayName}` : displayName;
         events.push({
           ...baseEvent,
           id: `${category}/${post.id}/${toIsoDate(d)}`,
           date: toIsoDate(d),
           endDate: hasEndDate ? toIsoDate(endD) : undefined,
-          time: ev.time === '—' ? (isTournament ? 'TBD' : '') : (ev.time || (isTournament ? 'TBD' : '')),
+          time: ev.time === '—' ? (isTournament ? 'TBD' : '') : ev.time || (isTournament ? 'TBD' : ''),
           title: startTitle,
         });
 

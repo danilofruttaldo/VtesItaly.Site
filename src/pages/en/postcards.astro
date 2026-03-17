@@ -5,57 +5,95 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import { mainPages } from '../../data/pages';
 import { useTranslations } from '../../utils/i18n';
 
-const page = mainPages.find(p => p.slug.it === 'cartoline')!;
+const page = mainPages.find((p) => p.slug.it === 'cartoline')!;
 import { postcardGalleries } from '../../data/postcards';
 const t = useTranslations('en');
-const galleries = postcardGalleries.map(g => ({
+const galleries = postcardGalleries.map((g) => ({
   title: g.title.en,
   subtitle: g.subtitle.en,
   images: g.images,
 }));
 ---
+
 <Base title={page.title.en} description={page.description.en} ogImage={page.headerImage}>
   <PageHero title={page.title.en} image={page.headerImage} />
-  <section class="section"><div class="container container--narrow">
-    <p class="tagline">{t.postcards.tagline}</p>
-    <p><Fragment set:html={t.postcards.intro} /></p>
+  <section class="section">
+    <div class="container container--narrow">
+      <p class="tagline">{t.postcards.tagline}</p>
+      <p><Fragment set:html={t.postcards.intro} /></p>
 
-    <h2 class="section-subtitle">{t.postcards.why_title}</h2>
-    <p>{t.postcards.why_text}</p>
+      <h2 class="section-subtitle">{t.postcards.why_title}</h2>
+      <p>{t.postcards.why_text}</p>
 
-    <hr class="divider" />
+      <hr class="divider" />
 
-    {galleries.map(gallery => (
-      <div class="gallery-section">
-        <h3 class="gallery-title">{gallery.title}</h3>
-        <p class="gallery-subtitle">{gallery.subtitle}</p>
-        <div class="gallery-wrap">
-          <button class="gallery-arrow gallery-arrow--left" aria-label={t.postcards.scroll_left}>&#8249;</button>
-          <div class="gallery-scroll">
-            <div class="gallery-row">
-              {gallery.images.map(img => (
-                <figure class="gallery-item">
-                  <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-                </figure>
-              ))}
+      {
+        galleries.map((gallery) => (
+          <div class="gallery-section">
+            <h3 class="gallery-title">{gallery.title}</h3>
+            <p class="gallery-subtitle">{gallery.subtitle}</p>
+            <div class="gallery-wrap">
+              <button class="gallery-arrow gallery-arrow--left" aria-label={t.postcards.scroll_left}>
+                &#8249;
+              </button>
+              <div class="gallery-scroll">
+                <div class="gallery-row">
+                  {gallery.images.map((img) => (
+                    <figure class="gallery-item">
+                      <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+              <button class="gallery-arrow gallery-arrow--right" aria-label={t.postcards.scroll_right}>
+                &#8250;
+              </button>
             </div>
           </div>
-          <button class="gallery-arrow gallery-arrow--right" aria-label={t.postcards.scroll_right}>&#8250;</button>
-        </div>
-      </div>
-    ))}
-    <ShareButtons />
-  </div></section>
+        ))
+      }
+      <ShareButtons />
+    </div>
+  </section>
 </Base>
 
 <style>
-  .section { padding: 40px 0 48px; }
-  .tagline { font-size: 1.1rem; font-style: italic; color: var(--color-gold); margin-bottom: 16px; }
-  .section-subtitle { font-size: clamp(1rem, 3vw, 1.15rem); text-transform: uppercase; margin-top: 24px; margin-bottom: 8px; letter-spacing: 0.3px; }
-  .divider { border: none; border-top: 1px solid var(--color-accent-light); margin: 32px 0; }
-  .gallery-section { margin-bottom: 40px; text-align: center; }
-  .gallery-title { font-size: 1.1rem; font-weight: 700; color: var(--color-gold); margin-bottom: 2px; }
-  .gallery-subtitle { font-size: 0.8rem; color: var(--color-muted); margin-bottom: 12px; }
+  .section {
+    padding: 40px 0 48px;
+  }
+  .tagline {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-gold);
+    margin-bottom: 16px;
+  }
+  .section-subtitle {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    text-transform: uppercase;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-accent-light);
+    margin: 32px 0;
+  }
+  .gallery-section {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .gallery-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    margin-bottom: 2px;
+  }
+  .gallery-subtitle {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-bottom: 12px;
+  }
   .gallery-wrap {
     position: relative;
     display: flex;
@@ -67,7 +105,9 @@ const galleries = postcardGalleries.map(g => ({
     flex: 1;
     scrollbar-width: none;
   }
-  .gallery-scroll::-webkit-scrollbar { display: none; }
+  .gallery-scroll::-webkit-scrollbar {
+    display: none;
+  }
   .gallery-row {
     display: flex;
     gap: 12px;
@@ -77,7 +117,8 @@ const galleries = postcardGalleries.map(g => ({
   }
   .gallery-arrow {
     flex-shrink: 0;
-    width: 36px; height: 36px;
+    width: 36px;
+    height: 36px;
     border: 1px solid var(--color-gold);
     border-radius: 50%;
     background: rgba(201, 168, 76, 0.15);
@@ -89,43 +130,52 @@ const galleries = postcardGalleries.map(g => ({
     justify-content: center;
     transition: opacity 0.2s ease;
   }
-  .gallery-arrow:hover { opacity: 0.7; }
-  .gallery-wrap.has-overflow .gallery-arrow { display: flex; }
+  .gallery-arrow:hover {
+    opacity: 0.7;
+  }
+  .gallery-wrap.has-overflow .gallery-arrow {
+    display: flex;
+  }
   @media (max-width: 768px) {
-    .gallery-arrow { display: none !important; }
+    .gallery-arrow {
+      display: none !important;
+    }
   }
   .gallery-item {
     margin: 0;
     flex: 0 0 clamp(150px, 40vw, 220px);
   }
-  .gallery-item img { border-radius: var(--radius); width: 100%; }
+  .gallery-item img {
+    border-radius: var(--radius);
+    width: 100%;
+  }
 </style>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.gallery-wrap').forEach(wrap => {
-    const scroll = wrap.querySelector('.gallery-scroll');
-    const left = wrap.querySelector('.gallery-arrow--left');
-    const right = wrap.querySelector('.gallery-arrow--right');
-    if (!scroll || !left || !right) return;
+    document.querySelectorAll('.gallery-wrap').forEach((wrap) => {
+      const scroll = wrap.querySelector('.gallery-scroll');
+      const left = wrap.querySelector('.gallery-arrow--left');
+      const right = wrap.querySelector('.gallery-arrow--right');
+      if (!scroll || !left || !right) return;
 
-    function checkOverflow() {
-      if (scroll.scrollWidth > scroll.clientWidth + 2) {
-        wrap.classList.add('has-overflow');
-      } else {
-        wrap.classList.remove('has-overflow');
+      function checkOverflow() {
+        if (scroll.scrollWidth > scroll.clientWidth + 2) {
+          wrap.classList.add('has-overflow');
+        } else {
+          wrap.classList.remove('has-overflow');
+        }
       }
-    }
 
-    left.addEventListener('click', () => {
-      scroll.scrollBy({ left: -240, behavior: 'smooth' });
-    });
-    right.addEventListener('click', () => {
-      scroll.scrollBy({ left: 240, behavior: 'smooth' });
-    });
+      left.addEventListener('click', () => {
+        scroll.scrollBy({ left: -240, behavior: 'smooth' });
+      });
+      right.addEventListener('click', () => {
+        scroll.scrollBy({ left: 240, behavior: 'smooth' });
+      });
 
-    checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-  });
+      checkOverflow();
+      window.addEventListener('resize', checkOverflow);
+    });
   });
 </script>

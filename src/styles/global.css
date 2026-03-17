@@ -9,7 +9,9 @@
   font-weight: 400 700;
   font-display: swap;
   src: url('/fonts/manrope-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Manrope';
@@ -17,23 +19,25 @@
   font-weight: 400 700;
   font-display: swap;
   src: url('/fonts/manrope-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 :root {
   /* Colors */
   --color-base: #121416;
-  --color-surface: #1C1E21;
-  --color-card: #1A1517;
-  --color-contrast: #E2E0DD;
-  --color-muted: #9B9B9B;
-  --color-accent: #8B1A2B;
-  --color-accent-1: #C0344A;
-  --color-accent-2: #E05A6F;
-  --color-accent-hover: #A83240;
+  --color-surface: #1c1e21;
+  --color-card: #1a1517;
+  --color-contrast: #e2e0dd;
+  --color-muted: #9b9b9b;
+  --color-accent: #8b1a2b;
+  --color-accent-1: #d94a5e;
+  --color-accent-2: #e87185;
+  --color-accent-hover: #a83240;
   --color-accent-light: rgba(139, 26, 43, 0.15);
-  --color-gold: #C9A84C;
-  --color-gold-hover: #E0C36A;
+  --color-gold: #c9a84c;
+  --color-gold-hover: #e0c36a;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-streaming: #ff0000;
   --color-success: #4ade80;
@@ -93,16 +97,27 @@ body {
    Typography
    ======================================== */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   letter-spacing: -0.2px;
   line-height: 1.25;
   color: var(--color-contrast);
 }
 
-h1 { font-size: var(--font-size-xxl); }
-h2 { font-size: var(--font-size-xl); }
-h3 { font-size: var(--font-size-large); }
+h1 {
+  font-size: var(--font-size-xxl);
+}
+h2 {
+  font-size: var(--font-size-xl);
+}
+h3 {
+  font-size: var(--font-size-large);
+}
 
 p {
   margin-bottom: var(--spacing-sm);
@@ -253,7 +268,9 @@ img {
   border: 1px solid var(--color-border);
   text-decoration: none;
   color: var(--color-contrast);
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
   overflow: hidden;
 }
 
@@ -292,7 +309,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-gold);
-  background: rgba(201,168,76,0.1);
+  background: rgba(201, 168, 76, 0.1);
   padding: 2px 8px;
   border-radius: var(--radius);
 }
@@ -327,7 +344,9 @@ img {
   padding-top: 4px;
   align-self: flex-end;
 }
-.post-card:hover .post-card__cta { color: var(--color-accent-2); }
+.post-card:hover .post-card__cta {
+  color: var(--color-accent-2);
+}
 
 /* ========================================
    Pagination
@@ -371,7 +390,10 @@ img {
 }
 
 @media (max-width: 544px) {
-  .post-card__image { width: 80px; height: 80px; }
+  .post-card__image {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 /* ========================================
@@ -422,7 +444,9 @@ img {
    ======================================== */
 
 @media (max-width: 768px) {
-  body { padding-bottom: 72px; }
+  body {
+    padding-bottom: 72px;
+  }
 }
 
 /* ========================================
@@ -441,7 +465,9 @@ img {
    ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

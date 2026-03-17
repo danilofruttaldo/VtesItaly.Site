@@ -13,12 +13,36 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
 <div class="lang-chooser-overlay" id="lang-chooser" aria-hidden="true">
   <div class="lang-chooser" role="dialog" aria-label={t.nav.choose_language}>
     <div class="lang-chooser__options">
-      <button class="lang-chooser__btn" type="button" data-lang="it" data-href={locale === 'it' ? '' : altUrl} aria-label="Italiano">
-        <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#009246" d="M0 0h213.3v480H0z"/><path fill="#fff" d="M213.3 0h213.4v480H213.3z"/><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"/></svg>
+      <button
+        class="lang-chooser__btn"
+        type="button"
+        data-lang="it"
+        data-href={locale === 'it' ? '' : altUrl}
+        aria-label="Italiano"
+      >
+        <svg class="flag-icon" viewBox="0 0 640 480"
+          ><path fill="#009246" d="M0 0h213.3v480H0z"></path><path fill="#fff" d="M213.3 0h213.4v480H213.3z"
+          ></path><path fill="#ce2b37" d="M426.7 0H640v480H426.7z"></path></svg
+        >
         IT
       </button>
-      <button class="lang-chooser__btn" type="button" data-lang="en" data-href={locale === 'en' ? '' : altUrl} aria-label="English">
-        <svg class="flag-icon" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg>
+      <button
+        class="lang-chooser__btn"
+        type="button"
+        data-lang="en"
+        data-href={locale === 'en' ? '' : altUrl}
+        aria-label="English"
+      >
+        <svg class="flag-icon" viewBox="0 0 640 480"
+          ><path fill="#012169" d="M0 0h640v480H0z"></path><path
+            fill="#FFF"
+            d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"></path><path
+            fill="#C8102E"
+            d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"
+          ></path><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"></path><path
+            fill="#C8102E"
+            d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"></path></svg
+        >
         EN
       </button>
     </div>
@@ -54,8 +78,14 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
   }
 
   @keyframes lang-chooser-in {
-    from { opacity: 0; transform: scale(0.95); }
-    to   { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .lang-chooser__options {
@@ -76,7 +106,9 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .lang-chooser__btn:hover,
@@ -97,53 +129,65 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .lang-chooser { animation: none; }
+    .lang-chooser {
+      animation: none;
+    }
   }
 </style>
 
 <script is:inline>
-(function() {
-  var STORAGE_KEY = 'vtesitaly-lang';
-  var saved = null;
-  try { saved = localStorage.getItem(STORAGE_KEY); } catch(e) {}
-
-  // If preference already saved, do nothing (redirect handled in <head>)
-  if (saved) return;
-
-  var overlay = document.getElementById('lang-chooser');
-  if (!overlay) return;
-
-  overlay.classList.add('is-open');
-  overlay.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-
-  // Focus first button
-  var buttons = overlay.querySelectorAll('.lang-chooser__btn');
-  if (buttons.length) buttons[0].focus();
-
-  // Focus trap between the two buttons
-  overlay.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      var focused = document.activeElement;
-      if (focused === buttons[0]) buttons[1].focus();
-      else buttons[0].focus();
+  (function () {
+    var STORAGE_KEY = 'vtesitaly-lang';
+    var saved = null;
+    try {
+      saved = localStorage.getItem(STORAGE_KEY);
+    } catch (_) {
+      /* storage unavailable */
     }
-  });
 
-  function choose(btn) {
-    var lang = btn.dataset.lang;
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
-    overlay.classList.remove('is-open');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (btn.dataset.href) {
-      location.replace(btn.dataset.href);
+    // If preference already saved, do nothing (redirect handled in <head>)
+    if (saved) return;
+
+    var overlay = document.getElementById('lang-chooser');
+    if (!overlay) return;
+
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // Focus first button
+    var buttons = overlay.querySelectorAll('.lang-chooser__btn');
+    if (buttons.length) buttons[0].focus();
+
+    // Focus trap between the two buttons
+    overlay.addEventListener('keydown', function (e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        var focused = document.activeElement;
+        if (focused === buttons[0]) buttons[1].focus();
+        else buttons[0].focus();
+      }
+    });
+
+    function choose(btn) {
+      var lang = btn.dataset.lang;
+      try {
+        localStorage.setItem(STORAGE_KEY, lang);
+      } catch (_) {
+        /* storage unavailable */
+      }
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (btn.dataset.href) {
+        location.replace(btn.dataset.href);
+      }
     }
-  }
 
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() { choose(this); });
-  }
-})();
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function () {
+        choose(this);
+      });
+    }
+  })();
 </script>

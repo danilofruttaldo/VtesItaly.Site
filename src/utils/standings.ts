@@ -18,11 +18,11 @@ export function getCardMeta(
   locale: Locale = 'it',
 ): { eventDate: string; winner: string; players: number } {
   const rawDate = post.data.events?.[0]?.date;
-  const eventDate = rawDate instanceof Date ? formatLocalDate(rawDate, locale) : (rawDate || '');
+  const eventDate = rawDate instanceof Date ? formatLocalDate(rawDate, locale) : rawDate || '';
   let winner = '';
   let players = 0;
   if (post.data.standingsUrl) {
-    const key = Object.keys(allStandings).find(k => k.includes(post.data.standingsUrl.replace(/^.*\//, '')));
+    const key = Object.keys(allStandings).find((k) => k.includes(post.data.standingsUrl.replace(/^.*\//, '')));
     if (key) {
       const data = allStandings[key].default;
       players = data.length;

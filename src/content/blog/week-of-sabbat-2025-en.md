@@ -1,26 +1,45 @@
 ---
-title: "Week of Sabbat 2025"
+title: 'Week of Sabbat 2025'
 date: 2025-10-18
-category: "comunita"
-tags: ["barga", "bologna", "firenze", "genova", "mantova", "massa", "milano", "modena", "parma", "pordenone", "prato", "roma", "torino", "trento", "treviso", "verona", "prerelease"]
-featuredImage: "/images/headers/header-week-of-sabbat.webp"
-excerpt: "From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event."
+category: 'comunita'
+tags:
+  [
+    'barga',
+    'bologna',
+    'firenze',
+    'genova',
+    'mantova',
+    'massa',
+    'milano',
+    'modena',
+    'parma',
+    'pordenone',
+    'prato',
+    'roma',
+    'torino',
+    'trento',
+    'treviso',
+    'verona',
+    'prerelease',
+  ]
+featuredImage: '/images/headers/header-week-of-sabbat.webp'
+excerpt: 'From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event.'
 events:
-  - name: "Week of Sabbat 2025"
+  - name: 'Week of Sabbat 2025'
     date: 2025-10-18
     endDate: 2025-10-26
-    time: "—"
-    format: "From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event."
-standingsUrl: "/ev/wos-2025/standings-wos-2025.json"
+    time: '—'
+    format: 'From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event.'
+standingsUrl: '/ev/wos-2025/standings-wos-2025.json'
 locale: en
 links:
-  - label: "Infokit (PDF)"
-    url: "/ev/wos-2025/infokit-wos-2025-en.pdf"
+  - label: 'Infokit (PDF)'
+    url: '/ev/wos-2025/infokit-wos-2025-en.pdf'
     locale: en
-pageLayout: "article"
+pageLayout: 'article'
 linksAfter:
-  - label: "Report (PDF)"
-    url: "/ev/wos-2025/report-wos-2025-en.pdf"
+  - label: 'Report (PDF)'
+    url: '/ev/wos-2025/report-wos-2025-en.pdf'
     locale: en
 ---
 
@@ -28,7 +47,7 @@ The new Sabbat expansion marks a special moment: **all of Italy unites** to cele
 
 Not just competition, but a week of **gathering, discovery and shared fun**, in true Cainite spirit.
 
-> *"For one week, all of Italy plays as a single coterie"*
+> _"For one week, all of Italy plays as a single coterie"_
 
 ## What is it
 
@@ -59,4 +78,3 @@ After three rounds, total points determine the local winner. There is no final: 
 At the end of the event, each participant takes home their Sabbat prerelease deck as a memento of the Week of Sabbat.
 
 Treat the cards with care: they are part of the official event kit and deserve respect… in true Sabbat style.
-

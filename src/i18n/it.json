@@ -23,16 +23,43 @@
     "Blog": "Comunità"
   },
   "months": {
-    "1": "Gennaio", "2": "Febbraio", "3": "Marzo", "4": "Aprile",
-    "5": "Maggio", "6": "Giugno", "7": "Luglio", "8": "Agosto",
-    "9": "Settembre", "10": "Ottobre", "11": "Novembre", "12": "Dicembre"
+    "1": "Gennaio",
+    "2": "Febbraio",
+    "3": "Marzo",
+    "4": "Aprile",
+    "5": "Maggio",
+    "6": "Giugno",
+    "7": "Luglio",
+    "8": "Agosto",
+    "9": "Settembre",
+    "10": "Ottobre",
+    "11": "Novembre",
+    "12": "Dicembre"
   },
-  "months_array": ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"],
+  "months_array": [
+    "Gennaio",
+    "Febbraio",
+    "Marzo",
+    "Aprile",
+    "Maggio",
+    "Giugno",
+    "Luglio",
+    "Agosto",
+    "Settembre",
+    "Ottobre",
+    "Novembre",
+    "Dicembre"
+  ],
   "days_short": {
-    "Mon": "LUN", "Tue": "MAR", "Wed": "MER", "Thu": "GIO",
-    "Fri": "VEN", "Sat": "SAB", "Sun": "DOM"
+    "Mon": "LUN",
+    "Tue": "MAR",
+    "Wed": "MER",
+    "Thu": "GIO",
+    "Fri": "VEN",
+    "Sat": "SAB",
+    "Sun": "DOM"
   },
-  "days_short_array": ["DOM","LUN","MAR","MER","GIO","VEN","SAB"],
+  "days_short_array": ["DOM", "LUN", "MAR", "MER", "GIO", "VEN", "SAB"],
   "date_locale": "it-IT",
   "calendar": {
     "no_events_month": "Nessun evento questo mese.",
@@ -48,7 +75,8 @@
     "cat_community": "Community",
     "cat_local": "Torneo locale",
     "legend_events": "Tornei",
-    "legend_other": "Altro"
+    "legend_other": "Altro",
+    "event_details": "Dettagli evento"
   },
   "search": {
     "aria_label": "Cerca",

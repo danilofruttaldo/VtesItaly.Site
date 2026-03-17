@@ -12,19 +12,23 @@ import '../styles/edition-archive.css';
 
 const t = useTranslations('it');
 
-const page = mainPages.find(p => p.slug.it === 'grand-prix')!;
+const page = mainPages.find((p) => p.slug.it === 'grand-prix')!;
 const posts = filterByLocale(await getCollection('blog'), 'it')
-  .filter(p => p.data.category === page.category)
+  .filter((p) => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const now = new Date();
-const current = posts.find(p => new Date(p.data.date) >= now) || posts[0];
-const pastEditions = posts.filter(p => p !== current);
+const current = posts.find((p) => new Date(p.data.date) >= now) || posts[0];
+const pastEditions = posts.filter((p) => p !== current);
 
 const gpStatus = current ? computeEventStatus(new Date(current.data.date)) : null;
 
-const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.json', { eager: true }) as Record<string, { default: Standing[] }>;
+const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.json', { eager: true }) as Record<
+  string,
+  { default: Standing[] }
+>;
 ---
+
 <Base title={page.title.it} description={page.description.it}>
   <PageHero title={page.title.it} image={page.headerImage} />
 
@@ -38,52 +42,71 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
   </section>
 
   {/* Parte variabile: edizione corrente */}
-  {current && (
-    <section class="page-section">
-      <div class="container">
-        <div class="edition-header">
-          <h2 class="edition-title">{current.data.title}</h2>
-          <span class="edition-label-tag">{gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}</span>
+  {
+    current && (
+      <section class="page-section">
+        <div class="container">
+          <div class="edition-header">
+            <h2 class="edition-title">{current.data.title}</h2>
+            <span class="edition-label-tag">
+              {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
+            </span>
+          </div>
+          <GpEdition post={current} locale="it" />
         </div>
-        <GpEdition post={current} locale="it" />
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   {/* Parte fissa: archivio + condivisione */}
-  {pastEditions.length > 0 && (
-    <section class="page-section">
-      <div class="container container--narrow">
-        <h2 class="page-section-title">{t.gp.archive}</h2>
-        <div class="editions-list">
-          {pastEditions.map(post => {
-            const meta = getCardMeta(post, allStandings);
-            return (
-            <a href={`/grand-prix/${post.id}/`} class="edition-card">
-              {(post.data.poster || post.data.featuredImage) && (
-                <img src={post.data.poster || post.data.featuredImage} alt={post.data.title} class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']} loading="lazy" decoding="async" width="64" height="64" />
-              )}
-              <div class="edition-card-body">
-                <div class="edition-card-header">
-                  <span class="edition-year">{post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
-                  {meta.winner && (
-                    <span class="edition-winner">&#127942; {meta.winner}</span>
+  {
+    pastEditions.length > 0 && (
+      <section class="page-section">
+        <div class="container container--narrow">
+          <h2 class="page-section-title">{t.gp.archive}</h2>
+          <div class="editions-list">
+            {pastEditions.map((post) => {
+              const meta = getCardMeta(post, allStandings);
+              return (
+                <a href={`/grand-prix/${post.id}/`} class="edition-card">
+                  {(post.data.poster || post.data.featuredImage) && (
+                    <img
+                      src={post.data.poster || post.data.featuredImage}
+                      alt={post.data.title}
+                      class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']}
+                      loading="lazy"
+                      decoding="async"
+                      width="64"
+                      height="64"
+                    />
                   )}
-                </div>
-                <span class="edition-info">
-                  {post.data.tags && post.data.tags.filter(tag => tag !== 'italia').length > 0 && (
-                    <>{post.data.tags.filter(tag => tag !== 'italia').join(', ')}</>
-                  )}
-                  {meta.eventDate && <> &middot; {meta.eventDate}</>}
-                  {meta.players > 0 && <> &middot; {meta.players} {t.gp.players_label}</>}
-                </span>
-              </div>
-            </a>
-            );
-          })}
+                  <div class="edition-card-body">
+                    <div class="edition-card-header">
+                      <span class="edition-year">
+                        {post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}
+                      </span>
+                      {meta.winner && <span class="edition-winner">&#127942; {meta.winner}</span>}
+                    </div>
+                    <span class="edition-info">
+                      {post.data.tags && post.data.tags.filter((tag) => tag !== 'italia').length > 0 && (
+                        <>{post.data.tags.filter((tag) => tag !== 'italia').join(', ')}</>
+                      )}
+                      {meta.eventDate && <> &middot; {meta.eventDate}</>}
+                      {meta.players > 0 && (
+                        <>
+                          {' '}
+                          &middot; {meta.players} {t.gp.players_label}
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
   <section class="page-section"><div class="container container--narrow"><ShareButtons /></div></section>
 </Base>

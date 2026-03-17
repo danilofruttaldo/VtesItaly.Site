@@ -15,7 +15,8 @@ const currentYear = now.getFullYear();
 const currentMonth = now.getMonth();
 ---
 
-<div class="cal"
+<div
+  class="cal"
   data-locale={locale}
   data-months-json={JSON.stringify(t.months_array)}
   data-no-events={t.calendar.no_events_month}
@@ -24,10 +25,10 @@ const currentMonth = now.getMonth();
   data-close-label={t.search.close_label}
   data-cat-labels={JSON.stringify({
     'grand-prix': t.calendar.cat_gp,
-    'tour': t.calendar.cat_tour,
-    'nazionale': t.calendar.cat_nc,
-    'comunita': t.calendar.cat_community,
-    'local': t.calendar.cat_local,
+    tour: t.calendar.cat_tour,
+    nazionale: t.calendar.cat_nc,
+    comunita: t.calendar.cat_community,
+    local: t.calendar.cat_local,
   })}
   data-initial-year={currentYear}
   data-initial-month={currentMonth}
@@ -43,9 +44,7 @@ const currentMonth = now.getMonth();
 
   {/* Day headers */}
   <div class="cal__grid cal__header">
-    {[1,2,3,4,5,6,0].map(i => (
-      <span class="cal__dh">{t.days_short_array[i]}</span>
-    ))}
+    {[1, 2, 3, 4, 5, 6, 0].map((i) => <span class="cal__dh">{t.days_short_array[i]}</span>)}
   </div>
 
   {/* Calendar body — filled by JS */}
@@ -53,7 +52,14 @@ const currentMonth = now.getMonth();
 
   {/* Event detail popup */}
   <div class="cal__popup" id="cal-popup" hidden>
-    <div class="cal__popup-inner" id="cal-popup-inner"></div>
+    <div
+      class="cal__popup-inner"
+      id="cal-popup-inner"
+      role="dialog"
+      aria-modal="true"
+      aria-label={t.calendar.event_details ?? 'Event details'}
+    >
+    </div>
   </div>
 
   {/* Legend */}
@@ -61,235 +67,299 @@ const currentMonth = now.getMonth();
     <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#CE2B37"></span>GP</span>
     <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#F0E6D3"></span>NC</span>
     <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#009246"></span>Tour</span>
-    <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#4A90D9"></span>{t.calendar.legend_events}</span>
-    <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#9B59B6"></span>{t.calendar.legend_other}</span>
+    <span class="cal__legend-item"
+      ><span class="cal__legend-dot" style="background:#4A90D9"></span>{t.calendar.legend_events}</span
+    >
+    <span class="cal__legend-item"
+      ><span class="cal__legend-dot" style="background:#9B59B6"></span>{t.calendar.legend_other}</span
+    >
   </div>
 </div>
 
-
 <script is:inline>
-(function() {
-  var cal = document.querySelector('.cal');
-  if (!cal) return;
+  (function () {
+    var cal = document.querySelector('.cal');
+    if (!cal) return;
 
-  var monthNames = JSON.parse(cal.getAttribute('data-months-json') || '[]');
-  var addGoogle = cal.getAttribute('data-add-google') || '';
-  var readCta = cal.getAttribute('data-read-cta') || '';
-  var closeLabel = cal.getAttribute('data-close-label') || 'Close';
-  var catLabels = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
+    var monthNames = JSON.parse(cal.getAttribute('data-months-json') || '[]');
+    var addGoogle = cal.getAttribute('data-add-google') || '';
+    var readCta = cal.getAttribute('data-read-cta') || '';
+    var closeLabel = cal.getAttribute('data-close-label') || 'Close';
+    var catLabels = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
 
-  var events = JSON.parse(cal.getAttribute('data-server-events') || '[]');
-  var displayYear = parseInt(cal.getAttribute('data-initial-year'));
-  var displayMonth = parseInt(cal.getAttribute('data-initial-month'));
+    var events = JSON.parse(cal.getAttribute('data-server-events') || '[]');
+    var displayYear = parseInt(cal.getAttribute('data-initial-year'));
+    var displayMonth = parseInt(cal.getAttribute('data-initial-month'));
 
-  var body = document.getElementById('cal-body');
-  var titleEl = cal.querySelector('.cal__month-title');
-  var popup = document.getElementById('cal-popup');
-  var popupInner = document.getElementById('cal-popup-inner');
+    var body = document.getElementById('cal-body');
+    var titleEl = cal.querySelector('.cal__month-title');
+    var popup = document.getElementById('cal-popup');
+    var popupInner = document.getElementById('cal-popup-inner');
 
-  function esc(s) {
-    var d = document.createElement('div');
-    d.appendChild(document.createTextNode(s || ''));
-    return d.innerHTML;
-  }
-
-  function eventsForDay(y, m, d) {
-    var k = y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
-    return events.filter(function(e) { return e.date === k; });
-  }
-
-  function googleUrl(ev) {
-    var d = ev.date.replace(/-/g, '');
-    var endStr = ev.endDate || ev.date;
-    var nd = new Date(endStr); nd.setDate(nd.getDate() + 1);
-    var dates = d + '/' + nd.toISOString().slice(0,10).replace(/-/g,'');
-    var p = 'action=TEMPLATE&text=' + encodeURIComponent(ev.title) + '&dates=' + dates + '&ctz=Europe/Rome';
-    if (ev.location) p += '&location=' + encodeURIComponent(ev.location);
-    else if (ev.venue) p += '&location=' + encodeURIComponent(ev.venue);
-    return 'https://calendar.google.com/calendar/render?' + p;
-  }
-
-  function closePopup() {
-    popup.hidden = true;
-    popupInner.innerHTML = '';
-  }
-
-  function showPopup(ev) {
-    var ts = ev.time || '';
-
-
-    var h = '';
-    h += '<button class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
-
-    if (ev.image) {
-      h += '<div class="cal__popup-img" style="background-image:url(' + esc(ev.image) + ')"></div>';
+    function esc(s) {
+      var d = document.createElement('div');
+      d.appendChild(document.createTextNode(s || ''));
+      return d.innerHTML;
     }
 
-    h += '<div class="cal__popup-body">';
-    h += '<span class="cal__popup-cat" style="color:' + eventColor(ev) + '">' + (catLabels[ev.category] || ev.category) + '</span>';
-    h += '<span class="cal__popup-title">' + esc(ev.title) + '</span>';
+    function eventsForDay(y, m, d) {
+      var k = y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+      return events.filter(function (e) {
+        return e.date === k;
+      });
+    }
 
-    // Info rows
-    h += '<div class="cal__popup-info">';
-    if (ts) {
-      h += '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ' + esc(ts) + '</div>';
+    function googleUrl(ev) {
+      var d = ev.date.replace(/-/g, '');
+      var endStr = ev.endDate || ev.date;
+      var nd = new Date(endStr);
+      nd.setDate(nd.getDate() + 1);
+      var dates = d + '/' + nd.toISOString().slice(0, 10).replace(/-/g, '');
+      var p = 'action=TEMPLATE&text=' + encodeURIComponent(ev.title) + '&dates=' + dates + '&ctz=Europe/Rome';
+      if (ev.location) p += '&location=' + encodeURIComponent(ev.location);
+      else if (ev.venue) p += '&location=' + encodeURIComponent(ev.venue);
+      return 'https://calendar.google.com/calendar/render?' + p;
     }
-    if (ev.venue) {
-      h += '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ' + esc(ev.venue) + '</div>';
-    }
-    if (ev.location && ev.location !== ev.venue) {
-      h += '<div class="cal__popup-row cal__popup-row--sub">' + esc(ev.location) + '</div>';
-    }
-    if (ev.format) {
-      h += '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg> ' + esc(ev.format) + '</div>';
-    }
-    h += '</div>';
 
-    // Actions row
-    var hasTBD = ts === 'TBD' || !ts || (ev.format && ev.format === 'TBD') || (ev.venue && ev.venue === 'TBD');
-    h += '<div class="cal__popup-actions">';
-    if (!hasTBD) {
-      h += '<a href="' + googleUrl(ev) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
-      h += '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
-      h += ' ' + addGoogle + '</a>';
+    function closePopup() {
+      popup.hidden = true;
+      popupInner.innerHTML = '';
     }
-    if (ev.archonUrl) {
-      var platform = ev.archonUrl.indexOf('bcncrisis') !== -1 ? 'BCN Crisis' : 'Archon';
-      h += '<a href="' + esc(ev.archonUrl) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">' + platform + '</a>';
+
+    function showPopup(ev) {
+      var ts = ev.time || '';
+
+      var h = '';
+      h += '<button class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
+
+      if (ev.image) {
+        h +=
+          '<div class="cal__popup-img" role="img" aria-label="' +
+          esc(ev.title) +
+          '" style="background-image:url(' +
+          esc(ev.image) +
+          ')"></div>';
+      }
+
+      h += '<div class="cal__popup-body">';
+      h +=
+        '<span class="cal__popup-cat" style="color:' +
+        eventColor(ev) +
+        '">' +
+        (catLabels[ev.category] || ev.category) +
+        '</span>';
+      h += '<span class="cal__popup-title">' + esc(ev.title) + '</span>';
+
+      // Info rows
+      h += '<div class="cal__popup-info">';
+      if (ts) {
+        h +=
+          '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ' +
+          esc(ts) +
+          '</div>';
+      }
+      if (ev.venue) {
+        h +=
+          '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ' +
+          esc(ev.venue) +
+          '</div>';
+      }
+      if (ev.location && ev.location !== ev.venue) {
+        h += '<div class="cal__popup-row cal__popup-row--sub">' + esc(ev.location) + '</div>';
+      }
+      if (ev.format) {
+        h +=
+          '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg> ' +
+          esc(ev.format) +
+          '</div>';
+      }
+      h += '</div>';
+
+      // Actions row
+      var hasTBD = ts === 'TBD' || !ts || (ev.format && ev.format === 'TBD') || (ev.venue && ev.venue === 'TBD');
+      h += '<div class="cal__popup-actions">';
+      if (!hasTBD) {
+        h += '<a href="' + googleUrl(ev) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
+        h +=
+          '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+        h += ' ' + addGoogle + '</a>';
+      }
+      if (ev.archonUrl) {
+        var platform = ev.archonUrl.indexOf('bcncrisis') !== -1 ? 'BCN Crisis' : 'Archon';
+        h +=
+          '<a href="' +
+          esc(ev.archonUrl) +
+          '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">' +
+          platform +
+          '</a>';
+      }
+      if (!ev.cardHidden) {
+        h += '<a href="' + esc(ev.url) + '" class="cal__popup-cta">' + readCta + ' &rarr;</a>';
+      }
+      h += '</div>';
+
+      h += '</div>';
+
+      popupInner.innerHTML = h;
+      popup.hidden = false;
+
+      var closeBtn = popupInner.querySelector('.cal__popup-close');
+      closeBtn.addEventListener('click', closePopup);
+      closeBtn.focus();
+
+      // Focus trap inside popup
+      popupInner.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var focusable = popupInner.querySelectorAll('a, button, [tabindex]');
+        if (focusable.length === 0) return;
+        var first = focusable[0],
+          last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
     }
-    if (!ev.cardHidden) {
-      h += '<a href="' + esc(ev.url) + '" class="cal__popup-cta">' + readCta + ' &rarr;</a>';
-    }
-    h += '</div>';
 
-    h += '</div>';
-
-    popupInner.innerHTML = h;
-    popup.hidden = false;
-
-    var closeBtn = popupInner.querySelector('.cal__popup-close');
-    closeBtn.addEventListener('click', closePopup);
-    closeBtn.focus();
-
-    // Focus trap inside popup
-    popupInner.addEventListener('keydown', function(e) {
-      if (e.key !== 'Tab') return;
-      var focusable = popupInner.querySelectorAll('a, button, [tabindex]');
-      if (focusable.length === 0) return;
-      var first = focusable[0], last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    // Close popup on outside click or Escape
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) closePopup();
     });
-  }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !popup.hidden) closePopup();
+    });
 
-  // Close popup on outside click or Escape
-  popup.addEventListener('click', function(e) {
-    if (e.target === popup) closePopup();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !popup.hidden) closePopup();
-  });
-
-  function eventColor(ev) {
-    if (ev.category === 'grand-prix') return '#CE2B37';
-    if (ev.category === 'tour') return '#009246';
-    if (ev.category === 'nazionale') return '#F0E6D3';
-    if (ev.category === 'local') return '#4A90D9';
-    if (ev.category === 'comunita') {
-      var t = ev.tags || [];
-      if (t.indexOf('contest') !== -1 || t.indexOf('prerelease') !== -1) return '#9B59B6';
-      return '#4A90D9';
-    }
-    return '#9B59B6';
-  }
-
-  function render() {
-    closePopup();
-    titleEl.textContent = monthNames[displayMonth] + ' ' + displayYear;
-    var firstDay = new Date(displayYear, displayMonth, 1).getDay();
-    var startOffset = (firstDay + 6) % 7;
-    var daysInMonth = new Date(displayYear, displayMonth + 1, 0).getDate();
-    var today = new Date();
-    var isCurrentMonth = today.getFullYear() === displayYear && today.getMonth() === displayMonth;
-    var todayDate = today.getDate();
-
-    var html = '';
-
-    // Empty cells before first day
-    for (var i = 0; i < startOffset; i++) {
-      html += '<div class="cal__cell cal__cell--empty"></div>';
+    function eventColor(ev) {
+      if (ev.category === 'grand-prix') return '#CE2B37';
+      if (ev.category === 'tour') return '#009246';
+      if (ev.category === 'nazionale') return '#F0E6D3';
+      if (ev.category === 'local') return '#4A90D9';
+      if (ev.category === 'comunita') {
+        var t = ev.tags || [];
+        if (t.indexOf('contest') !== -1 || t.indexOf('prerelease') !== -1) return '#9B59B6';
+        return '#4A90D9';
+      }
+      return '#9B59B6';
     }
 
-    // Day cells
-    for (var d = 1; d <= daysInMonth; d++) {
-      var dayEvts = eventsForDay(displayYear, displayMonth, d);
-      var isToday = isCurrentMonth && d === todayDate;
-      var hasEvt = dayEvts.length > 0;
-      var ev = hasEvt ? dayEvts[0] : null;
+    function render() {
+      closePopup();
+      titleEl.textContent = monthNames[displayMonth] + ' ' + displayYear;
+      var firstDay = new Date(displayYear, displayMonth, 1).getDay();
+      var startOffset = (firstDay + 6) % 7;
+      var daysInMonth = new Date(displayYear, displayMonth + 1, 0).getDate();
+      var today = new Date();
+      var isCurrentMonth = today.getFullYear() === displayYear && today.getMonth() === displayMonth;
+      var todayDate = today.getDate();
 
-      var cls = 'cal__cell';
-      if (isToday) cls += ' cal__cell--today';
-      if (hasEvt) cls += ' cal__cell--event';
+      var html = '';
 
-      html += '<div class="' + cls + '"' + (hasEvt ? ' data-day="' + d + '" role="button" tabindex="0" aria-label="' + esc(ev.title) + '"' : '') + '>';
+      // Empty cells before first day
+      for (var i = 0; i < startOffset; i++) {
+        html += '<div class="cal__cell cal__cell--empty"></div>';
+      }
 
-      // Background image (desktop only via CSS)
-      if (hasEvt && ev.image) {
-        html += '<div class="cal__cell-bg" style="background-image:url(' + esc(ev.image) + ')">';
-        html += '<div class="cal__cell-overlay"></div>';
+      // Day cells
+      for (var d = 1; d <= daysInMonth; d++) {
+        var dayEvts = eventsForDay(displayYear, displayMonth, d);
+        var isToday = isCurrentMonth && d === todayDate;
+        var hasEvt = dayEvts.length > 0;
+        var ev = hasEvt ? dayEvts[0] : null;
+
+        var cls = 'cal__cell';
+        if (isToday) cls += ' cal__cell--today';
+        if (hasEvt) cls += ' cal__cell--event';
+
+        html +=
+          '<div class="' +
+          cls +
+          '"' +
+          (hasEvt ? ' data-day="' + d + '" role="button" tabindex="0" aria-label="' + esc(ev.title) + '"' : '') +
+          '>';
+
+        // Background image (desktop only via CSS)
+        if (hasEvt && ev.image) {
+          html +=
+            '<div class="cal__cell-bg" role="img" aria-label="' +
+            esc(ev.title) +
+            '" style="background-image:url(' +
+            esc(ev.image) +
+            ')">';
+          html += '<div class="cal__cell-overlay"></div>';
+          html += '</div>';
+        }
+
+        html += '<span class="cal__cell-day">' + d + '</span>';
+
+        if (hasEvt) {
+          // Dot indicator (visible on mobile)
+          html += '<span class="cal__cell-dot" style="background:' + eventColor(ev) + '"></span>';
+          // Text label (hidden on mobile)
+          html += '<span class="cal__cell-label" style="color:' + eventColor(ev) + '">' + esc(ev.title) + '</span>';
+        }
+
         html += '</div>';
       }
 
-      html += '<span class="cal__cell-day">' + d + '</span>';
-
-      if (hasEvt) {
-        // Dot indicator (visible on mobile)
-        html += '<span class="cal__cell-dot" style="background:' + eventColor(ev) + '"></span>';
-        // Text label (hidden on mobile)
-        html += '<span class="cal__cell-label" style="color:' + eventColor(ev) + '">' + esc(ev.title) + '</span>';
+      // Trailing empty cells
+      var total = startOffset + daysInMonth;
+      var rem = total % 7;
+      if (rem > 0) {
+        for (var j = 0; j < 7 - rem; j++) {
+          html += '<div class="cal__cell cal__cell--empty"></div>';
+        }
       }
 
-      html += '</div>';
-    }
+      body.innerHTML = html;
 
-    // Trailing empty cells
-    var total = startOffset + daysInMonth;
-    var rem = total % 7;
-    if (rem > 0) {
-      for (var i = 0; i < 7 - rem; i++) {
-        html += '<div class="cal__cell cal__cell--empty"></div>';
+      // Click + keyboard handlers for event cells → popup
+      var eventCells = body.querySelectorAll('.cal__cell--event');
+      function openCell(cell) {
+        var day = parseInt(cell.getAttribute('data-day'));
+        var dayEvts = eventsForDay(displayYear, displayMonth, day);
+        if (dayEvts.length > 0) showPopup(dayEvts[0]);
+      }
+      for (var k = 0; k < eventCells.length; k++) {
+        eventCells[k].addEventListener('click', function () {
+          openCell(this);
+        });
+        eventCells[k].addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openCell(this);
+          }
+        });
       }
     }
 
-    body.innerHTML = html;
+    cal.querySelector('.cal__prev').addEventListener('click', function () {
+      displayMonth--;
+      if (displayMonth < 0) {
+        displayMonth = 11;
+        displayYear--;
+      }
+      render();
+    });
+    cal.querySelector('.cal__next').addEventListener('click', function () {
+      displayMonth++;
+      if (displayMonth > 11) {
+        displayMonth = 0;
+        displayYear++;
+      }
+      render();
+    });
+    cal.querySelector('.cal__today-btn').addEventListener('click', function () {
+      var n = new Date();
+      displayYear = n.getFullYear();
+      displayMonth = n.getMonth();
+      render();
+    });
 
-    // Click + keyboard handlers for event cells → popup
-    var eventCells = body.querySelectorAll('.cal__cell--event');
-    function openCell(cell) {
-      var day = parseInt(cell.getAttribute('data-day'));
-      var dayEvts = eventsForDay(displayYear, displayMonth, day);
-      if (dayEvts.length > 0) showPopup(dayEvts[0]);
-    }
-    for (var i = 0; i < eventCells.length; i++) {
-      eventCells[i].addEventListener('click', function() { openCell(this); });
-      eventCells[i].addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCell(this); }
-      });
-    }
-  }
-
-  cal.querySelector('.cal__prev').addEventListener('click', function() {
-    displayMonth--; if (displayMonth < 0) { displayMonth = 11; displayYear--; } render();
-  });
-  cal.querySelector('.cal__next').addEventListener('click', function() {
-    displayMonth++; if (displayMonth > 11) { displayMonth = 0; displayYear++; } render();
-  });
-  cal.querySelector('.cal__today-btn').addEventListener('click', function() {
-    var n = new Date(); displayYear = n.getFullYear(); displayMonth = n.getMonth(); render();
-  });
-
-  render();
-})();
+    render();
+  })();
 </script>
 
 <style is:global>
@@ -300,29 +370,60 @@ const currentMonth = now.getMonth();
 
   /* Navigation */
   .cal__nav {
-    display: flex; align-items: center; justify-content: center;
-    gap: 12px; margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
   }
   .cal__month-title {
-    font-size: 1.2rem; font-weight: 700; text-transform: uppercase;
-    color: var(--color-gold); min-width: 220px; text-align: center; margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    min-width: 220px;
+    text-align: center;
+    margin: 0;
     letter-spacing: 1px;
   }
   .cal__nav-btn {
-    background: none; border: 1px solid var(--color-border);
-    color: var(--color-contrast); font-size: 1.5rem; line-height: 1;
-    width: 36px; height: 36px; border-radius: var(--radius);
-    cursor: pointer; transition: all 0.2s ease;
-    display: flex; align-items: center; justify-content: center;
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-contrast);
+    font-size: 1.5rem;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .cal__nav-btn:hover { background: rgba(201,168,76,0.1); border-color: var(--color-gold); color: var(--color-gold); }
+  .cal__nav-btn:hover {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
   .cal__today-btn {
-    background: none; border: 1px solid var(--color-border);
-    color: var(--color-muted); font-size: 0.7rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.5px;
-    padding: 6px 12px; border-radius: var(--radius); cursor: pointer; transition: all 0.2s ease;
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
-  .cal__today-btn:hover { background: rgba(201,168,76,0.1); border-color: var(--color-gold); color: var(--color-gold); }
+  .cal__today-btn:hover {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
 
   /* Grid */
   .cal__grid {
@@ -334,12 +435,16 @@ const currentMonth = now.getMonth();
 
   /* Day headers */
   .cal__dh {
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    color: var(--color-muted); letter-spacing: 0.5px;
-    padding: 10px 0; text-align: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    letter-spacing: 0.5px;
+    padding: 10px 0;
+    text-align: center;
     border-right: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
   }
 
   /* Cells — desktop: square with images */
@@ -362,11 +467,13 @@ const currentMonth = now.getMonth();
   }
   .cal__cell--event {
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
   }
   .cal__cell--event:hover {
     z-index: 2;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     transform: scale(1.04);
   }
 
@@ -384,8 +491,8 @@ const currentMonth = now.getMonth();
       to bottom,
       transparent 0%,
       transparent 40%,
-      rgba(0,0,0,0.95) 75%,
-      rgba(0,0,0,1) 100%
+      rgba(0, 0, 0, 0.95) 75%,
+      rgba(0, 0, 0, 1) 100%
     );
   }
 
@@ -400,7 +507,7 @@ const currentMonth = now.getMonth();
   }
   .cal__cell--event .cal__cell-day {
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   }
   .cal__cell--today .cal__cell-day {
     color: var(--color-gold);
@@ -419,7 +526,7 @@ const currentMonth = now.getMonth();
     font-size: 0.65rem;
     font-weight: 700;
     line-height: 1.2;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -431,13 +538,15 @@ const currentMonth = now.getMonth();
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
   }
-  .cal__popup[hidden] { display: none; }
+  .cal__popup[hidden] {
+    display: none;
+  }
 
   .cal__popup-inner {
     background: var(--color-surface);
@@ -450,51 +559,80 @@ const currentMonth = now.getMonth();
     animation: calPopupIn 0.2s ease;
   }
   @keyframes calPopupIn {
-    from { opacity: 0; transform: scale(0.95) translateY(8px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
   }
 
   .cal__popup-close {
-    position: absolute; top: 8px; right: 8px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
     z-index: 10;
-    background: rgba(0,0,0,0.5); border: none;
-    color: #fff; font-size: 1.4rem; line-height: 1;
-    width: 32px; height: 32px; border-radius: 50%;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background 0.2s;
   }
-  .cal__popup-close:hover { background: rgba(0,0,0,0.8); }
+  .cal__popup-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
 
   .cal__popup-img {
-    width: 100%; height: 300px;
-    background-size: cover; background-position: center top;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center top;
   }
 
   .cal__popup-body {
     padding: 16px 20px 20px;
-    display: flex; flex-direction: column; gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
   .cal__popup-cat {
-    font-size: 0.65rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.5px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   .cal__popup-title {
-    font-size: 1.05rem; font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--color-contrast);
     line-height: 1.3;
   }
 
-
   /* Info rows */
   .cal__popup-info {
-    display: flex; flex-direction: column; gap: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     margin-top: 6px;
     padding-top: 8px;
     border-top: 1px solid var(--color-border);
   }
   .cal__popup-row {
-    display: flex; align-items: flex-start; gap: 8px;
-    font-size: 0.75rem; color: var(--color-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--color-muted);
     line-height: 1.4;
   }
   .cal__popup-row svg {
@@ -510,16 +648,22 @@ const currentMonth = now.getMonth();
   }
 
   .cal__popup-actions {
-    display: flex; gap: 8px; margin-top: 12px;
-    flex-wrap: wrap; align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
   }
 
   /* CTA button — prominent, same row */
   .cal__popup-cta {
-    display: inline-flex; align-items: center; gap: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     padding: 6px 16px;
-    font-size: 0.7rem; font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 700;
     color: #fff;
     background: var(--color-accent);
     border-radius: var(--radius);
@@ -533,43 +677,62 @@ const currentMonth = now.getMonth();
     color: #fff;
   }
   .cal__popup-btn {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 0.7rem; font-weight: 600;
-    color: var(--color-muted); text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    text-decoration: none;
     padding: 5px 12px;
-    border: 1px solid var(--color-border); border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
     transition: all 0.2s ease;
     white-space: nowrap;
   }
   .cal__popup-btn:hover {
     color: var(--color-contrast);
-    border-color: rgba(201,168,76,0.3);
-    background: rgba(201,168,76,0.06);
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.06);
   }
-  .cal__popup-btn svg { flex-shrink: 0; }
-
+  .cal__popup-btn svg {
+    flex-shrink: 0;
+  }
 
   /* Legend */
   .cal__legend {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px; flex-wrap: wrap;
-    margin-top: 16px; padding-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 12px;
     border-top: 1px solid var(--color-border);
   }
   .cal__legend-item {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 0.65rem; font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    font-weight: 600;
     color: var(--color-muted);
-    text-transform: uppercase; letter-spacing: 0.3px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
   }
   .cal__legend-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%; flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
   /* ===== Mobile: compact grid, no images, dot indicators ===== */
   @media (max-width: 640px) {
-    .cal__month-title { font-size: 1rem; min-width: 160px; }
+    .cal__month-title {
+      font-size: 1rem;
+      min-width: 160px;
+    }
 
     /* Remove square aspect, make cells compact */
     .cal__cell {
@@ -580,7 +743,9 @@ const currentMonth = now.getMonth();
     }
 
     /* Hide background images on mobile */
-    .cal__cell-bg { display: none; }
+    .cal__cell-bg {
+      display: none;
+    }
 
     /* Day number centered */
     .cal__cell-day {
@@ -595,7 +760,8 @@ const currentMonth = now.getMonth();
     /* Show dot, hide text label */
     .cal__cell-dot {
       display: block;
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       margin-top: 4px;
       flex-shrink: 0;
@@ -606,12 +772,12 @@ const currentMonth = now.getMonth();
 
     /* Slightly highlight event cells */
     .cal__cell--event {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
     }
     .cal__cell--event:hover {
       transform: none;
       box-shadow: none;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     /* Day headers smaller */
@@ -621,7 +787,11 @@ const currentMonth = now.getMonth();
     }
 
     /* Popup adjustments */
-    .cal__popup { padding: 12px; }
-    .cal__popup-actions { flex-wrap: wrap; }
+    .cal__popup {
+      padding: 12px;
+    }
+    .cal__popup-actions {
+      flex-wrap: wrap;
+    }
   }
 </style>

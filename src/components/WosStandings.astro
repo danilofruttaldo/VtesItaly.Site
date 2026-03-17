@@ -33,8 +33,11 @@ const { dataUrl, locale = 'it' } = Astro.props;
 
 const t = useTranslations(locale).wos;
 
-const allData = import.meta.glob('/src/data/standings/ev/standings-wos-*.json', { eager: true }) as Record<string, { default: WosData }>;
-const key = Object.keys(allData).find(k => k.includes(dataUrl.replace(/^.*\//, '')));
+const allData = import.meta.glob('/src/data/standings/ev/standings-wos-*.json', { eager: true }) as Record<
+  string,
+  { default: WosData }
+>;
+const key = Object.keys(allData).find((k) => k.includes(dataUrl.replace(/^.*\//, '')));
 const data: WosData | null = key ? allData[key].default : null;
 
 const pathShortNames: Record<string, string> = {
@@ -51,114 +54,139 @@ const pathImages: Record<string, string> = {
   'Path of Power and the Inner Voice': '/ev/wos-2025/path-power.webp',
 };
 
-const cityTabs = data ? Object.keys(data.cities).map(city => ({
-  id: city.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-  label: city,
-})) : [];
+const cityTabs = data
+  ? Object.keys(data.cities).map((city) => ({
+      id: city.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+      label: city,
+    }))
+  : [];
 ---
 
-{data && (
-  <section class="wos-standings">
-    {/* Path standings */}
-    <div class="wos-paths">
-      <h3 class="wos-subtitle">{t.paths_title}</h3>
-      <div class="wos-paths-grid">
-        {data.paths.map((p, i) => (
-          <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
-            {pathImages[p.name] && (
-              <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
-            )}
-            <div class="wos-path-info">
-              <span class="wos-path-rank">#{p.rank}</span>
-              <span class="wos-path-name">{pathShortNames[p.name] || p.name.replace('Path of ', '')}</span>
+{
+  data && (
+    <section class="wos-standings">
+      {/* Path standings */}
+      <div class="wos-paths">
+        <h3 class="wos-subtitle">{t.paths_title}</h3>
+        <div class="wos-paths-grid">
+          {data.paths.map((p, i) => (
+            <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
+              {pathImages[p.name] && (
+                <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
+              )}
+              <div class="wos-path-info">
+                <span class="wos-path-rank">#{p.rank}</span>
+                <span class="wos-path-name">{pathShortNames[p.name] || p.name.replace('Path of ', '')}</span>
+              </div>
+              <span class="wos-path-points">{p.points} pt</span>
             </div>
-            <span class="wos-path-points">{p.points} pt</span>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Classifica Nazionale */}
-    <h3 class="wos-subtitle">{t.national_title}</h3>
-    <div class="wos-table-wrap">
-      <table class="wos-table">
-        <caption class="sr-only">{t.national_title}</caption>
-        <thead>
-          <tr>
-            <th>{t.city}</th>
-            <th>{t.winner_path}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.cityWinners.map(cw => (
-            <tr>
-              <td>{cw.city}</td>
-              <td class="wos-winner-path">{cw.winner.replace('Path of ', '')}</td>
-            </tr>
           ))}
-        </tbody>
-      </table>
-    </div>
-
-    {/* Classifiche Locali - wrapping city tables too */}
-    <h3 class="wos-subtitle">{t.local_title}</h3>
-    <div class="wos-tabs" id="wos-tabs">
-      <div class="wos-tab-bar" role="tablist" aria-label={t.local_title}>
-        {cityTabs.map((tab, i) => (
-          <button
-            class:list={['wos-tab-btn', i === 0 && 'is-active']}
-            data-tab={tab.id}
-            type="button"
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
-            aria-controls={`wos-panel-${tab.id}`}
-            id={`wos-tab-${tab.id}`}
-          >{tab.label}</button>
-        ))}
+        </div>
       </div>
 
-      {Object.entries(data.cities).map(([cityName, players], i) => {
-        const tabId = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        return (
-          <div class:list={['wos-tab-panel', i === 0 && 'is-active']} data-panel={tabId} role="tabpanel" id={`wos-panel-${tabId}`} aria-labelledby={`wos-tab-${tabId}`}>
-            {players.length > 0 ? (
-              <div class="wos-table-wrap"><table class="wos-table">
-                <caption class="sr-only">{cityName}</caption>
-                <thead>
-                  <tr>
-                    <th class="tc">#</th>
-                    <th>{t.path}</th>
-                    <th>{t.players}</th>
-                    <th class="tc">GW</th>
-                    <th class="tc">VP</th>
-                    <th class="tc">{t.points}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {players.map(p => (
-                    <tr class:list={[p.rank === 1 && 'wos-row-winner']}>
-                      <td class="tc">{p.rank}</td>
-                      <td class="wos-path-cell-name">{p.name}</td>
-                      <td class="wos-players-cell"><Fragment set:html={p.players.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').split(', ').join('<br />')} /></td>
-                      <td class="tc">{p.gw}</td>
-                      <td class="tc">{p.vp}</td>
-                      <td class="tc">{p.points}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table></div>
-            ) : (
-              <p class="wos-no-data">{t.no_data}</p>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  </section>
-)}
+      {/* Classifica Nazionale */}
+      <h3 class="wos-subtitle">{t.national_title}</h3>
+      <div class="wos-table-wrap">
+        <table class="wos-table">
+          <caption class="sr-only">{t.national_title}</caption>
+          <thead>
+            <tr>
+              <th>{t.city}</th>
+              <th>{t.winner_path}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.cityWinners.map((cw) => (
+              <tr>
+                <td>{cw.city}</td>
+                <td class="wos-winner-path">{cw.winner.replace('Path of ', '')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Classifiche Locali - wrapping city tables too */}
+      <h3 class="wos-subtitle">{t.local_title}</h3>
+      <div class="wos-tabs" id="wos-tabs">
+        <div class="wos-tab-bar" role="tablist" aria-label={t.local_title}>
+          {cityTabs.map((tab, i) => (
+            <button
+              class:list={['wos-tab-btn', i === 0 && 'is-active']}
+              data-tab={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`wos-panel-${tab.id}`}
+              id={`wos-tab-${tab.id}`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {Object.entries(data.cities).map(([cityName, players], i) => {
+          const tabId = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+          return (
+            <div
+              class:list={['wos-tab-panel', i === 0 && 'is-active']}
+              data-panel={tabId}
+              role="tabpanel"
+              id={`wos-panel-${tabId}`}
+              aria-labelledby={`wos-tab-${tabId}`}
+            >
+              {players.length > 0 ? (
+                <div class="wos-table-wrap">
+                  <table class="wos-table">
+                    <caption class="sr-only">{cityName}</caption>
+                    <thead>
+                      <tr>
+                        <th class="tc">#</th>
+                        <th>{t.path}</th>
+                        <th>{t.players}</th>
+                        <th class="tc">GW</th>
+                        <th class="tc">VP</th>
+                        <th class="tc">{t.points}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {players.map((p) => (
+                        <tr class:list={[p.rank === 1 && 'wos-row-winner']}>
+                          <td class="tc">{p.rank}</td>
+                          <td class="wos-path-cell-name">{p.name}</td>
+                          <td class="wos-players-cell">
+                            <Fragment
+                              set:html={p.players
+                                .replace(/&/g, '&amp;')
+                                .replace(/</g, '&lt;')
+                                .replace(/>/g, '&gt;')
+                                .split(', ')
+                                .join('<br />')}
+                            />
+                          </td>
+                          <td class="tc">{p.gw}</td>
+                          <td class="tc">{p.vp}</td>
+                          <td class="tc">{p.points}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p class="wos-no-data">{t.no_data}</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  )
+}
 
 <style>
-  .wos-standings { margin-top: 32px; }
+  .wos-standings {
+    margin-top: 32px;
+  }
 
   /* Path cards */
   .wos-subtitle {
@@ -188,14 +216,14 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
     text-align: center;
   }
   .wos-path-card--winner {
-    border-color: rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.08);
+    border-color: rgba(201, 168, 76, 0.4);
+    background: rgba(201, 168, 76, 0.08);
   }
   .wos-path-img {
     width: 100%;
     max-width: 160px;
     border-radius: var(--radius);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
   .wos-path-info {
     display: flex;
@@ -254,7 +282,7 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
   }
   .wos-tab-btn:hover {
     color: var(--color-contrast);
-    background: rgba(255,255,255,0.04);
+    background: rgba(255, 255, 255, 0.04);
   }
   .wos-tab-btn.is-active {
     color: var(--color-gold);
@@ -285,13 +313,15 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
     border-bottom: 2px solid var(--color-border);
     text-align: left;
   }
-  .wos-table th.tc { text-align: center; }
+  .wos-table th.tc {
+    text-align: center;
+  }
   .wos-table td {
     padding: 6px 10px;
     border-bottom: 1px solid var(--color-border);
   }
   .wos-table tr:hover td {
-    background: rgba(201,168,76,0.05);
+    background: rgba(201, 168, 76, 0.05);
   }
   .wos-row-winner td {
     color: var(--color-gold);
@@ -308,7 +338,9 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
     font-size: 0.72rem;
     color: var(--color-muted);
   }
-  .tc { text-align: center; }
+  .tc {
+    text-align: center;
+  }
   .wos-no-data {
     color: var(--color-muted);
     font-style: italic;
@@ -317,38 +349,59 @@ const cityTabs = data ? Object.keys(data.cities).map(city => ({
   }
 
   @media (max-width: 640px) {
-    .wos-paths-grid { grid-template-columns: repeat(2, 1fr); }
-    .wos-tab-btn { font-size: 0.7rem; padding: 4px 8px; }
-    .wos-table { font-size: 0.75rem; }
-    .wos-table th, .wos-table td { padding: 5px 6px; }
-    .wos-path-card { padding: 8px; gap: 6px; }
-    .wos-path-name { font-size: 0.7rem; }
-    .wos-path-points { font-size: 0.85rem; }
+    .wos-paths-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .wos-tab-btn {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+    }
+    .wos-table {
+      font-size: 0.75rem;
+    }
+    .wos-table th,
+    .wos-table td {
+      padding: 5px 6px;
+    }
+    .wos-path-card {
+      padding: 8px;
+      gap: 6px;
+    }
+    .wos-path-name {
+      font-size: 0.7rem;
+    }
+    .wos-path-points {
+      font-size: 0.85rem;
+    }
   }
 </style>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var container = document.getElementById('wos-tabs');
     if (!container) return;
     var btns = Array.from(container.querySelectorAll('.wos-tab-btn'));
     var panels = container.querySelectorAll('.wos-tab-panel');
 
     function activateTab(btn) {
-      btns.forEach(function(b) {
+      btns.forEach(function (b) {
         b.classList.remove('is-active');
         b.setAttribute('aria-selected', 'false');
       });
-      panels.forEach(function(p) { p.classList.remove('is-active'); });
+      panels.forEach(function (p) {
+        p.classList.remove('is-active');
+      });
       btn.classList.add('is-active');
       btn.setAttribute('aria-selected', 'true');
       var panel = container.querySelector('[data-panel="' + btn.dataset.tab + '"]');
       if (panel) panel.classList.add('is-active');
     }
 
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() { activateTab(btn); });
-      btn.addEventListener('keydown', function(e) {
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        activateTab(btn);
+      });
+      btn.addEventListener('keydown', function (e) {
         var idx = btns.indexOf(btn);
         var next = -1;
         if (e.key === 'ArrowRight') next = (idx + 1) % btns.length;

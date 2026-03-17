@@ -21,7 +21,7 @@ const t = useTranslations(locale);
 </div>
 
 <script is:inline define:vars={{ locale }}>
-  (function() {
+  (function () {
     var overlay = document.getElementById('search-overlay');
     if (!overlay) return;
 
@@ -48,26 +48,37 @@ const t = useTranslations(locale);
       }
 
       var search = await pagefind.search(query, {
-        filters: {}
+        filters: {},
       });
 
       var results = await Promise.all(
-        search.results.slice(0, 8).map(function(r) { return r.data(); })
+        search.results.slice(0, 8).map(function (r) {
+          return r.data();
+        }),
       );
 
       if (results.length === 0) {
-        resultsContainer.innerHTML = '<p class="search-no-results">' +
-          (resultsContainer.getAttribute('data-no-results') || '') +
-          '</p>';
+        resultsContainer.innerHTML =
+          '<p class="search-no-results">' + (resultsContainer.getAttribute('data-no-results') || '') + '</p>';
         return;
       }
 
-      var html = results.map(function(r) {
-        return '<a href="' + r.url + '" class="search-result">' +
-          '<span class="search-result__title">' + r.meta.title + '</span>' +
-          '<span class="search-result__excerpt">' + r.excerpt + '</span>' +
-          '</a>';
-      }).join('');
+      var html = results
+        .map(function (r) {
+          return (
+            '<a href="' +
+            r.url +
+            '" class="search-result">' +
+            '<span class="search-result__title">' +
+            r.meta.title +
+            '</span>' +
+            '<span class="search-result__excerpt">' +
+            r.excerpt +
+            '</span>' +
+            '</a>'
+          );
+        })
+        .join('');
 
       resultsContainer.innerHTML = html;
     }
@@ -89,18 +100,18 @@ const t = useTranslations(locale);
     document.addEventListener('open-search', openOverlay);
 
     if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
-    overlay.addEventListener('click', function(e) {
+    overlay.addEventListener('click', function (e) {
       if (e.target === overlay) closeOverlay();
     });
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeOverlay();
     });
 
     if (input) {
-      input.addEventListener('input', function() {
+      input.addEventListener('input', function () {
         clearTimeout(debounceTimer);
         var query = input.value.trim();
-        debounceTimer = setTimeout(function() {
+        debounceTimer = setTimeout(function () {
           doSearch(query);
         }, 200);
       });
@@ -120,7 +131,9 @@ const t = useTranslations(locale);
     background-color: rgba(18, 20, 22, 0.95);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
     overflow-y: auto;
   }
 
@@ -162,7 +175,9 @@ const t = useTranslations(locale);
     border-radius: var(--radius);
     outline: 2px solid transparent;
     outline-offset: 2px;
-    transition: border-color 0.2s ease, outline-color 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      outline-color 0.2s ease;
   }
 
   .vtesitaly-search-field:focus {

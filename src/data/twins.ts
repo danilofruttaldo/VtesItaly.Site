@@ -11,7 +11,7 @@ export const twins: Twin[] = [
     person: { it: 'Maila Nurmi', en: 'Maila Nurmi' },
     image: '/images/gemelli/maila-nurmi.webp',
     description: {
-      it: 'Primogena della Camarilla ispirata all\'icona del cinema horror. Stessa posa, stesso sguardo magnetico.',
+      it: "Primogena della Camarilla ispirata all'icona del cinema horror. Stessa posa, stesso sguardo magnetico.",
       en: 'Camarilla primogen inspired by the horror cinema icon. Same pose, same magnetic gaze.',
     },
   },
@@ -35,10 +35,10 @@ export const twins: Twin[] = [
   },
   {
     card: 'Sir Walter Nash',
-    person: { it: 'Donald Trump (anni \'80)', en: 'Donald Trump (1980s)' },
+    person: { it: "Donald Trump (anni '80)", en: 'Donald Trump (1980s)' },
     image: '/images/gemelli/donald-trump.webp',
     description: {
-      it: 'Il Principe di Chicago somiglia al celebre imprenditore newyorkese nei suoi anni d\'oro. Coincidenza?',
+      it: "Il Principe di Chicago somiglia al celebre imprenditore newyorkese nei suoi anni d'oro. Coincidenza?",
       en: 'The Prince of Chicago resembles the famous New York entrepreneur in his prime years. Coincidence?',
     },
   },
@@ -57,7 +57,7 @@ export const twins: Twin[] = [
     image: '/images/gemelli/giorgia-meloni.webp',
     description: {
       it: 'Tocco gelido ed eleganza austera del vampiro indipendente richiamano la nota politica italiana.',
-      en: 'Icy touch and austere elegance of the independent vampire reflect Italy\'s prominent politician.',
+      en: "Icy touch and austere elegance of the independent vampire reflect Italy's prominent politician.",
     },
   },
   {

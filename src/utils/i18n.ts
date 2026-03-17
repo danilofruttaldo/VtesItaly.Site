@@ -29,7 +29,7 @@ export function getLocaleFromUrl(url: URL): Locale {
 
 /** Filter a collection of posts by locale (defaults to DEFAULT_LOCALE when post has no locale set) */
 export function filterByLocale<T extends { data: { locale?: string } }>(posts: T[], locale: Locale): T[] {
-  return posts.filter(p => (p.data.locale || DEFAULT_LOCALE) === locale);
+  return posts.filter((p) => (p.data.locale || DEFAULT_LOCALE) === locale);
 }
 
 /** URL prefix for a given locale (empty string for default locale) */
@@ -39,7 +39,7 @@ export function localePrefix(locale: Locale): string {
 
 /** Get all other locales except the given one */
 export function getOtherLocales(locale: Locale): Locale[] {
-  return LOCALES.filter(l => l !== locale);
+  return LOCALES.filter((l) => l !== locale);
 }
 
 /** Format a date using the locale's date format string from translations */
@@ -52,9 +52,7 @@ export function formatLocalDate(date: Date, locale: Locale, opts?: Intl.DateTime
 export function getAlternateUrl(url: URL, targetLocale: Locale): string {
   const path = url.pathname;
   const slugMap = enStrings.slug_map as Record<string, string>;
-  const reverseSlugMap = Object.fromEntries(
-    Object.entries(slugMap).map(([en, it]) => [it, en])
-  );
+  const reverseSlugMap = Object.fromEntries(Object.entries(slugMap).map(([en, it]) => [it, en]));
 
   if (targetLocale === 'en') {
     // IT → EN: add /en/ prefix and map slugs

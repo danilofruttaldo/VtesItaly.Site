@@ -16,7 +16,12 @@ interface Props {
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
-const { title, description = t.default_description, ogImage = '/images/headers/header-home.webp', noindex = false } = Astro.props;
+const {
+  title,
+  description = t.default_description,
+  ogImage = '/images/headers/header-home.webp',
+  noindex = false,
+} = Astro.props;
 const otherLocales = getOtherLocales(locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
@@ -36,9 +41,11 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <!-- Canonical & hreflang -->
     <link rel="canonical" href={canonicalUrl.href} />
     <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
-    {otherLocales.map(alt => (
-      <link rel="alternate" hreflang={alt} href={new URL(getAlternateUrl(Astro.url, alt), Astro.site).href} />
-    ))}
+    {
+      otherLocales.map((alt) => (
+        <link rel="alternate" hreflang={alt} href={new URL(getAlternateUrl(Astro.url, alt), Astro.site).href} />
+      ))
+    }
     <link rel="alternate" hreflang="x-default" href={canonicalUrl.href} />
 
     <!-- Open Graph -->
@@ -70,30 +77,34 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <link rel="icon" type="image/png" sizes="192x192" href="/logo-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <JsonLd data={{
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'VTES Italy',
-      url: Astro.site?.href,
-      logo: new URL('/images/logo.webp', Astro.site).href,
-      description: t.default_description,
-      sameAs: [
-        'https://www.facebook.com/groups/115874240013',
-        'https://www.instagram.com/vtes.italy',
-        'https://www.youtube.com/@VtesItaly',
-        'https://t.me/+i_YymbZgFS84YzRk'
-      ]
-    }} />
+    <JsonLd
+      data={{
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'VTES Italy',
+        url: Astro.site?.href,
+        logo: new URL('/images/logo.webp', Astro.site).href,
+        description: t.default_description,
+        sameAs: [
+          'https://www.facebook.com/groups/115874240013',
+          'https://www.instagram.com/vtes.italy',
+          'https://www.youtube.com/@VtesItaly',
+          'https://t.me/+i_YymbZgFS84YzRk',
+        ],
+      }}
+    />
     <slot name="head" />
     <!-- Early lang redirect (before body renders to avoid flash) -->
     <script is:inline define:vars={{ currentLocale: locale, altUrl: altUrlForRedirect }}>
-      (function() {
+      (function () {
         try {
           var saved = localStorage.getItem('vtesitaly-lang');
           if (saved && (saved === 'it' || saved === 'en') && saved !== currentLocale) {
             location.replace(altUrl);
           }
-        } catch(e) {}
+        } catch (_) {
+          /* storage unavailable */
+        }
       })();
     </script>
   </head>

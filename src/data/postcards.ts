@@ -59,9 +59,7 @@ export const postcardGalleries: PostcardGallery[] = [
   {
     title: { it: 'Truth in Darkness', en: 'Truth in Darkness' },
     subtitle: { it: 'Firenze, Maggio 2025', en: 'Firenze, May 2025' },
-    images: [
-      { src: '/images/carte/library-quicksilver-contemplation.webp', alt: 'Quicksilver Contemplation' },
-    ],
+    images: [{ src: '/images/carte/library-quicksilver-contemplation.webp', alt: 'Quicksilver Contemplation' }],
   },
   {
     title: { it: 'Nazionale 2025', en: 'National Championship 2025' },
@@ -74,9 +72,7 @@ export const postcardGalleries: PostcardGallery[] = [
   {
     title: { it: 'Grand Prix 2025', en: 'Grand Prix 2025' },
     subtitle: { it: 'Modena, Marzo 2025', en: 'Modena, March 2025' },
-    images: [
-      { src: '/images/carte/library-seduction.webp', alt: 'Seduction' },
-    ],
+    images: [{ src: '/images/carte/library-seduction.webp', alt: 'Seduction' }],
   },
   {
     title: { it: 'Fee Stake: Florence', en: 'Fee Stake: Florence' },
@@ -89,8 +85,6 @@ export const postcardGalleries: PostcardGallery[] = [
   {
     title: { it: 'Grand Prix 2024', en: 'Grand Prix 2024' },
     subtitle: { it: 'Milano, Dicembre 2023', en: 'Milano, December 2023' },
-    images: [
-      { src: '/images/carte/library-mind-rape.webp', alt: 'Mind Rape' },
-    ],
+    images: [{ src: '/images/carte/library-mind-rape.webp', alt: 'Mind Rape' }],
   },
 ];

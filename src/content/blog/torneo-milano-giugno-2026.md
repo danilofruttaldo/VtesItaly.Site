@@ -1,18 +1,18 @@
 ---
-title: "Torneo Milano"
+title: 'Torneo Milano'
 date: 2026-06-27
-category: "comunita"
-tags: ["milano", "torneo"]
-featuredImage: "/images/headers/header-milano.webp"
-excerpt: "Torneo VTES a Milano il 27 giugno 2026. Dettagli in arrivo."
+category: 'comunita'
+tags: ['milano', 'torneo']
+featuredImage: '/images/headers/header-milano.webp'
+excerpt: 'Torneo VTES a Milano il 27 giugno 2026. Dettagli in arrivo.'
 venue:
-  name: "TBD"
-  address: "Milano"
+  name: 'TBD'
+  address: 'Milano'
 events:
-  - name: "Torneo Milano"
+  - name: 'Torneo Milano'
     date: 2026-06-27
-    time: "—"
-    format: "TBD"
+    time: '—'
+    format: 'TBD'
 cardHidden: true
 locale: it
 ---

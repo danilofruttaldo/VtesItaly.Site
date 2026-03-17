@@ -18,8 +18,8 @@ import { computeTourStatus, computeEventStatus, resolvePlatformLabel } from '../
 const t = useTranslations('it');
 
 export async function getStaticPaths() {
-  const posts = filterByLocale(await getCollection('blog'), 'it').filter(p => !p.data.cardHidden);
-  return posts.map(post => ({
+  const posts = filterByLocale(await getCollection('blog'), 'it').filter((p) => !p.data.cardHidden);
+  return posts.map((post) => ({
     params: { slug: `${post.data.category}/${post.id}` },
     props: { post },
   }));
@@ -34,17 +34,20 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
   const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
   const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
   galleryImages = Object.keys(allImages)
-    .filter(p => p.includes(`/${folder}/`))
-    .map(p => p.replace('/public', ''))
+    .filter((p) => p.includes(`/${folder}/`))
+    .map((p) => p.replace('/public', ''))
     .sort();
 }
-
 
 function resolveLabel(l: { label: string; url: string }) {
   return l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label;
 }
-const postLinks = (post.data.links ?? []).filter(l => !l.locale || l.locale === 'it').map(l => ({ ...l, label: resolveLabel(l) }));
-const postLinksAfter = (post.data.linksAfter ?? []).filter(l => !l.locale || l.locale === 'it').map(l => ({ ...l, label: resolveLabel(l) }));
+const postLinks = (post.data.links ?? [])
+  .filter((l) => !l.locale || l.locale === 'it')
+  .map((l) => ({ ...l, label: resolveLabel(l) }));
+const postLinksAfter = (post.data.linksAfter ?? [])
+  .filter((l) => !l.locale || l.locale === 'it')
+  .map((l) => ({ ...l, label: resolveLabel(l) }));
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourStatus = isTourWithStages ? computeTourStatus(post.data.stages!) : null;
@@ -52,12 +55,17 @@ const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
 const forceArticle = post.data.pageLayout === 'article';
 const isLeague = !forceArticle && post.data.category === 'comunita' && !!post.data.leagueStats;
-const isCommunityEvent = !forceArticle && post.data.category === 'comunita' && !post.data.leagueStats && !!(post.data.venue || post.data.events.length > 0);
+const isCommunityEvent =
+  !forceArticle &&
+  post.data.category === 'comunita' &&
+  !post.data.leagueStats &&
+  !!(post.data.venue || post.data.events.length > 0);
 const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
 const gpStatus = isEventPage ? computeEventStatus(new Date(post.data.date)) : null;
-const communityCity = (isCommunityEvent || isLeague) ? cities.find(c => post.data.tags.includes(c.slug.it)) : null;
+const communityCity = isCommunityEvent || isLeague ? cities.find((c) => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
-const pageMeta = usePageHero && !isCommunityEvent && !isLeague ? mainPages.find(p => p.category === post.data.category) : null;
+const pageMeta =
+  usePageHero && !isCommunityEvent && !isLeague ? mainPages.find((p) => p.category === post.data.category) : null;
 
 const label = categoryLabels[post.data.category]?.it || post.data.category;
 const backUrl = categoryUrls[post.data.category]?.it || t.routes.comunita;
@@ -68,37 +76,59 @@ const typeTag = post.data.tags?.find((t: string) => localTypeTags[t]);
 const typeLabel = typeTag ? localTypeTags[typeTag] : null;
 
 // Map city slugs to their principato page
-const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/principati/${c.slug.it}/` }]));
-
+const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/principati/${c.slug.it}/` }]));
 ---
-<Base title={post.data.title} description={post.data.excerpt || post.data.title} ogImage={post.data.poster || post.data.featuredImage}>
-  <JsonLd slot="head" data={{
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.data.title,
-    datePublished: post.data.date.toISOString(),
-    dateModified: post.data.date.toISOString(),
-    description: post.data.excerpt || post.data.title,
-    ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
-    ...((post.data.poster || post.data.featuredImage) ? { image: new URL((post.data.poster || post.data.featuredImage)!, Astro.site).href } : {}),
-    author: { '@type': 'Organization', name: 'VTES Italy' },
-    publisher: { '@type': 'Organization', name: 'VTES Italy', logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href } }
-  }} />
+
+<Base
+  title={post.data.title}
+  description={post.data.excerpt || post.data.title}
+  ogImage={post.data.poster || post.data.featuredImage}
+>
+  <JsonLd
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.data.title,
+      datePublished: post.data.date.toISOString(),
+      dateModified: post.data.date.toISOString(),
+      description: post.data.excerpt || post.data.title,
+      ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
+      ...(post.data.poster || post.data.featuredImage
+        ? { image: new URL((post.data.poster || post.data.featuredImage)!, Astro.site).href }
+        : {}),
+      author: { '@type': 'Organization', name: 'VTES Italy' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'VTES Italy',
+        logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href },
+      },
+    }}
+  />
 
   {/* PageHero per tour, GP/NC e eventi comunità (con header principato) */}
-  {usePageHero && pageMeta ? (
-    <PageHero title="" image={pageMeta.headerImage} />
-  ) : (isCommunityEvent || isLeague) && communityCity ? (
-    <PageHero title="" image={communityCity.headerImage} />
-  ) : post.data.featuredImage && (
-    <div class="post__hero-wrap">
-      <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="eager" decoding="async" />
-      <div class="post__hero-overlay"></div>
-    </div>
-  )}
+  {
+    usePageHero && pageMeta ? (
+      <PageHero title="" image={pageMeta.headerImage} />
+    ) : (isCommunityEvent || isLeague) && communityCity ? (
+      <PageHero title="" image={communityCity.headerImage} />
+    ) : (
+      post.data.featuredImage && (
+        <div class="post__hero-wrap">
+          <img
+            src={post.data.featuredImage}
+            alt={post.data.title}
+            class="post__hero"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="post__hero-overlay" />
+        </div>
+      )
+    )
+  }
 
   <article class="post">
-
     <div class="container container--narrow">
       {/* Back link */}
       <a href={backUrl} class="post__back">&larr; {backLabel}</a>
@@ -107,20 +137,30 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
       <header class="post__header">
         <div class="post__title-row">
           <h1 class="post__title">{post.data.title}</h1>
-          {isTourWithStages && tourStatus && (
-            <span class:list={['post__status', tourStatus === 'past' ? 'post__status--finished' : 'post__status--active']}>
-              {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
-            </span>
-          )}
-          {isEventPage && gpStatus && (
-            <span class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}>
-              {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
-            </span>
-          )}
+          {
+            isTourWithStages && tourStatus && (
+              <span
+                class:list={['post__status', tourStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
+              >
+                {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
+              </span>
+            )
+          }
+          {
+            isEventPage && gpStatus && (
+              <span
+                class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
+              >
+                {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
+              </span>
+            )
+          }
         </div>
-        {!usePageHero && !isCommunityEvent && !isLeague && post.data.excerpt && (
-          <p class="post__excerpt">{post.data.excerpt}</p>
-        )}
+        {
+          !usePageHero && !isCommunityEvent && !isLeague && post.data.excerpt && (
+            <p class="post__excerpt">{post.data.excerpt}</p>
+          )
+        }
       </header>
 
       {/* Metadata: category + date, then tags */}
@@ -133,74 +173,101 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
           {formatLocalDate(post.data.date, 'it')}
         </time>
       </div>
-      {post.data.tags && post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).length > 0 && (
-        <div class="post__tags-row">
-          <div class="post__tags">
-            {post.data.tags.filter(t => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).map(tag => {
-              const city = cityMap.get(tag);
-              return city ? (
-                <a href={city.url} class="post__tag post__tag--city">{city.name}</a>
-              ) : (
-                <span class="post__tag">{tag}</span>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      {
+        post.data.tags &&
+          post.data.tags.filter((t) => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).length >
+            0 && (
+            <div class="post__tags-row">
+              <div class="post__tags">
+                {post.data.tags
+                  .filter((t) => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t))
+                  .map((tag) => {
+                    const city = cityMap.get(tag);
+                    return city ? (
+                      <a href={city.url} class="post__tag post__tag--city">
+                        {city.name}
+                      </a>
+                    ) : (
+                      <span class="post__tag">{tag}</span>
+                    );
+                  })}
+              </div>
+            </div>
+          )
+      }
       <hr class="post__divider" />
 
       {/* Layout per categoria */}
-      {isTourWithStages ? (
-        <TourEdition post={post} />
-      ) : isLeague ? (
-        <LeagueEdition post={post} />
-      ) : isEventPage ? (
-        <GpEdition post={post} showExcerpt={isCommunityEvent} />
-      ) : (
-        <>
-          <div class="post__content prose">
-            <Content />
-          </div>
-          {postLinks.length > 0 && (
-            <div class="post__links">
-              {postLinks.map(link => (
-                <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                  {link.label}
-                </a>
-              ))}
+      {
+        isTourWithStages ? (
+          <TourEdition post={post} />
+        ) : isLeague ? (
+          <LeagueEdition post={post} />
+        ) : isEventPage ? (
+          <GpEdition post={post} showExcerpt={isCommunityEvent} />
+        ) : (
+          <>
+            <div class="post__content prose">
+              <Content />
             </div>
-          )}
-          {post.data.standingsUrl && post.data.standingsUrl.includes('wos') && (
-            <>
-              <hr class="post__divider" />
-              <WosStandings dataUrl={post.data.standingsUrl} />
-            </>
-          )}
-          {postLinksAfter.length > 0 && (
-            <div class="post__links">
-              {postLinksAfter.map(link => (
-                <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          )}
-          {galleryImages.length > 0 && (
-            <section class="post__gallery">
-              <h2 class="post__gallery-title">{t.post.gallery}</h2>
-              <div class="post__gallery-grid">
-                {galleryImages.map((img, i) => (
-                  <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
-                    <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+            {postLinks.length > 0 && (
+              <div class="post__links">
+                {postLinks.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    {link.label}
                   </a>
                 ))}
               </div>
-            </section>
-          )}
-        </>
-      )}
+            )}
+            {post.data.standingsUrl && post.data.standingsUrl.includes('wos') && (
+              <>
+                <hr class="post__divider" />
+                <WosStandings dataUrl={post.data.standingsUrl} />
+              </>
+            )}
+            {postLinksAfter.length > 0 && (
+              <div class="post__links">
+                {postLinksAfter.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+            {galleryImages.length > 0 && (
+              <section class="post__gallery">
+                <h2 class="post__gallery-title">{t.post.gallery}</h2>
+                <div class="post__gallery-grid">
+                  {galleryImages.map((img, i) => (
+                    <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
+                      <img
+                        src={img}
+                        alt={`${post.data.title} — ${t.post.photo} ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
+          </>
+        )
+      }
 
       <ShareButtons />
 
@@ -229,25 +296,27 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
   .post__hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(18,20,22,0.4) 0%, rgba(18,20,22,0.3) 50%, var(--color-base) 100%);
+    background: linear-gradient(to bottom, rgba(18, 20, 22, 0.4) 0%, rgba(18, 20, 22, 0.3) 50%, var(--color-base) 100%);
   }
   .post__hero-wrap--poster {
     max-height: none;
     display: flex;
     justify-content: center;
     padding: 32px 16px;
-    background: radial-gradient(ellipse at center, rgba(40,20,20,0.5) 0%, var(--color-base) 70%);
+    background: radial-gradient(ellipse at center, rgba(40, 20, 20, 0.5) 0%, var(--color-base) 70%);
   }
   .post__hero-poster {
     max-width: 400px;
     width: 100%;
     height: auto;
     border-radius: var(--radius);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
   /* Layout */
-  .post { padding-bottom: 48px; }
+  .post {
+    padding-bottom: 48px;
+  }
 
   /* Back link */
   .post__back {
@@ -258,10 +327,14 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     color: var(--color-muted);
     text-decoration: none;
   }
-  .post__back:hover { color: var(--color-accent-1); }
+  .post__back:hover {
+    color: var(--color-accent-1);
+  }
 
   /* Header: title + excerpt */
-  .post__header { margin-bottom: 16px; }
+  .post__header {
+    margin-bottom: 16px;
+  }
   .post__title-row {
     display: flex;
     align-items: center;
@@ -291,7 +364,11 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     gap: 10px;
     margin-bottom: 6px;
   }
-  .post__meta-left { display: flex; align-items: center; gap: 8px; }
+  .post__meta-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .post__tags-row {
     display: flex;
     justify-content: flex-end;
@@ -303,16 +380,24 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--color-gold);
-    background: rgba(201,168,76,0.1);
+    background: rgba(201, 168, 76, 0.1);
     padding: 2px 8px;
     border-radius: var(--radius);
   }
   .post__type-tag {
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    color: var(--color-gold); background: rgba(201,168,76,0.1);
-    padding: 2px 8px; border-radius: var(--radius);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-gold);
+    background: rgba(201, 168, 76, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius);
   }
-  .post__date { font-size: 0.8rem; color: var(--color-muted); }
+  .post__date {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
   .post__status {
     font-size: 0.6rem;
     font-weight: 700;
@@ -323,11 +408,11 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
   }
   .post__status--active {
     color: var(--color-gold);
-    background: rgba(201,168,76,0.12);
+    background: rgba(201, 168, 76, 0.12);
   }
   .post__status--finished {
     color: var(--color-muted);
-    background: rgba(155,155,155,0.1);
+    background: rgba(155, 155, 155, 0.1);
   }
   .post__tags {
     display: flex;
@@ -349,14 +434,14 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     transition: background-color 0.2s ease;
   }
   .post__tag--city:hover {
-    background: rgba(139,26,43,0.25);
+    background: rgba(139, 26, 43, 0.25);
     color: var(--color-accent-2);
   }
 
   /* Divider */
   .post__divider {
     border: none;
-    border-top: 1px solid rgba(139,26,43,0.15);
+    border-top: 1px solid rgba(139, 26, 43, 0.15);
     margin: 24px 0;
   }
 
@@ -378,18 +463,22 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
     color: var(--color-gold);
     text-decoration: none;
     padding: 8px 18px;
-    border: 1px solid rgba(201,168,76,0.3);
+    border: 1px solid rgba(201, 168, 76, 0.3);
     border-radius: var(--radius);
-    background: rgba(201,168,76,0.08);
+    background: rgba(201, 168, 76, 0.08);
     transition: all 0.2s ease;
   }
   .post__link-btn:hover {
-    background: rgba(201,168,76,0.18);
-    border-color: rgba(201,168,76,0.5);
+    background: rgba(201, 168, 76, 0.18);
+    border-color: rgba(201, 168, 76, 0.5);
   }
-  .post__link-btn svg { flex-shrink: 0; }
+  .post__link-btn svg {
+    flex-shrink: 0;
+  }
 
-  .post__gallery { margin-top: 32px; }
+  .post__gallery {
+    margin-top: 32px;
+  }
   .post__gallery-title {
     font-size: 1.1rem;
     text-transform: uppercase;
@@ -418,12 +507,24 @@ const cityMap = new Map(cities.map(c => [c.slug.it, { name: c.name.it, url: `/pr
   }
 
   /* Footer */
-  .post__footer { text-align: center; margin: 40px 0; }
+  .post__footer {
+    text-align: center;
+    margin: 40px 0;
+  }
 
   @media (max-width: 544px) {
-    .post__hero { height: 260px; }
-    .post__hero-wrap { max-height: 260px; }
-    .post__tags { margin-left: 0; width: 100%; }
-    .post__gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .post__hero {
+      height: 260px;
+    }
+    .post__hero-wrap {
+      max-height: 260px;
+    }
+    .post__tags {
+      margin-left: 0;
+      width: 100%;
+    }
+    .post__gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
   }
 </style>

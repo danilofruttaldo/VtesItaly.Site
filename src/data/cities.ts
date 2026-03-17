@@ -62,9 +62,9 @@ export const cities: City[] = [
     meetupSchedule: [
       {
         day: { it: 'Mercoledì', en: 'Wednesday' },
-        place: 'Garfaludica APS, Tana dei Goblin',
-        address: 'Castelnuovo di Garfagnana',
-        mapUrl: 'https://maps.google.com/?q=Garfaludica+APS+Castelnuovo+di+Garfagnana',
+        place: 'Garfaludica APS',
+        address: 'Via Vittorio Emanuele snc, Castelnuovo di Garfagnana (LU)',
+        mapUrl: 'https://maps.app.goo.gl/wBgKArtcPsC2SeAWA',
       },
     ],
     meetupNote: {
@@ -92,7 +92,8 @@ export const cities: City[] = [
       {
         day: { it: 'Giovedì\nVenerdì\nSabato', en: 'Thursday\nFriday\nSaturday' },
         place: 'Circolo Barbanera',
-        mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Bologna',
+        address: 'Via Camillo Ranzani 13/2C, Bologna (BO)',
+        mapUrl: 'https://maps.app.goo.gl/MPjAKGbuXq1yq6A99',
       },
     ],
     tagId: 17,
@@ -117,8 +118,8 @@ export const cities: City[] = [
         day: { it: 'Lunedì', en: 'Monday' },
         place: 'Scoglio-nati Viola Club / Sir Williams Pub',
         places: [
-          { name: 'Scoglio-nati Viola Club', mapUrl: 'https://maps.google.com/?q=Scoglio-nati+Viola+Club+Elba' },
-          { name: 'Sir Williams Pub', mapUrl: 'https://maps.google.com/?q=Sir+Williams+Pub+Elba' },
+          { name: 'Scoglio-nati Viola Club', address: 'Via Carpani 251, Portoferraio (LI)', mapUrl: 'https://maps.app.goo.gl/rtCChp4yqxU8w6KYA' },
+          { name: 'Sir Williams Pub', address: 'Via Rodolfo Manganaro 28, Portoferraio (LI)', mapUrl: 'https://maps.app.goo.gl/Uja61gRBd62Wf6tL9' },
         ],
       },
     ],
@@ -131,15 +132,31 @@ export const cities: City[] = [
       name: 'Leonardo Bensi',
       alias: 'Mr. Banks',
       image: '/images/principi/principi-leonardo-bensi.webp',
-      email: 'leobensi@gmail.com',
+      email: 'Vtesfirenze@gmail.com',
     },
     headerImage: '/images/headers/header-firenze.webp',
     description: {
-      it: 'Principato fiorentino con incontri flessibili nel cuore della Toscana. Contatta il Principe per orari e luoghi di ritrovo.',
-      en: 'Florentine domain with flexible meetups in the heart of Tuscany. Contact the Prince for times and venues.',
+      it: 'Principato fiorentino con ritrovi settimanali al Game in Via Baracca. Tre appuntamenti a settimana per tutti i giocatori!',
+      en: 'Florentine domain with weekly meetups at Game on Via Baracca. Three sessions per week for all players!',
     },
-    meetupSchedule: [],
+    meetupSchedule: [
+      {
+        day: { it: 'Lunedì\nMercoledì\nVenerdì', en: 'Monday\nWednesday\nFriday' },
+        place: 'Game',
+        address: 'Via Francesco Baracca 168, Firenze (FI)',
+        mapUrl: 'https://maps.app.goo.gl/pQwUsxtoHgRRw3Km6?g_st=aw',
+      },
+    ],
+    whatsappUrl: 'https://chat.whatsapp.com/Fo0kloARBr0B4nvOKm9RVS',
     tagId: 19,
+    highlight: {
+      title: { it: 'Il Hobra Hai!', en: 'Il Hobra Hai!' },
+      text: {
+        it: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c\'è un posto per te — e zero pietà.',
+        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato — and zero mercy.',
+      },
+      image: '/images/comunita/firenze-prato/hobra-hai.jpeg',
+    },
   },
   {
     slug: { it: 'genova', en: 'genova' },
@@ -177,9 +194,9 @@ export const cities: City[] = [
     meetupSchedule: [
       {
         day: { it: 'Lunedì\nMercoledì\nVenerdì', en: 'Monday\nWednesday\nFriday' },
-        place: 'Associazione Ludica Apuana, Sporting Club Le Pinete',
-        address: 'Via San Ginese 15 (Poveromo), 54100 Massa MS',
-        mapUrl: 'https://maps.google.com/?q=Sporting+Club+Le+Pinete+Via+San+Ginese+15+Poveromo+Massa',
+        place: 'Associazione Ludica Apuana',
+        address: 'Via San Ginese, Via Poveromo 15, Massa (MS)',
+        mapUrl: 'https://maps.app.goo.gl/X1s6gBRCKJViPWew5',
       },
     ],
     whatsappUrl: 'https://chat.whatsapp.com/EPKZ9BlvW5lG8CLQ6KqTV8',
@@ -211,9 +228,9 @@ export const cities: City[] = [
     meetupSchedule: [
       {
         day: { it: 'Giovedì', en: 'Thursday' },
-        place: 'Casa dei Giochi',
-        address: "Via Sant'Uguzzone, Milano",
-        mapUrl: 'https://maps.google.com/?q=Casa+dei+Giochi+Via+Sant+Uguzzone+Milano',
+        place: 'La Casa dei Giochi',
+        address: "Via Sant'Uguzzone 8, Milano (MI)",
+        mapUrl: 'https://maps.app.goo.gl/YnLLiJ1cwJ1pR61b8',
       },
     ],
     meetupNote: { it: 'Altri giorni in base alla partecipazione.', en: 'Other days depending on attendance.' },
@@ -248,14 +265,14 @@ export const cities: City[] = [
         day: { it: 'Giovedì', en: 'Thursday' },
         time: { it: 'Orario serale', en: 'Evening' },
         place: 'Alearum Mundus',
-        address: 'Via Castelnuovo R. 796, 41057 Spilamberto MO',
-        mapUrl: 'https://maps.google.com/?q=Alearum+Mundus+Via+Castelnuovo+Rangone+796+Spilamberto',
+        address: 'Via Castelnuovo R. 796, Spilamberto (MO)',
+        mapUrl: 'https://maps.app.goo.gl/tFE6qCgpz2Xm7yyC6',
       },
       {
         day: { it: 'Occasionalmente', en: 'Occasionally' },
-        place: 'Mutina Bellica, c/o Polisportiva Sacca',
-        address: 'Via Alfonso Paltrinieri 80, 41122 Modena MO',
-        mapUrl: 'https://maps.google.com/?q=Polisportiva+Sacca+Via+Alfonso+Paltrinieri+80+Modena',
+        place: 'Polisportiva Sacca',
+        address: 'Via Alfonso Paltrinieri 80, Modena (MO)',
+        mapUrl: 'https://maps.app.goo.gl/zM3ZGAqpYAAbH4KU9',
       },
     ],
     tagId: 23,
@@ -284,14 +301,14 @@ export const cities: City[] = [
         place: 'Pub "La Corte di Odino" / Circolo Arci Argonne',
         places: [
           {
-            name: 'Pub "La Corte di Odino"',
-            address: 'Via Mantova 72, Parma',
-            mapUrl: 'https://maps.google.com/?q=La+Corte+di+Odino+Via+Mantova+72+Parma',
+            name: 'La Corte di Odino',
+            address: 'Via Mantova 72, Parma (PR)',
+            mapUrl: 'https://maps.app.goo.gl/167Rvk6NbJ6n19Xs9',
           },
           {
             name: 'Circolo Arci Argonne',
-            address: 'Via Argonne 4, Parma',
-            mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Argonne+Via+Argonne+4+Parma',
+            address: 'Via Argonne 4, Parma (PR)',
+            mapUrl: 'https://maps.app.goo.gl/S3tr9NuWXKJx5ufe6',
           },
         ],
       },
@@ -327,7 +344,7 @@ export const cities: City[] = [
         time: { it: '20:00', en: '20:00' },
         place: 'Fumetteria Safarà',
         address: 'Via Piave 26, Pordenone (PN)',
-        mapUrl: 'https://maps.google.com/?q=Fumetteria+Safar%C3%A0+Via+Piave+26+Pordenone',
+        mapUrl: 'https://maps.app.goo.gl/DKhAd6iAneHdVxUh9',
       },
     ],
     tagId: 25,
@@ -340,15 +357,31 @@ export const cities: City[] = [
       name: 'Lorenzo Ferri',
       alias: 'ComedaLore',
       image: '/images/principi/principi-lorenzo-ferri.webp',
-      email: 'lorenzoferri82@gmail.com',
+      email: 'Vtesfirenze@gmail.com',
     },
     headerImage: '/images/headers/header-prato.webp',
     description: {
-      it: 'Dominio toscano con incontri flessibili. Contatta il Principe per scoprire orari e luoghi di gioco nella zona pratese.',
-      en: 'Tuscan domain with flexible meetups. Contact the Prince for game times and venues in the Prato area.',
+      it: 'Dominio toscano con ritrovi settimanali al Magic Maze. Unisciti alla community pratese ogni venerdì!',
+      en: 'Tuscan domain with weekly meetups at Magic Maze. Join the Prato community every Friday!',
     },
-    meetupSchedule: [],
+    meetupSchedule: [
+      {
+        day: { it: 'Venerdì', en: 'Friday' },
+        place: 'Magic Maze',
+        address: 'Via Bicchierai Zanobi 42, Prato (PO)',
+        mapUrl: 'https://maps.app.goo.gl/dChTSs317JTjiT1y6',
+      },
+    ],
+    whatsappUrl: 'https://chat.whatsapp.com/Fo0kloARBr0B4nvOKm9RVS',
     tagId: 26,
+    highlight: {
+      title: { it: 'Il Hobra Hai!', en: 'Il Hobra Hai!' },
+      text: {
+        it: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c\'è un posto per te — e zero pietà.',
+        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato — and zero mercy.',
+      },
+      image: '/images/comunita/firenze-prato/hobra-hai.jpeg',
+    },
   },
   {
     slug: { it: 'roma', en: 'roma' },
@@ -403,11 +436,11 @@ export const cities: City[] = [
     },
     meetupSchedule: [
       {
-        day: { it: 'Venerdì (principalmente)', en: 'Friday (mainly)' },
+        day: { it: 'Venerdì', en: 'Friday' },
         time: { it: '20:30–01:00', en: '20:30–01:00' },
         place: 'Asgard Aldeno',
-        address: 'Via Roma 1, Aldeno (TN)',
-        mapUrl: 'https://maps.google.com/?q=Asgard+Aldeno+Via+Roma+1+Aldeno+TN',
+        address: 'Via Roma 3, Aldeno (TN)',
+        mapUrl: 'https://maps.app.goo.gl/AchwBLz3fYaFHHVr9',
       },
     ],
     meetupNote: {
@@ -439,7 +472,8 @@ export const cities: City[] = [
       {
         day: { it: 'Eventi', en: 'Events' },
         place: 'GiOlly Comics',
-        mapUrl: 'https://maps.google.com/?q=GiOlly+Comics+Treviso',
+        address: 'Strada dei Biscari 2, Treviso (TV)',
+        mapUrl: 'https://maps.app.goo.gl/zhsHyxTxDhTcQeGh6',
       },
     ],
     whatsappUrl: 'https://chat.whatsapp.com/EIRaOH8PNlY3M8oUWjzGpO',

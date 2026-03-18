@@ -37,7 +37,7 @@ const currentMonth = now.getMonth();
   {/* Navigation */}
   <div class="cal__nav">
     <button class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
-    <h3 class="cal__month-title">{t.months_array[currentMonth]} {currentYear}</h3>
+    <button class="cal__month-title" aria-haspopup="dialog" aria-expanded="false">{t.months_array[currentMonth]} {currentYear}</button>
     <button class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
     <button class="cal__today-btn">{t.calendar.today}</button>
   </div>
@@ -59,6 +59,19 @@ const currentMonth = now.getMonth();
       aria-modal="true"
       aria-label={t.calendar.event_details ?? 'Event details'}
     >
+    </div>
+  </div>
+
+  {/* Month/Year picker modal */}
+  <div class="cal__picker" id="cal-picker" hidden>
+    <div class="cal__picker-inner" role="dialog" aria-modal="true">
+      <button class="cal__popup-close cal__picker-close" id="cal-picker-close" aria-label={t.search.close_label}>&times;</button>
+      <div class="cal__picker-year-nav">
+        <button class="cal__picker-year-btn" id="cal-picker-prev-year" aria-label="Previous year">&#8249;</button>
+        <span class="cal__picker-year" id="cal-picker-year"></span>
+        <button class="cal__picker-year-btn" id="cal-picker-next-year" aria-label="Next year">&#8250;</button>
+      </div>
+      <div class="cal__picker-months" id="cal-picker-months"></div>
     </div>
   </div>
 
@@ -358,6 +371,68 @@ const currentMonth = now.getMonth();
       render();
     });
 
+    // Month/Year picker
+    var picker = document.getElementById('cal-picker');
+    var pickerYear = document.getElementById('cal-picker-year');
+    var pickerMonths = document.getElementById('cal-picker-months');
+    var pickerYearVal = displayYear;
+
+    function renderPicker() {
+      pickerYear.textContent = pickerYearVal;
+      var html = '';
+      for (var m = 0; m < 12; m++) {
+        var active = m === displayMonth && pickerYearVal === displayYear;
+        html += '<button class="cal__picker-month' + (active ? ' cal__picker-month--active' : '') + '" data-month="' + m + '">' + monthNames[m] + '</button>';
+      }
+      pickerMonths.innerHTML = html;
+      var btns = pickerMonths.querySelectorAll('.cal__picker-month');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function () {
+          displayMonth = parseInt(this.getAttribute('data-month'));
+          displayYear = pickerYearVal;
+          closePicker();
+          render();
+        });
+      }
+    }
+
+    function openPicker() {
+      pickerYearVal = displayYear;
+      renderPicker();
+      picker.hidden = false;
+      titleEl.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePicker() {
+      picker.hidden = true;
+      titleEl.setAttribute('aria-expanded', 'false');
+    }
+
+    titleEl.addEventListener('click', function () {
+      if (picker.hidden) openPicker(); else closePicker();
+    });
+
+    document.getElementById('cal-picker-close').addEventListener('click', closePicker);
+
+    document.getElementById('cal-picker-prev-year').addEventListener('click', function () {
+      pickerYearVal--;
+      renderPicker();
+    });
+    document.getElementById('cal-picker-next-year').addEventListener('click', function () {
+      pickerYearVal++;
+      renderPicker();
+    });
+
+    // Close picker on backdrop click
+    picker.addEventListener('click', function (e) {
+      if (e.target === picker) closePicker();
+    });
+
+    // Close picker on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !picker.hidden) closePicker();
+    });
+
     render();
   })();
 </script>
@@ -385,6 +460,19 @@ const currentMonth = now.getMonth();
     text-align: center;
     margin: 0;
     letter-spacing: 1px;
+    font-family: inherit;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--color-border);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+  }
+  .cal__month-title:hover,
+  .cal__month-title[aria-expanded="true"] {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
   }
   .cal__nav-btn {
     background: none;
@@ -697,6 +785,95 @@ const currentMonth = now.getMonth();
   }
   .cal__popup-btn svg {
     flex-shrink: 0;
+  }
+
+  .cal__picker {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .cal__picker[hidden] {
+    display: none;
+  }
+  .cal__picker-inner {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    animation: calPopupIn 0.15s ease;
+  }
+  .cal__picker-year-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .cal__picker-year {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    min-width: 60px;
+    text-align: center;
+  }
+  .cal__picker-year-btn {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-contrast);
+    font-size: 1.3rem;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cal__picker-year-btn:hover {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+  .cal__picker-months {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .cal__picker-month {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-contrast);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 8px 4px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: capitalize;
+  }
+  .cal__picker-month:hover {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+  .cal__picker-month--active {
+    background: var(--color-gold);
+    color: var(--color-base);
+    border-color: var(--color-gold);
+  }
+  .cal__picker-month--active:hover {
+    background: var(--color-gold);
+    color: var(--color-base);
   }
 
   /* Legend */

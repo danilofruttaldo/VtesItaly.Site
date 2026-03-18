@@ -15,12 +15,16 @@ events:
   - name: 'MAIN EVENT: Italian Championship 2024'
     date: 2024-04-27
     time: '09:00'
-    format: 'Standard Constructed, No Proxies — 3 Round + Finale'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/2b71f658-be71-43f1-974a-b3e7116094fe/display.html'
   - name: 'SIDE EVENT: Italian Tour - Tappa di Trento'
     date: 2024-04-28
     time: '09:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Round + Finale'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/b581393a-0a1c-490e-9d32-3c26efdf3d14/display.html'
 standingsUrl: '/nc/nc-2024/standings-nc-2024.json'
 registration: 'Preiscrizione e decklist obbligatorie'

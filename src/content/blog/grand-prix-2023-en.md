@@ -14,7 +14,9 @@ events:
   - name: 'MAIN EVENT: Italian Grand Prix 2023'
     date: 2022-12-10
     time: '09:00'
-    format: 'Standard Constructed, No Proxies — 3 Rounds + Final'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/786f6c88-a5d1-484d-bdbb-91d566bfbf2d/display.html'
 pricing:
   - label: 'Entry fee'

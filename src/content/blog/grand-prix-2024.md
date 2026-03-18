@@ -15,12 +15,16 @@ events:
   - name: 'MAIN EVENT: Italian Grand Prix 2024'
     date: 2023-12-09
     time: '09:00'
-    format: 'Standard Constructed, No Proxies — 3 Round + Finale'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/03ffef51-cd10-4b76-a950-94d37675f068/display.html'
   - name: 'SIDE EVENT: Italian Tour 2023 Stage 9 Milano'
     date: 2023-12-08
     time: '09:30'
-    format: 'Standard Constructed, Proxies Allowed — 2 Round + Finale'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/646c6d6d-e774-4d62-a775-3f9c6a75ca5f/display.html'
 pricing:
   - label: 'Iscrizione'

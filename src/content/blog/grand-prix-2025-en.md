@@ -14,12 +14,16 @@ events:
   - name: 'MAIN EVENT: Italian Grand Prix 2025'
     date: 2025-03-01
     time: '09:30'
-    format: 'Standard Constructed, No Proxies — 3 Rounds + Final'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://gp2025.vtesitaly.com/'
   - name: 'SIDE EVENT: Italian Tour 2025 - Modena'
     date: 2025-03-02
     time: '09:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Rounds + Final'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/5e7c9f73-b30e-4657-90a9-f60545309b82/display.html'
 pricing:
   - label: 'Main Event + lunch'

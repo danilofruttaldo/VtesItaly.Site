@@ -24,12 +24,15 @@ tags:
   ]
 featuredImage: '/images/headers/header-week-of-sabbat.webp'
 excerpt: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
+venue:
+  name: 'Italia'
+  address: 'Italia'
 events:
   - name: 'Week of Sabbat 2025'
     date: 2025-10-18
     endDate: 2025-10-26
     time: '—'
-    format: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
+    type: 'altro'
 standingsUrl: '/ev/wos-2025/standings-wos-2025.json'
 links:
   - label: 'Infokit (PDF)'

@@ -14,7 +14,9 @@ events:
   - name: 'Constructed (Proxy Legal)'
     date: 2025-07-05
     time: '10:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Round + Finale'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
 pricing:
   - label: 'Quota'
     regular: '10 €'

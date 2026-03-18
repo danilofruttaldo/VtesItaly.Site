@@ -14,17 +14,21 @@ events:
   - name: 'Field Training'
     date: 2025-08-29
     time: '14:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Rounds + Final'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/92f03745-6ba5-4937-b354-099f09f9c299/display.html'
   - name: 'Symposium Italicum MMXXV'
     date: 2025-08-30
     time: '08:30'
-    format: 'Standard Constructed, No Proxies — 3 Rounds + Final'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/b1119cef-b213-4f10-8338-05b0ce0fc34c/display.html'
   - name: 'Pool Party'
     date: 2025-08-31
     time: '09:30'
-    format: 'Relaxation day and casual games'
+    type: 'altro'
 pricing:
   - label: 'Field Training (Friday)'
     regular: '10 €'

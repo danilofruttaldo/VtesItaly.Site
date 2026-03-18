@@ -7,12 +7,15 @@ featuredImage: '/images/comunita/decapitate/decapitate-hero.webp'
 poster: '/images/comunita/decapitate/old-header.webp'
 posterCaption: 'The old header to "decapitate"'
 excerpt: 'The VTES Italy community is invited to participate in Decapitate!, a creative contest to design the new site header. The goal is to create a graphic proposal that represents the spirit of the game and the Italian community. The selected graphic will become the new official site header.'
+venue:
+  name: 'Italy'
+  address: 'Italy'
 events:
   - name: 'Decapitate!'
     date: 2025-12-08
     endDate: 2026-01-06
     time: '—'
-    format: 'The VTES Italy community is invited to participate in Decapitate!, a creative contest to design the new site header. The goal is to create a graphic proposal that represents the spirit of the game and the Italian community. The selected graphic will become the new official site header.'
+    type: 'altro'
 registration: 'Create a graphic proposal · Prepare a preview image · Upload the file to an external service (Google Drive, WeTransfer, etc.) · Fill out the dedicated Google Form'
 prizes:
   - 'Potence pin'

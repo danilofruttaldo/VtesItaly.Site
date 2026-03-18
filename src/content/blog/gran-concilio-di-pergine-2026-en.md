@@ -6,8 +6,10 @@ tags: ['trento', 'torneo']
 featuredImage: '/images/headers/header-trento.webp'
 excerpt: 'The Concilio di Pergine is back! Two days of VTES in Pergine Valsugana (TN) on the weekend of June 13-14, 2026.'
 venue:
-  name: 'Pergine Valsugana'
-  address: 'Pergine Valsugana (TN)'
+  name: 'Pergine Comics'
+  siteUrl: 'https://www.perginecomics.it/'
+  address: 'Municipio di, 38057 Pergine Valsugana (TN)'
+  mapUrl: 'https://maps.google.com/?q=Municipio+di+38057+Pergine+Valsugana+TN'
 events:
   - name: 'Concilio di Pergine 2026'
     date: 2026-06-13

@@ -12,10 +12,12 @@ venue:
   address: 'Municipio di, 38057 Pergine Valsugana (TN)'
   mapUrl: 'https://maps.google.com/?q=Municipio+di+38057+Pergine+Valsugana+TN'
 events:
-  - name: 'Standard Constructed'
+  - name: 'Standard'
     date: 2025-06-21
     time: '10:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Rounds + Final'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/38d27caf-6140-4a3d-aeac-9d62accc8dec/display.html'
 registration: 'Pre-registration and decklist required'
 contact: 'asgard.aldeno@gmail.com'

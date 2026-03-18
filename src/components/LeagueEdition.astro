@@ -6,6 +6,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
+import { composeFormat } from '../utils/calendar';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -136,7 +137,9 @@ function fmt(n: number): string {
     post.data.events.length > 0 && (
       <div class="le-row">
         <span class="le-label">{t.league.format_label}</span>
-        <span class="le-value">{post.data.events[0].format}</span>
+        <span class="le-value">
+          {composeFormat(post.data.events[0].format, post.data.events[0].proxies, post.data.events[0].rounds, locale)}
+        </span>
       </div>
     )
   }

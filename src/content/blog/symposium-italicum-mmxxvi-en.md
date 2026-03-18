@@ -6,8 +6,9 @@ tags: ['barga', 'torneo']
 featuredImage: '/images/headers/header-barga.webp'
 excerpt: 'The Symposium Italicum is back! Two days of VTES in Barga (LU) on the weekend of September 5-6, 2026.'
 venue:
-  name: 'TBD'
-  address: 'Barga (LU)'
+  name: 'Agriturismo Il Musaccio'
+  address: 'Località Pian di Gragno 15, 55051 Barga (LU)'
+  mapUrl: 'https://maps.google.com/?q=Agriturismo+Il+Musaccio+Barga'
 events:
   - name: 'Symposium Italicum MMXXVI'
     date: 2026-09-05

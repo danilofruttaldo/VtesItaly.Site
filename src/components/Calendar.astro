@@ -29,6 +29,7 @@ const currentMonth = now.getMonth();
     nazionale: t.calendar.cat_nc,
     comunita: t.calendar.cat_community,
     local: t.calendar.cat_local,
+    altro: t.calendar.legend_other,
   })}
   data-initial-year={currentYear}
   data-initial-month={currentMonth}
@@ -175,16 +176,22 @@ const currentMonth = now.getMonth();
           esc(ts) +
           '</div>';
       }
-      if (ev.venue) {
+      var venueName = ev.venue && ev.venue !== 'TBD' ? ev.venue : null;
+      if (venueName) {
         h +=
           '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ' +
-          esc(ev.venue) +
+          esc(venueName) +
           '</div>';
+        if (ev.location && ev.location !== venueName) {
+          h += '<div class="cal__popup-row cal__popup-row--sub">' + esc(ev.location) + '</div>';
+        }
+      } else {
+        h +=
+          '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> TBD</div>';
       }
-      if (ev.location && ev.location !== ev.venue) {
-        h += '<div class="cal__popup-row cal__popup-row--sub">' + esc(ev.location) + '</div>';
-      }
-      if (ev.format) {
+      if (ev.description) {
+        h += '<div class="cal__popup-row cal__popup-row--desc">' + esc(ev.description) + '</div>';
+      } else if (ev.format) {
         h +=
           '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg> ' +
           esc(ev.format) +
@@ -193,7 +200,7 @@ const currentMonth = now.getMonth();
       h += '</div>';
 
       // Actions row
-      var hasTBD = ts === 'TBD' || !ts || (ev.format && ev.format === 'TBD') || (ev.venue && ev.venue === 'TBD');
+      var hasTBD = ts === 'TBD' || !ts;
       h += '<div class="cal__popup-actions">';
       if (!hasTBD) {
         h += '<a href="' + googleUrl(ev) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
@@ -745,6 +752,12 @@ const currentMonth = now.getMonth();
     padding-left: 22px;
     color: var(--color-muted);
     opacity: 0.7;
+  }
+  .cal__popup-row--desc {
+    font-size: var(--font-size-2xs);
+    color: var(--color-muted);
+    line-height: var(--leading-normal);
+    text-align: justify;
   }
 
   .cal__popup-actions {

@@ -24,12 +24,15 @@ tags:
   ]
 featuredImage: '/images/headers/header-week-of-sabbat.webp'
 excerpt: 'From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event.'
+venue:
+  name: 'Italy'
+  address: 'Italy'
 events:
   - name: 'Week of Sabbat 2025'
     date: 2025-10-18
     endDate: 2025-10-26
     time: '—'
-    format: 'From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event.'
+    type: 'altro'
 standingsUrl: '/ev/wos-2025/standings-wos-2025.json'
 locale: en
 links:

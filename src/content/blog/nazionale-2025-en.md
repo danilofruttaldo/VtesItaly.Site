@@ -41,12 +41,16 @@ events:
   - name: 'MAIN EVENT: Italian Championship 2025'
     date: 2025-04-12
     time: '09:00'
-    format: 'Standard Constructed, No Proxies — 3 Rounds + Final'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/6753d30e-115f-4563-8d16-7155c2a1222b/display.html'
   - name: 'SIDE EVENT: Italian Tour 2025 - Pordenone'
     date: 2025-04-13
     time: '09:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Rounds + Final'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/aeef6927-408e-47c6-b72f-1e179af262d9/display.html'
 pricing:
   - label: 'Entry fee'

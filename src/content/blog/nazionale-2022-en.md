@@ -25,7 +25,9 @@ events:
   - name: 'MAIN EVENT: Italian Championship 2022'
     date: 2022-10-15
     time: '09:30'
-    format: 'Standard Constructed, No Proxies — 3 Rounds + Final'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/3c3e0baa-a2c3-4fad-b521-e2a548ce1506/display.html'
 standingsUrl: '/nc/nc-2022/standings-nc-2022.json'
 playersCount: 40

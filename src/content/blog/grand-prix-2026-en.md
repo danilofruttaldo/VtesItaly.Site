@@ -14,12 +14,16 @@ events:
   - name: 'MAIN EVENT: Italian Grand Prix 2026'
     date: 2026-05-02
     time: '09:00'
-    format: 'Standard Constructed, No Proxies — 3 Rounds + Final'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/1808ea53-e5a0-428a-8dd4-905a394b7124/display.html'
   - name: 'SIDE EVENT: Le Due Torri'
     date: 2026-05-03
     time: '09:30'
-    format: 'Standard Constructed, Proxies Allowed — 2 Rounds + Final'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/84cbe147-3c9a-4d79-97b4-f7cf51958eb0/display.html'
 pricing:
   - label: 'Main Event + lunch'

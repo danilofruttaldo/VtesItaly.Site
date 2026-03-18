@@ -6,6 +6,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
+import { composeFormat } from '../utils/calendar';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -114,7 +115,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
               {formatLocalDate(new Date(ev.date), locale, { weekday: 'long', day: 'numeric', month: 'long' })} —{' '}
               {t.gp.time_prefix} {ev.time}
               <br />
-              <span class="gp-muted">{ev.format}</span>
+              <span class="gp-muted">{composeFormat(ev.format, ev.proxies, ev.rounds, locale)}</span>
             </div>
           ))}
         </div>

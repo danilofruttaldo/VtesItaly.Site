@@ -11,10 +11,12 @@ venue:
   address: 'Via Castelnuovo R. 796, 41057 Spilamberto (MO)'
   mapUrl: 'https://maps.google.com/?q=Via+Castelnuovo+R.+796+41057+Spilamberto+MO'
 events:
-  - name: 'Standard Constructed'
+  - name: 'Standard'
     date: 2025-07-13
     time: '10:00'
-    format: 'Standard Constructed, Proxies Allowed — 2 Round + Finale'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/c5ca42a2-3aca-4cbd-b4b2-3e5343eb017e/display.html'
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'parmeggiani.simone@gmail.com'

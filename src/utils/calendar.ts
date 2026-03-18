@@ -11,6 +11,8 @@ export interface LocalEvent {
   venue?: string;
   location?: string;
   format?: string;
+  proxies?: boolean;
+  rounds?: number;
   archonUrl?: string;
   image?: string;
 }
@@ -27,6 +29,7 @@ export interface CalendarEvent {
   venue?: string;
   location?: string;
   format?: string;
+  description?: string; // shown in popup instead of format
   image?: string; // featured image or poster URL
   archonUrl?: string; // Archon or BCN Crisis link
   tags?: string[]; // post tags for sub-category coloring
@@ -56,6 +59,33 @@ function postUrl(post: CollectionEntry<'blog'>, locale: Locale): string {
 /** Format a Date to YYYY-MM-DD */
 function toIsoDate(d: Date): string {
   return d.toISOString().slice(0, 10);
+}
+
+const KNOWN_FORMATS = ['Standard', 'V5', 'Limited', 'Draft', 'TBD'];
+
+export function composeFormat(
+  format: string | undefined,
+  proxies: boolean | undefined,
+  rounds: number | undefined,
+  locale: Locale,
+): string | undefined {
+  if (!format) return 'TBD';
+  if (!KNOWN_FORMATS.includes(format)) return 'Speciale';
+  if (format === 'TBD') return 'TBD';
+  let s = format;
+  if (proxies !== undefined) {
+    s += proxies
+      ? locale === 'en'
+        ? ', Proxies Allowed'
+        : ', Proxies Allowed'
+      : locale === 'en'
+        ? ', No Proxies'
+        : ', No Proxies';
+  }
+  if (rounds) {
+    s += locale === 'en' ? ` — ${rounds} Round${rounds > 1 ? 's' : ''} + Final` : ` — ${rounds} Round + Finale`;
+  }
+  return s;
 }
 
 /**
@@ -93,9 +123,9 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           postTitle,
           category,
           url,
-          venue: stage.venue || stage.cities?.map((c) => c.charAt(0).toUpperCase() + c.slice(1)).join(', ') || 'TBD',
-          location: stage.location || 'TBD',
-          format: stage.format,
+          venue: stage.venue,
+          location: stage.location,
+          format: composeFormat(stage.format, stage.proxies, stage.rounds, locale),
           image: (stage as any).image || image,
           archonUrl: stage.archonUrl,
         });
@@ -116,14 +146,16 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         const hasEndDate = endD && !isNaN(endD.getTime()) && toIsoDate(endD) !== toIsoDate(d);
 
         const tags = post.data.tags || [];
+        const isAltro = ev.type === 'altro';
         const baseEvent = {
           postTitle,
-          category,
+          category: isAltro ? 'altro' : category,
           url,
           tags,
-          venue: venue || (isTournament ? 'TBD' : undefined),
-          location: location || (isTournament ? 'TBD' : undefined),
-          format: ev.format,
+          venue: venue,
+          location: location,
+          format: isAltro ? undefined : composeFormat(ev.format, ev.proxies, ev.rounds, locale),
+          description: isAltro ? post.data.excerpt : undefined,
           image,
           archonUrl: ev.archonUrl,
           cardHidden: post.data.cardHidden || false,
@@ -171,7 +203,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       url: '',
       venue: le.venue || le.city.charAt(0).toUpperCase() + le.city.slice(1),
       location: le.location,
-      format: le.format,
+      format: composeFormat(le.format, le.proxies, le.rounds, locale),
       archonUrl: le.archonUrl,
       image: le.image,
       cardHidden: true,

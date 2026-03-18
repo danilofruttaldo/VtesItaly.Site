@@ -27,6 +27,8 @@ const blog = defineCollection({
           venue: z.string().optional(),
           location: z.string().optional(),
           format: z.string().optional(),
+          proxies: z.boolean().optional(),
+          rounds: z.number().optional(),
           archonUrl: z.string().optional(),
           image: z.string().optional(),
           description: z.string().optional(),
@@ -65,9 +67,12 @@ const blog = defineCollection({
           date: z.coerce.date(),
           endDate: z.coerce.date().optional(),
           time: z.string(),
-          format: z.string(),
+          format: z.string().optional(),
+          proxies: z.boolean().optional(),
+          rounds: z.number().optional(),
           archonUrl: z.string().optional(),
           period: z.string().optional(),
+          type: z.string().optional(),
         }),
       )
       .optional()

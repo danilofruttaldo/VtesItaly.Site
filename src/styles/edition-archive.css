@@ -47,7 +47,7 @@
   flex-shrink: 0;
 }
 .edition-winner {
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   color: var(--color-gold);
   font-weight: 600;
 }

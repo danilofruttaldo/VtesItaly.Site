@@ -17,6 +17,6 @@
 .hero-text__subtitle {
   color: var(--color-muted);
   font-size: clamp(0.9rem, 3vw, 1.05rem);
-  line-height: 1.6;
+  line-height: var(--leading-normal);
   margin: 0;
 }

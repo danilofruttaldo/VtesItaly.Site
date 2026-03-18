@@ -172,7 +172,7 @@ function isCurrent(href: string): boolean {
     gap: 8px;
     font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     text-transform: uppercase;
     color: var(--color-contrast);
     text-decoration: none;
@@ -187,9 +187,9 @@ function isCurrent(href: string): boolean {
   }
 
   .site-title__text {
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     font-weight: 700;
-    letter-spacing: 0.3px;
+    letter-spacing: var(--tracking-wide);
     text-transform: lowercase;
   }
 
@@ -279,7 +279,7 @@ function isCurrent(href: string): boolean {
     align-items: center;
     gap: 8px;
     padding: 8px 14px;
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     font-weight: 500;
     color: var(--color-contrast);
     text-decoration: none;
@@ -416,10 +416,10 @@ function isCurrent(href: string): boolean {
   .mobile-menu__link {
     display: block;
     padding: 14px clamp(16px, 5vw, 24px);
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: var(--tracking-wide);
     color: var(--color-contrast);
     text-decoration: none;
     transition:
@@ -447,7 +447,7 @@ function isCurrent(href: string): boolean {
   }
 
   .mobile-menu__lang {
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     font-weight: 600;
     color: var(--color-accent-1);
     text-decoration: none;

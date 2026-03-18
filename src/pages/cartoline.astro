@@ -62,7 +62,7 @@ const galleries = postcardGalleries.map((g) => ({
     padding: 40px 0 48px;
   }
   .tagline {
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
     font-style: italic;
     color: var(--color-gold);
     margin-bottom: 16px;
@@ -72,7 +72,7 @@ const galleries = postcardGalleries.map((g) => ({
     text-transform: uppercase;
     margin-top: 24px;
     margin-bottom: 8px;
-    letter-spacing: 0.3px;
+    letter-spacing: var(--tracking-wide);
   }
   .divider {
     border: none;
@@ -84,13 +84,13 @@ const galleries = postcardGalleries.map((g) => ({
     text-align: center;
   }
   .gallery-title {
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
     font-weight: 700;
     color: var(--color-gold);
     margin-bottom: 2px;
   }
   .gallery-subtitle {
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     margin-bottom: 12px;
   }
@@ -123,7 +123,7 @@ const galleries = postcardGalleries.map((g) => ({
     border-radius: 50%;
     background: rgba(201, 168, 76, 0.15);
     color: var(--color-gold);
-    font-size: 1.4rem;
+    font-size: var(--font-size-lg);
     cursor: pointer;
     display: none;
     align-items: center;

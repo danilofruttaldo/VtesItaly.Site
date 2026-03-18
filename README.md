@@ -44,6 +44,16 @@ public/
   tour/          # Tour assets (stage images)
 ```
 
+## Design Tokens
+
+Typography is managed through CSS custom properties defined in `src/styles/global.css`:
+
+- **Font sizes** — `--font-size-3xs` (0.65rem) through `--font-size-xxl` (clamp), plus `--font-size-md` (1.1rem) and `--font-size-lg` (1.3rem) for display text
+- **Letter spacing** — `--tracking-tight` (-0.2px), `--tracking-wide` (0.3px), `--tracking-wider` (0.5px), `--tracking-widest` (1px)
+- **Line height** — `--leading-none` (1) through `--leading-relaxed` (1.7)
+
+All components use these tokens instead of hardcoded values.
+
 ## Content
 
 Events are defined in blog post frontmatter (stages, events, standings). The site is the **source of truth** — the calendar component reads directly from content collections.

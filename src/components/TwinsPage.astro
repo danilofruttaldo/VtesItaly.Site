@@ -57,7 +57,7 @@ const twins = twinsData.map((tw) => ({
   }
   .lead {
     font-size: clamp(0.95rem, 3vw, 1.05rem);
-    line-height: 1.7;
+    line-height: var(--leading-relaxed);
   }
   .tagline {
     font-size: 1rem;
@@ -93,17 +93,17 @@ const twins = twinsData.map((tw) => ({
     margin-inline: auto;
   }
   .twin-card {
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
     font-weight: 700;
     color: var(--color-gold);
     margin-bottom: 0;
     display: inline;
   }
   .twin-vs {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--color-muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: var(--tracking-widest);
     margin-bottom: 0;
     display: inline;
     margin-inline: 8px;
@@ -115,9 +115,9 @@ const twins = twinsData.map((tw) => ({
     display: inline;
   }
   .twin-desc {
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     color: var(--color-muted);
-    line-height: 1.6;
+    line-height: var(--leading-normal);
     margin-top: 6px;
   }
 </style>

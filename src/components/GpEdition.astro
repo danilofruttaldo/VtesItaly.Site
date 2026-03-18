@@ -423,7 +423,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
     text-align: center;
   }
   .gp-poster-caption {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--color-muted);
     font-style: italic;
     margin-top: 8px;
@@ -439,11 +439,11 @@ const hasFvp = standings.some((s) => s.fvp != null);
 
   /* Prose */
   .gp-excerpt {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: var(--font-size-small);
+    line-height: var(--leading-relaxed);
     color: var(--color-contrast);
     margin-bottom: 24px;
-    text-align: justify;
+    text-align: left;
   }
   .gp-content {
     margin-bottom: 28px;
@@ -470,16 +470,16 @@ const hasFvp = standings.some((s) => s.fvp != null);
   .gp-label {
     flex-shrink: 0;
     width: 100px;
-    font-size: 0.7rem;
+    font-size: var(--font-size-2xs);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     color: var(--color-gold);
     padding-top: 2px;
   }
   .gp-value {
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: var(--font-size-small);
+    line-height: var(--leading-normal);
     color: var(--color-contrast);
   }
   .gp-value a {
@@ -498,11 +498,11 @@ const hasFvp = standings.some((s) => s.fvp != null);
   }
   .gp-link-btn--inline {
     margin-top: 6px;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     padding: 4px 12px;
   }
   .gp-muted {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--color-muted);
   }
   .gp-hotel-note {
@@ -511,7 +511,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
   .gp-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
   }
   .gp-table th,
   .gp-table td {
@@ -520,7 +520,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
     text-align: left;
   }
   .gp-table th {
-    font-size: 0.7rem;
+    font-size: var(--font-size-2xs);
     font-weight: 600;
     color: var(--color-muted);
     background: transparent;
@@ -555,7 +555,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--color-gold);
     text-decoration: none;
@@ -587,10 +587,10 @@ const hasFvp = standings.some((s) => s.fvp != null);
     margin-bottom: 32px;
   }
   .gp-standings-title {
-    font-size: 1.3rem;
+    font-size: var(--font-size-lg);
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: var(--tracking-widest);
     text-align: center;
     margin-bottom: 16px;
   }
@@ -607,13 +607,13 @@ const hasFvp = standings.some((s) => s.fvp != null);
   .gp-standings-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
   }
   .gp-standings-table th {
-    font-size: 0.7rem;
+    font-size: var(--font-size-2xs);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     color: var(--color-gold);
     padding: 8px 10px;
     border-bottom: 2px solid var(--color-border);
@@ -650,10 +650,10 @@ const hasFvp = standings.some((s) => s.fvp != null);
     margin-top: 32px;
   }
   .gp-gallery-title {
-    font-size: 1.3rem;
+    font-size: var(--font-size-lg);
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: var(--tracking-widest);
     text-align: center;
     margin-bottom: 24px;
   }
@@ -663,10 +663,10 @@ const hasFvp = standings.some((s) => s.fvp != null);
     margin-bottom: 28px;
   }
   .gp-gallery-section-title {
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     color: var(--color-gold);
     margin-bottom: 12px;
     text-align: center;
@@ -747,21 +747,21 @@ const hasFvp = standings.some((s) => s.fvp != null);
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
     .gp-table {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
     }
     .gp-table th,
     .gp-table td {
       padding: 4px 6px;
     }
     .gp-standings-table {
-      font-size: 0.72rem;
+      font-size: var(--font-size-xs);
     }
     .gp-standings-table th,
     .gp-standings-table td {
       padding: 5px 6px;
     }
     .gp-standings-title {
-      font-size: 1.1rem;
+      font-size: var(--font-size-md);
     }
     .gp-collage {
       grid-template-columns: 1fr;

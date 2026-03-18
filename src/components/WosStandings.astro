@@ -193,7 +193,7 @@ const cityTabs = data
     font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     text-align: center;
     margin-bottom: 16px;
   }
@@ -212,7 +212,7 @@ const cityTabs = data
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     background: var(--color-surface);
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     text-align: center;
   }
   .wos-path-card--winner {
@@ -236,12 +236,12 @@ const cityTabs = data
   .wos-path-rank {
     font-weight: 800;
     color: var(--color-gold);
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
   }
   .wos-path-name {
     font-weight: 600;
-    font-size: 0.78rem;
-    line-height: 1.3;
+    font-size: var(--font-size-xs);
+    line-height: var(--leading-snug);
     min-height: 2.1em;
     display: flex;
     align-items: center;
@@ -270,7 +270,7 @@ const cityTabs = data
   }
   .wos-tab-btn {
     padding: 6px 12px;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     font-weight: 600;
     color: var(--color-muted);
     background: none;
@@ -301,13 +301,13 @@ const cityTabs = data
   .wos-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
   }
   .wos-table th {
-    font-size: 0.7rem;
+    font-size: var(--font-size-2xs);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     color: var(--color-gold);
     padding: 8px 10px;
     border-bottom: 2px solid var(--color-border);
@@ -335,7 +335,7 @@ const cityTabs = data
     font-weight: 600;
   }
   .wos-players-cell {
-    font-size: 0.72rem;
+    font-size: var(--font-size-xs);
     color: var(--color-muted);
   }
   .tc {
@@ -353,11 +353,11 @@ const cityTabs = data
       grid-template-columns: repeat(2, 1fr);
     }
     .wos-tab-btn {
-      font-size: 0.7rem;
+      font-size: var(--font-size-2xs);
       padding: 4px 8px;
     }
     .wos-table {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
     }
     .wos-table th,
     .wos-table td {
@@ -368,10 +368,10 @@ const cityTabs = data
       gap: 6px;
     }
     .wos-path-name {
-      font-size: 0.7rem;
+      font-size: var(--font-size-2xs);
     }
     .wos-path-points {
-      font-size: 0.85rem;
+      font-size: var(--font-size-small);
     }
   }
 </style>

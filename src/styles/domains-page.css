@@ -5,14 +5,14 @@
   text-align: center;
   color: var(--color-muted);
   font-size: clamp(0.875rem, 3vw, 1rem);
-  line-height: 1.6;
+  line-height: var(--leading-normal);
   margin-bottom: 8px;
 }
 .section-intro {
   text-align: center;
   color: var(--color-muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: var(--font-size-small);
+  line-height: var(--leading-normal);
   max-width: 640px;
   margin-inline: auto;
   margin-bottom: 8px;
@@ -20,7 +20,7 @@
 .coordinator {
   text-align: center;
   color: var(--color-gold);
-  font-size: 0.9rem;
+  font-size: var(--font-size-small);
   margin-bottom: 32px;
 }
 .coordinator-avatar {

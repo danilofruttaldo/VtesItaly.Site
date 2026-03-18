@@ -151,7 +151,7 @@ const t = useTranslations(locale);
     background: none;
     border: none;
     cursor: pointer;
-    line-height: 1;
+    line-height: var(--leading-none);
   }
 
   .vtesitaly-search-close:hover {
@@ -167,7 +167,7 @@ const t = useTranslations(locale);
   .vtesitaly-search-field {
     width: 100%;
     padding: 14px 20px;
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
     font-family: var(--font-family);
     color: var(--color-contrast);
     background-color: var(--color-surface);
@@ -213,16 +213,16 @@ const t = useTranslations(locale);
   .vtesitaly-search-results :global(.search-result__title) {
     display: block;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: var(--font-size-small);
     color: var(--color-accent-1);
     margin-bottom: 4px;
   }
 
   .vtesitaly-search-results :global(.search-result__excerpt) {
     display: block;
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     color: var(--color-muted);
-    line-height: 1.5;
+    line-height: var(--leading-normal);
   }
 
   .vtesitaly-search-results :global(.search-result__excerpt mark) {
@@ -234,7 +234,7 @@ const t = useTranslations(locale);
   .vtesitaly-search-results :global(.search-no-results) {
     text-align: center;
     color: var(--color-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     padding: var(--spacing-md);
   }
 </style>

@@ -258,16 +258,16 @@ const { city, relatedPosts } = Astro.props;
     margin-bottom: 8px;
   }
   .prince-card h3 {
-    font-size: 1.1rem;
+    font-size: var(--font-size-md);
     margin-bottom: 0;
   }
   .prince-alias {
     color: var(--color-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
   }
   .prince-role {
     color: var(--color-muted);
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
   }
   .prince-socials {
     display: flex;
@@ -285,15 +285,15 @@ const { city, relatedPosts } = Astro.props;
     opacity: 0.7;
   }
   .city-main h2 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     margin-bottom: 12px;
     text-align: center;
   }
   .city-main p {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: var(--font-size-small);
+    line-height: var(--leading-relaxed);
   }
 
   .meetup-table-wrap {
@@ -307,9 +307,9 @@ const { city, relatedPosts } = Astro.props;
   }
   .meetup-table th {
     text-align: left;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     color: var(--color-muted);
     padding: 8px 12px;
     border-bottom: 1px solid var(--color-accent-light);
@@ -323,18 +323,18 @@ const { city, relatedPosts } = Astro.props;
     vertical-align: top;
   }
   .meetup-day {
-    font-size: 0.95rem;
+    font-size: var(--font-size-small);
     font-weight: 500;
     white-space: pre-line;
   }
   .meetup-time {
     display: block;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     margin-top: 2px;
   }
   .meetup-place {
-    font-size: 0.95rem;
+    font-size: var(--font-size-small);
     font-weight: 500;
     color: var(--color-gold);
     text-decoration: none;
@@ -345,23 +345,23 @@ const { city, relatedPosts } = Astro.props;
     text-decoration: underline;
   }
   .meetup-place-nolink {
-    font-size: 0.95rem;
+    font-size: var(--font-size-small);
     font-weight: 500;
   }
   .meetup-address {
     display: block;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     margin-top: 2px;
   }
   .meetup-tbd {
     color: var(--color-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     font-style: italic;
     text-align: center;
   }
   .meetup-note {
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     color: var(--color-muted);
     margin-top: 4px;
   }
@@ -391,21 +391,21 @@ const { city, relatedPosts } = Astro.props;
     min-width: 0;
   }
   .highlight-title {
-    font-size: 1.05rem;
+    font-size: var(--font-size-md);
     font-weight: 700;
     color: var(--color-gold);
     margin-bottom: 8px;
   }
   .highlight-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: var(--font-size-small);
+    line-height: var(--leading-normal);
     margin-bottom: 0;
   }
   .highlight-link {
     display: inline-block;
     margin-top: 12px;
     padding: 4px 0;
-    font-size: 0.85rem;
+    font-size: var(--font-size-small);
     font-weight: 600;
     color: var(--color-gold);
     text-decoration: none;
@@ -441,7 +441,7 @@ const { city, relatedPosts } = Astro.props;
     .meetup-table th,
     .meetup-table td {
       padding: 8px 8px;
-      font-size: 0.85rem;
+      font-size: var(--font-size-small);
     }
     .related-title {
       font-size: 1rem;
@@ -458,15 +458,15 @@ const { city, relatedPosts } = Astro.props;
     margin: 32px 0;
   }
   .related-title {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: var(--tracking-wider);
     margin-bottom: 16px;
     text-align: center;
   }
   .no-news {
     color: var(--color-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
     font-style: italic;
     text-align: center;
   }

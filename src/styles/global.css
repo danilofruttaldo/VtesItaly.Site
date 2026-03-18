@@ -42,14 +42,32 @@
   --color-streaming: #ff0000;
   --color-success: #4ade80;
 
-  /* Typography */
+  /* Typography — Font sizes */
   --font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-size-3xs: 0.65rem;
+  --font-size-2xs: 0.7rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.8rem;
   --font-size-small: 0.875rem;
+  --font-size-md: 1.1rem;
+  --font-size-lg: 1.3rem;
   --font-size-medium: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
   --font-size-large: clamp(1rem, 0.95rem + 0.3vw, 1.25rem);
   --font-size-xl: clamp(1.2rem, 1.1rem + 0.5vw, 1.55rem);
   --font-size-xxl: clamp(1.4rem, 1.25rem + 0.7vw, 1.9rem);
-  --line-height: 1.6;
+
+  /* Typography — Letter spacing */
+  --tracking-tight: -0.2px;
+  --tracking-wide: 0.3px;
+  --tracking-wider: 0.5px;
+  --tracking-widest: 1px;
+
+  /* Typography — Line height */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.7;
 
   /* Layout */
   --content-width: 840px;
@@ -84,7 +102,7 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size-medium);
   font-weight: 400;
-  line-height: var(--line-height);
+  line-height: var(--leading-normal);
   letter-spacing: 0;
   color: var(--color-contrast);
   background-color: var(--color-base);
@@ -104,8 +122,8 @@ h4,
 h5,
 h6 {
   font-weight: 600;
-  letter-spacing: -0.2px;
-  line-height: 1.25;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
   color: var(--color-contrast);
 }
 
@@ -152,7 +170,7 @@ button {
   padding: 12px 24px;
   font-size: var(--font-size-small);
   font-weight: 500;
-  letter-spacing: 0.3px;
+  letter-spacing: var(--tracking-wide);
   color: #ffffff;
   background-color: var(--color-accent);
   border-radius: var(--radius);
@@ -186,7 +204,7 @@ button {
 .nav-link {
   font-size: var(--font-size-small);
   font-weight: 500;
-  letter-spacing: 0.3px;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--color-contrast);
   transition: color 0.2s ease;
@@ -235,7 +253,7 @@ img {
 .section-subtitle {
   text-align: center;
   color: var(--color-muted);
-  font-size: 0.9rem;
+  font-size: var(--font-size-small);
   margin-bottom: 24px;
 }
 
@@ -304,10 +322,10 @@ img {
 
 .post-card__tag {
   flex-shrink: 0;
-  font-size: 0.65rem;
+  font-size: var(--font-size-3xs);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--tracking-wider);
   color: var(--color-gold);
   background: rgba(201, 168, 76, 0.1);
   padding: 2px 8px;
@@ -315,20 +333,20 @@ img {
 }
 
 .post-card__title {
-  font-size: 0.95rem;
+  font-size: var(--font-size-small);
   font-weight: 600;
   margin: 0;
 }
 
 .post-card__date {
-  font-size: 0.78rem;
+  font-size: var(--font-size-xs);
   color: var(--color-muted);
 }
 
 .post-card__excerpt {
   font-size: var(--font-size-small);
   color: var(--color-muted);
-  line-height: 1.5;
+  line-height: var(--leading-snug);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -363,7 +381,7 @@ img {
 }
 
 .pagination__link {
-  font-size: 0.85rem;
+  font-size: var(--font-size-small);
   color: var(--color-accent-1);
   text-decoration: none;
   padding: 6px 12px;
@@ -385,7 +403,7 @@ img {
 }
 
 .pagination__info {
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   color: var(--color-muted);
 }
 
@@ -408,12 +426,12 @@ img {
   font-size: clamp(1.2rem, 3.5vw, 1.5rem);
   text-transform: uppercase;
   margin-bottom: 20px;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--tracking-wider);
 }
 
 .page-lead {
   font-size: clamp(0.95rem, 3vw, 1.05rem);
-  line-height: 1.7;
+  line-height: var(--leading-relaxed);
 }
 
 .page-divider {

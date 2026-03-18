@@ -1,7 +1,7 @@
 /* Shared styles for edition index pages (Tour, GP, NC) */
 .intro-lead p {
   color: var(--color-muted);
-  text-align: justify;
+  text-align: left;
 }
 .edition-header {
   display: flex;
@@ -13,14 +13,14 @@
 .edition-title {
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--tracking-wider);
 }
 .edition-label-tag {
   display: inline-block;
-  font-size: 0.6rem;
+  font-size: var(--font-size-3xs);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-widest);
   color: var(--color-gold);
   background: rgba(201, 168, 76, 0.12);
   padding: 4px 12px;
@@ -29,12 +29,12 @@
   flex-shrink: 0;
 }
 .edition-year {
-  font-size: 1.3rem;
+  font-size: var(--font-size-lg);
   font-weight: 800;
   color: var(--color-gold);
 }
 .edition-info {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   color: var(--color-muted);
   text-transform: capitalize;
 }

@@ -11,7 +11,7 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
 ---
 
 <div class="lang-chooser-overlay" id="lang-chooser" aria-hidden="true">
-  <div class="lang-chooser" role="dialog" aria-label={t.nav.choose_language}>
+  <div class="lang-chooser" role="dialog" aria-label={t.nav.choose_language} tabindex="-1">
     <div class="lang-chooser__options">
       <button
         class="lang-chooser__btn"
@@ -155,9 +155,10 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    // Focus first button
+    // Focus dialog (not a specific button, so nothing looks pre-selected)
+    var dialog = overlay.querySelector('.lang-chooser');
+    if (dialog) dialog.focus();
     var buttons = overlay.querySelectorAll('.lang-chooser__btn');
-    if (buttons.length) buttons[0].focus();
 
     // Focus trap between the two buttons
     overlay.addEventListener('keydown', function (e) {

@@ -28,27 +28,35 @@ const twins = twinsData.map((tw) => ({
     <div class="container container--narrow">
       <p class="lead">{t.twins.lead}</p>
       <p class="tagline">{t.twins.tagline}</p>
+    </div>
 
-      <hr class="divider" />
+    <hr class="divider" />
 
-      {
-        twins.map((twin) => (
-          <div class="twin-entry">
-            <div class="twin-image">
-              <img src={twin.image} alt={twin.person} loading="lazy" decoding="async" />
+    <div class="container">
+      <div class="twins-grid">
+        {
+          twins.map((twin) => (
+            <div class="twin-entry">
+              <div class="twin-image" role="button" tabindex="0">
+                <img src={twin.image} alt={twin.person} loading="lazy" decoding="async" />
+              </div>
+              <div class="twin-info">
+                <h3 class="twin-card">{twin.card}</h3>
+                <p class="twin-vs">vs</p>
+                <h4 class="twin-person">{twin.person}</h4>
+                <p class="twin-desc">{twin.description}</p>
+              </div>
             </div>
-            <div class="twin-info">
-              <h3 class="twin-card">{twin.card}</h3>
-              <p class="twin-vs">vs</p>
-              <h4 class="twin-person">{twin.person}</h4>
-              <p class="twin-desc">{twin.description}</p>
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
       <ShareButtons />
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
 </Base>
 
 <style>
@@ -68,29 +76,72 @@ const twins = twinsData.map((tw) => ({
   .divider {
     border: none;
     border-top: 1px solid var(--color-accent-light);
-    margin: 32px 0;
+    margin: 32px auto;
+    max-width: var(--content-width);
+  }
+  .twins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px 32px;
   }
   .twin-entry {
-    padding: 24px 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .twin-entry:last-child {
-    border-bottom: none;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
   }
   .twin-image {
     text-align: center;
+    cursor: zoom-in;
   }
   .twin-image img {
     border-radius: var(--radius);
     width: 100%;
     max-width: 480px;
     margin-inline: auto;
+    transition: opacity 0.2s ease;
+  }
+  .twin-image:hover img {
+    opacity: 0.85;
+  }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: var(--radius);
+    object-fit: contain;
   }
   .twin-info {
     margin-top: 12px;
     text-align: center;
-    max-width: 480px;
-    margin-inline: auto;
+  }
+  @media (max-width: 768px) {
+    .twins-grid {
+      grid-template-columns: 1fr;
+    }
+    .twin-image {
+      cursor: default;
+    }
+    .twin-image:hover img {
+      opacity: 1;
+    }
   }
   .twin-card {
     font-size: var(--font-size-md);
@@ -121,3 +172,45 @@ const twins = twinsData.map((tw) => ({
     margin-top: 6px;
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (!lightbox || !lightboxImg) return;
+
+    document.querySelectorAll('.twin-image').forEach((el) => {
+      const img = el.querySelector('img');
+      if (!img) return;
+      function isMobile() {
+        return window.innerWidth <= 768;
+      }
+      function open() {
+        if (isMobile()) return;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+      el.addEventListener('click', open);
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
+</script>

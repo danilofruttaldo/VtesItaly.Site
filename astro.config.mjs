@@ -18,8 +18,4 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  redirects: {
-    '/blog': '/comunita',
-    '/en/blog': '/en/community',
-  },
 });

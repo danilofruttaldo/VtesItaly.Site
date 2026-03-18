@@ -37,7 +37,9 @@ const currentMonth = now.getMonth();
   {/* Navigation */}
   <div class="cal__nav">
     <button class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
-    <button class="cal__month-title" aria-haspopup="dialog" aria-expanded="false">{t.months_array[currentMonth]} {currentYear}</button>
+    <button class="cal__month-title" aria-haspopup="dialog" aria-expanded="false"
+      >{t.months_array[currentMonth]} {currentYear}</button
+    >
     <button class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
     <button class="cal__today-btn">{t.calendar.today}</button>
   </div>
@@ -65,7 +67,9 @@ const currentMonth = now.getMonth();
   {/* Month/Year picker modal */}
   <div class="cal__picker" id="cal-picker" hidden>
     <div class="cal__picker-inner" role="dialog" aria-modal="true">
-      <button class="cal__popup-close cal__picker-close" id="cal-picker-close" aria-label={t.search.close_label}>&times;</button>
+      <button class="cal__popup-close cal__picker-close" id="cal-picker-close" aria-label={t.search.close_label}
+        >&times;</button
+      >
       <div class="cal__picker-year-nav">
         <button class="cal__picker-year-btn" id="cal-picker-prev-year" aria-label="Previous year">&#8249;</button>
         <span class="cal__picker-year" id="cal-picker-year"></span>
@@ -382,7 +386,14 @@ const currentMonth = now.getMonth();
       var html = '';
       for (var m = 0; m < 12; m++) {
         var active = m === displayMonth && pickerYearVal === displayYear;
-        html += '<button class="cal__picker-month' + (active ? ' cal__picker-month--active' : '') + '" data-month="' + m + '">' + monthNames[m] + '</button>';
+        html +=
+          '<button class="cal__picker-month' +
+          (active ? ' cal__picker-month--active' : '') +
+          '" data-month="' +
+          m +
+          '">' +
+          monthNames[m] +
+          '</button>';
       }
       pickerMonths.innerHTML = html;
       var btns = pickerMonths.querySelectorAll('.cal__picker-month');
@@ -409,7 +420,8 @@ const currentMonth = now.getMonth();
     }
 
     titleEl.addEventListener('click', function () {
-      if (picker.hidden) openPicker(); else closePicker();
+      if (picker.hidden) openPicker();
+      else closePicker();
     });
 
     document.getElementById('cal-picker-close').addEventListener('click', closePicker);
@@ -469,7 +481,7 @@ const currentMonth = now.getMonth();
     transition: all 0.2s ease;
   }
   .cal__month-title:hover,
-  .cal__month-title[aria-expanded="true"] {
+  .cal__month-title[aria-expanded='true'] {
     background: rgba(201, 168, 76, 0.1);
     border-color: var(--color-gold);
     color: var(--color-gold);

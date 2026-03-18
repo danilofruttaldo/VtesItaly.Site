@@ -1,0 +1,367 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import ShareButtons from './ShareButtons.astro';
+import { mainPages } from '../data/pages';
+import { postcardGalleries } from '../data/postcards';
+import { useTranslations } from '../utils/i18n';
+import type { Locale } from '../utils/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const page = mainPages.find((p) => p.slug.it === 'cartoline')!;
+const t = useTranslations(locale);
+const galleries = postcardGalleries.map((g) => ({
+  title: g.title[locale],
+  subtitle: g.subtitle[locale],
+  images: g.images,
+}));
+---
+
+<Base title={page.title[locale]} description={page.description[locale]} ogImage={page.headerImage}>
+  <PageHero title={page.title[locale]} image={page.headerImage} />
+  <section class="section">
+    <div class="container container--narrow">
+      <p class="tagline">{t.postcards.tagline}</p>
+      <p><Fragment set:html={t.postcards.intro} /></p>
+
+      <h2 class="section-subtitle">{t.postcards.why_title}</h2>
+      <p>{t.postcards.why_text}</p>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="container">
+      {
+        galleries.map((gallery, i) => (
+          <div class="gallery-section" data-gallery>
+            <button
+              class="gallery-header"
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              aria-controls={`gallery-body-${i}`}
+            >
+              <div class="gallery-header-text">
+                <h3 class="gallery-title">{gallery.title}</h3>
+                <p class="gallery-subtitle">{gallery.subtitle}</p>
+              </div>
+              <span class="gallery-count">{gallery.images.length}</span>
+              <span class="gallery-chevron" aria-hidden="true">
+                &#8250;
+              </span>
+            </button>
+
+            <div class="gallery-body" id={`gallery-body-${i}`}>
+              {/* Desktop: grid */}
+              <div class="gallery-grid">
+                {gallery.images.map((img) => (
+                  <figure class="gallery-item" role="button" tabindex="0">
+                    <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                  </figure>
+                ))}
+              </div>
+
+              {/* Mobile: slider */}
+              <div class="gallery-slider">
+                <div class="slider-track">
+                  {gallery.images.map((img) => (
+                    <figure class="slider-slide">
+                      <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                    </figure>
+                  ))}
+                </div>
+                {gallery.images.length > 1 && (
+                  <div class="slider-dots">
+                    {gallery.images.map((_, j) => (
+                      <button class={`slider-dot ${j === 0 ? 'is-active' : ''}`} aria-label={`Slide ${j + 1}`} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+      <ShareButtons />
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+</Base>
+
+<style>
+  .section {
+    padding: 40px 0 48px;
+  }
+  .tagline {
+    font-size: var(--font-size-md);
+    font-style: italic;
+    color: var(--color-gold);
+    margin-bottom: 16px;
+  }
+  .section-subtitle {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    text-transform: uppercase;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    letter-spacing: var(--tracking-wide);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-accent-light);
+    margin: 32px auto;
+    max-width: var(--content-width);
+  }
+
+  /* --- Accordion header --- */
+  .gallery-section {
+    margin-bottom: 8px;
+  }
+  .gallery-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+  }
+  .gallery-header:hover {
+    background: rgba(201, 168, 76, 0.08);
+  }
+  .gallery-header-text {
+    flex: 1;
+  }
+  .gallery-title {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--color-gold);
+    margin: 0;
+  }
+  .gallery-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+    margin: 0;
+  }
+  .gallery-count {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+    background: rgba(201, 168, 76, 0.15);
+    border-radius: 999px;
+    padding: 2px 10px;
+    flex-shrink: 0;
+  }
+  .gallery-chevron {
+    font-size: 1.4rem;
+    color: var(--color-gold);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .gallery-header[aria-expanded='true'] .gallery-chevron {
+    transform: rotate(90deg);
+  }
+
+  /* --- Accordion body --- */
+  .gallery-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+    overflow: hidden;
+  }
+  .gallery-body > * {
+    overflow: hidden;
+  }
+  .gallery-header[aria-expanded='true'] + .gallery-body {
+    grid-template-rows: 1fr;
+    padding: 16px 0 24px;
+  }
+
+  /* --- Desktop: grid view --- */
+  .gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+  .gallery-item {
+    margin: 0;
+    flex: 0 1 220px;
+    cursor: zoom-in;
+  }
+  .gallery-item img {
+    border-radius: var(--radius);
+    width: 100%;
+    transition: opacity 0.2s ease;
+  }
+  .gallery-item:hover img {
+    opacity: 0.85;
+  }
+
+  /* --- Mobile: slider --- */
+  .gallery-slider {
+    display: none;
+  }
+
+  /* --- Lightbox --- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: var(--radius);
+    object-fit: contain;
+  }
+
+  /* --- Mobile overrides --- */
+  @media (max-width: 768px) {
+    .gallery-grid {
+      display: none;
+    }
+    .gallery-slider {
+      display: block;
+    }
+    .slider-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      gap: 12px;
+    }
+    .slider-track::-webkit-scrollbar {
+      display: none;
+    }
+    .slider-slide {
+      margin: 0;
+      flex: 0 0 80%;
+      scroll-snap-align: center;
+    }
+    .slider-slide img {
+      border-radius: var(--radius);
+      width: 100%;
+    }
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid var(--color-gold);
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .slider-dot.is-active {
+      background: var(--color-gold);
+    }
+    .gallery-item {
+      cursor: default;
+    }
+    .gallery-item:hover img {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Accordion
+    document.querySelectorAll('.gallery-header').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      });
+    });
+
+    // Mobile slider dots
+    document.querySelectorAll('.slider-track').forEach((track) => {
+      const dots = track.parentElement.querySelectorAll('.slider-dot');
+      if (!dots.length) return;
+      const slides = track.querySelectorAll('.slider-slide');
+
+      track.addEventListener('scroll', () => {
+        const scrollLeft = track.scrollLeft;
+        const slideWidth = slides[0].offsetWidth + 12;
+        const index = Math.round(scrollLeft / slideWidth);
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+      });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          const slideWidth = slides[0].offsetWidth + 12;
+          track.scrollTo({ left: i * slideWidth, behavior: 'smooth' });
+        });
+      });
+    });
+
+    // Lightbox (desktop only)
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    if (!lightbox || !lightboxImg) return;
+
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    document.querySelectorAll('.gallery-item').forEach((el) => {
+      const img = el.querySelector('img');
+      if (!img) return;
+      function open() {
+        if (isMobile()) return;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+      el.addEventListener('click', open);
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
+</script>

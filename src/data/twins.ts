@@ -7,6 +7,15 @@ export interface Twin {
 
 export const twins: Twin[] = [
   {
+    card: 'Aleister Crowley',
+    person: { it: 'Aleister Crowley', en: 'Aleister Crowley' },
+    image: '/images/gemelli/aleister-crowley.webp',
+    description: {
+      it: 'Il Malkavian della Camarilla è il ritratto sputato del vero occultista inglese. Stessa testa rasata, stesso sguardo inquietante.',
+      en: 'The Camarilla Malkavian is the spitting image of the real English occultist. Same shaved head, same unsettling gaze.',
+    },
+  },
+  {
     card: 'Maila',
     person: { it: 'Maila Nurmi', en: 'Maila Nurmi' },
     image: '/images/gemelli/maila-nurmi.webp',

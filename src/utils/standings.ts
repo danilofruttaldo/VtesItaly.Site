@@ -13,7 +13,7 @@ export interface Standing {
 
 /** Extracts archive card metadata (winner, player count) from a post's standings data. */
 export function getCardMeta(
-  post: any,
+  post: { data: { events?: { date: Date }[]; standingsUrl?: string } },
   allStandings: Record<string, { default: Standing[] }>,
   locale: Locale = 'it',
 ): { eventDate: string; winner: string; players: number } {

@@ -141,7 +141,7 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
     var saved = null;
     try {
       saved = localStorage.getItem(STORAGE_KEY);
-    } catch (_) {
+    } catch {
       /* storage unavailable */
     }
 
@@ -174,7 +174,7 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
       var lang = btn.dataset.lang;
       try {
         localStorage.setItem(STORAGE_KEY, lang);
-      } catch (_) {
+      } catch {
         /* storage unavailable */
       }
       overlay.classList.remove('is-open');

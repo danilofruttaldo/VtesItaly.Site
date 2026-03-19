@@ -102,7 +102,7 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
           if (saved && (saved === 'it' || saved === 'en') && saved !== currentLocale) {
             location.replace(altUrl);
           }
-        } catch (_) {
+        } catch {
           /* storage unavailable */
         }
       })();

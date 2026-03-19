@@ -587,7 +587,7 @@ function isCurrent(href: string): boolean {
         var targetLang = href.match(/^\/en(\/|$)/) ? 'en' : 'it';
         try {
           localStorage.setItem(STORAGE_KEY, targetLang);
-        } catch (_) {
+        } catch {
           /* storage unavailable */
         }
       });

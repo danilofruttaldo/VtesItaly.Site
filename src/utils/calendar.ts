@@ -126,7 +126,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           venue: stage.venue,
           location: stage.location,
           format: composeFormat(stage.format, stage.proxies, stage.rounds, locale),
-          image: (stage as any).image || image,
+          image: stage.image || image,
           archonUrl: stage.archonUrl,
         });
       }

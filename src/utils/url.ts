@@ -12,9 +12,19 @@ export function getEnPostUrl(post: { id: string; data: { category: string } }): 
 }
 
 /** Returns the best card image for a post, checking tour stage images for a specific city. */
-export function getCardImage(post: any, citySlug: string): { src: string | undefined; isPoster: boolean } {
-  if (post.data.category === 'tour' && post.data.stages?.length > 0) {
-    const stage = post.data.stages.find((s: any) => s.cities?.includes(citySlug));
+export function getCardImage(
+  post: {
+    data: {
+      category: string;
+      poster?: string;
+      featuredImage?: string;
+      stages?: { cities?: string[]; image?: string }[];
+    };
+  },
+  citySlug: string,
+): { src: string | undefined; isPoster: boolean } {
+  if (post.data.category === 'tour' && post.data.stages?.length) {
+    const stage = post.data.stages.find((s) => s.cities?.includes(citySlug));
     if (stage?.image) return { src: stage.image, isPoster: false };
   }
   return { src: post.data.poster || post.data.featuredImage, isPoster: !!post.data.poster };

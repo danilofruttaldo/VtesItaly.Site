@@ -607,7 +607,6 @@
     "format": "Standard",
     "proxies": true,
     "rounds": 2,
-    "rounds": 2,
     "archonUrl": "https://archon.vekn.net/tournament/51f45b7d-7871-4c66-ade0-bec4de1cca60/display.html",
     "image": "/images/headers/header-barga.webp"
   }

@@ -111,7 +111,7 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
   <body>
     <a href="#main-content" class="sr-only">{t.skip_to_content}</a>
     <Header />
-    <main id="main-content">
+    <main id="main-content" data-pagefind-body>
       <slot />
     </main>
     <Footer />

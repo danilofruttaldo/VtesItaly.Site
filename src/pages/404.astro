@@ -2,47 +2,47 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="404">
+<Base title="404" noindex>
   <section class="not-found">
     <div class="container">
       <h1>404</h1>
-      <p class="subtitle" data-it="Pagina non trovata." data-en="Page not found.">Pagina non trovata.</p>
-      <p
-        class="hint"
-        data-it="Il vampiro che cercavi si è nascosto nell'ombra..."
-        data-en="The vampire you were looking for has hidden in the shadows..."
-      >
-        Il vampiro che cercavi si è nascosto nell'ombra...
-      </p>
-      <nav class="not-found__links">
-        <a href="/" class="btn" data-en-href="/en/">Home</a>
-        <a
-          href="/comunita/"
-          class="btn btn--outline"
-          data-en-href="/en/community/"
-          data-it="Comunità"
-          data-en="Community">Comunità</a
-        >
-        <a
-          href="/principati/"
-          class="btn btn--outline"
-          data-en-href="/en/domains/"
-          data-it="Principati"
-          data-en="Domains">Principati</a
-        >
+      <p class="subtitle" id="nf-subtitle">Pagina non trovata.</p>
+      <p class="hint" id="nf-hint">Il vampiro che cercavi si è nascosto nell'ombra...</p>
+      <nav class="not-found__links" id="nf-links">
+        <a href="/" class="btn">Home</a>
+        <a href="/comunita/" class="btn btn--outline" id="nf-community">Comunità</a>
+        <a href="/principati/" class="btn btn--outline" id="nf-domains">Principati</a>
       </nav>
     </div>
   </section>
 </Base>
-<script>
-  if (window.location.pathname.startsWith('/en/') || window.location.pathname === '/en') {
-    document.querySelectorAll('[data-en]').forEach((el) => {
-      el.textContent = el.getAttribute('data-en')!;
-    });
-    document.querySelectorAll('[data-en-href]').forEach((el) => {
-      (el as HTMLAnchorElement).href = el.getAttribute('data-en-href')!;
-    });
-  }
+<script is:inline>
+  (function () {
+    var isEn = window.location.pathname.startsWith('/en/') || window.location.pathname === '/en';
+    if (!isEn) {
+      try {
+        isEn = localStorage.getItem('vtesitaly-lang') === 'en';
+      } catch {
+        /* storage unavailable */
+      }
+    }
+    if (isEn) {
+      document.getElementById('nf-subtitle').textContent = 'Page not found.';
+      document.getElementById('nf-hint').textContent = 'The vampire you were looking for has hidden in the shadows...';
+      var home = document.querySelector('#nf-links .btn');
+      if (home) home.href = '/en/';
+      var comm = document.getElementById('nf-community');
+      if (comm) {
+        comm.href = '/en/community/';
+        comm.textContent = 'Community';
+      }
+      var dom = document.getElementById('nf-domains');
+      if (dom) {
+        dom.href = '/en/domains/';
+        dom.textContent = 'Domains';
+      }
+    }
+  })();
 </script>
 <style>
   .not-found {

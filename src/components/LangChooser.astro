@@ -155,10 +155,9 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    // Focus dialog (not a specific button, so nothing looks pre-selected)
-    var dialog = overlay.querySelector('.lang-chooser');
-    if (dialog) dialog.focus();
     var buttons = overlay.querySelectorAll('.lang-chooser__btn');
+    // Focus first interactive button for keyboard/screen-reader users
+    if (buttons.length) buttons[0].focus();
 
     // Focus trap between the two buttons
     overlay.addEventListener('keydown', function (e) {

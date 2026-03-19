@@ -113,6 +113,35 @@ const pageMeta =
       },
     }}
   />
+  {
+    isEventPage && (
+      <JsonLd
+        slot="head"
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Event',
+          name: post.data.title,
+          startDate: post.data.date.toISOString(),
+          description: post.data.excerpt || post.data.title,
+          ...(post.data.venue
+            ? {
+                location: {
+                  '@type': 'Place',
+                  name: post.data.venue.name,
+                  ...(post.data.venue.address ? { address: post.data.venue.address } : {}),
+                },
+              }
+            : {}),
+          ...(post.data.poster || post.data.featuredImage
+            ? { image: new URL((post.data.poster || post.data.featuredImage)!, Astro.site).href }
+            : {}),
+          organizer: { '@type': 'Organization', name: 'VTES Italy', url: Astro.site?.href },
+          eventStatus: 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        }}
+      />
+    )
+  }
 
   {/* PageHero for tour, GP/NC and community events (with principato header) */}
   {

@@ -70,17 +70,17 @@ export function composeFormat(
   locale: Locale,
 ): string | undefined {
   if (!format) return 'TBD';
-  if (!KNOWN_FORMATS.includes(format)) return 'Speciale';
+  if (!KNOWN_FORMATS.includes(format)) return locale === 'en' ? 'Special' : 'Speciale';
   if (format === 'TBD') return 'TBD';
   let s = format;
   if (proxies !== undefined) {
     s += proxies
       ? locale === 'en'
         ? ', Proxies Allowed'
-        : ', Proxies Allowed'
+        : ', Proxy Ammessi'
       : locale === 'en'
         ? ', No Proxies'
-        : ', No Proxies';
+        : ', No Proxy';
   }
   if (rounds) {
     s += locale === 'en' ? ` — ${rounds} Round${rounds > 1 ? 's' : ''} + Final` : ` — ${rounds} Round + Finale`;

@@ -1,5 +1,5 @@
 ---
-import { getLocaleFromUrl, useTranslations, getAlternateUrl, getOtherLocales } from '../utils/i18n';
+import { getLocaleFromUrl, useTranslations, getAlternateUrl, getOtherLocales, type Locale } from '../utils/i18n';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
@@ -95,7 +95,7 @@ function isCurrent(href: string): boolean {
         {
           Object.entries(langLabels).map(([loc, label]) => (
             <a
-              href={loc === locale ? '#' : getAlternateUrl(Astro.url, loc as any)}
+              href={loc === locale ? '#' : getAlternateUrl(Astro.url, loc as Locale)}
               class={`lang-dropdown__item ${loc === locale ? 'is-current' : ''}`}
             >
               <Fragment set:html={flags[loc]} /> {label}

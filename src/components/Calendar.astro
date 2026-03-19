@@ -151,12 +151,7 @@ const currentMonth = now.getMonth();
       h += '<button class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
 
       if (ev.image) {
-        h +=
-          '<div class="cal__popup-img" role="img" aria-label="' +
-          esc(ev.title) +
-          '" style="background-image:url(' +
-          esc(ev.image) +
-          ')"></div>';
+        h += '<img class="cal__popup-img" src="' + esc(ev.image) + '" alt="' + esc(ev.title) + '" loading="lazy" />';
       }
 
       h += '<div class="cal__popup-body">';
@@ -700,10 +695,11 @@ const currentMonth = now.getMonth();
   }
 
   .cal__popup-img {
+    display: block;
     width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center top;
+    max-height: 420px;
+    object-fit: contain;
+    background: var(--color-surface-alt, #1a1a1a);
   }
 
   .cal__popup-body {

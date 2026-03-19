@@ -7,6 +7,7 @@ import { useTranslations } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 import { composeFormat } from '../utils/calendar';
+import { formatLocalDate } from '../utils/i18n';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -126,20 +127,69 @@ function fmt(n: number): string {
 {/* Info block */}
 <div class="le-info">
   {
-    post.data.events.length > 0 && (
+    post.data.venue && (
       <div class="le-row">
-        <span class="le-label">{t.league.period_label}</span>
-        <span class="le-value">{post.data.events[0].period ?? post.data.events[0].date}</span>
+        <span class="le-label">{t.gp.venue_label}</span>
+        <span class="le-value">
+          <>
+            <strong>
+              {post.data.venue.siteUrl ? (
+                <a href={post.data.venue.siteUrl} target="_blank" rel="noopener noreferrer">
+                  {post.data.venue.name}
+                </a>
+              ) : (
+                post.data.venue.name
+              )}
+            </strong>
+            <br />
+          </>
+          {post.data.venue.mapUrl ? (
+            <a href={post.data.venue.mapUrl} target="_blank" rel="noopener noreferrer">
+              {post.data.venue.address}
+            </a>
+          ) : (
+            post.data.venue.address
+          )}
+        </span>
       </div>
     )
   }
   {
     post.data.events.length > 0 && (
       <div class="le-row">
-        <span class="le-label">{t.league.format_label}</span>
-        <span class="le-value">
-          {composeFormat(post.data.events[0].format, post.data.events[0].proxies, post.data.events[0].rounds, locale)}
-        </span>
+        <span class="le-label">{t.gp.program_label}</span>
+        <div class="le-value">
+          {post.data.events.map((ev) => (
+            <div class="le-event">
+              <strong>{ev.name}</strong>
+              <br />
+              {ev.period ? (
+                ev.period
+              ) : (
+                <>
+                  {formatLocalDate(new Date(ev.date), locale, { weekday: 'long', day: 'numeric', month: 'long' })} —{' '}
+                  {t.gp.time_prefix} {ev.time}
+                </>
+              )}
+              <br />
+              <span class="le-muted">{composeFormat(ev.format, ev.proxies, ev.rounds, locale)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    post.data.schedule.length > 0 && (
+      <div class="le-row">
+        <span class="le-label">{t.gp.schedule_label}</span>
+        <div class="le-value">
+          {post.data.schedule.map((s) => (
+            <div>
+              {s.label}: <strong>{s.time}</strong>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
@@ -153,6 +203,50 @@ function fmt(n: number): string {
               {p.label}: <strong>{p.regular}</strong>
             </div>
           ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    post.data.payment && (
+      <div class="le-row">
+        <span class="le-label">{t.gp.payment_label}</span>
+        <span class="le-value">{post.data.payment}</span>
+      </div>
+    )
+  }
+  {
+    (post.data.registration || post.data.events.some((ev) => ev.archonUrl)) && (
+      <div class="le-row">
+        <span class="le-label">{t.gp.registration_label}</span>
+        <div class="le-value">
+          {post.data.registration}
+          {post.data.events.some((ev) => ev.archonUrl) && (
+            <div class="le-archon-links">
+              {post.data.events
+                .filter((ev) => ev.archonUrl)
+                .map((ev) => {
+                  const platform = resolvePlatformLabel(ev.archonUrl!);
+                  return (
+                    <a href={ev.archonUrl} target="_blank" rel="noopener noreferrer" class="le-link-btn">
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                      {`${ev.name} — ${platform}`}
+                    </a>
+                  );
+                })}
+            </div>
+          )}
         </div>
       </div>
     )
@@ -458,6 +552,22 @@ function fmt(n: number): string {
   .le-value a:hover {
     color: var(--color-accent-2);
     text-decoration: underline;
+  }
+  .le-muted {
+    color: var(--color-muted);
+    font-size: var(--font-size-2xs);
+  }
+  .le-event {
+    margin-bottom: 8px;
+  }
+  .le-event:last-child {
+    margin-bottom: 0;
+  }
+  .le-archon-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
   }
   .le-prizes-list {
     list-style: disc;

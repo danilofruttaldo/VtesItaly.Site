@@ -10,6 +10,7 @@ poster: '/gp/gp-2024/gp-2024-poster.webp'
 venue:
   name: 'Wipeout'
   address: 'Via Castelletto 45, Paderno Dugnano (MI)'
+  siteUrl: 'https://www.wipeoutpubs.com/'
   mapUrl: 'https://maps.google.com/?q=Wipeout+via+Castelletto+45+Paderno+Dugnano+MI'
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2024'
@@ -32,6 +33,8 @@ pricing:
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
+hotel: []
+prizes: ''
 standingsUrl: '/gp/gp-2024/standings-gp-2024.json'
 links: []
 gallerySections:

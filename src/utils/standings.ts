@@ -30,6 +30,5 @@ export function getCardMeta(
       if (first) winner = anonymizeName(first.name);
     }
   }
-  if (!players && post.data.playersCount) players = post.data.playersCount;
   return { eventDate, winner, players };
 }

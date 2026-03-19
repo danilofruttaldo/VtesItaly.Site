@@ -5,6 +5,7 @@ category: 'nazionale'
 tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: 'Il Campionato Nazionale Italiano VTES 2023 si terrà il 30 aprile a Bologna.'
+poster: ''
 gallerySections:
   - title: 'Preparazione'
     images:
@@ -21,6 +22,7 @@ gallerySections:
 venue:
   name: 'The Sydney Hotel'
   address: 'Via Michelino, 74 — Bologna'
+  siteUrl: 'https://www.thesydneyhotel.eu/'
   mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+74+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Championship 2023'
@@ -37,6 +39,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/bd602ddb-86fc-4a9d-8669-b2fedbaddebc/display.html'
+pricing: []
 standingsUrl: '/nc/nc-2023/standings-nc-2023.json'
 links:
   - label: 'Infopack (PDF)'
@@ -48,6 +51,8 @@ links:
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+hotel: []
+prizes: ''
 locale: it
 ---
 

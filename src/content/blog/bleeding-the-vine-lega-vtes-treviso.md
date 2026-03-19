@@ -12,7 +12,6 @@ events:
     period: 'Aprile – Luglio 2025'
     time: 'serale'
     format: 'Lega non sanzionata — partite settimanali + finale'
-playersCount: 8
 leagueStats:
   players: 8
   games: 18

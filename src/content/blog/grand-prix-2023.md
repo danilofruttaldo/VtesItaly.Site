@@ -9,6 +9,7 @@ poster: '/gp/gp-2023/gp-2023-poster.webp'
 venue:
   name: 'UNA Hotel Fiera'
   address: 'Piazza della Costituzione 1, Bologna'
+  siteUrl: 'https://www.unaitalianhospitality.com/it/soggiorni/una-hotels-bologna-fiera'
   mapUrl: 'https://maps.google.com/?q=UNA+Hotel+Fiera+Piazza+della+Costituzione+1+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2023'
@@ -24,6 +25,8 @@ pricing:
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
+hotel: []
+prizes: ''
 standingsUrl: '/gp/gp-2023/standings-gp-2023.json'
 links: []
 locale: it

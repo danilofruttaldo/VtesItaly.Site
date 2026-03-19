@@ -9,7 +9,8 @@ poster: '/gp/gp-2026/gp-2026-poster.webp'
 venue:
   name: 'Hotel Airport Bologna ****'
   address: 'Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)'
-  mapUrl: 'https://maps.app.goo.gl/YDqFGMkVhBBnJwbx7'
+  siteUrl: 'http://www.airporthotelbologna.it/'
+  mapUrl: 'https://maps.google.com/?q=Hotel+Airport+Bologna+Via+Marco+Emilio+Lepido+203+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2026'
     date: 2026-05-02
@@ -45,6 +46,7 @@ prizes:
   - 'Ranking prizes'
   - 'Raffle prizes'
   - 'More to be announced'
+standingsUrl: ''
 registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 notes:

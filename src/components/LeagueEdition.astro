@@ -18,7 +18,7 @@ const { post, locale = 'it' } = Astro.props;
 const t = useTranslations(locale);
 const { Content } = await render(post);
 
-// Links (same pattern as GpEdition)
+// Links (same pattern as EventEdition)
 const links = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === locale)
   .map((l) => ({
@@ -26,7 +26,7 @@ const links = (post.data.links ?? [])
     label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
   }));
 
-// Gallery (same pattern as GpEdition)
+// Gallery (same pattern as EventEdition)
 let galleryImages: string[] = post.data.gallery || [];
 if (post.data.galleryFolder && galleryImages.length === 0) {
   const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');

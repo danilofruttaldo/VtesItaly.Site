@@ -21,7 +21,6 @@ events:
 registration: 'Pre-registration and decklist required'
 contact: 'parmeggiani.simone@gmail.com'
 standingsUrl: '/ev/complearum-2025/standings-complearum-2025.json'
-playersCount: 25
 locale: 'en'
 ---
 

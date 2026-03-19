@@ -44,7 +44,6 @@ registration: 'Preiscrizione e decklist obbligatorie'
 payment: 'PayPal (amici e familiari): adonati1982@gmail.com'
 contact: 'adonati1982@gmail.com'
 standingsUrl: '/ev/symposium-italicum-2025/standings-symposium-italicum-2025.json'
-playersCount: 42
 notes:
   - 'Parcheggio, Wi-Fi e piscina gratuiti per tutti i partecipanti e accompagnatori'
   - 'BAR disponibile in loco (NO POS)'

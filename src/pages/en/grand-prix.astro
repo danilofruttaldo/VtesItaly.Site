@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
-import GpEdition from '../../components/GpEdition.astro';
+import EventEdition from '../../components/EventEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
@@ -52,7 +52,7 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
               {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
             </span>
           </div>
-          <GpEdition post={current} locale="en" />
+          <EventEdition post={current} locale="en" />
         </div>
       </section>
     )

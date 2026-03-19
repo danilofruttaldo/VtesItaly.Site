@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import TourEdition from '../../components/TourEdition.astro';
-import GpEdition from '../../components/GpEdition.astro';
+import EventEdition from '../../components/EventEdition.astro';
 import LeagueEdition from '../../components/LeagueEdition.astro';
 import PageHero from '../../components/PageHero.astro';
 import WosStandings from '../../components/WosStandings.astro';
@@ -212,7 +212,7 @@ const pageMeta =
         ) : isLeague ? (
           <LeagueEdition post={post} locale="en" />
         ) : isEventPage ? (
-          <GpEdition post={post} locale="en" showExcerpt={isCommunityEvent} />
+          <EventEdition post={post} locale="en" showExcerpt={isCommunityEvent} />
         ) : (
           <>
             <div class="post__content prose">

@@ -26,10 +26,13 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/b581393a-0a1c-490e-9d32-3c26efdf3d14/display.html'
+pricing: []
 standingsUrl: '/nc/nc-2024/standings-nc-2024.json'
 registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (friends and family) — vtesitaly@gmail.com'
+hotel: []
+prizes: ''
 locale: en
 ---
 

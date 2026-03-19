@@ -22,7 +22,6 @@ events:
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'asgard.aldeno@gmail.com'
 standingsUrl: '/ev/concilio-pergine-2025/standings-concilio-pergine-2025.json'
-playersCount: 39
 locale: it
 ---
 

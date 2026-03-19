@@ -20,6 +20,7 @@ gallerySections:
 venue:
   name: 'Circolo Barbanera'
   address: 'Via Ranzani 13/2 — Bologna'
+  siteUrl: 'https://www.facebook.com/circolobarbanera/'
   mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Via+Ranzani+13+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Championship 2022'
@@ -29,11 +30,13 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/3c3e0baa-a2c3-4fad-b521-e2a548ce1506/display.html'
+pricing: []
 standingsUrl: '/nc/nc-2022/standings-nc-2022.json'
-playersCount: 40
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+hotel: []
+prizes: ''
 locale: it
 ---
 

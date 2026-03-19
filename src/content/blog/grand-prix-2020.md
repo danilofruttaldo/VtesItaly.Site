@@ -4,10 +4,12 @@ date: 2019-11-23
 category: 'grand-prix'
 tags: ['italia', 'bologna']
 excerpt: 'Il Grand Prix Italiano 2020 si terrà sabato 23 novembre 2019 presso il Circolo Arci Benassi a Bologna.'
+poster: ''
 featuredImage: '/images/headers/header-grand-prix.webp'
 venue:
   name: 'Circolo Arci Benassi'
   address: 'Viale Sergio Cavina 4 — Bologna'
+  siteUrl: 'https://circolobenassi.wixsite.com/arci-benassi'
   mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Benassi+Viale+Sergio+Cavina+4+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2020'
@@ -24,9 +26,13 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/33f87555-479e-4e03-a6bd-f26e62e6fb82/display.html'
+pricing: []
 standingsUrl: '/gp/gp-2020/standings-gp-2020.json'
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
+payment: ''
+hotel: []
+prizes: ''
 locale: it
 ---
 

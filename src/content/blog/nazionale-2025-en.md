@@ -36,6 +36,7 @@ gallerySections:
 venue:
   name: 'Tenuta Gelindo dei Magredi'
   address: 'Via Roma, 14, 33099 Vivaro (PN)'
+  siteUrl: 'https://www.gelindo.it'
   mapUrl: 'https://maps.google.com/?q=Gelindo+dei+Magredi+Via+Roma+14+Vivaro+PN'
 events:
   - name: 'MAIN EVENT: Italian Championship 2025'

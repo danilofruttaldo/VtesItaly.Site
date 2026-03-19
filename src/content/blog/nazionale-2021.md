@@ -9,6 +9,7 @@ poster: '/nc/nc-2021/nc-2021-poster.webp'
 venue:
   name: 'Circolo Arci Benassi'
   address: 'Viale Sergio Cavina 4 — Bologna'
+  siteUrl: 'https://circolobenassi.wixsite.com/arci-benassi'
   mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Benassi+Viale+Sergio+Cavina+4+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Championship 2021'
@@ -18,9 +19,12 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/44b90860-7e1d-4755-b33b-a3056f71bb37/display.html'
+pricing: []
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+hotel: []
+prizes: ''
 standingsUrl: '/nc/nc-2021/standings-nc-2021.json'
 locale: it
 ---

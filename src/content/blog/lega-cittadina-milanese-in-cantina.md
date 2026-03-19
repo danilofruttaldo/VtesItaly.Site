@@ -42,7 +42,6 @@ schedule:
     label: 'Round 2'
   - time: '20:00/20:30'
     label: 'Apericena + Finale'
-playersCount: 15
 pricing:
   - label: 'Iscrizione'
     regular: '5 € a giornata'
@@ -55,7 +54,7 @@ prizes:
 venue:
   name: 'Cantina e Coscienza'
   address: 'Via f.lli Picardi 126, Sesto San Giovanni (MI)'
-  mapUrl: 'https://maps.app.goo.gl/tdq1Pj82GeagM4Tu6'
+  mapUrl: 'https://maps.google.com/?q=Cantina+e+Coscienza+Via+Picardi+126+Sesto+San+Giovanni+MI'
   siteUrl: 'https://www.cantinaecoscienza.it/'
 registration: 'Preiscrizione e decklist obbligatorie — max 15 posti a giornata'
 payment: 'PayPal (amici e parenti) — henry.hinde1973@gmail.com'

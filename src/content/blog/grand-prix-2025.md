@@ -9,7 +9,8 @@ poster: '/gp/gp-2025/gp-2025-poster.webp'
 venue:
   name: 'Hotel Baia del Re ****'
   address: 'Str. Vignolese, 1684, 41126 Modena (MO)'
-  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hotel+Baia+del+Re+Str.+Vignolese+1684+Modena'
+  siteUrl: 'https://www.hotelbaiadelre.com/'
+  mapUrl: 'https://maps.google.com/?q=Hotel+Baia+del+Re+Str.+Vignolese+1684+Modena'
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2025'
     date: 2025-03-01

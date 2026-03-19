@@ -12,7 +12,6 @@ events:
     period: 'April – July 2025'
     time: 'evening'
     format: 'Unsanctioned league — weekly games + final'
-playersCount: 8
 leagueStats:
   players: 8
   games: 18

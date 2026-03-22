@@ -34,7 +34,7 @@ pricing:
     early: '35.00 euro'
     regular: '40.00 euro'
 earlyDeadline: 'April 10'
-payment: 'PayPal (friends and family) — vtesitaly@gmail.com'
+payment: 'PayPal (friends and family) — info@vtesitaly.com'
 hotel:
   - room: 'Double room single use + breakfast'
     price: '78.00 euro'

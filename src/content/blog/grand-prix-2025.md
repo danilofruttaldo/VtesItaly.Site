@@ -31,7 +31,7 @@ pricing:
     regular: '60,00 euro'
   - label: 'Side Event + pranzo'
     regular: '35,00 euro'
-payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+payment: 'PayPal (amici e parenti) — info@vtesitaly.com'
 hotel:
   - room: 'Hotel Baia del Re **** (sede evento)'
     price: 'convenzione codice VTES25'

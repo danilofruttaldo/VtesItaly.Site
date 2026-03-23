@@ -77,7 +77,7 @@ export function composeFormat(
     s += proxies
       ? locale === 'en'
         ? ', Proxies Allowed'
-        : ', Proxy Ammessi'
+        : ', Proxy Ammesse'
       : locale === 'en'
         ? ', No Proxies'
         : ', No Proxy';

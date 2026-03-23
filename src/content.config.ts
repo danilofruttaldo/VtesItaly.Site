@@ -172,6 +172,7 @@ const comunitaSchema = z.object({
   contact: z.string().optional(),
   streamingUrl: z.string().optional(),
   standingsUrl: z.string().optional(),
+  standingsLabel: z.string().optional(),
   // league fields
   leagueStats: z.object({ players: z.number(), games: z.number(), tables: z.number() }).optional(),
   leagueTopLists: z

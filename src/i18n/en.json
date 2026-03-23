@@ -234,7 +234,7 @@
   },
   "league": {
     "players": "registered players",
-    "games": "games played",
+    "games": "game days played",
     "tables": "tables played",
     "period_label": "Period",
     "format_label": "Format",

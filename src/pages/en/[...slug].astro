@@ -184,7 +184,7 @@ const pageMeta =
             )
           }
           {
-            isEventPage && gpStatus && (
+            isEventPage && !isLeague && gpStatus && (
               <span
                 class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
               >

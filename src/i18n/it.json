@@ -228,7 +228,7 @@
   },
   "league": {
     "players": "giocatori iscritti",
-    "games": "partite giocate",
+    "games": "giornate giocate",
     "tables": "tavoli disputati",
     "period_label": "Periodo",
     "format_label": "Formato",

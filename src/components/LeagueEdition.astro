@@ -62,6 +62,7 @@ if (post.data.standingsUrl) {
   if (key && Array.isArray(allData[key].default)) standings = allData[key].default as LeagueStanding[];
 }
 const hasFp = standings.some((s) => s.fp != null);
+const hasPp = standings.some((s) => s.pp !== 0);
 function fmt(n: number): string {
   return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
 }
@@ -342,10 +343,10 @@ function fmt(n: number): string {
 {
   standings.length > 0 && (
     <section class="le-standings">
-      <h2 class="le-section-title">{t.league.standings_label}</h2>
+      <h2 class="le-section-title">{post.data.standingsLabel ?? t.league.standings_label}</h2>
       <div class="le-standings-wrap">
         <table class="le-standings-table">
-          <caption class="sr-only">{t.league.standings_label}</caption>
+          <caption class="sr-only">{post.data.standingsLabel ?? t.league.standings_label}</caption>
           <thead>
             <tr>
               <th class="tc">#</th>
@@ -354,7 +355,7 @@ function fmt(n: number): string {
               <th class="tc">LP</th>
               <th class="tc">GW</th>
               <th class="tc">VP</th>
-              <th class="tc">PP</th>
+              {hasPp && <th class="tc">PP</th>}
               <th class="tc">BP</th>
               <th class="tc">G</th>
             </tr>
@@ -373,7 +374,7 @@ function fmt(n: number): string {
                 <td class="tc">{fmt(s.lp)}</td>
                 <td class="tc">{s.gw}</td>
                 <td class="tc">{fmt(s.vp)}</td>
-                <td class="tc">{fmt(s.pp)}</td>
+                {hasPp && <td class="tc">{fmt(s.pp)}</td>}
                 <td class="tc">{s.bp}</td>
                 <td class="tc">{s.games}</td>
               </tr>

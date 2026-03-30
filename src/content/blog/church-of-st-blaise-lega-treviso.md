@@ -33,6 +33,8 @@ leagueRules:
 leagueBonusPoints:
   - name: 'Aura of Invincibility'
     description: 'Far passare una propria votazione con uno scarto di almeno 10 voti.'
+  - name: 'Bait and Switch'
+    description: 'Avere un bleed che faccia almeno 1 giro del tavolo.'
   - name: 'Car Bomb'
     description: 'Venire oustato mentre si controlla The Coven.'
   - name: 'Foreshadowing Destruction'

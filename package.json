@@ -14,16 +14,15 @@
     "clean": "rimraf dist .astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^6.0.5",
-    "sharp": "^0.34.5",
-    "typescript": "^5.9.3"
+    "sharp": "^0.34.5"
   },
   "overrides": {
     "h3": "^1.15.10"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.8",
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@typescript-eslint/parser": "^8.57.1",
@@ -32,6 +31,7 @@
     "eslint-plugin-astro": "^1.6.0",
     "pagefind": "^1.4.0",
     "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }

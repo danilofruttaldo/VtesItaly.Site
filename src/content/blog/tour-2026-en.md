@@ -54,10 +54,14 @@ stages:
     number: 3
     date: 2026-04-12
     cities: ['pordenone', 'treviso']
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
-    image: '/tour/tour-2026/tour-2026-000.webp'
+    venue: 'Safarà'
+    location: 'Via Piave 26, Pordenone (PN)'
+    image: '/tour/tour-2026/tour-2026-003.webp'
+    archonUrl: 'https://archon.vekn.net/tournament/af4edabc-8cba-4727-8beb-87d37a77ce35/display.html'
     description: "Wrath doesn't plan: it explodes. Quick decisions, direct clashes, tables on fire. Only those who can channel their fury survive."
 
   - name: 'LUST'

@@ -122,5 +122,56 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
         navigator.serviceWorker.register('/sw.js');
       }
     </script>
+    <script is:inline>
+      (function () {
+        var now = new Date();
+        var todayStr = now.toDateString();
+
+        function computeEvent(dateStr) {
+          var d = new Date(dateStr + 'T00:00:00');
+          if (d.toDateString() === todayStr) return 'live';
+          return d > now ? 'upcoming' : 'past';
+        }
+
+        function computeTour(stages) {
+          var active = stages.filter(function (s) { return !s.cancelled; });
+          if (active.length === 0) return null;
+          var today = new Date();
+          today.setHours(0, 0, 0, 0);
+          var statuses = active.map(function (s) {
+            var d = new Date(s.date + 'T00:00:00');
+            d.setHours(0, 0, 0, 0);
+            return d < today ? 'completed' : 'future';
+          });
+          if (statuses.every(function (s) { return s === 'completed'; })) return 'past';
+          if (statuses.every(function (s) { return s === 'future'; })) return 'upcoming';
+          return 'live';
+        }
+
+        function applyStatus(el, status) {
+          if (!status) { el.style.display = 'none'; return; }
+          el.textContent = el.getAttribute('data-label-' + status) || status;
+          if (el.classList.contains('post__status')) {
+            el.classList.remove('post__status--active', 'post__status--finished');
+            el.classList.add(status === 'past' ? 'post__status--finished' : 'post__status--active');
+          }
+        }
+
+        // Single-date events
+        document.querySelectorAll('[data-event-date]').forEach(function (el) {
+          applyStatus(el, computeEvent(el.getAttribute('data-event-date')));
+        });
+
+        // Tour (multi-stage)
+        document.querySelectorAll('[data-tour-stages]').forEach(function (el) {
+          var stages = JSON.parse(el.getAttribute('data-tour-stages') || '[]');
+          applyStatus(el, computeTour(stages));
+        });
+
+        // Footer copyright year
+        var copy = document.querySelector('.footer-bottom p');
+        if (copy) copy.innerHTML = copy.innerHTML.replace(/–\d{4}/, '–' + now.getFullYear());
+      })();
+    </script>
   </body>
 </html>

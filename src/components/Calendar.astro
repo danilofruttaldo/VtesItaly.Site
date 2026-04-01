@@ -9,10 +9,6 @@ const t = useTranslations(locale);
 const allPosts = await getCollection('blog');
 const posts = filterByLocale(allPosts, locale);
 const allEvents = extractCalendarEvents(posts, locale);
-
-const now = new Date();
-const currentYear = now.getFullYear();
-const currentMonth = now.getMonth();
 ---
 
 <div
@@ -31,15 +27,13 @@ const currentMonth = now.getMonth();
     local: t.calendar.cat_local,
     altro: t.calendar.legend_other,
   })}
-  data-initial-year={currentYear}
-  data-initial-month={currentMonth}
   data-server-events={JSON.stringify(allEvents)}
 >
   {/* Navigation */}
   <div class="cal__nav">
     <button class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
     <button class="cal__month-title" aria-haspopup="dialog" aria-expanded="false"
-      >{t.months_array[currentMonth]} {currentYear}</button
+      ></button
     >
     <button class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
     <button class="cal__today-btn">{t.calendar.today}</button>
@@ -106,8 +100,9 @@ const currentMonth = now.getMonth();
     var catLabels = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
 
     var events = JSON.parse(cal.getAttribute('data-server-events') || '[]');
-    var displayYear = parseInt(cal.getAttribute('data-initial-year'));
-    var displayMonth = parseInt(cal.getAttribute('data-initial-month'));
+    var now = new Date();
+    var displayYear = now.getFullYear();
+    var displayMonth = now.getMonth();
 
     var body = document.getElementById('cal-body');
     var titleEl = cal.querySelector('.cal__month-title');

@@ -48,7 +48,7 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
         <div class="container">
           <div class="edition-header">
             <h2 class="edition-title">{current.data.title}</h2>
-            <span class="edition-label-tag">
+            <span class="edition-label-tag" data-event-date={current.data.date instanceof Date ? current.data.date.toISOString().slice(0, 10) : current.data.date} data-label-live={t.status.live} data-label-upcoming={t.status.upcoming} data-label-past={t.status.past}>
               {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
             </span>
           </div>

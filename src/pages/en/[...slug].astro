@@ -72,6 +72,14 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.en, url: `/
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourStatus = isTourWithStages ? computeTourStatus(post.data.stages!) : null;
+const tourStagesJson = isTourWithStages
+  ? JSON.stringify(
+      post.data.stages!.map((s) => ({
+        date: s.date instanceof Date ? s.date.toISOString().slice(0, 10) : s.date,
+        cancelled: s.status === 'cancelled',
+      }))
+    )
+  : null;
 const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
 const forceArticle = post.data.pageLayout === 'article';
@@ -81,6 +89,7 @@ const isCommunityEvent =
   !forceArticle && post.data.category === 'comunita' && !isLeague && !!(post.data.venue || post.data.events.length > 0);
 const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
 const gpStatus = isEventPage ? computeEventStatus(new Date(post.data.date)) : null;
+const eventDateStr = post.data.date instanceof Date ? post.data.date.toISOString().slice(0, 10) : String(post.data.date);
 const communityCity = isCommunityEvent || isLeague ? cities.find((c) => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
 const pageMeta =
@@ -178,6 +187,10 @@ const pageMeta =
             isTourWithStages && tourStatus && (
               <span
                 class:list={['post__status', tourStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
+                data-tour-stages={tourStagesJson}
+                data-label-live={t.status.live}
+                data-label-upcoming={t.status.upcoming}
+                data-label-past={t.status.past}
               >
                 {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
               </span>
@@ -187,6 +200,10 @@ const pageMeta =
             isEventPage && !isLeague && gpStatus && (
               <span
                 class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
+                data-event-date={eventDateStr}
+                data-label-live={t.status.live}
+                data-label-upcoming={t.status.upcoming}
+                data-label-past={t.status.past}
               >
                 {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
               </span>

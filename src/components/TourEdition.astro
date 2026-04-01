@@ -103,7 +103,15 @@ function formatDate(date: Date): string {
                     </span>
                     <h3 class="te-name">{stage.name}</h3>
                   </div>
-                  <span class:list={['te-badge', `te-badge--${stage.status}`]} data-label-completed={statusLabels.completed} data-label-upcoming={statusLabels.upcoming} data-label-future={statusLabels.future} data-label-cancelled={statusLabels.cancelled}>{statusLabels[stage.status]}</span>
+                  <span
+                    class:list={['te-badge', `te-badge--${stage.status}`]}
+                    data-label-completed={statusLabels.completed}
+                    data-label-upcoming={statusLabels.upcoming}
+                    data-label-future={statusLabels.future}
+                    data-label-cancelled={statusLabels.cancelled}
+                  >
+                    {statusLabels[stage.status]}
+                  </span>
                 </div>
                 {stage.description && <p class="te-desc">{stage.description}</p>}
                 <div class="te-card-bottom">

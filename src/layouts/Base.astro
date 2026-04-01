@@ -134,7 +134,9 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
         }
 
         function computeTour(stages) {
-          var active = stages.filter(function (s) { return !s.cancelled; });
+          var active = stages.filter(function (s) {
+            return !s.cancelled;
+          });
           if (active.length === 0) return null;
           var today = new Date();
           today.setHours(0, 0, 0, 0);
@@ -143,13 +145,26 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
             d.setHours(0, 0, 0, 0);
             return d < today ? 'completed' : 'future';
           });
-          if (statuses.every(function (s) { return s === 'completed'; })) return 'past';
-          if (statuses.every(function (s) { return s === 'future'; })) return 'upcoming';
+          if (
+            statuses.every(function (s) {
+              return s === 'completed';
+            })
+          )
+            return 'past';
+          if (
+            statuses.every(function (s) {
+              return s === 'future';
+            })
+          )
+            return 'upcoming';
           return 'live';
         }
 
         function applyStatus(el, status) {
-          if (!status) { el.style.display = 'none'; return; }
+          if (!status) {
+            el.style.display = 'none';
+            return;
+          }
           el.textContent = el.getAttribute('data-label-' + status) || status;
           if (el.classList.contains('post__status')) {
             el.classList.remove('post__status--active', 'post__status--finished');

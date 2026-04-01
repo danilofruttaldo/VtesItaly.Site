@@ -24,7 +24,7 @@ const tourStagesJson = JSON.stringify(
   (current?.data.stages || []).map((s) => ({
     date: s.date instanceof Date ? s.date.toISOString().slice(0, 10) : s.date,
     cancelled: s.status === 'cancelled',
-  }))
+  })),
 );
 ---
 
@@ -46,7 +46,13 @@ const tourStagesJson = JSON.stringify(
           <div class="edition-header">
             <h2 class="edition-title">{current.data.title}</h2>
             {tourStatus && (
-              <span class="edition-label-tag" data-tour-stages={tourStagesJson} data-label-live={t.status.live} data-label-upcoming={t.status.upcoming} data-label-past={t.status.past}>
+              <span
+                class="edition-label-tag"
+                data-tour-stages={tourStagesJson}
+                data-label-live={t.status.live}
+                data-label-upcoming={t.status.upcoming}
+                data-label-past={t.status.past}
+              >
                 {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
               </span>
             )}

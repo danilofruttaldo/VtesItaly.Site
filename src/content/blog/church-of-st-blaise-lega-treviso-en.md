@@ -15,8 +15,8 @@ events:
     proxies: true
 leagueStats:
   players: 10
-  games: 4
-  tables: 5
+  games: 6
+  tables: 8
 leagueRules:
   - acronym: 'GW'
     label: 'Game Win'
@@ -30,19 +30,24 @@ leagueRules:
   - acronym: 'LP'
     label: 'League Point'
     description: 'Total sum: GW + VP + BP.'
+  - acronym: 'G'
+    label: 'Games'
+    description: 'Games played.'
 leagueBonusPoints:
+  - name: 'Absolution of the Diabolist'
+    description: 'Have a vampire survive at least 2 blood hunts.'
   - name: 'Aura of Invincibility'
-    description: 'Pass a referendum with a margin of at least 10 votes.'
+    description: 'Pass a referendum with at least 10 votes in favour.'
+  - name: 'Bait and Switch'
+    description: 'Have a bleed deflected at least 3 times.'
   - name: 'Car Bomb'
     description: 'Get ousted while controlling The Coven.'
   - name: 'Foreshadowing Destruction'
     description: 'Successfully bleed your prey for 8 or more.'
-  - name: "Fueled by Heart's Blood"
-    description: 'Have a vampire survive at least 2 blood hunts.'
   - name: 'Justicar Retribution'
-    description: 'Receive at least 2 Archon Investigations in the same game.'
+    description: 'Receive at least 2 Archon Investigations.'
   - name: 'Muddled Vampire Hunter'
-    description: 'Burn 3 or more vampires in a single game.'
+    description: 'Burn 3 or more opposing vampires.'
 prizes:
   - 'Finalists (1st–5th): a New Blood deck of choice among Hecata, Gangrel, Tremere, Ravnos, Tzimisce — 1st place picks first'
   - 'Every game: 2 random cards from 25th Anniversary (while supplies last)'

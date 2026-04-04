@@ -15,8 +15,8 @@ events:
     proxies: true
 leagueStats:
   players: 10
-  games: 4
-  tables: 5
+  games: 6
+  tables: 8
 leagueRules:
   - acronym: 'GW'
     label: 'Game Win'
@@ -30,21 +30,24 @@ leagueRules:
   - acronym: 'LP'
     label: 'League Point'
     description: 'Somma totale: GW + VP + BP.'
+  - acronym: 'G'
+    label: 'Games'
+    description: 'Partite giocate.'
 leagueBonusPoints:
-  - name: 'Aura of Invincibility'
-    description: 'Far passare una propria votazione con uno scarto di almeno 10 voti.'
-  - name: 'Bait and Switch'
-    description: 'Avere un bleed che faccia almeno 1 giro del tavolo.'
-  - name: 'Car Bomb'
-    description: 'Venire oustato mentre si controlla The Coven.'
-  - name: 'Foreshadowing Destruction'
-    description: 'Effettuare con successo un bleed da 8 o più sulla propria preda.'
-  - name: "Fueled by Heart's Blood"
+  - name: 'Absolution of the Diabolist'
     description: 'Avere un vampiro che sopravvive ad almeno 2 cacce di sangue.'
+  - name: 'Aura of Invincibility'
+    description: 'Far passare una votazione con almeno 10 voti a favore.'
+  - name: 'Bait and Switch'
+    description: 'Avere un bleed deflesso almeno 3 volte.'
+  - name: 'Car Bomb'
+    description: 'Essere oustato mentre si ha il controllo di The Coven.'
+  - name: 'Foreshadowing Destruction'
+    description: 'Bleed da 8 o più con successo sulla propria preda.'
   - name: 'Justicar Retribution'
-    description: 'Subire almeno 2 Archon Investigation nella stessa partita.'
+    description: 'Subire almeno 2 Archon Investigation.'
   - name: 'Muddled Vampire Hunter'
-    description: 'Bruciare 3 o più vampiri in una singola partita.'
+    description: 'Bruciare 3 o più vampiri avversari.'
 prizes:
   - 'Finalisti (1°–5°): un New Blood a scelta tra Hecata, Gangrel, Tremere, Ravnos, Tzimisce — il 1° classificato sceglie per primo'
   - 'Ogni partita: 2 carte casuali dal 25th Anniversary (finché disponibile)'

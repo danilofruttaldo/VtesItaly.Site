@@ -351,10 +351,10 @@ function fmt(n: number): string {
             <tr>
               <th class="tc">#</th>
               <th>{t.league.standings_player}</th>
-              {hasFp && <th class="tc">FVP</th>}
-              <th class="tc">LP</th>
               <th class="tc">GW</th>
               <th class="tc">VP</th>
+              {hasFp && <th class="tc">FVP</th>}
+              <th class="tc">LP</th>
               {hasPp && <th class="tc">PP</th>}
               <th class="tc">BP</th>
               <th class="tc">G</th>
@@ -370,10 +370,10 @@ function fmt(n: number): string {
               >
                 <td class="tc">{s.rank}</td>
                 <td>{anonymizeName(s.name)}</td>
-                {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
-                <td class="tc">{fmt(s.lp)}</td>
                 <td class="tc">{s.gw}</td>
                 <td class="tc">{fmt(s.vp)}</td>
+                {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
+                <td class="tc">{fmt(s.lp)}</td>
                 {hasPp && <td class="tc">{fmt(s.pp)}</td>}
                 <td class="tc">{s.bp}</td>
                 <td class="tc">{s.games}</td>

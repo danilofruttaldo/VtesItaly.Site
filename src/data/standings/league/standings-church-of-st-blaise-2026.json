@@ -1,12 +1,12 @@
 [
-  { "rank": 1, "name": "Nicola", "fp": null, "lp": 10.5, "gw": 2, "vp": 6.5, "pp": 0, "bp": 2, "games": 4 },
-  { "rank": 2, "name": "Federico", "fp": null, "lp": 5.0, "gw": 1, "vp": 4.0, "pp": 0, "bp": 0, "games": 2 },
-  { "rank": 3, "name": "Marco", "fp": null, "lp": 3.5, "gw": 1, "vp": 2.5, "pp": 0, "bp": 0, "games": 1 },
-  { "rank": 4, "name": "Giorgio", "fp": null, "lp": 2.0, "gw": 0, "vp": 2.0, "pp": 0, "bp": 0, "games": 2 },
-  { "rank": 5, "name": "Mario", "fp": null, "lp": 2.0, "gw": 0, "vp": 2.0, "pp": 0, "bp": 0, "games": 1 },
-  { "rank": 6, "name": "Danilo", "fp": null, "lp": 1.5, "gw": 0, "vp": 1.5, "pp": 0, "bp": 0, "games": 4 },
-  { "rank": 7, "name": "Daniele", "fp": null, "lp": 1.0, "gw": 0, "vp": 1.0, "pp": 0, "bp": 0, "games": 4 },
-  { "rank": 8, "name": "Mirko", "fp": null, "lp": 1.0, "gw": 0, "vp": 1.0, "pp": 0, "bp": 0, "games": 1 },
-  { "rank": 9, "name": "Eleonora", "fp": null, "lp": 1.0, "gw": 0, "vp": 1.0, "pp": 0, "bp": 0, "games": 2 },
+  { "rank": 1, "name": "Nicola", "fp": null, "lp": 15.0, "gw": 2, "vp": 7.0, "pp": 0, "bp": 2, "games": 6 },
+  { "rank": 2, "name": "Federico", "fp": null, "lp": 9.0, "gw": 1, "vp": 6.0, "pp": 0, "bp": 0, "games": 4 },
+  { "rank": 3, "name": "Giorgio", "fp": null, "lp": 9.0, "gw": 1, "vp": 5.0, "pp": 0, "bp": 1, "games": 4 },
+  { "rank": 4, "name": "Marco", "fp": null, "lp": 5.5, "gw": 1, "vp": 2.5, "pp": 0, "bp": 0, "games": 2 },
+  { "rank": 5, "name": "Mario", "fp": null, "lp": 4.5, "gw": 0, "vp": 3.5, "pp": 0, "bp": 1, "games": 2 },
+  { "rank": 6, "name": "Danilo", "fp": null, "lp": 4.0, "gw": 0, "vp": 4.0, "pp": 0, "bp": 0, "games": 6 },
+  { "rank": 7, "name": "Eleonora", "fp": null, "lp": 3.5, "gw": 0, "vp": 2.5, "pp": 0, "bp": 1, "games": 4 },
+  { "rank": 8, "name": "Daniele", "fp": null, "lp": 2.0, "gw": 0, "vp": 2.0, "pp": 0, "bp": 0, "games": 6 },
+  { "rank": 9, "name": "Mirko", "fp": null, "lp": 2.0, "gw": 0, "vp": 1.0, "pp": 0, "bp": 1, "games": 2 },
   { "rank": 10, "name": "Alberto", "fp": null, "lp": 1.0, "gw": 0, "vp": 0.0, "pp": 0, "bp": 1, "games": 2 }
 ]

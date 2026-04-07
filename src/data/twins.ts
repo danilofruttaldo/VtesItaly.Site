@@ -7,6 +7,15 @@ export interface Twin {
 
 export const twins: Twin[] = [
   {
+    card: 'Bela',
+    person: { it: 'Bela Lugosi', en: 'Bela Lugosi' },
+    image: '/images/gemelli/bela-lugosi.webp',
+    description: {
+      it: "L'indipendente dal nome evocativo ricorda il leggendario attore ungherese, icona del Dracula cinematografico. Stessi lineamenti affilati, stesso sguardo ipnotico e stesso fascino gotico.",
+      en: 'The independent with the evocative name recalls the legendary Hungarian actor, icon of cinematic Dracula. Same sharp features, same hypnotic gaze, and same gothic allure.',
+    },
+  },
+  {
     card: 'Camille Devereux',
     person: { it: 'Stephanie Seymour', en: 'Stephanie Seymour' },
     image: '/images/gemelli/stephanie-seymour.webp',

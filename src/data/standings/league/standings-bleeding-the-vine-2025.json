@@ -1,10 +1,30 @@
 [
-  { "rank": 1, "name": "Eleonora", "fp": 4.0, "lp": 3.3, "gw": 6, "vp": 32.0, "pp": 7.5, "bp": 4, "games": 15 },
-  { "rank": 2, "name": "Giovanni", "fp": 1.0, "lp": 1.15, "gw": 0, "vp": 10.0, "pp": 8.5, "bp": 1, "games": 17 },
-  { "rank": 3, "name": "Alessandro", "fp": 0.0, "lp": 1.76, "gw": 3, "vp": 16.5, "pp": 8.5, "bp": 2, "games": 17 },
-  { "rank": 4, "name": "Mario", "fp": 0.0, "lp": 0.88, "gw": 0, "vp": 5.5, "pp": 8.5, "bp": 1, "games": 17 },
-  { "rank": 5, "name": "Mirko", "fp": 0.0, "lp": 0.77, "gw": 0, "vp": 2.5, "pp": 6.5, "bp": 1, "games": 13 },
-  { "rank": 6, "name": "Danilo", "fp": null, "lp": 1.68, "gw": 4, "vp": 16.0, "pp": 8.5, "bp": 0, "games": 17 },
-  { "rank": 7, "name": "Marco", "fp": null, "lp": 1.57, "gw": 2, "vp": 5.5, "pp": 3.5, "bp": 0, "games": 7 },
-  { "rank": 8, "name": "Fito", "fp": null, "lp": 0.5, "gw": 0, "vp": 0.0, "pp": 3.0, "bp": 0, "games": 6 }
+  { "rank": 1, "name": "Eleonora Basso", "fp": 4.0, "lp": 3.4, "gw": 7, "vp": 36.0, "pp": 8, "bp": 4, "games": 16 },
+  { "rank": 2, "name": "Giovanni Gueli", "fp": 1.0, "lp": 1.2, "gw": 0, "vp": 11.0, "pp": 9, "bp": 1, "games": 18 },
+  {
+    "rank": 3,
+    "name": "Alessandro Franceschetto",
+    "fp": 0.0,
+    "lp": 1.7,
+    "gw": 3,
+    "vp": 16.5,
+    "pp": 9,
+    "bp": 2,
+    "games": 18
+  },
+  { "rank": 4, "name": "Mario Bresolin", "fp": 0.0, "lp": 0.9, "gw": 0, "vp": 5.5, "pp": 9, "bp": 1, "games": 18 },
+  { "rank": 5, "name": "Mirko Zorzi", "fp": 0.0, "lp": 0.8, "gw": 0, "vp": 2.5, "pp": 7, "bp": 1, "games": 14 },
+  {
+    "rank": 6,
+    "name": "Danilo Fruttaldo",
+    "fp": null,
+    "lp": 1.7,
+    "gw": 4,
+    "vp": 16.5,
+    "pp": 8.5,
+    "bp": 0,
+    "games": 17
+  },
+  { "rank": 7, "name": "Marco Lombardo", "fp": null, "lp": 1.6, "gw": 2, "vp": 5.5, "pp": 3.5, "bp": 0, "games": 7 },
+  { "rank": 8, "name": "Rodolfo Escobar", "fp": null, "lp": 0.5, "gw": 0, "vp": 0.0, "pp": 3, "bp": 0, "games": 6 }
 ]

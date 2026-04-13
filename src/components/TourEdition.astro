@@ -267,7 +267,9 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
             </tbody>
           </table>
         </div>
-        <p class="te-standings-note">{t.tour.standings_away_note}</p>
+        {tourStandings.some((s) => (s as any).away?.length > 0) && (
+          <p class="te-standings-note">{t.tour.standings_away_note}</p>
+        )}
       </div>
     )
   }
@@ -668,23 +670,25 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
   .te-standings-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-2xs);
   }
   .te-standings-table th {
-    font-size: var(--font-size-2xs);
+    font-size: var(--font-size-3xs);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: var(--tracking-wider);
+    letter-spacing: 0.02em;
     color: var(--color-gold);
-    padding: 8px 10px;
+    padding: 6px 4px;
     border-bottom: 2px solid var(--color-border);
     position: sticky;
     top: 0;
     background: var(--color-base);
+    white-space: nowrap;
   }
   .te-standings-table td {
-    padding: 6px 10px;
+    padding: 4px 4px;
     border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
   }
   .te-standings-table tr:hover td {
     background: rgba(201, 168, 76, 0.05);

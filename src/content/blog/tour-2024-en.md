@@ -2,9 +2,13 @@
 title: 'Italian Tour 2024'
 date: 2024-01-01
 category: 'tour'
-tags: ['barga', 'bologna', 'firenze', 'massa', 'milano', 'modena', 'pordenone', 'prato', 'trento', 'verona']
+tags: ['barga', 'bologna', 'firenze', 'massa', 'milano', 'modena', 'pordenone', 'prato', 'torino', 'trento', 'verona']
 featuredImage: '/images/headers/header-tour.webp'
 excerpt: 'The Italian Tour 2024 brings Vampire: The Eternal Struggle to major Italian cities with a series of stages linked by an overall ranking.'
+rulesUrl: '/tour/tour-2024/infopack-tour-2024-en.pdf'
+standingsUrl: 'standings-tour-2024.json'
+stagesLabel: 'Stages'
+stageItemLabel: 'Stage'
 stages:
   - name: 'Verona'
     number: 1
@@ -18,6 +22,7 @@ stages:
     location: 'Via IV Novembre 11, San Giovanni Lupatoto (VR)'
     image: '/images/headers/header-verona.webp'
     archonUrl: 'https://archon.vekn.net/tournament/010d5934-bfaf-409d-bc91-26c6656f6412/display.html'
+    status: 'completed'
 
   - name: 'Prato'
     number: 2
@@ -31,6 +36,7 @@ stages:
     location: 'Via Francesco Ferrucci 95g, Prato (PO)'
     image: '/images/headers/header-prato.webp'
     archonUrl: 'https://archon.vekn.net/tournament/10afbf74-a03c-4ac4-a16a-c1bd8d7177bc/display.html'
+    status: 'completed'
 
   - name: 'Pordenone'
     number: 3
@@ -44,6 +50,7 @@ stages:
     location: 'Via Piave 26, Pordenone (PN)'
     image: '/images/headers/header-pordenone.webp'
     archonUrl: 'https://archon.vekn.net/tournament/48304438-7cbb-49d6-abad-bdcbb39f6a73/display.html'
+    status: 'completed'
 
   - name: 'Trento'
     number: 4
@@ -57,6 +64,7 @@ stages:
     location: 'Località Lochere, 6, 38052 Caldonazzo (TN)'
     image: '/images/headers/header-trento.webp'
     archonUrl: 'https://archon.vekn.net/tournament/b581393a-0a1c-490e-9d32-3c26efdf3d14/display.html'
+    status: 'completed'
 
   - name: 'Modena'
     number: 5
@@ -70,6 +78,7 @@ stages:
     location: 'Viale Virgilio 58, Modena (MO)'
     image: '/images/headers/header-modena.webp'
     archonUrl: 'https://archon.vekn.net/tournament/cd3a4946-94c5-4e84-87d0-25819731bb0c/display.html'
+    status: 'completed'
 
   - name: 'Massa'
     number: 6
@@ -83,9 +92,24 @@ stages:
     location: 'Via San Ginese, 15, 54100 Massa (MS)'
     image: '/images/headers/header-massa.webp'
     archonUrl: 'https://archon.vekn.net/tournament/fae8a4b9-94fc-4136-b330-c1e7261cfd4c/display.html'
+    status: 'completed'
+
+  - name: 'Torino'
+    number: 7
+    date: 2024-07-14
+    cities: ['torino']
+    time: '10:30'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
+    venue: 'Magic Lair'
+    location: 'Corso Principe Oddone 14/F, Torino (TO)'
+    image: '/images/headers/header-torino.webp'
+    archonUrl: 'https://archon.vekn.net/tournament/0a4dc866-bdbc-444e-a3f6-a9f4d3278ec9/display.html'
+    status: 'completed'
 
   - name: 'Barga'
-    number: 7
+    number: 8
     date: 2024-08-31
     cities: ['barga']
     time: '09:30'
@@ -96,9 +120,10 @@ stages:
     location: 'Località Pian di Gragno, 15, Barga (LU)'
     image: '/images/headers/header-barga.webp'
     archonUrl: 'https://archon.vekn.net/tournament/f37c6cd2-1f76-4e2e-a8b3-de73d742c5e7/display.html'
+    status: 'completed'
 
   - name: 'Bologna'
-    number: 8
+    number: 9
     date: 2024-09-15
     cities: ['bologna']
     time: '09:30'
@@ -109,9 +134,10 @@ stages:
     location: 'Viale Sergio Cavina 4, Bologna (BO)'
     image: '/images/headers/header-bologna.webp'
     archonUrl: 'https://archon.vekn.net/tournament/5c5fe2d6-a8bf-4eda-9b2a-4ff9e3d6f62c/display.html'
+    status: 'completed'
 
   - name: 'Firenze'
-    number: 9
+    number: 10
     date: 2024-11-23
     cities: ['firenze']
     time: '10:30'
@@ -122,9 +148,10 @@ stages:
     location: 'Via Francesco Baracca, 168/R, Firenze (FI)'
     image: '/images/headers/header-firenze.webp'
     archonUrl: 'https://archon.vekn.net/tournament/1b845755-96b2-4d34-aee9-fe1dd1e3ed19/display.html'
+    status: 'completed'
 
   - name: 'Milano'
-    number: 10
+    number: 11
     date: 2024-12-15
     cities: ['milano']
     time: '09:30'
@@ -135,6 +162,7 @@ stages:
     location: 'Via Castelletto 45, Paderno Dugnano (MI)'
     image: '/images/headers/header-milano.webp'
     archonUrl: 'https://archon.vekn.net/tournament/150bcd74-deb6-4366-8136-a78cc151ee5b/display.html'
+    status: 'completed'
 
 locale: en
 ---

@@ -150,6 +150,7 @@ const tourSchema = z.object({
   stages: z.array(stageSchema).min(1),
   // optional
   rulesUrl: z.string().optional(),
+  standingsUrl: z.string().optional(),
   stagesLabel: z.string().optional(),
   stageItemLabel: z.string().optional(),
 });

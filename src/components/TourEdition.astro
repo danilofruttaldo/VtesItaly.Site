@@ -5,6 +5,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel } from '../utils/status';
+import { anonymizeName } from '../utils/anonymize';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -44,6 +45,29 @@ function formatDate(date: Date): string {
   }
   return formatLocalDate(date, locale);
 }
+
+// Load tour standings
+interface TourStanding {
+  rank: number;
+  name: string;
+  city: string;
+  total: number;
+  [key: string]: number | string | null;
+}
+let tourStandings: TourStanding[] = [];
+let stageCount = 0;
+if (post.data.standingsUrl) {
+  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
+    string,
+    { default: unknown }
+  >;
+  const key = Object.keys(allData).find((k) => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
+  if (key && Array.isArray(allData[key].default)) {
+    tourStandings = allData[key].default as TourStanding[];
+    stageCount = stages.length;
+  }
+}
+const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.status === 'completed');
 ---
 
 <div class="tour-edition">
@@ -188,12 +212,49 @@ function formatDate(date: Date): string {
   }
 
   {
-    post.data.standingsUrl && (
+    tourStandings.length > 0 && (
       <div class="te-standings">
         <h3 class="te-standings-title">{t.tour.standings}</h3>
-        <div class="te-standings-frame">
-          <iframe src={post.data.standingsUrl} title={t.tour.standings} loading="lazy" />
+        <div class="te-standings-wrap">
+          <table class="te-standings-table">
+            <caption class="sr-only">{t.tour.standings}</caption>
+            <thead>
+              <tr>
+                <th class="tc">#</th>
+                <th>{t.tour.standings_player}</th>
+                <th>{t.tour.standings_city}</th>
+                {Array.from({ length: stageCount }, (_, i) => (
+                  <th class="tc">
+                    {stageItemLabel[0]}
+                    {i + 1}
+                  </th>
+                ))}
+                <th class="tc">TOT</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tourStandings.map((s) => (
+                <tr
+                  class:list={[
+                    tourFinished && s.rank <= 1 && 'te-standings-winner',
+                    tourFinished && s.rank >= 2 && s.rank <= 3 && 'te-standings-top',
+                  ]}
+                >
+                  <td class="tc">{s.rank}</td>
+                  <td>{anonymizeName(s.name)}</td>
+                  <td class="te-standings-city">{s.city}</td>
+                  {Array.from({ length: stageCount }, (_, i) => (
+                    <td class:list={['tc', s[`s${i + 1}`] == null && 'te-standings-empty']}>
+                      {s[`s${i + 1}`] != null ? `${s[`s${i + 1}`]}${(s as any).away?.includes(i + 1) ? '*' : ''}` : '-'}
+                    </td>
+                  ))}
+                  <td class="tc te-standings-total">{s.total}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+        <p class="te-standings-note">{t.tour.standings_away_note}</p>
       </div>
     )
   }
@@ -545,20 +606,81 @@ function formatDate(date: Date): string {
   }
   .te-standings-title {
     font-size: var(--font-size-md);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    text-align: center;
+    color: var(--color-muted);
+    margin-bottom: 16px;
+  }
+  .te-standings-wrap {
+    overflow: auto;
+    max-height: 600px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    scrollbar-width: none;
+  }
+  .te-standings-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .te-standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+  }
+  .te-standings-table th {
+    font-size: var(--font-size-2xs);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
-    margin-bottom: 12px;
+    color: var(--color-gold);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-base);
   }
-  .te-standings-frame {
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
+  .te-standings-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--color-border);
   }
-  .te-standings-frame iframe {
-    width: 100%;
-    min-height: 500px;
-    border: none;
-    background: var(--color-surface);
+  .te-standings-table tr:hover td {
+    background: rgba(201, 168, 76, 0.05);
+  }
+  .te-standings-table th,
+  .te-standings-table td {
+    text-align: center;
+  }
+  .te-standings-table th:nth-child(2),
+  .te-standings-table td:nth-child(2) {
+    text-align: left;
+  }
+  .te-standings-table th:nth-child(3),
+  .te-standings-table td:nth-child(3) {
+    text-align: left;
+  }
+  .te-standings-winner td {
+    color: var(--color-gold);
+    font-weight: 700;
+  }
+  .te-standings-top td {
+    font-weight: 600;
+  }
+  .te-standings-total {
+    font-weight: 700;
+  }
+  .te-standings-empty {
+    opacity: 0.3;
+  }
+  .te-standings-city {
+    font-size: var(--font-size-2xs);
+    color: var(--color-muted);
+  }
+  .te-standings-note {
+    font-size: var(--font-size-2xs);
+    color: var(--color-muted);
+    margin-top: 8px;
+    text-align: right;
   }
 
   /* Mobile */

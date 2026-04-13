@@ -160,6 +160,8 @@
   "post": {
     "gallery": "Gallery",
     "photo": "photo",
+    "jump_standings": "Go to standings",
+    "back_to_top": "Back to top",
     "read_cta": "Read"
   },
   "domain": {

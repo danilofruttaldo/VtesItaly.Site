@@ -73,6 +73,20 @@ const hasFvp = standings.some((s) => s.fvp != null);
 {/* Descrizione breve */}
 {showExcerpt && post.data.excerpt && <p class="gp-excerpt">{post.data.excerpt}</p>}
 
+{/* Quick nav */}
+{
+  standings.length > 0 && (
+    <nav class="gp-quicknav">
+      <a href="#classifica" class="gp-quicknav-link">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+        {t.post.jump_standings}
+      </a>
+    </nav>
+  )
+}
+
 {/* Info di servizio */}
 <div class="gp-info">
   {
@@ -379,7 +393,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
 {/* Classifica */}
 {
   standings.length > 0 && (
-    <section class="gp-standings">
+    <section id="classifica" class="gp-standings">
       <h2 class="gp-standings-title">{t.gp.standings_label}</h2>
       <div class="gp-standings-wrap">
         <table class="gp-standings-table">
@@ -583,9 +597,38 @@ const hasFvp = standings.some((s) => s.fvp != null);
     flex-shrink: 0;
   }
 
+  /* Quick nav */
+  .gp-quicknav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .gp-quicknav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-muted);
+    text-decoration: none;
+    padding: 6px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+  }
+  .gp-quicknav-link:hover {
+    color: var(--color-gold);
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.08);
+  }
+  .gp-quicknav-link svg {
+    flex-shrink: 0;
+  }
+
   /* Standings */
   .gp-standings {
     margin-bottom: 32px;
+    scroll-margin-top: 80px;
   }
   .gp-standings-title {
     font-size: var(--font-size-lg);

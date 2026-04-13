@@ -77,6 +77,20 @@ function fmt(n: number): string {
   )
 }
 
+{/* Quick nav */}
+{
+  standings.length > 0 && (
+    <nav class="le-quicknav">
+      <a href="#classifica" class="le-quicknav-link">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+        {t.post.jump_standings}
+      </a>
+    </nav>
+  )
+}
+
 {/* Content */}
 <div class="le-content prose">
   <Content />
@@ -342,7 +356,7 @@ function fmt(n: number): string {
 {/* League Standings */}
 {
   standings.length > 0 && (
-    <section class="le-standings">
+    <section id="classifica" class="le-standings">
       <h2 class="le-section-title">{post.data.standingsLabel ?? t.league.standings_label}</h2>
       <div class="le-standings-wrap">
         <table class="le-standings-table">
@@ -427,6 +441,34 @@ function fmt(n: number): string {
 }
 
 <style>
+  /* Quick nav */
+  .le-quicknav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .le-quicknav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-muted);
+    text-decoration: none;
+    padding: 6px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+  }
+  .le-quicknav-link:hover {
+    color: var(--color-gold);
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.08);
+  }
+  .le-quicknav-link svg {
+    flex-shrink: 0;
+  }
+
   /* Poster */
   .le-poster {
     margin-bottom: 28px;
@@ -667,6 +709,7 @@ function fmt(n: number): string {
   /* Standings */
   .le-standings {
     margin-bottom: 32px;
+    scroll-margin-top: 80px;
   }
   .le-standings-wrap {
     overflow: auto;

@@ -71,6 +71,19 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
 ---
 
 <div class="tour-edition">
+  {
+    tourStandings.length > 0 && (
+      <nav class="te-quicknav">
+        <a href="#classifica" class="te-quicknav-link">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          {t.post.jump_standings}
+        </a>
+      </nav>
+    )
+  }
+
   <div class="te-content prose">
     <Content />
   </div>
@@ -213,7 +226,7 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
 
   {
     tourStandings.length > 0 && (
-      <div class="te-standings">
+      <div id="classifica" class="te-standings">
         <h3 class="te-standings-title">{t.tour.standings}</h3>
         <div class="te-standings-wrap">
           <table class="te-standings-table">
@@ -310,6 +323,34 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
 </script>
 
 <style>
+  /* Quick nav */
+  .te-quicknav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .te-quicknav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-muted);
+    text-decoration: none;
+    padding: 6px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+  }
+  .te-quicknav-link:hover {
+    color: var(--color-gold);
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(201, 168, 76, 0.08);
+  }
+  .te-quicknav-link svg {
+    flex-shrink: 0;
+  }
+
   /* Content */
   .te-content {
     margin-bottom: 32px;
@@ -603,6 +644,7 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
     margin-top: 36px;
     border-top: 1px solid var(--color-border);
     padding-top: 28px;
+    scroll-margin-top: 80px;
   }
   .te-standings-title {
     font-size: var(--font-size-md);

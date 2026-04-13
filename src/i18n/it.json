@@ -154,7 +154,9 @@
   "post": {
     "gallery": "Galleria",
     "photo": "foto",
-    "read_cta": "Leggi"
+    "read_cta": "Leggi",
+    "jump_standings": "Vai alla classifica",
+    "back_to_top": "Torna in cima"
   },
   "domain": {
     "breadcrumb": "Tutti i Principati",

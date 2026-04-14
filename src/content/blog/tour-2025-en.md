@@ -131,6 +131,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournament/49c0db2f-08e3-40fa-aad5-8a23ea07f972/display.html'
     description: "The ninth and final stage of the Italian Tour 2025 takes place in Bologna, closing an intense and hard-fought season. A concluding event that celebrates the players' journey throughout the year, awards the last ranking points, and crowns the Tour champions."
 
+standingsUrl: 'standings-tour-2025.json'
 locale: en
 ---
 

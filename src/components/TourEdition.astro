@@ -67,7 +67,17 @@ if (post.data.standingsUrl) {
     stageCount = stages.length;
   }
 }
+const hasGw = tourStandings.some((s) => (s as any).gw != null);
 const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.status === 'completed');
+
+function formatStage(val: unknown, isAway: boolean): string {
+  if (val == null) return '-';
+  const suffix = isAway ? '*' : '';
+  if (typeof val === 'object' && val !== null && 'gw' in val && 'vp' in val) {
+    return `${(val as any).gw}GW ${(val as any).vp}${suffix}`;
+  }
+  return `${val}${suffix}`;
+}
 ---
 
 <div class="tour-edition">
@@ -258,10 +268,10 @@ const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.
                   <td class="te-standings-city">{s.city}</td>
                   {Array.from({ length: stageCount }, (_, i) => (
                     <td class:list={['tc', s[`s${i + 1}`] == null && 'te-standings-empty']}>
-                      {s[`s${i + 1}`] != null ? `${s[`s${i + 1}`]}${(s as any).away?.includes(i + 1) ? '*' : ''}` : '-'}
+                      {formatStage(s[`s${i + 1}`], (s as any).away?.includes(i + 1))}
                     </td>
                   ))}
-                  <td class="tc te-standings-total">{s.total}</td>
+                  <td class="tc te-standings-total">{hasGw ? `${(s as any).gw}GW ${s.total}` : s.total}</td>
                 </tr>
               ))}
             </tbody>

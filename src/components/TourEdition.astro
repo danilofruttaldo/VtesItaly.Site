@@ -247,10 +247,7 @@ function formatStage(val: unknown, isAway: boolean): string {
                 <th>{t.tour.standings_player}</th>
                 <th>{t.tour.standings_city}</th>
                 {Array.from({ length: stageCount }, (_, i) => (
-                  <th class="tc">
-                    {stageItemLabel[0]}
-                    {i + 1}
-                  </th>
+                  <th class="tc">{`${stageItemLabel[0]}${i + 1}`}</th>
                 ))}
                 <th class="tc">TOT</th>
               </tr>

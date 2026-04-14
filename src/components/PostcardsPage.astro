@@ -39,6 +39,7 @@ const galleries = postcardGalleries.map((g) => ({
         galleries.map((gallery, i) => (
           <div class="gallery-section" data-gallery>
             <button
+              type="button"
               class="gallery-header"
               aria-expanded={i === 0 ? 'true' : 'false'}
               aria-controls={`gallery-body-${i}`}
@@ -75,7 +76,11 @@ const galleries = postcardGalleries.map((g) => ({
                 {gallery.images.length > 1 && (
                   <div class="slider-dots">
                     {gallery.images.map((_, j) => (
-                      <button class={`slider-dot ${j === 0 ? 'is-active' : ''}`} aria-label={`Slide ${j + 1}`} />
+                      <button
+                        type="button"
+                        class={`slider-dot ${j === 0 ? 'is-active' : ''}`}
+                        aria-label={`${t.calendar.slide_label} ${j + 1}`}
+                      />
                     ))}
                   </div>
                 )}
@@ -309,12 +314,21 @@ const galleries = postcardGalleries.map((g) => ({
       if (!dots.length) return;
       const slides = track.querySelectorAll('.slider-slide');
 
-      track.addEventListener('scroll', () => {
-        const scrollLeft = track.scrollLeft;
-        const slideWidth = slides[0].offsetWidth + 12;
-        const index = Math.round(scrollLeft / slideWidth);
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
-      });
+      let scrollTick = false;
+      track.addEventListener(
+        'scroll',
+        () => {
+          if (scrollTick) return;
+          scrollTick = true;
+          requestAnimationFrame(() => {
+            const slideWidth = slides[0].offsetWidth + 12;
+            const index = Math.round(track.scrollLeft / slideWidth);
+            dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+            scrollTick = false;
+          });
+        },
+        { passive: true },
+      );
 
       dots.forEach((dot, i) => {
         dot.addEventListener('click', () => {

@@ -76,8 +76,14 @@
     "cat_local": "Torneo locale",
     "legend_events": "Tornei",
     "legend_other": "Altro",
-    "event_details": "Dettagli evento"
+    "event_details": "Dettagli evento",
+    "aria_calendar": "Calendario eventi",
+    "prev_year": "Anno precedente",
+    "next_year": "Anno successivo",
+    "tbd": "Da definire",
+    "slide_label": "Slide"
   },
+  "noscript": "Alcune funzionalità di questo sito richiedono JavaScript per funzionare correttamente.",
   "search": {
     "aria_label": "Cerca",
     "close_label": "Chiudi ricerca",

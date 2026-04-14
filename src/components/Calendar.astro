@@ -27,23 +27,32 @@ const allEvents = extractCalendarEvents(posts, locale);
     local: t.calendar.cat_local,
     altro: t.calendar.legend_other,
   })}
+  data-prev-year={t.calendar.prev_year}
+  data-next-year={t.calendar.next_year}
+  data-tbd={t.calendar.tbd}
   data-server-events={JSON.stringify(allEvents)}
 >
   {/* Navigation */}
   <div class="cal__nav">
-    <button class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
-    <button class="cal__month-title" aria-haspopup="dialog" aria-expanded="false"></button>
-    <button class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
-    <button class="cal__today-btn">{t.calendar.today}</button>
+    <button type="button" class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
+    <button type="button" class="cal__month-title" aria-haspopup="dialog" aria-expanded="false"></button>
+    <button type="button" class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
+    <button type="button" class="cal__today-btn">{t.calendar.today}</button>
   </div>
 
   {/* Day headers */}
-  <div class="cal__grid cal__header">
-    {[1, 2, 3, 4, 5, 6, 0].map((i) => <span class="cal__dh">{t.days_short_array[i]}</span>)}
+  <div class="cal__grid cal__header" role="row">
+    {
+      [1, 2, 3, 4, 5, 6, 0].map((i) => (
+        <span class="cal__dh" role="columnheader">
+          {t.days_short_array[i]}
+        </span>
+      ))
+    }
   </div>
 
   {/* Calendar body — filled by JS */}
-  <div class="cal__grid cal__body" id="cal-body"></div>
+  <div class="cal__grid cal__body" id="cal-body" role="grid" aria-label={t.calendar.aria_calendar ?? 'Calendar'}></div>
 
   {/* Event detail popup */}
   <div class="cal__popup" id="cal-popup" hidden>
@@ -60,13 +69,20 @@ const allEvents = extractCalendarEvents(posts, locale);
   {/* Month/Year picker modal */}
   <div class="cal__picker" id="cal-picker" hidden>
     <div class="cal__picker-inner" role="dialog" aria-modal="true">
-      <button class="cal__popup-close cal__picker-close" id="cal-picker-close" aria-label={t.search.close_label}
-        >&times;</button
+      <button
+        type="button"
+        class="cal__popup-close cal__picker-close"
+        id="cal-picker-close"
+        aria-label={t.search.close_label}>&times;</button
       >
       <div class="cal__picker-year-nav">
-        <button class="cal__picker-year-btn" id="cal-picker-prev-year" aria-label="Previous year">&#8249;</button>
+        <button type="button" class="cal__picker-year-btn" id="cal-picker-prev-year" aria-label={t.calendar.prev_year}
+          >&#8249;</button
+        >
         <span class="cal__picker-year" id="cal-picker-year"></span>
-        <button class="cal__picker-year-btn" id="cal-picker-next-year" aria-label="Next year">&#8250;</button>
+        <button type="button" class="cal__picker-year-btn" id="cal-picker-next-year" aria-label={t.calendar.next_year}
+          >&#8250;</button
+        >
       </div>
       <div class="cal__picker-months" id="cal-picker-months"></div>
     </div>
@@ -96,6 +112,7 @@ const allEvents = extractCalendarEvents(posts, locale);
     var readCta = cal.getAttribute('data-read-cta') || '';
     var closeLabel = cal.getAttribute('data-close-label') || 'Close';
     var catLabels = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
+    var tbdLabel = cal.getAttribute('data-tbd') || 'TBD';
 
     var events = JSON.parse(cal.getAttribute('data-server-events') || '[]');
     var now = new Date();
@@ -146,7 +163,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       var ts = ev.time || '';
 
       var h = '';
-      h += '<button class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
+      h += '<button type="button" class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
 
       if (ev.image) {
         h += '<img class="cal__popup-img" src="' + esc(ev.image) + '" alt="' + esc(ev.title) + '" loading="lazy" />';
@@ -180,7 +197,9 @@ const allEvents = extractCalendarEvents(posts, locale);
         }
       } else {
         h +=
-          '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> TBD</div>';
+          '<div class="cal__popup-row"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ' +
+          esc(tbdLabel) +
+          '</div>';
       }
       if (ev.description) {
         h += '<div class="cal__popup-row cal__popup-row--desc">' + esc(ev.description) + '</div>';
@@ -277,7 +296,7 @@ const allEvents = extractCalendarEvents(posts, locale);
 
       // Empty cells before first day
       for (var i = 0; i < startOffset; i++) {
-        html += '<div class="cal__cell cal__cell--empty"></div>';
+        html += '<div class="cal__cell cal__cell--empty" role="gridcell"></div>';
       }
 
       // Day cells
@@ -294,18 +313,13 @@ const allEvents = extractCalendarEvents(posts, locale);
         html +=
           '<div class="' +
           cls +
-          '"' +
-          (hasEvt ? ' data-day="' + d + '" role="button" tabindex="0" aria-label="' + esc(ev.title) + '"' : '') +
+          '" role="gridcell"' +
+          (hasEvt ? ' data-day="' + d + '" tabindex="0" aria-label="' + esc(ev.title) + '"' : '') +
           '>';
 
         // Background image (desktop only via CSS)
         if (hasEvt && ev.image) {
-          html +=
-            '<div class="cal__cell-bg" role="img" aria-label="' +
-            esc(ev.title) +
-            '" style="background-image:url(' +
-            esc(ev.image) +
-            ')">';
+          html += '<div class="cal__cell-bg" role="presentation" style="background-image:url(' + esc(ev.image) + ')">';
           html += '<div class="cal__cell-overlay"></div>';
           html += '</div>';
         }
@@ -327,7 +341,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       var rem = total % 7;
       if (rem > 0) {
         for (var j = 0; j < 7 - rem; j++) {
-          html += '<div class="cal__cell cal__cell--empty"></div>';
+          html += '<div class="cal__cell cal__cell--empty" role="gridcell"></div>';
         }
       }
 
@@ -369,7 +383,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       for (var m = 0; m < 12; m++) {
         var active = m === displayMonth && pickerYearVal === displayYear;
         html +=
-          '<button class="cal__picker-month' +
+          '<button type="button" class="cal__picker-month' +
           (active ? ' cal__picker-month--active' : '') +
           '" data-month="' +
           m +
@@ -702,6 +716,7 @@ const allEvents = extractCalendarEvents(posts, locale);
     display: block;
     width: 100%;
     max-height: 420px;
+    aspect-ratio: 16/9;
     object-fit: contain;
     background: var(--color-surface-alt, #1a1a1a);
   }

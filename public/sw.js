@@ -1,4 +1,5 @@
 const CACHE_NAME = 'vtesitaly-__BUILD_TS__';
+const MAX_CACHE_ENTRIES = 200;
 
 const PRECACHE = [
   '/',
@@ -24,6 +25,16 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+// Trim cache to MAX_CACHE_ENTRIES (evict oldest first)
+async function trimCache(cacheName, max) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length > max) {
+    await cache.delete(keys[0]);
+    return trimCache(cacheName, max);
+  }
+}
+
 // Fetch: network-first for pages, cache-first for assets
 self.addEventListener('fetch', (event) => {
   const { request } = event;
@@ -44,7 +55,10 @@ self.addEventListener('fetch', (event) => {
       fetch(request)
         .then((response) => {
           const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, clone);
+            trimCache(CACHE_NAME, MAX_CACHE_ENTRIES);
+          });
           return response;
         })
         .catch(() => caches.match(request).then((cached) => cached || caches.match('/'))),
@@ -57,7 +71,10 @@ self.addEventListener('fetch', (event) => {
         return fetch(request).then((response) => {
           if (response.ok) {
             const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, clone);
+              trimCache(CACHE_NAME, MAX_CACHE_ENTRIES);
+            });
           }
           return response;
         });

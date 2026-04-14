@@ -79,7 +79,8 @@ const t = useTranslations(locale);
 
         var excerpt = document.createElement('span');
         excerpt.className = 'search-result__excerpt';
-        excerpt.innerHTML = r.excerpt;
+        var clean = (r.excerpt || '').replace(/<(?!\/?mark\b)[^>]*>/gi, '');
+        excerpt.innerHTML = clean;
         a.appendChild(excerpt);
 
         resultsContainer.appendChild(a);

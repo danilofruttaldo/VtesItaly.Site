@@ -82,8 +82,14 @@
     "cat_local": "Local tournament",
     "legend_events": "Tournaments",
     "legend_other": "Other",
-    "event_details": "Event details"
+    "event_details": "Event details",
+    "aria_calendar": "Event calendar",
+    "prev_year": "Previous year",
+    "next_year": "Next year",
+    "tbd": "TBD",
+    "slide_label": "Slide"
   },
+  "noscript": "Some features of this site require JavaScript to work properly.",
   "search": {
     "aria_label": "Search",
     "close_label": "Close search",

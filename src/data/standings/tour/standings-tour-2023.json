@@ -1,0 +1,718 @@
+[
+  {
+    "rank": 1,
+    "name": "Giulio De Cicco",
+    "city": "Trento",
+    "gw": 9,
+    "s2": { "gw": 1, "vp": 6.5 },
+    "s4": { "gw": 2, "vp": 6.5 },
+    "s5": { "gw": 3, "vp": 11 },
+    "s6": { "gw": 1, "vp": 3.5 },
+    "s8": { "gw": 2, "vp": 9.5 },
+    "s9": { "gw": 0, "vp": 2.5 },
+    "total": 39.5
+  },
+  {
+    "rank": 2,
+    "name": "Ivan Candioli",
+    "city": "Trento",
+    "gw": 6,
+    "s4": { "gw": 3, "vp": 6.5 },
+    "s5": { "gw": 1, "vp": 4.5 },
+    "s9": { "gw": 2, "vp": 8.5 },
+    "total": 19.5
+  },
+  {
+    "rank": 3,
+    "name": "Diego Di Nicolantonio",
+    "city": "Bologna",
+    "gw": 5,
+    "s3": { "gw": 1, "vp": 3 },
+    "s4": { "gw": 1, "vp": 5 },
+    "s5": { "gw": 2, "vp": 9.5 },
+    "s6": { "gw": 1, "vp": 3.5 },
+    "s8": { "gw": 0, "vp": 0.5 },
+    "total": 21.5
+  },
+  {
+    "rank": 4,
+    "name": "Nicola Lonardi",
+    "city": "Verona",
+    "gw": 5,
+    "s2": { "gw": 2, "vp": 5.5 },
+    "s4": { "gw": 1, "vp": 3.5 },
+    "s5": { "gw": 0, "vp": 1.5 },
+    "s6": { "gw": 2, "vp": 7 },
+    "s8": { "gw": 0, "vp": 2 },
+    "total": 19.5
+  },
+  {
+    "rank": 5,
+    "name": "Riccardo Fabiani",
+    "city": "Milano",
+    "gw": 5,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s5": { "gw": 2, "vp": 7.5 },
+    "s6": { "gw": 2, "vp": 7 },
+    "s9": { "gw": 1, "vp": 3.5 },
+    "total": 18.5
+  },
+  {
+    "rank": 6,
+    "name": "Gianluca Bianco",
+    "city": "Bologna",
+    "gw": 5,
+    "s1": { "gw": 2, "vp": 7 },
+    "s3": { "gw": 1, "vp": 4 },
+    "s4": { "gw": 0, "vp": 1 },
+    "s5": { "gw": 2, "vp": 6 },
+    "total": 18
+  },
+  {
+    "rank": 7,
+    "name": "Danilo Torrisi",
+    "city": "Genova",
+    "gw": 4,
+    "s1": { "gw": 0, "vp": 1.5 },
+    "s2": { "gw": 1, "vp": 6 },
+    "s3": { "gw": 2, "vp": 6.5 },
+    "s9": { "gw": 1, "vp": 6 },
+    "total": 20
+  },
+  {
+    "rank": 8,
+    "name": "Luca Visonà",
+    "city": "Torino",
+    "gw": 4,
+    "s2": { "gw": 0, "vp": 1 },
+    "s3": { "gw": 1, "vp": 5 },
+    "s6": { "gw": 2, "vp": 9 },
+    "s7": { "gw": 1, "vp": 4 },
+    "total": 19
+  },
+  {
+    "rank": 9,
+    "name": "Alessio Bianchi",
+    "city": "Bologna",
+    "gw": 4,
+    "s1": { "gw": 3, "vp": 12 },
+    "s4": { "gw": 0, "vp": 1 },
+    "s8": { "gw": 1, "vp": 3 },
+    "total": 16
+  },
+  {
+    "rank": 10,
+    "name": "Davide Antoni",
+    "city": "Massa",
+    "gw": 3,
+    "s3": { "gw": 2, "vp": 8 },
+    "s4": { "gw": 0, "vp": 1.5 },
+    "s7": { "gw": 0, "vp": 2.5 },
+    "s8": { "gw": 1, "vp": 4 },
+    "s9": { "gw": 0, "vp": 1.5 },
+    "total": 17.5
+  },
+  {
+    "rank": 11,
+    "name": "Alessandro Donati",
+    "city": "Lucca",
+    "gw": 3,
+    "s1": { "gw": 0, "vp": 1.5 },
+    "s4": { "gw": 1, "vp": 5 },
+    "s7": { "gw": 2, "vp": 6.5 },
+    "s9": { "gw": 0, "vp": 1 },
+    "total": 14
+  },
+  {
+    "rank": 12,
+    "name": "Miro Albertazzi",
+    "city": "Bologna",
+    "gw": 3,
+    "s1": { "gw": 1, "vp": 4 },
+    "s5": { "gw": 1, "vp": 5 },
+    "s7": { "gw": 0, "vp": 0.5 },
+    "s9": { "gw": 1, "vp": 2.5 },
+    "total": 12
+  },
+  {
+    "rank": 13,
+    "name": "Luca Turicchi",
+    "city": "Lucca",
+    "gw": 2,
+    "s1": { "gw": 1, "vp": 3 },
+    "s3": { "gw": 0, "vp": 1.5 },
+    "s7": { "gw": 1, "vp": 5 },
+    "s8": { "gw": 0, "vp": 2 },
+    "total": 11.5
+  },
+  {
+    "rank": 14,
+    "name": "Pau Vilar",
+    "city": "Torino",
+    "gw": 2,
+    "s2": { "gw": 1, "vp": 2.5 },
+    "s3": { "gw": 1, "vp": 6 },
+    "s8": { "gw": 0, "vp": 2 },
+    "total": 10.5
+  },
+  {
+    "rank": 15,
+    "name": "Leonardo Bensi",
+    "city": "Firenze",
+    "gw": 2,
+    "s1": { "gw": 0, "vp": 2.5 },
+    "s4": { "gw": 0, "vp": 2.5 },
+    "s7": { "gw": 1, "vp": 2.5 },
+    "s8": { "gw": 1, "vp": 2.5 },
+    "total": 10
+  },
+  {
+    "rank": 15,
+    "name": "Paolo Pasqualin",
+    "city": "Torino",
+    "gw": 2,
+    "s1": { "gw": 0, "vp": 1 },
+    "s7": { "gw": 1, "vp": 4.5 },
+    "s8": { "gw": 0, "vp": 1.5 },
+    "s9": { "gw": 1, "vp": 3 },
+    "total": 10
+  },
+  {
+    "rank": 17,
+    "name": "Michele Bertilorenzi",
+    "city": "Firenze",
+    "gw": 1,
+    "s1": { "gw": 0, "vp": 2 },
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s7": { "gw": 1, "vp": 6 },
+    "s8": { "gw": 0, "vp": 0.5 },
+    "s9": { "gw": 0, "vp": 2 },
+    "total": 11
+  },
+  {
+    "rank": 18,
+    "name": "Gabriele Bugliani",
+    "city": "Massa",
+    "gw": 1,
+    "s1": { "gw": 0, "vp": 2.5 },
+    "s3": { "gw": 0, "vp": 0.5 },
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s7": { "gw": 0, "vp": 1 },
+    "s8": { "gw": 1, "vp": 2.5 },
+    "s9": { "gw": 0, "vp": 3 },
+    "total": 10
+  },
+  {
+    "rank": 18,
+    "name": "Simone Parmeggiani",
+    "city": "Modena",
+    "gw": 1,
+    "s1": { "gw": 1, "vp": 3 },
+    "s3": { "gw": 0, "vp": 0.5 },
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s6": { "gw": 0, "vp": 1.5 },
+    "s7": { "gw": 0, "vp": 1.5 },
+    "s8": { "gw": 0, "vp": 1 },
+    "s9": { "gw": 0, "vp": 2 },
+    "total": 10
+  },
+  {
+    "rank": 20,
+    "name": "Filippo Tomov",
+    "city": "Milano",
+    "gw": 1,
+    "s2": { "gw": 0, "vp": 2 },
+    "s3": { "gw": 0, "vp": 1.5 },
+    "s5": { "gw": 1, "vp": 4 },
+    "s9": { "gw": 0, "vp": 1.5 },
+    "total": 9
+  },
+  {
+    "rank": 20,
+    "name": "Gianluca Marini",
+    "city": "Torino",
+    "gw": 1,
+    "s3": { "gw": 0, "vp": 0.5 },
+    "s5": { "gw": 0, "vp": 3 },
+    "s8": { "gw": 0, "vp": 2 },
+    "s9": { "gw": 1, "vp": 3.5 },
+    "total": 9
+  },
+  {
+    "rank": 22,
+    "name": "Favio Laviosa",
+    "city": "Genova",
+    "gw": 1,
+    "s1": { "gw": 0, "vp": 1 },
+    "s3": { "gw": 0, "vp": 2 },
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s9": { "gw": 1, "vp": 5 },
+    "total": 8.5
+  },
+  {
+    "rank": 23,
+    "name": "Raffaele Gallotta",
+    "city": "Firenze",
+    "gw": 1,
+    "s3": { "gw": 0, "vp": 1.5 },
+    "s4": { "gw": 0, "vp": 1.5 },
+    "s7": { "gw": 0, "vp": 0.5 },
+    "s8": { "gw": 1, "vp": 3.5 },
+    "total": 7
+  },
+  {
+    "rank": 24,
+    "name": "Francesco Marassi",
+    "city": "Udine",
+    "gw": 1,
+    "s5": { "gw": 0, "vp": 1.5 },
+    "s9": { "gw": 1, "vp": 5 },
+    "total": 6.5
+  },
+  {
+    "rank": 25,
+    "name": "Alessandro Neri",
+    "city": "Prato",
+    "gw": 1,
+    "s1": { "gw": 1, "vp": 5 },
+    "total": 5
+  },
+  {
+    "rank": 25,
+    "name": "Carlo Daniele",
+    "city": "Torino",
+    "gw": 1,
+    "s2": { "gw": 1, "vp": 5 },
+    "total": 5
+  },
+  {
+    "rank": 25,
+    "name": "Mariolina Gentile",
+    "city": "Milano",
+    "gw": 1,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s6": { "gw": 0, "vp": 1 },
+    "s9": { "gw": 1, "vp": 3.5 },
+    "total": 5
+  },
+  {
+    "rank": 25,
+    "name": "Sara Baldi",
+    "city": "Prato",
+    "gw": 1,
+    "s1": { "gw": 1, "vp": 5 },
+    "total": 5
+  },
+  {
+    "rank": 25,
+    "name": "Tommaso Chiodi",
+    "city": "Bologna",
+    "gw": 1,
+    "s1": { "gw": 0, "vp": 2 },
+    "s4": { "gw": 1, "vp": 2 },
+    "s9": { "gw": 0, "vp": 1 },
+    "total": 5
+  },
+  {
+    "rank": 30,
+    "name": "Andrea Poli",
+    "city": "Lucca",
+    "gw": 1,
+    "s4": { "gw": 0, "vp": 1 },
+    "s8": { "gw": 1, "vp": 3.5 },
+    "total": 4.5
+  },
+  {
+    "rank": 30,
+    "name": "Danny Buset",
+    "city": "Pordenone",
+    "gw": 1,
+    "s4": { "gw": 0, "vp": 1.5 },
+    "s5": { "gw": 0, "vp": 0.5 },
+    "s8": { "gw": 1, "vp": 2.5 },
+    "total": 4.5
+  },
+  {
+    "rank": 30,
+    "name": "Lorenzo Ferri",
+    "city": "Prato",
+    "gw": 1,
+    "s3": { "gw": 1, "vp": 3 },
+    "s9": { "gw": 0, "vp": 1.5 },
+    "total": 4.5
+  },
+  {
+    "rank": 30,
+    "name": "Massimo Vaccari",
+    "city": "Milano",
+    "gw": 1,
+    "s3": { "gw": 0, "vp": 1.5 },
+    "s5": { "gw": 0, "vp": 1 },
+    "s6": { "gw": 1, "vp": 2 },
+    "total": 4.5
+  },
+  {
+    "rank": 34,
+    "name": "Enrico De Stefano",
+    "city": "Milano",
+    "gw": 1,
+    "s2": { "gw": 1, "vp": 4 },
+    "total": 4
+  },
+  {
+    "rank": 34,
+    "name": "Gianluca Barzaghi",
+    "city": "Modena",
+    "gw": 1,
+    "s9": { "gw": 1, "vp": 4 },
+    "total": 4
+  },
+  {
+    "rank": 36,
+    "name": "Patrizio Sgarra",
+    "city": "Torino",
+    "gw": 1,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s5": { "gw": 1, "vp": 3 },
+    "total": 3.5
+  },
+  {
+    "rank": 37,
+    "name": "Giovanni Ambrosio",
+    "city": "Milano",
+    "gw": 1,
+    "s9": { "gw": 1, "vp": 2.5 },
+    "total": 2.5
+  },
+  {
+    "rank": 38,
+    "name": "Federico Neri",
+    "city": "Bologna",
+    "gw": 0,
+    "s5": { "gw": 0, "vp": 1 },
+    "s6": { "gw": 0, "vp": 2 },
+    "s7": { "gw": 0, "vp": 4 },
+    "s8": { "gw": 0, "vp": 0.5 },
+    "total": 7.5
+  },
+  {
+    "rank": 39,
+    "name": "Simone Canale",
+    "city": "Trento",
+    "gw": 0,
+    "s3": { "gw": 0, "vp": 2 },
+    "s4": { "gw": 0, "vp": 1 },
+    "s5": { "gw": 0, "vp": 2 },
+    "s6": { "gw": 0, "vp": 1 },
+    "total": 6
+  },
+  {
+    "rank": 40,
+    "name": "Roberto Antonio Giampaolo",
+    "city": "Torino",
+    "gw": 0,
+    "s3": { "gw": 0, "vp": 1 },
+    "s4": { "gw": 0, "vp": 0.5 },
+    "s5": { "gw": 0, "vp": 1 },
+    "s6": { "gw": 0, "vp": 2.5 },
+    "s7": { "gw": 0, "vp": 0.5 },
+    "total": 5.5
+  },
+  {
+    "rank": 41,
+    "name": "Alessandro Aprigliano",
+    "city": "Genova",
+    "gw": 0,
+    "s2": { "gw": 0, "vp": 2 },
+    "s5": { "gw": 0, "vp": 1 },
+    "s6": { "gw": 0, "vp": 2 },
+    "total": 5
+  },
+  {
+    "rank": 41,
+    "name": "Simone Zanni",
+    "city": "Bologna",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 2 },
+    "s4": { "gw": 0, "vp": 3 },
+    "total": 5
+  },
+  {
+    "rank": 43,
+    "name": "Andrea Piserchia",
+    "city": "Bologna",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 1 },
+    "s4": { "gw": 0, "vp": 1 },
+    "s9": { "gw": 0, "vp": 1.5 },
+    "total": 3.5
+  },
+  {
+    "rank": 44,
+    "name": "Matteo Falsetti",
+    "city": "Prato",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 2 },
+    "s4": { "gw": 0, "vp": 1 },
+    "total": 3
+  },
+  {
+    "rank": 45,
+    "name": "Davide Cassone",
+    "city": "Torino",
+    "gw": 0,
+    "s2": { "gw": 0, "vp": 2.5 },
+    "total": 2.5
+  },
+  {
+    "rank": 45,
+    "name": "Fabio Gallina",
+    "city": "Trento",
+    "gw": 0,
+    "s6": { "gw": 0, "vp": 2.5 },
+    "total": 2.5
+  },
+  {
+    "rank": 45,
+    "name": "Matteo Nicolin",
+    "city": "Trento",
+    "gw": 0,
+    "s5": { "gw": 0, "vp": 1 },
+    "s6": { "gw": 0, "vp": 1.5 },
+    "total": 2.5
+  },
+  {
+    "rank": 48,
+    "name": "Danilo Fruttaldo",
+    "city": "Treviso",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 0.5 },
+    "s9": { "gw": 0, "vp": 1.5 },
+    "total": 2
+  },
+  {
+    "rank": 48,
+    "name": "Henry Hinde",
+    "city": "Milano",
+    "gw": 0,
+    "s5": { "gw": 0, "vp": 2 },
+    "total": 2
+  },
+  {
+    "rank": 48,
+    "name": "Mario Testa",
+    "city": "Lucca",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 2 },
+    "total": 2
+  },
+  {
+    "rank": 48,
+    "name": "Massimo Battaglino",
+    "city": "Torino",
+    "gw": 0,
+    "s2": { "gw": 0, "vp": 2 },
+    "total": 2
+  },
+  {
+    "rank": 48,
+    "name": "Simone Sacchi",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 2 },
+    "total": 2
+  },
+  {
+    "rank": 53,
+    "name": "Alessandro Bellomini",
+    "city": "Lucca",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 0.5 },
+    "s9": { "gw": 0, "vp": 1 },
+    "total": 1.5
+  },
+  {
+    "rank": 53,
+    "name": "Andrea Paderni",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 1.5 },
+    "total": 1.5
+  },
+  {
+    "rank": 53,
+    "name": "Filippo Mengoli",
+    "city": "Bologna",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 1.5 },
+    "total": 1.5
+  },
+  {
+    "rank": 53,
+    "name": "Marco Vassallo",
+    "city": "Genova",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 1.5 },
+    "total": 1.5
+  },
+  {
+    "rank": 53,
+    "name": "Matteo Meucci",
+    "city": "Firenze",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 1.5 },
+    "total": 1.5
+  },
+  {
+    "rank": 53,
+    "name": "Nicola Bernieri",
+    "city": "Carrara",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 1.5 },
+    "total": 1.5
+  },
+  {
+    "rank": 53,
+    "name": "Nicola Pampaloni",
+    "city": "Firenze",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 1.5 },
+    "total": 1.5
+  },
+  {
+    "rank": 60,
+    "name": "Andrea Folenga",
+    "city": "Prato",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "Angelo Alvisi",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "Chiara Varlani",
+    "city": "Firenze",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "David Gubellini",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "Enrico Rebufello",
+    "city": "Torino",
+    "gw": 0,
+    "s2": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "Lorenzo Virelli",
+    "city": "Torino",
+    "gw": 0,
+    "s2": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "Luca Manfredini",
+    "city": "Modena",
+    "gw": 0,
+    "s9": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 60,
+    "name": "Stefano Tarozzi",
+    "city": "Bologna",
+    "gw": 0,
+    "s9": { "gw": 0, "vp": 1 },
+    "total": 1
+  },
+  {
+    "rank": 68,
+    "name": "Cristiano Fossi",
+    "city": "Firenze",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Dario Coccioni",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Emiliano Pellegrini",
+    "city": "Firenze",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Enrico Bertusi",
+    "city": "Bologna",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Lorenzo Buccino",
+    "city": "Massa",
+    "gw": 0,
+    "s7": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Marco Lombardo",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Marco Ulivi",
+    "city": "Lucca",
+    "gw": 0,
+    "s1": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Massimo Rossetti",
+    "city": "Bologna",
+    "gw": 0,
+    "s4": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  },
+  {
+    "rank": 68,
+    "name": "Stefano Bertolini",
+    "city": "Lucca",
+    "gw": 0,
+    "s8": { "gw": 0, "vp": 0.5 },
+    "total": 0.5
+  }
+]

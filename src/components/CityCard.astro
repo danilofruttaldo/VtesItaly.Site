@@ -39,6 +39,10 @@ const { name, href, princeName, princeAlias, princeImage } = Astro.props;
     border-color: var(--color-accent-hover);
     color: var(--color-contrast);
   }
+  .city-card:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
 
   .city-card__avatar {
     width: 90px;

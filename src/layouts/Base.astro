@@ -155,12 +155,16 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <script is:inline>
       (function () {
         var now = new Date();
-        var todayStr = now.toDateString();
+        var todayISO =
+          now.getFullYear() +
+          '-' +
+          String(now.getMonth() + 1).padStart(2, '0') +
+          '-' +
+          String(now.getDate()).padStart(2, '0');
 
         function computeEvent(dateStr) {
-          var d = new Date(dateStr + 'T00:00:00');
-          if (d.toDateString() === todayStr) return 'live';
-          return d > now ? 'upcoming' : 'past';
+          if (dateStr === todayISO) return 'live';
+          return dateStr > todayISO ? 'upcoming' : 'past';
         }
 
         function computeTour(stages) {
@@ -168,12 +172,8 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
             return !s.cancelled;
           });
           if (active.length === 0) return null;
-          var today = new Date();
-          today.setHours(0, 0, 0, 0);
           var statuses = active.map(function (s) {
-            var d = new Date(s.date + 'T00:00:00');
-            d.setHours(0, 0, 0, 0);
-            return d < today ? 'completed' : 'future';
+            return s.date < todayISO ? 'completed' : 'future';
           });
           if (
             statuses.every(function (s) {

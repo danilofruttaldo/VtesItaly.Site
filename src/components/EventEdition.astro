@@ -15,6 +15,9 @@ interface Props {
 }
 
 const { post, locale = 'it', showExcerpt = false } = Astro.props;
+if (post.data.category !== 'grand-prix' && post.data.category !== 'nazionale' && post.data.category !== 'comunita') {
+  throw new Error(`EventEdition: unsupported category "${post.data.category}"`);
+}
 const t = useTranslations(locale);
 
 const { Content } = await render(post);
@@ -58,6 +61,7 @@ if (post.data.standingsUrl) {
   if (key && Array.isArray(allData[key].default)) standings = allData[key].default as Standing[];
 }
 const hasFvp = standings.some((s) => s.fvp != null);
+const postEvents = post.data.events;
 ---
 
 {/* Poster / locandina */}
@@ -236,7 +240,7 @@ const hasFvp = standings.some((s) => s.fvp != null);
                 .filter((ev) => ev.archonUrl)
                 .map((ev) => {
                   const platform = resolvePlatformLabel(ev.archonUrl!);
-                  const hasMultiple = post.data.events.filter((e) => e.archonUrl).length > 1;
+                  const hasMultiple = postEvents.filter((e) => e.archonUrl).length > 1;
                   return (
                     <a href={ev.archonUrl} target="_blank" rel="noopener noreferrer" class="gp-link-btn">
                       <svg

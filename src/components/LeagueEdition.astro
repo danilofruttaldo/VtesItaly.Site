@@ -15,6 +15,9 @@ interface Props {
 }
 
 const { post, locale = 'it' } = Astro.props;
+if (post.data.category !== 'comunita') {
+  throw new Error(`LeagueEdition: unsupported category "${post.data.category}"`);
+}
 const t = useTranslations(locale);
 const { Content } = await render(post);
 

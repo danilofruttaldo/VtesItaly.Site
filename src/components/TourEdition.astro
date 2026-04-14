@@ -13,6 +13,9 @@ interface Props {
 }
 
 const { post, locale = 'it' } = Astro.props;
+if (post.data.category !== 'tour') {
+  throw new Error(`TourEdition: unsupported category "${post.data.category}"`);
+}
 const t = useTranslations(locale);
 const stagesLabel = post.data.stagesLabel || t.tour.stages_label;
 const stageItemLabel = post.data.stageItemLabel || t.tour.stage_item;

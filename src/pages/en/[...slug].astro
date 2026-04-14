@@ -21,7 +21,7 @@ export async function getStaticPaths() {
   const posts = filterByLocale(await getCollection('blog'), 'en').filter((p) => !p.data.cardHidden);
   return posts.map((post) => {
     let cleanSlug = post.id.replace(/-en$/, '');
-    let catSlug = post.data.category;
+    let catSlug: string = post.data.category;
     if (catSlug === 'nazionale') {
       catSlug = 'national-championship';
       cleanSlug = cleanSlug.replace('nazionale-', 'nc-');

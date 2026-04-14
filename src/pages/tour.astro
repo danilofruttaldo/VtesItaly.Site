@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import TourEdition from '../components/TourEdition.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { mainPages } from '../data/pages';
 import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
 import { computeTourStatus } from '../utils/status';
@@ -12,8 +12,9 @@ import '../styles/edition-page.css';
 const t = useTranslations('it');
 
 const page = mainPages.find((p) => p.slug.it === 'tour')!;
+type TourEntry = CollectionEntry<'blog'> & { data: { category: 'tour' } };
 const posts = filterByLocale(await getCollection('blog'), 'it')
-  .filter((p) => p.data.category === page.category)
+  .filter((p): p is TourEntry => p.data.category === 'tour')
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const current = posts[0];

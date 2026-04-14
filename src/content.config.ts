@@ -121,6 +121,7 @@ const grandPrixSchema = z.object({
   hotelNote: z.string().optional(),
   schedule: z.array(scheduleSchema).optional().default([]),
   streamingUrl: z.string().optional(),
+  stages: z.array(stageSchema).optional(),
 });
 
 const nazionaleSchema = z.object({
@@ -141,6 +142,7 @@ const nazionaleSchema = z.object({
   hotelNote: z.string().optional(),
   schedule: z.array(scheduleSchema).optional().default([]),
   streamingUrl: z.string().optional(),
+  stages: z.array(stageSchema).optional(),
 });
 
 // Tour: multi-stage circuit
@@ -153,6 +155,8 @@ const tourSchema = z.object({
   standingsUrl: z.string().optional(),
   stagesLabel: z.string().optional(),
   stageItemLabel: z.string().optional(),
+  venue: venueSchema.optional(),
+  events: z.array(eventSchema).optional(),
 });
 
 // Comunita: subtypes (league, event, article) determined by field presence
@@ -188,12 +192,17 @@ const comunitaSchema = z.object({
     .array(z.object({ acronym: z.string(), label: z.string(), description: z.string() }))
     .optional()
     .default([]),
+  stages: z.array(stageSchema).optional(),
 });
 
 // Contest / article: minimal fields
 const contestSchema = z.object({
   ...baseFields,
   category: z.literal('contest'),
+  standingsUrl: z.string().optional(),
+  venue: venueSchema.optional(),
+  events: z.array(eventSchema).optional(),
+  stages: z.array(stageSchema).optional(),
 });
 
 /* ── Collection ───────────────────────────────────────────── */

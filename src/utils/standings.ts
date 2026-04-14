@@ -22,7 +22,8 @@ export function getCardMeta(
   let winner = '';
   let players = 0;
   if (post.data.standingsUrl) {
-    const key = Object.keys(allStandings).find((k) => k.includes(post.data.standingsUrl.replace(/^.*\//, '')));
+    const url = post.data.standingsUrl;
+    const key = Object.keys(allStandings).find((k) => k.includes(url.replace(/^.*\//, '')));
     if (key) {
       const data = allStandings[key].default;
       players = data.length;

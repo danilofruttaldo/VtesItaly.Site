@@ -41,6 +41,32 @@ export function computeEventStatus(eventDate: Date): EventStatus {
 }
 
 /**
+ * Compute per-stage display images: future stages get the placeholder,
+ * completed and upcoming stages show their real cover.
+ */
+export function computeStageDisplayImages(
+  stages: { date: Date; image?: string; status?: string }[],
+): (string | undefined)[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const statuses = stages.map((s) => {
+    if (s.status === 'cancelled') return 'cancelled';
+    const d = new Date(s.date);
+    d.setHours(0, 0, 0, 0);
+    if (d.getTime() === today.getTime()) return 'upcoming';
+    return d < today ? 'completed' : 'future';
+  });
+
+  const firstFuture = statuses.indexOf('future');
+  if (firstFuture !== -1) statuses[firstFuture] = 'upcoming';
+
+  const placeholder = stages[0]?.image?.replace(/\d{3}\.webp$/, '000.webp') || '';
+
+  return stages.map((s, i) => (!s.image ? undefined : statuses[i] === 'future' ? placeholder : s.image));
+}
+
+/**
  * Resolve a tournament platform label from its URL.
  */
 export function resolvePlatformLabel(url: string): string {

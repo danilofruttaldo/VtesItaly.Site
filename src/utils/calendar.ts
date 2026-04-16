@@ -1,6 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './i18n';
 import { localePrefix, useTranslations } from './i18n';
+import { computeStageDisplayImages } from './status';
 import localEventsData from '../data/local-events.json';
 
 export interface LocalEvent {
@@ -109,7 +110,9 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
 
     // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
-      for (const stage of post.data.stages) {
+      const displayImages = computeStageDisplayImages(post.data.stages);
+      for (let si = 0; si < post.data.stages.length; si++) {
+        const stage = post.data.stages[si];
         if (!stage.date) continue;
         const d = new Date(stage.date);
         // Skip placeholder dates (1st of month without confirmed time)
@@ -126,7 +129,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           venue: stage.venue,
           location: stage.location,
           format: composeFormat(stage.format, stage.proxies, stage.rounds, locale),
-          image: stage.image || image,
+          image: displayImages[si] || image,
           archonUrl: stage.archonUrl,
         });
       }

@@ -4,7 +4,7 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
-import { resolvePlatformLabel } from '../utils/status';
+import { resolvePlatformLabel, computeStageDisplayImages } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 
 interface Props {
@@ -24,6 +24,7 @@ const stages = post.data.stages || [];
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
+const displayImages = computeStageDisplayImages(stages);
 const computedStages = stages.map((s) => {
   if (s.status === 'cancelled') return s;
   const stageDate = new Date(s.date);
@@ -142,7 +143,13 @@ function formatStage(val: unknown, isAway: boolean): string {
             >
               {stage.image && (
                 <div class="te-card-image">
-                  <img src={stage.image} alt={stage.name} loading="lazy" decoding="async" />
+                  <img
+                    src={displayImages[i]}
+                    alt={stage.name}
+                    loading="lazy"
+                    decoding="async"
+                    data-real-image={stage.image}
+                  />
                 </div>
               )}
               <div class="te-card-body">
@@ -329,6 +336,13 @@ function formatStage(val: unknown, isAway: boolean): string {
       if (badge) {
         badge.className = 'te-badge te-badge--' + status;
         badge.textContent = badge.dataset['label' + status.charAt(0).toUpperCase() + status.slice(1)] || status;
+      }
+
+      // Swap cover: show real image for non-future, placeholder for future
+      const img = card.querySelector<HTMLImageElement>('.te-card-image img');
+      if (img?.dataset.realImage) {
+        img.src =
+          status === 'future' ? img.dataset.realImage.replace(/\d{3}\.webp$/, '000.webp') : img.dataset.realImage;
       }
     });
   })();

@@ -72,7 +72,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    image: '/tour/tour-2026/tour-2026-000.webp'
+    image: '/tour/tour-2026/tour-2026-004.webp'
     description: 'Desire for victory, control, blood. Lust seduces and corrupts, pushing you to risk more than you should. Those who yield often pay. Those who dominate, conquer.'
 
   - name: 'GLUTTONY'
@@ -82,7 +82,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    image: '/tour/tour-2026/tour-2026-000.webp'
+    image: '/tour/tour-2026/tour-2026-005.webp'
     description: "Devour everything: points, opponents, opportunities. Gluttony knows no measure and turns excess into strength. An extended stage, for those who can't stop."
 
   - name: 'SLOTH'
@@ -92,7 +92,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    image: '/tour/tour-2026/tour-2026-000.webp'
+    image: '/tour/tour-2026/tour-2026-006.webp'
     description: 'Sloth waits. Survives, endures, strikes only when needed. A deceptive sin that rewards patience and persistence.'
 
   - name: 'PRIDE'
@@ -102,7 +102,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    image: '/tour/tour-2026/tour-2026-000.webp'
+    image: '/tour/tour-2026/tour-2026-007.webp'
     description: 'Pride closes the circle. Here the marks collected and the valor shown are displayed. Only those who have come this far can claim their name.'
 
 locale: en

@@ -23,7 +23,12 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm audit --omit=dev
+
+      # Audit only on push to main; PR contributors can't fix transitive
+      # vulnerabilities anyway and it adds 10s to every PR run.
+      - if: github.event_name == 'push'
+        run: npm audit --omit=dev
+
       - run: npm run lint
       - run: npm run format:check
       - run: npm run check
@@ -51,7 +56,12 @@ jobs:
           retention-days: 1
 
   lighthouse:
+    # Lighthouse is a deploy gate, not a PR gate — it adds ~2 min and the
+    # findings are mostly stable across small content changes. PR feedback
+    # comes from `ci` (lint/test/build/smoke); Lighthouse runs only on the
+    # push that's about to deploy.
     needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

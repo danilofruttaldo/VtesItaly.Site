@@ -36,7 +36,12 @@ describe('LeagueEdition', () => {
       props: { post, locale: 'it' },
       request: new Request('http://localhost/'),
     });
-    const { players, games, tables } = post.data.leagueStats!;
+    // pickLeague filters to comunita posts with leagueStats, but the
+    // discriminated union doesn't narrow through the predicate — assert here.
+    if (post.data.category !== 'comunita' || !post.data.leagueStats) {
+      throw new Error('test fixture: expected a comunita post with leagueStats');
+    }
+    const { players, games, tables } = post.data.leagueStats;
     // The numbers must surface somewhere in the rendered markup.
     expect(html).toContain(String(players));
     expect(html).toContain(String(games));

@@ -8,26 +8,49 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 
 - **Astro 6** — static site generator
 - **TypeScript 5.9** — type-safe data and utilities
-- **Pagefind** — client-side search indexing
+- **Pagefind** — client-side search indexing (restricted to `<main data-pagefind-body>`)
 - **Sharp** — image processing
 - **ESLint + Prettier** — linting and formatting
-- **GitHub Actions** — CI/CD (audit → lint → format check → type check → build → deploy via SCP)
+- **Vitest 3 + @vitest/coverage-v8** — unit, component, and integration tests
+- **Astro Container API** — render `.astro` components inside Vitest
+- **Lighthouse CI** — accessibility/perf/SEO gating on every PR + main push
+- **GitHub Actions** — CI/CD: audit → lint → format → typecheck → tests → build → integration smoke → size guard → deploy via SCP
 
 ## Scripts
 
-| Command           | Description                                         |
-| ----------------- | --------------------------------------------------- |
-| `npm run dev`     | Dev server on port 4322                             |
-| `npm run build`   | Astro build → stamp service worker → Pagefind index |
-| `npm run preview` | Preview production build                            |
-| `npm run check`   | Astro type checking                                 |
-| `npm run lint`    | ESLint                                              |
-| `npm run format`  | Prettier                                            |
-| `npm run clean`   | Remove `dist/` and `.astro/`                        |
+| Command                 | Description                                         |
+| ----------------------- | --------------------------------------------------- |
+| `npm run dev`           | Dev server on port 4322                             |
+| `npm run build`         | Astro build → stamp service worker → Pagefind index |
+| `npm run preview`       | Preview production build                            |
+| `npm run check`         | Astro type checking                                 |
+| `npm run lint`          | ESLint                                              |
+| `npm run format`        | Prettier (write)                                    |
+| `npm run format:check`  | Prettier (check only)                               |
+| `npm test`              | Vitest unit + component tests                       |
+| `npm run test:watch`    | Vitest watch mode                                   |
+| `npm run test:coverage` | Vitest with v8 coverage                             |
+| `npm run test:build`    | `npm run build` + integration smoke against `dist/` |
+| `npm run clean`         | Remove `dist/` and `.astro/`                        |
 
 ## Deployment
 
-On push to `main`, the GitHub Actions workflow (`.github/workflows/deploy.yml`) runs audit, lint, format check, and build, then deploys the `dist/` folder to production via SCP over SSH.
+`.github/workflows/deploy.yml` defines two jobs:
+
+1. **`ci`** — runs on every push to `main` AND every PR. Executes `npm audit --omit=dev`, ESLint, Prettier check, `astro check`, Vitest (unit + component), `astro build`, post-build integration smoke (`vitest.integration.config.ts`), and an 80 MB `dist/` size budget.
+2. **`deploy`** — runs only on push to `main` after the `ci` job succeeds. SCP-uploads `dist/` to the production VPS.
+
+A separate `lighthouse.yml` workflow runs Lighthouse CI on every PR + main push. Accessibility ≥ 0.9, performance ≥ 0.8, SEO ≥ 0.9 are blocking errors; best-practices is a warning.
+
+## Testing
+
+Tests live in `tests/` and split into three families, all run by `npm test`:
+
+- `tests/utils/**` — pure unit tests for `i18n`, `status`, `calendar`, `standings`, `anonymize` (58 tests). Setup file pins `process.env.TZ = 'UTC'` so tests are deterministic across local (Europe/Rome) and CI (UTC) machines.
+- `tests/schemas/**` — golden validation: every JSON in `src/data/standings/` is parsed against the dialect-aware Zod schema in `src/schemas/standings.ts` (23 tests). Catches typos in player names or malformed score rows at test time.
+- `tests/components/**` — Astro Container API renders the real `.astro` components against fixture posts pulled via `getCollection('blog')`. Covers `EventEdition`, `TourEdition`, `LeagueEdition`, `Calendar`, `SearchOverlay`, plus an XSS regression test for the inline excerpt sanitiser introduced in commit `e731108` (13 tests).
+
+Integration tests (`tests/integration/**`) run against `dist/` after `npm run build` and verify: homepage, EN alternate with hreflang, sitemap presence, Pagefind output, og:image, IT/EN slug remap, size budget. Invoked with `npm run test:build`.
 
 ## Structure
 
@@ -81,7 +104,23 @@ Content uses a Zod discriminated union on `category` (`src/content.config.ts`). 
 
 ### Standings
 
-Tournament standings are stored as JSON in `src/data/standings/` organized by event type (`ev/`, `gp/`, `league/`, `nc/`, `tour/`). Columns: rank, name, GW, VP, FVP, TP.
+Tournament standings are stored as JSON in `src/data/standings/` organized by event type (`ev/`, `gp/`, `league/`, `nc/`, `tour/`). Three dialects are recognised by the Zod schema in `src/schemas/standings.ts`:
+
+- **EventStanding** (`gp/`, `nc/`, `ev/`) — single-tournament results: `{ rank, name, gw, vp, fvp?, tp }`.
+- **TourStanding** (`tour/`) — aggregate per-stage breakdown with optional `s1..sN`, `total`, `city`, `away`. Stage scores can be a number or a per-game breakdown object.
+- **LeagueStanding** (`league/`) — different point system: `{ rank, name, games, bp, lp, pp, fp? }`.
+
+The Week-of-Sabbat file (`ev/standings-wos-2025.json`) is a top-level object, not an array — handled separately by `WosStandings.astro` and intentionally excluded from the schema golden tests.
+
+### Comunita subtypes
+
+Community posts (`category: 'comunita'`) cover three distinct subtypes determined by field presence and validated by a `superRefine` in `src/content.config.ts`:
+
+- **Event** — has `venue` or non-empty `events` array.
+- **League** — has `leagueStats`.
+- **Article** — pure prose, must declare `articleOnly: true` explicitly.
+
+A comunita post that doesn't match any of these is a build-time error (it's almost always a forgotten field, not an intentional state).
 
 ## License
 

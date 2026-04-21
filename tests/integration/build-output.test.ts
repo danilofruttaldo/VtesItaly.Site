@@ -3,7 +3,7 @@
  * that pass `astro check` and unit tests but break the actual deployable —
  * missing pages, broken sitemap, no Pagefind index, missing hreflang. */
 import { describe, it, expect } from 'vitest';
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const DIST = join(process.cwd(), 'dist');
@@ -63,7 +63,7 @@ describe('build output: dist/', () => {
       const stack = [dir];
       while (stack.length) {
         const cur = stack.pop()!;
-        for (const entry of require('node:fs').readdirSync(cur, { withFileTypes: true })) {
+        for (const entry of readdirSync(cur, { withFileTypes: true })) {
           const p = join(cur, entry.name);
           if (entry.isDirectory()) stack.push(p);
           else total += statSync(p).size;

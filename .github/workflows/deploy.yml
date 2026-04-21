@@ -90,11 +90,14 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via rsync
-        # rsync transfers only files whose checksum or mtime changed, with
-        # zlib compression on the wire. Typical speed-up vs `scp -r`: 5–10×
-        # on incremental deploys (the static asset bulk doesn't move). The
-        # first deploy after this change still ships everything once.
+      - name: Deploy via tar-over-ssh
+        # The VPS has no rsync, but every Linux ships tar. Streaming a single
+        # gzipped tarball through one SSH connection beats `scp -r` (which
+        # opens a session per file) by ~5x in our case. No delta-encoding,
+        # so we still ship the whole dist/ each deploy — but it's a single
+        # ~10–15 MB compressed stream, not 200+ tiny scp transfers.
+        # `--delete` semantics intentionally dropped: install rsync on the
+        # server (apt install rsync) if you ever need to prune stale files.
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
@@ -104,7 +107,8 @@ jobs:
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          rsync \
-            --archive --compress --delete --human-readable --stats \
-            -e "ssh -i $HOME/.ssh/deploy_key -p $SSH_PORT" \
-            dist/ "${SSH_USER}@${SSH_HOST}:/home/${SSH_USER}/public_html/"
+          DEST="/home/${SSH_USER}/public_html"
+          tar -C dist -czf - . | ssh -i "$HOME/.ssh/deploy_key" -p "$SSH_PORT" \
+            -o StrictHostKeyChecking=yes \
+            "${SSH_USER}@${SSH_HOST}" \
+            "tar -C '$DEST' -xzf -"

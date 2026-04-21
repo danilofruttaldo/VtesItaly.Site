@@ -59,7 +59,7 @@ const galleries = postcardGalleries.map((g) => ({
               <div class="gallery-grid">
                 {gallery.images.map((img) => (
                   <figure class="gallery-item" role="button" tabindex="0">
-                    <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                    <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
                   </figure>
                 ))}
               </div>
@@ -69,7 +69,7 @@ const galleries = postcardGalleries.map((g) => ({
                 <div class="slider-track">
                   {gallery.images.map((img) => (
                     <figure class="slider-slide">
-                      <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                      <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
                     </figure>
                   ))}
                 </div>

@@ -32,7 +32,10 @@
   --color-contrast: #e2e0dd;
   --color-muted: #9b9b9b;
   --color-accent: #8b1a2b;
-  --color-accent-1: #d94a5e;
+  /* Brand accent used as text on the dark base. Bumped from #d94a5e
+   * (~4.29:1 contrast against --color-base) to clear WCAG AA (4.5:1)
+   * and stop dropping Lighthouse accessibility to 0.85 on home pages. */
+  --color-accent-1: #e85a72;
   --color-accent-2: #e87185;
   --color-accent-hover: #a83240;
   --color-accent-light: rgba(139, 26, 43, 0.15);

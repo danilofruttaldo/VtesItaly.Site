@@ -90,25 +90,66 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via tar-over-ssh
-        # The VPS has no rsync, but every Linux ships tar. Streaming a single
-        # gzipped tarball through one SSH connection beats `scp -r` (which
-        # opens a session per file) by ~5x in our case. No delta-encoding,
-        # so we still ship the whole dist/ each deploy — but it's a single
-        # ~10–15 MB compressed stream, not 200+ tiny scp transfers.
-        # `--delete` semantics intentionally dropped: install rsync on the
-        # server (apt install rsync) if you ever need to prune stale files.
+      - name: Deploy via tar-over-ssh + targeted orphan cleanup
+        # The shared-hosting VPS has no rsync, no sudo, no package manager.
+        # Strategy:
+        #   1. Stream a single gzipped tarball through one SSH connection
+        #      (~5x faster than scp -r per-file).
+        #   2. Tar overwrites + adds files but never deletes — so the
+        #      server's manually-managed files survive: .htaccess, the
+        #      legacy data/ docs/ blog/ dirs, the .jpeg favicon variants,
+        #      and anything else that isn't in `dist/`.
+        #   3. Prune ONLY orphans inside _astro/ and pagefind/ — both are
+        #      built-from-scratch every time with content-addressed names,
+        #      so old hashes accumulate forever otherwise. Other dirs like
+        #      api/, en/, gp/ are NOT pruned: they may contain legitimate
+        #      non-Astro files.
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
           SSH_PORT: ${{ vars.SSH_PORT }}
         run: |
+          set -euo pipefail
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          SSH=(ssh -i "$HOME/.ssh/deploy_key" -p "$SSH_PORT" "${SSH_USER}@${SSH_HOST}")
           DEST="/home/${SSH_USER}/public_html"
-          tar -C dist -czf - . | ssh -i "$HOME/.ssh/deploy_key" -p "$SSH_PORT" \
-            -o StrictHostKeyChecking=yes \
-            "${SSH_USER}@${SSH_HOST}" \
-            "tar -C '$DEST' -xzf -"
+
+          # --- 1. ship the tarball ---
+          BEFORE_KB=$(du -sk dist | cut -f1)
+          echo "shipping ${BEFORE_KB} KB (uncompressed) of dist/ as a single gzipped stream"
+          tar -C dist -czf - . | "${SSH[@]}" "tar -C '$DEST' -xzf -"
+
+          # --- 2. orphan cleanup (only in fully-managed dirs) ---
+          for managed in _astro pagefind; do
+            [ -d "dist/$managed" ] || continue
+            EXPECTED_FILES=$(find "dist/$managed" -type f | wc -l)
+            if [ "$EXPECTED_FILES" -lt 5 ]; then
+              echo "skip cleanup of $managed/: only $EXPECTED_FILES files in dist (sanity guard)"
+              continue
+            fi
+
+            ( cd "dist/$managed" && find . -type f | sort ) > "/tmp/want-$managed.txt"
+            "${SSH[@]}" "cd '$DEST/$managed' 2>/dev/null && find . -type f | sort" \
+              > "/tmp/have-$managed.txt" || true
+
+            comm -23 "/tmp/have-$managed.txt" "/tmp/want-$managed.txt" \
+              > "/tmp/orphans-$managed.txt"
+            ORPHAN_COUNT=$(wc -l < "/tmp/orphans-$managed.txt" | tr -d ' ')
+
+            if [ "$ORPHAN_COUNT" -gt 0 ]; then
+              echo "pruning $ORPHAN_COUNT orphan file(s) from $managed/"
+              {
+                echo "set -e"
+                echo "cd '$DEST/$managed'"
+                # filenames are Astro-generated content hashes (no spaces, no
+                # quotes), but single-quote them anyway for defence in depth.
+                sed "s|^|rm -f '|; s|\$|'|" "/tmp/orphans-$managed.txt"
+              } | "${SSH[@]}" "bash -s"
+            else
+              echo "$managed/ is clean, no orphans"
+            fi
+          done

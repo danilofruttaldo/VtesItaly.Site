@@ -11,7 +11,15 @@ const { name, href, princeName, princeAlias, princeImage } = Astro.props;
 ---
 
 <a href={href} class="city-card">
-  <img src={princeImage} alt={princeName} class="city-card__avatar" loading="lazy" decoding="async" />
+  <img
+    src={princeImage}
+    alt={princeName}
+    class="city-card__avatar"
+    width="90"
+    height="90"
+    loading="lazy"
+    decoding="async"
+  />
   <h3 class="city-card__title">{name}</h3>
   <p class="city-card__prince">{princeName}<br /><em>{princeAlias}</em></p>
 </a>

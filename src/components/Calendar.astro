@@ -35,7 +35,12 @@ const allEvents = extractCalendarEvents(posts, locale);
   {/* Navigation */}
   <div class="cal__nav">
     <button type="button" class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
-    <button type="button" class="cal__month-title" aria-haspopup="dialog" aria-expanded="false"></button>
+    <button
+      type="button"
+      class="cal__month-title"
+      aria-label={t.calendar.select_month}
+      aria-haspopup="dialog"
+      aria-expanded="false"></button>
     <button type="button" class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
     <button type="button" class="cal__today-btn">{t.calendar.today}</button>
   </div>

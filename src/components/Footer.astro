@@ -181,8 +181,10 @@ const t = useTranslations(locale);
 
   .legal {
     font-size: var(--font-size-2xs);
+    /* Avoid `opacity` on muted text — compositing #9b9b9b @ 0.7 over #121416
+     * drops the contrast ratio below WCAG AA (4.5:1). Use the muted token
+     * directly to stay readable while still de-emphasising legal copy. */
     color: var(--color-muted);
-    opacity: 0.7;
     margin-top: 4px;
   }
 

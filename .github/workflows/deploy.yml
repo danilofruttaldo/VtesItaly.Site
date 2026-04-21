@@ -112,9 +112,9 @@ jobs:
 
           sudo apt-get install -y -qq lftp >/dev/null
 
-          lftp -e "
+          lftp -u "$SSH_USER," -e "
             set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/deploy_key -p $SSH_PORT';
-            open sftp://${SSH_USER}@${SSH_HOST};
+            open sftp://${SSH_HOST};
             mirror --reverse --parallel=8 --ignore-time --no-perms --verbose dist/ /home/${SSH_USER}/public_html/;
             bye
           "

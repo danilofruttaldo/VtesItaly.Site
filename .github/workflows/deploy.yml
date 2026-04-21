@@ -90,31 +90,23 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via lftp mirror over SFTP
-        # Replaces `scp -r` (which serialises 200+ tiny per-file SCP round
-        # trips) with lftp's `mirror`, which:
-        #   - parallelises 8 SFTP transfers at once over a single SSH session
-        #   - compares local vs remote by size (Astro filenames are content
-        #     hashes, so same name + same size ⇒ same file ⇒ skip)
-        #   - never deletes — additive like scp, .htaccess and other
-        #     user-managed files on the server stay put
-        # Server side needs only OpenSSH+SFTP (already on every Linux host).
+      - name: Deploy via tar-pipe over SSH
+        # Single SSH session, gzip-streamed tarball extracted in place.
+        # Additive (like scp) — never deletes user-managed files (.htaccess).
+        # Trade-off vs lftp: no delta, uploads everything each run. Accepted
+        # because shared hosting throttles parallel SFTP, and Astro's content
+        # hashes mean most files change anyway on rebuild.
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
           SSH_PORT: ${{ vars.SSH_PORT }}
+        timeout-minutes: 5
         run: |
-          set -e
+          set -euo pipefail
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
-          sudo apt-get install -y -qq lftp >/dev/null
-
-          lftp -u "$SSH_USER," -e "
-            set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/deploy_key -p $SSH_PORT';
-            open sftp://${SSH_HOST};
-            mirror --reverse --parallel=8 --ignore-time --no-perms --verbose dist/ /home/${SSH_USER}/public_html/;
-            bye
-          "
+          tar -C dist -cz . | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" "tar -C /home/$SSH_USER/public_html -xz"

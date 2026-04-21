@@ -42,4 +42,18 @@ export default [
       globals: { console: 'readonly', process: 'readonly' },
     },
   },
+  {
+    // Vitest test files run in Node and may use timers, process, console, etc.
+    files: ['tests/**/*.ts', 'vitest*.config.ts'],
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+      },
+    },
+  },
 ];

@@ -8,49 +8,54 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 
 - **Astro 6** — static site generator
 - **TypeScript 5.9** — type-safe data and utilities
+- **Zod** — runtime validation of post frontmatter (discriminated union on `category`) and standings JSON (per-dialect schemas)
 - **Pagefind** — client-side search indexing (restricted to `<main data-pagefind-body>`)
 - **Sharp** — image processing
 - **ESLint + Prettier** — linting and formatting
 - **Vitest 3 + @vitest/coverage-v8** — unit, component, and integration tests
 - **Astro Container API** — render `.astro` components inside Vitest
 - **Lighthouse CI** — accessibility/perf/SEO gating on every PR + main push
-- **GitHub Actions** — CI/CD: audit → lint → format → typecheck → tests → build → integration smoke → size guard → deploy via SCP
+- **GitHub Actions** — single CI workflow: audit → lint → format → typecheck → tests → build → integration smoke → size guard → Lighthouse → deploy via SCP
 
 ## Scripts
 
-| Command                 | Description                                         |
-| ----------------------- | --------------------------------------------------- |
-| `npm run dev`           | Dev server on port 4322                             |
-| `npm run build`         | Astro build → stamp service worker → Pagefind index |
-| `npm run preview`       | Preview production build                            |
-| `npm run check`         | Astro type checking                                 |
-| `npm run lint`          | ESLint                                              |
-| `npm run format`        | Prettier (write)                                    |
-| `npm run format:check`  | Prettier (check only)                               |
-| `npm test`              | Vitest unit + component tests                       |
-| `npm run test:watch`    | Vitest watch mode                                   |
-| `npm run test:coverage` | Vitest with v8 coverage                             |
-| `npm run test:build`    | `npm run build` + integration smoke against `dist/` |
-| `npm run clean`         | Remove `dist/` and `.astro/`                        |
+| Command                 | Description                                             |
+| ----------------------- | ------------------------------------------------------- |
+| `npm run dev`           | Dev server on port 4322                                 |
+| `npm run build`         | Astro build → stamp service worker → Pagefind index     |
+| `npm run preview`       | Preview production build                                |
+| `npm run check`         | Astro type checking                                     |
+| `npm run lint`          | ESLint                                                  |
+| `npm run format`        | Prettier (write)                                        |
+| `npm run format:check`  | Prettier (check only)                                   |
+| `npm test`              | Warm content cache + Vitest (unit, schemas, components) |
+| `npm run test:watch`    | Vitest watch mode                                       |
+| `npm run test:coverage` | Vitest with v8 coverage                                 |
+| `npm run test:build`    | `npm run build` + integration smoke against `dist/`     |
+| `npm run clean`         | Remove `dist/` and `.astro/`                            |
+
+`pretest` (auto-runs before `npm test`) executes `scripts/warm-content.mjs`, which makes sure `.astro/data-store.json` exists so `getCollection('blog')` returns real entries inside Vitest. Without it, Astro 6 + Vitest report the collection as empty (see [withastro/astro#7051](https://github.com/withastro/astro/issues/7051)).
 
 ## Deployment
 
-`.github/workflows/deploy.yml` defines two jobs:
+`.github/workflows/deploy.yml` is a single workflow with three sequential jobs:
 
-1. **`ci`** — runs on every push to `main` AND every PR. Executes `npm audit --omit=dev`, ESLint, Prettier check, `astro check`, Vitest (unit + component), `astro build`, post-build integration smoke (`vitest.integration.config.ts`), and an 80 MB `dist/` size budget.
-2. **`deploy`** — runs only on push to `main` after the `ci` job succeeds. SCP-uploads `dist/` to the production VPS.
+1. **`ci`** — runs on every push to `main` AND every PR. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → Vitest (unit + schemas + components) → `astro build` → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
+2. **`lighthouse`** — depends on `ci`. Downloads the `dist/` artifact and runs Lighthouse CI from `.github/lighthouserc.json`. Accessibility ≥ 0.9, performance ≥ 0.8, SEO ≥ 0.9 are blocking errors; best-practices is a warning.
+3. **`deploy`** — depends on both `ci` and `lighthouse`, and runs only on push to `main`. Downloads the same `dist/` artifact and SCP-uploads it to the production VPS. No re-build.
 
-A separate `lighthouse.yml` workflow runs Lighthouse CI on every PR + main push. Accessibility ≥ 0.9, performance ≥ 0.8, SEO ≥ 0.9 are blocking errors; best-practices is a warning.
+Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
 
 ## Testing
 
-Tests live in `tests/` and split into three families, all run by `npm test`:
+Tests live in `tests/` and split into four families:
 
 - `tests/utils/**` — pure unit tests for `i18n`, `status`, `calendar`, `standings`, `anonymize` (58 tests). Setup file pins `process.env.TZ = 'UTC'` so tests are deterministic across local (Europe/Rome) and CI (UTC) machines.
 - `tests/schemas/**` — golden validation: every JSON in `src/data/standings/` is parsed against the dialect-aware Zod schema in `src/schemas/standings.ts` (23 tests). Catches typos in player names or malformed score rows at test time.
 - `tests/components/**` — Astro Container API renders the real `.astro` components against fixture posts pulled via `getCollection('blog')`. Covers `EventEdition`, `TourEdition`, `LeagueEdition`, `Calendar`, `SearchOverlay`, plus an XSS regression test for the inline excerpt sanitiser introduced in commit `e731108` (13 tests).
+- `tests/integration/**` — post-build smoke against `dist/` (`vitest.integration.config.ts`): homepage, EN alternate with hreflang, sitemap, Pagefind, og:image, IT/EN slug remap, size budget. Run via `npm run test:build`.
 
-Integration tests (`tests/integration/**`) run against `dist/` after `npm run build` and verify: homepage, EN alternate with hreflang, sitemap presence, Pagefind output, og:image, IT/EN slug remap, size budget. Invoked with `npm run test:build`.
+Total: **101 unit/component tests** (in `npm test`) + **8 integration tests** (in `npm run test:build`).
 
 ## Structure
 

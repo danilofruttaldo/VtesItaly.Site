@@ -118,6 +118,20 @@ jobs:
           SSH=(ssh -i "$HOME/.ssh/deploy_key" -p "$SSH_PORT" "${SSH_USER}@${SSH_HOST}")
           DEST="/home/${SSH_USER}/public_html"
 
+          # --- 0. guard against overwriting user-managed dirs ---
+          # The server keeps `data/`, `docs/`, and `blog/` as user-managed
+          # directories outside Astro's control. If somebody ever adds an
+          # Astro page under src/pages/{data,docs,blog}/ the build would
+          # generate dist/{data,docs,blog}/ and the tar extract below would
+          # silently overwrite live user content. Fail loud here instead.
+          for reserved in data docs blog; do
+            if [ -d "dist/$reserved" ]; then
+              echo "::error::dist/ contains '$reserved/' but it's a user-managed directory on the server."
+              echo "::error::Deploying would overwrite live content. Rename src/pages/$reserved/ first."
+              exit 1
+            fi
+          done
+
           # --- 1. ship the tarball ---
           BEFORE_KB=$(du -sk dist | cut -f1)
           echo "shipping ${BEFORE_KB} KB (uncompressed) of dist/ as a single gzipped stream"

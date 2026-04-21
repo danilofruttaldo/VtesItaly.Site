@@ -83,6 +83,98 @@
   }
 }
 
+.prose .callout {
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-left: 4px solid var(--color-gold);
+  background: rgba(201, 168, 76, 0.06);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 24px 0;
+  scroll-margin-top: 80px;
+}
+.prose .callout > :first-child {
+  margin-top: 0;
+}
+.prose .callout > :last-child {
+  margin-bottom: 0;
+}
+.prose .callout h2,
+.prose .callout h3 {
+  color: var(--color-gold);
+  margin-top: 0;
+}
+.prose .callout img {
+  max-width: 240px;
+  width: 100%;
+  display: block;
+  margin: 4px auto 14px;
+  border-radius: var(--radius);
+}
+.prose .callout--media {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.prose .callout--media > img,
+.prose .callout--media > a > img {
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+}
+.prose .callout--media > a {
+  display: block;
+  line-height: 0;
+  transition: transform 0.2s ease;
+}
+.prose .callout--media > a:hover {
+  transform: scale(1.02);
+}
+.prose .callout-body > :first-child {
+  margin-top: 0;
+}
+.prose .callout-body > :last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 600px) {
+  .prose .callout--media {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .prose .callout--media > img,
+  .prose .callout--media > a > img {
+    max-width: 200px;
+  }
+  .prose .callout--media .callout-body {
+    width: 100%;
+    text-align: left;
+  }
+}
+.prose .callout-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: var(--radius);
+  background: rgba(201, 168, 76, 0.08);
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+.prose .callout-action:hover {
+  background: rgba(201, 168, 76, 0.18);
+  border-color: rgba(201, 168, 76, 0.5);
+  color: var(--color-gold);
+}
+.prose .callout-action svg {
+  flex-shrink: 0;
+}
+
 .prose .winner-header {
   display: flex;
   align-items: center;

@@ -96,6 +96,7 @@ const baseFields = {
   notes: z.array(z.string()).optional().default([]),
   links: z.array(linkSchema).optional().default([]),
   linksAfter: z.array(linkSchema).optional().default([]),
+  highlight: z.object({ id: z.string(), label: z.string() }).optional(),
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
   cardHidden: z.boolean().optional().default(false),
 };
@@ -118,6 +119,7 @@ const grandPrixSchema = z.object({
   standingsUrl: z.string(),
   // optional
   earlyDeadline: z.string().optional(),
+  earlyDeadlineDate: z.coerce.date().optional(),
   hotelNote: z.string().optional(),
   schedule: z.array(scheduleSchema).optional().default([]),
   streamingUrl: z.string().optional(),
@@ -139,6 +141,7 @@ const nazionaleSchema = z.object({
   standingsUrl: z.string(),
   // optional
   earlyDeadline: z.string().optional(),
+  earlyDeadlineDate: z.coerce.date().optional(),
   hotelNote: z.string().optional(),
   schedule: z.array(scheduleSchema).optional().default([]),
   streamingUrl: z.string().optional(),
@@ -169,6 +172,7 @@ const comunitaSchema = z.object({
   schedule: z.array(scheduleSchema).optional().default([]),
   pricing: z.array(pricingSchema).optional().default([]),
   earlyDeadline: z.string().optional(),
+  earlyDeadlineDate: z.coerce.date().optional(),
   payment: z.string().optional(),
   hotel: z.array(hotelSchema).optional().default([]),
   hotelNote: z.string().optional(),

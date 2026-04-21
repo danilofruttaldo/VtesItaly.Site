@@ -1,4 +1,8 @@
-name: Deploy
+name: CI
+
+# Single workflow per commit: ci → lighthouse → deploy.
+# Lighthouse and deploy reuse the dist/ artifact uploaded by `ci`, so the
+# whole build pipeline runs only once per push.
 
 on:
   push:
@@ -9,7 +13,6 @@ on:
 jobs:
   ci:
     # Gate that runs on both PR and push: lint/format/typecheck/test/build/smoke.
-    # The deploy job below depends on this and only runs on push to main.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -40,23 +43,42 @@ jobs:
             exit 1
           fi
 
-  deploy:
+      - name: Upload dist artifact (shared with lighthouse + deploy)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+
+  lighthouse:
     needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download dist artifact from ci
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: .github/lighthouserc.json
+          uploadArtifacts: true
+
+  deploy:
+    needs: [ci, lighthouse]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: vtesitaly
     steps:
-      - uses: actions/checkout@v5
-
-      - uses: actions/setup-node@v5
+      - name: Download dist artifact from ci
+        uses: actions/download-artifact@v4
         with:
-          node-version: 22
-          cache: npm
-
-      - run: npm ci
-      - run: npm run build
-        env:
-          NODE_ENV: production
+          name: dist
+          path: dist
 
       - name: Deploy via scp
         env:

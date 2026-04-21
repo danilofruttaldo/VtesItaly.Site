@@ -3,11 +3,14 @@ name: Deploy
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  deploy:
+  ci:
+    # Gate that runs on both PR and push: lint/format/typecheck/test/build/smoke.
+    # The deploy job below depends on this and only runs on push to main.
     runs-on: ubuntu-latest
-    environment: vtesitaly
     steps:
       - uses: actions/checkout@v5
 
@@ -21,6 +24,36 @@ jobs:
       - run: npm run lint
       - run: npm run format:check
       - run: npm run check
+      - run: npm test
+      - run: npm run build
+        env:
+          NODE_ENV: production
+
+      - run: npx vitest run --config vitest.integration.config.ts
+
+      - name: Enforce dist size budget
+        run: |
+          SIZE_MB=$(du -sm dist | cut -f1)
+          echo "dist artifact: ${SIZE_MB}MB"
+          if [ "$SIZE_MB" -gt 80 ]; then
+            echo "::error::dist is ${SIZE_MB}MB, above the 80MB budget. Optimise images or split."
+            exit 1
+          fi
+
+  deploy:
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: vtesitaly
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
       - run: npm run build
         env:
           NODE_ENV: production

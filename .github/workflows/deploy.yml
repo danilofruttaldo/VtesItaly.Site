@@ -90,14 +90,31 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via scp
+      - name: Deploy via lftp mirror over SFTP
+        # Replaces `scp -r` (which serialises 200+ tiny per-file SCP round
+        # trips) with lftp's `mirror`, which:
+        #   - parallelises 8 SFTP transfers at once over a single SSH session
+        #   - compares local vs remote by size (Astro filenames are content
+        #     hashes, so same name + same size ⇒ same file ⇒ skip)
+        #   - never deletes — additive like scp, .htaccess and other
+        #     user-managed files on the server stay put
+        # Server side needs only OpenSSH+SFTP (already on every Linux host).
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
           SSH_PORT: ${{ vars.SSH_PORT }}
         run: |
+          set -e
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          scp -i ~/.ssh/deploy_key -P "$SSH_PORT" -r dist/* "${SSH_USER}@${SSH_HOST}:/home/${SSH_USER}/public_html/"
+
+          sudo apt-get install -y -qq lftp >/dev/null
+
+          lftp -e "
+            set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/deploy_key -p $SSH_PORT';
+            open sftp://${SSH_USER}@${SSH_HOST};
+            mirror --reverse --parallel=8 --ignore-time --no-perms --verbose dist/ /home/${SSH_USER}/public_html/;
+            bye
+          "

@@ -6,6 +6,7 @@ tags: ['elba', 'annuncio']
 featuredImage: '/images/headers/header-elba.webp'
 excerpt: "A new Domain rises on Elba: welcome to Italy's most island-bound domain!"
 locale: 'en'
+articleOnly: true
 ---
 
 The Italian Community of _Vampire: The Eternal Struggle_ is pleased to announce the birth of the **Domain of Elba**, the latest domain to join the VTES Italy family.

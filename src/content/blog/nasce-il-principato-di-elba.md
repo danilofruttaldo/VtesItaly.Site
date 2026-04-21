@@ -6,6 +6,7 @@ tags: ['elba', 'annuncio']
 featuredImage: '/images/headers/header-elba.webp'
 excerpt: "Un nuovo Principato sorge all'Elba: benvenuto al dominio più insulare d'Italia!"
 locale: it
+articleOnly: true
 ---
 
 La Comunità Italiana di _Vampire: The Eternal Struggle_ è lieta di annunciare la nascita del **Principato di Elba**, il più recente dominio ad unirsi alla famiglia VTES Italy.

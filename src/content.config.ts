@@ -162,42 +162,60 @@ const tourSchema = z.object({
   events: z.array(eventSchema).optional(),
 });
 
-// Comunita: subtypes (league, event, article) determined by field presence
-const comunitaSchema = z.object({
-  ...baseFields,
-  category: z.literal('comunita'),
-  // event fields (optional — present for events)
-  venue: venueSchema.optional(),
-  events: z.array(eventSchema).optional().default([]),
-  schedule: z.array(scheduleSchema).optional().default([]),
-  pricing: z.array(pricingSchema).optional().default([]),
-  earlyDeadline: z.string().optional(),
-  earlyDeadlineDate: z.coerce.date().optional(),
-  payment: z.string().optional(),
-  hotel: z.array(hotelSchema).optional().default([]),
-  hotelNote: z.string().optional(),
-  prizes: z.union([z.string(), z.array(z.string())]).optional(),
-  registration: z.string().optional(),
-  contact: z.string().optional(),
-  streamingUrl: z.string().optional(),
-  standingsUrl: z.string().optional(),
-  standingsLabel: z.string().optional(),
-  // league fields
-  leagueStats: z.object({ players: z.number(), games: z.number(), tables: z.number() }).optional(),
-  leagueTopLists: z
-    .array(z.object({ label: z.string(), items: z.array(z.object({ name: z.string(), count: z.number() })) }))
-    .optional()
-    .default([]),
-  leagueBonusPoints: z
-    .array(z.object({ name: z.string(), description: z.string() }))
-    .optional()
-    .default([]),
-  leagueRules: z
-    .array(z.object({ acronym: z.string(), label: z.string(), description: z.string() }))
-    .optional()
-    .default([]),
-  stages: z.array(stageSchema).optional(),
-});
+// Comunita: subtypes (league, event, article) determined by field presence.
+// `articleOnly: true` is the explicit opt-out for posts that are pure prose
+// with no venue/events/league data — without it, the superRefine below would
+// reject a comunita post that lacks all event/league markers as "incomplete".
+const comunitaSchema = z
+  .object({
+    ...baseFields,
+    category: z.literal('comunita'),
+    articleOnly: z.boolean().optional(),
+    // event fields (optional — present for events)
+    venue: venueSchema.optional(),
+    events: z.array(eventSchema).optional().default([]),
+    schedule: z.array(scheduleSchema).optional().default([]),
+    pricing: z.array(pricingSchema).optional().default([]),
+    earlyDeadline: z.string().optional(),
+    earlyDeadlineDate: z.coerce.date().optional(),
+    payment: z.string().optional(),
+    hotel: z.array(hotelSchema).optional().default([]),
+    hotelNote: z.string().optional(),
+    prizes: z.union([z.string(), z.array(z.string())]).optional(),
+    registration: z.string().optional(),
+    contact: z.string().optional(),
+    streamingUrl: z.string().optional(),
+    standingsUrl: z.string().optional(),
+    standingsLabel: z.string().optional(),
+    // league fields
+    leagueStats: z.object({ players: z.number(), games: z.number(), tables: z.number() }).optional(),
+    leagueTopLists: z
+      .array(z.object({ label: z.string(), items: z.array(z.object({ name: z.string(), count: z.number() })) }))
+      .optional()
+      .default([]),
+    leagueBonusPoints: z
+      .array(z.object({ name: z.string(), description: z.string() }))
+      .optional()
+      .default([]),
+    leagueRules: z
+      .array(z.object({ acronym: z.string(), label: z.string(), description: z.string() }))
+      .optional()
+      .default([]),
+    stages: z.array(stageSchema).optional(),
+  })
+  .superRefine((data, ctx) => {
+    const isEvent = !!data.venue || (data.events?.length ?? 0) > 0;
+    const isLeague = !!data.leagueStats;
+    const isArticle = data.articleOnly === true;
+    if (!isEvent && !isLeague && !isArticle) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['articleOnly'],
+        message:
+          'comunita post must declare its subtype: set venue/events (event), leagueStats (league), or articleOnly: true (article).',
+      });
+    }
+  });
 
 // Contest / article: minimal fields
 const contestSchema = z.object({

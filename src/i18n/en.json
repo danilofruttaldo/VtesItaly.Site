@@ -266,5 +266,10 @@
     "players": "Players",
     "points": "Points",
     "no_data": "No results available"
+  },
+  "sw_update": {
+    "title": "A new version is available.",
+    "reload": "Reload",
+    "dismiss": "Dismiss update banner"
   }
 }

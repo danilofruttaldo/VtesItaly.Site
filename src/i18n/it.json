@@ -260,5 +260,10 @@
     "players": "Giocatori",
     "points": "Punti",
     "no_data": "Nessun risultato disponibile"
+  },
+  "sw_update": {
+    "title": "È disponibile una nuova versione.",
+    "reload": "Ricarica",
+    "dismiss": "Chiudi il banner di aggiornamento"
   }
 }

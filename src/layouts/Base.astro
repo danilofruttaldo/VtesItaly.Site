@@ -129,9 +129,50 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
     </button>
-    <script is:inline>
+    <script is:inline define:vars={{ swUpdate: t.sw_update }}>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
+        window.addEventListener('load', async () => {
+          function showUpdateBanner() {
+            if (document.getElementById('sw-update')) return;
+            const bar = document.createElement('div');
+            bar.id = 'sw-update';
+            bar.className = 'sw-update';
+            bar.setAttribute('role', 'status');
+            bar.setAttribute('aria-live', 'polite');
+            const msg = document.createElement('span');
+            msg.textContent = swUpdate.title;
+            const reload = document.createElement('button');
+            reload.type = 'button';
+            reload.className = 'sw-update-btn';
+            reload.textContent = swUpdate.reload;
+            reload.addEventListener('click', () => window.location.reload());
+            const dismiss = document.createElement('button');
+            dismiss.type = 'button';
+            dismiss.className = 'sw-update-dismiss';
+            dismiss.setAttribute('aria-label', swUpdate.dismiss);
+            dismiss.textContent = '×';
+            dismiss.addEventListener('click', () => bar.remove());
+            bar.append(msg, reload, dismiss);
+            document.body.appendChild(bar);
+          }
+          try {
+            const reg = await navigator.serviceWorker.register('/sw.js');
+            reg.addEventListener('updatefound', () => {
+              const worker = reg.installing;
+              if (!worker) return;
+              worker.addEventListener('statechange', () => {
+                if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+                  showUpdateBanner();
+                }
+              });
+            });
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+              if (!document.getElementById('sw-update')) showUpdateBanner();
+            });
+          } catch {
+            /* SW registration is best-effort */
+          }
+        });
       }
     </script>
     <script is:inline>

@@ -46,6 +46,12 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 
 Workflow-level `concurrency: deploy-vtesitaly` serialises overlapping pushes to protect the shared hosting; `permissions: contents: read` scopes the default `GITHUB_TOKEN` to the minimum needed. Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
 
+## PWA & Service Worker
+
+Installable PWA. `public/sw.js` precaches the shell and serves pages network-first (cached fallback offline) and static assets cache-first. `scripts/stamp-sw.mjs` runs at build time and rewrites `CACHE_NAME = 'vtesitaly-__BUILD_TS__'` to a unique hash per build, so each deploy gets an isolated cache namespace and old CSS/JS/images can't leak across releases.
+
+When CI publishes a new `sw.js`, the installed worker picks up the byte diff, precaches the new shell, then `skipWaiting()` + `clients.claim()` transfer control. At that point the inline script in `src/layouts/Base.astro` — wired to `updatefound` and `controllerchange` — shows a localised banner (IT/EN via `sw_update` in `src/i18n/`) with a **Reload** button. Clicking it calls `window.location.reload()`; the new cache is already active so the fresh content loads immediately. The banner is dismissible — users who skip it pick up the update on their next navigation.
+
 ## Testing
 
 Tests live in `tests/` and split into four families:

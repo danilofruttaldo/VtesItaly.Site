@@ -7,13 +7,20 @@ name: CI
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-vtesitaly
+  cancel-in-progress: false
 
 jobs:
   ci:
-    # Gate that runs on both PR and push: lint/format/typecheck/test/build/smoke.
+    # Gate that runs on every push: lint/format/typecheck/test/build/smoke.
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
 
@@ -24,10 +31,7 @@ jobs:
 
       - run: npm ci
 
-      # Audit only on push to main; PR contributors can't fix transitive
-      # vulnerabilities anyway and it adds 10s to every PR run.
-      - if: github.event_name == 'push'
-        run: npm audit --omit=dev
+      - run: npm audit --omit=dev
 
       - run: npm run lint
       - run: npm run format:check
@@ -56,13 +60,11 @@ jobs:
           retention-days: 1
 
   lighthouse:
-    # Lighthouse is a deploy gate, not a PR gate — it adds ~2 min and the
-    # findings are mostly stable across small content changes. PR feedback
-    # comes from `ci` (lint/test/build/smoke); Lighthouse runs only on the
-    # push that's about to deploy.
+    # Lighthouse is a deploy gate. Reuses the dist artifact from ci so a
+    # lighthouse rerun doesn't redo lint/test/build.
     needs: ci
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
 
@@ -80,9 +82,11 @@ jobs:
 
   deploy:
     needs: [ci, lighthouse]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment: vtesitaly
+    timeout-minutes: 5
+    environment:
+      name: vtesitaly
+      url: https://vtesitaly.com
     steps:
       - name: Download dist artifact from ci
         uses: actions/download-artifact@v8
@@ -101,7 +105,6 @@ jobs:
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
           SSH_PORT: ${{ vars.SSH_PORT }}
-        timeout-minutes: 5
         run: |
           set -euo pipefail
           install -m 600 -D /dev/null ~/.ssh/deploy_key

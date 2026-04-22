@@ -14,8 +14,8 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 - **ESLint + Prettier** — linting and formatting
 - **Vitest 3 + @vitest/coverage-v8** — unit, component, and integration tests
 - **Astro Container API** — render `.astro` components inside Vitest
-- **Lighthouse CI** — accessibility/perf/SEO gating on every PR + main push
-- **GitHub Actions** — single CI workflow: audit → lint → format → typecheck → tests → build → integration smoke → size guard → Lighthouse → deploy via SCP
+- **Lighthouse CI** — accessibility/perf/SEO gating on every push to `main`
+- **GitHub Actions** — single CI workflow: audit → lint → format → typecheck → tests → build → integration smoke → size guard → Lighthouse → deploy via tar-pipe over SSH
 
 ## Scripts
 
@@ -40,11 +40,11 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 
 `.github/workflows/deploy.yml` is a single workflow with three sequential jobs:
 
-1. **`ci`** — runs on every push to `main` AND every PR. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → Vitest (unit + schemas + components) → `astro build` → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
+1. **`ci`** — runs on every push to `main`. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → Vitest (unit + schemas + components) → `astro build` → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
 2. **`lighthouse`** — depends on `ci`. Downloads the `dist/` artifact and runs Lighthouse CI from `.github/lighthouserc.json`. Accessibility ≥ 0.9, performance ≥ 0.8, SEO ≥ 0.9 are blocking errors; best-practices is a warning.
-3. **`deploy`** — depends on both `ci` and `lighthouse`, and runs only on push to `main`. Downloads the same `dist/` artifact and SCP-uploads it to the production VPS. No re-build.
+3. **`deploy`** — depends on both `ci` and `lighthouse`. Downloads the same `dist/` artifact and tar-pipes it over SSH to the production VPS. No re-build.
 
-Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
+Workflow-level `concurrency: deploy-vtesitaly` serialises overlapping pushes to protect the shared hosting; `permissions: contents: read` scopes the default `GITHUB_TOKEN` to the minimum needed. Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
 
 ## Testing
 

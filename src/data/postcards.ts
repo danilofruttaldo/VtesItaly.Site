@@ -6,6 +6,15 @@ export interface PostcardGallery {
 
 export const postcardGalleries: PostcardGallery[] = [
   {
+    title: { it: 'IT26 - Wrath', en: 'IT26 - Wrath' },
+    subtitle: { it: 'Pordenone, Aprile 2026', en: 'Pordenone, April 2026' },
+    images: [
+      { src: '/images/carte/library-agent-baton.webp', alt: 'Agent Baton' },
+      { src: '/images/carte/library-courier.webp', alt: 'Courier' },
+      { src: '/images/carte/library-murmur-of-the-false-will.webp', alt: 'Murmur of the False Will' },
+    ],
+  },
+  {
     title: { it: 'Nazionale 2026', en: 'National Championship 2026' },
     subtitle: { it: 'Trento, Febbraio 2026', en: 'Trento, February 2026' },
     images: [
@@ -77,10 +86,7 @@ export const postcardGalleries: PostcardGallery[] = [
   {
     title: { it: 'Fee Stake: Florence', en: 'Fee Stake: Florence' },
     subtitle: { it: 'Firenze, Febbraio 2025', en: 'Firenze, February 2025' },
-    images: [
-      { src: '/images/carte/library-dual-form-1.webp', alt: 'Dual Form' },
-      { src: '/images/carte/library-dual-form-4.webp', alt: 'Dual Form' },
-    ],
+    images: [{ src: '/images/carte/library-dual-form.webp', alt: 'Dual Form' }],
   },
   {
     title: { it: 'Grand Prix 2024', en: 'Grand Prix 2024' },

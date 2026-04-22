@@ -163,7 +163,7 @@ export const cities: City[] = [
         it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te — e zero pietà.",
         en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato — and zero mercy.',
       },
-      image: '/images/comunita/firenze-prato/hobra-hai.jpeg',
+      image: '/images/comunita/firenze-prato/hobra-hai.webp',
     },
   },
   {
@@ -388,7 +388,7 @@ export const cities: City[] = [
         it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te — e zero pietà.",
         en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato — and zero mercy.',
       },
-      image: '/images/comunita/firenze-prato/hobra-hai.jpeg',
+      image: '/images/comunita/firenze-prato/hobra-hai.webp',
     },
   },
   {

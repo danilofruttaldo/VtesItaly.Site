@@ -3,7 +3,7 @@ title: 'Grand Prix 2026'
 date: 2026-05-02
 category: 'grand-prix'
 tags: ['bologna', 'italia']
-excerpt: 'Italian GP 2026 — Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek and Mistlore, presents the GP 2026!'
+excerpt: 'Italian GP 2026 — Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek, Mistlore and TCG Market, presents the GP 2026!'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'
 poster: '/gp/gp-2026/gp-2026-poster.webp'
 venue:
@@ -66,7 +66,7 @@ highlight:
 locale: en
 ---
 
-The **Italian V:TES Community**, in collaboration with **Ultra-Pro**, **Card Game Geek** and **Mistlore**, is proud to announce the **GP 2026**!
+The **Italian V:TES Community**, in collaboration with **Ultra-Pro**, **Card Game Geek**, **Mistlore** and **TCG Market**, is proud to announce the **GP 2026**!
 
 The venue is close to the airport and the motorway, with private parking and bus connection to the central train station.
 

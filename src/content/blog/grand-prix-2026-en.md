@@ -47,7 +47,7 @@ prizes:
   - 'Ranking prizes'
   - 'Raffle prizes'
   - 'More to be announced'
-standingsUrl: ''
+standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
 registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 notes:

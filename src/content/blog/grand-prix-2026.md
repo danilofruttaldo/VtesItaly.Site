@@ -47,7 +47,7 @@ prizes:
   - 'Premi per classifica'
   - 'Premi ad estrazione'
   - 'Altre formule in arrivo'
-standingsUrl: ''
+standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 notes:

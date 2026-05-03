@@ -62,7 +62,16 @@ if (post.data.standingsUrl) {
 }
 const hasFvp = standings.some((s) => s.fvp != null);
 const postEvents = post.data.events;
-const earlyActive = !post.data.earlyDeadlineDate || new Date() < post.data.earlyDeadlineDate;
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const lastEventDay = postEvents.reduce<Date | null>((max, e) => {
+  const d = new Date(e.date);
+  d.setHours(0, 0, 0, 0);
+  return !max || d > max ? d : max;
+}, null);
+const eventFinished = lastEventDay !== null && today >= lastEventDay;
+const earlyActive = !eventFinished && (!post.data.earlyDeadlineDate || today < post.data.earlyDeadlineDate);
+const regularActive = !eventFinished && !earlyActive;
 ---
 
 {/* Poster / locandina */}
@@ -186,7 +195,7 @@ const earlyActive = !post.data.earlyDeadlineDate || new Date() < post.data.early
                   <th class={earlyActive ? 'gp-price-active' : 'gp-price-inactive'}>
                     {t.gp.early_col} {post.data.earlyDeadline}
                   </th>
-                  <th class={!earlyActive ? 'gp-price-active' : 'gp-price-inactive'}>
+                  <th class={regularActive ? 'gp-price-active' : 'gp-price-inactive'}>
                     {t.gp.regular_col} {post.data.earlyDeadline}
                   </th>
                 </tr>
@@ -197,7 +206,7 @@ const earlyActive = !post.data.earlyDeadlineDate || new Date() < post.data.early
                 <tr>
                   <td>{p.label}</td>
                   {p.early && <td class={earlyActive ? 'gp-price-active' : 'gp-price-inactive'}>{p.early}</td>}
-                  <td class={!earlyActive ? 'gp-price-active' : 'gp-price-inactive'}>{p.regular}</td>
+                  <td class={regularActive ? 'gp-price-active' : 'gp-price-inactive'}>{p.regular}</td>
                 </tr>
               ))}
             </tbody>

@@ -48,6 +48,7 @@ prizes:
   - 'Premi ad estrazione'
   - 'Altre formule in arrivo'
 standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
+streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 notes:

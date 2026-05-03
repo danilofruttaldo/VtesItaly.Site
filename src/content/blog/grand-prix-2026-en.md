@@ -48,6 +48,7 @@ prizes:
   - 'Raffle prizes'
   - 'More to be announced'
 standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
+streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 notes:

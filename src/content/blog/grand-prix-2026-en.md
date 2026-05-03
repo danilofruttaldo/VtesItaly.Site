@@ -49,6 +49,9 @@ prizes:
   - 'More to be announced'
 standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
 streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=dy0WvJXhM3w'
+    label: 'Prize Reveal'
 registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 notes:
@@ -64,27 +67,18 @@ links:
 highlight:
   id: 'superb-owl'
   label: 'Superb Owl Fashion Parade'
+highlightHtml: |
+  <div id="superb-owl" class="callout callout--media">
+    <a href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the Superb Owl Fashion Parade rules (PDF)"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Superb Owl Fashion Parade poster — the owl wants you" width="220" height="311" loading="lazy" decoding="async" /></a>
+    <div class="callout-body">
+      <h2>Superb Owl Fashion Parade</h2>
+      <p>On Saturday May 2, during the Main Event, the first edition of the <strong>Superb Owl Fashion Parade</strong> will take place: the most improvised fashion contest of the European circuit. We'll crown the most <em>unsettling, flashy and fun</em> outfit of the day. Step up to the jury table and declare your intent to participate — coffee and chocolates as gifts are appreciated, though not strictly required.</p>
+      <a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Rules, jury and prizes (PDF)</a>
+    </div>
+  </div>
 locale: en
 ---
 
 The **Italian V:TES Community**, in collaboration with **Ultra-Pro**, **Card Game Geek**, **Mistlore** and **TCG Market**, is proud to announce the **GP 2026**!
 
 The venue is close to the airport and the motorway, with private parking and bus connection to the central train station.
-
-Rewatch the [**Prize Reveal**](https://www.youtube.com/watch?v=dy0WvJXhM3w) released ahead of the event.
-
-<div id="superb-owl" class="callout callout--media">
-
-<a href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the Superb Owl Fashion Parade rules (PDF)"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Superb Owl Fashion Parade poster — the owl wants you" width="220" height="311" loading="lazy" decoding="async" /></a>
-
-<div class="callout-body">
-
-## Superb Owl Fashion Parade
-
-On Saturday May 2, during the Main Event, the first edition of the **Superb Owl Fashion Parade** will take place: the most improvised fashion contest of the European circuit. We'll crown the most _unsettling, flashy and fun_ outfit of the day. Step up to the jury table and declare your intent to participate — coffee and chocolates as gifts are appreciated, though not strictly required.
-
-<a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Rules, jury and prizes (PDF)</a>
-
-</div>
-
-</div>

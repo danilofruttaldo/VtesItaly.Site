@@ -97,6 +97,11 @@ const baseFields = {
   links: z.array(linkSchema).optional().default([]),
   linksAfter: z.array(linkSchema).optional().default([]),
   highlight: z.object({ id: z.string(), label: z.string() }).optional(),
+  highlightHtml: z.string().optional(),
+  streamingLinks: z
+    .array(z.object({ url: z.string(), label: z.string() }))
+    .optional()
+    .default([]),
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
   cardHidden: z.boolean().optional().default(false),
 };

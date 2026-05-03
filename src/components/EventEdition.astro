@@ -82,6 +82,14 @@ const earlyActive = !post.data.earlyDeadlineDate || new Date() < post.data.early
 {
   (standings.length > 0 || post.data.highlight) && (
     <nav class="gp-quicknav">
+      {standings.length > 0 && (
+        <a href="#classifica" class="gp-quicknav-link">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          {t.post.jump_standings}
+        </a>
+      )}
       {post.data.highlight && (
         <a href={`#${post.data.highlight.id}`} class="gp-quicknav-link">
           <svg
@@ -96,14 +104,6 @@ const earlyActive = !post.data.earlyDeadlineDate || new Date() < post.data.early
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
           </svg>
           {post.data.highlight.label}
-        </a>
-      )}
-      {standings.length > 0 && (
-        <a href="#classifica" class="gp-quicknav-link">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-          {t.post.jump_standings}
         </a>
       )}
     </nav>

@@ -71,6 +71,8 @@ The **Italian V:TES Community**, in collaboration with **Ultra-Pro**, **Card Gam
 
 The venue is close to the airport and the motorway, with private parking and bus connection to the central train station.
 
+Rewatch the [**Prize Reveal**](https://www.youtube.com/watch?v=dy0WvJXhM3w) released ahead of the event.
+
 <div id="superb-owl" class="callout callout--media">
 
 <a href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open the Superb Owl Fashion Parade rules (PDF)"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Superb Owl Fashion Parade poster — the owl wants you" width="220" height="311" loading="lazy" decoding="async" /></a>

@@ -71,6 +71,8 @@ La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, **Card 
 
 La struttura è vicina all'aeroporto e all'autostrada, con parcheggio interno e collegamento in bus alla Stazione FS.
 
+Rivedi il [**Prize Reveal**](https://www.youtube.com/watch?v=dy0WvJXhM3w) pubblicato prima dell'evento.
+
 <div id="superb-owl" class="callout callout--media">
 
 <a href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-it.pdf" target="_blank" rel="noopener noreferrer" aria-label="Apri il regolamento Superb Owl Fashion Parade (PDF)"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Locandina Superb Owl Fashion Parade — la civetta ti vuole" width="220" height="311" loading="lazy" decoding="async" /></a>

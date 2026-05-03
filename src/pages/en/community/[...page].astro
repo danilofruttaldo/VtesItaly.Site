@@ -22,7 +22,12 @@ const pageMeta = mainPages.find((p) => p.slug.it === 'comunita')!;
 const { page } = Astro.props;
 ---
 
-<Base title={pageMeta.title.en} description={pageMeta.description.en} noindex={page.currentPage > 1}>
+<Base
+  title={pageMeta.title.en}
+  description={pageMeta.description.en}
+  ogImage={pageMeta.ogImage}
+  noindex={page.currentPage > 1}
+>
   <img src={pageMeta.headerImage} alt={pageMeta.title.en} class="hero-banner" decoding="async" fetchpriority="high" />
   <section class="hero-text">
     <div class="container container--narrow">

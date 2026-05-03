@@ -16,7 +16,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   .slice(0, 4);
 ---
 
-<Base title={page.title.en} description={page.description.en}>
+<Base title={page.title.en} description={page.description.en} ogImage={page.ogImage}>
   <img src={page.headerImage} alt="VTES Italy" class="hero-banner" decoding="async" fetchpriority="high" />
 
   <section class="hero-text">

@@ -12,7 +12,7 @@ const page = mainPages.find((p) => p.slug.it === 'principati')!;
 const t = useTranslations('it');
 ---
 
-<Base title={page.title.it} description={page.description.it}>
+<Base title={page.title.it} description={page.description.it} ogImage={page.ogImage}>
   <PageHero title={page.title.it} image={page.headerImage} />
 
   <section class="section">

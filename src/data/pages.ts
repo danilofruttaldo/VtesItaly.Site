@@ -4,6 +4,7 @@ export interface PageMeta {
   slug: Record<Locale, string>;
   title: Record<Locale, string>;
   headerImage: string;
+  ogImage: string;
   description: Record<Locale, string>;
   category?: string;
   leadHtml?: Record<Locale, string>;
@@ -16,6 +17,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: '', en: '' },
     title: { it: 'Home', en: 'Home' },
     headerImage: '/images/headers/header-home.webp',
+    ogImage: '/images/og/og-home.webp',
     description: {
       it: 'La community italiana di Vampire: The Eternal Struggle. Tornei, raduni e campionati in tutta Italia.',
       en: 'The Italian Methuselah community. Tournaments, gatherings and championships across Italy.',
@@ -25,6 +27,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'principati', en: 'domains' },
     title: { it: 'Principati', en: 'The Domains' },
     headerImage: '/images/headers/header-principati.webp',
+    ogImage: '/images/og/og-principati.webp',
     description: {
       it: 'Le città dove si gioca a VTES in Italia. Ogni principato ha il suo Principe.',
       en: 'The cities where VTES is played in Italy. Each domain has its own Prince.',
@@ -34,6 +37,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'tour', en: 'tour' },
     title: { it: 'Italian Tour', en: 'Italian Tour' },
     headerImage: '/images/headers/header-tour.webp',
+    ogImage: '/images/og/og-tour.webp',
     description: {
       it: 'Il circuito di tornei VTES in Italia.',
       en: 'The VTES tournament circuit in Italy.',
@@ -56,6 +60,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'grand-prix', en: 'grand-prix' },
     title: { it: 'Grand Prix', en: 'Grand Prix' },
     headerImage: '/images/headers/header-grand-prix.webp',
+    ogImage: '/images/og/og-grand-prix.webp',
     description: {
       it: 'Il Grand Prix italiano di VTES.',
       en: 'The Italian VTES Grand Prix.',
@@ -78,6 +83,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'nazionale', en: 'national-championship' },
     title: { it: 'Nazionale', en: 'National Championship' },
     headerImage: '/images/headers/header-nazionale.webp',
+    ogImage: '/images/og/og-nazionale.webp',
     description: {
       it: 'Il Campionato Nazionale italiano di VTES.',
       en: 'The Italian VTES National Championship.',
@@ -100,6 +106,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'cartoline', en: 'postcards' },
     title: { it: 'Cartoline', en: 'Postcards' },
     headerImage: '/images/headers/header-cartoline.webp',
+    ogImage: '/images/og/og-cartoline.webp',
     description: {
       it: 'Foto ironiche di carte VTES dalla community.',
       en: 'Ironic VTES card photos from the community.',
@@ -109,6 +116,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'gemelli', en: 'twins' },
     title: { it: 'Gemelli', en: 'Twins' },
     headerImage: '/images/headers/header-gemelli.webp',
+    ogImage: '/images/og/og-gemelli.webp',
     description: {
       it: 'Confronti tra personaggi VTES e figure reali.',
       en: 'Comparisons between VTES characters and real-world figures.',
@@ -118,6 +126,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'comunita', en: 'community' },
     title: { it: 'Comunità', en: 'Community' },
     headerImage: '/images/headers/header-home.webp',
+    ogImage: '/images/og/og-comunita.webp',
     description: {
       it: 'Articoli, report e novità dalla comunità VTES Italia.',
       en: 'Articles, reports and news from the Italian VTES community.',

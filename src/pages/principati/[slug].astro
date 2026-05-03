@@ -27,7 +27,11 @@ export async function getStaticPaths() {
 const { city, relatedPosts } = Astro.props;
 ---
 
-<Base title={city.name.it} description={city.description.it}>
+<Base
+  title={city.name.it}
+  description={city.description.it}
+  ogImage={city.headerImage.replace('/headers/header-', '/og/og-')}
+>
   <PageHero
     title={city.name.it}
     image={city.headerImage}

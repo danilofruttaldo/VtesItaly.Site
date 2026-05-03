@@ -19,7 +19,7 @@ const t = useTranslations(locale);
 const {
   title,
   description = t.default_description,
-  ogImage = '/images/headers/header-home.webp',
+  ogImage = '/images/og/og-default.webp',
   noindex = false,
 } = Astro.props;
 const otherLocales = getOtherLocales(locale);
@@ -56,12 +56,14 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <meta property="og:locale" content={t.og_locale} />
     <meta property="og:site_name" content="VTES Italy" />
     <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:image:alt" content={`${title} | VTES Italy`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | VTES Italy`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    <meta name="twitter:image:alt" content={`${title} | VTES Italy`} />
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />

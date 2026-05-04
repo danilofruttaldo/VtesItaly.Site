@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
+import Lightbox from '../components/Lightbox.astro';
 import JsonLd from '../components/JsonLd.astro';
 import LangChooser from '../components/LangChooser.astro';
 import { getLocaleFromUrl, getAlternateUrl, useTranslations, getOtherLocales } from '../utils/i18n';
@@ -120,6 +121,7 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <Footer />
     <SearchOverlay />
     <LangChooser />
+    <Lightbox />
     <button
       type="button"
       id="back-to-top"

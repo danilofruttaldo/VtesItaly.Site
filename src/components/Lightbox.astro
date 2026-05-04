@@ -1,0 +1,112 @@
+---
+/* Site-wide lightbox: opens any <a> linking to a photo (.webp/.jpg/.jpeg/.png/.avif/.gif)
+   in an overlay instead of a new tab. Falls back to the original target on no-JS. */
+---
+
+<div class="lightbox" id="app-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Foto ingrandita">
+  <button type="button" class="lightbox-close" id="app-lightbox-close" aria-label="Chiudi">×</button>
+  <img class="lightbox-img" id="app-lightbox-img" src="" alt="" />
+</div>
+
+<style>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    padding: 24px;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    cursor: zoom-out;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .lightbox-close:hover,
+  .lightbox-close:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    outline: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox {
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const lb = document.getElementById('app-lightbox');
+    const img = document.getElementById('app-lightbox-img');
+    const closeBtn = document.getElementById('app-lightbox-close');
+    if (!lb || !img || !closeBtn) return;
+
+    const PHOTO_RE = /\.(webp|jpe?g|png|avif|gif)(\?.*)?(#.*)?$/i;
+
+    function open(href, alt) {
+      img.src = href;
+      img.alt = alt || '';
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      img.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a');
+      if (!a) return;
+      if (a.dataset && a.dataset.noLightbox !== undefined) return;
+      const href = a.getAttribute('href');
+      if (!href || !PHOTO_RE.test(href)) return;
+      // Skip modifier-clicks so users can still open in new tab on purpose.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      const innerImg = a.querySelector('img');
+      open(href, innerImg ? innerImg.alt : '');
+    });
+
+    lb.addEventListener('click', (e) => {
+      if (e.target === img) return;
+      close();
+    });
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lb.classList.contains('is-open')) close();
+    });
+  })();
+</script>

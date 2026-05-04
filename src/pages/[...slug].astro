@@ -166,7 +166,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
   }
 
   <article class="post">
-    <div class="container container--narrow">
+    <div class:list={['container', !(isEventPage || isTourWithStages) && 'container--narrow']}>
       {/* Back link */}
       <a href={backUrl} class="post__back">&larr; {backLabel}</a>
 

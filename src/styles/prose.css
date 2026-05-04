@@ -130,6 +130,27 @@
 .prose .callout--media > a:hover {
   transform: scale(1.02);
 }
+.prose .callout--with-winner {
+  grid-template-columns: 220px 1fr 220px;
+  align-items: stretch;
+}
+.prose .callout--with-winner > .callout-body {
+  display: flex;
+  flex-direction: column;
+}
+.prose .callout--with-winner > .callout-body > .callout-footer {
+  margin-top: auto;
+}
+@media (max-width: 880px) {
+  .prose .callout--with-winner {
+    grid-template-columns: 220px 1fr;
+  }
+  .prose .callout--with-winner > a:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 220px;
+  }
+}
 .prose .callout-body > :first-child {
   margin-top: 0;
 }
@@ -150,6 +171,36 @@
     width: 100%;
     text-align: left;
   }
+}
+.prose .callout-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+.prose .callout-footer .callout-action {
+  margin: 0;
+}
+.prose .callout-winner {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-gold);
+  letter-spacing: var(--tracking-wide);
+}
+@media (max-width: 600px) {
+  .prose .callout-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+.prose .callout-winner strong {
+  color: inherit;
+  font-size: 1.15em;
+  letter-spacing: var(--tracking-wider);
 }
 .prose .callout-action {
   display: inline-flex;

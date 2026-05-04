@@ -6,6 +6,43 @@ tags: ['bologna', 'italia']
 excerpt: 'IT GP 2026 — Bologna. La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek, Mistlore e TCG Market, presenta il GP 2026!'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'
 poster: '/gp/gp-2026/gp-2026-poster.webp'
+gallerySections:
+  - title: 'Preparazione'
+    images:
+      - '/gp/gp-2026/gp-2026-preparazione-01.webp'
+      - '/gp/gp-2026/gp-2026-preparazione-02.webp'
+      - '/gp/gp-2026/gp-2026-preparazione-03.webp'
+      - '/gp/gp-2026/gp-2026-preparazione-04.webp'
+      - '/gp/gp-2026/gp-2026-preparazione-05.webp'
+      - '/gp/gp-2026/gp-2026-preparazione-06.webp'
+  - title: 'Round'
+    images:
+      - '/gp/gp-2026/gp-2026-round-04.webp'
+      - '/gp/gp-2026/gp-2026-round-01.webp'
+      - '/gp/gp-2026/gp-2026-round-02.webp'
+      - '/gp/gp-2026/gp-2026-round-03.webp'
+      - '/gp/gp-2026/gp-2026-round-05.webp'
+      - '/gp/gp-2026/gp-2026-round-06.webp'
+      - '/gp/gp-2026/gp-2026-round-07.webp'
+    wideImages:
+      - '/gp/gp-2026/gp-2026-round-04.webp'
+  - title: 'Finale'
+    images:
+      - '/gp/gp-2026/gp-2026-finale-01.webp'
+      - '/gp/gp-2026/gp-2026-finale-02.webp'
+      - '/gp/gp-2026/gp-2026-finale-03.webp'
+      - '/gp/gp-2026/gp-2026-finale-04.webp'
+      - '/gp/gp-2026/gp-2026-finale-05.webp'
+      - '/gp/gp-2026/gp-2026-finale-06.webp'
+  - title: 'Bonus'
+    images:
+      - '/gp/gp-2026/gp-2026-bonus-02.webp'
+      - '/gp/gp-2026/gp-2026-bonus-03.webp'
+      - '/gp/gp-2026/gp-2026-bonus-05.webp'
+      - '/gp/gp-2026/gp-2026-bonus-01.webp'
+      - '/gp/gp-2026/gp-2026-bonus-04.webp'
+    wideImages:
+      - '/gp/gp-2026/gp-2026-bonus-04.webp'
 venue:
   name: 'Hotel Airport Bologna ****'
   address: 'Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)'
@@ -68,14 +105,17 @@ highlight:
   id: 'superb-owl'
   label: 'Superb Owl Fashion Parade'
 highlightHtml: |
-  <div id="superb-owl" class="callout callout--media">
-    <a href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-it.pdf" target="_blank" rel="noopener noreferrer" aria-label="Apri il regolamento Superb Owl Fashion Parade (PDF)"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Locandina Superb Owl Fashion Parade — la civetta ti vuole" width="220" height="311" loading="lazy" decoding="async" /></a>
+  <div id="superb-owl" class="callout callout--media callout--with-winner">
+    <a href="/gp/gp-2026/superb-owl-poster.webp" target="_blank" rel="noopener noreferrer" aria-label="Ingrandisci la locandina del Superb Owl Fashion Parade"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Locandina Superb Owl Fashion Parade — la civetta ti vuole" width="220" height="311" loading="lazy" decoding="async" /></a>
     <div class="callout-body">
       <h2>Superb Owl Fashion Parade</h2>
       <p>Sabato 2 maggio, durante il Main Event, si terrà la prima edizione della <strong>Superb Owl Fashion Parade</strong>: il contest sartoriale più improvvisato del circuito europeo. Premieremo il capo d'abbigliamento più <em>inquietante, sgargiante e divertente</em> della giornata. Presentati al tavolo della giuria e pronuncia la formula di rito — caffè e cioccolatini in dono sono graditi, ma non obbligatori.</p>
-      <p>🏆 Vincitore della prima edizione: <strong>Lovre</strong>.</p>
-      <a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-it.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Regolamento, giuria e premi (PDF)</a>
+      <div class="callout-footer">
+        <a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-it.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Regolamento, giuria e premi (PDF)</a>
+        <p class="callout-winner">🏆 Vincitore: <strong>Lovre</strong></p>
+      </div>
     </div>
+    <a href="/gp/gp-2026/superb-owl-winner.webp" target="_blank" rel="noopener noreferrer" aria-label="Ingrandisci la foto del vincitore"><img src="/gp/gp-2026/superb-owl-winner.webp" alt="Lovre, vincitore della prima edizione del Superb Owl Fashion Parade" width="220" height="311" loading="lazy" decoding="async" /></a>
   </div>
 locale: it
 ---

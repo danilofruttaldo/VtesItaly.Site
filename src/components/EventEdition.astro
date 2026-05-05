@@ -136,15 +136,16 @@ const regularActive = !eventFinished && !earlyActive;
                 post.data.venue.name
               )}
             </strong>
-            <br />
+            {post.data.venue.address !== post.data.venue.name && <br />}
           </>
-          {post.data.venue.mapUrl ? (
-            <a href={post.data.venue.mapUrl} target="_blank" rel="noopener noreferrer">
-              {post.data.venue.address}
-            </a>
-          ) : (
-            post.data.venue.address
-          )}
+          {post.data.venue.address !== post.data.venue.name &&
+            (post.data.venue.mapUrl ? (
+              <a href={post.data.venue.mapUrl} target="_blank" rel="noopener noreferrer">
+                {post.data.venue.address}
+              </a>
+            ) : (
+              post.data.venue.address
+            ))}
         </span>
       </div>
     )
@@ -154,16 +155,39 @@ const regularActive = !eventFinished && !earlyActive;
       <div class="gp-row">
         <span class="gp-label">{t.gp.program_label}</span>
         <div class="gp-value">
-          {post.data.events.map((ev) => (
-            <div class="gp-event">
-              <strong>{ev.name}</strong>
-              <br />
-              {formatLocalDate(new Date(ev.date), locale, { weekday: 'long', day: 'numeric', month: 'long' })} —{' '}
-              {t.gp.time_prefix} {ev.time}
-              <br />
-              <span class="gp-muted">{composeFormat(ev.format, ev.proxies, ev.rounds, locale)}</span>
-            </div>
-          ))}
+          {post.data.events.map((ev) => {
+            const isAltro = ev.type === 'altro';
+            const hasTime = ev.time && ev.time !== '—';
+            const showFormat = !isAltro && ev.format;
+            const startDate = new Date(ev.date);
+            const crossesYear = !!ev.endDate && startDate.getFullYear() !== ev.endDate.getFullYear();
+            const startOpts = crossesYear
+              ? { weekday: 'long' as const, day: 'numeric' as const, month: 'long' as const, year: 'numeric' as const }
+              : { weekday: 'long' as const, day: 'numeric' as const, month: 'long' as const };
+            const endOpts = ev.endDate
+              ? { weekday: 'long' as const, day: 'numeric' as const, month: 'long' as const, year: 'numeric' as const }
+              : startOpts;
+            return (
+              <div class="gp-event">
+                <strong>{ev.name}</strong>
+                <br />
+                {formatLocalDate(startDate, locale, startOpts)}
+                {ev.endDate && <> → {formatLocalDate(ev.endDate, locale, endOpts)}</>}
+                {hasTime && (
+                  <>
+                    {' '}
+                    — {t.gp.time_prefix} {ev.time}
+                  </>
+                )}
+                {showFormat && (
+                  <>
+                    <br />
+                    <span class="gp-muted">{composeFormat(ev.format, ev.proxies, ev.rounds, locale)}</span>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     )
@@ -261,7 +285,15 @@ const regularActive = !eventFinished && !earlyActive;
       <div class="gp-row">
         <span class="gp-label">{t.gp.registration_label}</span>
         <div class="gp-value">
-          {post.data.registration}
+          {post.data.registration && post.data.registration.includes(' · ') ? (
+            <ol class="gp-steps-list">
+              {post.data.registration.split(' · ').map((step) => (
+                <li>{step}</li>
+              ))}
+            </ol>
+          ) : (
+            post.data.registration
+          )}
           {post.data.events.some((ev) => ev.archonUrl) && (
             <div class="gp-archon-links">
               {post.data.events
@@ -603,6 +635,14 @@ const regularActive = !eventFinished && !earlyActive;
     margin: 0;
   }
   .gp-prizes-list li {
+    padding: 2px 0;
+  }
+  .gp-steps-list {
+    list-style: decimal;
+    padding-left: 22px;
+    margin: 0;
+  }
+  .gp-steps-list li {
     padding: 2px 0;
   }
 

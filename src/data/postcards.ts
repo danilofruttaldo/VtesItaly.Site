@@ -6,6 +6,22 @@ export interface PostcardGallery {
 
 export const postcardGalleries: PostcardGallery[] = [
   {
+    title: { it: 'Grand Prix 2026', en: 'Grand Prix 2026' },
+    subtitle: { it: 'Bologna, Maggio 2026', en: 'Bologna, May 2026' },
+    images: [
+      { src: '/images/carte/library-aching-beauty.webp', alt: 'Aching Beauty' },
+      { src: '/images/carte/library-chameleon.webp', alt: 'Chameleon' },
+      { src: '/images/carte/library-choir.webp', alt: 'Choir' },
+      { src: '/images/carte/library-mask-of-a-thousand-faces.webp', alt: 'Mask of a Thousand Faces' },
+      { src: '/images/carte/library-mental-maze.webp', alt: 'Mental Maze' },
+      { src: '/images/carte/library-octopod.webp', alt: 'Octopod' },
+      { src: '/images/carte/library-psychic-projection.webp', alt: 'Psychic Projection' },
+      { src: '/images/carte/library-street-cred.webp', alt: 'Street Cred' },
+      { src: '/images/carte/library-terror-frenzy.webp', alt: 'Terror Frenzy' },
+      { src: '/images/carte/library-toreador-justicar.webp', alt: 'Toreador Justicar' },
+    ],
+  },
+  {
     title: { it: 'IT26 - Wrath', en: 'IT26 - Wrath' },
     subtitle: { it: 'Pordenone, Aprile 2026', en: 'Pordenone, April 2026' },
     images: [

@@ -114,6 +114,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
         if (!stage.date) continue;
+        if (stage.hideDate) continue;
         const d = new Date(stage.date);
         // Skip placeholder dates (1st of month without confirmed time)
         if (d.getDate() === 1 && !stage.time) continue;

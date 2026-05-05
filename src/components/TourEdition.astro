@@ -6,6 +6,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel, computeStageDisplayImages } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
+import { cities } from '../data/cities';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -17,6 +18,15 @@ if (post.data.category !== 'tour') {
   throw new Error(`TourEdition: unsupported category "${post.data.category}"`);
 }
 const t = useTranslations(locale);
+const cityMap = new Map(
+  cities.map((c) => [
+    c.slug.it,
+    {
+      name: c.name[locale],
+      url: locale === 'en' ? `/en/domains/${c.slug.en}/` : `/principati/${c.slug.it}/`,
+    },
+  ]),
+);
 const stagesLabel = post.data.stagesLabel || t.tour.stages_label;
 const stageItemLabel = post.data.stageItemLabel || t.tour.stage_item;
 const { Content } = await render(post);
@@ -26,11 +36,13 @@ const today = new Date();
 today.setHours(0, 0, 0, 0);
 const displayImages = computeStageDisplayImages(stages);
 const computedStages = stages.map((s) => {
-  if (s.status === 'cancelled') return s;
+  const dateIso = s.date instanceof Date ? s.date.toISOString().slice(0, 10) : s.date;
+  if (s.status === 'cancelled') return { ...s, dateIso };
+  if (s.hideDate) return { ...s, dateIso, status: 'future' as const };
   const stageDate = new Date(s.date);
   stageDate.setHours(0, 0, 0, 0);
   const status = stageDate.getTime() === today.getTime() ? 'upcoming' : stageDate < today ? 'completed' : 'future';
-  return { ...s, status };
+  return { ...s, dateIso, status };
 });
 // Mark first future as upcoming
 const firstFuture = computedStages.findIndex((s) => s.status === 'future');
@@ -138,7 +150,7 @@ function formatStage(val: unknown, isAway: boolean): string {
                 },
               ]}
               data-href={stage.archonUrl || undefined}
-              data-stage-date={stage.date instanceof Date ? stage.date.toISOString().slice(0, 10) : stage.date}
+              data-stage-date={stage.hideDate ? undefined : stage.dateIso}
               data-stage-cancelled={stage.status === 'cancelled' ? 'true' : undefined}
             >
               {stage.image && (
@@ -170,23 +182,39 @@ function formatStage(val: unknown, isAway: boolean): string {
                     {statusLabels[stage.status]}
                   </span>
                 </div>
+                {stage.cities && stage.cities.length > 0 && (
+                  <div class="te-cities">
+                    {stage.cities.map((c) => {
+                      const city = cityMap.get(c);
+                      return city ? (
+                        <a href={city.url} class="te-city-tag">
+                          {city.name}
+                        </a>
+                      ) : (
+                        <span class="te-city-tag">{c}</span>
+                      );
+                    })}
+                  </div>
+                )}
                 {stage.description && <p class="te-desc">{stage.description}</p>}
                 <div class="te-card-bottom">
                   <div class="te-meta">
-                    <div class="te-date">
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="14"
-                        height="14"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                        <path d="M16 2v4M8 2v4M3 10h18" />
-                      </svg>
-                      <time>{formatDate(stage.date)}</time>
-                    </div>
+                    {!stage.hideDate && (
+                      <div class="te-date">
+                        <svg
+                          viewBox="0 0 24 24"
+                          width="14"
+                          height="14"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="3" y="4" width="18" height="18" rx="2" />
+                          <path d="M16 2v4M8 2v4M3 10h18" />
+                        </svg>
+                        <time>{formatDate(stage.date)}</time>
+                      </div>
+                    )}
                     {stage.time && (
                       <div class="te-time">
                         <svg
@@ -553,6 +581,28 @@ function formatStage(val: unknown, isAway: boolean): string {
   .te-badge--cancelled {
     color: var(--color-accent-1);
     background: rgba(139, 26, 43, 0.12);
+  }
+
+  .te-cities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .te-city-tag {
+    font-size: var(--font-size-2xs);
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: var(--radius);
+    background: var(--color-accent-light);
+    color: var(--color-accent-1);
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  a.te-city-tag:hover {
+    background: rgba(139, 26, 43, 0.25);
+    color: var(--color-accent-2);
   }
 
   .te-desc {

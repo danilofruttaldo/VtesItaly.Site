@@ -54,6 +54,7 @@ const stageSchema = z.object({
   archonUrl: z.string().optional(),
   image: z.string().optional(),
   description: z.string().optional(),
+  hideDate: z.boolean().optional(),
   status: z.enum(['completed', 'upcoming', 'future', 'cancelled']).default('future'),
 });
 

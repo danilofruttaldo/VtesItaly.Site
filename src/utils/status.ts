@@ -67,13 +67,14 @@ export function isPostActive(post: {
  * completed and upcoming stages show their real cover.
  */
 export function computeStageDisplayImages(
-  stages: { date: Date; image?: string; status?: string }[],
+  stages: { date: Date; image?: string; status?: string; hideDate?: boolean }[],
 ): (string | undefined)[] {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const statuses = stages.map((s) => {
     if (s.status === 'cancelled') return 'cancelled';
+    if (s.hideDate) return 'future';
     const d = new Date(s.date);
     d.setHours(0, 0, 0, 0);
     if (d.getTime() === today.getTime()) return 'upcoming';

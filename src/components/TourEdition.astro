@@ -150,8 +150,9 @@ function formatStage(val: unknown, isAway: boolean): string {
                 },
               ]}
               data-href={stage.archonUrl || undefined}
-              data-stage-date={stage.hideDate ? undefined : stage.dateIso}
+              data-stage-date={stage.dateIso}
               data-stage-cancelled={stage.status === 'cancelled' ? 'true' : undefined}
+              data-stage-hidden-date={stage.hideDate ? 'true' : undefined}
             >
               {stage.image && (
                 <div class="te-card-image">
@@ -343,6 +344,10 @@ function formatStage(val: unknown, isAway: boolean): string {
         statuses.push('cancelled');
         return;
       }
+      if (card.dataset.stageHiddenDate === 'true') {
+        statuses.push('future');
+        return;
+      }
       const d = new Date(card.dataset.stageDate + 'T00:00:00');
       d.setHours(0, 0, 0, 0);
       statuses.push(d < today ? 'completed' : 'future');
@@ -356,6 +361,7 @@ function formatStage(val: unknown, isAway: boolean): string {
     cards.forEach((card, i) => {
       const status = statuses[i];
       if (status === 'cancelled') return; // keep build-time state
+      if (card.dataset.stageHiddenDate === 'true') return; // keep SSR state
       card.classList.remove('te-card--upcoming', 'te-card--completed');
       if (status === 'upcoming') card.classList.add('te-card--upcoming');
       else if (status === 'completed') card.classList.add('te-card--completed');

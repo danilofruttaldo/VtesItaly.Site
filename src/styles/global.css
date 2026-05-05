@@ -301,6 +301,16 @@ img {
   color: var(--color-contrast);
 }
 
+.post-card--pinned {
+  border-color: rgba(201, 168, 76, 0.5);
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.06), transparent 60%);
+  box-shadow: inset 3px 0 0 var(--color-gold);
+}
+.post-card--pinned:hover {
+  border-color: var(--color-gold);
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.12), rgba(255, 255, 255, 0.04) 60%);
+}
+
 .post-card__image {
   width: 120px;
   height: 120px;

@@ -1,6 +1,6 @@
 ---
 title: '1° Lega Cittadina Milanese in Cantina'
-date: 2026-03-19
+date: 2026-05-17
 category: 'comunita'
 tags: ['milano', 'lega']
 featuredImage: '/images/comunita/milano/lega-milanese-in-cantina.webp'

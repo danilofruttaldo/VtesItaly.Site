@@ -2,6 +2,7 @@
 title: 'Grand Prix 2026'
 date: 2026-05-02
 category: 'grand-prix'
+pinned: true
 tags: ['bologna', 'italia']
 excerpt: 'Italian GP 2026 — Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek, Mistlore and TCG Market, presents the GP 2026!'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'

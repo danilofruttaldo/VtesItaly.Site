@@ -7,12 +7,18 @@ import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { getEnPostUrl } from '../../utils/url';
+import { isPostActive } from '../../utils/status';
 
 const page = mainPages.find((p) => p.slug.it === '')!;
 const t = useTranslations('en');
 const latestPosts = filterByLocale(await getCollection('blog'), 'en')
   .filter((p) => !p.data.cardHidden)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .sort((a, b) => {
+    const aPin = a.data.pinned && isPostActive(a) ? 1 : 0;
+    const bPin = b.data.pinned && isPostActive(b) ? 1 : 0;
+    if (aPin !== bPin) return bPin - aPin;
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  })
   .slice(0, 4);
 ---
 
@@ -59,6 +65,7 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'en')
                 tags={post.data.tags}
                 excerpt={post.data.excerpt}
                 locale="en"
+                pinned={post.data.pinned && isPostActive(post)}
               />
             );
           })

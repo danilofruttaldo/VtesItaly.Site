@@ -104,6 +104,7 @@ const baseFields = {
     .optional()
     .default([]),
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
+  pinned: z.boolean().optional(),
   cardHidden: z.boolean().optional().default(false),
 };
 

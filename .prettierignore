@@ -1,5 +1,6 @@
 dist/
 .astro/
+coverage/
 node_modules/
 public/pagefind/
 package-lock.json

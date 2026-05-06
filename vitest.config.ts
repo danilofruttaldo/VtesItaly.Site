@@ -14,6 +14,12 @@ export default getViteConfig({
       reporter: ['text', 'lcov'],
       include: ['src/utils/**', 'src/schemas/**'],
       exclude: ['src/**/*.test.ts'],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 75,
+        statements: 80,
+      },
     },
   },
 });

@@ -16,8 +16,8 @@ export default [
     plugins: { '@typescript-eslint': tsPlugin },
     rules: {
       ...tsPlugin.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/triple-slash-reference': 'off',
     },
   },
@@ -33,7 +33,7 @@ export default [
       'no-redeclare': 'off',
       'no-empty': 'off',
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_|^e$' }],
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_|^e$' }],
     },
   },
   {

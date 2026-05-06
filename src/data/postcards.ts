@@ -1,7 +1,18 @@
+export interface PostcardImage {
+  src: string;
+  alt: string;
+  highlight?: {
+    label?: { it: string; en: string };
+    title?: string;
+    imageCaption?: { it: string; en: string };
+    caption: { it: string; en: string };
+  };
+}
+
 export interface PostcardGallery {
   title: { it: string; en: string };
   subtitle: { it: string; en: string };
-  images: { src: string; alt: string }[];
+  images: PostcardImage[];
 }
 
 export const postcardGalleries: PostcardGallery[] = [
@@ -19,6 +30,22 @@ export const postcardGalleries: PostcardGallery[] = [
       { src: '/images/carte/library-street-cred.webp', alt: 'Street Cred' },
       { src: '/images/carte/library-terror-frenzy.webp', alt: 'Terror Frenzy' },
       { src: '/images/carte/library-toreador-justicar.webp', alt: 'Toreador Justicar' },
+      {
+        src: '/images/carte/library-memories-of-mortality.webp',
+        alt: 'Memories of Mortality',
+        highlight: {
+          label: { it: 'In memoria di', en: 'In memory of' },
+          title: 'Lauri Salmi',
+          imageCaption: {
+            it: 'Marko parla delle carte in memoria di Lauri.',
+            en: 'Marko talks about the cards in memory of Lauri.',
+          },
+          caption: {
+            it: 'Giocare insieme non è solo classifiche e mazzi — sono le persone che incontriamo, le serate che si allungano, le storie che ci portiamo dietro. E chi non è più al tavolo resta con noi in quelle storie: in una mano che qualcuno ricorderà, in una giocata che ci ha sorpresi, in una risata alla fine di una partita.',
+            en: "Playing together isn't just about standings and decks — it's the people we meet, the evenings that stretch on, the stories we carry with us. And those who are no longer at the table stay with us in those stories: in a hand someone will remember, in a play that surprised us, in a laugh at the end of a game.",
+          },
+        },
+      },
     ],
   },
   {

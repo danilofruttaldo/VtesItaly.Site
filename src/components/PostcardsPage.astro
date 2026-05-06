@@ -17,7 +17,18 @@ const t = useTranslations(locale);
 const galleries = postcardGalleries.map((g) => ({
   title: g.title[locale],
   subtitle: g.subtitle[locale],
-  images: g.images,
+  images: g.images.map((img) => ({
+    src: img.src,
+    alt: img.alt,
+    highlight: img.highlight
+      ? {
+          label: img.highlight.label?.[locale] ?? null,
+          title: img.highlight.title ?? null,
+          imageCaption: img.highlight.imageCaption?.[locale] ?? null,
+          caption: img.highlight.caption[locale],
+        }
+      : null,
+  })),
 }));
 ---
 
@@ -55,35 +66,69 @@ const galleries = postcardGalleries.map((g) => ({
             </button>
 
             <div class="gallery-body" id={`gallery-body-${i}`}>
-              {/* Desktop: grid */}
-              <div class="gallery-grid">
-                {gallery.images.map((img) => (
-                  <figure class="gallery-item" role="button" tabindex="0">
-                    <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
-                  </figure>
-                ))}
-              </div>
-
-              {/* Mobile: slider */}
-              <div class="gallery-slider">
-                <div class="slider-track">
-                  {gallery.images.map((img) => (
-                    <figure class="slider-slide">
-                      <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+              <div class="gallery-body-inner">
+                {gallery.images
+                  .filter((img) => img.highlight)
+                  .map((img) => (
+                    <figure class="highlight-card">
+                      <img
+                        class="highlight-image"
+                        src={img.src}
+                        alt={img.alt}
+                        width="400"
+                        height="300"
+                        loading="lazy"
+                        decoding="async"
+                        role="button"
+                        tabindex="0"
+                      />
+                      <div class="highlight-text">
+                        {img.highlight!.label && <span class="highlight-label">{img.highlight!.label}</span>}
+                        {img.highlight!.title && <span class="highlight-title">{img.highlight!.title}</span>}
+                        <figcaption class="highlight-caption">{img.highlight!.caption}</figcaption>
+                        {img.highlight!.imageCaption && (
+                          <span class="highlight-image-caption">{img.highlight!.imageCaption}</span>
+                        )}
+                      </div>
                     </figure>
                   ))}
-                </div>
-                {gallery.images.length > 1 && (
-                  <div class="slider-dots">
-                    {gallery.images.map((_, j) => (
-                      <button
-                        type="button"
-                        class={`slider-dot ${j === 0 ? 'is-active' : ''}`}
-                        aria-label={`${t.calendar.slide_label} ${j + 1}`}
-                      />
+
+                {/* Desktop: grid */}
+                <div class="gallery-grid">
+                  {gallery.images
+                    .filter((img) => !img.highlight)
+                    .map((img) => (
+                      <figure class="gallery-item" role="button" tabindex="0">
+                        <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                      </figure>
                     ))}
+                </div>
+
+                {/* Mobile: slider */}
+                <div class="gallery-slider">
+                  <div class="slider-track">
+                    {gallery.images
+                      .filter((img) => !img.highlight)
+                      .map((img) => (
+                        <figure class="slider-slide">
+                          <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                        </figure>
+                      ))}
                   </div>
-                )}
+                  {gallery.images.filter((img) => !img.highlight).length > 1 && (
+                    <div class="slider-dots">
+                      {gallery.images
+                        .filter((img) => !img.highlight)
+                        .map((_, j) => (
+                          <button
+                            type="button"
+                            class={`slider-dot ${j === 0 ? 'is-active' : ''}`}
+                            aria-label={`${t.calendar.slide_label} ${j + 1}`}
+                          />
+                        ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -188,6 +233,86 @@ const galleries = postcardGalleries.map((g) => ({
   .gallery-header[aria-expanded='true'] + .gallery-body {
     grid-template-rows: 1fr;
     padding: 16px 0 24px;
+  }
+
+  /* --- Highlight card --- */
+  .highlight-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin: 0 auto 24px;
+    max-width: 720px;
+    padding: 20px;
+    border: 1px solid var(--color-gold);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(201, 168, 76, 0.08), rgba(201, 168, 76, 0.02));
+    box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.12);
+    text-align: center;
+  }
+  .highlight-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+  }
+  .highlight-image:hover {
+    opacity: 0.85;
+  }
+  @media (max-width: 768px) {
+    .highlight-image {
+      cursor: default;
+    }
+    .highlight-image:hover {
+      opacity: 1;
+    }
+  }
+  .highlight-image-caption {
+    font-size: var(--font-size-xs, 0.8rem);
+    font-style: italic;
+    color: var(--color-muted);
+    line-height: 1.35;
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(201, 168, 76, 0.25);
+  }
+  .highlight-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .highlight-label {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-muted);
+  }
+  .highlight-title {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--color-gold);
+    margin-bottom: 10px;
+  }
+  .highlight-caption {
+    margin: 0;
+    font-style: italic;
+    color: var(--color-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.55;
+  }
+  @media (min-width: 769px) {
+    .highlight-card {
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+      text-align: left;
+      padding: 24px;
+    }
+    .highlight-image {
+      max-width: 240px;
+    }
   }
 
   /* --- Desktop: grid view --- */
@@ -347,8 +472,8 @@ const galleries = postcardGalleries.map((g) => ({
       return window.innerWidth <= 768;
     }
 
-    document.querySelectorAll('.gallery-item').forEach((el) => {
-      const img = el.querySelector('img');
+    document.querySelectorAll('.gallery-item, .highlight-image').forEach((el) => {
+      const img = el.tagName === 'IMG' ? el : el.querySelector('img');
       if (!img) return;
       function open() {
         if (isMobile()) return;

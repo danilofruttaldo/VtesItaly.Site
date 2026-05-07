@@ -79,8 +79,19 @@ const t = useTranslations(locale);
 
         var excerpt = document.createElement('span');
         excerpt.className = 'search-result__excerpt';
-        var clean = (r.excerpt || '').replace(/<(?!\/?mark\b)[^>]*>/gi, '');
-        excerpt.innerHTML = clean;
+        // Pagefind emits excerpts with <mark>...</mark> only. Rebuild via DOM
+        // (text nodes for prose, <mark> elements for matches) so any other
+        // tag — or HTML entity injection — is rendered as literal text.
+        var parts = (r.excerpt || '').split(/<mark>([\s\S]*?)<\/mark>/g);
+        parts.forEach(function (part, i) {
+          if (i % 2 === 0) {
+            if (part) excerpt.appendChild(document.createTextNode(part));
+          } else {
+            var mark = document.createElement('mark');
+            mark.textContent = part;
+            excerpt.appendChild(mark);
+          }
+        });
         a.appendChild(excerpt);
 
         resultsContainer.appendChild(a);

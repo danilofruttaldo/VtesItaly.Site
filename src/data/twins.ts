@@ -7,6 +7,24 @@ export interface Twin {
 
 export const twins: Twin[] = [
   {
+    card: 'Whisper',
+    person: { it: 'Achille Lauro', en: 'Achille Lauro' },
+    image: '/images/gemelli/achille-lauro.webp',
+    description: {
+      it: "L'Anarch dai tratti androgini ricorda il cantante romano. Stesso caschetto biondo platino, stesso trucco scuro intorno agli occhi e stessa estetica decadente.",
+      en: 'The androgynous Anarch recalls the Roman singer. Same platinum-blond bowl cut, same dark eye makeup, and same decadent aesthetic.',
+    },
+  },
+  {
+    card: 'De Sade',
+    person: { it: 'Zlatan Ibrahimović', en: 'Zlatan Ibrahimović' },
+    image: '/images/gemelli/zlatan-ibrahimovic.webp',
+    description: {
+      it: "L'Arcivescovo Sabbat di Parigi richiama il celebre attaccante svedese. Stesso profilo affilato, stessi capelli tirati indietro e stessa aria da fuoriclasse consapevole.",
+      en: 'The Sabbat Archbishop of Paris recalls the famous Swedish striker. Same sharp profile, same slicked-back hair, and same air of self-aware superstar.',
+    },
+  },
+  {
     card: 'Bela',
     person: { it: 'Bela Lugosi', en: 'Bela Lugosi' },
     image: '/images/gemelli/bela-lugosi.webp',

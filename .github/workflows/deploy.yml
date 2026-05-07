@@ -108,6 +108,7 @@ jobs:
         # hashes mean most files change anyway on rebuild.
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
           SSH_PORT: ${{ vars.SSH_PORT }}
@@ -115,7 +116,17 @@ jobs:
           set -euo pipefail
           install -m 600 -D /dev/null ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Pin the host key from secrets (TOFU-free). Generate locally with
+          # `ssh-keyscan -p $PORT $HOST` and store as the SSH_KNOWN_HOSTS
+          # secret. Falls back to runtime keyscan only if the secret isn't
+          # set yet, which leaves a one-shot MITM window — set the secret.
+          if [ -n "$SSH_KNOWN_HOSTS" ]; then
+            printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            echo "::warning::SSH_KNOWN_HOSTS not set; falling back to ssh-keyscan (MITM window)."
+            ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          fi
 
           tar -C dist -cz . | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" \
             "$SSH_USER@$SSH_HOST" "tar -C /home/$SSH_USER/public_html -xz"

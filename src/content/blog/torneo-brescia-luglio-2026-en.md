@@ -1,26 +1,35 @@
 ---
-title: 'Brescia Tournament — July 2026'
+title: 'Smudge is back to town'
 date: 2026-07-04
 category: 'comunita'
 tags: ['brescia', 'torneo']
-featuredImage: '/images/headers/header-brescia.webp'
-excerpt: 'VTES tournament in Brescia on the weekend of July 4-5, 2026. Details coming soon.'
+featuredImage: '/images/comunita/brescia/smudge-is-back-to-town.webp'
+poster: '/images/comunita/brescia/smudge-is-back-to-town.webp'
+excerpt: 'VTES tournament in Rezzato (BS) on Saturday, July 4, 2026 — proxies and multideck allowed, €15 with apéritif-lunch included.'
 venue:
-  name: 'TBD'
-  address: 'Brescia'
+  name: 'Osteria da Silvia'
+  address: 'Via Mazzini 12, 25086 Rezzato (BS), Italy'
+  mapUrl: 'https://maps.google.com/?q=Via+Mazzini+12+25086+Rezzato+BS'
 events:
-  - name: 'Brescia Tournament'
+  - name: 'Smudge is back to town'
     date: 2026-07-04
-    time: '—'
-    format: 'TBD'
-  - name: 'Brescia Tournament'
-    date: 2026-07-05
-    time: '—'
-    format: 'TBD'
+    time: '10:00'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
+    archonUrl: 'https://archon.vekn.net/tournament/ec2d65e7-9ab4-4504-8a9f-9c451859d723/display.html'
+pricing:
+  - label: 'Entry fee'
+    regular: '€15 (apéritif-lunch included)'
+notes:
+  - 'Proxies allowed.'
+  - 'Multideck allowed.'
 cardHidden: true
 locale: 'en'
 ---
 
-**VTES tournament in Brescia** on the weekend of **July 4-5, 2026**.
+**Smudge is back to town**: VTES tournament in **Rezzato (BS)** on Saturday, **July 4, 2026**, starting at **10:00** at **Osteria da Silvia**.
 
-Details on venue, format, schedule and registration coming soon.
+**Special rules**: proxies and multideck are allowed.
+
+**Entry fee**: €15, apéritif-lunch included.

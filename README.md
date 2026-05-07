@@ -34,17 +34,17 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 | `npm run test:build`    | `npm run build` + integration smoke against `dist/`     |
 | `npm run clean`         | Remove `dist/` and `.astro/`                            |
 
-`pretest` (auto-runs before `npm test`) executes `scripts/warm-content.mjs`, which makes sure `.astro/data-store.json` exists so `getCollection('blog')` returns real entries inside Vitest. Without it, Astro 6 + Vitest report the collection as empty (see [withastro/astro#7051](https://github.com/withastro/astro/issues/7051)).
+`pretest` and `pretest:coverage` (auto-run before `npm test` / `npm run test:coverage`) execute `scripts/warm-content.mjs`, which makes sure `.astro/data-store.json` exists so `getCollection('blog')` returns real entries inside Vitest. Without it, Astro 6 + Vitest report the collection as empty (see [withastro/astro#7051](https://github.com/withastro/astro/issues/7051)). npm only fires `pre<exact-script-name>` hooks, so each test variant needs its own pre-hook entry.
 
 ## Deployment
 
 `.github/workflows/deploy.yml` is a single workflow with three sequential jobs:
 
-1. **`ci`** — runs on every push to `main`. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → Vitest (unit + schemas + components) → `astro build` → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
-2. **`lighthouse`** — depends on `ci`. Downloads the `dist/` artifact and runs Lighthouse CI from `.github/lighthouserc.json`. Accessibility ≥ 0.9, performance ≥ 0.8, SEO ≥ 0.9 are blocking errors; best-practices is a warning.
-3. **`deploy`** — depends on both `ci` and `lighthouse`. Downloads the same `dist/` artifact and tar-pipes it over SSH to the production VPS. No re-build.
+1. **`ci`** — runs on every push to `main` and on PRs. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → `npm run test:coverage` (Vitest with v8 coverage gated at 80% lines/funcs/statements, 75% branches via `vitest.config.ts`) → `astro build` → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
+2. **`lighthouse`** — depends on `ci`. Downloads the `dist/` artifact and runs Lighthouse CI from `.github/lighthouserc.json` over 8 URLs (home IT/EN, principati, cartoline, comunita, current tour and nazionale editions, plus a long article). Accessibility ≥ 0.89, SEO ≥ 0.9, performance ≥ 0.75 are blocking errors; best-practices is a warning. Performance is the loosest gate because Lighthouse runs once per URL and single-run variance is ±0.05.
+3. **`deploy`** — depends on both `ci` and `lighthouse`, and only on push (not on PR). Downloads the same `dist/` artifact and tar-pipes it over SSH to the production VPS. The host fingerprint is pinned via the `SSH_KNOWN_HOSTS` environment secret — no runtime `ssh-keyscan` MITM window.
 
-Workflow-level `concurrency: deploy-vtesitaly` serialises overlapping pushes to protect the shared hosting; `permissions: contents: read` scopes the default `GITHUB_TOKEN` to the minimum needed. Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
+Workflow-level `concurrency: deploy-vtesitaly-${{ github.ref }}` is per-ref so a Dependabot burst of PRs doesn't cancel each other in the queue; pushes to `main` collapse to a single group and the deploy job is the only thing that needs serialisation. `permissions: contents: read` scopes the default `GITHUB_TOKEN` to the minimum needed. Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
 
 ## PWA & Service Worker
 
@@ -58,10 +58,10 @@ Tests live in `tests/` and split into four families:
 
 - `tests/utils/**` — pure unit tests for `i18n`, `status`, `calendar`, `standings`, `anonymize` (58 tests). Setup file pins `process.env.TZ = 'UTC'` so tests are deterministic across local (Europe/Rome) and CI (UTC) machines.
 - `tests/schemas/**` — golden validation: every JSON in `src/data/standings/` is parsed against the dialect-aware Zod schema in `src/schemas/standings.ts` (23 tests). Catches typos in player names or malformed score rows at test time.
-- `tests/components/**` — Astro Container API renders the real `.astro` components against fixture posts pulled via `getCollection('blog')`. Covers `EventEdition`, `TourEdition`, `LeagueEdition`, `Calendar`, `SearchOverlay`, plus an XSS regression test for the inline excerpt sanitiser introduced in commit `e731108` (13 tests).
+- `tests/components/**` — Astro Container API renders the real `.astro` components against fixture posts pulled via `getCollection('blog')`. Covers `EventEdition`, `TourEdition`, `LeagueEdition`, `Calendar`, `SearchOverlay` (incl. a DOM-parser regression locking the excerpt parser away from `innerHTML` so entity-encoded payloads cannot escape).
 - `tests/integration/**` — post-build smoke against `dist/` (`vitest.integration.config.ts`): homepage, EN alternate with hreflang, sitemap, Pagefind, og:image, IT/EN slug remap, size budget. Run via `npm run test:build`.
 
-Total: **101 unit/component tests** (in `npm test`) + **8 integration tests** (in `npm run test:build`).
+Total: **102 unit/component tests** (in `npm run test:coverage` and `npm test`) + **8 integration tests** (in `npm run test:build`).
 
 ## Structure
 

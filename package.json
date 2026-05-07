@@ -2,6 +2,15 @@
   "name": "vtesitaly-site",
   "type": "module",
   "version": "0.1.0",
+  "description": "Official multilingual website for the Italian VTES community (Astro, deployed via SSH tar-pipe).",
+  "license": "MIT",
+  "author": "VTES Italy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danilofruttaldo/VtesItaly.Site.git"
+  },
+  "homepage": "https://vtesitaly.com",
+  "private": true,
   "scripts": {
     "dev": "astro dev --port 4322",
     "build": "astro build && node scripts/stamp-sw.mjs && pagefind --site dist",

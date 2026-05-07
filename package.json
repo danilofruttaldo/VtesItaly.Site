@@ -14,6 +14,7 @@
     "pretest": "node scripts/warm-content.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
+    "pretest:coverage": "node scripts/warm-content.mjs",
     "test:coverage": "vitest run --coverage",
     "test:build": "npm run build && vitest run --config vitest.integration.config.ts",
     "clean": "rimraf dist .astro"

@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
-    "astro": "^6.0.5",
+    "astro": "^6.2.2",
     "sharp": "^0.34.5"
   },
   "//overrides": "h3: pinned to fix npm audit vuln in unstorage transitive (commit a6006ca). yaml: pinned ^2.8.3 to avoid yaml-language-server DoS (GHSA-48c2-rrv3-qjmp) pulled by @astrojs/check.",

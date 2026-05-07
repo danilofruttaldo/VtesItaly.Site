@@ -67,12 +67,14 @@ stages:
 
   - name: 'LUST'
     number: 4
-    date: 2026-05-31
-    hideDate: true
+    date: 2026-05-30
     cities: ['genova', 'torino']
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
+    venue: 'Emporium Infernalis'
+    location: 'Via Edoardo Calvo 3, 10126 Torino (TO)'
     image: '/tour/tour-2026/tour-2026-004.webp'
     description: 'Desire for victory, control, blood. Lust seduces and corrupts, pushing you to risk more than you should. Those who yield often pay. Those who dominate, conquer.'
 

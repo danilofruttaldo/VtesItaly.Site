@@ -15,8 +15,11 @@ permissions:
   contents: read
 
 concurrency:
-  group: deploy-vtesitaly
-  cancel-in-progress: false
+  # Per-ref group so a Dependabot burst of PRs doesn't cancel each other in
+  # the queue (default queue depth is 1 in-progress + 1 queued). The deploy
+  # job only runs on push to main where ref collapses to the same group.
+  group: deploy-vtesitaly-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   ci:

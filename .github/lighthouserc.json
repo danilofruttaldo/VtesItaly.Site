@@ -2,7 +2,16 @@
   "ci": {
     "collect": {
       "staticDistDir": "dist",
-      "url": ["/", "/en/", "/principati/", "/cartoline/"]
+      "url": [
+        "/",
+        "/en/",
+        "/principati/",
+        "/cartoline/",
+        "/comunita/",
+        "/tour/tour-2026/",
+        "/nazionale/nazionale-2026/",
+        "/comunita/symposium-italicum-mmxxv/"
+      ]
     },
     "assert": {
       "assertions": {

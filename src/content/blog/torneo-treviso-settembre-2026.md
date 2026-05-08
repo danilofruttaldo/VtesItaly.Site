@@ -3,7 +3,8 @@ title: 'Rise of the Nephtali'
 date: 2026-09-19
 category: 'comunita'
 tags: ['treviso', 'torneo']
-featuredImage: '/images/headers/header-treviso.webp'
+featuredImage: '/images/comunita/treviso/rise-of-the-nephtali.webp'
+poster: '/images/comunita/treviso/rise-of-the-nephtali.webp'
 excerpt: 'Rise of the Nephtali — torneo VTES a Treviso sabato 19 settembre 2026. Dettagli in arrivo.'
 venue:
   name: 'Treviso Play'
@@ -12,10 +13,15 @@ venue:
 events:
   - name: 'Rise of the Nephtali'
     date: 2026-09-19
-    time: '—'
+    time: '10:00'
     format: 'Standard'
     proxies: true
     rounds: 2
+pricing:
+  - label: 'Iscrizione'
+    regular: '15 €'
+prizes:
+  - 'Premi per finalista e vincitore'
 cardHidden: true
 locale: it
 ---

@@ -29,7 +29,7 @@ stages:
     number: 1
     date: 2026-02-15
     cities: ['modena', 'parma']
-    time: '10:00'
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -69,13 +69,14 @@ stages:
     number: 4
     date: 2026-05-30
     cities: ['genova', 'torino']
-    time: '09:30'
+    time: '10:00'
     format: 'Standard'
     proxies: true
     rounds: 2
     venue: 'Emporium Infernalis'
     location: 'Via Edoardo Calvo 3, 10126 Torino (TO)'
     image: '/tour/tour-2026/tour-2026-004.webp'
+    archonUrl: 'https://archon.vekn.net/tournament/0b2a2f2a-8156-44ea-b68d-d60d7c608c99/display.html'
     description: 'Desire for victory, control, blood. Lust seduces and corrupts, pushing you to risk more than you should. Those who yield often pay. Those who dominate, conquer.'
 
   - name: 'GLUTTONY'

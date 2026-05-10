@@ -173,12 +173,7 @@ const regularActive = !eventFinished && !earlyActive;
                 <br />
                 {formatLocalDate(startDate, locale, startOpts)}
                 {ev.endDate && <> → {formatLocalDate(ev.endDate, locale, endOpts)}</>}
-                {hasTime && (
-                  <>
-                    {' '}
-                    — {t.gp.time_prefix} {ev.time}
-                  </>
-                )}
+                {hasTime && <> — {`${t.gp.time_prefix} ${ev.time}`}</>}
                 {showFormat && (
                   <>
                     <br />

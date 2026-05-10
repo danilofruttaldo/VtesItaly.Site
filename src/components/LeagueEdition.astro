@@ -186,7 +186,7 @@ function fmt(n: number): string {
               ) : (
                 <>
                   {formatLocalDate(new Date(ev.date), locale, { weekday: 'long', day: 'numeric', month: 'long' })} —{' '}
-                  {t.gp.time_prefix} {ev.time}
+                  {`${t.gp.time_prefix} ${ev.time}`}
                 </>
               )}
               <br />

@@ -1,22 +1,37 @@
 ---
-title: 'Milano Tournament'
+title: 'Milano Awakening'
 date: 2026-06-27
 category: 'comunita'
 tags: ['milano', 'torneo']
-featuredImage: '/images/headers/header-milano.webp'
-excerpt: 'VTES tournament in Milano on June 27, 2026. Details coming soon.'
+featuredImage: '/images/comunita/milano/milano-awakening.jpeg'
+poster: '/images/comunita/milano/milano-awakening.jpeg'
+excerpt: 'Milano Awakening: VTES tournament on Saturday, June 27, 2026 at UESM Casa dei Giochi. Standard, 2 rounds + final, 10€ entry.'
 venue:
-  name: 'TBD'
-  address: 'Milano'
+  name: 'UESM – Casa dei Giochi'
+  address: "Via Sant'Aguzzone 8, 20126 Milano (MI)"
+  mapUrl: "https://maps.google.com/?q=UESM+Casa+dei+Giochi+Via+Sant'Aguzzone+8+Milano"
 events:
-  - name: 'Milano Tournament'
+  - name: 'Milano Awakening'
     date: 2026-06-27
-    time: '—'
-    format: 'TBD'
+    time: '10:00'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
+schedule:
+  - time: '09:30'
+    label: 'Check-in'
+  - time: '10:00'
+    label: 'Tournament start'
+pricing:
+  - label: 'Entry fee'
+    regular: '€10'
+prizes:
+  - 'Prizes for the finalists based on the number of participants'
+  - 'Promo door prize for everyone'
 cardHidden: true
 locale: 'en'
 ---
 
-**VTES tournament in Milano** on **June 27, 2026**.
+**Milano Awakening** — VTES tournament on Saturday, **June 27, 2026** at **UESM Casa dei Giochi**.
 
-Details on venue, format, schedule and registration coming soon.
+Easy to reach by **Metro 1 (Red Line)**, stop _Villa San Giovanni_ (direction Sesto San Giovanni).

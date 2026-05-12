@@ -5,6 +5,7 @@ category: 'comunita'
 tags: ['brescia', 'torneo']
 featuredImage: '/images/comunita/brescia/smudge-is-back-to-town.webp'
 poster: '/images/comunita/brescia/smudge-is-back-to-town.webp'
+cityHeader: '/images/headers/header-brescia.webp'
 excerpt: 'Torneo VTES a Rezzato (BS) sabato 4 luglio 2026 — proxy e multideck consentiti, €15 con aperipranzo incluso.'
 venue:
   name: 'Osteria da Silvia'
@@ -21,10 +22,6 @@ events:
 pricing:
   - label: 'Iscrizione'
     regular: '15 € (aperipranzo incluso)'
-notes:
-  - 'Proxy consentiti.'
-  - 'Multideck consentito.'
-cardHidden: true
 locale: it
 ---
 

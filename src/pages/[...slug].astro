@@ -166,6 +166,8 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
       <PageHero title="" image={pageMeta.headerImage} />
     ) : (isCommunityEvent || isLeague) && communityCity ? (
       <PageHero title="" image={communityCity.headerImage} />
+    ) : (isCommunityEvent || isLeague) && post.data.cityHeader ? (
+      <PageHero title="" image={post.data.cityHeader} />
     ) : (
       post.data.featuredImage && (
         <div class="post__hero-wrap">

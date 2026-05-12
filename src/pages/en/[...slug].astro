@@ -176,6 +176,8 @@ const pageMeta =
       <PageHero title="" image={pageMeta.headerImage} />
     ) : (isCommunityEvent || isLeague) && communityCity ? (
       <PageHero title="" image={communityCity.headerImage} />
+    ) : (isCommunityEvent || isLeague) && post.data.cityHeader ? (
+      <PageHero title="" image={post.data.cityHeader} />
     ) : (
       post.data.featuredImage && (
         <div class="post__hero-wrap">

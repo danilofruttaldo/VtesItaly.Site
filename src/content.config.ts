@@ -104,8 +104,8 @@ const baseFields = {
     .optional()
     .default([]),
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
-  pinned: z.boolean().optional(),
-  cardHidden: z.boolean().optional().default(false),
+  // Page hero override for community events in cities without a principato entry.
+  cityHeader: z.string().optional(),
 };
 
 /* ── Per-type schemas ─────────────────────────────────────── */

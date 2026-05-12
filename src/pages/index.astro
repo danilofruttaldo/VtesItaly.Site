@@ -6,19 +6,14 @@ import { cities } from '../data/cities';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
 import { filterByLocale, useTranslations } from '../utils/i18n';
-import { isPostActive } from '../utils/status';
+import { getCommunityTimeline, pickTimelineWindow } from '../utils/calendar';
 
 const page = mainPages.find((p) => p.slug.it === '')!;
 const t = useTranslations('it');
-const latestPosts = filterByLocale(await getCollection('blog'), 'it')
-  .filter((p) => !p.data.cardHidden)
-  .sort((a, b) => {
-    const aPin = a.data.pinned && isPostActive(a) ? 1 : 0;
-    const bPin = b.data.pinned && isPostActive(b) ? 1 : 0;
-    if (aPin !== bPin) return bPin - aPin;
-    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
-  })
-  .slice(0, 4);
+
+const posts = filterByLocale(await getCollection('blog'), 'it');
+const today = new Date().toISOString().slice(0, 10);
+const timeline = pickTimelineWindow(getCommunityTimeline(posts, 'it'), today);
 ---
 
 <Base title={page.title.it} description={page.description.it} ogImage={page.ogImage}>
@@ -49,25 +44,20 @@ const latestPosts = filterByLocale(await getCollection('blog'), 'it')
       <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="post-list">
         {
-          latestPosts.map((post) => {
-            const usesPoster =
-              (post.data.category === 'grand-prix' || post.data.category === 'nazionale') && !!post.data.poster;
-            const cardImage = usesPoster ? post.data.poster : post.data.featuredImage || post.data.poster;
-            return (
-              <PostCard
-                href={`/${post.data.category}/${post.id}/`}
-                title={post.data.title}
-                image={cardImage}
-                isPoster={usesPoster || (!post.data.featuredImage && !!post.data.poster)}
-                date={post.data.date}
-                category={post.data.category}
-                tags={post.data.tags}
-                excerpt={post.data.excerpt}
-                locale="it"
-                pinned={post.data.pinned && isPostActive(post)}
-              />
-            );
-          })
+          timeline.entries.map((entry, i) => (
+            <PostCard
+              href={entry.url || '#'}
+              title={entry.title}
+              image={entry.image}
+              date={new Date(entry.date)}
+              category={entry.category}
+              tags={entry.tags}
+              excerpt={entry.excerpt}
+              locale="it"
+              highlight={i === timeline.highlightIndex}
+              highlightLabel={t.home.next_event_label}
+            />
+          ))
         }
       </div>
       <div class="section-cta">

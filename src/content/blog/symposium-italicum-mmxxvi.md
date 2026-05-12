@@ -18,7 +18,6 @@ events:
     date: 2026-09-06
     time: '—'
     format: 'TBD'
-cardHidden: true
 locale: it
 ---
 

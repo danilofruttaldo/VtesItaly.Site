@@ -13,7 +13,8 @@ interface Props {
   tags?: string[];
   excerpt?: string;
   locale?: Locale;
-  pinned?: boolean;
+  highlight?: boolean;
+  highlightLabel?: string;
 }
 
 const {
@@ -26,8 +27,12 @@ const {
   tags = [],
   excerpt,
   locale = 'it',
-  pinned = false,
+  highlight = false,
+  highlightLabel,
 } = Astro.props;
+
+const RELEVANT_CATEGORIES = new Set(['tour', 'grand-prix', 'nazionale']);
+const categoryAccent = category && RELEVANT_CATEGORIES.has(category) ? `post-card--${category}` : null;
 const t = useTranslations(locale);
 
 const typeTags = Object.fromEntries(Object.entries(typeTagLabels).map(([k, v]) => [k, v[locale]]));
@@ -41,7 +46,8 @@ if (category) {
 if (typeTag) badges.push({ label: typeTags[typeTag] });
 ---
 
-<a href={href} class:list={['post-card', pinned && 'post-card--pinned']}>
+<a href={href} class:list={['post-card', categoryAccent, highlight && 'post-card--highlight']}>
+  {highlight && highlightLabel && <span class="post-card__highlight-badge">{highlightLabel}</span>}
   {
     image && (
       <img

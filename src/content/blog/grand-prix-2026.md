@@ -2,7 +2,6 @@
 title: 'Grand Prix 2026'
 date: 2026-05-02
 category: 'grand-prix'
-pinned: true
 tags: ['bologna', 'italia']
 excerpt: 'IT GP 2026 — Bologna. La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek, Mistlore e TCG Market, presenta il GP 2026!'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'

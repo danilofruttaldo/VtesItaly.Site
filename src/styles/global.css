@@ -281,6 +281,37 @@ img {
   gap: 16px;
 }
 
+.post-list__divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--color-gold);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  font-weight: 700;
+  margin: 16px 0;
+}
+.post-list__divider span {
+  padding: 4px 12px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: var(--radius);
+  background: rgba(201, 168, 76, 0.08);
+}
+.post-list__divider::before,
+.post-list__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold) 50%, transparent);
+}
+.post-list__divider::before {
+  background: linear-gradient(to right, transparent, var(--color-gold));
+}
+.post-list__divider::after {
+  background: linear-gradient(to left, transparent, var(--color-gold));
+}
+
 .post-card {
   display: flex;
   gap: 16px;
@@ -301,14 +332,75 @@ img {
   color: var(--color-contrast);
 }
 
-.post-card--pinned {
-  border-color: rgba(201, 168, 76, 0.5);
-  background: linear-gradient(90deg, rgba(201, 168, 76, 0.06), transparent 60%);
-  box-shadow: inset 3px 0 0 var(--color-gold);
+/* ===== Category accents (Tour / GP / NC): left strip via ::before pseudo. ===== */
+.post-card--tour,
+.post-card--grand-prix,
+.post-card--nazionale,
+.post-card--highlight {
+  position: relative;
 }
-.post-card--pinned:hover {
+.post-card--tour::before,
+.post-card--grand-prix::before,
+.post-card--nazionale::before,
+.post-card--highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+.post-card--tour::before {
+  background: #009246; /* IT flag green */
+}
+.post-card--grand-prix::before {
+  background: #ce2b37; /* IT flag red */
+}
+.post-card--nazionale::before {
+  background: #f0e6d3; /* cream */
+}
+
+/* ===== "Prossimo" highlight ===== */
+.post-card--highlight {
   border-color: var(--color-gold);
-  background: linear-gradient(90deg, rgba(201, 168, 76, 0.12), rgba(255, 255, 255, 0.04) 60%);
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.02) 70%);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+.post-card--highlight::before {
+  background: var(--color-gold);
+}
+.post-card--highlight:hover {
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.18), rgba(255, 255, 255, 0.04) 70%);
+}
+
+/* Highlight + relevant category: vertical gradient from gold to category color. */
+.post-card--highlight.post-card--tour::before {
+  background: linear-gradient(to bottom, var(--color-gold), #009246);
+}
+.post-card--highlight.post-card--grand-prix::before {
+  background: linear-gradient(to bottom, var(--color-gold), #ce2b37);
+}
+.post-card--highlight.post-card--nazionale::before {
+  background: linear-gradient(to bottom, var(--color-gold), #f0e6d3);
+}
+
+.post-card__highlight-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  background: var(--color-gold);
+  color: var(--color-base);
+  font-size: var(--font-size-3xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  padding: 3px 8px;
+  border-radius: var(--radius);
+  line-height: var(--leading-none);
+  pointer-events: none;
 }
 
 .post-card__image {

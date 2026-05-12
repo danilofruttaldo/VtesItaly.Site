@@ -143,11 +143,12 @@
   "home": {
     "hero_title": "The Italian Methuselah community never stops!",
     "hero_subtitle": "Tournaments, gatherings and championships across Italy. Find your domain, check the calendar and join the community.",
-    "events_title": "Upcoming events",
+    "events_title": "Event calendar",
     "events_subtitle": "Check the calendar and don't miss any event.",
-    "latest_title": "Latest from the community",
-    "latest_subtitle": "Reports, articles and news from the Italian VTES world.",
-    "all_articles": "All articles",
+    "latest_title": "Community events",
+    "latest_subtitle": "What's coming up and what we just lived through.",
+    "next_event_label": "Next",
+    "all_articles": "All community posts",
     "all_domains": "All Domains",
     "domains_title": "Find your Domain",
     "domains_subtitle": "15 cities across Italy where VTES is played. Find the one closest to you."
@@ -157,7 +158,8 @@
     "pagination": "Pagination",
     "previous": "Previous",
     "next": "Next",
-    "page_info": "Page %current% of %last%"
+    "page_info": "Page %current% of %last%",
+    "past_label": "Past"
   },
   "status": {
     "upcoming": "Scheduled",

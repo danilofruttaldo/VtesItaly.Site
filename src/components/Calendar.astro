@@ -234,7 +234,7 @@ const allEvents = extractCalendarEvents(posts, locale);
           platform +
           '</a>';
       }
-      if (!ev.cardHidden) {
+      if (ev.url) {
         h += '<a href="' + esc(ev.url) + '" class="cal__popup-cta">' + esc(readCta) + ' &rarr;</a>';
       }
       h += '</div>';

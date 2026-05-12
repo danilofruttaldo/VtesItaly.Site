@@ -72,7 +72,7 @@
     "cat_gp": "Grand Prix",
     "cat_tour": "Italian Tour",
     "cat_nc": "Nazionale",
-    "cat_community": "Community",
+    "cat_community": "Comunità",
     "cat_local": "Torneo locale",
     "legend_events": "Tornei",
     "legend_other": "Altro",
@@ -137,11 +137,12 @@
   "home": {
     "hero_title": "La community dei Methuselah italiani non si ferma mai!",
     "hero_subtitle": "Tornei, raduni e campionati in tutta Italia. Trova il tuo principato, consulta il calendario e unisciti alla community.",
-    "events_title": "Prossimi eventi",
+    "events_title": "Calendario eventi",
     "events_subtitle": "Consulta il calendario e non perderti nessun evento.",
-    "latest_title": "Ultime dalla community",
-    "latest_subtitle": "Report, articoli e novità dal mondo VTES Italia.",
-    "all_articles": "Tutti gli articoli",
+    "latest_title": "Eventi della community",
+    "latest_subtitle": "Cosa sta per arrivare e cosa abbiamo appena vissuto.",
+    "next_event_label": "Prossimo",
+    "all_articles": "Tutti i post della community",
     "domains_title": "Trova il tuo Principato",
     "domains_subtitle": "15 città in tutta Italia dove si gioca a VTES. Trova quella più vicina a te.",
     "all_domains": "Tutti i Principati"
@@ -151,7 +152,8 @@
     "pagination": "Paginazione",
     "previous": "Precedente",
     "next": "Successiva",
-    "page_info": "Pagina %current% di %last%"
+    "page_info": "Pagina %current% di %last%",
+    "past_label": "Passati"
   },
   "status": {
     "upcoming": "In programma",

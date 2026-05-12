@@ -34,7 +34,6 @@ export interface CalendarEvent {
   image?: string; // featured image or poster URL
   archonUrl?: string; // Archon or BCN Crisis link
   tags?: string[]; // post tags for sub-category coloring
-  cardHidden?: boolean; // hide "read" CTA and don't link to page
 }
 
 /** Build the page URL for a post in a given locale */
@@ -162,7 +161,6 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           description: isAltro ? post.data.excerpt : undefined,
           image,
           archonUrl: ev.archonUrl,
-          cardHidden: post.data.cardHidden || false,
         };
 
         // Start date entry — for single-event community posts, use the post title
@@ -210,10 +208,168 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       format: composeFormat(le.format, le.proxies, le.rounds, locale),
       archonUrl: le.archonUrl,
       image: le.image,
-      cardHidden: true,
     });
   }
 
   events.sort((a, b) => a.date.localeCompare(b.date));
   return events;
+}
+
+/**
+ * Lightweight timeline entry for the homepage "community events" section.
+ * One entry per dated event: tour stage, single event in `events[]`, or the
+ * post date itself when the post has no events array (announcements, articles).
+ */
+export interface TimelineEntry {
+  date: string; // YYYY-MM-DD
+  title: string;
+  url: string;
+  category: string;
+  image?: string;
+  tags: string[];
+  excerpt?: string;
+}
+
+/**
+ * Build the community events timeline from blog posts + local events.
+ * Drops period-only league entries (no specific date) and placeholder
+ * 1st-of-month dates.
+ */
+export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: Locale): TimelineEntry[] {
+  const out: TimelineEntry[] = [];
+
+  for (const post of posts) {
+    const url = postUrl(post, locale);
+    const category = post.data.category;
+    const postTitle = post.data.title;
+    const tags = post.data.tags || [];
+    const excerpt = post.data.excerpt;
+    const usesPoster = category === 'grand-prix' || category === 'nazionale';
+    const baseImage = usesPoster
+      ? post.data.poster || post.data.featuredImage
+      : post.data.featuredImage || post.data.poster;
+
+    // Tour stages
+    if (post.data.stages && post.data.stages.length > 0) {
+      const displayImages = computeStageDisplayImages(post.data.stages);
+      for (let si = 0; si < post.data.stages.length; si++) {
+        const stage = post.data.stages[si];
+        if (!stage.date || stage.hideDate) continue;
+        const d = new Date(stage.date);
+        if (d.getDate() === 1 && !stage.time) continue;
+        const yearShort = String(d.getFullYear()).slice(2);
+        out.push({
+          date: toIsoDate(d),
+          title: `IT${yearShort} — ${stage.name}`,
+          url,
+          category,
+          image: displayImages[si] || baseImage,
+          tags,
+          excerpt: stage.description || excerpt,
+        });
+      }
+      continue;
+    }
+
+    // Events array (GP, NC, community events, leagues with dated nights)
+    if (post.data.events && post.data.events.length > 0) {
+      let emitted = 0;
+      for (const ev of post.data.events) {
+        if (ev.period) continue;
+        const d = new Date(ev.date);
+        if (isNaN(d.getTime())) continue;
+        if (d.getDate() === 1 && (!ev.time || ev.time === '—')) continue;
+        const displayName = post.data.events.length === 1 ? postTitle : ev.name;
+        out.push({
+          date: toIsoDate(d),
+          title: displayName,
+          url,
+          category,
+          image: baseImage,
+          tags,
+          excerpt,
+        });
+        emitted++;
+      }
+      if (emitted > 0) continue;
+    }
+
+    // Fallback: dateless posts use the post.date itself (articles, announcements)
+    const postDate = new Date(post.data.date);
+    if (isNaN(postDate.getTime())) continue;
+    out.push({
+      date: toIsoDate(postDate),
+      title: postTitle,
+      url,
+      category,
+      image: baseImage,
+      tags,
+      excerpt,
+    });
+  }
+
+  // Local events (no post page; links resolve to empty)
+  const localEvents = localEventsData as LocalEvent[];
+  for (const le of localEvents) {
+    const d = new Date(le.date);
+    if (isNaN(d.getTime())) continue;
+    const cityName = le.city.charAt(0).toUpperCase() + le.city.slice(1);
+    const leExcerpt = le.venue ? `${cityName} — ${le.venue}` : cityName;
+    out.push({
+      date: le.date,
+      title: le.name,
+      url: '',
+      category: 'local',
+      image: le.image,
+      tags: [],
+      excerpt: leExcerpt,
+    });
+  }
+
+  out.sort((a, b) => a.date.localeCompare(b.date));
+  return out;
+}
+
+export interface TimelineWindow {
+  /** Visual order top-down: future-most-distant → next → past-most-recent → past-older. */
+  entries: TimelineEntry[];
+  /** Index inside `entries` of the "next event" card (the one to highlight). -1 when no upcoming. */
+  highlightIndex: number;
+}
+
+/**
+ * Pick 5 entries centered on the next upcoming event:
+ *   - 2 entries above (further future, farthest first)
+ *   - 1 "next" entry (highlighted)
+ *   - 2 entries below (recent past, most recent first)
+ * Falls back to the other side when one side is short.
+ */
+export function pickTimelineWindow(entries: TimelineEntry[], today: string): TimelineWindow {
+  if (entries.length === 0) return { entries: [], highlightIndex: -1 };
+
+  const pivot = entries.findIndex((e) => e.date >= today);
+  if (pivot === -1) {
+    // No upcoming — show the 5 most recent past, newest at top, no highlight.
+    const tail = entries.slice(-5).reverse();
+    return { entries: tail, highlightIndex: -1 };
+  }
+
+  const idealAbove = 2;
+  const idealBelow = 2;
+
+  let above = entries.slice(pivot + 1, pivot + 1 + idealAbove);
+  let below = entries.slice(Math.max(0, pivot - idealBelow), pivot);
+
+  const aboveShort = idealAbove - above.length;
+  const belowShort = idealBelow - below.length;
+
+  if (aboveShort > 0) {
+    below = entries.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
+  }
+  if (belowShort > 0) {
+    above = entries.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
+  }
+
+  const display = [...above.slice().reverse(), entries[pivot], ...below.slice().reverse()];
+  return { entries: display, highlightIndex: above.length };
 }

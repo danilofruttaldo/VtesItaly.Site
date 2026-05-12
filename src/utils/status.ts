@@ -41,28 +41,6 @@ export function computeEventStatus(eventDate: Date): EventStatus {
 }
 
 /**
- * True until the latest event/stage date passes (or the post date itself,
- * for plain articles). Used to decide whether a pinned post still belongs
- * at the top of feeds.
- */
-export function isPostActive(post: {
-  data: {
-    date: Date;
-    events?: { date: Date; endDate?: Date }[];
-    stages?: { date: Date }[];
-  };
-}): boolean {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const dates: Date[] = [];
-  for (const e of post.data.events ?? []) dates.push(e.endDate ?? e.date);
-  for (const s of post.data.stages ?? []) dates.push(s.date);
-  if (dates.length === 0) dates.push(post.data.date);
-  const last = dates.reduce((max, d) => (d > max ? d : max));
-  return last >= today;
-}
-
-/**
  * Compute per-stage display images: future stages get the placeholder,
  * completed and upcoming stages show their real cover.
  */

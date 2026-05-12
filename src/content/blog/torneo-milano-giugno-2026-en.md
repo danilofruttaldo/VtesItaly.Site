@@ -29,7 +29,6 @@ pricing:
 prizes:
   - 'Prizes for the finalists based on the number of participants'
   - 'Promo door prize for everyone'
-cardHidden: true
 locale: 'en'
 ---
 

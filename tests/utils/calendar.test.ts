@@ -14,7 +14,6 @@ function mkPost(id: string, data: Partial<BlogEntry['data']> & { date: Date }): 
       excerpt: data.excerpt ?? '',
       tags: data.tags ?? [],
       locale: data.locale ?? 'it',
-      cardHidden: data.cardHidden ?? false,
       category: data.category ?? 'comunita',
       ...data,
     },
@@ -179,27 +178,6 @@ describe('pickTimelineWindow', () => {
 });
 
 describe('getCommunityTimeline', () => {
-  it('includes cardHidden posts (the timeline is an events overview, not a card list)', () => {
-    const posts = [
-      mkPost('hidden', {
-        date: new Date('2026-06-01'),
-        cardHidden: true,
-        category: 'comunita',
-        articleOnly: true,
-      } as Partial<BlogEntry['data']> & { date: Date }),
-      mkPost('shown', {
-        date: new Date('2026-06-02'),
-        category: 'comunita',
-        articleOnly: true,
-      } as Partial<BlogEntry['data']> & { date: Date }),
-    ];
-    const out = getCommunityTimeline(posts, 'it');
-    const fromBlog = out.filter((e) => e.url.includes('shown') || e.url.includes('hidden'));
-    expect(fromBlog.map((e) => e.url)).toEqual(
-      expect.arrayContaining([expect.stringContaining('hidden'), expect.stringContaining('shown')]),
-    );
-  });
-
   it('emits one entry per dated event, copying post excerpt', () => {
     const posts = [
       mkPost('multi', {

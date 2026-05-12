@@ -17,12 +17,12 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
+    archonUrl: 'https://archon.vekn.net/tournament/e9f4d9bf-0aa9-46f6-b4e8-33fb6fe0902d/display.html'
 pricing:
   - label: 'Iscrizione'
     regular: '15 €'
 prizes:
   - 'Premi per finalista e vincitore'
-cardHidden: true
 locale: it
 ---
 

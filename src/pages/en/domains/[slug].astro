@@ -6,7 +6,7 @@ import { cities } from '../../../data/cities';
 import { getCollection } from 'astro:content';
 import PostCard from '../../../components/PostCard.astro';
 import { filterByLocale, useTranslations } from '../../../utils/i18n';
-import { getEnPostUrl, getCardImage } from '../../../utils/url';
+import { getEnPostUrl, buildCityCards } from '../../../utils/url';
 
 const t = useTranslations('en');
 
@@ -14,17 +14,20 @@ export async function getStaticPaths() {
   const allPosts = filterByLocale(await getCollection('blog'), 'en');
   return cities.map((city) => {
     const cityTag = city.slug.it;
-    const relatedPosts = allPosts
-      .filter((p) => p.data.tags?.includes(cityTag) && !p.data.cardHidden)
-      .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+    const cards = buildCityCards(allPosts, cityTag, (post) => getEnPostUrl(post));
     return {
       params: { slug: city.slug.en },
-      props: { city, relatedPosts },
+      props: { city, cards },
     };
   });
 }
 
-const { city, relatedPosts } = Astro.props;
+const { city, cards } = Astro.props;
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const firstPastIndex = cards.findIndex((c) => c.date < today);
+const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length - 1 : -1) : firstPastIndex - 1;
 ---
 
 <Base
@@ -206,24 +209,23 @@ const { city, relatedPosts } = Astro.props;
         <hr class="divider" />
         <h2 class="related-title">{t.domain.news_title}</h2>
         {
-          relatedPosts.length > 0 ? (
+          cards.length > 0 ? (
             <div class="post-list">
-              {relatedPosts.map((post) => {
-                const cardImg = getCardImage(post, city.slug.it);
-                return (
-                  <PostCard
-                    href={getEnPostUrl(post)}
-                    title={post.data.title}
-                    image={cardImg.src}
-                    isPoster={cardImg.isPoster}
-                    date={post.data.date}
-                    category={post.data.category}
-                    tags={post.data.tags}
-                    excerpt={post.data.excerpt}
-                    locale="en"
-                  />
-                );
-              })}
+              {cards.map((card, i) => (
+                <PostCard
+                  href={card.href}
+                  title={card.title}
+                  image={card.image.src}
+                  isPoster={card.image.isPoster}
+                  date={card.date}
+                  category={card.category}
+                  tags={card.tags}
+                  excerpt={card.excerpt}
+                  locale="en"
+                  highlight={i === nextEventIndex}
+                  highlightLabel={t.home.next_event_label}
+                />
+              ))}
             </div>
           ) : (
             <p class="no-news">{t.domain.no_news}</p>

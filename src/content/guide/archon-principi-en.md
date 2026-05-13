@@ -151,7 +151,7 @@ When two or more players have identical GW/VP/TP, their rows in the **Seed Final
 Two ways to assign it:
 
 - <span class="archon-pill archon-pill--yellow">Toss</span> — Archon randomizes the values for the tied group itself. Quick if you don't have dice handy.
-- **Manual**: do a physical roll (die, coin) between the players involved and enter `1` for the toss winner, `2` for the next, etc. This is the "official" at-table procedure, aligned with [VEKN rule §3.1](https://www.vekn.net/tournament-rules) ("any fair random method").
+- **Manual**: do a physical roll (die, coin) between the players involved and enter `1` for the toss winner, `2` for the next, etc. This is the "official" at-table procedure, aligned with the [VEKN tournament rules](https://www.vekn.net/tournament-rules), section 3.1 ("any fair random method").
 
 > [!IMPORTANT]
 > The field accepts `0`–`5` but what matters is only the **relative ordering inside the tied group**: lowest value gets the best seed. You don't need to map the die result (`d6 = 4`) onto the field — just give `1` to whoever rolled best.

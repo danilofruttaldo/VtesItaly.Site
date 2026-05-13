@@ -13,7 +13,7 @@ locale: en
 [Archon Online](https://archon.vekn.net) is the official VEKN platform for managing **Vampire: The Eternal Struggle** tournaments. This guide is for **Judges**: what you can do from the portal during a tournament and how to coordinate with the organizer. For event creation and the full tournament cycle, see [Archon Online for Princes](/en/guides/archon-principi/).
 
 > [!NOTE]
-> The Judge and the Prince are **distinct operational roles** but with **largely overlapping** powers on the portal. In medium/large tournaments it's customary to keep them separate (Prince = organization/flow, Judge = decklist review, sanctions, table calls). In small tournaments the same person wears both hats, and Archon doesn't formally enforce the split. See [§5](#5-judge-capabilities-vs-prince-role) for the full map.
+> The Judge and the Prince are **distinct operational roles** but with **largely overlapping** powers on the portal. In medium/large tournaments it's customary to keep them separate (Prince = organization/flow, Judge = decklist review, sanctions, table calls). In small tournaments the same person wears both hats, and Archon doesn't formally enforce the split. See the [full capability map](#5-judge-capabilities-vs-prince-role).
 
 ## 1. Becoming a judge on a tournament
 

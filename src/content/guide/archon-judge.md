@@ -13,7 +13,7 @@ locale: it
 [Archon Online](https://archon.vekn.net) è la piattaforma ufficiale VEKN per la gestione dei tornei di **Vampire: The Eternal Struggle**. Questa guida è dedicata ai **Giudici** (_Judges_): cosa puoi fare dal portale durante un torneo e come coordinarti con il Principe organizzatore. Per la creazione dell'evento e il ciclo completo vedi [Archon Online per Principi](/guide/archon-principi/).
 
 > [!NOTE]
-> Il Giudice e il Principe sono **ruoli operativi distinti** ma con poteri **largamente sovrapponibili** sul portale. In tornei medi/grandi è prassi separarli (Principe = organizzazione/flow, Giudice = verifica decklist, sanzioni, chiamate a tavolo). In tornei piccoli è normale che la stessa persona indossi entrambi i cappelli, e Archon non vincola formalmente la divisione. Vedi [§5](#5-capability-del-giudice-e-ruolo-del-principe) per la mappa completa.
+> Il Giudice e il Principe sono **ruoli operativi distinti** ma con poteri **largamente sovrapponibili** sul portale. In tornei medi/grandi è prassi separarli (Principe = organizzazione/flow, Giudice = verifica decklist, sanzioni, chiamate a tavolo). In tornei piccoli è normale che la stessa persona indossi entrambi i cappelli, e Archon non vincola formalmente la divisione. Vedi la [mappa completa delle capability](#5-capability-del-giudice-e-ruolo-del-principe).
 
 ## 1. Come diventare giudice di un torneo
 

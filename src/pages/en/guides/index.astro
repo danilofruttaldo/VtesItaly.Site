@@ -1,0 +1,48 @@
+---
+import '../../../styles/guide.css';
+import Base from '../../../layouts/Base.astro';
+import GuideCard from '../../../components/guide/GuideCard.astro';
+import AudienceFilter from '../../../components/guide/AudienceFilter.astro';
+import { getCollection } from 'astro:content';
+import { filterByLocale, useTranslations, type Locale } from '../../../utils/i18n';
+
+const locale: Locale = 'en';
+const t = useTranslations(locale);
+
+const all = filterByLocale(await getCollection('guide'), locale);
+
+const sorted = all.slice().sort((a, b) => {
+  if (a.data.ordine !== b.data.ordine) return a.data.ordine - b.data.ordine;
+  return new Date(b.data.aggiornato).getTime() - new Date(a.data.aggiornato).getTime();
+});
+---
+
+<Base title={t.page_titles.Guide} description={t.guide.intro}>
+  <section class="guide-hub">
+    <div class="container container--narrow">
+      <header class="guide-hub__header">
+        <h1 class="guide-hub__title">{t.page_titles.Guide}</h1>
+        <p class="guide-hub__intro">{t.guide.intro}</p>
+      </header>
+
+      <AudienceFilter locale={locale} />
+
+      <div class="guide-grid">
+        {
+          sorted.map((g) => (
+            <GuideCard
+              href={`/guides/${g.id.replace(/-en$/, '')}/`}
+              title={g.data.title}
+              description={g.data.description}
+              audience={g.data.audience}
+              aggiornato={g.data.aggiornato}
+              locale={locale}
+            />
+          ))
+        }
+      </div>
+
+      <p class="guide-empty" hidden>{t.guide.no_results}</p>
+    </div>
+  </section>
+</Base>

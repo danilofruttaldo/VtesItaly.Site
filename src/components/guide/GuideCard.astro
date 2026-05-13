@@ -1,0 +1,43 @@
+---
+import { useTranslations, formatLocalDate, localePrefix, type Locale } from '../../utils/i18n';
+
+type Audience = 'giocatore' | 'principe' | 'judge' | 'nuovi';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  audience: Audience[];
+  aggiornato: Date;
+  locale: Locale;
+}
+
+const { href, title, description, audience, aggiornato, locale } = Astro.props;
+const t = useTranslations(locale);
+
+const audienceLabel: Record<Audience, string> = {
+  giocatore: t.guide.audience_giocatore,
+  principe: t.guide.audience_principe,
+  judge: t.guide.audience_judge,
+  nuovi: t.guide.audience_nuovi,
+};
+
+const fullHref = href.startsWith('/') ? `${localePrefix(locale)}${href}` : href;
+const dataAudience = audience.join(' ');
+---
+
+<a href={fullHref} class="guide-card" data-audience={dataAudience} aria-label={title}>
+  <div class="guide-card__body">
+    <div class="guide-card__top">
+      <div class="guide-card__audience">
+        {audience.map((a) => <span class={`guide-badge guide-badge--${a}`}>{audienceLabel[a]}</span>)}
+      </div>
+      <p class="guide-card__date">
+        {t.guide.updated_on}
+        <time datetime={aggiornato.toISOString()}>{formatLocalDate(aggiornato, locale)}</time>
+      </p>
+    </div>
+    <h3 class="guide-card__title">{title}</h3>
+    <p class="guide-card__desc">{description}</p>
+  </div>
+</a>

@@ -1,5 +1,6 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { remarkAlert } from 'remark-github-blockquote-alert';
 
 export default defineConfig({
   site: 'https://vtesitaly.com',
@@ -10,6 +11,9 @@ export default defineConfig({
   },
   image: {
     service: process.env.NODE_ENV !== 'production' ? passthroughImageService() : undefined,
+  },
+  markdown: {
+    remarkPlugins: [remarkAlert],
   },
   i18n: {
     defaultLocale: 'it',

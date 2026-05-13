@@ -247,4 +247,24 @@ const blog = defineCollection({
   ]),
 });
 
-export const collections = { blog };
+/* ── Guide collection ─────────────────────────────────────── */
+
+const guideSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  categoria: z.enum(['iniziare', 'piattaforme', 'regole-formati', 'organizzare']),
+  audience: z.array(z.enum(['giocatore', 'principe', 'judge', 'nuovi'])).min(1),
+  ordine: z.number().default(100),
+  versione: z.string().optional(),
+  aggiornato: z.coerce.date(),
+  autore: z.string().optional(),
+  correlate: z.array(z.string()).optional(),
+  locale: z.enum(LOCALES).default(DEFAULT_LOCALE),
+});
+
+const guide = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/guide' }),
+  schema: guideSchema,
+});
+
+export const collections = { blog, guide };

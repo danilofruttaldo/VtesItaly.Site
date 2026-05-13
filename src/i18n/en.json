@@ -4,7 +4,8 @@
     "national-championship": "nazionale",
     "postcards": "cartoline",
     "twins": "gemelli",
-    "community": "comunita"
+    "community": "comunita",
+    "guides": "guide"
   },
   "routes": {
     "home": "/en/",
@@ -15,6 +16,7 @@
     "grand-prix": "/en/grand-prix/",
     "cartoline": "/en/postcards/",
     "gemelli": "/en/twins/",
+    "guide": "/en/guides/",
     "week-of-sabbat": "/en/community/week-of-sabbat-2025/"
   },
   "page_titles": {
@@ -25,6 +27,7 @@
     "Grand Prix": "Grand Prix",
     "Cartoline": "Postcards",
     "Gemelli": "Twins",
+    "Guide": "Guides",
     "Week of Sabbat": "Week of Sabbat",
     "Blog": "Community"
   },
@@ -116,6 +119,7 @@
     "Blog": "Community",
     "Cartoline": "Postcards",
     "Gemelli": "Twins",
+    "Guide": "Guides",
     "Week of Sabbat": "Week of Sabbat"
   },
   "footer": {
@@ -273,5 +277,33 @@
     "title": "A new version is available.",
     "reload": "Reload",
     "dismiss": "Dismiss update banner"
+  },
+  "guide": {
+    "intro": "Practical guides, handbooks and references from the Italian VTES community.",
+    "filter_label": "I'm a…",
+    "filter_giocatore": "Player",
+    "filter_principe": "Prince",
+    "filter_judge": "Judge",
+    "filter_nuovi": "Newcomer",
+    "audience_giocatore": "Player",
+    "audience_principe": "Prince",
+    "audience_judge": "Judge",
+    "audience_nuovi": "Newcomer",
+    "categoria_iniziare": "Getting started",
+    "categoria_piattaforme": "Platforms",
+    "categoria_regole_formati": "Rules & Formats",
+    "categoria_organizzare": "Organizing",
+    "updated_on": "updated on",
+    "version_prefix": "v",
+    "toc_title": "In this guide",
+    "see_also": "See also",
+    "report_issue": "Report an issue",
+    "back_to_index": "All guides",
+    "no_results": "No guides for you yet. We're working on it!",
+    "alert_note": "Note",
+    "alert_tip": "Tip",
+    "alert_important": "Important",
+    "alert_warning": "Warning",
+    "alert_caution": "Caution"
   }
 }

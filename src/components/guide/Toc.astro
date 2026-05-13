@@ -1,0 +1,84 @@
+---
+import { useTranslations, type Locale } from '../../utils/i18n';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  locale: Locale;
+}
+
+const { headings, locale } = Astro.props;
+const t = useTranslations(locale);
+const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{
+  tocItems.length > 0 && (
+    <nav class="guide-toc" aria-label={t.guide.toc_title}>
+      <h2 class="guide-toc__title">{t.guide.toc_title}</h2>
+      <ol class="guide-toc__list">
+        {tocItems.map((h) => (
+          <li class:list={['guide-toc__item', h.depth === 3 && 'guide-toc__item--nested']}>
+            <a href={`#${h.slug}`} class="guide-toc__link" data-target={h.slug}>
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<script>
+  function setupGuideToc() {
+    const toc = document.querySelector<HTMLElement>('.guide-toc');
+    if (!toc) return;
+    const content = document.querySelector<HTMLElement>('.guide-content');
+    if (!content) return;
+    const targets = Array.from(content.querySelectorAll<HTMLElement>('h2[id], h3[id]'));
+    if (targets.length === 0) return;
+    const linkBySlug = new Map<string, HTMLAnchorElement>();
+    toc.querySelectorAll<HTMLAnchorElement>('.guide-toc__link').forEach((a) => {
+      const slug = a.dataset.target;
+      if (slug) linkBySlug.set(slug, a);
+    });
+
+    let activeSlug: string | null = null;
+    function setActive(slug: string | null) {
+      if (slug === activeSlug) return;
+      if (activeSlug) {
+        const prev = linkBySlug.get(activeSlug);
+        prev?.classList.remove('guide-toc__link--active');
+      }
+      if (slug) {
+        const next = linkBySlug.get(slug);
+        next?.classList.add('guide-toc__link--active');
+      }
+      activeSlug = slug;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+        if (visible[0]) {
+          setActive((visible[0].target as HTMLElement).id);
+        }
+      },
+      { rootMargin: '-72px 0px -60% 0px', threshold: [0, 1] },
+    );
+    targets.forEach((t) => observer.observe(t));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupGuideToc);
+  } else {
+    setupGuideToc();
+  }
+</script>

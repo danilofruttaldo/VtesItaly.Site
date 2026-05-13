@@ -1,0 +1,146 @@
+---
+import '../../styles/prose.css';
+import '../../styles/guide.css';
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
+import GuideCard from '../../components/guide/GuideCard.astro';
+import Toc from '../../components/guide/Toc.astro';
+import { getCollection, render } from 'astro:content';
+import { filterByLocale, useTranslations, formatLocalDate, type Locale } from '../../utils/i18n';
+
+const locale: Locale = 'it';
+const t = useTranslations(locale);
+
+export const getStaticPaths = (async () => {
+  const guides = filterByLocale(await getCollection('guide'), 'it');
+  return guides.map((g) => ({ params: { slug: g.id }, props: { guide: g } }));
+}) satisfies GetStaticPaths;
+
+const { guide } = Astro.props;
+const { Content, headings } = await render(guide);
+
+const audienceLabel: Record<string, string> = {
+  giocatore: t.guide.audience_giocatore,
+  principe: t.guide.audience_principe,
+  judge: t.guide.audience_judge,
+  nuovi: t.guide.audience_nuovi,
+};
+
+// Resolve related guides
+const allGuides = filterByLocale(await getCollection('guide'), locale);
+const related = (guide.data.correlate ?? [])
+  .map((slug) => allGuides.find((g) => g.id === slug))
+  .filter((g): g is (typeof allGuides)[number] => !!g);
+
+// "Segnala un errore" — GitHub issue prefilled
+const issueTitle = encodeURIComponent(`[guida] ${guide.id}`);
+const issueBody = encodeURIComponent(
+  `Pagina: ${Astro.site?.href ?? ''}guide/${guide.id}/\n\nDescrivi qui il problema riscontrato.`,
+);
+const issueUrl = `https://github.com/danilofruttaldo/VtesItaly.Site/issues/new?title=${issueTitle}&body=${issueBody}&labels=guida`;
+---
+
+<Base title={guide.data.title} description={guide.data.description}>
+  <JsonLd
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: guide.data.title,
+      description: guide.data.description,
+      datePublished: guide.data.aggiornato.toISOString(),
+      dateModified: guide.data.aggiornato.toISOString(),
+      ...(guide.data.versione ? { version: guide.data.versione } : {}),
+      author: { '@type': 'Organization', name: 'VTES Italy' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'VTES Italy',
+        logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href },
+      },
+    }}
+  />
+  <JsonLd
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: t.page_titles.Guide, item: new URL(t.routes.guide, Astro.site).href },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.data.title,
+          item: new URL(Astro.url.pathname, Astro.site).href,
+        },
+      ],
+    }}
+  />
+
+  <article class="guide-page">
+    <div class="container">
+      <a href={t.routes.guide} class="guide-page__back">&larr; {t.guide.back_to_index}</a>
+
+      <header class="guide-page__header">
+        <h1 class="guide-page__title">{guide.data.title}</h1>
+        <div class="guide-page__audience">
+          {guide.data.audience.map((a) => <span class={`guide-badge guide-badge--${a}`}>{audienceLabel[a]}</span>)}
+        </div>
+        <div class="guide-page__meta">
+          {
+            guide.data.versione && (
+              <span class="guide-page__meta-version">
+                {t.guide.version_prefix}
+                {guide.data.versione} —
+              </span>
+            )
+          }
+          <span>
+            {t.guide.updated_on}{' '}
+            <time datetime={guide.data.aggiornato.toISOString()}>{formatLocalDate(guide.data.aggiornato, locale)}</time>
+          </span>
+        </div>
+      </header>
+
+      <hr class="guide-page__divider" />
+
+      <div class="guide-layout">
+        <aside>
+          <Toc headings={headings} locale={locale} />
+        </aside>
+
+        <div class="guide-content prose">
+          <Content />
+
+          {
+            related.length > 0 && (
+              <section class="guide-related">
+                <h2 class="guide-related__title">{t.guide.see_also}</h2>
+                <div class="guide-related__grid">
+                  {related.map((g) => (
+                    <GuideCard
+                      href={`/guide/${g.id}/`}
+                      title={g.data.title}
+                      description={g.data.description}
+                      audience={g.data.audience}
+                      aggiornato={g.data.aggiornato}
+                      locale={locale}
+                    />
+                  ))}
+                </div>
+              </section>
+            )
+          }
+
+          <p class="guide-report">
+            <a href={issueUrl} target="_blank" rel="noopener noreferrer">{t.guide.report_issue}</a>
+          </p>
+        </div>
+      </div>
+
+      <ShareButtons />
+    </div>
+  </article>
+</Base>

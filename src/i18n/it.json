@@ -9,6 +9,7 @@
     "grand-prix": "/grand-prix/",
     "cartoline": "/cartoline/",
     "gemelli": "/gemelli/",
+    "guide": "/guide/",
     "week-of-sabbat": "/comunita/week-of-sabbat-2025/"
   },
   "page_titles": {
@@ -19,6 +20,7 @@
     "Grand Prix": "Grand Prix",
     "Cartoline": "Cartoline",
     "Gemelli": "Gemelli",
+    "Guide": "Guide",
     "Week of Sabbat": "Week of Sabbat",
     "Blog": "Comunità"
   },
@@ -110,6 +112,7 @@
     "Blog": "Comunità",
     "Cartoline": "Cartoline",
     "Gemelli": "Gemelli",
+    "Guide": "Guide",
     "Week of Sabbat": "Week of Sabbat"
   },
   "footer": {
@@ -267,5 +270,33 @@
     "title": "È disponibile una nuova versione.",
     "reload": "Ricarica",
     "dismiss": "Chiudi il banner di aggiornamento"
+  },
+  "guide": {
+    "intro": "Guide pratiche, vademecum e riferimenti dalla comunità italiana di VTES.",
+    "filter_label": "Sei un…",
+    "filter_giocatore": "Giocatore",
+    "filter_principe": "Principe",
+    "filter_judge": "Judge",
+    "filter_nuovi": "Nuovo",
+    "audience_giocatore": "Giocatore",
+    "audience_principe": "Principe",
+    "audience_judge": "Judge",
+    "audience_nuovi": "Nuovi",
+    "categoria_iniziare": "Iniziare",
+    "categoria_piattaforme": "Piattaforme",
+    "categoria_regole_formati": "Regole & Formati",
+    "categoria_organizzare": "Organizzare",
+    "updated_on": "aggiornato il",
+    "version_prefix": "v",
+    "toc_title": "In questa guida",
+    "see_also": "Vedi anche",
+    "report_issue": "Segnala un errore",
+    "back_to_index": "Tutte le guide",
+    "no_results": "Ancora nessuna guida per te. Ci stiamo lavorando!",
+    "alert_note": "Nota",
+    "alert_tip": "Suggerimento",
+    "alert_important": "Importante",
+    "alert_warning": "Attenzione",
+    "alert_caution": "Avvertenza"
   }
 }

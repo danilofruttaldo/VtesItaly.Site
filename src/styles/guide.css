@@ -1,0 +1,523 @@
+/* ========================================
+   Guide — hub + single page
+   ======================================== */
+
+.guide-hub {
+  padding: 32px 0 48px;
+}
+
+.guide-hub__header {
+  margin-bottom: 24px;
+}
+
+.guide-hub__title {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin-bottom: 8px;
+}
+
+.guide-hub__intro {
+  color: var(--color-muted);
+  font-size: var(--font-size-medium);
+  margin: 0;
+}
+
+/* Filter pills */
+.guide-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0 28px;
+}
+
+.guide-filter__label {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  margin-right: 4px;
+}
+
+/* Mobile: label sulla sua riga, pillole inline tutte sulla riga sotto */
+@media (max-width: 544px) {
+  .guide-filter__label {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+  .guide-filter__btn {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 6px 10px;
+  }
+}
+
+.guide-filter__btn {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.guide-filter__btn:hover {
+  color: var(--color-contrast);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.guide-filter__btn--active {
+  color: var(--color-contrast);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.guide-filter__btn--active:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+/* Cards */
+.guide-card {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--color-contrast);
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.guide-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  color: var(--color-contrast);
+}
+
+.guide-card--hidden {
+  display: none;
+}
+
+.guide-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guide-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+
+.guide-card__audience {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.guide-card__title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+.guide-card__desc {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+.guide-card__date {
+  font-size: var(--font-size-3xs);
+  font-style: italic;
+  color: var(--color-muted);
+  text-align: right;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Audience badges */
+.guide-badge {
+  display: inline-block;
+  font-size: var(--font-size-3xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  padding: 2px 8px;
+  border-radius: var(--radius);
+  line-height: var(--leading-tight);
+}
+
+.guide-badge--giocatore {
+  color: var(--color-success);
+  background: rgba(0, 146, 70, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.guide-badge--principe {
+  color: var(--color-gold-hover);
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+}
+
+.guide-badge--judge {
+  color: var(--color-accent-1);
+  background: rgba(232, 90, 114, 0.12);
+  border: 1px solid rgba(232, 90, 114, 0.35);
+}
+
+.guide-badge--nuovi {
+  color: #f0e6d3;
+  background: rgba(240, 230, 211, 0.08);
+  border: 1px solid rgba(240, 230, 211, 0.3);
+}
+
+/* Empty state */
+.guide-empty {
+  text-align: center;
+  color: var(--color-muted);
+  padding: 32px 0;
+  font-size: var(--font-size-small);
+}
+
+/* ========================================
+   Guide page (single)
+   ======================================== */
+
+.guide-page {
+  padding: 24px 0 56px;
+}
+
+.guide-page__back {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.guide-page__back:hover {
+  color: var(--color-accent-1);
+}
+
+.guide-page__header {
+  margin-bottom: 24px;
+}
+
+.guide-page__title {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  line-height: var(--leading-tight);
+  margin-bottom: 10px;
+}
+
+.guide-page__audience {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.guide-page__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+
+.guide-page__meta-version {
+  margin-right: 8px;
+}
+
+.guide-page__divider {
+  border: none;
+  border-top: 1px solid var(--color-accent-light);
+  margin: 16px 0 24px;
+}
+
+/* 2-column layout */
+.guide-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 880px) {
+  .guide-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* TOC — sticky lives on the <aside> grid item, not on the inner nav, so it
+ * has the full grid row height to operate within (the article column). */
+.guide-layout > aside {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
+}
+
+.guide-toc {
+  font-size: var(--font-size-sm);
+  border-left: 1px solid var(--color-border);
+  padding-left: 14px;
+}
+
+@media (max-width: 880px) {
+  .guide-layout > aside {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+  .guide-toc {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 12px 0;
+  }
+}
+
+.guide-toc__title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-gold);
+  margin: 0 0 10px;
+}
+
+.guide-toc__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.guide-toc__item--nested {
+  padding-left: 14px;
+}
+
+.guide-toc__link {
+  color: var(--color-muted);
+  text-decoration: none;
+  display: block;
+  line-height: var(--leading-snug);
+  padding: 2px 0;
+  transition: color 0.15s ease;
+}
+
+.guide-toc__link:hover {
+  color: var(--color-contrast);
+}
+
+.guide-toc__link--active {
+  color: var(--color-accent-1);
+  font-weight: 600;
+}
+
+/* Content column */
+.guide-content {
+  min-width: 0;
+}
+
+.guide-content h2,
+.guide-content h3 {
+  scroll-margin-top: 80px;
+}
+
+/* Long code spans (es. DISQUALIFICATION, UNSPORTSMANLIKE_CONDUCT, URL con
+ * placeholder) devono poter andare a capo dentro celle e callout. Senza
+ * questo, su viewport stretti l'inline code spinge fuori la colonna. */
+.guide-content code {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Tables: wrap text in cells by default; su viewport stretti diventano
+ * block scrollabili orizzontalmente come fallback per tabelle con celle
+ * intrinsecamente ampie. */
+.guide-content th,
+.guide-content td {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .guide-content table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* See also */
+.guide-related {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.guide-related__title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-gold);
+  margin: 0 0 12px;
+}
+
+.guide-related__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+/* Report issue footer */
+.guide-report {
+  margin-top: 32px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+}
+
+.guide-report a {
+  color: var(--color-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 3px;
+}
+
+.guide-report a:hover {
+  color: var(--color-accent-1);
+}
+
+/* ========================================
+   GitHub-style alerts (remark-github-blockquote-alert)
+   ======================================== */
+
+.guide-content .markdown-alert {
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 24px 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.guide-content .markdown-alert > :first-child {
+  margin-top: 0;
+}
+
+.guide-content .markdown-alert > :last-child {
+  margin-bottom: 0;
+}
+
+/* Hide plugin-emitted title row entirely; we render localized label via ::before
+ * on the alert container. SVG icon is dropped to stay consistent with the
+ * minimal callout style already used elsewhere on the site. */
+.guide-content .markdown-alert-title {
+  display: none;
+}
+
+.guide-content .markdown-alert::before {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-size: var(--font-size-xs);
+  margin-bottom: 6px;
+}
+
+/* Variant: NOTE (gold, neutral info) */
+.guide-content .markdown-alert-note {
+  border-left-color: var(--color-gold);
+  background: rgba(201, 168, 76, 0.06);
+}
+:lang(it) .guide-content .markdown-alert-note::before {
+  content: 'Nota';
+  color: var(--color-gold);
+}
+:lang(en) .guide-content .markdown-alert-note::before {
+  content: 'Note';
+  color: var(--color-gold);
+}
+
+/* Variant: TIP (green, "do this") */
+.guide-content .markdown-alert-tip {
+  border-left-color: var(--color-success);
+  background: rgba(0, 146, 70, 0.06);
+}
+:lang(it) .guide-content .markdown-alert-tip::before {
+  content: 'Suggerimento';
+  color: var(--color-success);
+}
+:lang(en) .guide-content .markdown-alert-tip::before {
+  content: 'Tip';
+  color: var(--color-success);
+}
+
+/* Variant: IMPORTANT (rose accent — site primary) */
+.guide-content .markdown-alert-important {
+  border-left-color: var(--color-accent-1);
+  background: rgba(232, 90, 114, 0.06);
+}
+:lang(it) .guide-content .markdown-alert-important::before {
+  content: 'Importante';
+  color: var(--color-accent-1);
+}
+:lang(en) .guide-content .markdown-alert-important::before {
+  content: 'Important';
+  color: var(--color-accent-1);
+}
+
+/* Variant: WARNING (rose accent, stronger) */
+.guide-content .markdown-alert-warning {
+  border-left-color: var(--color-accent);
+  background: rgba(139, 26, 43, 0.08);
+}
+:lang(it) .guide-content .markdown-alert-warning::before {
+  content: 'Attenzione';
+  color: var(--color-accent-1);
+}
+:lang(en) .guide-content .markdown-alert-warning::before {
+  content: 'Warning';
+  color: var(--color-accent-1);
+}
+
+/* Variant: CAUTION (deepest red) */
+.guide-content .markdown-alert-caution {
+  border-left-color: var(--color-accent-hover);
+  background: rgba(168, 50, 64, 0.08);
+}
+:lang(it) .guide-content .markdown-alert-caution::before {
+  content: 'Avvertenza';
+  color: var(--color-accent-1);
+}
+:lang(en) .guide-content .markdown-alert-caution::before {
+  content: 'Caution';
+  color: var(--color-accent-1);
+}

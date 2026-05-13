@@ -1,0 +1,75 @@
+---
+import { useTranslations, type Locale } from '../../utils/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const filters = [
+  { value: 'giocatore', label: t.guide.filter_giocatore },
+  { value: 'principe', label: t.guide.filter_principe },
+  { value: 'judge', label: t.guide.filter_judge },
+  { value: 'nuovi', label: t.guide.filter_nuovi },
+];
+---
+
+<div class="guide-filter" role="group" aria-labelledby="guide-filter-label" data-no-results={t.guide.no_results}>
+  <span id="guide-filter-label" class="guide-filter__label">{t.guide.filter_label}</span>
+  {
+    filters.map(({ value, label }) => (
+      <button type="button" class="guide-filter__btn" data-filter={value} aria-pressed="false">
+        {label}
+      </button>
+    ))
+  }
+</div>
+
+<script>
+  function setupAudienceFilter() {
+    const filter = document.querySelector<HTMLElement>('.guide-filter');
+    if (!filter) return;
+    const buttons = filter.querySelectorAll<HTMLButtonElement>('.guide-filter__btn');
+    const noResultsMsg = filter.dataset.noResults || 'No results';
+
+    // Multi-select toggle: ogni pillola è indipendente. Card visibile se
+    // matcha almeno una pillola attiva (OR). Nessuna attiva = tutto visibile.
+    function apply() {
+      const active = Array.from(buttons)
+        .filter((b) => b.classList.contains('guide-filter__btn--active'))
+        .map((b) => b.dataset.filter || '')
+        .filter(Boolean);
+
+      const cards = document.querySelectorAll<HTMLElement>('.guide-card[data-audience]');
+      let anyVisible = false;
+      cards.forEach((card) => {
+        const audiences = (card.dataset.audience || '').split(/\s+/);
+        const visible = active.length === 0 || active.some((v) => audiences.includes(v));
+        card.classList.toggle('guide-card--hidden', !visible);
+        if (visible) anyVisible = true;
+      });
+      const empty = document.querySelector<HTMLElement>('.guide-empty');
+      if (empty) {
+        empty.hidden = anyVisible;
+        empty.textContent = noResultsMsg;
+      }
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const next = !btn.classList.contains('guide-filter__btn--active');
+        btn.classList.toggle('guide-filter__btn--active', next);
+        btn.setAttribute('aria-pressed', next ? 'true' : 'false');
+        apply();
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupAudienceFilter);
+  } else {
+    setupAudienceFilter();
+  }
+</script>

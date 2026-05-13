@@ -93,7 +93,7 @@ During the round, players see their own table on their devices. The organizer se
 - <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **pencil**: enter the player's score (0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 VP).
 - <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: sanctions, view decklist.
 - <span class="archon-btn archon-btn--seating archon-btn--yellow" aria-hidden="true"></span> **Alter Seating**: change round seatings. Poorly tested feature: use only in exceptional cases.
-- <span class="archon-pill archon-pill--green">Finish Round</span>: closes the round. All tables must be _Finished_; to validate an irregular score before closing, see _Override_ below.
+- <span class="archon-pill archon-pill--green">Finish Round</span>: closes the round. All tables must be _Finished_; to validate an irregular score before closing, see [Override on irregular table score](#override-on-irregular-table-score) below.
 
 #### Override on irregular table score
 

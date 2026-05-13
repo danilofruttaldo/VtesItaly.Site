@@ -93,7 +93,7 @@ Durante il round i giocatori vedono il proprio tavolo sui loro dispositivi. L'or
 - <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **matita**: inserire il risultato del giocatore (0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 VP).
 - <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: sanzioni, view decklist.
 - <span class="archon-btn archon-btn--seating archon-btn--yellow" aria-hidden="true"></span> **Alter Seating**: modifica gli accoppiamenti del round. Funzione poco testata: usare solo in casi eccezionali.
-- <span class="archon-pill archon-pill--green">Finish Round</span>: chiude il round. Tutti i tavoli devono essere in stato _Finished_; per validare un punteggio irregolare prima della chiusura, vedi _Override_ sotto.
+- <span class="archon-pill archon-pill--green">Finish Round</span>: chiude il round. Tutti i tavoli devono essere in stato _Finished_; per validare un punteggio irregolare prima della chiusura, vedi [Override su punteggio irregolare](#override-su-punteggio-irregolare) sotto.
 
 #### Override su punteggio irregolare
 

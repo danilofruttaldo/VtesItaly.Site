@@ -144,6 +144,18 @@ After the last round, the final happens in two explicit steps:
 1. **Seed Finals** — the system computes finalist seeding based on results. Verify that all finalists are present; drop anyone missing before seeding.
 2. **Seat Finals** — finalists pick their seat at the table in **seed order** (VEKN rule: top seed picks last). Archon collects the choices.
 
+### Breaking ties between finalists
+
+When two or more players have identical GW/VP/TP, their rows in the **Seed Finals** modal are highlighted yellow and the <span class="archon-pill archon-pill--yellow">Toss</span> button (coin icon) becomes enabled. The numeric **Toss** field next to each tied player is **not the die-roll result** but the **post-tiebreak ordinal**: 1 = best seed, 2 = next, and so on.
+
+Two ways to assign it:
+
+- <span class="archon-pill archon-pill--yellow">Toss</span> — Archon randomizes the values for the tied group itself. Quick if you don't have dice handy.
+- **Manual**: do a physical roll (die, coin) between the players involved and enter `1` for the toss winner, `2` for the next, etc. This is the "official" at-table procedure, aligned with VEKN rule §3.1 ("any fair random method").
+
+> [!IMPORTANT]
+> The field accepts `0`–`5` but what matters is only the **relative ordering inside the tied group**: lowest value gets the best seed. You don't need to map the die result (`d6 = 4`) onto the field — just give `1` to whoever rolled best.
+
 After the final, record the result and close the tournament: Archon computes the winner and final standings automatically and tries to sync with `vekn.net`.
 
 Useful pages to share with players:

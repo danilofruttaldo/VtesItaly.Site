@@ -144,6 +144,18 @@ Dopo l'ultimo round, la finale si svolge in due step espliciti:
 1. **Seed Finals** — il sistema calcola il seeding dei finalisti sulla base dei risultati. Verifica che tutti i finalisti siano presenti; chi non c'è va droppato prima del seeding.
 2. **Seat Finals** — i finalisti scelgono il posto al tavolo nell'**ordine di seed** (regola VEKN: il top seed sceglie per ultimo). Archon gestisce l'inserimento delle scelte.
 
+### Spareggio fra finalisti a pari merito
+
+Quando due o più giocatori hanno GW/VP/TP identici, le loro righe nella modale **Seed Finals** vengono evidenziate in giallo e si abilita il pulsante <span class="archon-pill archon-pill--yellow">Toss</span> (icona moneta). Il campo numerico **Toss** accanto a ciascun giocatore in pari **non è il risultato del dado** ma l'**ordine post-spareggio**: 1 = seed migliore, 2 = seed successivo, e così via.
+
+Due modi per assegnarlo:
+
+- <span class="archon-pill archon-pill--yellow">Toss</span> — Archon estrae casualmente lui i valori per il gruppo in pari. Soluzione veloce se non hai dadi sotto mano.
+- **Manuale**: fai un tiro fisico (dado, moneta) tra i giocatori coinvolti e inserisci `1` per il vincitore del tiro, `2` per il successivo, ecc. È la procedura "ufficiale" da tavolo, in linea con il regolamento VEKN §3.1 ("any fair random method").
+
+> [!IMPORTANT]
+> Il campo accetta `0`–`5` ma quello che conta è solo l'**ordinamento relativo all'interno del gruppo in pari**: il valore più basso prende il seed migliore. Non serve mappare il risultato del dado (`d6 = 4`) al campo — basta che chi tira meglio prenda `1`.
+
 A finale conclusa, registra il risultato e chiudi il torneo: Archon calcola automaticamente il vincitore e la classifica finale, e tenta la sincronizzazione con `vekn.net`.
 
 Pagine utili da condividere coi giocatori:

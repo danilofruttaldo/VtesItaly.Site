@@ -151,7 +151,7 @@ When two or more players have identical GW/VP/TP, their rows in the **Seed Final
 Two ways to assign it:
 
 - <span class="archon-pill archon-pill--yellow">Toss</span> — Archon randomizes the values for the tied group itself. Quick if you don't have dice handy.
-- **Manual**: do a physical roll (die, coin) between the players involved and enter `1` for the toss winner, `2` for the next, etc. This is the "official" at-table procedure, aligned with VEKN rule §3.1 ("any fair random method").
+- **Manual**: do a physical roll (die, coin) between the players involved and enter `1` for the toss winner, `2` for the next, etc. This is the "official" at-table procedure, aligned with [VEKN rule §3.1](https://www.vekn.net/tournament-rules) ("any fair random method").
 
 > [!IMPORTANT]
 > The field accepts `0`–`5` but what matters is only the **relative ordering inside the tied group**: lowest value gets the best seed. You don't need to map the die result (`d6 = 4`) onto the field — just give `1` to whoever rolled best.
@@ -184,7 +184,7 @@ Archon specifics for online tournaments:
 
 - **On-demand pairing**: Archon generates pairings and seatings on the fly — useful for multi-session leagues. When possible it uses the _optimal pre-computed seating_ from the historical VEKN Excel sheet (introduced in repo v0.63).
 - **Multideck**: online formats are typically multideck (different deck per round); the _VEKN Online Constructed Ranking_ recognizes the format.
-- **Standings reconciliation**: Archon standings on online leagues have had historical bugs — see §7 and cross-check with [vtes-hook.com](https://www.vtes-hook.com) before publishing the ranking.
+- **Standings reconciliation**: Archon standings on online leagues have had historical bugs — see [Known bugs](#7-known-bugs-and-workarounds) and cross-check with [vtes-hook.com](https://www.vtes-hook.com) before publishing the ranking.
 
 Non-Archon operational aspects (Discord for registrations and voice, Lackey CCG for play) are outside the scope of this guide.
 

@@ -75,7 +75,7 @@ You can attach a **category** to clarify the reason:
 Always fill in **category** and a clear **reason**: whoever reads the sanction six months later must be able to make sense of it.
 
 > [!NOTE]
-> **Audit trail.** Every sanction explicitly records the **judge who issued it** (`judge` field in the `Sanction` model) alongside the `comment`. Sanctions are not anonymous: in a future review you can see who applied what, and why. The same holds for `Unsanction` (who removed it) and for score `Override` (see §4).
+> **Audit trail.** Every sanction explicitly records the **judge who issued it** (`judge` field in the `Sanction` model) alongside the `comment`. Sanctions are not anonymous: in a future review you can see who applied what, and why. The same holds for `Unsanction` (who removed it) and for score `Override` (see [Intervening during a round](#4-intervening-during-a-round)).
 
 ### Removing a sanction
 
@@ -123,8 +123,8 @@ The Archon README ([vtes-biased/archon](https://github.com/vtes-biased/archon)) 
 - **Registration**: `OpenRegistration` / `CloseRegistration`, `Register` (including `New Member` with VEKN ID creation).
 - **Check-in**: `OpenCheckin`, `CancelCheckin`, `CheckIn`, `CheckEveryoneIn`, `CheckOut`, `Drop`.
 - **Round**: `Alter Seating` (pre-round pairing changes).
-- **Scores**: `Override` / `Unoverride` on a single table (see §4).
-- **Sanctions**: `Sanction` / `Unsanction` (see §3).
+- **Scores**: `Override` / `Unoverride` on a single table (see [Intervening during a round](#4-intervening-during-a-round)).
+- **Sanctions**: `Sanction` / `Unsanction` (see [Sanctions](#3-sanctions)).
 - **Finals**: `SeedFinals` (computes finalist seeding) + `SeatFinals` (records seat picks). These are technically judge-only events: in a tournament where the Prince is not also a judge, a judge must be present for the finals.
 
 The following remain **exclusive to the Prince organizer** (not actionable as Judge):

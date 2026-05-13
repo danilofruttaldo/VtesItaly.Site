@@ -151,7 +151,7 @@ Quando due o più giocatori hanno GW/VP/TP identici, le loro righe nella modale 
 Due modi per assegnarlo:
 
 - <span class="archon-pill archon-pill--yellow">Toss</span> — Archon estrae casualmente lui i valori per il gruppo in pari. Soluzione veloce se non hai dadi sotto mano.
-- **Manuale**: fai un tiro fisico (dado, moneta) tra i giocatori coinvolti e inserisci `1` per il vincitore del tiro, `2` per il successivo, ecc. È la procedura "ufficiale" da tavolo, in linea con il regolamento VEKN §3.1 ("any fair random method").
+- **Manuale**: fai un tiro fisico (dado, moneta) tra i giocatori coinvolti e inserisci `1` per il vincitore del tiro, `2` per il successivo, ecc. È la procedura "ufficiale" da tavolo, in linea con il [regolamento VEKN §3.1](https://www.vekn.net/tournament-rules) ("any fair random method").
 
 > [!IMPORTANT]
 > Il campo accetta `0`–`5` ma quello che conta è solo l'**ordinamento relativo all'interno del gruppo in pari**: il valore più basso prende il seed migliore. Non serve mappare il risultato del dado (`d6 = 4`) al campo — basta che chi tira meglio prenda `1`.
@@ -184,7 +184,7 @@ Specificità Archon per i tornei online:
 
 - **Pairing on-demand**: Archon genera pairing e seating al momento — utile per sessioni multiple in una league. Quando possibile usa il _seating ottimale pre-calcolato_ dal foglio Excel storico VEKN (introdotto in repo v0.63).
 - **Multideck**: i formati online sono in genere multideck (deck diverso per round); il _VEKN Online Constructed Ranking_ riconosce il formato.
-- **Riconciliazione standings**: i standings di Archon su league online hanno avuto bug storici — vedi §7 e usa [vtes-hook.com](https://www.vtes-hook.com) come fallback prima di pubblicare la classifica.
+- **Riconciliazione standings**: i standings di Archon su league online hanno avuto bug storici — vedi [Bug noti](#7-bug-noti-e-workaround) e usa [vtes-hook.com](https://www.vtes-hook.com) come fallback prima di pubblicare la classifica.
 
 Gli aspetti operativi non-Archon (Discord per registrazioni e voce, Lackey CCG per il gioco) restano fuori dallo scope di questa guida.
 

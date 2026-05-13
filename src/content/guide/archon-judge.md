@@ -75,7 +75,7 @@ A ciascuna sanzione puoi associare una **categoria** che chiarisce il motivo:
 Compila sempre **categoria** e **motivazione** in chiaro: chi rileggerà la sanzione fra sei mesi deve potersi orientare.
 
 > [!NOTE]
-> **Audit trail.** Ogni sanzione registra esplicitamente il **giudice che l'ha emessa** (campo `judge` nel modello `Sanction`) oltre al `comment`. Le sanzioni non sono anonime: in revisione futura si sa chi ha applicato cosa, e perché. Questo vale anche per `Unsanction` (chi ha rimosso) e per gli `Override` di punteggio (vedi §4).
+> **Audit trail.** Ogni sanzione registra esplicitamente il **giudice che l'ha emessa** (campo `judge` nel modello `Sanction`) oltre al `comment`. Le sanzioni non sono anonime: in revisione futura si sa chi ha applicato cosa, e perché. Questo vale anche per `Unsanction` (chi ha rimosso) e per gli `Override` di punteggio (vedi [Interventi durante il round](#4-interventi-durante-il-round)).
 
 ### Rimuovere una sanzione
 
@@ -123,8 +123,8 @@ Il README di Archon ([vtes-biased/archon](https://github.com/vtes-biased/archon)
 - **Registrazione**: `OpenRegistration` / `CloseRegistration`, `Register` (anche `New Member` con creazione VEKN ID).
 - **Check-in**: `OpenCheckin`, `CancelCheckin`, `CheckIn`, `CheckEveryoneIn`, `CheckOut`, `Drop`.
 - **Round**: `Alter Seating` (modifica accoppiamenti pre-round).
-- **Punteggi**: `Override` / `Unoverride` di un singolo tavolo (vedi §4).
-- **Sanzioni**: `Sanction` / `Unsanction` (vedi §3).
+- **Punteggi**: `Override` / `Unoverride` di un singolo tavolo (vedi [Interventi durante il round](#4-interventi-durante-il-round)).
+- **Sanzioni**: `Sanction` / `Unsanction` (vedi [Sanzioni](#3-sanzioni)).
 - **Finale**: `SeedFinals` (calcolo seeding finalisti) + `SeatFinals` (assegnazione posti). Tecnicamente sono eventi judge-only: in un torneo dove il Principe non è anche giudice, serve un giudice presente per la finale.
 
 Restano **esclusive del Principe organizzatore** (non azionabili come Judge):

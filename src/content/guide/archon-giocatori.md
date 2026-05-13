@@ -16,21 +16,21 @@ Questa guida copre la parte _giocatore_: registrazione, iscrizione a un torneo e
 
 ## 1. Registrazione sulla piattaforma
 
-Al primo accesso ad [archon.vekn.net](https://archon.vekn.net) viene richiesto il login. Sono disponibili due modalità:
+Al primo accesso su [archon.vekn.net](https://archon.vekn.net) ti viene chiesto di accedere. Due modi:
 
-- **Login con Discord**: serve un account Discord attivo; autorizzare la app al primo collegamento.
-- **Login con email**: inserire l'email (senza password) e cliccare _Reset Password_. Arriva una mail con il link per impostare la password (controllare anche la cartella spam).
+- **Login con Discord**: serve un account Discord; al primo collegamento autorizzi l'app.
+- **Login con email**: inserisci l'email, lascia il campo password vuoto e clicca _Reset Password_. Arriva una mail con il link per impostare la password (controlla anche lo spam).
 
-Se l'email risulta già associata a un VEKN ID, i campi del profilo vengono compilati in automatico: verificare i dati e confermare. Altrimenti inserire manualmente VEKN ID, nazione e città. Il collegamento a Discord resta facoltativo.
+Se l'email è già associata a un VEKN ID, il profilo si compila in automatico: verifica i dati e conferma. Altrimenti inserisci a mano VEKN ID, nazione e città. Il collegamento a Discord è facoltativo.
 
 > [!TIP]
 > Salva la password nel browser. In ogni caso la procedura _Reset Password_ è sempre disponibile per riavviarla da zero.
 
 ## 2. Iscrizione a un torneo
 
-Dopo il login, dal tab **Tournaments** si vede l'elenco dei tornei sulla piattaforma, filtrabile per nome, nazione, anno e stato (_Upcoming_, _Ongoing_, _Finished_). Il toggle **Include Online** mostra o nasconde i tornei online.
+Dopo il login, il tab **Tournaments** mostra l'elenco dei tornei, filtrabile per nome, nazione, anno e stato (_Upcoming_, _Ongoing_, _Finished_). Il toggle **Include Online** mostra o nasconde i tornei online.
 
-Selezionando un evento in stato _Registration_ si apre la pagina del torneo. Cliccare <span class="archon-pill archon-pill--green">Register</span>: nome e VEKN ID compaiono nell'elenco dei contenders.
+Aprendo un evento in stato _Registration_ vedi la pagina del torneo. Clicca <span class="archon-pill archon-pill--green">Register</span>: nome e VEKN ID compaiono nell'elenco iscritti.
 
 > [!TIP]
 > I filtri sono un po' lenti. Cliccando sul menu _Country_ puoi digitare direttamente la nazione (per esempio "I-T-A" per Italy) ed evitare di scorrere tutto l'elenco.
@@ -62,14 +62,14 @@ La spunta **Allow attribution** (di default disattivata) autorizza la pubblicazi
 
 ### Tornei multideck
 
-Nei tornei dichiarati **multideck** puoi caricare un mazzo diverso per ogni round. Il giudice può, se necessario, correggere un singolo round senza toccare gli altri. Il formato è riconosciuto dal _VEKN Online Constructed Ranking_ ed è quello standard delle league online europee.
+Nei tornei **multideck** puoi caricare un mazzo diverso per ogni round, e il giudice può correggere un singolo round senza toccare gli altri. È il formato standard delle league online europee.
 
 ## 4. Drop e CheckOut dal torneo
 
 Archon distingue due tipi di assenza con eventi distinti:
 
-- <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** — ritiro **permanente** dal torneo. Puoi farlo tu dal pulsante _Drop from the tournament_, oppure può applicarlo un giudice se si accorge che hai abbandonato senza segnalarlo. Il nome resta visibile con flag _drop_ ma non rientri nei seating dei round successivi (a meno di ri-registrazione manuale dell'organizzatore).
-- <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **CheckOut** — assenza **temporanea**, applicata da un giudice. Tipico caso: ti allontani per un round senza ritirarti dal torneo. Nel round successivo puoi ripresentarti e fare _check-in_ di nuovo.
+- <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** — ritiro **permanente** dal torneo. Puoi farlo tu dal pulsante _Drop from the tournament_, oppure lo applica un giudice se vede che te ne sei andato senza segnalarlo. Il tuo nome resta visibile con flag _drop_ ma non finisci più nei seating dei round successivi (a meno che l'organizzatore non ti riaggiunga a mano).
+- <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **CheckOut** — assenza **temporanea**, applicata da un giudice. Caso tipico: ti allontani per un round senza ritirarti dal torneo. Nel round successivo puoi tornare e fare _check-in_ di nuovo.
 
 > [!IMPORTANT]
 > **Drop ≠ Squalifica.** Il pulsante _Drop_ è uno strumento volontario del giocatore: significa "non gioco più". La squalifica (`DISQUALIFICATION`) è invece una sanzione applicata dal giudice e resta registrata nello storico VEKN: spetta al giudice spiegarne motivo e modalità.
@@ -79,7 +79,7 @@ Archon distingue due tipi di assenza con eventi distinti:
 I VP del tuo tavolo a fine partita vengono inseriti su Archon dall'organizzatore o dal giudice (in alcuni tornei è il capo-tavolo a comunicarli; in altri li inseriscono i giocatori stessi e l'organizzatore conferma).
 
 > [!IMPORTANT]
-> **I risultati confermati da un giudice sono autoritativi.** Una volta che un giudice ha impostato/validato il punteggio del tuo tavolo, **non puoi modificarli dalla tua vista**. Se noti un errore, segnalalo subito (a voce o nella chat dell'evento) **prima del _Finish Round_**: dopo la chiusura del round, una correzione richiede un _Override_ esplicito da parte di un giudice.
+> **I risultati confermati da un giudice fanno fede.** Una volta che un giudice ha impostato o validato il punteggio del tuo tavolo, **non puoi modificarlo dalla tua vista**. Se noti un errore segnalalo subito — a voce o nella chat dell'evento — **prima del _Finish Round_**: dopo la chiusura del round, per correggerlo serve un _Override_ del giudice.
 
 ## Riferimenti
 

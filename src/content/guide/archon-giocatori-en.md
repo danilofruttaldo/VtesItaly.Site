@@ -16,21 +16,21 @@ This guide covers the _player_ side: registration, signing up for a tournament a
 
 ## 1. Registering on the platform
 
-The first time you visit [archon.vekn.net](https://archon.vekn.net) you are asked to log in. Two methods are available:
+The first time you visit [archon.vekn.net](https://archon.vekn.net) you're asked to log in. Two options:
 
-- **Login with Discord**: you need an active Discord account; authorize the app on first connection.
-- **Login with email**: enter your email (no password) and click _Reset Password_. You'll get a mail with a link to set the password (check the spam folder too).
+- **Login with Discord**: you need a Discord account; authorize the app on first connection.
+- **Login with email**: enter your email, leave the password field empty and click _Reset Password_. You'll get a mail with a link to set the password (check spam too).
 
-If your email is already linked to a VEKN ID, profile fields are filled in automatically: verify the data and confirm. Otherwise enter your VEKN ID, country and city manually. Linking to Discord remains optional.
+If your email is already linked to a VEKN ID, your profile fills in automatically: check the data and confirm. Otherwise enter VEKN ID, country and city by hand. Linking Discord is optional.
 
 > [!TIP]
 > Save the password in your browser. In any case, the _Reset Password_ flow is always available to start over.
 
 ## 2. Signing up for a tournament
 
-After login, the **Tournaments** tab shows the list of tournaments on the platform, filterable by name, country, year and state (_Upcoming_, _Ongoing_, _Finished_). The **Include Online** toggle shows or hides online tournaments.
+After login, the **Tournaments** tab shows the list of tournaments, filterable by name, country, year and state (_Upcoming_, _Ongoing_, _Finished_). The **Include Online** toggle shows or hides online tournaments.
 
-Selecting an event in _Registration_ state opens the tournament page. Click <span class="archon-pill archon-pill--green">Register</span>: your name and VEKN ID appear in the contenders list.
+Open an event in _Registration_ state to see the tournament page. Click <span class="archon-pill archon-pill--green">Register</span>: your name and VEKN ID appear in the player list.
 
 > [!TIP]
 > The filters are a bit slow. By clicking the _Country_ menu you can type the country name directly (for example "I-T-A" for Italy) and avoid scrolling through the entire list.
@@ -62,14 +62,14 @@ The **Allow attribution** checkbox (off by default) authorizes publication of th
 
 ### Multideck tournaments
 
-In tournaments marked as **multideck** you can upload a different deck for each round. If needed, the judge can correct a single round without touching the others. The format is recognized by the _VEKN Online Constructed Ranking_ and is the standard for European online leagues.
+In **multideck** tournaments you can upload a different deck for each round, and a judge can correct a single round without touching the others. It's the standard format for European online leagues.
 
 ## 4. Drop and CheckOut
 
 Archon distinguishes two kinds of absence with distinct events:
 
-- <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** — **permanent** withdrawal from the tournament. You can trigger it yourself via the _Drop from the tournament_ button, or a judge can apply it when they notice you've left without flagging it. Your name remains visible with the _drop_ flag but you're no longer included in subsequent round seatings (unless the organizer re-registers you manually).
-- <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **CheckOut** — **temporary** absence, applied by a judge. Typical case: you step away for one round without dropping. Next round you can come back and check in again.
+- <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** — **permanent** withdrawal from the tournament. You can trigger it yourself via the _Drop from the tournament_ button, or a judge applies it when they see you've left without flagging it. Your name stays visible with the _drop_ flag but you're no longer in subsequent round seatings (unless the organizer adds you back by hand).
+- <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **CheckOut** — **temporary** absence, applied by a judge. Typical case: you step away for a round without dropping. Next round you can come back and check in again.
 
 > [!IMPORTANT]
 > **Drop ≠ Disqualification.** The _Drop_ button is a player-driven tool: it means "I'm not playing any more". A disqualification (`DISQUALIFICATION`) is a sanction applied by the judge and stays on your VEKN history: it's the judge's role to explain the reason and how it's applied.
@@ -79,7 +79,7 @@ Archon distinguishes two kinds of absence with distinct events:
 Your table's VP at the end of the game are entered into Archon by the organizer or the judge (in some tournaments the table captain reports them; in others the players themselves enter them and the organizer confirms).
 
 > [!IMPORTANT]
-> **Results confirmed by a judge are authoritative.** Once a judge has set or validated your table's score, **you cannot modify them from your view**. If you spot an error, raise it immediately (verbally or in the event chat) **before _Finish Round_**: after the round is closed, fixing it requires an explicit _Override_ by a judge.
+> **A judge's confirmed result is final.** Once a judge has set or validated your table's score, **you can't change it from your view**. If you spot an error, raise it right away — verbally or in the event chat — **before _Finish Round_**: after the round closes, fixing it requires a judge's _Override_.
 
 ## References
 

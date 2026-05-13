@@ -15,11 +15,11 @@ locale: it
 Per creare tornei sanzionati _Constructed_ devi essere **Prince VEKN**. I non-Prince possono creare solo eventi _Demo_, _Launch Party_ e _Unsanctioned_. Per diventare Prince contatta il tuo National Coordinator. Riferimento: [How to run a V:TES tournament](https://www.vekn.net/how-to-run-a-v-tes-tournament).
 
 > [!IMPORTANT]
-> **Archon è il futuro, ma non è ancora "production-only".** Il _BCP Organized Play Coordinator_ ha dichiarato che il vecchio sistema calendario/eventi su `vekn.net` sarà gradualmente dismesso e che Archon va usato il più possibile. Al tempo stesso, fino a quando la sincronizzazione _archon → vekn.net_ non sarà stabile, gli eventi vanno **creati su `vekn.net`** e poi gestiti su Archon. Vedi sezione [Bug noti](#7-bug-noti-e-workaround) per i casi documentati.
+> **Archon è il futuro, ma non ci siamo ancora del tutto.** Il _BCP Organized Play Coordinator_ ha detto che il vecchio calendario eventi su `vekn.net` verrà progressivamente dismesso e che Archon va usato il più possibile. Però, fino a quando la sincronizzazione _archon → vekn.net_ non sarà stabile, gli eventi vanno **creati su `vekn.net`** e poi gestiti da Archon. Vedi [Bug noti](#7-bug-noti-e-workaround) per i casi documentati.
 
 ## 1. Stati del torneo
 
-Su Archon ogni torneo attraversa un ciclo definito di stati:
+Su Archon ogni torneo passa per questi stati:
 
 | Stato            | Cosa succede                                                   |
 | ---------------- | -------------------------------------------------------------- |
@@ -30,16 +30,16 @@ Su Archon ogni torneo attraversa un ciclo definito di stati:
 | **FINALS**       | Finale in corso.                                               |
 | **FINISHED**     | Torneo chiuso, vincitore calcolato automaticamente.            |
 
-Transizioni utili da ricordare:
+Cambi di stato utili da ricordare:
 
-- `WAITING → REGISTRATION` via **Cancel Check-in** (per consentire modifiche alle decklist).
-- `PLAYING → REGISTRATION` dopo **Finish Round** (per gestire drop e iscrizioni last-minute prima del round successivo).
+- `WAITING → REGISTRATION` con **Cancel Check-in** (per permettere modifiche alle decklist).
+- `PLAYING → REGISTRATION` dopo **Finish Round** (per gestire drop e iscrizioni dell'ultimo minuto prima del round successivo).
 
 ## 2. Creare un evento
 
 ### Procedura raccomandata: via calendario VEKN
 
-La raccomandazione ufficiale VEKN è di creare gli eventi su [vekn.net → Create an Event](https://www.vekn.net/create-event). Una volta creati, gli eventi compaiono su Archon dopo la sincronizzazione **giornaliera**. Verifica poi su Archon che i dati coincidano (sono comunque modificabili dal _Tournament Manager_).
+VEKN raccomanda di creare gli eventi su [vekn.net → Create an Event](https://www.vekn.net/create-event). Una volta creati, compaiono su Archon dopo la sincronizzazione **giornaliera**. Verifica poi su Archon che i dati coincidano (puoi comunque modificarli dal _Tournament Manager_).
 
 > [!NOTE]
 > La sincronizzazione vekn.net → Archon è giornaliera, non immediata. Crea l'evento con sufficiente anticipo rispetto all'apertura iscrizioni.
@@ -97,7 +97,7 @@ Durante il round i giocatori vedono il proprio tavolo sui loro dispositivi. L'or
 
 #### Override su punteggio irregolare
 
-Il pulsante <span class="archon-pill archon-pill--yellow">Override</span> (judge-only) valida un punteggio non standard di tavolo — tipico caso: giocatore squalificato a metà round, VP che non sommano a 5 per ragioni regolamentari. Si applica al singolo tavolo con campi `round`, `table` e un `comment` obbligatorio. L'azione resta tracciata sul giudice che l'ha emessa. Per annullarla, rimuovi l'override dalla riga corrispondente con il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino.
+Il pulsante <span class="archon-pill archon-pill--yellow">Override</span> (solo giudici) valida un punteggio non standard. Caso tipico: un giocatore squalificato a metà round e VP che non sommano a 5 per regolamento. Si applica al singolo tavolo indicando round, tavolo e una motivazione obbligatoria. Resta tracciato chi l'ha emesso. Per annullarlo, usa il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino sulla riga.
 
 Nei tornei medi/grandi l'override lo emette il **giudice**. Nei tornei piccoli dove tu sei sia Principe sia giudice, lo applichi tu — vedi [guida Giudice](/guide/archon-judge/#5-capability-del-giudice-e-ruolo-del-principe).
 
@@ -182,7 +182,7 @@ Per registrare un torneo online basta selezionare la spunta **Online tournament*
 
 Specificità Archon per i tornei online:
 
-- **Pairing on-demand**: Archon genera pairing e seating al momento — utile per sessioni multiple in una league. Quando possibile usa il _seating ottimale pre-calcolato_ dal foglio Excel storico VEKN (introdotto in repo v0.63).
+- **Pairing on-demand**: Archon genera pairing e seating al momento — utile per sessioni multiple in una league. Quando puoi, usa il _seating ottimale pre-calcolato_ dal foglio Excel storico VEKN.
 - **Multideck**: i formati online sono in genere multideck (deck diverso per round); il _VEKN Online Constructed Ranking_ riconosce il formato.
 - **Riconciliazione standings**: i standings di Archon su league online hanno avuto bug storici — vedi [Bug noti](#7-bug-noti-e-workaround) e usa [vtes-hook.com](https://www.vtes-hook.com) come fallback prima di pubblicare la classifica.
 
@@ -197,13 +197,13 @@ Gli aspetti operativi non-Archon (Discord per registrazioni e voce, Lackey CCG p
 
 **Sync nuovo giocatore Archon → VEKN registry.** Quando crei un nuovo player da Archon, può finire nel registry con country sbagliato. _Workaround_: verifica col tuo National Coordinator prima di affidarsi al record per upload archon Excel storici.
 
-**"Unable to finish tournament" → internal server error.** Causa identificata da Lionel Panhaleux (sviluppatore di Archon, `lip` sul forum, ott 2025): la chiusura del torneo su Archon prova a inviare i risultati a `vekn.net`; se sul lato VEKN risulta già caricato un archon Excel storico per quell'evento, il submit fallisce e Archon non riesce a chiudere il torneo. _Workaround_: contatta il National Coordinator e chiedi di rimuovere il file archon già caricato lato `vekn.net`, poi ritenta la chiusura.
+**"Unable to finish tournament" → internal server error.** Quando chiudi il torneo, Archon prova a inviare i risultati a `vekn.net`. Se lato VEKN c'è già un archon Excel storico caricato per quell'evento, l'invio fallisce e Archon non chiude. _Workaround_: chiedi al tuo National Coordinator di rimuovere il file archon già caricato su `vekn.net`, poi ritenta.
 
 **Finalisti non vedono i risultati post-chiusura.** I finalisti, una volta che il torneo è in stato `FINISHED`, non sempre vedono i risultati della finale dalla loro vista. _Workaround_: condividi manualmente il link `display.html` del torneo.
 
 **Conteggio "registered" include i drop.** Chi si pre-registra e poi droppa resta visibile nel conteggio "registered" del torneo. _Mitigazione_: nei comunicati pre-evento, riferisci il conteggio reale (registered − drop) per evitare aspettative sbagliate.
 
-**Decklist visibili all'organizer in conflitto di interesse.** In tornei piccoli il Principe può essere anche giocatore: in quel caso vede tutte le decklist degli avversari. _Mitigazione etica_: demanda la _decklist review_ a un giudice non giocante (oppure a un Principe ospite) e annota chi ha controllato le liste nel report finale.
+**Decklist visibili al Principe-giocatore.** Nei tornei piccoli il Principe può essere anche giocatore: in quel caso vede le decklist degli avversari. _Mitigazione etica_: fai controllare le liste a un giudice non giocante (o a un Principe ospite) e annota nel report finale chi le ha verificate.
 
 **Pairing irregolare in tornei piccoli.** Casi segnalati di giocatori che hanno incontrato 6-7 persone diverse in 2 round invece delle 8 attese (interpretazione della regola "no pair of players share a table through every single round"). _Mitigazione_: se possibile rivedi manualmente le seating dei tavoli prima di _Start Round_.
 

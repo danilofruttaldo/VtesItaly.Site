@@ -15,11 +15,11 @@ locale: en
 To create sanctioned _Constructed_ tournaments you must be a **VEKN Prince**. Non-Princes can only create _Demo_, _Launch Party_ and _Unsanctioned_ events. To become a Prince, contact your National Coordinator. Reference: [How to run a V:TES tournament](https://www.vekn.net/how-to-run-a-v-tes-tournament).
 
 > [!IMPORTANT]
-> **Archon is the future, but not yet "production-only".** The _BCP Organized Play Coordinator_ has stated that the old `vekn.net` calendar/event system will be gradually retired and that Archon should be used as much as possible. At the same time, until the _archon → vekn.net_ sync becomes stable, events must be **created on `vekn.net`** and then managed on Archon. See [Known bugs](#7-known-bugs-and-workarounds) for documented cases.
+> **Archon is the future, but we're not all the way there yet.** The _BCP Organized Play Coordinator_ has said the old `vekn.net` calendar/event system will be gradually retired and Archon should be used as much as possible. But until the _archon → vekn.net_ sync is stable, events must be **created on `vekn.net`** and then managed on Archon. See [Known bugs](#7-known-bugs-and-workarounds) for documented cases.
 
 ## 1. Tournament states
 
-On Archon every tournament moves through a defined state machine:
+On Archon every tournament moves through these states:
 
 | State            | What happens                                               |
 | ---------------- | ---------------------------------------------------------- |
@@ -30,7 +30,7 @@ On Archon every tournament moves through a defined state machine:
 | **FINALS**       | Final in progress.                                         |
 | **FINISHED**     | Tournament closed, winner computed automatically.          |
 
-Transitions worth remembering:
+Useful state changes to remember:
 
 - `WAITING → REGISTRATION` via **Cancel Check-in** (to allow decklist edits).
 - `PLAYING → REGISTRATION` after **Finish Round** (to handle drops and last-minute signups before the next round).
@@ -39,7 +39,7 @@ Transitions worth remembering:
 
 ### Recommended procedure: via the VEKN calendar
 
-The official VEKN recommendation is to create events on [vekn.net → Create an Event](https://www.vekn.net/create-event). Once created, events appear on Archon after the **daily** sync. Then verify on Archon that the data matches (it is editable from the _Tournament Manager_ anyway).
+VEKN recommends creating events on [vekn.net → Create an Event](https://www.vekn.net/create-event). Once created, they appear on Archon after the **daily** sync. Then check on Archon that the data matches (you can edit it from the _Tournament Manager_ anyway).
 
 > [!NOTE]
 > The vekn.net → Archon sync is daily, not immediate. Create the event well in advance of registration opening.
@@ -97,7 +97,7 @@ During the round, players see their own table on their devices. The organizer se
 
 #### Override on irregular table score
 
-The <span class="archon-pill archon-pill--yellow">Override</span> button (judge-only) validates a non-standard table score — typical case: a player disqualified mid-round, VP not summing to 5 for regulatory reasons. It applies to a single table with `round`, `table` and a mandatory `comment`. The action is logged against the judge who issued it. To revoke it, remove the override from its row with the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon.
+The <span class="archon-pill archon-pill--yellow">Override</span> button (judges only) validates a non-standard score. Typical case: a player disqualified mid-round and VP not summing to 5 by regulation. It applies to a single table, taking round, table and a mandatory reason. Who issued it is tracked. To revoke it, use the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon on the row.
 
 In medium/large tournaments the override is issued by the **judge**. In small tournaments where you are both Prince and judge, you apply it yourself — see the [Judge guide](/en/guides/archon-judge/#5-judge-capabilities-vs-prince-role).
 
@@ -182,7 +182,7 @@ To register an online tournament just check the **Online tournament** box in the
 
 Archon specifics for online tournaments:
 
-- **On-demand pairing**: Archon generates pairings and seatings on the fly — useful for multi-session leagues. When possible it uses the _optimal pre-computed seating_ from the historical VEKN Excel sheet (introduced in repo v0.63).
+- **On-demand pairing**: Archon generates pairings and seatings on the fly — useful for multi-session leagues. When you can, use the _optimal pre-computed seating_ from the historical VEKN Excel sheet.
 - **Multideck**: online formats are typically multideck (different deck per round); the _VEKN Online Constructed Ranking_ recognizes the format.
 - **Standings reconciliation**: Archon standings on online leagues have had historical bugs — see [Known bugs](#7-known-bugs-and-workarounds) and cross-check with [vtes-hook.com](https://www.vtes-hook.com) before publishing the ranking.
 
@@ -197,13 +197,13 @@ Non-Archon operational aspects (Discord for registrations and voice, Lackey CCG 
 
 **New player sync Archon → VEKN registry.** When you create a new player from Archon, they may land in the registry with the wrong country. _Workaround_: verify with your NC before relying on the record for historical archon Excel uploads.
 
-**"Unable to finish tournament" → internal server error.** Root cause identified by Lionel Panhaleux (Archon developer, `lip` on the forum, Oct 2025): closing the tournament on Archon tries to submit results to `vekn.net`; if the VEKN side already has a historical archon Excel uploaded for that event, the submit fails and Archon can't close the tournament. _Workaround_: contact your National Coordinator and ask them to remove the already-uploaded archon file on `vekn.net`, then retry closing.
+**"Unable to finish tournament" → internal server error.** When you close the tournament, Archon tries to submit results to `vekn.net`. If a historical archon Excel is already uploaded on the VEKN side for that event, the submit fails and Archon can't close. _Workaround_: ask your National Coordinator to remove the already-uploaded archon file on `vekn.net`, then retry.
 
 **Finalists can't see results after closure.** Once the tournament is `FINISHED`, finalists don't always see the final results from their view. _Workaround_: share the `display.html` link manually.
 
 **"Registered" count includes drops.** Players who pre-register and then drop remain in the tournament's "registered" count. _Mitigation_: in pre-event communications, quote the real count (registered − drop).
 
-**Decklists visible to organizer in a conflict of interest.** In small tournaments the Prince may also play: in that case they see all opponents' decklists. _Ethical mitigation_: delegate decklist review to a non-playing judge (or to a guest Prince) and note who reviewed the decks in the final report.
+**Decklists visible to a playing Prince.** In small tournaments the Prince may also play: in that case they see opponents' decklists. _Ethical mitigation_: have a non-playing judge (or a guest Prince) review the lists and note in the final report who checked them.
 
 **Irregular pairing in small tournaments.** Cases reported of players who faced 6-7 different people across 2 rounds instead of the expected 8 (interpretation of the "no pair of players share a table through every single round" rule). _Mitigation_: when possible, review table seatings manually before _Start Round_.
 

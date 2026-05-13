@@ -60,7 +60,7 @@ Princes and National Coordinators can create new VEKN accounts directly from Arc
 
 ## 3. Tournament Manager
 
-When you open an event you organize, a yellow **Tournament Manager** button appears (players only see the registration view). From here you manage the entire tournament cycle.
+When you open an event you organize, a <span class="archon-pill archon-pill--yellow">Tournament Manager</span> button appears (players only see the registration view). From here you manage the entire tournament cycle.
 
 ### Info tab
 
@@ -72,32 +72,32 @@ Shows the list of registered players (including drops). At start time, open the 
 
 Three actions for each player:
 
-- **i (info, blue)**: accesses sanctions and decklist. With check-in open you **cannot** update the decklist even though the command appears active.
-- **Green arrow**: checks the player in (includes them in the round).
-- **Red X**: drops from the tournament.
+- <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: accesses sanctions and decklist. With check-in open you **cannot** update the decklist even though the command appears active.
+- <span class="archon-btn archon-btn--check-in archon-btn--green" aria-hidden="true"></span> **check-in**: includes the player in the round.
+- <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **drop**: drops the player from the tournament.
 
 > [!NOTE]
-> Distinct from Drop: the **`CheckOut`** event (judge-only) marks a **temporary absence** for one or more rounds (a player stepping away without dropping). Allows re-check-in next round. The _Red X_ button is permanent Drop; for temporary check-out coordinate with a judge.
+> Distinct from Drop: the <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **Check out** action (judge-only) marks a **temporary absence** for one or more rounds (a player stepping away without dropping). Allows re-check-in next round. The <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** button is permanent withdrawal; for temporary check-out coordinate with a judge.
 
 Global commands:
 
-- **Check everyone in**: checks in all registered players at once.
-- **Cancel Check-in**: closes the check-in (back to `REGISTRATION`). Required to allow decklist edits; reopen the check-in afterwards.
-- **Register / New Member**: last-minute player registration (requires a VEKN ID, or creates a new one).
-- **Start Round (green)**: starts the round, generates tables and seatings.
+- <span class="archon-pill archon-pill--primary">Check everyone in</span>: checks in all registered players at once.
+- <span class="archon-pill archon-pill--grey">Cancel Check-in</span>: closes the check-in (back to `REGISTRATION`). Required to allow decklist edits; reopen the check-in afterwards.
+- <span class="archon-pill archon-pill--primary">Register / New Member</span>: last-minute player registration (requires a VEKN ID, or creates a new one).
+- <span class="archon-pill archon-pill--green">Start Round</span>: starts the round, generates tables and seatings.
 
 ### Round tab — round management
 
 During the round, players see their own table on their devices. The organizer sees the full table list.
 
-- **Pencil (purple)**: enter the player's score (0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 VP).
-- **i (info)**: sanctions, view decklist.
-- **Alter Seating (yellow)**: change round seatings. Poorly tested feature: use only in exceptional cases.
-- **Finish Round (green)**: closes the round. All tables must be _Finished_; to validate an irregular score before closing, see _Override_ below.
+- <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **pencil**: enter the player's score (0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 VP).
+- <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: sanctions, view decklist.
+- <span class="archon-btn archon-btn--seating archon-btn--yellow" aria-hidden="true"></span> **Alter Seating**: change round seatings. Poorly tested feature: use only in exceptional cases.
+- <span class="archon-pill archon-pill--green">Finish Round</span>: closes the round. All tables must be _Finished_; to validate an irregular score before closing, see _Override_ below.
 
 #### Override on irregular table score
 
-The **`Override`** event (judge-only) validates a non-standard table score — typical case: a player disqualified mid-round, VP not summing to 5 for regulatory reasons. It applies to a single table with `round`, `table` and a mandatory `comment`. The action is logged against the judge who issued it (`ScoreOverride.judge`). To revoke it: `Unoverride`.
+The <span class="archon-pill archon-pill--yellow">Override</span> button (judge-only) validates a non-standard table score — typical case: a player disqualified mid-round, VP not summing to 5 for regulatory reasons. It applies to a single table with `round`, `table` and a mandatory `comment`. The action is logged against the judge who issued it. To revoke it, remove the override from its row with the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon.
 
 In medium/large tournaments the override is issued by the **judge**. In small tournaments where you are both Prince and judge, you apply it yourself — see the [Judge guide](/en/guides/archon-judge/#5-judge-capabilities-vs-prince-role).
 
@@ -130,7 +130,7 @@ Sanctions can be categorized (`category` field):
 - `UNSPORTSMANLIKE_CONDUCT` — unsporting behaviour.
 - `CHEATING` — fraudulent behaviour.
 
-A judge can remove a previously applied sanction (`Unsanction` event) — useful for mistakes or for sanctions applied pending clarifications that turn out fine.
+A judge can remove a previously applied sanction by clicking the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon next to it — useful for mistakes or for sanctions applied pending clarifications that turn out fine.
 
 > [!IMPORTANT]
 > **`DISQUALIFICATION` ≠ Drop.** To remove a player from the tournament for disciplinary reasons, use the `DISQUALIFICATION` sanction, **not** the _Drop_ button. Drop is a neutral player or logistic action; disqualification stays on the VEKN history and carries weight at future events.
@@ -210,4 +210,4 @@ Good practice: include in the post both the `vekn.net` event link and the Archon
 
 Archon Online is open-source software under active development. The official repository is [github.com/vtes-biased/archon](https://github.com/vtes-biased/archon). To report bugs or UI suggestions, use the **Report Issue** button in the top-right corner of every page on `archon.vekn.net` (opens a GitHub issue; free GitHub account required).
 
-Before reporting, check the bug isn't already known: some are being fixed and are flagged either in this guide (§7) or in the [CHANGELOG](https://github.com/vtes-biased/archon/blob/main/CHANGELOG.md).
+Before reporting, check the bug isn't already known: some are being fixed and are flagged in the [Known bugs](#7-known-bugs-and-workarounds) section of this guide or in the [CHANGELOG](https://github.com/vtes-biased/archon/blob/main/CHANGELOG.md).

@@ -30,14 +30,14 @@ Se l'email risulta già associata a un VEKN ID, i campi del profilo vengono comp
 
 Dopo il login, dal tab **Tournaments** si vede l'elenco dei tornei sulla piattaforma, filtrabile per nome, nazione, anno e stato (_Upcoming_, _Ongoing_, _Finished_). Il toggle **Include Online** mostra o nasconde i tornei online.
 
-Selezionando un evento in stato _Registration_ si apre la pagina del torneo. Cliccare **Register**: nome e VEKN ID compaiono nell'elenco dei contenders.
+Selezionando un evento in stato _Registration_ si apre la pagina del torneo. Cliccare <span class="archon-pill archon-pill--green">Register</span>: nome e VEKN ID compaiono nell'elenco dei contenders.
 
 > [!TIP]
 > I filtri sono un po' lenti. Cliccando sul menu _Country_ puoi digitare direttamente la nazione (per esempio "I-T-A" per Italy) ed evitare di scorrere tutto l'elenco.
 
 ## 3. Caricamento della decklist
 
-Dal pulsante **Decklist** si carica il mazzo in tre modi:
+Dal pulsante <span class="archon-pill archon-pill--primary">Decklist</span> si carica il mazzo in tre modi:
 
 - **Testo**: incolla la lista in formato testuale (da VDB: _Export → Clipboard text_).
 - **URL**: incolla il link da uno dei deck builder supportati.
@@ -68,11 +68,11 @@ Nei tornei dichiarati **multideck** puoi caricare un mazzo diverso per ogni roun
 
 Archon distingue due tipi di assenza con eventi distinti:
 
-- **Drop** (`Drop`) — ritiro **permanente** dal torneo. Puoi farlo tu dal pulsante _Drop from the tournament_, oppure può applicarlo un giudice se si accorge che hai abbandonato senza segnalarlo. Il nome resta visibile con flag _drop_ ma non rientri nei seating dei round successivi (a meno di ri-registrazione manuale dell'organizzatore).
-- **CheckOut** (`CheckOut`) — assenza **temporanea**, applicata da un giudice. Tipico caso: ti allontani per un round senza ritirarti dal torneo. Nel round successivo puoi ripresentarti e fare _check-in_ di nuovo.
+- <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** — ritiro **permanente** dal torneo. Puoi farlo tu dal pulsante _Drop from the tournament_, oppure può applicarlo un giudice se si accorge che hai abbandonato senza segnalarlo. Il nome resta visibile con flag _drop_ ma non rientri nei seating dei round successivi (a meno di ri-registrazione manuale dell'organizzatore).
+- <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **CheckOut** — assenza **temporanea**, applicata da un giudice. Tipico caso: ti allontani per un round senza ritirarti dal torneo. Nel round successivo puoi ripresentarti e fare _check-in_ di nuovo.
 
 > [!IMPORTANT]
-> **Drop ≠ Squalifica.** Il pulsante _Drop_ è uno strumento volontario del giocatore: significa "non gioco più". La squalifica (`DISQUALIFICATION`) è invece una sanzione applicata dal giudice e resta registrata nello storico VEKN. Se un Principe ti chiede di "abbandonare il torneo", chiedi cortesemente se sta applicando un drop o una sanzione: sono due cose diverse.
+> **Drop ≠ Squalifica.** Il pulsante _Drop_ è uno strumento volontario del giocatore: significa "non gioco più". La squalifica (`DISQUALIFICATION`) è invece una sanzione applicata dal giudice e resta registrata nello storico VEKN: spetta al giudice spiegarne motivo e modalità.
 
 ## 5. Risultati di tavolo e autorità del giudice
 

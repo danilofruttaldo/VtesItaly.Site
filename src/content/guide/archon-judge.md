@@ -23,7 +23,7 @@ Verifica con il Principe **prima dell'inizio** del torneo:
 
 - che il tuo account Archon (Discord o email) sia quello corretto;
 - che il tuo VEKN ID sia stato aggiunto come judge sull'evento;
-- accedi all'evento e controlla che compaia il pulsante giallo **Tournament Manager**.
+- accedi all'evento e controlla che compaia il pulsante <span class="archon-pill archon-pill--yellow">Tournament Manager</span>.
 
 ### Ruoli VEKN nel sistema
 
@@ -42,7 +42,7 @@ Sul portale, ai fini operativi del torneo (capability nel _Tournament Manager_),
 
 Le decklist si verificano dal **Tournament Manager → tab Registration**, prima dell'inizio del primo round.
 
-Per ogni giocatore in elenco è disponibile il pulsante **i (info, blu)** che apre la scheda con _sanzioni_ e _decklist_. La decklist viene mostrata in formato testuale: controllo della legalità del mazzo (formato, totale carte, banlist) si fa qui.
+Per ogni giocatore in elenco è disponibile il pulsante <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** che apre la scheda con _sanzioni_ e _decklist_. La decklist viene mostrata in formato testuale: controllo della legalità del mazzo (formato, totale carte, banlist) si fa qui.
 
 Se trovi una lista non conforme:
 
@@ -50,11 +50,11 @@ Se trovi una lista non conforme:
 - chiedi al giocatore di correggere la lista.
 
 > [!WARNING]
-> Con il **check-in aperto** il giocatore **non può** modificare la decklist anche se il comando appare attivo nella sua interfaccia. Per consentire l'edit serve che il Principe usi **Cancel Check-in**, lasci correggere il giocatore, poi riapra il check-in. Coordina sempre questo passaggio con l'organizzatore.
+> Con il **check-in aperto** il giocatore **non può** modificare la decklist anche se il comando appare attivo nella sua interfaccia. Per consentire l'edit serve che il Principe usi <span class="archon-pill archon-pill--grey">Cancel Check-in</span>, lasci correggere il giocatore, poi riapra il check-in. Coordina sempre questo passaggio con l'organizzatore.
 
 ## 3. Sanzioni
 
-Dalla stessa scheda **i (info)** raggiungibile dal tab _Registration_ e dal tab _Round_ si accede al modulo **sanzioni** del giocatore. Archon prevede **tre livelli** di sanzione, distinti per effetto e persistenza:
+Dalla stessa scheda <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** raggiungibile dal tab _Registration_ e dal tab _Round_ si accede al modulo **sanzioni** del giocatore. Archon prevede **tre livelli** di sanzione, distinti per effetto e persistenza:
 
 | Livello            | Effetto sul torneo                          | Persistenza storico VEKN                                   |
 | ------------------ | ------------------------------------------- | ---------------------------------------------------------- |
@@ -79,10 +79,10 @@ Compila sempre **categoria** e **motivazione** in chiaro: chi rileggerà la sanz
 
 ### Rimuovere una sanzione
 
-Se hai applicato una sanzione per errore o se la situazione si è poi chiarita, puoi rimuoverla via l'evento **`Unsanction`** dalla scheda del giocatore. Coordinati con il Principe: in genere è bene farlo prima della chiusura del torneo, così la versione "pulita" finisce nel report finale.
+Se hai applicato una sanzione per errore o se la situazione si è poi chiarita, puoi rimuoverla cliccando il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino accanto alla sanzione nella scheda del giocatore. Coordinati con il Principe: in genere è bene farlo prima della chiusura del torneo, così la versione "pulita" finisce nel report finale.
 
 > [!IMPORTANT]
-> **`DISQUALIFICATION` ≠ Drop.** Per espellere un giocatore dal torneo per motivi disciplinari **usa la sanzione `DISQUALIFICATION`**, non il pulsante _Drop_. Il drop è un'azione neutra del giocatore (rinuncia volontaria, motivi logistici); la squalifica resta nello storico VEKN e ha peso nei tornei futuri. Confondere le due cose svaluta sia il drop che la squalifica.
+> **`DISQUALIFICATION` ≠ Drop.** Per espellere un giocatore dal torneo per motivi disciplinari **usa la sanzione `DISQUALIFICATION`**, non il pulsante <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop**. Il drop è un'azione neutra del giocatore (rinuncia volontaria, motivi logistici); la squalifica resta nello storico VEKN e ha peso nei tornei futuri. Confondere le due cose svaluta sia il drop che la squalifica.
 
 > [!TIP]
 > `CAUTION` non lascia traccia: usala per primi richiami dove vuoi che il giocatore sia informato senza penalizzazioni. `WARNING` invece pesa nel medio termine: applicala se il comportamento è già stato segnalato verbalmente o se ritieni che il giocatore debba averne un record consultabile dagli organizzatori futuri.
@@ -94,15 +94,15 @@ Se hai applicato una sanzione per errore o se la situazione si è poi chiarita, 
 
 Dal **tab Round** del Tournament Manager vedi l'elenco completo dei tavoli. Per ogni giocatore al tavolo:
 
-- **i (info)**: rapida verifica della decklist e dello storico sanzioni di quel giocatore, utile quando arrivi al tavolo per una chiamata.
-- **Matita viola** (inserimento risultati): in tornei medi/grandi è il Principe a inserire i VP; in tornei piccoli o quando ti viene chiesto, lo fai tu. I risultati che imposti come giudice **sono autoritativi**: i giocatori non possono sovrascriverli dalla loro vista (commento esplicito nel codice `TableSeat`).
+- <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: rapida verifica della decklist e dello storico sanzioni di quel giocatore, utile quando arrivi al tavolo per una chiamata.
+- <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **matita** (inserimento risultati): in tornei medi/grandi è il Principe a inserire i VP; in tornei piccoli o quando ti viene chiesto, lo fai tu. I risultati che imposti come giudice **sono autoritativi**: i giocatori non possono sovrascriverli dalla loro vista (commento esplicito nel codice `TableSeat`).
 
 > [!TIP]
 > Per le chiamate a tavolo, leggi la regola dal regolamento ufficiale prima di rispondere, anche se la sai a memoria: i giocatori si fidano di più di una risposta dove ti vedono consultare la fonte. Il [VEKN Rulebook](https://www.vekn.net/rulebook) è consultabile online dal cellulare.
 
 ### Override su punteggio irregolare
 
-A volte un tavolo chiude con un punteggio "non standard" che il sistema non accetterebbe in flusso normale: tipico caso una squalifica a metà round, oppure VP che non sommano a 5 per ragioni regolamentari. In quei casi serve l'evento **`Override`** (judge-only).
+A volte un tavolo chiude con un punteggio "non standard" che il sistema non accetterebbe in flusso normale: tipico caso una squalifica a metà round, oppure VP che non sommano a 5 per ragioni regolamentari. In quei casi serve il pulsante <span class="archon-pill archon-pill--yellow">Override</span> (judge-only).
 
 Lo override si applica al singolo tavolo con tre campi:
 
@@ -110,11 +110,11 @@ Lo override si applica al singolo tavolo con tre campi:
 - `table` — numero del tavolo.
 - `comment` — motivazione obbligatoria in chiaro (es. "DQ giocatore P3 al round 2 per `CHEATING`, VP redistribuiti come da regolamento").
 
-L'azione resta tracciata sul tuo nome via `ScoreOverride.judge`. Per annullare un override già emesso usa **`Unoverride`** sullo stesso tavolo/round.
+L'azione resta tracciata sul tuo nome. Per annullare un override già emesso, rimuovilo dalla riga con il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino.
 
 ### CheckOut (assenza temporanea)
 
-Distinto dal Drop, l'evento **`CheckOut`** marca un giocatore come **temporaneamente assente** per uno o più round (es. si è allontanato per un round senza ritirarsi). Permette ri-check-in al round successivo, mentre il Drop è permanente. Usalo quando il Principe ti chiede di "saltare" un giocatore senza dropparlo definitivamente.
+Distinta dal Drop, l'azione <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **Check out** marca un giocatore come **temporaneamente assente** per uno o più round (es. si è allontanato per un round senza ritirarsi). Permette ri-check-in al round successivo, mentre il Drop è permanente. Usala quando il Principe ti chiede di "saltare" un giocatore senza dropparlo definitivamente.
 
 ## 5. Capability del Giudice e ruolo del Principe
 

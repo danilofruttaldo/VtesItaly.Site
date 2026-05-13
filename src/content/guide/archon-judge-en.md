@@ -23,7 +23,7 @@ Verify with the Prince **before the tournament starts**:
 
 - that your Archon account (Discord or email) is the correct one;
 - that your VEKN ID has been added as a judge on the event;
-- log in to the event and check that the yellow **Tournament Manager** button is visible.
+- log in to the event and check that the <span class="archon-pill archon-pill--yellow">Tournament Manager</span> button is visible.
 
 ### VEKN roles in the system
 
@@ -42,7 +42,7 @@ On the portal, for tournament operational purposes (capabilities in the _Tournam
 
 Decklists are verified from the **Tournament Manager → Registration tab**, before the first round starts.
 
-For each player listed, the **i (info, blue)** button opens the card with _sanctions_ and _decklist_. The decklist is shown in text form: deck legality checks (format, card count, banlist) happen here.
+For each player listed, the <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** button opens the card with _sanctions_ and _decklist_. The decklist is shown in text form: deck legality checks (format, card count, banlist) happen here.
 
 If you find a non-compliant list:
 
@@ -50,11 +50,11 @@ If you find a non-compliant list:
 - ask the player to fix the list.
 
 > [!WARNING]
-> With the **check-in open** the player **cannot** edit the decklist even though the command appears active in their UI. To allow the edit, the Prince must use **Cancel Check-in**, let the player fix the list, then reopen the check-in. Always coordinate this step with the organizer.
+> With the **check-in open** the player **cannot** edit the decklist even though the command appears active in their UI. To allow the edit, the Prince must use <span class="archon-pill archon-pill--grey">Cancel Check-in</span>, let the player fix the list, then reopen the check-in. Always coordinate this step with the organizer.
 
 ## 3. Sanctions
 
-From the same **i (info)** card — accessible both from the _Registration_ tab and the _Round_ tab — you reach the **sanctions** module for that player. Archon defines **three sanction levels**, distinct in both effect and persistence:
+From the same <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** card — accessible both from the _Registration_ tab and the _Round_ tab — you reach the **sanctions** module for that player. Archon defines **three sanction levels**, distinct in both effect and persistence:
 
 | Level              | Tournament effect                         | VEKN history persistence                               |
 | ------------------ | ----------------------------------------- | ------------------------------------------------------ |
@@ -79,10 +79,10 @@ Always fill in **category** and a clear **reason**: whoever reads the sanction s
 
 ### Removing a sanction
 
-If you applied a sanction by mistake or the situation later cleared up, you can remove it via the **`Unsanction`** event on the player card. Coordinate with the Prince: best to do this before the tournament closes, so the "clean" version ends up in the final report.
+If you applied a sanction by mistake or the situation later cleared up, you can remove it by clicking the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon next to the sanction on the player card. Coordinate with the Prince: best to do this before the tournament closes, so the "clean" version ends up in the final report.
 
 > [!IMPORTANT]
-> **`DISQUALIFICATION` ≠ Drop.** To remove a player from the tournament for disciplinary reasons, **use the `DISQUALIFICATION` sanction**, not the _Drop_ button. Drop is a neutral player action (voluntary withdrawal, logistics); a disqualification stays on the VEKN history and carries weight at future events. Mixing them up devalues both.
+> **`DISQUALIFICATION` ≠ Drop.** To remove a player from the tournament for disciplinary reasons, **use the `DISQUALIFICATION` sanction**, not the <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** button. Drop is a neutral player action (voluntary withdrawal, logistics); a disqualification stays on the VEKN history and carries weight at future events. Mixing them up devalues both.
 
 > [!TIP]
 > `CAUTION` leaves no trace: use it for first informal warnings when you want the player notified without penalty. `WARNING` carries medium-term weight: apply it when the behaviour was already flagged verbally, or when you believe the player should have a record consultable by future organizers.
@@ -94,15 +94,15 @@ If you applied a sanction by mistake or the situation later cleared up, you can 
 
 From the **Round tab** of the Tournament Manager you see the full list of tables. For each player at a table:
 
-- **i (info)**: quick view of that player's decklist and sanction history — handy when you walk up to a table for a call.
-- **Purple pencil** (results entry): in medium/large tournaments the Prince enters VP; in small ones, or when asked, you do it. Results you set as a judge **are authoritative**: players cannot overwrite them from their view (explicit comment in the `TableSeat` code).
+- <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: quick view of that player's decklist and sanction history — handy when you walk up to a table for a call.
+- <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **pencil** (results entry): in medium/large tournaments the Prince enters VP; in small ones, or when asked, you do it. Results you set as a judge **are authoritative**: players cannot overwrite them from their view (explicit comment in the `TableSeat` code).
 
 > [!TIP]
 > For at-table rulings, look up the rule in the official rulebook before answering, even if you know it by heart: players trust an answer more when they see you consult the source. The [VEKN Rulebook](https://www.vekn.net/rulebook) is accessible online from your phone.
 
 ### Override on irregular table score
 
-Sometimes a table closes with a "non-standard" score that the system wouldn't accept in the normal flow: typical case a mid-round disqualification, or VP not summing to 5 for regulatory reasons. In those cases use the **`Override`** event (judge-only).
+Sometimes a table closes with a "non-standard" score that the system wouldn't accept in the normal flow: typical case a mid-round disqualification, or VP not summing to 5 for regulatory reasons. In those cases use the <span class="archon-pill archon-pill--yellow">Override</span> button (judge-only).
 
 The override applies to a single table with three fields:
 
@@ -110,11 +110,11 @@ The override applies to a single table with three fields:
 - `table` — table number.
 - `comment` — mandatory free-text reason (e.g., "DQ player P3 in round 2 for `CHEATING`, VP redistributed per regulation").
 
-The action is logged against your name via `ScoreOverride.judge`. To revoke a previously issued override use **`Unoverride`** on the same table/round.
+The action is logged against your name. To revoke a previously issued override, remove it from its row with the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon.
 
 ### CheckOut (temporary absence)
 
-Distinct from Drop, the **`CheckOut`** event marks a player as **temporarily absent** for one or more rounds (e.g., stepping away for a round without dropping). Allows re-check-in next round; Drop is permanent. Use it when the Prince asks you to "skip" a player without dropping them.
+Distinct from Drop, the <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **Check out** action marks a player as **temporarily absent** for one or more rounds (e.g., stepping away for a round without dropping). Allows re-check-in next round; Drop is permanent. Use it when the Prince asks you to "skip" a player without dropping them.
 
 ## 5. Judge capabilities vs Prince role
 

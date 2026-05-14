@@ -243,3 +243,188 @@
   margin: 0;
   border-radius: 4px;
 }
+
+/* V:TES card hover preview (image source: KRCG) */
+.prose .card-hover {
+  position: relative;
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(201, 168, 76, 0.6);
+  white-space: nowrap;
+}
+.prose .card-hover > img {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  max-width: 90vw;
+  height: auto;
+  display: none;
+  margin: 0;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  pointer-events: none;
+}
+.prose .card-hover:hover > img,
+.prose .card-hover:focus-within > img {
+  display: block;
+}
+@media (hover: none) {
+  .prose .card-hover {
+    text-decoration: none;
+    cursor: default;
+  }
+}
+
+/* Wrapper for demo seating/hand tables: scroll horizontally on narrow viewports */
+.prose .card-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 16px 0;
+}
+.prose .card-table > table {
+  margin: 0;
+  min-width: max-content;
+}
+.prose .card-table td,
+.prose .card-table th {
+  vertical-align: top;
+}
+
+/* Image gallery anchors: drop focus outline on mouse-click, keep it for keyboard nav */
+.prose .image-grid-feature > a:focus:not(:focus-visible),
+.prose .image-grid-3plus2 > a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Image grid with feature row: 1st image full-width and centered, rest in equal cells below */
+.prose .image-grid-feature {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 2px;
+  margin: 8px 0 12px;
+}
+.prose .image-grid-feature > a:first-child {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}
+.prose .image-grid-feature img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  cursor: zoom-in;
+}
+.prose .image-grid-feature > a:not(:first-child) img {
+  aspect-ratio: 127 / 110;
+  object-fit: cover;
+  object-position: top;
+}
+.prose .image-grid-feature > a:first-child img {
+  width: auto;
+  max-width: 100%;
+  max-height: 220px;
+}
+@media (max-width: 600px) {
+  .prose .image-grid-feature {
+    grid-template-columns: 1fr 1fr;
+  }
+  .prose .image-grid-feature > a:first-child img {
+    max-height: 160px;
+  }
+}
+
+/* Image grid 3+2: top row 3 cols (cropped preview), bottom row 2 cols (natural aspect) */
+.prose .image-grid-3plus2 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0 2px;
+  margin: 8px 0 12px;
+}
+.prose .image-grid-3plus2 > a:nth-child(-n + 3) {
+  grid-column: span 2;
+}
+.prose .image-grid-3plus2 > a:nth-child(n + 4) {
+  grid-column: span 3;
+  display: flex;
+  justify-content: center;
+}
+.prose .image-grid-3plus2 img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  cursor: zoom-in;
+}
+.prose .image-grid-3plus2 > a:nth-child(-n + 3) img {
+  aspect-ratio: 170 / 220;
+  object-fit: cover;
+  object-position: top;
+}
+.prose .image-grid-3plus2 > a:nth-child(n + 4) img {
+  width: auto;
+  max-width: 100%;
+  max-height: 220px;
+}
+@media (max-width: 600px) {
+  .prose .image-grid-3plus2 > a:nth-child(n + 4) img {
+    max-height: 170px;
+  }
+}
+
+/* Accordion: <details>/<summary> styled to clearly read as expandable */
+.prose details {
+  margin: 0.5rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  padding: 0.5rem 0.85rem;
+}
+.prose details > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.15rem 0 0.15rem 1.4rem;
+  position: relative;
+  user-select: none;
+}
+.prose details > summary::-webkit-details-marker {
+  display: none;
+}
+.prose details > summary::before {
+  content: '▸';
+  position: absolute;
+  left: 0.25rem;
+  top: 0.15rem;
+  color: var(--color-gold);
+  transition: transform 0.18s ease;
+  display: inline-block;
+}
+.prose details[open] > summary::before {
+  transform: rotate(90deg);
+}
+.prose details[open] > summary {
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.prose details > summary:hover {
+  color: var(--color-gold);
+}
+
+/* Swimlane layout for prepared-hands lists: one lane per clan, responsive collapse */
+.prose .card-swimlane {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+.prose .card-swimlane > div {
+  break-inside: avoid;
+}
+.prose .card-swimlane .card-hover {
+  white-space: normal;
+}

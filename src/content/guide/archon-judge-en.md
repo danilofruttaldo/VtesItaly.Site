@@ -4,8 +4,8 @@ description: 'Verify decklists, apply sanctions and intervene during rounds from
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '0.3'
-aggiornato: 2026-05-13
+versione: '0.5'
+aggiornato: 2026-05-14
 correlate: [archon-giocatori-en, archon-principi-en]
 locale: en
 ---
@@ -13,7 +13,7 @@ locale: en
 [Archon Online](https://archon.vekn.net) is the official VEKN platform for managing **Vampire: The Eternal Struggle** tournaments. This guide is for **Judges**: what you can do from the portal during a tournament and how to coordinate with the organizer. For event creation and the full tournament cycle, see [Archon Online for Princes](/en/guides/archon-principi/).
 
 > [!NOTE]
-> The Judge and the Prince are **distinct operational roles** but with **largely overlapping** powers on the portal. In medium/large tournaments it's customary to keep them separate (Prince = organization/flow, Judge = decklist review, sanctions, table calls). In small tournaments the same person wears both hats, and Archon doesn't formally enforce the split. See the [full capability map](#5-judge-capabilities-vs-prince-role).
+> The Judge and the Prince are **distinct operational roles** but with **largely overlapping** powers on the portal. In medium/large tournaments it's customary to keep them separate (Prince = organization/flow, Judge = decklist review, sanctions, table calls). In small tournaments the same person wears both hats, and Archon doesn't formally enforce the split. See the [full capability map](#5-what-you-can-do-as-a-judge-and-what-you-cant).
 
 ## 1. Becoming a judge on a tournament
 
@@ -27,16 +27,7 @@ Verify with the Prince **before the tournament starts**:
 
 ### VEKN roles in the system
 
-Archon distinguishes several VEKN grades:
-
-- **`JUDGE`** — standard judge.
-- **`RULEMONGER`** — "super-judge", reference for rules interpretations.
-- **`JUDGEKIN`** — judge in training (mentoring).
-- **`PRINCE`** — organizer with VEKN sanction for Constructed.
-- **`NC`** — National Coordinator.
-- Others: `ADMIN`, `PTC` (Playtest Coordinator), `PLAYTESTER`, `ETHICS` (Ethics Committee).
-
-In the _Tournament Manager_, in practice `JUDGE` / `RULEMONGER` / `JUDGEKIN` can do the same things: the VEKN grade affects formal responsibilities and appointments, not what you can click.
+Archon recognises several VEKN grades — `JUDGEKIN`, `JUDGE`, `RULEMONGER` for judges; `PRINCE` for organisers with a VEKN sanction for Constructed; plus `NC` (National Coordinator), `ADMIN`, `PTC` (Playtest Coordinator), `PLAYTESTER`, `ETHICS` (Ethics Committee). In the Tournament Manager **all judge grades share the same permissions**: the grade matters for formal responsibilities and appointments (e.g. `RULEMONGER`, appointed by the VEKN Rules Director, co-maintains the rulebook, the rulings database and the judges tests) — not for what you can click on the portal.
 
 ## 2. Decklist verification
 
@@ -54,13 +45,14 @@ If you find a non-compliant list:
 
 ## 3. Sanctions
 
-From the same <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** card — accessible both from the _Registration_ tab and the _Round_ tab — you reach the **sanctions** module for that player. Archon defines **three sanction levels**, distinct in both effect and persistence:
+From the same <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** card — accessible both from the _Registration_ tab and the _Round_ tab — you reach the **sanctions** module for that player. Archon defines **four sanction levels**, cumulative by severity and tracking:
 
-| Level              | Tournament effect                         | VEKN history persistence                               |
-| ------------------ | ----------------------------------------- | ------------------------------------------------------ |
-| `CAUTION`          | Informational only, no mechanical effect. | Not recorded on the profile.                           |
-| `WARNING`          | Formal warning.                           | Recorded, visible to organizers in future tournaments. |
-| `DISQUALIFICATION` | Removes the player from the tournament.   | Recorded on the VEKN profile.                          |
+| Level              | Tournament effect                                                                  | Recording                                                   |
+| ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `CAUTION`          | Informational only, no mechanical effect — a verbal warning to the player.         | **Not recorded** in the VEKN database (informal notice).    |
+| `WARNING`          | Formal warning.                                                                    | Recorded on the public VEKN profile, visible to anyone.     |
+| `GAME_LOSS`        | Forced loss for the player at the current table. Always paired with a `WARNING`.   | Recorded on the public VEKN profile (the `WARNING` is too). |
+| `DISQUALIFICATION` | Removes the player from the tournament (possibly "without prize" in severe cases). | Recorded on the public VEKN profile.                        |
 
 You can attach a **category** to clarify the reason:
 
@@ -85,7 +77,7 @@ If you applied a sanction by mistake or the situation later cleared up, you can 
 > **`DISQUALIFICATION` ≠ Drop.** To remove a player from the tournament for disciplinary reasons, **use the `DISQUALIFICATION` sanction**, not the <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** button. Drop is a neutral player action (voluntary withdrawal, logistics); a disqualification stays on the VEKN history and carries weight at future events. Mixing them up devalues both.
 
 > [!TIP]
-> `CAUTION` leaves no trace: use it for first informal warnings when you want the player notified without penalty. `WARNING` carries medium-term weight: apply it when the behaviour was already flagged verbally, or when you believe the player should have a record consultable by future organizers.
+> `CAUTION` is the lightest notice and **leaves no trace on the VEKN profile**: use it as a verbal warning for first issues you don't want to formalise. `WARNING` instead **is recorded**: apply it when the behaviour was already flagged verbally, or when the situation calls for a permanent disciplinary note. Weigh the reason you write into a `WARNING`: anyone consulting the player's profile in the future will read it.
 
 > [!TIP]
 > In **online tournaments**, with no physical clock, `SLOW_PLAY` is the most recurring sanction; `UNSPORTSMANLIKE_CONDUCT` covers intentional disconnects and leaving the voice channel.
@@ -116,22 +108,26 @@ The action is logged against your name. To revoke an override, remove it from it
 
 Distinct from Drop, the <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **Check out** action marks a player as **temporarily absent** for one or more rounds (e.g., stepping away for a round without dropping). Allows re-check-in next round; Drop is permanent. Use it when the Prince asks you to "skip" a player without dropping them.
 
-## 5. Judge capabilities vs Prince role
+## 5. What you can do as a Judge (and what you can't)
 
-The [Archon README](https://github.com/vtes-biased/archon) lists what the Judge can do. On the portal you can:
+In the _Tournament Manager_ the Judge owns everything related to **players, sanctions and table-level corrections**. The Prince organizer keeps control of the **tournament lifecycle** (round start/finish, event close, event data).
 
-- **Registration**: `OpenRegistration` / `CloseRegistration`, `Register` (including `New Member` with VEKN ID creation).
-- **Check-in**: `OpenCheckin`, `CancelCheckin`, `CheckIn`, `CheckEveryoneIn`, `CheckOut`, `Drop`.
-- **Round**: `Alter Seating` (pre-round pairing changes).
-- **Scores**: `Override` / `Unoverride` on a single table (see [Intervening during a round](#4-intervening-during-a-round)).
-- **Sanctions**: `Sanction` / `Unsanction` (see [Sanctions](#3-sanctions)).
-- **Finals**: `SeedFinals` (computes finalist seeding) + `SeatFinals` (records seat picks). These are judge-only actions: if the Prince is not also a judge, a judge must be present for the finals.
+As a **Judge**, from the _Registration_ tab, the _Round_ tab and the player cards you can:
 
-These stay **exclusive to the Prince organizer** (not actionable as Judge):
+- **Register players**: open/close registration, sign up an existing player or create a new one (with on-the-fly VEKN ID generation).
+- **Manage check-in**: open/cancel check-in, check in a single player or everyone at once, check out (temporary absence) or drop (leaving the tournament).
+- **Adjust pre-round seating** with `Alter Seating` when the Prince asks you to fix a pairing before the round starts.
+- **Apply and remove sanctions** from the player's <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** card (see [Sanctions](#3-sanctions)).
+- **Correct anomalous scores** with `Override` / `Unoverride` on a single table (see [Override on irregular table score](#override-on-irregular-table-score)).
+- **Run the finals**: compute the seeding (`SeedFinals`) and assign seats (`SeatFinals`). These are **judge-only actions**: if the Prince is not also a judge, a judge must be present for the finals.
 
-- `RoundStart` / `RoundFinish` / `RoundCancel` — start, close and cancel of a round.
-- `Finish` — closing the tournament and submitting results to `vekn.net`.
-- Editing event data (venue, description, times, etc.) from the _Info_ tab.
+These stay **Prince-only** (ask them if you need one):
+
+- start, finish or cancel a round (`RoundStart` / `RoundFinish` / `RoundCancel`);
+- close the tournament and submit results to `vekn.net` (`Finish`);
+- edit event data (venue, description, times) from the _Info_ tab.
+
+For the exhaustive action list (useful for doubts or to filter logs), see the [Archon README](https://github.com/vtes-biased/archon).
 
 > [!IMPORTANT]
 > **Mixed role in small tournaments.** When the Prince is also the only judge (typical at local tournaments), the split above collapses: the same person holds both sets of powers. In practice you can do more, but **you don't have fewer responsibilities**: even doing everything alone, apply both roles' best practices — traceability on sanctions, explicit reason on overrides, clean separation between Drop and disqualification.

@@ -4,8 +4,8 @@ description: 'Creare un evento, gestire check-in, round, finali e report sulla p
 categoria: organizzare
 audience: [principe]
 ordine: 10
-versione: '0.3'
-aggiornato: 2026-05-13
+versione: '0.4'
+aggiornato: 2026-05-14
 correlate: [archon-giocatori, archon-judge]
 locale: it
 ---
@@ -99,7 +99,7 @@ Durante il round i giocatori vedono il proprio tavolo sui loro dispositivi. L'or
 
 Il pulsante <span class="archon-pill archon-pill--yellow">Override</span> (solo giudici) valida un punteggio non standard. Caso tipico: un giocatore squalificato a metà round e VP che non sommano a 5 per regolamento. Si applica al singolo tavolo indicando round, tavolo e una motivazione obbligatoria. Resta tracciato chi l'ha emesso. Per annullarlo, usa il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino sulla riga.
 
-Nei tornei medi/grandi l'override lo emette il **giudice**. Nei tornei piccoli dove tu sei sia Principe sia giudice, lo applichi tu — vedi [guida Giudice](/guide/archon-judge/#5-capability-del-giudice-e-ruolo-del-principe).
+Nei tornei medi/grandi l'override lo emette il **giudice**. Nei tornei piccoli dove tu sei sia Principe sia giudice, lo applichi tu — vedi [guida Giudice](/guide/archon-judge/#5-cosa-puoi-fare-come-giudice-e-cosa-no).
 
 Dopo _Finish Round_ si torna a `REGISTRATION`: droppa chi abbandona, riapri il check-in e ripeti il ciclo fino alla fine dei round.
 
@@ -112,13 +112,14 @@ Archon supporta una **modalità offline** per gestire un torneo in una sede senz
 
 ## 4. Sanzioni
 
-Dalla scheda **i (info)** raggiungibile da _Registration_ e da _Round_ si accede al modulo sanzioni del giocatore. Archon prevede **tre livelli**:
+Dalla scheda **i (info)** raggiungibile da _Registration_ e da _Round_ si accede al modulo sanzioni del giocatore. Archon prevede **quattro livelli**, cumulativi per gravità e tracciamento:
 
-| Livello            | Effetto                          | Persistenza                                                                 |
-| ------------------ | -------------------------------- | --------------------------------------------------------------------------- |
-| `CAUTION`          | Solo informativa.                | Non registrata sul profilo.                                                 |
-| `WARNING`          | Richiamo formale.                | Registrata sul profilo VEKN, visibile agli organizzatori nei tornei futuri. |
-| `DISQUALIFICATION` | Rimuove il giocatore dal torneo. | Registrata sul profilo VEKN.                                                |
+| Livello            | Effetto                                                                                  | Registrazione                                                   |
+| ------------------ | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `CAUTION`          | Solo informativa, richiamo verbale al giocatore.                                         | **Non registrata** nel database VEKN (richiamo informale).      |
+| `WARNING`          | Richiamo formale.                                                                        | Registrata sul profilo VEKN pubblico, consultabile da chiunque. |
+| `GAME_LOSS`        | Sconfitta forzata del giocatore al tavolo corrente. Accompagnata sempre da un `WARNING`. | Registrata sul profilo VEKN pubblico (incluso il `WARNING`).    |
+| `DISQUALIFICATION` | Rimuove il giocatore dal torneo (eventualmente "without prize" nei casi gravi).          | Registrata sul profilo VEKN pubblico.                           |
 
 Le sanzioni possono essere categorizzate (campo `category`):
 

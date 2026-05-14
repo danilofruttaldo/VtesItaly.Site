@@ -4,8 +4,8 @@ description: 'Create an event, manage check-in, rounds, finals and reports on th
 categoria: organizzare
 audience: [principe]
 ordine: 10
-versione: '0.3'
-aggiornato: 2026-05-13
+versione: '0.4'
+aggiornato: 2026-05-14
 correlate: [archon-giocatori-en, archon-judge-en]
 locale: en
 ---
@@ -99,7 +99,7 @@ During the round, players see their own table on their devices. The organizer se
 
 The <span class="archon-pill archon-pill--yellow">Override</span> button (judges only) validates a non-standard score. Typical case: a player disqualified mid-round and VP not summing to 5 by regulation. It applies to a single table, taking round, table and a mandatory reason. Who issued it is tracked. To revoke it, use the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon on the row.
 
-In medium/large tournaments the override is issued by the **judge**. In small tournaments where you are both Prince and judge, you apply it yourself — see the [Judge guide](/en/guides/archon-judge/#5-judge-capabilities-vs-prince-role).
+In medium/large tournaments the override is issued by the **judge**. In small tournaments where you are both Prince and judge, you apply it yourself — see the [Judge guide](/en/guides/archon-judge/#5-what-you-can-do-as-a-judge-and-what-you-cant).
 
 After _Finish Round_ you go back to `REGISTRATION`: drop anyone leaving, reopen check-in and repeat the cycle until rounds are over.
 
@@ -112,13 +112,14 @@ Archon supports an **offline mode** to run a tournament from a venue with no rel
 
 ## 4. Sanctions
 
-From the **i (info)** card — accessible from _Registration_ and _Round_ — you reach the player sanctions module. Archon defines **three levels**:
+From the **i (info)** card — accessible from _Registration_ and _Round_ — you reach the player sanctions module. Archon defines **four levels**, cumulative by severity and tracking:
 
-| Level              | Effect                                  | Persistence                                                                |
-| ------------------ | --------------------------------------- | -------------------------------------------------------------------------- |
-| `CAUTION`          | Informational only.                     | Not recorded on profile.                                                   |
-| `WARNING`          | Formal warning.                         | Recorded on the VEKN profile, visible to organizers in future tournaments. |
-| `DISQUALIFICATION` | Removes the player from the tournament. | Recorded on the VEKN profile.                                              |
+| Level              | Effect                                                                             | Recording                                                   |
+| ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `CAUTION`          | Informational only, a verbal warning to the player.                                | **Not recorded** in the VEKN database (informal notice).    |
+| `WARNING`          | Formal warning.                                                                    | Recorded on the public VEKN profile, visible to anyone.     |
+| `GAME_LOSS`        | Forced loss for the player at the current table. Always paired with a `WARNING`.   | Recorded on the public VEKN profile (the `WARNING` is too). |
+| `DISQUALIFICATION` | Removes the player from the tournament (possibly "without prize" in severe cases). | Recorded on the public VEKN profile.                        |
 
 Sanctions can be categorized (`category` field):
 

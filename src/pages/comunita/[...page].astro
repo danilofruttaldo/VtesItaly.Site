@@ -61,7 +61,6 @@ const dividerAtPageIndex =
                 href={`/${post.data.category}/${post.id}/`}
                 title={post.data.title}
                 image={post.data.featuredImage || post.data.poster}
-                isPoster={!post.data.featuredImage && !!post.data.poster}
                 date={post.data.date}
                 tags={post.data.tags}
                 excerpt={post.data.excerpt}

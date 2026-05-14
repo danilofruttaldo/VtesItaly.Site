@@ -32,7 +32,6 @@ export interface City {
   description: Record<Locale, string>;
   meetupSchedule: MeetupEntry[];
   meetupNote?: Record<Locale, string>;
-  mapUrl?: string;
   whatsappUrl?: string;
   tagId?: number;
   highlight?: {

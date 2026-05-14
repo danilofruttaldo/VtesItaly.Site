@@ -25,19 +25,19 @@ export function getCardImage(
     };
   },
   citySlug: string,
-): { src: string | undefined; isPoster: boolean } {
+): string | undefined {
   if (post.data.category === 'tour' && post.data.stages?.length) {
     const displayImages = computeStageDisplayImages(post.data.stages);
     const idx = post.data.stages.findIndex((s) => s.cities?.includes(citySlug));
-    if (idx !== -1 && displayImages[idx]) return { src: displayImages[idx], isPoster: false };
+    if (idx !== -1 && displayImages[idx]) return displayImages[idx];
   }
-  return { src: post.data.poster || post.data.featuredImage, isPoster: !!post.data.poster };
+  return post.data.poster || post.data.featuredImage;
 }
 
 export interface CityCardEntry {
   href: string;
   title: string;
-  image: { src: string | undefined; isPoster: boolean };
+  image: string | undefined;
   date: Date;
   category: string;
   tags: string[];
@@ -70,9 +70,7 @@ export function buildCityCards(
         out.push({
           href: hrefBuilder(post),
           title: `IT${yearShort} — ${stage.name}`,
-          image: stageImg
-            ? { src: stageImg, isPoster: false }
-            : { src: post.data.poster || post.data.featuredImage, isPoster: !!post.data.poster },
+          image: stageImg || post.data.poster || post.data.featuredImage,
           date: new Date(stage.date),
           category: post.data.category,
           tags: post.data.tags,

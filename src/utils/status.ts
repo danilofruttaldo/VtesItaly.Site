@@ -76,3 +76,13 @@ export function resolvePlatformLabel(url: string): string {
   if (url.includes('vtesitaly')) return 'Site';
   return url;
 }
+
+/**
+ * Choose the display label for a tournament link: if the URL points at a
+ * known platform (Archon, BCN Crisis), use the platform name so the chip is
+ * recognizable at a glance; otherwise fall back to the editorially-authored
+ * label. Used by Event/Tour/League pages and standalone post link chips.
+ */
+export function resolveLinkLabel(l: { label: string; url: string }): string {
+  return l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label;
+}

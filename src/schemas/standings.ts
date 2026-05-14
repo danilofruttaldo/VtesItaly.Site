@@ -27,7 +27,7 @@ const baseRowSchema = z.object({
 });
 
 /** Single-event tournament row (GP, NC, individual events). */
-export const eventStandingRowSchema = baseRowSchema.extend({
+const eventStandingRowSchema = baseRowSchema.extend({
   gw: z.number().int().min(0),
   vp: z.number().min(0),
   fvp: z.number().nullable().optional(),
@@ -38,7 +38,7 @@ export const eventStandingRowSchema = baseRowSchema.extend({
  *  optional because the tour table mixes "scored stages" (s1, s2…) with the
  *  aggregate `total` and per-row `city`. Some rows have a per-stage tournament
  *  score (vp, gw, fvp, tp), others are pure aggregates. */
-export const tourStandingRowSchema = baseRowSchema.extend({
+const tourStandingRowSchema = baseRowSchema.extend({
   gw: z.number().int().min(0).optional(),
   vp: z.number().min(0).optional(),
   fvp: z.number().nullable().optional(),
@@ -60,17 +60,13 @@ export const tourStandingRowSchema = baseRowSchema.extend({
 });
 
 /** League season row — different point system from tournaments. */
-export const leagueStandingRowSchema = baseRowSchema.extend({
+const leagueStandingRowSchema = baseRowSchema.extend({
   games: z.number().int().min(0),
   bp: z.number().int(),
   lp: z.number(),
   pp: z.number(),
   fp: z.number().nullable().optional(),
 });
-
-export type EventStandingRow = z.infer<typeof eventStandingRowSchema>;
-export type TourStandingRow = z.infer<typeof tourStandingRowSchema>;
-export type LeagueStandingRow = z.infer<typeof leagueStandingRowSchema>;
 
 /** Pick the right row schema for a standings file based on its repo path. */
 export function rowSchemaForPath(path: string): z.ZodTypeAny {

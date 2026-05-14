@@ -4,7 +4,7 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
-import { resolvePlatformLabel } from '../utils/status';
+import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 import { composeFormat } from '../utils/calendar';
 
@@ -23,10 +23,7 @@ const t = useTranslations(locale);
 const { Content } = await render(post);
 const links = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === locale)
-  .map((l) => ({
-    ...l,
-    label: l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label,
-  }));
+  .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
 
 // Build gallery (exclude poster)
 let galleryImages: string[] = post.data.gallery || [];

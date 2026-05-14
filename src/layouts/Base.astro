@@ -199,6 +199,13 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
       })();
     </script>
     <script is:inline>
+      // Client-side mirrors of computeEventStatus/computeTourStatus from
+      // src/utils/status.ts. Required because this script runs after page
+      // hydration to recompute statuses against the user's local "today"
+      // (the server-rendered status uses build-time today and would go
+      // stale on cached HTML). Keep the logic in sync with status.ts;
+      // stages here arrive already serialized as { date, cancelled } from
+      // src/pages/[...slug].astro:tourStagesJson.
       (function () {
         var now = new Date();
         var todayISO =

@@ -8,12 +8,13 @@ import EventEdition from '../components/EventEdition.astro';
 import LeagueEdition from '../components/LeagueEdition.astro';
 import PageHero from '../components/PageHero.astro';
 import WosStandings from '../components/WosStandings.astro';
+import LinkButton from '../components/LinkButton.astro';
 import { getCollection, render } from 'astro:content';
 import { mainPages } from '../data/pages';
 import { categoryLabels, categoryUrls, typeTagLabels as typeTagLabelsMap } from '../data/categories';
 import { cities } from '../data/cities';
 import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
-import { computeTourStatus, computeEventStatus, resolvePlatformLabel } from '../utils/status';
+import { computeTourStatus, computeEventStatus, resolveLinkLabel } from '../utils/status';
 
 const t = useTranslations('it');
 
@@ -39,15 +40,12 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
     .sort();
 }
 
-function resolveLabel(l: { label: string; url: string }) {
-  return l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label;
-}
 const postLinks = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === 'it')
-  .map((l) => ({ ...l, label: resolveLabel(l) }));
+  .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
 const postLinksAfter = (post.data.linksAfter ?? [])
   .filter((l) => !l.locale || l.locale === 'it')
-  .map((l) => ({ ...l, label: resolveLabel(l) }));
+  .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourStatus = isTourWithStages ? computeTourStatus(post.data.stages!) : null;
@@ -277,16 +275,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
             {postLinks.length > 0 && (
               <div class="post__links">
                 {postLinks.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="16" y1="13" x2="8" y2="13" />
-                      <line x1="16" y1="17" x2="8" y2="17" />
-                      <polyline points="10 9 9 9 8 9" />
-                    </svg>
-                    {link.label}
-                  </a>
+                  <LinkButton url={link.url} label={link.label} />
                 ))}
               </div>
             )}
@@ -299,16 +288,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
             {postLinksAfter.length > 0 && (
               <div class="post__links">
                 {postLinksAfter.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="post__link-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="16" y1="13" x2="8" y2="13" />
-                      <line x1="16" y1="17" x2="8" y2="17" />
-                      <polyline points="10 9 9 9 8 9" />
-                    </svg>
-                    {link.label}
-                  </a>
+                  <LinkButton url={link.url} label={link.label} />
                 ))}
               </div>
             )}
@@ -361,20 +341,6 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, rgba(18, 20, 22, 0.4) 0%, rgba(18, 20, 22, 0.3) 50%, var(--color-base) 100%);
-  }
-  .post__hero-wrap--poster {
-    max-height: none;
-    display: flex;
-    justify-content: center;
-    padding: 32px 16px;
-    background: radial-gradient(ellipse at center, rgba(40, 20, 20, 0.5) 0%, var(--color-base) 70%);
-  }
-  .post__hero-poster {
-    max-width: 400px;
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
   /* Layout */
@@ -509,7 +475,6 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
     margin: 24px 0;
   }
 
-  /* Gallery */
   /* Links */
   .post__links {
     display: flex;

@@ -91,6 +91,11 @@ const baseFields = {
   featuredImage: z.string().optional(),
   poster: z.string().optional(),
   posterCaption: z.string().optional(),
+  // CSS object-position for the card thumbnail / timeline image. Use when the
+  // featured/poster is a wide-landscape composition whose subject would be
+  // cropped out of the default centered square. Examples: 'left center',
+  // 'top center'. Falls back to a heuristic (left for `type: 'altro'` events).
+  imageAnchor: z.string().optional(),
   gallery: z.array(z.string()).optional().default([]),
   galleryFolder: z.string().optional(),
   gallerySections: z.array(gallerySectionSchema).optional().default([]),

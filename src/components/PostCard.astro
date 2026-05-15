@@ -7,6 +7,7 @@ interface Props {
   href: string;
   title: string;
   image?: string;
+  imageAnchor?: string;
   date?: Date;
   category?: string;
   tags?: string[];
@@ -20,6 +21,7 @@ const {
   href,
   title,
   image,
+  imageAnchor,
   date,
   category,
   tags = [],
@@ -48,7 +50,16 @@ if (typeTag) badges.push({ label: typeTags[typeTag] });
   {highlight && highlightLabel && <span class="post-card__highlight-badge">{highlightLabel}</span>}
   {
     image && (
-      <img src={image} alt={title} class="post-card__image" loading="lazy" decoding="async" width="120" height="120" />
+      <img
+        src={image}
+        alt={title}
+        class="post-card__image"
+        loading="lazy"
+        decoding="async"
+        width="120"
+        height="120"
+        style={imageAnchor ? `object-position: ${imageAnchor};` : undefined}
+      />
     )
   }
   <div class="post-card__body">

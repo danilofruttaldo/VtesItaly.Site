@@ -319,7 +319,15 @@ const allEvents = extractCalendarEvents(posts, locale);
           '<div class="' +
           cls +
           '" role="gridcell"' +
-          (hasEvt ? ' data-day="' + d + '" tabindex="0" aria-label="' + esc(ev.title) + '"' : '') +
+          (hasEvt
+            ? ' data-day="' +
+              d +
+              '" data-cat="' +
+              esc(ev.category) +
+              '" tabindex="0" aria-label="' +
+              esc(ev.title) +
+              '"'
+            : '') +
           '>';
 
         // Background image (desktop only via CSS)
@@ -607,7 +615,11 @@ const allEvents = extractCalendarEvents(posts, locale);
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
+    background-position: top;
+  }
+  /* Wide-landscape social-kit images (category "altro"): anchor left so the subject isn't cropped out. */
+  .cal__cell[data-cat='altro'] .cal__cell-bg {
+    background-position: left center;
   }
   .cal__cell-overlay {
     position: absolute;

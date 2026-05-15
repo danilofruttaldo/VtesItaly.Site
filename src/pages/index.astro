@@ -49,6 +49,7 @@ const timeline = pickTimelineWindow(getCommunityTimeline(posts, 'it'), today);
               href={entry.url || '#'}
               title={entry.title}
               image={entry.image}
+              imageAnchor={entry.imageAnchor}
               date={new Date(entry.date)}
               category={entry.category}
               tags={entry.tags}

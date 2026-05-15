@@ -61,6 +61,12 @@ const dividerAtPageIndex =
                 href={`/${post.data.category}/${post.id}/`}
                 title={post.data.title}
                 image={post.data.featuredImage || post.data.poster}
+                imageAnchor={
+                  post.data.imageAnchor ||
+                  (post.data.events && post.data.events.length > 0 && post.data.events.every((e) => e.type === 'altro')
+                    ? 'left center'
+                    : undefined)
+                }
                 date={post.data.date}
                 tags={post.data.tags}
                 excerpt={post.data.excerpt}

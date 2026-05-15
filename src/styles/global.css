@@ -43,6 +43,7 @@
   --color-gold-hover: #e0c36a;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-streaming: #ff0000;
+  --color-web: #4a90d9;
   --color-success: #4ade80;
 
   /* Typography — Font sizes */
@@ -408,6 +409,7 @@ img {
   height: 120px;
   border-radius: 8px;
   object-fit: cover;
+  object-position: top;
   flex-shrink: 0;
 }
 

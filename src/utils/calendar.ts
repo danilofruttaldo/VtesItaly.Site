@@ -163,8 +163,14 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           archonUrl: ev.archonUrl,
         };
 
-        // Start date entry — for single-event community posts, use the post title
-        const displayName = category === 'comunita' && post.data.events!.length === 1 ? postTitle : ev.name;
+        // Start date entry — for community posts, use the post title when:
+        //   - it's a single event (the event IS the post), or
+        //   - all events share the same name (multi-day event split across calendar cells).
+        // Otherwise fall back to the event's own name (e.g. league nights).
+        const allSameName =
+          post.data.events!.length > 1 && post.data.events!.every((e) => e.name === post.data.events![0].name);
+        const useTitle = category === 'comunita' && (post.data.events!.length === 1 || allSameName);
+        const displayName = useTitle ? postTitle : ev.name;
         const startTitle = hasEndDate ? `${t.calendar.starts}: ${displayName}` : displayName;
         events.push({
           ...baseEvent,
@@ -226,8 +232,22 @@ export interface TimelineEntry {
   url: string;
   category: string;
   image?: string;
+  imageAnchor?: string;
   tags: string[];
   excerpt?: string;
+}
+
+/** Pick `object-position` for the card thumbnail / timeline image.
+ *  Honors an explicit `imageAnchor` from the post's frontmatter; otherwise
+ *  anchors left for `type: 'altro'` events whose featured image is typically
+ *  a wide-landscape social-kit composition. */
+function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
+  if (post.data.imageAnchor) return post.data.imageAnchor;
+  const events = post.data.events;
+  if (events && events.length > 0 && events.every((e) => e.type === 'altro')) {
+    return 'left center';
+  }
+  return undefined;
 }
 
 /**
@@ -248,6 +268,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     const baseImage = usesPoster
       ? post.data.poster || post.data.featuredImage
       : post.data.featuredImage || post.data.poster;
+    const imageAnchor = pickImageAnchor(post);
 
     // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
@@ -264,6 +285,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
           url,
           category,
           image: displayImages[si] || baseImage,
+          imageAnchor,
           tags,
           excerpt: stage.description || excerpt,
         });
@@ -286,6 +308,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
           url,
           category,
           image: baseImage,
+          imageAnchor,
           tags,
           excerpt,
         });
@@ -303,6 +326,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
       url,
       category,
       image: baseImage,
+      imageAnchor,
       tags,
       excerpt,
     });

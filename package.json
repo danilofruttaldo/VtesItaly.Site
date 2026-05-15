@@ -34,10 +34,11 @@
     "remark-github-blockquote-alert": "^2.1.0",
     "sharp": "^0.34.5"
   },
-  "//overrides": "h3: pinned to fix npm audit vuln in unstorage transitive (commit a6006ca). yaml: pinned ^2.8.3 to avoid yaml-language-server DoS (GHSA-48c2-rrv3-qjmp) pulled by @astrojs/check.",
+  "//overrides": "h3: pinned to fix npm audit vuln in unstorage transitive (commit a6006ca). yaml: pinned ^2.8.3 to avoid yaml-language-server DoS (GHSA-48c2-rrv3-qjmp) pulled by @astrojs/check. devalue: pinned ^5.8.1 to fix sparse-array DoS (GHSA-77vg-94rm-hx3p) pulled by astro.",
   "overrides": {
     "h3": "^1.15.10",
-    "yaml": "^2.8.3"
+    "yaml": "^2.8.3",
+    "devalue": "^5.8.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

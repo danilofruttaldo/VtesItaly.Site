@@ -3,8 +3,8 @@ title: 'PLAY VTESItaly'
 date: 2026-05-22
 category: 'comunita'
 tags: ['bologna', 'italia']
-featuredImage: '/images/comunita/bologna/play-2026-featured.png'
-poster: '/images/comunita/bologna/play-2026-poster.png'
+featuredImage: '/images/comunita/bologna/play-2026-featured.webp'
+poster: '/images/comunita/bologna/play-2026-poster.webp'
 excerpt: 'Il 22, 23 e 24 maggio 2026 VTES Italy sarà al Play – Festival del Gioco di BolognaFiere (Padiglione 18, area Vampiri La Masquerade) con tavoli demo aperti a tutti per provare Vampire: The Eternal Struggle.'
 venue:
   name: 'BolognaFiere — Play, Festival del Gioco (Padiglione 18, J11–J13)'
@@ -42,7 +42,7 @@ Al banchetto si alternano **giocatori di diverse città** — un'occasione per c
 
 ## Dove trovarci — Padiglione 18
 
-<a href="/images/comunita/bologna/play-2026-pad18.png" target="_blank" rel="noopener noreferrer" aria-label="Apri la mappa del Padiglione 18 a dimensione piena"><img src="/images/comunita/bologna/play-2026-pad18.png" alt="Mappa del Padiglione 18 del Play 2026, con la sezione J11–J13 dedicata all'Area Vampiri" loading="lazy" decoding="async" style="width:100%;max-width:480px;height:auto;display:block;margin-inline:auto;" /></a>
+<a href="/images/comunita/bologna/play-2026-pad18.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la mappa del Padiglione 18 a dimensione piena"><img src="/images/comunita/bologna/play-2026-pad18.webp" alt="Mappa del Padiglione 18 del Play 2026, con la sezione J11–J13 dedicata all'Area Vampiri" loading="lazy" decoding="async" style="width:100%;max-width:480px;height:auto;display:block;margin-inline:auto;" /></a>
 
 Il **VTES** è il "cugino" più cattivo di **Vampire: The Masquerade**: stesse fazioni, stesso Mondo di Tenebra, stesso intrigo politico — ma a carte e con cinque vampiri al tavolo che fanno bleed, voto, blocco e combattimento. Se passi dagli stand della comunità VTM, sei già a destinazione.
 

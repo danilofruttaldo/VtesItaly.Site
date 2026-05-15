@@ -3,8 +3,8 @@ title: 'PLAY VTESItaly'
 date: 2026-05-22
 category: 'comunita'
 tags: ['bologna', 'italia']
-featuredImage: '/images/comunita/bologna/play-2026-featured.png'
-poster: '/images/comunita/bologna/play-2026-poster.png'
+featuredImage: '/images/comunita/bologna/play-2026-featured.webp'
+poster: '/images/comunita/bologna/play-2026-poster.webp'
 excerpt: 'On May 22-24, 2026 VTES Italy will be at Play – Festival del Gioco at BolognaFiere (Hall 18, Vampire: The Masquerade area) with open demo tables for anyone who wants to try Vampire: The Eternal Struggle.'
 venue:
   name: 'BolognaFiere — Play, Festival del Gioco (Hall 18, J11–J13)'
@@ -42,7 +42,7 @@ The booth will be staffed in shifts by **players from different cities** — a c
 
 ## Where to find us — Hall 18
 
-<a href="/images/comunita/bologna/play-2026-pad18.png" target="_blank" rel="noopener noreferrer" aria-label="Open the Hall 18 map at full size"><img src="/images/comunita/bologna/play-2026-pad18.png" alt="Map of Hall 18 at Play 2026, with the J11–J13 area dedicated to Vampire" loading="lazy" decoding="async" style="width:100%;max-width:480px;height:auto;display:block;margin-inline:auto;" /></a>
+<a href="/images/comunita/bologna/play-2026-pad18.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the Hall 18 map at full size"><img src="/images/comunita/bologna/play-2026-pad18.webp" alt="Map of Hall 18 at Play 2026, with the J11–J13 area dedicated to Vampire" loading="lazy" decoding="async" style="width:100%;max-width:480px;height:auto;display:block;margin-inline:auto;" /></a>
 
 **VTES** is the meaner cousin of **Vampire: The Masquerade**: same factions, same World of Darkness, same political intrigue — but on the card table, with five vampires bleeding, voting, blocking and fighting each other. If you spot the VTM community booths, you're already there.
 

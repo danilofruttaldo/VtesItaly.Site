@@ -49,8 +49,12 @@ jobs:
       - run: npx vitest run --config vitest.integration.config.ts
 
       - name: Enforce dist size budget
+        # Use apparent size (real bytes) instead of disk-allocated blocks: on
+        # Linux ext4 the 4KB-block overhead across hundreds of small files adds
+        # ~3MB that doesn't ship to the CDN. Matches the integration test's
+        # statSync-based measurement (tests/integration/build-output.test.ts).
         run: |
-          SIZE_MB=$(du -sm dist | cut -f1)
+          SIZE_MB=$(du --apparent-size -sm dist | cut -f1)
           echo "dist artifact: ${SIZE_MB}MB"
           if [ "$SIZE_MB" -gt 80 ]; then
             echo "::error::dist is ${SIZE_MB}MB, above the 80MB budget. Optimise images or split."

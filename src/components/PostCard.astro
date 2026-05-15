@@ -15,6 +15,8 @@ interface Props {
   locale?: Locale;
   highlight?: boolean;
   highlightLabel?: string;
+  /** Prioritise the image as LCP candidate (above-the-fold cards). */
+  eager?: boolean;
 }
 
 const {
@@ -29,6 +31,7 @@ const {
   locale = 'it',
   highlight = false,
   highlightLabel,
+  eager = false,
 } = Astro.props;
 
 const RELEVANT_CATEGORIES = new Set(['tour', 'grand-prix', 'nazionale']);
@@ -54,7 +57,8 @@ if (typeTag) badges.push({ label: typeTags[typeTag] });
         src={image}
         alt={title}
         class="post-card__image"
-        loading="lazy"
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : 'auto'}
         decoding="async"
         width="120"
         height="120"

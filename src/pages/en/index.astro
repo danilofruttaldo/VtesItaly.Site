@@ -57,6 +57,7 @@ const timeline = pickTimelineWindow(getCommunityTimeline(posts, 'en'), today);
               locale="en"
               highlight={i === timeline.highlightIndex}
               highlightLabel={t.home.next_event_label}
+              eager={i === 0}
             />
           ))
         }

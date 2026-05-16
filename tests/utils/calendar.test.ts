@@ -178,10 +178,11 @@ describe('pickTimelineWindow', () => {
 });
 
 describe('getCommunityTimeline', () => {
-  it('emits one entry per dated event, copying post excerpt', () => {
+  it('emits a single card per post at post.date, regardless of how many events the post has', () => {
     const posts = [
       mkPost('multi', {
-        date: new Date('2026-05-01'),
+        date: new Date('2026-05-17'),
+        title: 'Lega Milano',
         excerpt: 'shared excerpt',
         category: 'comunita',
         events: [
@@ -190,18 +191,17 @@ describe('getCommunityTimeline', () => {
         ],
       } as Partial<BlogEntry['data']> & { date: Date }),
     ];
-    const out = getCommunityTimeline(posts, 'it');
-    const blogEntries = out.filter((e) => e.url.includes('multi'));
-    expect(blogEntries).toHaveLength(2);
-    expect(blogEntries[0].title).toBe('Night 1');
-    expect(blogEntries[0].excerpt).toBe('shared excerpt');
-    expect(blogEntries[1].title).toBe('Night 2');
+    const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('multi'));
+    expect(out).toHaveLength(1);
+    expect(out[0].title).toBe('Lega Milano');
+    expect(out[0].date).toBe('2026-05-17');
+    expect(out[0].excerpt).toBe('shared excerpt');
   });
 
-  it('uses post title (not event name) when post has a single event', () => {
+  it('uses post.date even when events are scheduled later (matches comunita/principato logic)', () => {
     const posts = [
       mkPost('solo-event', {
-        date: new Date('2026-05-15'),
+        date: new Date('2026-09-19'),
         title: 'Rise of the Nephtali',
         category: 'comunita',
         events: [{ name: 'Rise of the Nephtali', date: new Date('2026-09-19'), time: '10:00' }],
@@ -213,10 +213,11 @@ describe('getCommunityTimeline', () => {
     expect(out[0].date).toBe('2026-09-19');
   });
 
-  it('skips period-only league events and 1st-of-month placeholders', () => {
+  it('emits one card even when all league events are period-only or placeholders', () => {
     const posts = [
       mkPost('league', {
-        date: new Date('2026-01-01'),
+        date: new Date('2026-07-15'),
+        title: 'League',
         category: 'comunita',
         events: [
           { name: 'Period entry', date: new Date('2026-05-01'), time: '', period: 'May-Jun' },
@@ -226,7 +227,8 @@ describe('getCommunityTimeline', () => {
       } as Partial<BlogEntry['data']> & { date: Date }),
     ];
     const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('league'));
-    expect(out.map((e) => e.title)).toEqual(['Real night']);
+    expect(out.map((e) => e.title)).toEqual(['League']);
+    expect(out[0].date).toBe('2026-07-15');
   });
 
   it('falls back to post.date for posts with no events/stages', () => {

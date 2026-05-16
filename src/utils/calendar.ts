@@ -61,6 +61,13 @@ function toIsoDate(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
+/** Pick the post-level image: poster-first for tournament categories, otherwise featured-first. */
+function pickPostImage(post: CollectionEntry<'blog'>): string | undefined {
+  const cat = post.data.category;
+  const usesPoster = cat === 'grand-prix' || cat === 'nazionale';
+  return usesPoster ? post.data.poster || post.data.featuredImage : post.data.featuredImage || post.data.poster;
+}
+
 const KNOWN_FORMATS = ['Standard', 'V5', 'Limited', 'Draft', 'TBD'];
 
 export function composeFormat(
@@ -102,10 +109,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     const postTitle = post.data.title;
     const venue = post.data.venue?.name;
     const location = post.data.venue?.address;
-    const usesPoster = category === 'grand-prix' || category === 'nazionale';
-    const image = usesPoster
-      ? post.data.poster || post.data.featuredImage
-      : post.data.featuredImage || post.data.poster;
+    const image = pickPostImage(post);
 
     // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
@@ -223,8 +227,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
 
 /**
  * Lightweight timeline entry for the homepage "community events" section.
- * One entry per dated event: tour stage, single event in `events[]`, or the
- * post date itself when the post has no events array (announcements, articles).
+ * One entry per tour stage; one entry per non-tour post anchored at
+ * `post.data.date` (multi-day side events are NOT split into separate cards).
  */
 export interface TimelineEntry {
   date: string; // YYYY-MM-DD
@@ -252,8 +256,9 @@ function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
 
 /**
  * Build the community events timeline from blog posts + local events.
- * Drops period-only league entries (no specific date) and placeholder
- * 1st-of-month dates.
+ * Tour posts emit one entry per stage; all other posts emit a single entry
+ * anchored at `post.data.date` — same logic as the comunita/principato pages,
+ * so multi-day events (GP, NC, leagues) show as one card, not per side event.
  */
 export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: Locale): TimelineEntry[] {
   const out: TimelineEntry[] = [];
@@ -261,16 +266,11 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
   for (const post of posts) {
     const url = postUrl(post, locale);
     const category = post.data.category;
-    const postTitle = post.data.title;
     const tags = post.data.tags || [];
     const excerpt = post.data.excerpt;
-    const usesPoster = category === 'grand-prix' || category === 'nazionale';
-    const baseImage = usesPoster
-      ? post.data.poster || post.data.featuredImage
-      : post.data.featuredImage || post.data.poster;
+    const baseImage = pickPostImage(post);
     const imageAnchor = pickImageAnchor(post);
 
-    // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
       const displayImages = computeStageDisplayImages(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
@@ -293,36 +293,11 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
       continue;
     }
 
-    // Events array (GP, NC, community events, leagues with dated nights)
-    if (post.data.events && post.data.events.length > 0) {
-      let emitted = 0;
-      for (const ev of post.data.events) {
-        if (ev.period) continue;
-        const d = new Date(ev.date);
-        if (isNaN(d.getTime())) continue;
-        if (d.getDate() === 1 && (!ev.time || ev.time === '—')) continue;
-        const displayName = post.data.events.length === 1 ? postTitle : ev.name;
-        out.push({
-          date: toIsoDate(d),
-          title: displayName,
-          url,
-          category,
-          image: baseImage,
-          imageAnchor,
-          tags,
-          excerpt,
-        });
-        emitted++;
-      }
-      if (emitted > 0) continue;
-    }
-
-    // Fallback: dateless posts use the post.date itself (articles, announcements)
     const postDate = new Date(post.data.date);
     if (isNaN(postDate.getTime())) continue;
     out.push({
       date: toIsoDate(postDate),
-      title: postTitle,
+      title: post.data.title,
       url,
       category,
       image: baseImage,

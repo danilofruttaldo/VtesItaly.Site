@@ -1,1 +1,17 @@
-[]
+[
+  { "rank": 1, "name": "Adriano Arena", "fp": null, "lp": 0, "gw": 2, "vp": 7.0, "pp": 1, "bp": 0, "games": 3 },
+  { "rank": 2, "name": "Enrico De Stefano", "fp": null, "lp": 0, "gw": 1, "vp": 6.5, "pp": 1, "bp": 0, "games": 3 },
+  { "rank": 2, "name": "Francesco Marassi", "fp": null, "lp": 0, "gw": 1, "vp": 3.5, "pp": 1, "bp": 0, "games": 3 },
+  { "rank": 2, "name": "Lorenzo Tessa", "fp": null, "lp": 0, "gw": 0, "vp": 2.5, "pp": 1, "bp": 0, "games": 3 },
+  { "rank": 2, "name": "Henry Hinde", "fp": null, "lp": 0, "gw": 0, "vp": 2.0, "pp": 1, "bp": 0, "games": 3 },
+  { "rank": 6, "name": "Giovanni Ambrosio", "fp": null, "lp": 0, "gw": 0, "vp": 1.5, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 6, "name": "Manuel Segatori", "fp": null, "lp": 0, "gw": 0, "vp": 1.5, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 8, "name": "Alessandro Liviero", "fp": null, "lp": 0, "gw": 0, "vp": 1.5, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 9, "name": "Guido Canciani", "fp": null, "lp": 0, "gw": 0, "vp": 1.0, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 10, "name": "Marco Filippo", "fp": null, "lp": 0, "gw": 0, "vp": 0.5, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 11, "name": "Mariolina Gentile", "fp": null, "lp": 0, "gw": 0, "vp": 0.5, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 12, "name": "Gianluca Marini", "fp": null, "lp": 0, "gw": 0, "vp": 0.5, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 13, "name": "Daniel Peri", "fp": null, "lp": 0, "gw": 0, "vp": 0.0, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 13, "name": "Dimitrios Skrimizeas", "fp": null, "lp": 0, "gw": 0, "vp": 0.0, "pp": 1, "bp": 0, "games": 2 },
+  { "rank": 15, "name": "Thomas Marchiori", "fp": null, "lp": 0, "gw": 0, "vp": 0.0, "pp": 1, "bp": 0, "games": 2 }
+]

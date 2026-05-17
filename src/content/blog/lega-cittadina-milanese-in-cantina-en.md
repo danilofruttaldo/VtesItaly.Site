@@ -9,7 +9,7 @@ excerpt: 'The first Milan city league of Vampire the Eternal Struggle: 4 Sundays
 events:
   - name: 'Lega Milano 2026: Game Day 1'
     date: 2026-05-17
-    time: '14:15'
+    time: '14:00'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -17,26 +17,26 @@ events:
   - name: 'Lega Milano 2026: Game Day 2'
     date: 2026-05-17
     period: 'TBD'
-    time: '14:15'
+    time: '14:00'
     format: 'Standard'
     proxies: true
     rounds: 2
   - name: 'Lega Milano 2026: Game Day 3'
     date: 2026-05-17
     period: 'TBD'
-    time: '14:15'
+    time: '14:00'
     format: 'Standard'
     proxies: true
     rounds: 2
   - name: 'Lega Milano 2026: Game Day 4'
     date: 2026-05-17
     period: 'TBD'
-    time: '14:15'
+    time: '14:00'
     format: 'Standard'
     proxies: true
     rounds: 2
 schedule:
-  - time: '14:15/14:30'
+  - time: '14:00/14:30'
     label: 'Round 1'
   - time: 'Following'
     label: 'Round 2'

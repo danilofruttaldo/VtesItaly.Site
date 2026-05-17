@@ -73,4 +73,38 @@ describe('EventEdition', () => {
     const html = await renderEdition(post, 'en');
     expect(html.length).toBeGreaterThan(100);
   });
+
+  // The pricing column highlight (early vs regular vs both-inactive) is decided
+  // at runtime against the user's "today", so the server has to emit enough
+  // metadata for the inline script in Base.astro to recompute the state. Lock
+  // the wire format down so future refactors don't silently break the runtime.
+  it('emits temporal-pricing markers on the pricing table when both deadlines exist', async () => {
+    const post = pickPost(
+      (p) =>
+        p.data.category === 'grand-prix' &&
+        (p.data.locale ?? 'it') === 'it' &&
+        !!p.data.earlyDeadlineDate &&
+        (p.data.pricing?.length ?? 0) > 0,
+    );
+    const html = await renderEdition(post);
+    expect(html).toMatch(/<table[^>]*\bdata-temporal-pricing\b/);
+    expect(html).toMatch(/data-event-last-date="\d{4}-\d{2}-\d{2}"/);
+    expect(html).toMatch(/data-early-deadline-date="\d{4}-\d{2}-\d{2}"/);
+    // Stable per-column classes the runtime targets when toggling active/inactive.
+    expect(html).toContain('gp-price-cell--early');
+    expect(html).toContain('gp-price-cell--regular');
+  });
+
+  it('omits data-early-deadline-date when the post has no early deadline', async () => {
+    const post = pickPost(
+      (p) =>
+        p.data.category === 'comunita' &&
+        (p.data.locale ?? 'it') === 'it' &&
+        !p.data.earlyDeadlineDate &&
+        (p.data.pricing?.length ?? 0) > 0,
+    );
+    const html = await renderEdition(post);
+    expect(html).toMatch(/<table[^>]*\bdata-temporal-pricing\b/);
+    expect(html).not.toContain('data-early-deadline-date=');
+  });
 });

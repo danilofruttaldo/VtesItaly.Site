@@ -68,6 +68,13 @@ const lastEventDay = postEvents.reduce<Date | null>((max, e) => {
 const eventFinished = lastEventDay !== null && today >= lastEventDay;
 const earlyActive = !eventFinished && (!post.data.earlyDeadlineDate || today < post.data.earlyDeadlineDate);
 const regularActive = !eventFinished && !earlyActive;
+// Local-anchored ISO so the runtime script in Base.astro can compare dates as
+// strings against today (also local-anchored). The toISOString() approach
+// would silently shift dates near midnight in positive-offset timezones.
+const toIsoLocal = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const lastEventDayIso = lastEventDay ? toIsoLocal(lastEventDay) : undefined;
+const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.earlyDeadlineDate) : undefined;
 ---
 
 {/* Poster / locandina */}
@@ -204,15 +211,20 @@ const regularActive = !eventFinished && !earlyActive;
       <div class="gp-row">
         <span class="gp-label">{t.gp.pricing_label}</span>
         <div class="gp-value">
-          <table class="gp-table">
+          <table
+            class="gp-table"
+            data-temporal-pricing
+            data-event-last-date={lastEventDayIso}
+            data-early-deadline-date={earlyDeadlineDateIso}
+          >
             {post.data.earlyDeadline && (
               <thead>
                 <tr>
                   <th />
-                  <th class={earlyActive ? 'gp-price-active' : 'gp-price-inactive'}>
+                  <th class={`gp-price-cell--early ${earlyActive ? 'gp-price-active' : 'gp-price-inactive'}`}>
                     {t.gp.early_col} {post.data.earlyDeadline}
                   </th>
-                  <th class={regularActive ? 'gp-price-active' : 'gp-price-inactive'}>
+                  <th class={`gp-price-cell--regular ${regularActive ? 'gp-price-active' : 'gp-price-inactive'}`}>
                     {t.gp.regular_col} {post.data.earlyDeadline}
                   </th>
                 </tr>
@@ -222,8 +234,14 @@ const regularActive = !eventFinished && !earlyActive;
               {post.data.pricing.map((p) => (
                 <tr>
                   <td>{p.label}</td>
-                  {p.early && <td class={earlyActive ? 'gp-price-active' : 'gp-price-inactive'}>{p.early}</td>}
-                  <td class={regularActive ? 'gp-price-active' : 'gp-price-inactive'}>{p.regular}</td>
+                  {p.early && (
+                    <td class={`gp-price-cell--early ${earlyActive ? 'gp-price-active' : 'gp-price-inactive'}`}>
+                      {p.early}
+                    </td>
+                  )}
+                  <td class={`gp-price-cell--regular ${regularActive ? 'gp-price-active' : 'gp-price-inactive'}`}>
+                    {p.regular}
+                  </td>
                 </tr>
               ))}
             </tbody>

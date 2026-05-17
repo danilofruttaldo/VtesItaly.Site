@@ -210,7 +210,7 @@ const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length 
         <h2 class="related-title">{t.domain.news_title}</h2>
         {
           cards.length > 0 ? (
-            <div class="post-list">
+            <div class="post-list" data-temporal-next-event>
               {cards.map((card, i) => (
                 <PostCard
                   href={card.href}

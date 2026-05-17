@@ -49,7 +49,7 @@ const dividerAtPageIndex =
   </section>
   <section class="section">
     <div class="container container--narrow">
-      <div class="post-list">
+      <div class="post-list" data-temporal-divider>
         {
           page.data.map((post, i) => (
             <>
@@ -76,6 +76,17 @@ const dividerAtPageIndex =
               />
             </>
           ))
+        }
+        {
+          /* Fallback divider for the runtime script to move when build-time saw
+            no past on this page but today has since advanced. */
+        }
+        {
+          dividerAtPageIndex === -1 && (
+            <div class="post-list__divider" role="separator" aria-label={t.community.past_label} hidden>
+              <span>{t.community.past_label}</span>
+            </div>
+          )
         }
       </div>
 

@@ -270,6 +270,131 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
           }
         });
 
+        // Timeline window: pick 5 cards centered on real-today pivot.
+        // Cards inside [data-temporal-window] are pre-sorted ascending by date.
+        // Resets any build-time hidden/highlight markers, then re-picks + reorders.
+        document.querySelectorAll('[data-temporal-window]').forEach(function (container) {
+          var allCards = Array.prototype.slice.call(container.querySelectorAll('.post-card[data-date]'));
+          if (allCards.length === 0) return;
+          allCards.forEach(function (c) {
+            c.hidden = false;
+            c.classList.remove('post-card--highlight');
+            var b = c.querySelector('.post-card__highlight-badge');
+            if (b) b.hidden = true;
+          });
+          var pivot = -1;
+          for (var i = 0; i < allCards.length; i++) {
+            if ((allCards[i].getAttribute('data-date') || '') >= todayISO) {
+              pivot = i;
+              break;
+            }
+          }
+          var chosen;
+          if (pivot === -1) {
+            chosen = allCards.slice(-5).reverse();
+          } else {
+            var idealAbove = 2;
+            var idealBelow = 2;
+            var above = allCards.slice(pivot + 1, pivot + 1 + idealAbove);
+            var below = allCards.slice(Math.max(0, pivot - idealBelow), pivot);
+            var aboveShort = idealAbove - above.length;
+            var belowShort = idealBelow - below.length;
+            if (aboveShort > 0) below = allCards.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
+            if (belowShort > 0) above = allCards.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
+            chosen = above.slice().reverse().concat([allCards[pivot]], below.slice().reverse());
+            allCards[pivot].classList.add('post-card--highlight');
+            var pivotBadge = allCards[pivot].querySelector('.post-card__highlight-badge');
+            if (pivotBadge) pivotBadge.hidden = false;
+          }
+          var chosenSet = chosen.reduce(function (m, c) {
+            m.set(c, true);
+            return m;
+          }, new Map());
+          allCards.forEach(function (c) {
+            if (!chosenSet.get(c)) c.hidden = true;
+          });
+          chosen.forEach(function (c) {
+            container.appendChild(c);
+          });
+        });
+
+        // Past divider: in [data-temporal-divider] containers, position the
+        // .post-list__divider between future (top) and past (bottom) cards.
+        // Cards are sorted descending (newest first).
+        document.querySelectorAll('[data-temporal-divider]').forEach(function (container) {
+          var divider = container.querySelector('.post-list__divider');
+          if (!divider) return;
+          var cards = Array.prototype.slice.call(container.querySelectorAll('.post-card[data-date]'));
+          if (cards.length === 0) {
+            divider.hidden = true;
+            return;
+          }
+          var firstPast = -1;
+          for (var j = 0; j < cards.length; j++) {
+            if ((cards[j].getAttribute('data-date') || '') < todayISO) {
+              firstPast = j;
+              break;
+            }
+          }
+          if (firstPast <= 0) {
+            // No past on this page, OR all cards are past (no future above) → no divider.
+            divider.hidden = true;
+          } else {
+            divider.hidden = false;
+            var target = cards[firstPast];
+            if (divider.nextSibling !== target) container.insertBefore(divider, target);
+          }
+        });
+
+        // Next-event highlight: cards in [data-temporal-next-event] are sorted
+        // future-first then past. Highlight the last future card (just before the
+        // first past). If all future, highlight the very last; if all past, none.
+        document.querySelectorAll('[data-temporal-next-event]').forEach(function (container) {
+          var cards = Array.prototype.slice.call(container.querySelectorAll('.post-card[data-date]'));
+          cards.forEach(function (c) {
+            c.classList.remove('post-card--highlight');
+            var b = c.querySelector('.post-card__highlight-badge');
+            if (b) b.hidden = true;
+          });
+          if (cards.length === 0) return;
+          var firstPast = -1;
+          for (var k = 0; k < cards.length; k++) {
+            if ((cards[k].getAttribute('data-date') || '') < todayISO) {
+              firstPast = k;
+              break;
+            }
+          }
+          var idx;
+          if (firstPast === -1) idx = cards.length - 1;
+          else if (firstPast === 0) idx = -1;
+          else idx = firstPast - 1;
+          if (idx >= 0) {
+            cards[idx].classList.add('post-card--highlight');
+            var b2 = cards[idx].querySelector('.post-card__highlight-badge');
+            if (b2) b2.hidden = false;
+          }
+        });
+
+        // Pricing column highlight in [data-temporal-pricing]. Toggles
+        // gp-price-active / gp-price-inactive on .gp-price-cell--early and
+        // .gp-price-cell--regular based on today vs deadline + last-event date.
+        document.querySelectorAll('[data-temporal-pricing]').forEach(function (table) {
+          var lastEventDate = table.getAttribute('data-event-last-date') || '';
+          var earlyDeadlineDate = table.getAttribute('data-early-deadline-date') || '';
+          if (!lastEventDate) return;
+          var eventFinished = todayISO >= lastEventDate;
+          var earlyActive = !eventFinished && (!earlyDeadlineDate || todayISO < earlyDeadlineDate);
+          var regularActive = !eventFinished && !earlyActive;
+          function applyPrice(selector, active) {
+            table.querySelectorAll(selector).forEach(function (el) {
+              el.classList.remove('gp-price-active', 'gp-price-inactive');
+              el.classList.add(active ? 'gp-price-active' : 'gp-price-inactive');
+            });
+          }
+          applyPrice('.gp-price-cell--early', earlyActive);
+          applyPrice('.gp-price-cell--regular', regularActive);
+        });
+
         // Footer copyright year
         var copy = document.querySelector('.footer-bottom p');
         if (copy) copy.textContent = copy.textContent.replace(/–\d{4}/, '–' + now.getFullYear());

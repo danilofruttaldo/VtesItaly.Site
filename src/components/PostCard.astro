@@ -17,6 +17,9 @@ interface Props {
   highlightLabel?: string;
   /** Prioritise the image as LCP candidate (above-the-fold cards). */
   eager?: boolean;
+  /** Server-side hidden state. The runtime script in Base.astro clears this
+      when it re-picks the timeline window against the user's real "today". */
+  hidden?: boolean;
 }
 
 const {
@@ -32,6 +35,7 @@ const {
   highlight = false,
   highlightLabel,
   eager = false,
+  hidden = false,
 } = Astro.props;
 
 const RELEVANT_CATEGORIES = new Set(['tour', 'grand-prix', 'nazionale']);
@@ -47,10 +51,32 @@ if (category) {
   if (catLabel) badges.push({ label: catLabel });
 }
 if (typeTag) badges.push({ label: typeTags[typeTag] });
+
+// Local-anchored ISO (YYYY-MM-DD) so the runtime script in Base.astro can compare
+// it as a string against today (also local-anchored). Using toISOString() here
+// would silently shift dates near midnight in positive-offset timezones.
+const isoDate = date
+  ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+  : undefined;
 ---
 
-<a href={href} class:list={['post-card', categoryAccent, highlight && 'post-card--highlight']}>
-  {highlight && highlightLabel && <span class="post-card__highlight-badge">{highlightLabel}</span>}
+<a
+  href={href}
+  class:list={['post-card', categoryAccent, highlight && 'post-card--highlight']}
+  data-date={isoDate}
+  hidden={hidden}
+>
+  {
+    /* Badge is always emitted (hidden by default) so the client-side temporal
+      runtime can toggle it without rebuilding HTML. */
+  }
+  {
+    highlightLabel && (
+      <span class="post-card__highlight-badge" hidden={!highlight}>
+        {highlightLabel}
+      </span>
+    )
+  }
   {
     image && (
       <img

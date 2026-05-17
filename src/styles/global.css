@@ -282,6 +282,13 @@ img {
   gap: 16px;
 }
 
+/* The HTML `hidden` attribute is overridden by the `display: flex` rules below,
+   so explicitly restore it for elements the client-side temporal runtime hides. */
+.post-card[hidden],
+.post-list__divider[hidden] {
+  display: none;
+}
+
 .post-list__divider {
   display: flex;
   align-items: center;

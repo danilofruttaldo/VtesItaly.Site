@@ -15,7 +15,6 @@
     },
     "assert": {
       "assertions": {
-        "//performance": "Lighthouse runs once per URL, so single-run variance is ~±0.05; 0.75 keeps a hard gate without flapping on borderline pages like /principati/.",
         "categories:performance": ["error", { "minScore": 0.75 }],
         "categories:accessibility": ["error", { "minScore": 0.89 }],
         "categories:best-practices": ["warn", { "minScore": 0.9 }],

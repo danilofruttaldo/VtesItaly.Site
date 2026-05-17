@@ -11,10 +11,9 @@ import { composeFormat } from '../utils/calendar';
 interface Props {
   post: CollectionEntry<'blog'>;
   locale?: Locale;
-  showExcerpt?: boolean;
 }
 
-const { post, locale = 'it', showExcerpt = false } = Astro.props;
+const { post, locale = 'it' } = Astro.props;
 if (post.data.category !== 'grand-prix' && post.data.category !== 'nazionale' && post.data.category !== 'comunita') {
   throw new Error(`EventEdition: unsupported category "${post.data.category}"`);
 }
@@ -81,9 +80,6 @@ const regularActive = !eventFinished && !earlyActive;
   )
 }
 
-{/* Descrizione breve */}
-{showExcerpt && post.data.excerpt && <p class="gp-excerpt">{post.data.excerpt}</p>}
-
 {/* Quick nav */}
 {
   (standings.length > 0 || post.data.highlight) && (
@@ -115,6 +111,11 @@ const regularActive = !eventFinished && !earlyActive;
     </nav>
   )
 }
+
+{/* Contenuto */}
+<div class="gp-content prose">
+  <Content />
+</div>
 
 {/* Info di servizio */}
 <div class="gp-info">
@@ -396,11 +397,6 @@ const regularActive = !eventFinished && !earlyActive;
   )
 }
 
-{/* Contenuto */}
-<div class="gp-content prose">
-  <Content />
-</div>
-
 {/* Streaming finale + extra video links */}
 {
   (post.data.streamingUrl || post.data.streamingLinks.length > 0) && (
@@ -538,13 +534,6 @@ const regularActive = !eventFinished && !earlyActive;
   }
 
   /* Prose */
-  .gp-excerpt {
-    font-size: var(--font-size-small);
-    line-height: var(--leading-relaxed);
-    color: var(--color-contrast);
-    margin-bottom: 24px;
-    text-align: left;
-  }
   .gp-content {
     margin-bottom: 28px;
   }

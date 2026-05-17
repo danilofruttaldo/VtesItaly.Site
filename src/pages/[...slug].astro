@@ -266,7 +266,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
         ) : isLeague ? (
           <LeagueEdition post={post} />
         ) : isEventPage ? (
-          <EventEdition post={post} showExcerpt={isCommunityEvent} />
+          <EventEdition post={post} />
         ) : (
           <>
             <div class="post__content prose">

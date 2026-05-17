@@ -7,12 +7,13 @@ import { getCollection } from 'astro:content';
 import { mainPages } from '../../data/pages';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { getCommunityTimeline, pickTimelineWindow } from '../../utils/calendar';
+import { todayLocalIso } from '../../utils/today';
 
 const page = mainPages.find((p) => p.slug.it === '')!;
 const t = useTranslations('en');
 
 const posts = filterByLocale(await getCollection('blog'), 'en');
-const today = new Date().toISOString().slice(0, 10);
+const today = todayLocalIso();
 const timeline = pickTimelineWindow(getCommunityTimeline(posts, 'en'), today);
 ---
 

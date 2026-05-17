@@ -7,6 +7,7 @@ import { getCollection } from 'astro:content';
 import PostCard from '../../components/PostCard.astro';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { buildCityCards } from '../../utils/url';
+import { todayLocalMidnight } from '../../utils/today';
 
 const t = useTranslations('it');
 
@@ -24,8 +25,7 @@ export async function getStaticPaths() {
 
 const { city, cards } = Astro.props;
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+const today = todayLocalMidnight();
 const firstPastIndex = cards.findIndex((c) => c.date < today);
 const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length - 1 : -1) : firstPastIndex - 1;
 ---

@@ -1,3 +1,5 @@
+import { todayLocalMidnight } from './today';
+
 interface Stage {
   date: Date;
   status?: string;
@@ -13,8 +15,7 @@ export type EventStatus = 'past' | 'live' | 'upcoming';
 export function computeTourStatus(stages: Stage[]): TourStatus | null {
   if (stages.length === 0) return null;
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = todayLocalMidnight();
 
   const statuses = stages.map((s) => {
     if (s.status === 'cancelled') return 'cancelled';
@@ -47,8 +48,7 @@ export function computeEventStatus(eventDate: Date): EventStatus {
 export function computeStageDisplayImages(
   stages: { date: Date; image?: string; status?: string; hideDate?: boolean }[],
 ): (string | undefined)[] {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = todayLocalMidnight();
 
   const statuses = stages.map((s) => {
     if (s.status === 'cancelled') return 'cancelled';

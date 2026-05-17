@@ -7,6 +7,7 @@ import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 import { composeFormat } from '../utils/calendar';
+import { todayLocalMidnight } from '../utils/today';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -58,8 +59,7 @@ if (post.data.standingsUrl) {
 }
 const hasFvp = standings.some((s) => s.fvp != null);
 const postEvents = post.data.events;
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+const today = todayLocalMidnight();
 const lastEventDay = postEvents.reduce<Date | null>((max, e) => {
   const d = new Date(e.date);
   d.setHours(0, 0, 0, 0);

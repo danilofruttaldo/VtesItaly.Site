@@ -7,6 +7,7 @@ import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel, computeStageDisplayImages } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 import { cities } from '../data/cities';
+import { todayLocalMidnight } from '../utils/today';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -32,8 +33,7 @@ const stageItemLabel = post.data.stageItemLabel || t.tour.stage_item;
 const { Content } = await render(post);
 const stages = post.data.stages || [];
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+const today = todayLocalMidnight();
 const displayImages = computeStageDisplayImages(stages);
 const computedStages = stages.map((s) => {
   const dateIso = s.date instanceof Date ? s.date.toISOString().slice(0, 10) : s.date;

@@ -68,9 +68,11 @@ const leagueStandingRowSchema = baseRowSchema.extend({
   fp: z.number().nullable().optional(),
 });
 
-/** Pick the right row schema for a standings file based on its repo path. */
+/** Pick the right row schema for a standings file based on its repo path.
+ *  Single-day league files (one giornata = one tournament) reuse the
+ *  tournament row shape, so /league/ accepts either dialect. */
 export function rowSchemaForPath(path: string): z.ZodTypeAny {
-  if (path.includes('/league/')) return leagueStandingRowSchema;
+  if (path.includes('/league/')) return z.union([leagueStandingRowSchema, eventStandingRowSchema]);
   if (path.includes('/tour/')) return tourStandingRowSchema;
   // gp/, nc/, ev/ all use the single-event tournament shape
   return eventStandingRowSchema;

@@ -40,17 +40,22 @@ if (post.data.poster) {
   galleryImages = galleryImages.filter((img) => img !== post.data.poster);
 }
 
-// League standings
+// League standings — supports two dialects:
+//   - league shape (full season): { fp?, lp, gw, vp, pp, bp, games }
+//   - tournament shape (single giornata): { gw, vp, fvp?, tp }
+// We discriminate by the presence of `tp` on the first row.
 interface LeagueStanding {
   rank: number;
   name: string;
-  fp: number | null;
-  lp: number;
+  fp?: number | null;
+  lp?: number;
   gw: number;
   vp: number;
-  pp: number;
-  bp: number;
-  games: number;
+  pp?: number;
+  bp?: number;
+  games?: number;
+  fvp?: number | null;
+  tp?: number;
 }
 let standings: LeagueStanding[] = [];
 if (post.data.standingsUrl) {
@@ -61,8 +66,10 @@ if (post.data.standingsUrl) {
   const key = Object.keys(allData).find((k) => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
   if (key && Array.isArray(allData[key].default)) standings = allData[key].default as LeagueStanding[];
 }
+const isTournamentShape = standings.length > 0 && 'tp' in standings[0];
 const hasFp = standings.some((s) => s.fp != null);
-const hasPp = standings.some((s) => s.pp !== 0);
+const hasPp = standings.some((s) => (s.pp ?? 0) !== 0);
+const hasFvp = standings.some((s) => s.fvp != null);
 function fmt(n: number): string {
   return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
 }
@@ -379,39 +386,73 @@ function fmt(n: number): string {
       <div class="le-standings-wrap">
         <table class="le-standings-table">
           <caption class="sr-only">{post.data.standingsLabel ?? t.league.standings_label}</caption>
-          <thead>
-            <tr>
-              <th class="tc">#</th>
-              <th>{t.league.standings_player}</th>
-              <th class="tc">GW</th>
-              <th class="tc">VP</th>
-              {hasFp && <th class="tc">FVP</th>}
-              <th class="tc">LP</th>
-              {hasPp && <th class="tc">PP</th>}
-              <th class="tc">BP</th>
-              <th class="tc">G</th>
-            </tr>
-          </thead>
-          <tbody>
-            {standings.map((s) => (
-              <tr
-                class:list={[
-                  s.rank === 1 && 'le-standings-winner',
-                  s.rank >= 2 && s.rank <= 5 && 'le-standings-finalist',
-                ]}
-              >
-                <td class="tc">{s.rank}</td>
-                <td>{anonymizeName(s.name)}</td>
-                <td class="tc">{s.gw}</td>
-                <td class="tc">{fmt(s.vp)}</td>
-                {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
-                <td class="tc">{fmt(s.lp)}</td>
-                {hasPp && <td class="tc">{fmt(s.pp)}</td>}
-                <td class="tc">{s.bp}</td>
-                <td class="tc">{s.games}</td>
-              </tr>
-            ))}
-          </tbody>
+          {isTournamentShape ? (
+            <>
+              <thead>
+                <tr>
+                  <th class="tc">#</th>
+                  <th>{t.league.standings_player}</th>
+                  <th class="tc">GW</th>
+                  <th class="tc">VP</th>
+                  {hasFvp && <th class="tc">FVP</th>}
+                  <th class="tc">TP</th>
+                </tr>
+              </thead>
+              <tbody>
+                {standings.map((s) => (
+                  <tr
+                    class:list={[
+                      s.rank === 1 && 'le-standings-winner',
+                      s.rank >= 2 && s.rank <= 5 && 'le-standings-finalist',
+                    ]}
+                  >
+                    <td class="tc">{s.rank}</td>
+                    <td>{anonymizeName(s.name)}</td>
+                    <td class="tc">{s.gw}</td>
+                    <td class="tc">{fmt(s.vp)}</td>
+                    {hasFvp && <td class="tc">{s.fvp != null ? fmt(s.fvp) : ''}</td>}
+                    <td class="tc">{s.tp ?? 0}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          ) : (
+            <>
+              <thead>
+                <tr>
+                  <th class="tc">#</th>
+                  <th>{t.league.standings_player}</th>
+                  <th class="tc">GW</th>
+                  <th class="tc">VP</th>
+                  {hasFp && <th class="tc">FVP</th>}
+                  <th class="tc">LP</th>
+                  {hasPp && <th class="tc">PP</th>}
+                  <th class="tc">BP</th>
+                  <th class="tc">G</th>
+                </tr>
+              </thead>
+              <tbody>
+                {standings.map((s) => (
+                  <tr
+                    class:list={[
+                      s.rank === 1 && 'le-standings-winner',
+                      s.rank >= 2 && s.rank <= 5 && 'le-standings-finalist',
+                    ]}
+                  >
+                    <td class="tc">{s.rank}</td>
+                    <td>{anonymizeName(s.name)}</td>
+                    <td class="tc">{s.gw}</td>
+                    <td class="tc">{fmt(s.vp)}</td>
+                    {hasFp && <td class="tc">{s.fp != null ? fmt(s.fp) : ''}</td>}
+                    <td class="tc">{fmt(s.lp ?? 0)}</td>
+                    {hasPp && <td class="tc">{fmt(s.pp ?? 0)}</td>}
+                    <td class="tc">{s.bp ?? 0}</td>
+                    <td class="tc">{s.games ?? 0}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          )}
         </table>
       </div>
     </section>

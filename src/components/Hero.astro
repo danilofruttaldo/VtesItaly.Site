@@ -27,6 +27,15 @@ const variants = {
   webp2x: src.replace(/\.webp$/, '-2x.webp'),
   avif1x: src.replace(/\.webp$/, '.avif'),
   avif2x: src.replace(/\.webp$/, '-2x.avif'),
+  // Mobile variants sized to the actual hero slot at small viewports
+  // (~800 px instead of the desktop 2560 px crop). Lighthouse's
+  // image-delivery audit on mobile flags ~80 KiB savings on the homepage
+  // hero alone when these are missing, so when they exist we serve them
+  // via a `(max-width: 760px)` media query.
+  webpMobile1x: src.replace(/\.webp$/, '-m.webp'),
+  webpMobile2x: src.replace(/\.webp$/, '-m-2x.webp'),
+  avifMobile1x: src.replace(/\.webp$/, '-m.avif'),
+  avifMobile2x: src.replace(/\.webp$/, '-m-2x.avif'),
 };
 const has = (relative: string) => existsSync(resolve('public', relative.replace(/^\//, '')));
 
@@ -36,9 +45,20 @@ const avifSrcset = has(variants.avif1x)
     ? `${variants.avif1x} 1x, ${variants.avif2x} 2x`
     : variants.avif1x
   : null;
+
+const webpMobileSrcset =
+  has(variants.webpMobile1x) && has(variants.webpMobile2x)
+    ? `${variants.webpMobile1x} 1x, ${variants.webpMobile2x} 2x`
+    : null;
+const avifMobileSrcset =
+  has(variants.avifMobile1x) && has(variants.avifMobile2x)
+    ? `${variants.avifMobile1x} 1x, ${variants.avifMobile2x} 2x`
+    : null;
 ---
 
 <picture>
+  {avifMobileSrcset && <source type="image/avif" media="(max-width: 760px)" srcset={avifMobileSrcset} />}
+  {webpMobileSrcset && <source type="image/webp" media="(max-width: 760px)" srcset={webpMobileSrcset} />}
   {avifSrcset && <source type="image/avif" srcset={avifSrcset} />}
   {webpSrcset && <source type="image/webp" srcset={webpSrcset} />}
   <img src={src} width={width} height={height} alt={alt} class="hero-banner" decoding="async" fetchpriority="high" />

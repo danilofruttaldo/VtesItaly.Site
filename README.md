@@ -17,7 +17,7 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 - **Vitest 3 + @vitest/coverage-v8** — unit, component, and integration tests
 - **Astro Container API** — render `.astro` components inside Vitest
 - **Lighthouse CI** — accessibility/perf/SEO gating on every push to `main`
-- **GitHub Actions** — single CI workflow: audit → lint → format → typecheck → tests → build → integration smoke → size guard → Lighthouse → deploy via tar-pipe over SSH
+- **GitHub Actions** — single CI workflow: audit → lint → format → typecheck → tests → coverage badge refresh → build → integration smoke → size guard → Lighthouse → deploy via tar-pipe over SSH
 
 ## Scripts
 
@@ -42,11 +42,21 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 
 `.github/workflows/deploy.yml` is a single workflow with three sequential jobs:
 
-1. **`ci`** — runs on every push to `main` and on PRs. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → `npm run test:coverage` (Vitest with v8 coverage gated at 80% lines/funcs/statements, 75% branches via `vitest.config.ts`) → `astro build` → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
-2. **`lighthouse`** — depends on `ci`. Downloads the `dist/` artifact and runs Lighthouse CI from `.github/lighthouserc.json` over 8 URLs (home IT/EN, principati, cartoline, comunita, current tour and nazionale editions, plus a long article). Accessibility ≥ 0.89, SEO ≥ 0.9, performance ≥ 0.75 are blocking errors; best-practices is a warning. Performance is the loosest gate because Lighthouse runs once per URL and single-run variance is ±0.05.
+1. **`ci`** — runs on every push to `main` and on PRs. `npm ci` → `npm audit --omit=dev` → ESLint → Prettier check → `astro check` → `npm run test:coverage` (Vitest with v8 coverage gated at 90% lines/statements, 95% functions, 85% branches via `vitest.config.ts`) → on `main` pushes refreshes `.github/coverage-badge.json` from the `json-summary` reporter and commits back with `[skip ci]` only when the value changes → `astro build` (runs `scripts/build-thumbnails.mjs` as `prebuild` to emit 240² thumbnails for community/prince images that PostCard/CityCard serve at ≤120 px) → integration smoke against the staged `dist/` → 80 MB size guard. Uploads `dist/` as an artifact for the next jobs to reuse.
+2. **`lighthouse`** — depends on `ci`. Downloads the `dist/` artifact and runs Lighthouse CI from `.github/lighthouserc.json` over 8 URLs (home IT/EN, principati, cartoline, comunita, current tour and nazionale editions, plus a long article). Accessibility ≥ 0.89, SEO ≥ 0.9, performance ≥ 0.75 are blocking errors; best-practices is a warning. The 0.75 performance gate landed after the November 2026 PostCard thumbnail + hero mobile-variant rollout dropped homepage LCP from ~3.6 s to ~3.0 s and CLS from 0.07 to 0 — bumping further would require critical-CSS inlining (Base.css + Calendar.css still block ~810 ms of render).
 3. **`deploy`** — depends on both `ci` and `lighthouse`, and only on push (not on PR). Downloads the same `dist/` artifact and tar-pipes it over SSH to the production VPS. The host fingerprint is pinned via the `SSH_KNOWN_HOSTS` environment secret — no runtime `ssh-keyscan` MITM window.
 
 Workflow-level `concurrency: deploy-vtesitaly-${{ github.ref }}` is per-ref so a Dependabot burst of PRs doesn't cancel each other in the queue; pushes to `main` collapse to a single group and the deploy job is the only thing that needs serialisation. `permissions: contents: read` scopes the default `GITHUB_TOKEN` to the minimum needed. Single workflow per push: one CI gate, one Lighthouse audit, one deploy — never duplicated.
+
+## Security
+
+Content-Security-Policy is set via a `<meta http-equiv>` in `src/layouts/Base.astro`. The policy is `default-src 'self'` with `'unsafe-inline'` carved out for scripts and styles (Astro injects inline scripts for view transitions, prefetch, and `define:vars` in several `is:inline` components) and `data:` allowed on `img-src` for inline SVG. External `<a href>` navigation to maps.google.com / archon.vekn.net / social media isn't restricted because CSP doesn't gate user-initiated navigation. `frame-ancestors` is intentionally absent — meta-tag CSP doesn't honour it, so clickjacking protection has to live in `.htaccess` on the VPS (out of repo, manually managed).
+
+Even with `'unsafe-inline'`, the policy still blocks the most common stored-XSS payload vectors: loading external scripts, fonts, images and stylesheets, and form submissions to attacker-controlled origins. Defence in depth alongside the `escapeHtml` discipline in `src/utils/i18n.ts` and the `set:html` audit (`set:html` is only used on trusted compile-time-validated frontmatter, never on user input).
+
+## Images
+
+PostCard, CityCard and prince avatars render at 80–120 px but the source posters in `public/images/comunita/` and `public/images/principi/` are 1024²+. `scripts/build-thumbnails.mjs` (run as `prebuild` and idempotent via mtime check) emits `<name>-thumb.webp` at 240² for each, and `src/utils/image.ts::thumbFor()` swaps the path at render time, falling back to the original when no thumbnail exists yet — so dev iteration on a freshly-added image doesn't 404. Hero banners have a mirror system: `src/components/Hero.astro` picks up `header-home-m.{avif,webp}` (800w) and `-m-2x` (1600w) via `<source media="(max-width: 760px)">` when present, so mobile gets a 12 KB AVIF instead of a 84 KB desktop crop.
 
 ## PWA & Service Worker
 
@@ -58,33 +68,35 @@ When CI publishes a new `sw.js`, the installed worker picks up the byte diff, pr
 
 Tests live in `tests/` and split into four families:
 
-- `tests/utils/**` — pure unit tests for `i18n`, `status`, `calendar`, `standings`, `anonymize` (58 tests). Setup file pins `process.env.TZ = 'UTC'` so tests are deterministic across local (Europe/Rome) and CI (UTC) machines.
-- `tests/schemas/**` — golden validation: every JSON in `src/data/standings/` is parsed against the dialect-aware Zod schema in `src/schemas/standings.ts` (23 tests). Catches typos in player names or malformed score rows at test time.
-- `tests/components/**` — Astro Container API renders the real `.astro` components against fixture posts pulled via `getCollection('blog')`. Covers `EventEdition`, `TourEdition`, `LeagueEdition`, `Calendar`, `SearchOverlay` (incl. a DOM-parser regression locking the excerpt parser away from `innerHTML` so entity-encoded payloads cannot escape).
-- `tests/integration/**` — post-build smoke against `dist/` (`vitest.integration.config.ts`): homepage, EN alternate with hreflang, sitemap, Pagefind, og:image, IT/EN slug remap, size budget. Run via `npm run test:build`.
+- `tests/utils/**` — pure unit tests for `i18n`, `status`, `calendar`, `standings`, `anonymize`, `today`, `url` (97 tests). Setup file pins `process.env.TZ = 'UTC'` so tests are deterministic across local (Europe/Rome) and CI (UTC) machines.
+- `tests/schemas/**` — every JSON in `src/data/standings/` is parsed against the dialect-aware Zod schema in `src/schemas/standings.ts`, and every post that declares `standingsUrl` must resolve to a file the runtime resolver can find (mirrors EventEdition/LeagueEdition/TourEdition's `includes()` match against the basename). Catches typos in player names, malformed score rows, and dangling references at test time.
+- `tests/components/**` — Astro Container API renders the real `.astro` components against fixture posts pulled via `getCollection('blog')`. Covers `EventEdition`, `TourEdition`, `LeagueEdition`, `Calendar`, `PostCard`, `SearchOverlay` (incl. a DOM-parser regression locking the excerpt parser away from `innerHTML` so entity-encoded payloads cannot escape).
+- `tests/integration/**` — post-build smoke against `dist/` (`vitest.integration.config.ts`): homepage, EN alternate with hreflang, sitemap shards covering both locales, Pagefind, og:image, IT/EN slug remap, size budget. Run via `npm run test:build`.
 
-Total: **102 unit/component tests** (in `npm run test:coverage` and `npm test`) + **8 integration tests** (in `npm run test:build`).
+Total: **149 unit/component/schema tests** (in `npm run test:coverage` and `npm test`) + integration tests in `npm run test:build`.
 
 ## Structure
 
 ```
 src/
-  components/      # 17 Astro components (Calendar, EventEdition, TourEdition, LeagueEdition, etc.)
-  content/blog/    # 62 blog posts in Markdown (IT + EN variants)
+  components/      # 20 Astro components (Calendar, EventEdition, TourEdition, LeagueEdition, PostCard, CityCard, Hero, etc.)
+  content/blog/    # 64 blog posts in Markdown (IT + EN variants)
   content.config.ts # Content collection schema — discriminated union on category
   data/            # Cities, categories, pages, twins, postcards, standings (TS/JSON)
   i18n/            # Translation files (it.json, en.json)
-  layouts/         # Base layout
-  pages/           # 21 pages — IT (default) + en/ for English
-  styles/          # Global CSS + page-specific stylesheets
-  utils/           # i18n, calendar, standings, status, URL utilities
+  layouts/         # Base layout (CSP meta lives here)
+  pages/           # 25 page files — IT (default) + en/ for English
+  styles/          # Global CSS + per-edition stylesheets (tour, league, event, calendar)
+  utils/           # i18n, calendar, standings, status, today, url, image (thumbFor)
 public/
   fonts/           # Self-hosted Manrope font
-  images/          # Headers, prince avatars, event images
+  images/          # Headers, prince avatars (+ -thumb.webp siblings), event images
   gp/              # Grand Prix assets (posters, galleries)
   nc/              # National Championship assets
   tour/            # Tour assets (stage images)
 ```
+
+`Calendar.astro`, `EventEdition.astro`, `LeagueEdition.astro` and `TourEdition.astro` keep their frontmatter, template and inline `<script>` in the `.astro` file but their stylesheets live in `src/styles/<edition>.css`. The split happened in November 2026 to drop each component below ~530 lines; the auto-scoping the original `<style>` block provided wasn't load-bearing because every selector was already prefixed (`.gp-`, `.le-`, `.te-`, `.cal__`).
 
 ## Pages
 

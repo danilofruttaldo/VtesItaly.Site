@@ -4,8 +4,8 @@ description: 'Creare un evento, gestire check-in, round, finali e report sulla p
 categoria: organizzare
 audience: [principe]
 ordine: 10
-versione: '0.4'
-aggiornato: 2026-05-14
+versione: '0.5'
+aggiornato: 2026-05-18
 correlate: [archon-giocatori, archon-judge]
 locale: it
 ---
@@ -17,21 +17,25 @@ Per creare tornei sanzionati _Constructed_ devi essere **Prince VEKN**. I non-Pr
 > [!IMPORTANT]
 > **Archon è il futuro, ma non ci siamo ancora del tutto.** Il _BCP Organized Play Coordinator_ ha detto che il vecchio calendario eventi su `vekn.net` verrà progressivamente dismesso e che Archon va usato il più possibile. Però, fino a quando la sincronizzazione _archon → vekn.net_ non sarà stabile, gli eventi vanno **creati su `vekn.net`** e poi gestiti da Archon. Vedi [Bug noti](#7-bug-noti-e-workaround) per i casi documentati.
 
+> [!NOTE]
+> **Registrazione vs iscrizione.** In questa guida (e nella [guida giocatori](/guide/archon-giocatori/)) usiamo i due termini con il significato gergale della comunità: **registrazione** = creazione dell'account Archon/VEKN (registrarsi al sito); **iscrizione** = unirsi a uno specifico torneo (pulsante _Register_ nella pagina dell'evento).
+
 ## 1. Stati del torneo
 
 Su Archon ogni torneo passa per questi stati:
 
-| Stato            | Cosa succede                                                   |
-| ---------------- | -------------------------------------------------------------- |
-| **PLANNED**      | Stato iniziale. Solo i giudici possono registrare giocatori.   |
-| **REGISTRATION** | Registrazione self-service aperta ai giocatori.                |
-| **WAITING**      | Check-in aperto. Gli iscritti possono ancora auto-registrarsi. |
-| **PLAYING**      | Round in corso.                                                |
-| **FINALS**       | Finale in corso.                                               |
-| **FINISHED**     | Torneo chiuso, vincitore calcolato automaticamente.            |
+| Stato            | Cosa succede                                                                                         |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| **PLANNED**      | Stato iniziale. Solo l'organizzatore può iscrivere giocatori.                                        |
+| **REGISTRATION** | Iscrizione self-service aperta ai giocatori.                                                         |
+| **WAITING**      | Check-in aperto. Gli iscritti possono ancora auto-iscriversi, ma la decklist non è più modificabile. |
+| **PLAYING**      | Round in corso.                                                                                      |
+| **FINALS**       | Finale in corso.                                                                                     |
+| **FINISHED**     | Torneo chiuso, vincitore calcolato automaticamente.                                                  |
 
 Cambi di stato utili da ricordare:
 
+- `PLANNED → REGISTRATION` con **Open Registration** (apre le iscrizioni self-service ai giocatori).
 - `WAITING → REGISTRATION` con **Cancel Check-in** (per permettere modifiche alle decklist).
 - `PLAYING → REGISTRATION` dopo **Finish Round** (per gestire drop e iscrizioni dell'ultimo minuto prima del round successivo).
 
@@ -83,7 +87,7 @@ Comandi globali:
 
 - <span class="archon-pill archon-pill--primary">Check everyone in</span>: fa check-in di tutti gli iscritti in un colpo solo.
 - <span class="archon-pill archon-pill--grey">Cancel Check-in</span>: chiude il check-in (torna a stato `REGISTRATION`). Necessario per consentire modifiche alle decklist; dopo le modifiche riapri il check-in.
-- <span class="archon-pill archon-pill--primary">Register / New Member</span>: registra last-minute un giocatore (richiede VEKN ID, o ne crea uno nuovo).
+- <span class="archon-pill archon-pill--primary">Register / New Member</span>: iscrive last-minute un giocatore (richiede VEKN ID; in alternativa crea un nuovo account VEKN).
 - <span class="archon-pill archon-pill--green">Start Round</span>: avvia il round, genera tavoli e seating.
 
 ### Tab Round — gestione del round
@@ -104,7 +108,7 @@ Nei tornei medi/grandi l'override lo emette il **giudice**. Nei tornei piccoli d
 Dopo _Finish Round_ si torna a `REGISTRATION`: droppa chi abbandona, riapri il check-in e ripeti il ciclo fino alla fine dei round.
 
 > [!TIP]
-> **No-show automatico**: dalla v0.51 i giocatori registrati ma non presenti al check-in vengono droppati automaticamente. Non serve passarli a mano uno per uno.
+> **No-show automatico**: dalla v0.51 i giocatori iscritti ma non presenti al check-in vengono droppati automaticamente. Non serve passarli a mano uno per uno.
 
 ### Modalità offline
 
@@ -202,7 +206,7 @@ Gli aspetti operativi non-Archon (Discord per registrazioni e voce, Lackey CCG p
 
 **Finalisti non vedono i risultati post-chiusura.** I finalisti, una volta che il torneo è in stato `FINISHED`, non sempre vedono i risultati della finale dalla loro vista. _Workaround_: condividi manualmente il link `display.html` del torneo.
 
-**Conteggio "registered" include i drop.** Chi si pre-registra e poi droppa resta visibile nel conteggio "registered" del torneo. _Mitigazione_: nei comunicati pre-evento, riferisci il conteggio reale (registered − drop) per evitare aspettative sbagliate.
+**Conteggio "registered" include i drop.** Chi si pre-iscrive e poi droppa resta visibile nel conteggio "registered" del torneo. _Mitigazione_: nei comunicati pre-evento, riferisci il conteggio reale (registered − drop) per evitare aspettative sbagliate.
 
 **Decklist visibili al Principe-giocatore.** Nei tornei piccoli il Principe può essere anche giocatore: in quel caso vede le decklist degli avversari. _Mitigazione etica_: fai controllare le liste a un giudice non giocante (o a un Principe ospite) e annota nel report finale chi le ha verificate.
 

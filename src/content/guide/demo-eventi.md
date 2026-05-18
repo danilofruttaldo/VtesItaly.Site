@@ -4,8 +4,8 @@ description: 'Allestire e condurre una demo a un evento: tavolo, mani preparate,
 categoria: organizzare
 audience: [principe]
 ordine: 30
-versione: '0.1'
-aggiornato: 2026-05-14
+versione: '0.2'
+aggiornato: 2026-05-18
 correlate: [archon-principi, archon-giocatori]
 locale: it
 ---
@@ -191,7 +191,7 @@ Da qui la partita può proseguire liberamente — per esempio il Nosferatu si eq
 - Racconta la comunità più vicina: chi gioca, dove, quando.
 - Lascia il riferimento a **vtesitaly.com**, eventualmente con materiale informativo.
 - Per chi mostra interesse concreto, prendi un contatto e invitalo al prossimo [evento locale](/comunita/).
-- Se l'evento è una **Demo sanzionata Archon**, ricordati di registrarla a posteriori (serve essere Prince o avere il supporto di un Prince): vedi [Archon Online per Principi](/guide/archon-principi/).
+- Se l'evento è una **Demo sanzionata Archon**, ricordati di crearlo su Archon a posteriori (serve essere Prince o avere il supporto di un Prince): vedi [Archon Online per Principi](/guide/archon-principi/).
 - Restituisci i mazzi First Blood ordinati — la prossima persona che fa una demo te ne sarà grata.
 
 ## Materiale e link utili
@@ -224,4 +224,4 @@ Da qui la partita può proseguire liberamente — per esempio il Nosferatu si eq
 
 - [VEKN Rulebook](https://www.vekn.net/rulebook) — regolamento di gioco ufficiale.
 - [VEKN Tournament Rules](https://www.vekn.net/tournament-rules) — utile se la demo si trasforma in eventi sanzionati.
-- [Archon Online per Principi](/guide/archon-principi/) — per registrare la demo come evento sanzionato.
+- [Archon Online per Principi](/guide/archon-principi/) — per creare la demo come evento sanzionato su Archon.

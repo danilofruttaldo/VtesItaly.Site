@@ -4,8 +4,8 @@ description: 'Create an event, manage check-in, rounds, finals and reports on th
 categoria: organizzare
 audience: [principe]
 ordine: 10
-versione: '0.4'
-aggiornato: 2026-05-14
+versione: '0.5'
+aggiornato: 2026-05-18
 correlate: [archon-giocatori-en, archon-judge-en]
 locale: en
 ---
@@ -21,17 +21,18 @@ To create sanctioned _Constructed_ tournaments you must be a **VEKN Prince**. No
 
 On Archon every tournament moves through these states:
 
-| State            | What happens                                               |
-| ---------------- | ---------------------------------------------------------- |
-| **PLANNED**      | Initial state. Only judges can register players.           |
-| **REGISTRATION** | Self-service registration open to players.                 |
-| **WAITING**      | Check-in open. Registered players can still self-register. |
-| **PLAYING**      | Round in progress.                                         |
-| **FINALS**       | Final in progress.                                         |
-| **FINISHED**     | Tournament closed, winner computed automatically.          |
+| State            | What happens                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------ |
+| **PLANNED**      | Initial state. Only the organizer can register players.                                          |
+| **REGISTRATION** | Self-service registration open to players.                                                       |
+| **WAITING**      | Check-in open. Registered players can still self-register, but decklists are no longer editable. |
+| **PLAYING**      | Round in progress.                                                                               |
+| **FINALS**       | Final in progress.                                                                               |
+| **FINISHED**     | Tournament closed, winner computed automatically.                                                |
 
 Useful state changes to remember:
 
+- `PLANNED → REGISTRATION` via **Open Registration** (opens self-service signups to players).
 - `WAITING → REGISTRATION` via **Cancel Check-in** (to allow decklist edits).
 - `PLAYING → REGISTRATION` after **Finish Round** (to handle drops and last-minute signups before the next round).
 

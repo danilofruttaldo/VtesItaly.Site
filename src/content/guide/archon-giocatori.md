@@ -4,8 +4,8 @@ description: 'Registrarsi, iscriversi a un torneo e caricare la decklist sulla p
 categoria: piattaforme
 audience: [giocatore]
 ordine: 10
-versione: '0.3'
-aggiornato: 2026-05-13
+versione: '0.4'
+aggiornato: 2026-05-18
 correlate: [archon-principi, archon-judge]
 locale: it
 ---
@@ -43,7 +43,7 @@ Dal pulsante <span class="archon-pill archon-pill--primary">Decklist</span> si c
 - **URL**: incolla il link da uno dei deck builder supportati.
 - **Scan**: scansione tramite fotocamera del QR code generato dal deck builder.
 
-### Tipologie di decklist supportate
+### Tipologie di deckbuilder supportati
 
 Archon accetta URL da tutti i principali deck builder VTES, oltre al testo libero:
 
@@ -76,12 +76,11 @@ Archon distingue due tipi di assenza con eventi distinti:
 
 ## 5. Risultati di tavolo e autorità del giudice
 
-I VP del tuo tavolo a fine partita vengono inseriti su Archon dall'organizzatore o dal giudice (in alcuni tornei è il capo-tavolo a comunicarli; in altri li inseriscono i giocatori stessi e l'organizzatore conferma).
+I VP del tuo tavolo a fine partita li inseriscono i giocatori stessi su Archon. In casi particolari possono essere inseriti o confermati dall'organizzatore o dal giudice.
 
 > [!IMPORTANT]
 > **I risultati confermati da un giudice fanno fede.** Una volta che un giudice ha impostato o validato il punteggio del tuo tavolo, **non puoi modificarlo dalla tua vista**. Se noti un errore segnalalo subito — a voce o nella chat dell'evento — **prima del _Finish Round_**: dopo la chiusura del round, per correggerlo serve un _Override_ del giudice.
 
 ## Riferimenti
 
-- Repository ufficiale Archon Online: [github.com/vtes-biased/archon](https://github.com/vtes-biased/archon)
-- Per segnalare bug o suggerimenti sulla UI, usare il pulsante **Report Issue** in alto a destra in ogni pagina di archon.vekn.net (serve un account GitHub gratuito).
+- Segnalare bug o suggerimenti: [github.com/vtes-biased/archon/issues](https://github.com/vtes-biased/archon/issues), o dal pulsante **Report Issue** in alto a destra in ogni pagina di archon.vekn.net (serve account GitHub).

@@ -4,8 +4,8 @@ description: 'Verify decklists, apply sanctions and intervene during rounds from
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '0.5'
-aggiornato: 2026-05-14
+versione: '0.6'
+aggiornato: 2026-05-18
 correlate: [archon-giocatori-en, archon-principi-en]
 locale: en
 ---

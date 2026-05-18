@@ -4,8 +4,8 @@ description: 'Verificare le decklist, applicare sanzioni e intervenire durante i
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '0.5'
-aggiornato: 2026-05-14
+versione: '0.6'
+aggiornato: 2026-05-18
 correlate: [archon-giocatori, archon-principi]
 locale: it
 ---
@@ -114,7 +114,7 @@ Sul _Tournament Manager_ il Giudice ha accesso a tutto ciò che riguarda **gioca
 
 Come **Giudice**, dai tab _Registration_, _Round_ e dalle schede giocatore puoi:
 
-- **Registrare giocatori**: aprire/chiudere la registrazione, iscrivere un giocatore esistente o crearne uno nuovo (con generazione VEKN ID al volo).
+- **Iscrivere giocatori al torneo**: aprire/chiudere le iscrizioni, aggiungere un giocatore VEKN esistente o registrarne uno nuovo (con generazione VEKN ID al volo).
 - **Gestire il check-in**: aprire/annullare il check-in, fare check-in di un singolo giocatore o di tutti in blocco, fare check-out (assenza temporanea) o drop (uscita dal torneo).
 - **Modificare lo seating pre-round** con `Alter Seating` quando il Principe ti chiede di correggere un accoppiamento prima dell'avvio.
 - **Applicare e rimuovere sanzioni** dalla scheda <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** del giocatore (vedi [Sanzioni](#3-sanzioni)).

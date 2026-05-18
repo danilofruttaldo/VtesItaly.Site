@@ -4,8 +4,8 @@ description: 'Run a demo at an event: table setup, prepared hands, guided sequen
 categoria: organizzare
 audience: [principe]
 ordine: 30
-versione: '0.1'
-aggiornato: 2026-05-14
+versione: '0.2'
+aggiornato: 2026-05-18
 correlate: [archon-principi-en, archon-giocatori-en]
 locale: en
 ---
@@ -191,7 +191,7 @@ From here the game can carry on freely — the Nosferatu might equip the <span c
 - Talk about the nearest community: who plays, where, when.
 - Leave a reference to **vtesitaly.com**, optionally with some informational material.
 - If someone shows real interest, take a contact and invite them to the next [local event](/en/comunita/).
-- If the event is a **sanctioned Archon Demo**, remember to register it afterwards (you need to be a Prince or to have a Prince's support): see [Archon Online for Princes](/en/guides/archon-principi/).
+- If the event is a **sanctioned Archon Demo**, remember to create it on Archon afterwards (you need to be a Prince or to have a Prince's support): see [Archon Online for Princes](/en/guides/archon-principi/).
 - Return the First Blood decks in order — the next person running a demo will thank you.
 
 ## Useful materials and links
@@ -224,4 +224,4 @@ From here the game can carry on freely — the Nosferatu might equip the <span c
 
 - [VEKN Rulebook](https://www.vekn.net/rulebook) — official game rulebook.
 - [VEKN Tournament Rules](https://www.vekn.net/tournament-rules) — useful if the demo turns into sanctioned events.
-- [Archon Online for Princes](/en/guides/archon-principi/) — to register the demo as a sanctioned event.
+- [Archon Online for Princes](/en/guides/archon-principi/) — to create the demo as a sanctioned event on Archon.

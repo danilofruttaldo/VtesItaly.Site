@@ -1,5 +1,14 @@
 import type { CollectionEntry } from 'astro:content';
 import { computeStageDisplayImages } from './status';
+import type { Locale } from './i18n';
+
+/** Build the canonical post URL in the active locale. Centralises the slug
+ *  rewrite so calendar timelines, city pages, and search results agree on
+ *  what `/comunita/foo/` vs `/en/community/foo/` resolves to. */
+export function postUrl(post: { id: string; data: { category: string } }, locale: Locale): string {
+  if (locale === 'en') return getEnPostUrl(post);
+  return `/${post.data.category}/${post.id}/`;
+}
 
 /** Builds the EN URL for a blog post, applying slug cleanup and category translation. */
 export function getEnPostUrl(post: { id: string; data: { category: string } }): string {

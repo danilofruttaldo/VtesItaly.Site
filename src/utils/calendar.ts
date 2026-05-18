@@ -1,7 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './i18n';
-import { localePrefix, useTranslations } from './i18n';
+import { useTranslations } from './i18n';
 import { computeStageDisplayImages } from './status';
+import { postUrl } from './url';
 import localEventsData from '../data/local-events.json';
 
 export interface LocalEvent {
@@ -34,26 +35,6 @@ export interface CalendarEvent {
   image?: string; // featured image or poster URL
   archonUrl?: string; // Archon or BCN Crisis link
   tags?: string[]; // post tags for sub-category coloring
-}
-
-/** Build the page URL for a post in a given locale */
-function postUrl(post: CollectionEntry<'blog'>, locale: Locale): string {
-  const prefix = localePrefix(locale);
-  const id = post.id;
-
-  if (locale === 'en') {
-    const cleanSlug = id.replace(/-en$/, '');
-    const cat = post.data.category;
-    if (cat === 'nazionale') {
-      return `${prefix}/national-championship/${cleanSlug.replace('nazionale-', 'nc-')}/`;
-    }
-    if (cat === 'comunita') {
-      return `${prefix}/community/${cleanSlug}/`;
-    }
-    return `${prefix}/${cat}/${cleanSlug}/`;
-  }
-
-  return `/${post.data.category}/${id}/`;
 }
 
 /** Format a Date to YYYY-MM-DD */

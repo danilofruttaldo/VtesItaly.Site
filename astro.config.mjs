@@ -7,7 +7,12 @@ export default defineConfig({
   integrations: [sitemap()],
   prefetch: {
     prefetchAll: false,
-    defaultStrategy: 'hover',
+    // `tap` covers both desktops (mousedown ~ 50ms head start) and mobiles
+    // (touchstart fires before the click event), so touch users get a small
+    // prefetch window where `hover` would give them nothing at all. We avoid
+    // `viewport` because the community/event pages stack many cards above
+    // the fold — viewport-prefetching them all on scroll burns mobile data.
+    defaultStrategy: 'tap',
   },
   image: {
     service: process.env.NODE_ENV !== 'production' ? passthroughImageService() : undefined,

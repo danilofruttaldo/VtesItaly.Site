@@ -38,6 +38,17 @@ describe('build output: dist/', () => {
     expect(xml).toContain('<sitemapindex');
   });
 
+  it('sitemap covers both IT and EN routes', () => {
+    // @astrojs/sitemap fans out to sitemap-*.xml shards. Walk dist/ for any
+    // sitemap-*.xml and assert each canonical locale shows up somewhere —
+    // catches a regression where i18n routes silently get excluded.
+    const shards = readdirSync(DIST).filter((f) => /^sitemap-\d+\.xml$/.test(f));
+    expect(shards.length, 'expected at least one sitemap-N.xml shard').toBeGreaterThan(0);
+    const allXml = shards.map((s) => read(s)).join('\n');
+    expect(allXml, 'sitemap is missing the IT root').toMatch(/<loc>https:\/\/vtesitaly\.com\/<\/loc>/);
+    expect(allXml, 'sitemap is missing the EN root').toMatch(/<loc>https:\/\/vtesitaly\.com\/en\/<\/loc>/);
+  });
+
   // Pagefind ships per-platform binaries; Windows ARM64 has no release yet,
   // so the local build skips this step. CI (Ubuntu x64) always runs it.
   const pagefindRan = existsSync(join(DIST, 'pagefind', 'pagefind.js'));

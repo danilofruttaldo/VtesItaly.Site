@@ -3,8 +3,8 @@ title: "Concilio di Pergine – All'ombra del Castello (2nd Edition)"
 date: 2026-06-13
 category: 'comunita'
 tags: ['trento', 'torneo']
-featuredImage: '/images/comunita/trento/concilio-di-pergine-2026.jpeg'
-poster: '/images/comunita/trento/concilio-di-pergine-2026.jpeg'
+featuredImage: '/images/comunita/trento/concilio-di-pergine-2026.webp'
+poster: '/images/comunita/trento/concilio-di-pergine-2026.webp'
 excerpt: "All'ombra del Castello 2nd Edition – Kindred vs Garou. Tappa di Pergine Valsugana (TN) sabato 13 giugno 2026 nell'ambito di Pergine Comics."
 venue:
   name: 'Pergine Comics'

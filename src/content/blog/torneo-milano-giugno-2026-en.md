@@ -3,8 +3,8 @@ title: 'Milano Awakening'
 date: 2026-06-27
 category: 'comunita'
 tags: ['milano', 'torneo']
-featuredImage: '/images/comunita/milano/milano-awakening.jpeg'
-poster: '/images/comunita/milano/milano-awakening.jpeg'
+featuredImage: '/images/comunita/milano/milano-awakening.webp'
+poster: '/images/comunita/milano/milano-awakening.webp'
 excerpt: 'Milano Awakening: VTES tournament on Saturday, June 27, 2026 at UESM Casa dei Giochi. Standard, 2 rounds + final, 10€ entry.'
 venue:
   name: 'UESM – Casa dei Giochi'

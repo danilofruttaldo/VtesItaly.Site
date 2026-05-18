@@ -113,42 +113,58 @@ const allEvents = extractCalendarEvents(posts, locale);
   // ~270 lines into every page that uses <Calendar />. The HTML payload drops
   // by the same amount without changing visual behavior (the calendar body is
   // still built from JS on load, never SSG'd).
+  type CalEvent = {
+    date: string;
+    endDate?: string;
+    time?: string;
+    title: string;
+    category: string;
+    location?: string;
+    venue?: string;
+    image?: string;
+    description?: string;
+    format?: string;
+    archonUrl?: string;
+    url?: string;
+    tags?: string[];
+  };
+
   (function () {
     var cal = document.querySelector('.cal');
     if (!cal) return;
 
-    var monthNames = JSON.parse(cal.getAttribute('data-months-json') || '[]');
+    var monthNames: string[] = JSON.parse(cal.getAttribute('data-months-json') || '[]');
     var addGoogle = cal.getAttribute('data-add-google') || '';
     var readCta = cal.getAttribute('data-read-cta') || '';
     var closeLabel = cal.getAttribute('data-close-label') || 'Close';
-    var catLabels = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
+    var catLabels: Record<string, string> = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
     var tbdLabel = cal.getAttribute('data-tbd') || 'TBD';
 
-    var events = JSON.parse(cal.getAttribute('data-server-events') || '[]');
+    var events: CalEvent[] = JSON.parse(cal.getAttribute('data-server-events') || '[]');
     var now = new Date();
     var displayYear = now.getFullYear();
     var displayMonth = now.getMonth();
 
-    var body = document.getElementById('cal-body');
-    var titleEl = cal.querySelector('.cal__month-title');
-    var popup = document.getElementById('cal-popup');
-    var popupInner = document.getElementById('cal-popup-inner');
-    var focusTrapHandler = null;
+    var body = document.getElementById('cal-body')!;
+    var titleEl = cal.querySelector('.cal__month-title')!;
+    var popup = document.getElementById('cal-popup')!;
+    var popupInner = document.getElementById('cal-popup-inner')!;
+    var focusTrapHandler: ((e: KeyboardEvent) => void) | null = null;
 
-    function esc(s) {
+    function esc(s: string | null | undefined): string {
       var d = document.createElement('div');
       d.appendChild(document.createTextNode(s || ''));
       return d.innerHTML;
     }
 
-    function eventsForDay(y, m, d) {
+    function eventsForDay(y: number, m: number, d: number): CalEvent[] {
       var k = y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
       return events.filter(function (e) {
         return e.date === k;
       });
     }
 
-    function googleUrl(ev) {
+    function googleUrl(ev: CalEvent) {
       var d = ev.date.replace(/-/g, '');
       var endStr = ev.endDate || ev.date;
       var parts = endStr.split('-');
@@ -169,7 +185,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       popupInner.innerHTML = '';
     }
 
-    function showPopup(ev) {
+    function showPopup(ev: CalEvent) {
       var ts = ev.time || '';
 
       var h = '';
@@ -249,14 +265,14 @@ const allEvents = extractCalendarEvents(posts, locale);
       popupInner.innerHTML = h;
       popup.hidden = false;
 
-      var closeBtn = popupInner.querySelector('.cal__popup-close');
+      var closeBtn = popupInner.querySelector('.cal__popup-close') as HTMLElement;
       closeBtn.addEventListener('click', closePopup);
       closeBtn.focus();
 
       // Focus trap inside popup
-      focusTrapHandler = function (e) {
+      focusTrapHandler = function (e: KeyboardEvent) {
         if (e.key !== 'Tab') return;
-        var focusable = popupInner.querySelectorAll('a, button, [tabindex]');
+        var focusable = popupInner.querySelectorAll<HTMLElement>('a, button, [tabindex]');
         if (focusable.length === 0) return;
         var first = focusable[0],
           last = focusable[focusable.length - 1];
@@ -279,7 +295,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       if (e.key === 'Escape' && !popup.hidden) closePopup();
     });
 
-    function eventColor(ev) {
+    function eventColor(ev: CalEvent) {
       if (ev.category === 'grand-prix') return '#CE2B37';
       if (ev.category === 'tour') return '#009246';
       if (ev.category === 'nazionale') return '#F0E6D3';
@@ -313,18 +329,17 @@ const allEvents = extractCalendarEvents(posts, locale);
       for (var d = 1; d <= daysInMonth; d++) {
         var dayEvts = eventsForDay(displayYear, displayMonth, d);
         var isToday = isCurrentMonth && d === todayDate;
-        var hasEvt = dayEvts.length > 0;
-        var ev = hasEvt ? dayEvts[0] : null;
+        var ev: CalEvent | null = dayEvts.length > 0 ? dayEvts[0] : null;
 
         var cls = 'cal__cell';
         if (isToday) cls += ' cal__cell--today';
-        if (hasEvt) cls += ' cal__cell--event';
+        if (ev) cls += ' cal__cell--event';
 
         html +=
           '<div class="' +
           cls +
           '" role="gridcell"' +
-          (hasEvt
+          (ev
             ? ' data-day="' +
               d +
               '" data-cat="' +
@@ -336,7 +351,7 @@ const allEvents = extractCalendarEvents(posts, locale);
           '>';
 
         // Background image (desktop only via CSS)
-        if (hasEvt && ev.image) {
+        if (ev && ev.image) {
           html += '<div class="cal__cell-bg" role="presentation" style="background-image:url(' + esc(ev.image) + ')">';
           html += '<div class="cal__cell-overlay"></div>';
           html += '</div>';
@@ -344,7 +359,7 @@ const allEvents = extractCalendarEvents(posts, locale);
 
         html += '<span class="cal__cell-day">' + d + '</span>';
 
-        if (hasEvt) {
+        if (ev) {
           // Dot indicator (visible on mobile)
           html += '<span class="cal__cell-dot" style="background:' + eventColor(ev) + '"></span>';
           // Text label (hidden on mobile)
@@ -366,7 +381,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       body.innerHTML = html;
     }
 
-    cal.querySelector('.cal__prev').addEventListener('click', function () {
+    cal.querySelector('.cal__prev')!.addEventListener('click', function () {
       displayMonth--;
       if (displayMonth < 0) {
         displayMonth = 11;
@@ -374,7 +389,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       }
       render();
     });
-    cal.querySelector('.cal__next').addEventListener('click', function () {
+    cal.querySelector('.cal__next')!.addEventListener('click', function () {
       displayMonth++;
       if (displayMonth > 11) {
         displayMonth = 0;
@@ -382,7 +397,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       }
       render();
     });
-    cal.querySelector('.cal__today-btn').addEventListener('click', function () {
+    cal.querySelector('.cal__today-btn')!.addEventListener('click', function () {
       var n = new Date();
       displayYear = n.getFullYear();
       displayMonth = n.getMonth();
@@ -390,13 +405,13 @@ const allEvents = extractCalendarEvents(posts, locale);
     });
 
     // Month/Year picker
-    var picker = document.getElementById('cal-picker');
-    var pickerYear = document.getElementById('cal-picker-year');
-    var pickerMonths = document.getElementById('cal-picker-months');
+    var picker = document.getElementById('cal-picker')!;
+    var pickerYear = document.getElementById('cal-picker-year')!;
+    var pickerMonths = document.getElementById('cal-picker-months')!;
     var pickerYearVal = displayYear;
 
     function renderPicker() {
-      pickerYear.textContent = pickerYearVal;
+      pickerYear.textContent = String(pickerYearVal);
       var html = '';
       for (var m = 0; m < 12; m++) {
         var active = m === displayMonth && pickerYearVal === displayYear;
@@ -410,10 +425,10 @@ const allEvents = extractCalendarEvents(posts, locale);
           '</button>';
       }
       pickerMonths.innerHTML = html;
-      var btns = pickerMonths.querySelectorAll('.cal__picker-month');
+      var btns = pickerMonths.querySelectorAll<HTMLElement>('.cal__picker-month');
       for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener('click', function () {
-          displayMonth = parseInt(this.getAttribute('data-month'));
+        btns[i].addEventListener('click', function (this: HTMLElement) {
+          displayMonth = parseInt(this.getAttribute('data-month') || '0');
           displayYear = pickerYearVal;
           closePicker();
           render();
@@ -438,13 +453,13 @@ const allEvents = extractCalendarEvents(posts, locale);
       else closePicker();
     });
 
-    document.getElementById('cal-picker-close').addEventListener('click', closePicker);
+    document.getElementById('cal-picker-close')!.addEventListener('click', closePicker);
 
-    document.getElementById('cal-picker-prev-year').addEventListener('click', function () {
+    document.getElementById('cal-picker-prev-year')!.addEventListener('click', function () {
       pickerYearVal--;
       renderPicker();
     });
-    document.getElementById('cal-picker-next-year').addEventListener('click', function () {
+    document.getElementById('cal-picker-next-year')!.addEventListener('click', function () {
       pickerYearVal++;
       renderPicker();
     });
@@ -459,18 +474,20 @@ const allEvents = extractCalendarEvents(posts, locale);
       if (e.key === 'Escape' && !picker.hidden) closePicker();
     });
 
-    function openCell(cell) {
-      var day = parseInt(cell.getAttribute('data-day'));
+    function openCell(cell: Element) {
+      var day = parseInt(cell.getAttribute('data-day') || '0');
       var dayEvts = eventsForDay(displayYear, displayMonth, day);
       if (dayEvts.length > 0) showPopup(dayEvts[0]);
     }
     body.addEventListener('click', function (e) {
-      var cell = e.target.closest('.cal__cell--event');
+      var target = e.target as HTMLElement | null;
+      var cell = target?.closest('.cal__cell--event');
       if (cell) openCell(cell);
     });
     body.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
-        var cell = e.target.closest('.cal__cell--event');
+        var target = e.target as HTMLElement | null;
+        var cell = target?.closest('.cal__cell--event');
         if (cell) {
           e.preventDefault();
           openCell(cell);

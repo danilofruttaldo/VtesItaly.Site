@@ -14,14 +14,14 @@ const t = useTranslations('it');
 
 const posts = filterByLocale(await getCollection('blog'), 'it');
 const today = todayLocalIso();
-// Emit the full timeline so the runtime in Base.astro can re-pick the 5-card
-// window against the user's real "today" — the build-time window only acts as
-// a no-JS / SEO fallback and goes stale on cached HTML between deploys.
+// The visible 5-card window is computed at build time; the rest of the
+// timeline ships inside a <template data-timeline-overflow> below so it stays
+// parsed but doesn't render and doesn't count toward Lighthouse's DOM budget.
+// The runtime in Base.astro swaps cards between the visible window and the
+// template when the user's real "today" moves the pivot past the build date.
 const fullTimeline = getCommunityTimeline(posts, 'it');
 const buildWindow = pickTimelineWindow(fullTimeline, today);
 const buildWindowSet = new Set(buildWindow.entries);
-const buildPivot = buildWindow.highlightIndex >= 0 ? buildWindow.entries[buildWindow.highlightIndex] : null;
-const buildFirstVisible = buildWindow.entries[0];
 ---
 
 <Base title={page.title.it} description={page.description.it} ogImage={page.ogImage}>
@@ -52,7 +52,10 @@ const buildFirstVisible = buildWindow.entries[0];
       <p class="section-subtitle">{t.home.latest_subtitle}</p>
       <div class="post-list" data-temporal-window>
         {
-          fullTimeline.map((entry) => (
+          /* Visible: only the build-time window in visual order. The runtime in
+            Base.astro will swap these out (against the inert overflow below) if
+            the user's real "today" has moved the pivot since the last deploy. */
+          buildWindow.entries.map((entry, i) => (
             <PostCard
               href={entry.url || '#'}
               title={entry.title}
@@ -63,13 +66,39 @@ const buildFirstVisible = buildWindow.entries[0];
               tags={entry.tags}
               excerpt={entry.excerpt}
               locale="it"
-              highlight={entry === buildPivot}
+              highlight={i === buildWindow.highlightIndex}
               highlightLabel={t.home.next_event_label}
-              eager={entry === buildFirstVisible}
-              hidden={!buildWindowSet.has(entry)}
+              eager={i === 0}
             />
           ))
         }
+        {
+          /* Overflow inside a <template> stays parsed but doesn't render and
+            doesn't count toward Lighthouse's DOM size budget. Holds the rest
+            of the timeline in chronological order; the runtime hydrates from
+            here when the real-today pivot falls outside the visible window. */
+        }
+        <template data-timeline-overflow>
+          {
+            fullTimeline
+              .filter((entry) => !buildWindowSet.has(entry))
+              .map((entry) => (
+                <PostCard
+                  href={entry.url || '#'}
+                  title={entry.title}
+                  image={entry.image}
+                  imageAnchor={entry.imageAnchor}
+                  date={new Date(entry.date)}
+                  category={entry.category}
+                  tags={entry.tags}
+                  excerpt={entry.excerpt}
+                  locale="it"
+                  highlight={false}
+                  highlightLabel={t.home.next_event_label}
+                />
+              ))
+          }
+        </template>
       </div>
       <div class="section-cta">
         <a href="/comunita/" class="btn">{t.home.all_articles} &rarr;</a>

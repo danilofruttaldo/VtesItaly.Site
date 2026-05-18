@@ -270,52 +270,74 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
           }
         });
 
-        // Timeline window: pick 5 cards centered on real-today pivot.
-        // Cards inside [data-temporal-window] are pre-sorted ascending by date.
-        // Resets any build-time hidden/highlight markers, then re-picks + reorders.
+        // Timeline window: pick 5 cards centered on real-today pivot, shipping
+        // the rest of the timeline inside a <template data-timeline-overflow>
+        // so they're parsed but inert (don't count toward Lighthouse DOM size
+        // and don't trigger <img> loads). Cards move between container and
+        // template as the pivot shifts away from the build-time window.
         document.querySelectorAll('[data-temporal-window]').forEach(function (container) {
-          var allCards = Array.prototype.slice.call(container.querySelectorAll('.post-card[data-date]'));
-          if (allCards.length === 0) return;
-          allCards.forEach(function (c) {
-            c.hidden = false;
+          var template = container.querySelector('template[data-timeline-overflow]');
+          var visible = Array.prototype.slice.call(container.querySelectorAll(':scope > .post-card[data-date]'));
+          var overflow = template
+            ? Array.prototype.slice.call(template.content.querySelectorAll('.post-card[data-date]'))
+            : [];
+          var all = visible.concat(overflow);
+          if (all.length === 0) return;
+          all.sort(function (a, b) {
+            var da = a.getAttribute('data-date') || '';
+            var db = b.getAttribute('data-date') || '';
+            return da < db ? -1 : da > db ? 1 : 0;
+          });
+
+          // Reset highlight markers on every card (visible + overflow)
+          all.forEach(function (c) {
             c.classList.remove('post-card--highlight');
             var b = c.querySelector('.post-card__highlight-badge');
             if (b) b.hidden = true;
           });
+
           var pivot = -1;
-          for (var i = 0; i < allCards.length; i++) {
-            if ((allCards[i].getAttribute('data-date') || '') >= todayISO) {
+          for (var i = 0; i < all.length; i++) {
+            if ((all[i].getAttribute('data-date') || '') >= todayISO) {
               pivot = i;
               break;
             }
           }
           var chosen;
           if (pivot === -1) {
-            chosen = allCards.slice(-5).reverse();
+            chosen = all.slice(-5).reverse();
           } else {
             var idealAbove = 2;
             var idealBelow = 2;
-            var above = allCards.slice(pivot + 1, pivot + 1 + idealAbove);
-            var below = allCards.slice(Math.max(0, pivot - idealBelow), pivot);
+            var above = all.slice(pivot + 1, pivot + 1 + idealAbove);
+            var below = all.slice(Math.max(0, pivot - idealBelow), pivot);
             var aboveShort = idealAbove - above.length;
             var belowShort = idealBelow - below.length;
-            if (aboveShort > 0) below = allCards.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
-            if (belowShort > 0) above = allCards.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
-            chosen = above.slice().reverse().concat([allCards[pivot]], below.slice().reverse());
-            allCards[pivot].classList.add('post-card--highlight');
-            var pivotBadge = allCards[pivot].querySelector('.post-card__highlight-badge');
+            if (aboveShort > 0) below = all.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
+            if (belowShort > 0) above = all.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
+            chosen = above.slice().reverse().concat([all[pivot]], below.slice().reverse());
+            all[pivot].classList.add('post-card--highlight');
+            var pivotBadge = all[pivot].querySelector('.post-card__highlight-badge');
             if (pivotBadge) pivotBadge.hidden = false;
           }
+
+          // Move visible cards not in `chosen` into the template (parks them).
           var chosenSet = chosen.reduce(function (m, c) {
             m.set(c, true);
             return m;
           }, new Map());
-          allCards.forEach(function (c) {
-            if (!chosenSet.get(c)) c.hidden = true;
-          });
+          if (template) {
+            visible.forEach(function (c) {
+              if (!chosenSet.get(c)) template.content.appendChild(c);
+            });
+          }
+          // Append chosen cards to the container in visual order; this moves
+          // them out of the template if needed and reorders existing ones.
           chosen.forEach(function (c) {
             container.appendChild(c);
           });
+          // Keep the template as the last child so its position is stable.
+          if (template && container.lastChild !== template) container.appendChild(template);
         });
 
         // Past divider: in [data-temporal-divider] containers, position the

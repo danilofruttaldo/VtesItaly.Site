@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Calendar from '../../components/Calendar.astro';
+import Hero from '../../components/Hero.astro';
 import PostCard from '../../components/PostCard.astro';
 import { cities } from '../../data/cities';
 import { getCollection } from 'astro:content';
@@ -25,7 +26,7 @@ const buildWindowSet = new Set(buildWindow.entries);
 ---
 
 <Base title={page.title.en} description={page.description.en} ogImage={page.ogImage}>
-  <img src={page.headerImage} alt="VTES Italy" class="hero-banner" decoding="async" fetchpriority="high" />
+  <Hero src={page.headerImage} alt="VTES Italy" />
 
   <section class="hero-text">
     <div class="container container--narrow">

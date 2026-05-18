@@ -1,0 +1,45 @@
+---
+/**
+ * Hero banner with build-time intrinsic dimensions read from the actual file,
+ * so the browser can reserve layout space and avoid CLS. Also wires up
+ * AVIF/WebP `<picture>` sources and `-2x` retina variants when those files
+ * exist alongside the base WebP — the LCP-critical hero on the homepage
+ * already ships both formats; other pages fall back to the single WebP.
+ */
+import sharp from 'sharp';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+
+const publicPath = resolve('public', src.replace(/^\//, ''));
+const meta = await sharp(publicPath).metadata();
+const width = meta.width ?? 1920;
+const height = meta.height ?? 420;
+
+const variants = {
+  webp1x: src,
+  webp2x: src.replace(/\.webp$/, '-2x.webp'),
+  avif1x: src.replace(/\.webp$/, '.avif'),
+  avif2x: src.replace(/\.webp$/, '-2x.avif'),
+};
+const has = (relative: string) => existsSync(resolve('public', relative.replace(/^\//, '')));
+
+const webpSrcset = has(variants.webp2x) ? `${variants.webp1x} 1x, ${variants.webp2x} 2x` : null;
+const avifSrcset = has(variants.avif1x)
+  ? has(variants.avif2x)
+    ? `${variants.avif1x} 1x, ${variants.avif2x} 2x`
+    : variants.avif1x
+  : null;
+---
+
+<picture>
+  {avifSrcset && <source type="image/avif" srcset={avifSrcset} />}
+  {webpSrcset && <source type="image/webp" srcset={webpSrcset} />}
+  <img src={src} width={width} height={height} alt={alt} class="hero-banner" decoding="async" fetchpriority="high" />
+</picture>

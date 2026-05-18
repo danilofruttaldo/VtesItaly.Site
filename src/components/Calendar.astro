@@ -107,7 +107,12 @@ const allEvents = extractCalendarEvents(posts, locale);
   </div>
 </div>
 
-<script is:inline>
+<script>
+  // Bundled module (Astro processes <script> without is:inline) so the calendar
+  // hydration code is served as a cacheable external file instead of inlining
+  // ~270 lines into every page that uses <Calendar />. The HTML payload drops
+  // by the same amount without changing visual behavior (the calendar body is
+  // still built from JS on load, never SSG'd).
   (function () {
     var cal = document.querySelector('.cal');
     if (!cal) return;

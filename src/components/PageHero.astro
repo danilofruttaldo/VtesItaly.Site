@@ -1,4 +1,7 @@
 ---
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 interface Props {
   title: string;
   image?: string;
@@ -6,21 +9,27 @@ interface Props {
 }
 
 const { title, image, breadcrumb } = Astro.props;
-const has2x = image?.includes('header-home');
+
+// Build-time detection of `-2x.webp` retina variants and `.avif` siblings so
+// the picture sources only appear when the files actually exist; missing
+// variants would otherwise trigger 404s for the browser's source selection.
+const has = (relative: string) => existsSync(resolve('public', relative.replace(/^\//, '')));
+const webp2x = image?.replace(/\.webp$/, '-2x.webp');
+const avif1x = image?.replace(/\.webp$/, '.avif');
+const avif2x = image?.replace(/\.webp$/, '-2x.avif');
+const webpSrcset = image && webp2x && has(webp2x) ? `${image} 1x, ${webp2x} 2x` : undefined;
+const avifSrcset =
+  image && avif1x && has(avif1x) ? (avif2x && has(avif2x) ? `${avif1x} 1x, ${avif2x} 2x` : avif1x) : undefined;
 ---
 
 <section class="page-hero">
   {
     image && (
-      <img
-        src={image}
-        srcset={has2x ? `${image} 1x, ${image.replace('.webp', '-2x.webp')} 2x` : undefined}
-        alt={title}
-        class="page-hero__img"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-      />
+      <picture>
+        {avifSrcset && <source type="image/avif" srcset={avifSrcset} />}
+        {webpSrcset && <source type="image/webp" srcset={webpSrcset} />}
+        <img src={image} alt={title} class="page-hero__img" loading="eager" decoding="async" fetchpriority="high" />
+      </picture>
     )
   }
   <div class="page-hero__overlay"></div>

@@ -199,21 +199,21 @@ From here the game can carry on freely — the Nosferatu might equip the <span c
 **Posters, flyers and artwork** — to print (for booth display, props such as the Edge token) or share digitally (social posts, online flyers). Click to enlarge:
 
 <div class="image-grid-3plus2">
-  <a href="/guide/demo/locandina-1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the first poster full size"><img src="/guide/demo/locandina-1.jpg" alt="V:TES demo poster 1" height="220" width="87" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/locandina-2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the second poster full size"><img src="/guide/demo/locandina-2.jpg" alt="V:TES demo poster 2" height="220" width="155" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-flyer-generic.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the generic VEKN flyer full size"><img src="/guide/demo/vtes-flyer-generic.jpg" alt="Generic VEKN flyer — game pitch" height="220" width="170" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-5th-araya-cover.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the V:TES 5th cover by Samuel Araya full size"><img src="/guide/demo/vtes-5th-araya-cover.jpg" alt="V:TES 5th Edition cover, illustration by Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/edge.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the Edge artwork full size"><img src="/guide/demo/edge.jpg" alt="Edge artwork — the contested token in V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/locandina-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the first poster full size"><img src="/guide/demo/locandina-1.webp" alt="V:TES demo poster 1" height="220" width="87" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/locandina-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the second poster full size"><img src="/guide/demo/locandina-2.webp" alt="V:TES demo poster 2" height="220" width="155" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-flyer-generic.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the generic VEKN flyer full size"><img src="/guide/demo/vtes-flyer-generic.webp" alt="Generic VEKN flyer — game pitch" height="220" width="170" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the V:TES 5th cover by Samuel Araya full size"><img src="/guide/demo/vtes-5th-araya-cover.webp" alt="V:TES 5th Edition cover, illustration by Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the Edge artwork full size"><img src="/guide/demo/edge.webp" alt="Edge artwork — the contested token in V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
 </div>
 
 **Game quick-reference sheets** — combat, politics, actions, and more; to consult during the demo or hand out to anyone who wants to dig deeper (click to enlarge):
 
 <div class="image-grid-feature">
-  <a href="/guide/demo/schema-0.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 0 full size"><img src="/guide/demo/schema-0.jpg" alt="V:TES quick-reference sheet (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 1 full size"><img src="/guide/demo/schema-1.jpg" alt="V:TES quick-reference sheet (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 2 full size"><img src="/guide/demo/schema-2.jpg" alt="V:TES quick-reference sheet (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 3 full size"><img src="/guide/demo/schema-3.jpg" alt="V:TES quick-reference sheet (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 4 full size"><img src="/guide/demo/schema-4.jpg" alt="V:TES quick-reference sheet (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 0 full size"><img src="/guide/demo/schema-0.webp" alt="V:TES quick-reference sheet (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 1 full size"><img src="/guide/demo/schema-1.webp" alt="V:TES quick-reference sheet (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 2 full size"><img src="/guide/demo/schema-2.webp" alt="V:TES quick-reference sheet (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-3.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 3 full size"><img src="/guide/demo/schema-3.webp" alt="V:TES quick-reference sheet (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-4.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 4 full size"><img src="/guide/demo/schema-4.webp" alt="V:TES quick-reference sheet (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
 </div>
 
 **Printable handouts (PDF):**

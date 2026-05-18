@@ -199,21 +199,21 @@ Da qui la partita può proseguire liberamente — per esempio il Nosferatu si eq
 **Locandine, flyer e illustrazioni** — da stampare (per esposizione al banchetto, gadget come il token Edge) o da condividere in digitale (post social, locandine online). Clicca per ingrandire:
 
 <div class="image-grid-3plus2">
-  <a href="/guide/demo/locandina-1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri la prima locandina a dimensione piena"><img src="/guide/demo/locandina-1.jpg" alt="Locandina 1 per la demo VTES" height="220" width="87" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/locandina-2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri la seconda locandina a dimensione piena"><img src="/guide/demo/locandina-2.jpg" alt="Locandina 2 per la demo VTES" height="220" width="155" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-flyer-generic.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer generico VEKN a dimensione piena"><img src="/guide/demo/vtes-flyer-generic.jpg" alt="Flyer generico VEKN — presentazione del gioco" height="220" width="170" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-5th-araya-cover.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri la cover di V:TES 5th di Samuel Araya a dimensione piena"><img src="/guide/demo/vtes-5th-araya-cover.jpg" alt="Cover di V:TES 5th Edition, illustrazione di Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/edge.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri l'illustrazione dell'Edge a dimensione piena"><img src="/guide/demo/edge.jpg" alt="Illustrazione dell'Edge, il token conteso di V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/locandina-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la prima locandina a dimensione piena"><img src="/guide/demo/locandina-1.webp" alt="Locandina 1 per la demo VTES" height="220" width="87" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/locandina-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la seconda locandina a dimensione piena"><img src="/guide/demo/locandina-2.webp" alt="Locandina 2 per la demo VTES" height="220" width="155" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-flyer-generic.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer generico VEKN a dimensione piena"><img src="/guide/demo/vtes-flyer-generic.webp" alt="Flyer generico VEKN — presentazione del gioco" height="220" width="170" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la cover di V:TES 5th di Samuel Araya a dimensione piena"><img src="/guide/demo/vtes-5th-araya-cover.webp" alt="Cover di V:TES 5th Edition, illustrazione di Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri l'illustrazione dell'Edge a dimensione piena"><img src="/guide/demo/edge.webp" alt="Illustrazione dell'Edge, il token conteso di V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
 </div>
 
 **Schemi riassuntivi** da consultare durante la demo o consegnare a chi vuole approfondire (combat, politica, azioni, ecc.) — clicca per ingrandire:
 
 <div class="image-grid-feature">
-  <a href="/guide/demo/schema-0.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 0 a dimensione piena"><img src="/guide/demo/schema-0.jpg" alt="Schema riassuntivo V:TES (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-1.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 1 a dimensione piena"><img src="/guide/demo/schema-1.jpg" alt="Schema riassuntivo V:TES (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-2.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 2 a dimensione piena"><img src="/guide/demo/schema-2.jpg" alt="Schema riassuntivo V:TES (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-3.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 3 a dimensione piena"><img src="/guide/demo/schema-3.jpg" alt="Schema riassuntivo V:TES (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-4.jpg" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 4 a dimensione piena"><img src="/guide/demo/schema-4.jpg" alt="Schema riassuntivo V:TES (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 0 a dimensione piena"><img src="/guide/demo/schema-0.webp" alt="Schema riassuntivo V:TES (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 1 a dimensione piena"><img src="/guide/demo/schema-1.webp" alt="Schema riassuntivo V:TES (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 2 a dimensione piena"><img src="/guide/demo/schema-2.webp" alt="Schema riassuntivo V:TES (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-3.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 3 a dimensione piena"><img src="/guide/demo/schema-3.webp" alt="Schema riassuntivo V:TES (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-4.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 4 a dimensione piena"><img src="/guide/demo/schema-4.webp" alt="Schema riassuntivo V:TES (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
 </div>
 
 **Stampabili (PDF):**

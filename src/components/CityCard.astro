@@ -1,4 +1,6 @@
 ---
+import { thumbFor } from '../utils/image';
+
 interface Props {
   name: string;
   href: string;
@@ -8,11 +10,13 @@ interface Props {
 }
 
 const { name, href, princeName, princeAlias, princeImage } = Astro.props;
+// 90 px / 64 px (mobile) avatar — see thumbFor for the rationale.
+const avatarSrc = thumbFor(princeImage);
 ---
 
 <a href={href} class="city-card">
   <img
-    src={princeImage}
+    src={avatarSrc}
     alt={princeName}
     class="city-card__avatar"
     width="90"

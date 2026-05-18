@@ -8,6 +8,7 @@ import PostCard from '../../components/PostCard.astro';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { buildCityCards } from '../../utils/url';
 import { todayLocalMidnight } from '../../utils/today';
+import { thumbFor } from '../../utils/image';
 
 const t = useTranslations('it');
 
@@ -45,7 +46,13 @@ const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length 
     <div class="container">
       <div class="city-layout">
         <aside class="prince-card">
-          <img src={city.prince.image} alt={city.prince.name} class="prince-avatar" loading="lazy" decoding="async" />
+          <img
+            src={thumbFor(city.prince.image)}
+            alt={city.prince.name}
+            class="prince-avatar"
+            loading="lazy"
+            decoding="async"
+          />
           <h3>{city.prince.name}</h3>
           <p class="prince-alias"><em>{city.prince.alias}</em></p>
           <p class="prince-role">{t.domain.prince_role} {city.name.it}</p>

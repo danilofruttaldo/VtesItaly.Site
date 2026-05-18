@@ -2,6 +2,7 @@
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { categoryLabels, typeTagLabels } from '../data/categories';
+import { thumbFor } from '../utils/image';
 
 interface Props {
   href: string;
@@ -58,6 +59,11 @@ if (typeTag) badges.push({ label: typeTags[typeTag] });
 const isoDate = date
   ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
   : undefined;
+
+// PostCard renders at 120 px (desktop) / 80 px (mobile). `thumbFor` swaps
+// the full poster for the 240² `-thumb.webp` emitted by
+// scripts/build-thumbnails.mjs, saving ~280 KB per card.
+const cardImage = thumbFor(image);
 ---
 
 <a
@@ -78,9 +84,9 @@ const isoDate = date
     )
   }
   {
-    image && (
+    cardImage && (
       <img
-        src={image}
+        src={cardImage}
         alt={title}
         class="post-card__image"
         loading={eager ? 'eager' : 'lazy'}

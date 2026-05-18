@@ -11,7 +11,7 @@ export default getViteConfig({
     setupFiles: ['./tests/setup.ts'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'lcov'],
+      reporter: ['text', 'lcov', 'json-summary'],
       include: ['src/utils/**', 'src/schemas/**'],
       exclude: ['src/**/*.test.ts'],
       thresholds: {

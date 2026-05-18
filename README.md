@@ -1,5 +1,7 @@
 # VtesItaly.Site
 
+[![coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/danilofruttaldo/VtesItaly.Site/main/.github/coverage-badge.json)](#)
+
 Official website for the Italian VTES (Vampire: The Eternal Struggle) community.
 
 Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN).

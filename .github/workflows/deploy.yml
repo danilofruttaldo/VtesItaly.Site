@@ -14,6 +14,9 @@ on:
 permissions:
   contents: read
 
+# Avoid duplicate runs when the badge-refresh step pushes `[skip ci]`
+# commits back to main: the marker is already honoured by GitHub Actions
+# event filtering for `push`, but PRs from forks would still run.
 concurrency:
   # Per-ref group so a Dependabot burst of PRs doesn't cancel each other in
   # the queue (default queue depth is 1 in-progress + 1 queued). The deploy
@@ -26,6 +29,8 @@ jobs:
     # Gate that runs on every push: lint/format/typecheck/test/build/smoke.
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write # required so the coverage-badge step can push back
     steps:
       - uses: actions/checkout@v6
 
@@ -42,6 +47,24 @@ jobs:
       - run: npm run format:check
       - run: npm run check
       - run: npm run test:coverage
+
+      - name: Refresh README coverage badge
+        # Re-generates `.github/coverage-badge.json` from the json-summary
+        # reporter output. Commits back to main with `[skip ci]` only when
+        # the value actually changes — keeps history quiet on no-op runs.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          node scripts/coverage-badge.mjs
+          if [ -n "$(git status --porcelain .github/coverage-badge.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .github/coverage-badge.json
+            git commit -m "chore(site): refresh coverage badge [skip ci]"
+            git push
+          else
+            echo "Coverage badge unchanged — skipping commit."
+          fi
+
       - run: npm run build
         env:
           NODE_ENV: production

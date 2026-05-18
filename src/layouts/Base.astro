@@ -35,6 +35,27 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
+    {
+      /*
+      Content-Security-Policy as a meta tag — defense-in-depth alongside the
+      existing escapeHtml/no-untrusted-set:html discipline.
+
+      `'unsafe-inline'` is required because Astro injects inline scripts for
+      view transitions, prefetch, and several components use `is:inline` with
+      `define:vars`. Even with unsafe-inline, the policy still blocks loading
+      of external scripts/styles/images/fonts/data, which is the main payload
+      vector for a stored-XSS attempt.
+
+      `frame-ancestors` is intentionally absent: meta-tag CSP does not honour
+      it. Clickjacking protection must come from a server-side header
+      (X-Frame-Options or CSP HTTP header in .htaccess) — tracked separately.
+    */
+    }
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+    />
+
     <title>{title} | VTES Italy</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}

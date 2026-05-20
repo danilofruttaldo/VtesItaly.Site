@@ -11,7 +11,11 @@
         "/tour/tour-2026/",
         "/nazionale/nazionale-2026/",
         "/comunita/symposium-italicum-mmxxv/"
-      ]
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "throttlingMethod": "devtools"
+      }
     },
     "assert": {
       "assertions": {

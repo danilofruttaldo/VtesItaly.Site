@@ -15,8 +15,8 @@ events:
     proxies: true
 leagueStats:
   players: 10
-  games: 6
-  tables: 8
+  games: 17
+  tables: 20
 leagueRules:
   - acronym: 'GW'
     label: 'Game Win'
@@ -48,10 +48,12 @@ leagueBonusPoints:
     description: 'Subire almeno 2 Archon Investigation.'
   - name: 'Muddled Vampire Hunter'
     description: 'Bruciare 3 o più vampiri avversari.'
+registration: 'Iscrizione: 10€'
 prizes:
-  - 'Finalisti (1°–5°): un New Blood a scelta tra Hecata, Gangrel, Tremere, Ravnos, Tzimisce — il 1° classificato sceglie per primo'
-  - 'Ogni partita: 2 carte casuali dal 25th Anniversary (finché disponibile)'
-  - 'Estrazione finale: 5 pacchetti da 6× Ashur Tablets sorteggiati tra tutti gli iscritti'
+  - 'Vincitore: 3 promo full art'
+  - 'Finalisti (1°–5°): un New Blood a scelta — il 1° classificato sceglie per primo, poi a scendere'
+  - 'Ogni partita: 2 carte casuali dal 30th Anniversary + 1 New Blood (fino a esaurimento)'
+  - 'Estrazione finale: 5 pacchetti da 6× Ashur Tablets sorteggiati tra tutti gli iscritti a fine lega'
 standingsUrl: 'standings-church-of-st-blaise-2026'
 standingsLabel: 'Classifica provvisoria'
 links:

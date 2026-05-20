@@ -1,12 +1,12 @@
 [
-  { "rank": 1, "name": "Nicola De Nadai", "fp": null, "lp": 16.5, "gw": 2, "vp": 8.5, "pp": 0, "bp": 2, "games": 9 },
-  { "rank": 2, "name": "Marco Lombardo", "fp": null, "lp": 12.0, "gw": 2, "vp": 5.0, "pp": 0, "bp": 1, "games": 3 },
-  { "rank": 3, "name": "Danilo Fruttaldo", "fp": null, "lp": 11.5, "gw": 1, "vp": 7.5, "pp": 0, "bp": 1, "games": 8 },
-  { "rank": 4, "name": "Federico De Nadai", "fp": null, "lp": 9.5, "gw": 1, "vp": 6.5, "pp": 0, "bp": 0, "games": 5 },
-  { "rank": 5, "name": "Giorgio Schiavon", "fp": null, "lp": 9.5, "gw": 1, "vp": 5.5, "pp": 0, "bp": 1, "games": 5 },
-  { "rank": 6, "name": "Mario Bresolin", "fp": null, "lp": 5.0, "gw": 0, "vp": 4.0, "pp": 0, "bp": 1, "games": 3 },
-  { "rank": 7, "name": "Eleonora Basso", "fp": null, "lp": 5.5, "gw": 0, "vp": 3.5, "pp": 0, "bp": 2, "games": 5 },
-  { "rank": 8, "name": "Daniele Di Tullio", "fp": null, "lp": 3.0, "gw": 0, "vp": 2.0, "pp": 0, "bp": 1, "games": 8 },
-  { "rank": 9, "name": "Mirko Zorzi", "fp": null, "lp": 2.0, "gw": 0, "vp": 1.0, "pp": 0, "bp": 1, "games": 3 },
+  { "rank": 1, "name": "Marco Lombardo", "fp": null, "lp": 20.5, "gw": 3, "vp": 10.5, "pp": 0, "bp": 1, "games": 7 },
+  { "rank": 2, "name": "Federico De Nadai", "fp": null, "lp": 19.5, "gw": 2, "vp": 12.5, "pp": 0, "bp": 1, "games": 9 },
+  { "rank": 3, "name": "Nicola De Nadai", "fp": null, "lp": 17.0, "gw": 2, "vp": 9.0, "pp": 0, "bp": 2, "games": 13 },
+  { "rank": 4, "name": "Mario Bresolin", "fp": null, "lp": 15.0, "gw": 1, "vp": 10.0, "pp": 0, "bp": 2, "games": 7 },
+  { "rank": 5, "name": "Danilo Fruttaldo", "fp": null, "lp": 13.0, "gw": 1, "vp": 8.0, "pp": 0, "bp": 2, "games": 13 },
+  { "rank": 6, "name": "Giorgio Schiavon", "fp": null, "lp": 12.0, "gw": 1, "vp": 7.0, "pp": 0, "bp": 2, "games": 9 },
+  { "rank": 7, "name": "Eleonora Basso", "fp": null, "lp": 12.0, "gw": 1, "vp": 7.0, "pp": 0, "bp": 2, "games": 10 },
+  { "rank": 8, "name": "Daniele Di Tullio", "fp": null, "lp": 5.0, "gw": 0, "vp": 3.0, "pp": 0, "bp": 2, "games": 13 },
+  { "rank": 9, "name": "Mirko Zorzi", "fp": null, "lp": 2.5, "gw": 0, "vp": 1.5, "pp": 0, "bp": 1, "games": 8 },
   { "rank": 10, "name": "Alberto Calsolaro", "fp": null, "lp": 1.0, "gw": 0, "vp": 0.0, "pp": 0, "bp": 1, "games": 2 }
 ]

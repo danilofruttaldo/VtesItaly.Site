@@ -63,3 +63,23 @@ const avifMobileSrcset =
   {webpSrcset && <source type="image/webp" srcset={webpSrcset} />}
   <img src={src} width={width} height={height} alt={alt} class="hero-banner" decoding="async" fetchpriority="high" />
 </picture>
+
+<style>
+  /* Lives here (not in the pages that consume Hero) because Astro scopes
+     <style> to elements declared in the same component. When this rule
+     lived in index.astro the scope hash never reached the img inside
+     Hero, so on viewports wider than the source (1920px) the img fell
+     back to its intrinsic width and left empty space on the right. */
+  .hero-banner {
+    width: 100%;
+    /* Match the topbar/.container cap so the banner aligns with the
+       rest of the page chrome. On wider viewports the dark body
+       background fills the gutters and matches the banner's own
+       black artwork. */
+    max-width: var(--wide-width);
+    margin-inline: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 340px;
+  }
+</style>

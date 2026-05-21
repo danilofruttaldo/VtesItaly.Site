@@ -10,12 +10,21 @@ interface Props {
   image?: string;
   imageAnchor?: string;
   date?: Date;
+  /** Last day of a multi-day event. Emitted as `data-end-date` so the temporal
+      runtime keeps the card highlighted for the event's whole run. */
+  endDate?: Date;
   category?: string;
   tags?: string[];
   excerpt?: string;
   locale?: Locale;
   highlight?: boolean;
+  /** Badge text for an upcoming event ("Prossimo"). */
   highlightLabel?: string;
+  /** Badge text for an event in progress ("Oggi"). When set, the runtime
+      swaps the badge wording to it once the card's start day arrives. */
+  ongoingLabel?: string;
+  /** Build-time initial state: the highlighted card is currently in progress. */
+  ongoing?: boolean;
   /** Prioritise the image as LCP candidate (above-the-fold cards). */
   eager?: boolean;
   /** Server-side hidden state. The runtime script in Base.astro clears this
@@ -29,12 +38,15 @@ const {
   image,
   imageAnchor,
   date,
+  endDate,
   category,
   tags = [],
   excerpt,
   locale = 'it',
   highlight = false,
   highlightLabel,
+  ongoingLabel,
+  ongoing = false,
   eager = false,
   hidden = false,
 } = Astro.props;
@@ -59,6 +71,9 @@ if (typeTag) badges.push({ label: typeTags[typeTag] });
 const isoDate = date
   ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
   : undefined;
+const isoEndDate = endDate
+  ? `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`
+  : undefined;
 
 // PostCard renders at 120 px (desktop) / 80 px (mobile). `thumbFor` swaps
 // the full poster for the 240² `-thumb.webp` emitted by
@@ -70,16 +85,24 @@ const cardImage = thumbFor(image);
   href={href}
   class:list={['post-card', categoryAccent, highlight && 'post-card--highlight']}
   data-date={isoDate}
+  data-end-date={isoEndDate}
   hidden={hidden}
 >
   {
     /* Badge is always emitted (hidden by default) so the client-side temporal
-      runtime can toggle it without rebuilding HTML. */
+      runtime can toggle it — and swap between the "next" and "today" label —
+      without rebuilding HTML. Same gold styling for both states; only the
+      wording changes. */
   }
   {
     highlightLabel && (
-      <span class="post-card__highlight-badge" hidden={!highlight}>
-        {highlightLabel}
+      <span
+        class="post-card__highlight-badge"
+        data-label-next={highlightLabel}
+        data-label-ongoing={ongoingLabel}
+        hidden={!highlight}
+      >
+        {highlight && ongoing && ongoingLabel ? ongoingLabel : highlightLabel}
       </span>
     )
   }

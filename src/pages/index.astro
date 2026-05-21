@@ -63,12 +63,15 @@ const buildWindowSet = new Set(buildWindow.entries);
               image={entry.image}
               imageAnchor={entry.imageAnchor}
               date={new Date(entry.date)}
+              endDate={entry.endDate ? new Date(entry.endDate) : undefined}
               category={entry.category}
               tags={entry.tags}
               excerpt={entry.excerpt}
               locale="it"
               highlight={i === buildWindow.highlightIndex}
               highlightLabel={t.home.next_event_label}
+              ongoingLabel={t.home.ongoing_event_label}
+              ongoing={i === buildWindow.highlightIndex && entry.date <= today}
               eager={i === 0}
             />
           ))
@@ -90,12 +93,14 @@ const buildWindowSet = new Set(buildWindow.entries);
                   image={entry.image}
                   imageAnchor={entry.imageAnchor}
                   date={new Date(entry.date)}
+                  endDate={entry.endDate ? new Date(entry.endDate) : undefined}
                   category={entry.category}
                   tags={entry.tags}
                   excerpt={entry.excerpt}
                   locale="it"
                   highlight={false}
                   highlightLabel={t.home.next_event_label}
+                  ongoingLabel={t.home.ongoing_event_label}
                 />
               ))
           }

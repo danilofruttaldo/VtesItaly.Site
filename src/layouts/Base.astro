@@ -317,9 +317,12 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
             if (b) b.hidden = true;
           });
 
+          // Pivot compares against data-end-date (data-date fallback) so a
+          // multi-day event stays the highlighted card for its whole run.
           var pivot = -1;
           for (var i = 0; i < all.length; i++) {
-            if ((all[i].getAttribute('data-date') || '') >= todayISO) {
+            var cardEnd = all[i].getAttribute('data-end-date') || all[i].getAttribute('data-date') || '';
+            if (cardEnd >= todayISO) {
               pivot = i;
               break;
             }
@@ -338,8 +341,15 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
             if (belowShort > 0) above = all.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
             chosen = above.slice().reverse().concat([all[pivot]], below.slice().reverse());
             all[pivot].classList.add('post-card--highlight');
+            // Already started (data-date <= today) → "Oggi" label; else "Prossimo".
+            var pivotOngoing = (all[pivot].getAttribute('data-date') || '') <= todayISO;
             var pivotBadge = all[pivot].querySelector('.post-card__highlight-badge');
-            if (pivotBadge) pivotBadge.hidden = false;
+            if (pivotBadge) {
+              var nextLabel = pivotBadge.getAttribute('data-label-next') || '';
+              var ongoingLabel = pivotBadge.getAttribute('data-label-ongoing') || nextLabel;
+              pivotBadge.textContent = pivotOngoing ? ongoingLabel : nextLabel;
+              pivotBadge.hidden = false;
+            }
           }
 
           // Move visible cards not in `chosen` into the template (parks them).

@@ -175,6 +175,27 @@ describe('pickTimelineWindow', () => {
     expect(w.entries).toHaveLength(3);
     expect(w.entries[w.highlightIndex].date).toBe('2026-05-15');
   });
+
+  it('keeps a multi-day event highlighted while in progress (pivot uses endDate)', () => {
+    const entries: TimelineEntry[] = [
+      ENTRY('2026-05-01'),
+      { ...ENTRY('2026-05-10'), endDate: '2026-05-14' },
+      ENTRY('2026-05-20'),
+    ];
+    // Middle day and last day of the multi-day event: still the pivot.
+    expect(pickTimelineWindow(entries, '2026-05-12').entries[1].date).toBe('2026-05-10');
+    expect(pickTimelineWindow(entries, '2026-05-14').entries[1].date).toBe('2026-05-10');
+  });
+
+  it('moves the pivot on once a multi-day event has ended', () => {
+    const entries: TimelineEntry[] = [
+      ENTRY('2026-05-01'),
+      { ...ENTRY('2026-05-10'), endDate: '2026-05-14' },
+      ENTRY('2026-05-20'),
+    ];
+    const w = pickTimelineWindow(entries, '2026-05-15');
+    expect(w.entries[w.highlightIndex].date).toBe('2026-05-20');
+  });
 });
 
 describe('getCommunityTimeline', () => {
@@ -196,6 +217,38 @@ describe('getCommunityTimeline', () => {
     expect(out[0].title).toBe('Lega Milano');
     expect(out[0].date).toBe('2026-05-17');
     expect(out[0].excerpt).toBe('shared excerpt');
+  });
+
+  it('sets endDate spanning the last event date for a multi-day post', () => {
+    const posts = [
+      mkPost('play', {
+        date: new Date('2026-05-22'),
+        title: 'PLAY',
+        category: 'comunita',
+        events: [
+          { name: 'Demo', date: new Date('2026-05-22'), time: '9:00' },
+          { name: 'Demo', date: new Date('2026-05-23'), time: '9:00' },
+          { name: 'Demo', date: new Date('2026-05-24'), time: '9:00' },
+        ],
+      } as Partial<BlogEntry['data']> & { date: Date }),
+    ];
+    const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('play'));
+    expect(out).toHaveLength(1);
+    expect(out[0].date).toBe('2026-05-22');
+    expect(out[0].endDate).toBe('2026-05-24');
+  });
+
+  it('leaves endDate undefined for a single-day post', () => {
+    const posts = [
+      mkPost('one-day', {
+        date: new Date('2026-09-19'),
+        title: 'Solo',
+        category: 'comunita',
+        events: [{ name: 'Solo', date: new Date('2026-09-19'), time: '10:00' }],
+      } as Partial<BlogEntry['data']> & { date: Date }),
+    ];
+    const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('one-day'));
+    expect(out[0].endDate).toBeUndefined();
   });
 
   it('uses post.date even when events are scheduled later (matches comunita/principato logic)', () => {

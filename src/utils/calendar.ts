@@ -212,7 +212,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
  * `post.data.date` (multi-day side events are NOT split into separate cards).
  */
 export interface TimelineEntry {
-  date: string; // YYYY-MM-DD
+  date: string; // YYYY-MM-DD — start day
+  endDate?: string; // YYYY-MM-DD — last day of a multi-day event; absent for single-day
   title: string;
   url: string;
   category: string;
@@ -233,6 +234,29 @@ function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
     return 'left center';
   }
   return undefined;
+}
+
+/**
+ * Last day of a multi-day event, derived from the post's `events` array
+ * (`date` and per-event `endDate`). League `period` entries have no concrete
+ * dates and are skipped. Returns undefined for single-day posts so the
+ * timeline treats them as a single calendar day.
+ */
+function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): string | undefined {
+  const events = post.data.events;
+  if (!events || events.length === 0) return undefined;
+  let max = start;
+  for (const ev of events) {
+    if (ev.period) continue;
+    for (const cand of [ev.date, ev.endDate]) {
+      if (!cand) continue;
+      const d = new Date(cand);
+      if (isNaN(d.getTime())) continue;
+      const iso = toIsoDate(d);
+      if (iso > max) max = iso;
+    }
+  }
+  return max > start ? max : undefined;
 }
 
 /**
@@ -276,8 +300,10 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
 
     const postDate = new Date(post.data.date);
     if (isNaN(postDate.getTime())) continue;
+    const startIso = toIsoDate(postDate);
     out.push({
-      date: toIsoDate(postDate),
+      date: startIso,
+      endDate: pickTimelineEndDate(post, startIso),
       title: post.data.title,
       url,
       category,
@@ -318,16 +344,19 @@ export interface TimelineWindow {
 }
 
 /**
- * Pick 5 entries centered on the next upcoming event:
+ * Pick 5 entries centered on the next upcoming (or currently in-progress) event:
  *   - 2 entries above (further future, farthest first)
- *   - 1 "next" entry (highlighted)
+ *   - 1 highlighted entry (the "next" or "today" card)
  *   - 2 entries below (recent past, most recent first)
  * Falls back to the other side when one side is short.
+ *
+ * The pivot compares against `endDate` (falling back to `date`) so a multi-day
+ * event stays highlighted for its whole run, not just on its first day.
  */
 export function pickTimelineWindow(entries: TimelineEntry[], today: string): TimelineWindow {
   if (entries.length === 0) return { entries: [], highlightIndex: -1 };
 
-  const pivot = entries.findIndex((e) => e.date >= today);
+  const pivot = entries.findIndex((e) => (e.endDate || e.date) >= today);
   if (pivot === -1) {
     // No upcoming — show the 5 most recent past, newest at top, no highlight.
     const tail = entries.slice(-5).reverse();

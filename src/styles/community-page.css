@@ -1,14 +1,8 @@
-.hero-text {
-  padding: 24px 0 40px;
+.hero-subtitle {
+  padding: 24px 0 8px;
   text-align: center;
 }
-.hero-text h1 {
-  font-size: clamp(1.5rem, 5vw, 2.25rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.hero-text__subtitle {
+.hero-subtitle p {
   color: var(--color-muted);
   font-size: clamp(0.9rem, 3vw, 1.05rem);
   line-height: var(--leading-normal);

@@ -1,6 +1,7 @@
 ---
 import '../../../styles/guide.css';
 import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
 import GuideCard from '../../../components/guide/GuideCard.astro';
 import AudienceFilter from '../../../components/guide/AudienceFilter.astro';
 import { getCollection } from 'astro:content';
@@ -18,10 +19,11 @@ const sorted = all.slice().sort((a, b) => {
 ---
 
 <Base title={t.page_titles.Guide} description={t.guide.intro}>
+  <PageHero title={t.page_titles.Guide} image="/images/headers/header-guide.webp" />
+
   <section class="guide-hub">
     <div class="container container--narrow">
       <header class="guide-hub__header">
-        <h1 class="guide-hub__title">{t.page_titles.Guide}</h1>
         <p class="guide-hub__intro">{t.guide.intro}</p>
       </header>
 

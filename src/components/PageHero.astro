@@ -49,8 +49,12 @@ const avifSrcset =
 <style>
   .page-hero {
     position: relative;
-    height: 420px;
-    max-height: 420px;
+    width: 100%;
+    /* Match the 1920×420 header source aspect so object-fit:cover has
+       nothing to crop — the full image is visible at every viewport
+       width. A fixed height would instead crop the sides on any screen
+       narrower than 1920px. */
+    aspect-ratio: 32 / 7;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -69,7 +73,16 @@ const avifSrcset =
   .page-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(18, 20, 22, 0.4) 0%, rgba(18, 20, 22, 0.3) 50%, var(--color-base) 100%);
+    /* Darker through the vertical middle where the centered H1 sits —
+       several header sources are bright enough there to wash out white
+       text. Still fades to --color-base at the bottom to blend into the
+       page. The H1 also carries a text-shadow as a second safety net. */
+    background: linear-gradient(
+      to bottom,
+      rgba(18, 20, 22, 0.5) 0%,
+      rgba(18, 20, 22, 0.58) 50%,
+      var(--color-base) 100%
+    );
   }
 
   .page-hero__content {
@@ -83,6 +96,9 @@ const avifSrcset =
     font-weight: 700;
     text-transform: uppercase;
     color: var(--color-contrast);
+    text-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.85),
+      0 0 24px rgba(0, 0, 0, 0.6);
   }
 
   .breadcrumb {
@@ -95,9 +111,12 @@ const avifSrcset =
   }
 
   @media (max-width: 544px) {
+    /* On phones the 32:7 ratio would be too short for the title, so
+       fall back to a fixed height — this does crop the sides, but the
+       image's focal point sits centred. */
     .page-hero {
-      height: 260px;
-      max-height: 260px;
+      aspect-ratio: auto;
+      height: 220px;
     }
   }
 </style>

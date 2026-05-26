@@ -479,7 +479,7 @@ export const cities: City[] = [
       {
         day: { it: 'Eventi', en: 'Events' },
         place: 'GiOlly Comics',
-        address: 'Strada dei Biscari 2, Treviso (TV)',
+        address: 'Largo I Maggio 5/3, 31020 Villorba (TV)',
         mapUrl: 'https://maps.app.goo.gl/zhsHyxTxDhTcQeGh6',
       },
     ],

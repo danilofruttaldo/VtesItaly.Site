@@ -81,9 +81,6 @@ prizes:
   - '3rd place: New Blood Gangrel'
   - 'Random draw: pool+edge set'
 standingsUrl: 'standings-bleeding-the-vine-2025'
-links:
-  - label: 'Standings'
-    url: 'https://is.gd/qUKfeT'
 locale: 'en'
 ---
 

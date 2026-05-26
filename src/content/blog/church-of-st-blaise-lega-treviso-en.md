@@ -16,7 +16,22 @@ events:
 leagueStats:
   players: 10
   games: 17
-  tables: 20
+  tables: 21
+leagueTopLists:
+  - label: 'Top Clan'
+    items:
+      - { name: 'Gangrel', count: 17 }
+      - { name: 'Tzimisce', count: 15 }
+      - { name: 'Toreador', count: 11 }
+  - label: 'Top Archetypes'
+    items:
+      - { name: 'Bleed', count: 44 }
+      - { name: 'Political', count: 15 }
+      - { name: 'Toolbox', count: 14 }
+  - label: 'Top Bonus'
+    items:
+      - { name: 'Bait and Switch', count: 14 }
+      - { name: 'Aura of Invincibility', count: 2 }
 leagueRules:
   - acronym: 'GW'
     label: 'Game Win'
@@ -55,10 +70,6 @@ prizes:
   - 'Every game: 2 random cards from 30th Anniversary + 1 New Blood (while supplies last)'
   - 'Final draw: 5 packs of 6× Ashur Tablets raffled among all participants at the end of the league'
 standingsUrl: 'standings-church-of-st-blaise-2026'
-standingsLabel: 'Provisional standings'
-links:
-  - label: 'Standings'
-    url: 'https://is.gd/9x5Z4p'
 locale: 'en'
 ---
 

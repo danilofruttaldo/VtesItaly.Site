@@ -7,20 +7,14 @@ name: CI
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-# Avoid duplicate runs when the badge-refresh step pushes `[skip ci]`
-# commits back to main: the marker is already honoured by GitHub Actions
-# event filtering for `push`, but PRs from forks would still run.
 concurrency:
-  # Per-ref group so a Dependabot burst of PRs doesn't cancel each other in
-  # the queue (default queue depth is 1 in-progress + 1 queued). The deploy
-  # job only runs on push to main where ref collapses to the same group.
+  # Collapse concurrent pushes to the same ref so a newer commit supersedes
+  # an in-flight run.
   group: deploy-vtesitaly-${{ github.ref }}
   cancel-in-progress: true
 
@@ -114,7 +108,6 @@ jobs:
 
   deploy:
     needs: [ci, lighthouse]
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment:

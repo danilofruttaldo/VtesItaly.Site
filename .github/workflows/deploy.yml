@@ -90,7 +90,9 @@ jobs:
     # lighthouse rerun doesn't redo lint/test/build.
     needs: ci
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # 8 URLs × 3 runs × devtools throttling (~20-30s each) ≈ 8-12 min.
+    # Cushion for runner variance.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
 

@@ -81,12 +81,16 @@ stages:
 
   - name: 'GLUTTONY'
     number: 5
-    date: 2026-10-01
+    date: 2026-10-18
     cities: ['roma']
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
+    venue: 'Dungeonpinsa'
+    location: 'Via Flavio Stilicone, 125, 00175 Roma (RM)'
     image: '/tour/tour-2026/tour-2026-005.webp'
+    archonUrl: 'https://archon.vekn.net/tournament/07cc16f2-46d5-47fb-a0c3-968e50869678/display.html'
     description: "Devour everything: points, opponents, opportunities. Gluttony knows no measure and turns excess into strength. An extended stage, for those who can't stop."
 
   - name: 'SLOTH'

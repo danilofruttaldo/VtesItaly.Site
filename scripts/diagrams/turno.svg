@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4472C4"/>
+    </marker>
+    <style>
+      .band   { fill:#DCE3F0; }
+      .hdr    { fill:#4472C4; }
+      .hdrtit { fill:#ffffff; font-size:16px; font-weight:600; text-anchor:middle; }
+      .hdrdet { fill:#d7e0f4; font-size:12.5px; text-anchor:middle; }
+      .bbox   { fill:#2E5395; }
+      .btxt   { fill:#ffffff; font-size:16px; font-weight:600; text-anchor:middle; }
+      .flow   { fill:none; stroke:#4472C4; stroke-width:2; }
+      .lbl    { fill:#44546A; font-size:12.5px; }
+      .es     { fill:#2E5395; font-size:12.5px; font-weight:700; }
+      .llbl   { fill:#2E5395; font-size:13px; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="560" fill="#ffffff"/>
+
+  <!-- soft-blue lane -->
+  <rect class="band" x="140" y="40" width="360" height="392" rx="4"/>
+
+  <!-- 1 Unlock -->
+  <rect class="hdr" x="160" y="52" width="320" height="56" rx="3"/>
+  <text class="hdrtit" x="320" y="78">Unlock</text>
+  <text class="hdrdet" x="320" y="96">unlock all your cards</text>
+  <text class="es" x="500" y="74">ES:</text>
+  <text class="lbl" x="524" y="74">use Vessel(s), pay costs, gain Edge pool,</text>
+  <text class="lbl" x="500" y="92">in the order the active player chooses</text>
+  <path class="flow" marker-end="url(#arr)" d="M320,108 V130"/>
+
+  <!-- 2 Master -->
+  <rect class="hdr" x="160" y="130" width="320" height="56" rx="3"/>
+  <text class="hdrtit" x="320" y="156">Master</text>
+  <text class="hdrdet" x="320" y="174">1 master phase action</text>
+  <text class="es" x="500" y="152">ES:</text>
+  <text class="lbl" x="524" y="152">play 1 master card, or activate</text>
+  <text class="lbl" x="500" y="170">an effect needing a master action</text>
+  <path class="flow" marker-end="url(#arr)" d="M320,186 V208"/>
+
+  <!-- 3 Minion -->
+  <rect class="hdr" x="160" y="208" width="320" height="56" rx="3"/>
+  <text class="hdrtit" x="320" y="234">Minion</text>
+  <text class="hdrdet" x="320" y="252">minions may act</text>
+  <text class="es" x="500" y="230">ES:</text>
+  <text class="lbl" x="524" y="230">bleed, hunt, equip, vote, rush;</text>
+  <text class="lbl" x="500" y="248">opponents may block → combat</text>
+  <path class="flow" marker-end="url(#arr)" d="M320,264 V286"/>
+
+  <!-- 4 Influence -->
+  <rect class="hdr" x="160" y="286" width="320" height="56" rx="3"/>
+  <text class="hdrtit" x="320" y="312">Influence</text>
+  <text class="hdrdet" x="320" y="330">4 transfers</text>
+  <text class="es" x="500" y="308">ES:</text>
+  <text class="lbl" x="524" y="308">move 1 pool onto an uncontrolled</text>
+  <text class="lbl" x="500" y="326">vampire (influence it out)</text>
+  <path class="flow" marker-end="url(#arr)" d="M320,342 V364"/>
+
+  <!-- 5 Discard -->
+  <rect class="hdr" x="160" y="364" width="320" height="56" rx="3"/>
+  <text class="hdrtit" x="320" y="390">Discard</text>
+  <text class="hdrdet" x="320" y="408">1 discard phase action</text>
+  <text class="es" x="500" y="386">ES:</text>
+  <text class="lbl" x="524" y="386">discard 1 card then draw 1,</text>
+  <text class="lbl" x="500" y="404">or play 1 event</text>
+  <path class="flow" marker-end="url(#arr)" d="M320,420 V458"/>
+
+  <!-- End of turn -->
+  <rect class="bbox" x="160" y="458" width="320" height="48" rx="3"/>
+  <text class="btxt" x="320" y="487">End of turn</text>
+  <text class="lbl" x="500" y="476">«until end of turn» effects expire here;</text>
+  <text class="lbl" x="500" y="494">play passes to the next Methuselah</text>
+
+  <!-- next-turn loop (left) -->
+  <path class="flow" marker-end="url(#arr)" d="M160,482 H100 V80 H158"/>
+  <text class="llbl" x="74" y="276">next</text>
+  <text class="llbl" x="74" y="294">turn</text>
+</svg>

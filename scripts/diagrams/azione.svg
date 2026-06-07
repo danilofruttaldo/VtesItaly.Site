@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 730" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4472C4"/>
+    </marker>
+    <style>
+      .band   { fill:#DCE3F0; }
+      .hdr    { fill:#4472C4; }
+      .hdrtxt { fill:#ffffff; font-size:18px; font-weight:400; text-anchor:middle; }
+      .wbox   { fill:#ffffff; stroke:#4472C4; stroke-width:1.5; }
+      .wtxt   { fill:#1F3864; font-size:14px; text-anchor:middle; }
+      .gbox   { fill:#FFC000; stroke:#BF9000; stroke-width:1.5; stroke-dasharray:5 3; }
+      .gtxt   { fill:#3a2e00; font-size:14px; font-weight:600; text-anchor:middle; }
+      .bbox   { fill:#2E5395; }
+      .btxt   { fill:#ffffff; font-size:13px; text-anchor:middle; }
+      .flow   { fill:none; stroke:#4472C4; stroke-width:2; }
+      .lbl    { fill:#2E5395; font-size:13px; }
+      .num    { fill:#2E5395; font-size:15px; font-weight:700; }
+      .lgtxt  { fill:#333333; font-size:13px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1320" height="730" fill="#ffffff"/>
+
+  <rect class="band" x="32"   y="24" width="188" height="576" rx="3"/>
+  <rect class="band" x="250"  y="24" width="210" height="576" rx="3"/>
+  <rect class="band" x="545"  y="24" width="480" height="576" rx="3"/>
+  <rect class="band" x="1050" y="24" width="238" height="576" rx="3"/>
+
+  <rect class="hdr" x="40"   y="96" width="172" height="60" rx="3"/>
+  <text class="hdrtxt" x="126" y="121">As the action</text>
+  <text class="hdrtxt" x="126" y="143">is announced</text>
+
+  <rect class="hdr" x="258"  y="96" width="194" height="60" rx="3"/>
+  <text class="hdrtxt" x="355" y="132">Block attempts</text>
+
+  <rect class="hdr" x="553"  y="96" width="464" height="60" rx="3"/>
+  <text class="hdrtxt" x="785" y="132">Resolution</text>
+
+  <rect class="hdr" x="1058" y="96" width="222" height="60" rx="3"/>
+  <text class="hdrtxt" x="1169" y="132">After resolution</text>
+
+  <!-- play-window captions under the phase headers -->
+  <text class="lbl" x="126" y="184" text-anchor="middle">play window</text>
+  <text class="lbl" x="126" y="202" text-anchor="middle"><tspan font-weight="700">ES:</tspan> Seduction</text>
+  <text class="lbl" x="355" y="184" text-anchor="middle">declare blocks</text>
+
+  <path class="flow" marker-end="url(#arr)" d="M212,126 H254"/>
+  <path class="flow" marker-end="url(#arr)" d="M1017,126 H1054"/>
+  <text class="lbl" x="1022" y="90">includes</text>
+
+  <text class="lbl" x="468" y="120">action is…</text>
+  <path class="flow" d="M452,126 H500 V430"/>
+  <path class="flow" marker-end="url(#arr)" d="M500,250 H596"/>
+  <path class="flow" marker-end="url(#arr)" d="M500,430 H586"/>
+  <text class="lbl" x="505" y="242">successful</text>
+  <text class="lbl" x="505" y="422">blocked</text>
+
+  <rect class="wbox" x="600" y="222" width="170" height="56" rx="3"/>
+  <text class="wtxt" x="685" y="255">Apply the effects</text>
+  <path class="flow" marker-end="url(#arr)" d="M770,250 H836"/>
+
+  <rect class="gbox" x="840" y="218" width="130" height="64" rx="3"/>
+  <text class="gtxt" x="905" y="245">Queued</text>
+  <text class="gtxt" x="905" y="263">combat</text>
+  <path class="flow" marker-end="url(#arr)" d="M970,250 H1054"/>
+
+  <rect class="bbox" x="1058" y="228" width="200" height="44" rx="3"/>
+  <text class="btxt" x="1158" y="254">After combat</text>
+
+  <path class="flow" marker-end="url(#arr)" d="M945,282 V312 H892 V286"/>
+  <text class="num" x="952" y="304">1</text>
+
+  <rect class="wbox" x="590" y="398" width="200" height="70" rx="3"/>
+  <text class="wtxt" x="690" y="427">Block resolution</text>
+  <text class="wtxt" x="690" y="448">(block / combat)</text>
+  <path class="flow" marker-end="url(#arr)" d="M790,433 H836"/>
+
+  <rect class="gbox" x="840" y="401" width="130" height="64" rx="3"/>
+  <text class="gtxt" x="905" y="428">Queued</text>
+  <text class="gtxt" x="905" y="446">combat</text>
+  <path class="flow" marker-end="url(#arr)" d="M970,433 H1054"/>
+
+  <rect class="bbox" x="1058" y="405" width="200" height="56" rx="3"/>
+  <text class="btxt" x="1158" y="430">After block</text>
+  <text class="btxt" x="1158" y="448">resolution</text>
+
+  <path class="flow" marker-end="url(#arr)" d="M945,465 V495 H892 V469"/>
+  <text class="num" x="952" y="487">1</text>
+
+  <path class="flow" marker-end="url(#arr)" d="M970,415 C1010,400 1010,300 1056,272"/>
+  <text class="num" x="1006" y="350">2</text>
+
+  <path class="flow" marker-end="url(#arr)" d="M1258,250 H1278 V560 H300 V160"/>
+  <path class="flow" d="M1258,433 H1278"/>
+  <text class="lbl" x="690" y="552" text-anchor="middle">continue the action</text>
+
+  <rect class="gbox" x="40" y="636" width="120" height="50" rx="3"/>
+  <text class="gtxt" x="100" y="657">Queued</text>
+  <text class="gtxt" x="100" y="675">combat</text>
+  <text class="lgtxt" x="178" y="654">Optional, no more than 1 combat can be</text>
+  <text class="lgtxt" x="178" y="674">queued at any given time.</text>
+
+  <text class="lgtxt" x="720" y="652"><tspan class="num">1:</tspan> Psyche!, Coordinated Attacks…</text>
+  <text class="lgtxt" x="720" y="676"><tspan class="num">2:</tspan> Hidden Lurker, Fast Reaction…</text>
+</svg>

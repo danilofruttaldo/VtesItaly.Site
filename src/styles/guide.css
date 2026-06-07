@@ -535,3 +535,37 @@
 .archon-pill--grey {
   background: #6c757d;
 }
+
+/* ── Schemi riassuntivi (rule-summary diagrams) ─────────────── */
+.prose .schema-figure {
+  margin: 24px 0;
+  text-align: center;
+}
+.prose .schema-figure a {
+  display: inline-block;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 8px;
+  background: #fff;
+  transition: box-shadow 0.15s ease;
+}
+.prose .schema-figure a:hover,
+.prose .schema-figure a:focus-visible {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+.prose .schema-figure img {
+  margin: 0;
+  border-radius: 0;
+}
+.prose .schema-figure figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+.prose .schema-figure figcaption::after {
+  content: ' — clicca per ingrandire';
+  opacity: 0.7;
+}
+.prose .schema-figure--en figcaption::after {
+  content: ' — click to enlarge';
+}

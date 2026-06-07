@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 810" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4472C4"/>
+    </marker>
+    <style>
+      .band   { fill:#DCE3F0; }
+      .hdr    { fill:#4472C4; }
+      .hdrtit { fill:#ffffff; font-size:16px; font-weight:600; text-anchor:middle; }
+      .hdrdet { fill:#d7e0f4; font-size:12.5px; text-anchor:middle; }
+      .bbox   { fill:#2E5395; }
+      .btxt   { fill:#ffffff; font-size:16px; font-weight:600; text-anchor:middle; }
+      .flow   { fill:none; stroke:#4472C4; stroke-width:2; }
+      .lbl    { fill:#2E5395; font-size:13px; }
+      .lblr   { fill:#2E5395; font-size:13px; text-anchor:end; }
+      .num    { fill:#2E5395; font-size:15px; font-weight:700; }
+      .lgnum  { fill:#2E5395; font-size:13px; font-weight:700; }
+      .lgtxt  { fill:#333333; font-size:13px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="810" fill="#ffffff"/>
+
+  <!-- soft-blue lane -->
+  <rect class="band" x="240" y="40" width="400" height="572" rx="4"/>
+
+  <!-- 1 -->
+  <rect class="hdr" x="260" y="52" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="78">Before range</text>
+  <text class="hdrdet" x="440" y="96">play cards before range is determined</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,108 V136"/>
+
+  <!-- 2 -->
+  <rect class="hdr" x="260" y="136" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="162">Determine range</text>
+  <text class="hdrdet" x="440" y="180">close by default; a maneuver makes it long</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,192 V220"/>
+
+  <!-- 3 -->
+  <rect class="hdr" x="260" y="220" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="246">Before strikes</text>
+  <text class="hdrdet" x="440" y="264">play cards before strikes are chosen</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,276 V304"/>
+
+  <!-- 4 -->
+  <rect class="hdr" x="260" y="304" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="330">Strike</text>
+  <text class="hdrdet" x="440" y="348">acting minion chooses first, then opponent</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,360 V388"/>
+
+  <!-- 5 -->
+  <rect class="hdr" x="260" y="388" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="414">Damage resolution</text>
+  <text class="hdrdet" x="440" y="432">prevent damage, then take/mend the rest</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,444 V472"/>
+
+  <!-- 6 -->
+  <rect class="hdr" x="260" y="472" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="498">Press</text>
+  <text class="hdrdet" x="440" y="516">press to continue, or to end combat</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,528 V556"/>
+
+  <!-- 7 -->
+  <rect class="hdr" x="260" y="556" width="360" height="56" rx="3"/>
+  <text class="hdrtit" x="440" y="582">End of round</text>
+  <text class="hdrdet" x="440" y="600">play end-of-round cards and effects</text>
+  <path class="flow" marker-end="url(#arr)" d="M440,612 V640"/>
+
+  <!-- end of combat -->
+  <rect class="bbox" x="260" y="640" width="360" height="48" rx="3"/>
+  <text class="btxt" x="440" y="669">End of combat</text>
+
+  <!-- additional strikes loop: 5 -> 4 -->
+  <path class="flow" marker-end="url(#arr)" d="M260,416 H205 V332 H257"/>
+  <text class="lblr" x="195" y="368">additional strikes</text>
+  <text class="lblr" x="195" y="386">(repeat 4–5)</text>
+
+  <!-- new-round riser; feed A from End of round, feed B (ref 2) from End of combat -->
+  <path class="flow" marker-end="url(#arr)" d="M690,664 V80 H622"/>
+  <path class="flow" d="M620,602 H690"/>
+  <text class="lbl" x="702" y="590">press to continue</text>
+  <text class="lbl" x="702" y="608">→ new round</text>
+  <path class="flow" d="M620,664 H690"/>
+  <text class="num" x="654" y="659">2</text>
+
+  <!-- "combat ends" strike (ref 1): combat ends at Strike; End of round still occurs -->
+  <path class="flow" marker-end="url(#arr)" d="M620,332 H850 V562 H624"/>
+  <text class="num" x="856" y="450">1</text>
+
+  <!-- legend -->
+  <text class="lgnum" x="60" y="742">1:</text>
+  <text class="lgtxt" x="80" y="742">a “combat ends” strike — ends combat as it resolves; Press is skipped, but End of round still occurs.</text>
+  <text class="lgnum" x="60" y="766">2:</text>
+  <text class="lgtxt" x="80" y="766">Psyche! and similar effects (at end of combat) — restart a combat about to end.</text>
+  <text class="lbl" x="60" y="792">Any time: if a combatant is no longer ready (burned or in torpor), combat ends.</text>
+</svg>

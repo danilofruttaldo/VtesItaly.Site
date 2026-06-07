@@ -18,6 +18,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/ae55841a-fcb6-46d9-a9a1-d528d525b85c/display.html'
+standingsUrl: '/ev/old-friends-2026/standings-old-friends-2026.json'
 schedule:
   - time: '10:30 – 12:30'
     label: 'First round'

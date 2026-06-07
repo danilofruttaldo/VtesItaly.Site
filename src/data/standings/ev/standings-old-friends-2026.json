@@ -1,0 +1,14 @@
+[
+  { "rank": 1, "name": "Alessandro Donati", "gw": 2, "vp": 8, "fvp": null, "tp": 128 },
+  { "rank": 2, "name": "Davide Bonini", "gw": 2, "vp": 7, "fvp": null, "tp": 74 },
+  { "rank": 2, "name": "Flavio Conticello", "gw": 1, "vp": 5, "fvp": null, "tp": 58 },
+  { "rank": 2, "name": "Filippo del Re", "gw": 1, "vp": 4, "fvp": null, "tp": 54 },
+  { "rank": 2, "name": "Nicola Pampaloni", "gw": 1, "vp": 2, "fvp": null, "tp": 46 },
+  { "rank": 6, "name": "Lorenzo Ferri", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 6, "name": "Luca Turicchi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 8, "name": "Leonardo Bensi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 9, "name": "Simone Bertagni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 10, "name": "Gabriele Bugliani", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 10, "name": "Livio Biagioni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 12, "name": "Andrea Casaccia", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

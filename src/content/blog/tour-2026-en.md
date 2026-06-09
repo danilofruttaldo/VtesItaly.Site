@@ -95,12 +95,16 @@ stages:
 
   - name: 'SLOTH'
     number: 6
-    date: 2026-11-15
+    date: 2026-11-14
     cities: ['milano', 'verona']
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
+    venue: 'Ludoteca "Casa dei Giochi"'
+    location: "Via Sant'Uguzzone 8, 20126 Milano (MI)"
     image: '/tour/tour-2026/tour-2026-006.webp'
+    archonUrl: 'https://archon.vekn.net/tournament/6f784233-dbfa-4762-a00a-bb0df5552d3f/display.html'
     description: 'Sloth waits. Survives, endures, strikes only when needed. A deceptive sin that rewards patience and persistence.'
 
   - name: 'PRIDE'

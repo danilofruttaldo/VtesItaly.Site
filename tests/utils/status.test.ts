@@ -4,6 +4,7 @@ import {
   computeEventStatus,
   computeStageDisplayImages,
   resolvePlatformLabel,
+  resolveLinkLabel,
 } from '../../src/utils/status';
 
 // All tests pin "now" to a specific instant so date comparisons are
@@ -127,5 +128,22 @@ describe('status: resolvePlatformLabel', () => {
   });
   it('falls back to the raw URL for unknown platforms', () => {
     expect(resolvePlatformLabel('https://random.example/x')).toBe('https://random.example/x');
+  });
+});
+
+describe('status: resolveLinkLabel', () => {
+  it('prefixes an editorial label before the platform name for Archon URLs', () => {
+    expect(resolveLinkLabel({ label: 'Lega Milano 2026: Classifica', url: 'https://archon.example/league/1' })).toBe(
+      'Lega Milano 2026: Classifica — Archon',
+    );
+  });
+  it('prefixes the label for BCN Crisis URLs', () => {
+    expect(resolveLinkLabel({ label: 'Standings', url: 'https://bcncrisis.com/t/1' })).toBe('Standings — BCN Crisis');
+  });
+  it('falls back to just the platform name when the label is empty', () => {
+    expect(resolveLinkLabel({ label: '', url: 'https://archon.example/123' })).toBe('Archon');
+  });
+  it('returns the editorial label verbatim for non-platform URLs', () => {
+    expect(resolveLinkLabel({ label: 'Infopack (PDF)', url: '/gp/2026/infopack.pdf' })).toBe('Infopack (PDF)');
   });
 });

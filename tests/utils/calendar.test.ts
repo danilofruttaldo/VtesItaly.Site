@@ -284,6 +284,30 @@ describe('getCommunityTimeline', () => {
     expect(out[0].date).toBe('2026-07-15');
   });
 
+  it('expands one card per dated event when timelinePerEvent is set (skips period entries)', () => {
+    const posts = [
+      mkPost('lega-perevent', {
+        date: new Date('2026-05-17'),
+        title: 'Lega Milano',
+        excerpt: 'shared excerpt',
+        category: 'comunita',
+        timelinePerEvent: true,
+        events: [
+          { name: 'Giornata 1', date: new Date('2026-05-17'), time: '14:00' },
+          { name: 'Giornata 2', date: new Date('2026-07-12'), time: '14:00', endDate: new Date('2026-07-13') },
+          { name: 'Giornata 3', date: new Date('2026-05-17'), time: '', period: 'TBD' },
+        ],
+      } as Partial<BlogEntry['data']> & { date: Date }),
+    ];
+    const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('lega-perevent'));
+    // One card per dated event (period entry skipped), not a single post card.
+    expect(out.map((e) => e.title)).toEqual(['Giornata 1', 'Giornata 2']);
+    expect(out.map((e) => e.date)).toEqual(['2026-05-17', '2026-07-12']);
+    expect(out[0].endDate).toBeUndefined();
+    expect(out[1].endDate).toBe('2026-07-13');
+    expect(out.every((e) => e.excerpt === 'shared excerpt')).toBe(true);
+  });
+
   it('falls back to post.date for posts with no events/stages', () => {
     const posts = [
       mkPost('article', {

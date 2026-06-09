@@ -18,7 +18,6 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/c5ca42a2-3aca-4cbd-b4b2-3e5343eb017e/display.html'
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'parmeggiani.simone@gmail.com'
 standingsUrl: '/ev/complearum-2025/standings-complearum-2025.json'
 locale: it

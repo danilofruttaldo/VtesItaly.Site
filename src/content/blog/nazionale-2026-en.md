@@ -89,7 +89,6 @@ prizes:
   - 'Welcome kit for each event'
 standingsUrl: '/nc/nc-2026/standings-nc-2026.json'
 streamingUrl: 'https://www.youtube.com/watch?v=BKAhtwmUSUI'
-registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 links:
   - label: 'Infopack (PDF)'

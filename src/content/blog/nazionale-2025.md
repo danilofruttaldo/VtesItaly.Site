@@ -57,7 +57,6 @@ pricing:
   - label: 'Iscrizione'
     regular: '30 euro'
 standingsUrl: '/nc/nc-2025/standings-nc-2025.json'
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — pordenonevtes@gmail.com'
 hotel:

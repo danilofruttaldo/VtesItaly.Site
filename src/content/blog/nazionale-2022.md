@@ -32,7 +32,6 @@ events:
     archonUrl: 'https://archon.vekn.net/tournament/3c3e0baa-a2c3-4fad-b521-e2a548ce1506/display.html'
 pricing: []
 standingsUrl: '/nc/nc-2022/standings-nc-2022.json'
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
 hotel: []

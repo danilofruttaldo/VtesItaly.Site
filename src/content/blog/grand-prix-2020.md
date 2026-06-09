@@ -28,7 +28,6 @@ events:
     archonUrl: 'https://archon.vekn.net/tournament/33f87555-479e-4e03-a6bd-f26e62e6fb82/display.html'
 pricing: []
 standingsUrl: '/gp/gp-2020/standings-gp-2020.json'
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: ''
 hotel: []

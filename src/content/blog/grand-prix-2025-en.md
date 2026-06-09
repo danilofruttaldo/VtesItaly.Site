@@ -46,7 +46,6 @@ prizes:
   - 'Commemorative metal rings for top 10'
   - 'Sponsored UltraPro material'
   - 'Timer for 3rd round winners'
-registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 standingsUrl: '/gp/gp-2025/standings-gp-2025.json'
 notes:

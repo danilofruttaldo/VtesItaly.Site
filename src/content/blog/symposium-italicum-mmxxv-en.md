@@ -40,7 +40,6 @@ pricing:
     regular: '20 € (drinks excluded)'
   - label: 'Saturday buffet'
     regular: '20 € (drinks excluded)'
-registration: 'Pre-registration and decklist required'
 payment: 'PayPal (friends & family): adonati1982@gmail.com'
 contact: 'adonati1982@gmail.com'
 standingsUrl: '/ev/symposium-italicum-2025/standings-symposium-italicum-2025.json'

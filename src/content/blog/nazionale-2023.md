@@ -48,7 +48,6 @@ links:
   - label: 'Infopack (PDF)'
     url: '/nc/nc-2023/infopack-nc-2023-en.pdf'
     locale: en
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
 hotel: []

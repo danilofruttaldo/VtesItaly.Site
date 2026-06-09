@@ -40,7 +40,6 @@ pricing:
     regular: '20 € (bevande escluse)'
   - label: 'Buffet sabato'
     regular: '20 € (bevande escluse)'
-registration: 'Preiscrizione e decklist obbligatorie'
 payment: 'PayPal (amici e familiari): adonati1982@gmail.com'
 contact: 'adonati1982@gmail.com'
 standingsUrl: '/ev/symposium-italicum-2025/standings-symposium-italicum-2025.json'

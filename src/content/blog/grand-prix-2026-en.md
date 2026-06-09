@@ -89,7 +89,6 @@ streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=dy0WvJXhM3w'
     label: 'Prize Reveal'
-registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 notes:
   - 'Saturday first and second courses, Sunday double first course with dessert. Water and coffee included.'

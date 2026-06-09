@@ -46,7 +46,6 @@ prizes:
   - 'Anelli commemorativi per i top 10'
   - 'Materiale UltraPro sponsorizzato'
   - 'Timer per i vincitori del 3o round'
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 standingsUrl: '/gp/gp-2025/standings-gp-2025.json'
 notes:

@@ -31,7 +31,6 @@ pricing:
   - label: 'Entry fee'
     regular: '25.00 euro'
 payment: 'PayPal (friends and family) — vtesitaly@gmail.com'
-registration: 'Pre-registration and decklist required'
 contact: 'info@vtesitaly.com'
 hotel: []
 prizes: ''

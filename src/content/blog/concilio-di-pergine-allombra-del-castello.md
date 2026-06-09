@@ -19,7 +19,6 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/38d27caf-6140-4a3d-aeac-9d62accc8dec/display.html'
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'asgard.aldeno@gmail.com'
 standingsUrl: '/ev/concilio-pergine-2025/standings-concilio-pergine-2025.json'
 locale: it

@@ -19,7 +19,6 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/2e1aec19-fc9a-43b4-a2d4-85fc43e891df/display.html'
-registration: 'Pre-registration and decklist required'
 contact: 'asgard.aldeno@gmail.com'
 locale: 'en'
 ---

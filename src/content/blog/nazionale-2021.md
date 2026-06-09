@@ -20,7 +20,6 @@ events:
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournament/44b90860-7e1d-4755-b33b-a3056f71bb37/display.html'
 pricing: []
-registration: 'Preiscrizione e decklist obbligatorie'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
 hotel: []

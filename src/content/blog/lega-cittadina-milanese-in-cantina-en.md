@@ -15,12 +15,12 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/320d4566-322d-4fad-bc5f-a8f8d28979e3/display.html'
   - name: 'Lega Milano 2026: Game Day 2'
-    date: 2026-05-17
-    period: 'TBD'
+    date: 2026-07-12
     time: '14:00'
     format: 'Standard'
     proxies: true
     rounds: 2
+    archonUrl: 'https://archon.vekn.net/tournament/80a1e343-419e-4d07-ab84-c3551f7e947d/display.html'
   - name: 'Lega Milano 2026: Game Day 3'
     date: 2026-05-17
     period: 'TBD'
@@ -60,6 +60,11 @@ registration: 'Pre-registration and decklists required — max 15 spots per game
 payment: 'PayPal (friends & family) — henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
+timelinePerEvent: true
+links:
+  - label: 'Lega Milano 2026: Standings'
+    url: 'https://archon.vekn.net/league/1ae3aede-eb9c-4b08-b00c-51414b8e3cbe/display.html'
+    locale: en
 locale: 'en'
 ---
 

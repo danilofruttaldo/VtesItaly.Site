@@ -78,11 +78,17 @@ export function resolvePlatformLabel(url: string): string {
 }
 
 /**
- * Choose the display label for a tournament link: if the URL points at a
- * known platform (Archon, BCN Crisis), use the platform name so the chip is
- * recognizable at a glance; otherwise fall back to the editorially-authored
- * label. Used by Event/Tour/League pages and standalone post link chips.
+ * Choose the display label for a tournament link. For known platforms (Archon,
+ * BCN Crisis) the platform name is always shown so the chip is recognizable at
+ * a glance: an editorial label, when present, is kept as a prefix
+ * (`{label} — {platform}`, mirroring the per-event link chips); otherwise just
+ * the platform name. Non-platform links use the editorial label verbatim.
+ * Used by Event/Tour/League pages and standalone post link chips.
  */
 export function resolveLinkLabel(l: { label: string; url: string }): string {
-  return l.url.includes('bcncrisis') || l.url.includes('archon') ? resolvePlatformLabel(l.url) : l.label;
+  if (l.url.includes('bcncrisis') || l.url.includes('archon')) {
+    const platform = resolvePlatformLabel(l.url);
+    return l.label ? `${l.label} — ${platform}` : platform;
+  }
+  return l.label;
 }

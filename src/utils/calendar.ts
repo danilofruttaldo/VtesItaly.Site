@@ -298,6 +298,30 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
       continue;
     }
 
+    // Opt-in: multi-session campaigns (e.g. a city league) expand each dated
+    // event into its own timeline card, so the homepage features the next
+    // session rather than treating the post's start date as a single ongoing
+    // span across the gaps between sessions.
+    if (post.data.timelinePerEvent && post.data.events && post.data.events.length > 0) {
+      for (const ev of post.data.events) {
+        if (ev.period) continue;
+        const d = new Date(ev.date);
+        if (isNaN(d.getTime())) continue;
+        out.push({
+          date: toIsoDate(d),
+          endDate: ev.endDate ? toIsoDate(new Date(ev.endDate)) : undefined,
+          title: ev.name,
+          url,
+          category,
+          image: baseImage,
+          imageAnchor,
+          tags,
+          excerpt,
+        });
+      }
+      continue;
+    }
+
     const postDate = new Date(post.data.date);
     if (isNaN(postDate.getTime())) continue;
     const startIso = toIsoDate(postDate);

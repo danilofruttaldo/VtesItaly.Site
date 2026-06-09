@@ -111,6 +111,12 @@ const baseFields = {
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
   // Page hero override for community events in cities without a principato entry.
   cityHeader: z.string().optional(),
+  // Opt-in for the homepage timeline: expand each dated `events` entry into its
+  // own timeline card instead of a single card at the post date. Use for
+  // multi-session campaigns (e.g. a city league with separate giornate) so the
+  // homepage features the next *session* rather than mislabeling the campaign's
+  // start date as "ongoing today".
+  timelinePerEvent: z.boolean().optional(),
 };
 
 /* ── Per-type schemas ─────────────────────────────────────── */

@@ -28,8 +28,8 @@ pricing:
     regular: '€15'
 payment: 'PayPal (friends and family) — vtes.treviso@gmail.com'
 prizes:
-  - 'Door prize'
-  - 'Finalists prize (based on the number of participants)'
+  - 'Door prize (based on the number of participants)'
+  - 'Finalists prizes'
 locale: 'en'
 ---
 

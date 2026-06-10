@@ -35,4 +35,6 @@ locale: 'en'
 
 **Praxis Seizure: Treviso** — **Standard Constructed** VTES tournament on Saturday, **July 18, 2026** at **GiOlly Comics** in Villorba (TV).
 
+It is the **first sanctioned tournament of the Principality of Treviso**, following the unofficial friendly tournament that launched the community last year (_Taste of Spritzae_, July 2025).
+
 **Entry fee**: €15.

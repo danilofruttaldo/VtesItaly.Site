@@ -165,6 +165,8 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
             const isAltro = ev.type === 'altro';
             const hasTime = ev.time && ev.time !== '—';
             const showFormat = !isAltro && ev.format;
+            // Hide the event name when it just repeats the page title (single-event tournaments).
+            const showName = ev.name && ev.name !== post.data.title;
             const startDate = new Date(ev.date);
             const crossesYear = !!ev.endDate && startDate.getFullYear() !== ev.endDate.getFullYear();
             const startOpts = crossesYear
@@ -175,8 +177,12 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
               : startOpts;
             return (
               <div class="gp-event">
-                <strong>{ev.name}</strong>
-                <br />
+                {showName && (
+                  <>
+                    <strong>{ev.name}</strong>
+                    <br />
+                  </>
+                )}
                 {formatLocalDate(startDate, locale, startOpts)}
                 {ev.endDate && <> → {formatLocalDate(ev.endDate, locale, endOpts)}</>}
                 {hasTime && <> — {`${t.gp.time_prefix} ${ev.time}`}</>}

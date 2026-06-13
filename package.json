@@ -35,11 +35,12 @@
     "remark-github-blockquote-alert": "^2.1.0",
     "sharp": "^0.34.5"
   },
-  "//overrides": "h3: pinned to fix npm audit vuln in unstorage transitive (commit a6006ca). yaml: pinned ^2.8.3 to avoid yaml-language-server DoS (GHSA-48c2-rrv3-qjmp) pulled by @astrojs/check. devalue: pinned ^5.8.1 to fix sparse-array DoS (GHSA-77vg-94rm-hx3p) pulled by astro.",
+  "//overrides": "h3: pinned to fix npm audit vuln in unstorage transitive (commit a6006ca). yaml: pinned ^2.8.3 to avoid yaml-language-server DoS (GHSA-48c2-rrv3-qjmp) pulled by @astrojs/check. devalue: pinned ^5.8.1 to fix sparse-array DoS (GHSA-77vg-94rm-hx3p) pulled by astro. esbuild: pinned ^0.28.1 to fix dev-server file-read + Deno RCE (GHSA-g7r4-m6w7-qqqr, GHSA-gv7w-rqvm-qjhr) pulled by vite/astro; build-time only, does not affect the static deploy.",
   "overrides": {
     "h3": "^1.15.10",
     "yaml": "^2.8.3",
-    "devalue": "^5.8.1"
+    "devalue": "^5.8.1",
+    "esbuild": "^0.28.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

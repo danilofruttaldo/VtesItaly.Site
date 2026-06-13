@@ -14,11 +14,19 @@ venue:
 events:
   - name: "All'ombra del Castello – Kindred vs Garou"
     date: 2026-06-13
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournament/2e1aec19-fc9a-43b4-a2d4-85fc43e891df/display.html'
+pricing:
+  - label: 'Registration'
+    regular: '5 €'
+prizes:
+  - 'Door prize'
+  - 'Finalists prize'
+streamingUrl: 'https://www.youtube.com/live/k1sgFET08j4'
+streamingLabel: 'Streaming'
 contact: 'asgard.aldeno@gmail.com'
 locale: 'en'
 ---

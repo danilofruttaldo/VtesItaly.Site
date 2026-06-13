@@ -141,6 +141,7 @@ const grandPrixSchema = z.object({
   hotelNote: z.string().optional(),
   schedule: z.array(scheduleSchema).optional().default([]),
   streamingUrl: z.string().optional(),
+  streamingLabel: z.string().optional(),
   stages: z.array(stageSchema).optional(),
 });
 
@@ -163,6 +164,7 @@ const nazionaleSchema = z.object({
   hotelNote: z.string().optional(),
   schedule: z.array(scheduleSchema).optional().default([]),
   streamingUrl: z.string().optional(),
+  streamingLabel: z.string().optional(),
   stages: z.array(stageSchema).optional(),
 });
 
@@ -203,6 +205,7 @@ const comunitaSchema = z
     registration: z.string().optional(),
     contact: z.string().optional(),
     streamingUrl: z.string().optional(),
+    streamingLabel: z.string().optional(),
     standingsUrl: z.string().optional(),
     standingsLabel: z.string().optional(),
     // league fields

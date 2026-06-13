@@ -25,8 +25,6 @@ pricing:
 prizes:
   - 'Door prize'
   - 'Premio finalisti'
-streamingUrl: 'https://www.youtube.com/live/k1sgFET08j4'
-streamingLabel: 'Streaming'
 contact: 'asgard.aldeno@gmail.com'
 locale: it
 ---

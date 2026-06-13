@@ -27,6 +27,7 @@
     "pretest:coverage": "node scripts/warm-content.mjs",
     "test:coverage": "vitest run --coverage",
     "test:build": "npm run build && vitest run --config vitest.integration.config.ts",
+    "ci:verify": "npm audit --omit=dev && npm run lint && npm run format:check && npm run check && npm run test:coverage && npm run test:build",
     "clean": "rimraf dist .astro"
   },
   "dependencies": {

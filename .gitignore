@@ -2,6 +2,7 @@ node_modules/
 dist/
 .astro/
 coverage/
+.vscode/
 .env
 .env.local
 .env.*.local

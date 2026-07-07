@@ -1,0 +1,14 @@
+[
+  { "rank": 1, "name": "Giulio De Cicco", "gw": 3, "vp": 9.5, "fvp": null, "tp": 142 },
+  { "rank": 2, "name": "Daniel Pergola", "gw": 2, "vp": 7, "fvp": null, "tp": 74 },
+  { "rank": 2, "name": "Adriano Arena", "gw": 2, "vp": 5.5, "fvp": null, "tp": 68 },
+  { "rank": 2, "name": "Federico Ferrarini", "gw": 1, "vp": 5.5, "fvp": null, "tp": 60 },
+  { "rank": 2, "name": "Giulio Weikmann", "gw": 1, "vp": 5.5, "fvp": null, "tp": 60 },
+  { "rank": 6, "name": "Marcello Bertocchi", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 7, "name": "Thomas Marchiori", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 8, "name": "Ivan Candioli", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 9, "name": "Filippo Tomov", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 9, "name": "Niccolò Da Ronco", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 9, "name": "Vincenzo Elefante", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 12, "name": "Simone Canale", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

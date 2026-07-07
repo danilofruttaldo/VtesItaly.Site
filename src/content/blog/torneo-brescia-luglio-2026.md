@@ -22,6 +22,7 @@ events:
 pricing:
   - label: 'Iscrizione'
     regular: '15 € (pranzo a buffet incluso)'
+standingsUrl: '/ev/brescia-luglio-2026/standings-brescia-luglio-2026.json'
 locale: it
 ---
 

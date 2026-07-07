@@ -22,6 +22,7 @@ events:
 pricing:
   - label: 'Entry fee'
     regular: '€15 (buffet lunch included)'
+standingsUrl: '/ev/brescia-luglio-2026/standings-brescia-luglio-2026.json'
 locale: 'en'
 ---
 

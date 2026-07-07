@@ -30,6 +30,7 @@ payment: 'PayPal (amici e parenti) — henry.hinde1973@gmail.com'
 prizes:
   - 'Premi finalisti: mazzi V5, gadget, sleeves (in base al numero di partecipanti)'
   - 'Promo door prize per tutti'
+standingsUrl: '/ev/milano-giugno-2026/standings-milano-giugno-2026.json'
 locale: it
 ---
 

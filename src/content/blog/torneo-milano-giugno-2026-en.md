@@ -30,6 +30,7 @@ payment: 'PayPal (friends and family) — henry.hinde1973@gmail.com'
 prizes:
   - 'Finalist prizes: V5 decks, gadgets, sleeves (based on the number of participants)'
   - 'Promo door prize for everyone'
+standingsUrl: '/ev/milano-giugno-2026/standings-milano-giugno-2026.json'
 locale: 'en'
 ---
 

@@ -26,6 +26,7 @@ prizes:
   - 'Door prize'
   - 'Finalists prize'
 contact: 'asgard.aldeno@gmail.com'
+standingsUrl: '/ev/concilio-pergine-2026/standings-concilio-pergine-2026.json'
 locale: 'en'
 ---
 

@@ -17,6 +17,15 @@ export interface PostcardGallery {
 
 export const postcardGalleries: PostcardGallery[] = [
   {
+    title: { it: 'Praxis Seizure: Treviso', en: 'Praxis Seizure: Treviso' },
+    subtitle: { it: 'Treviso, Luglio 2026', en: 'Treviso, July 2026' },
+    images: [
+      { src: '/images/carte/library-taste-of-vitae.webp', alt: 'Taste of Vitae' },
+      { src: '/images/carte/library-hide-the-mind.webp', alt: 'Hide the Mind' },
+      { src: '/images/carte/library-alastor.webp', alt: 'Alastor' },
+    ],
+  },
+  {
     title: { it: 'Grand Prix 2026', en: 'Grand Prix 2026' },
     subtitle: { it: 'Bologna, Maggio 2026', en: 'Bologna, May 2026' },
     images: [

@@ -336,7 +336,8 @@
 /* Gallery grid (fallback) */
 .gp-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  /* 220px => 5 colonne nel contenitore wide (1216px interni), 4/3/2 a scalare */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 8px;
 }
 .gp-gallery-item {

@@ -5,6 +5,7 @@ category: 'comunita'
 tags: ['treviso', 'torneo']
 featuredImage: '/images/comunita/treviso/praxis-seizure.webp'
 poster: '/images/comunita/treviso/praxis-seizure.webp'
+galleryFolder: 'praxis-seizure-2026'
 excerpt: 'Praxis Seizure: Treviso — Standard Constructed VTES tournament on Saturday, July 18, 2026 at GiOlly Comics in Villorba (TV). Proxies allowed, €15 entry.'
 venue:
   name: 'GiOlly Comics'
@@ -27,6 +28,7 @@ pricing:
   - label: 'Entry fee'
     regular: '€15'
 payment: 'PayPal (friends and family) — vtes.treviso@gmail.com'
+standingsUrl: '/ev/praxis-seizure-2026/standings-praxis-seizure-2026.json'
 prizes:
   - 'Door prize (based on the number of participants)'
   - 'Finalists prizes'
@@ -38,3 +40,5 @@ locale: 'en'
 It is the **first sanctioned tournament of the Principality of Treviso**, following the unofficial friendly tournament that launched the community last year (_Taste of Spritzae_, July 2025).
 
 **Entry fee**: €15.
+
+**21 players**, two rounds and a final. **Damiano G.** (Modena) took the crown of Tarvisium, with **Federico F.**, **Leonardo B.**, **Luca M.** and **Stefano C.** rounding out the final table.

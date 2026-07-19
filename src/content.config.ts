@@ -38,6 +38,7 @@ const eventSchema = z.object({
   archonUrl: z.string().optional(),
   period: z.string().optional(),
   type: z.string().optional(),
+  hideFromCalendar: z.boolean().optional(),
 });
 
 const stageSchema = z.object({

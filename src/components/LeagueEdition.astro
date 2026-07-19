@@ -71,6 +71,8 @@ const isTournamentShape = standings.length > 0 && 'tp' in standings[0];
 const hasFp = standings.some((s) => s.fp != null);
 const hasPp = standings.some((s) => (s.pp ?? 0) !== 0);
 const hasFvp = standings.some((s) => s.fvp != null);
+// Aggregate league standings carry the giornate attended; single events don't.
+const hasGames = standings.some((s) => s.games != null);
 function fmt(n: number): string {
   return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
 }
@@ -397,6 +399,7 @@ function fmt(n: number): string {
                   <th class="tc">VP</th>
                   {hasFvp && <th class="tc">FVP</th>}
                   <th class="tc">TP</th>
+                  {hasGames && <th class="tc">G</th>}
                 </tr>
               </thead>
               <tbody>
@@ -413,6 +416,7 @@ function fmt(n: number): string {
                     <td class="tc">{fmt(s.vp)}</td>
                     {hasFvp && <td class="tc">{s.fvp != null ? fmt(s.fvp) : ''}</td>}
                     <td class="tc">{s.tp ?? 0}</td>
+                    {hasGames && <td class="tc">{s.games ?? 0}</td>}
                   </tr>
                 ))}
               </tbody>

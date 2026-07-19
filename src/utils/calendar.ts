@@ -125,6 +125,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       for (const ev of post.data.events) {
         // Skip league period entries (they have period set, or date is not parseable)
         if (ev.period) continue;
+        // Opt-out: sessions listed on the post page but kept off the calendar
+        if (ev.hideFromCalendar) continue;
         const d = new Date(ev.date);
         if (isNaN(d.getTime())) continue;
         // Skip placeholder dates (1st of month without confirmed time)
@@ -302,9 +304,12 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     // event into its own timeline card, so the homepage features the next
     // session rather than treating the post's start date as a single ongoing
     // span across the gaps between sessions.
-    if (post.data.timelinePerEvent && post.data.events && post.data.events.length > 0) {
+    // When every session is hidden the loop emits nothing, so fall through to
+    // the single post-date card rather than dropping the post from the timeline.
+    if (post.data.timelinePerEvent && post.data.events?.some((ev) => !ev.period && !ev.hideFromCalendar)) {
       for (const ev of post.data.events) {
         if (ev.period) continue;
+        if (ev.hideFromCalendar) continue;
         const d = new Date(ev.date);
         if (isNaN(d.getTime())) continue;
         out.push({

@@ -9,6 +9,7 @@ excerpt: 'The first Milan city league of Vampire the Eternal Struggle: 4 Sundays
 events:
   - name: 'Lega Milano 2026: Game Day 1'
     date: 2026-05-17
+    hideFromCalendar: true
     time: '14:00'
     format: 'Standard'
     proxies: true
@@ -16,6 +17,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournament/320d4566-322d-4fad-bc5f-a8f8d28979e3/display.html'
   - name: 'Lega Milano 2026: Game Day 2'
     date: 2026-07-12
+    hideFromCalendar: true
     time: '14:00'
     format: 'Standard'
     proxies: true
@@ -60,6 +62,7 @@ registration: 'Pre-registration and decklists required — max 15 spots per game
 payment: 'PayPal (friends & family) — henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
+standingsLabel: 'Standings after Game Day 2'
 timelinePerEvent: true
 links:
   - label: 'Lega Milano 2026: Standings'

@@ -65,10 +65,15 @@
   text-decoration: underline;
 }
 .gp-event {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .gp-event:last-child {
   margin-bottom: 0;
+}
+/* Stacked free-form notes need breathing room between them; a single note is
+ * unaffected. */
+.gp-value > .gp-muted + .gp-muted {
+  margin-top: 6px;
 }
 .gp-link-btn--inline {
   margin-top: 6px;
@@ -110,13 +115,15 @@
   opacity: 0.55;
 }
 
-/* Prizes list */
-.gp-prizes-list {
+/* Bulleted lists inside the info card (prizes, judges) */
+.gp-prizes-list,
+.gp-list {
   list-style: disc;
   padding-left: 18px;
   margin: 0;
 }
-.gp-prizes-list li {
+.gp-prizes-list li,
+.gp-list li {
   padding: 2px 0;
 }
 .gp-steps-list {

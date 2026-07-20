@@ -61,19 +61,38 @@ export function composeFormat(
   if (!KNOWN_FORMATS.includes(format)) return locale === 'en' ? 'Special' : 'Speciale';
   if (format === 'TBD') return 'TBD';
   let s = format;
-  if (proxies !== undefined) {
-    s += proxies
-      ? locale === 'en'
-        ? ', Proxies Allowed'
-        : ', Proxy Ammesse'
-      : locale === 'en'
-        ? ', No Proxies'
-        : ', No Proxy';
-  }
-  if (rounds) {
-    s += locale === 'en' ? ` — ${rounds} Round${rounds > 1 ? 's' : ''} + Final` : ` — ${rounds} Round + Finale`;
-  }
+  if (proxies !== undefined) s += `, ${proxiesLabel(proxies, locale)}`;
+  if (rounds) s += ` — ${roundsLabel(rounds, locale)}`;
   return s;
+}
+
+/** "Proxy Ammesse" / "No Proxy". Split out of `composeFormat` for events whose
+ *  format is not announced yet but whose proxy policy is. */
+export function proxiesLabel(proxies: boolean, locale: Locale): string {
+  if (locale === 'en') return proxies ? 'Proxies Allowed' : 'No Proxies';
+  return proxies ? 'Proxy Ammesse' : 'No Proxy';
+}
+
+/** Format line for a single event, shared by the event page and the calendar
+ *  popup so the two never disagree. Falls back to the proxy policy and round
+ *  structure when the format itself is not announced yet; returns undefined
+ *  when nothing at all is known (callers decide whether to print "TBD"). */
+export function composeEventLine(
+  ev: { format?: string; proxies?: boolean; rounds?: number },
+  locale: Locale,
+): string | undefined {
+  if (ev.format) return composeFormat(ev.format, ev.proxies, ev.rounds, locale);
+  const parts: string[] = [];
+  if (ev.proxies !== undefined) parts.push(proxiesLabel(ev.proxies, locale));
+  if (ev.rounds) parts.push(roundsLabel(ev.rounds, locale));
+  return parts.length > 0 ? parts.join(' — ') : undefined;
+}
+
+/** "3 Round + Finale" / "3 Rounds + Final". Split out of `composeFormat` so the
+ *  round count can also stand alone, for events whose format is not announced
+ *  yet but whose structure is. */
+export function roundsLabel(rounds: number, locale: Locale): string {
+  return locale === 'en' ? `${rounds} Round${rounds > 1 ? 's' : ''} + Final` : `${rounds} Round + Finale`;
 }
 
 /**
@@ -142,9 +161,11 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           category: isAltro ? 'altro' : category,
           url,
           tags,
-          venue: venue,
-          location: location,
-          format: isAltro ? undefined : composeFormat(ev.format, ev.proxies, ev.rounds, locale),
+          // Per-day venue override wins over the post-level one (multi-venue
+          // weekends); the address falls back with it so the two stay paired.
+          venue: ev.venue ?? venue,
+          location: ev.venue ? ev.location : location,
+          format: isAltro ? undefined : (composeEventLine(ev, locale) ?? 'TBD'),
           description: isAltro ? post.data.excerpt : undefined,
           image,
           archonUrl: ev.archonUrl,

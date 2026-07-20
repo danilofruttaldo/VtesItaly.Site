@@ -32,6 +32,11 @@ const eventSchema = z.object({
   date: z.coerce.date(),
   endDate: z.coerce.date().optional(),
   time: z.string(),
+  // Per-day venue override: set only when a session is held somewhere other
+  // than the post-level `venue` (multi-venue weekends). Rendered inline with
+  // the event in the Programma row, not as a separate note.
+  venue: z.string().optional(),
+  location: z.string().optional(),
   format: z.string().optional(),
   proxies: z.boolean().optional(),
   rounds: z.number().optional(),
@@ -101,6 +106,8 @@ const baseFields = {
   galleryFolder: z.string().optional(),
   gallerySections: z.array(gallerySectionSchema).optional().default([]),
   notes: z.array(z.string()).optional().default([]),
+  // Judging staff, one entry per judge. Rendered as a bulleted list.
+  judges: z.array(z.string()).optional().default([]),
   links: z.array(linkSchema).optional().default([]),
   linksAfter: z.array(linkSchema).optional().default([]),
   highlight: z.object({ id: z.string(), label: z.string() }).optional(),

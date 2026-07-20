@@ -7,7 +7,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
-import { composeFormat } from '../utils/calendar';
+import { composeEventLine } from '../utils/calendar';
 import { todayLocalMidnight } from '../utils/today';
 
 interface Props {
@@ -164,7 +164,8 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
           {post.data.events.map((ev) => {
             const isAltro = ev.type === 'altro';
             const hasTime = ev.time && ev.time !== '—';
-            const showFormat = !isAltro && ev.format;
+            const formatLine = composeEventLine(ev, locale);
+            const showFormat = !isAltro && formatLine;
             // Hide the event name when it just repeats the page title (single-event tournaments).
             const showName = ev.name && ev.name !== post.data.title;
             const startDate = new Date(ev.date);
@@ -189,7 +190,13 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
                 {showFormat && (
                   <>
                     <br />
-                    <span class="gp-muted">{composeFormat(ev.format, ev.proxies, ev.rounds, locale)}</span>
+                    <span class="gp-muted">{formatLine}</span>
+                  </>
+                )}
+                {ev.venue && (
+                  <>
+                    <br />
+                    <span class="gp-muted">{ev.location ? `${ev.venue} — ${ev.location}` : ev.venue}</span>
                   </>
                 )}
               </div>
@@ -209,6 +216,20 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
               <span class="gp-muted">{s.time}</span> — {s.label}
             </div>
           ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    (post.data.judges ?? []).length > 0 && (
+      <div class="gp-row">
+        <span class="gp-label">{t.gp.judges_label}</span>
+        <div class="gp-value">
+          <ul class="gp-list">
+            {(post.data.judges ?? []).map((j) => (
+              <li>{j}</li>
+            ))}
+          </ul>
         </div>
       </div>
     )

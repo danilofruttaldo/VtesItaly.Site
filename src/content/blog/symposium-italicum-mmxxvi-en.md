@@ -16,11 +16,13 @@ events:
     time: '14:00'
     proxies: true
     rounds: 2
+    archonUrl: 'https://archon.vekn.net/tournament/18af5e26-5df0-4b04-915b-aadd8324c483/display.html'
   - name: 'Symposium Italicum'
     date: 2026-09-05
     time: '08:30'
     proxies: false
     rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournament/997a5022-d57a-43fd-bed7-eb587802aa4c/display.html'
     venue: 'Stadio Comunale "Johnny Moscardini"'
     location: 'Via Giacomo Puccini, 55051 Barga (LU)'
   - name: 'Pool Party'
@@ -43,6 +45,8 @@ notes:
   - 'Children under 6 go free for the buffet dinner, lunch and Pool Party.'
   - 'The Barga Scottish Festival is held in town on the same weekend: hotels and restaurants are already under pressure, so book as early as you can.'
   - 'The pre-registration form lists the detailed schedule, the door prizes, the menus and the recommended places for Saturday dinner.'
+payment: 'PayPal (amici e familiari): adonati1982@gmail.com'
+contact: 'adonati1982@gmail.com'
 links:
   - label: 'Pre-registration'
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSc0GWABQKpztfYTl_SnR2FM4ODsJEQZKLVaJAqbfQuOxztILA/viewform'

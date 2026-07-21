@@ -40,6 +40,7 @@ judges:
   - 'Filippo "Fil" Mengoli — Head Judge (Official VEKN Elder Judge)'
   - 'Alessandro "Nekròs" Donati — Assistant Judge (Official VEKN Ancilla Judge)'
 notes:
+  - 'Pagamento anticipato entro domenica 16 agosto 2026: chi si iscrive dopo non ha garantita la gadgettistica promozionale.'
   - 'Pernottamento: posti ancora disponibili al Musaccio, tel. +39 340 602 1321 (Luca); in alternativa Appartamenti FULLMONTI a pochi minuti dalle sedi, tel. +39 375 902 6861 (Andrea e Paolo), in convenzione con il codice VTES26.'
   - 'Servizi: parcheggio, Wi-Fi e piscina gratuiti per partecipanti e accompagnatori; bar in loco con POS.'
   - 'I bambini sotto i 6 anni non pagano apericena, pranzo e Pool Party.'

@@ -40,12 +40,13 @@ judges:
   - 'Filippo "Fil" Mengoli — Head Judge (Official VEKN Elder Judge)'
   - 'Alessandro "Nekròs" Donati — Assistant Judge (Official VEKN Ancilla Judge)'
 notes:
+  - 'Advance payment by Sunday 16 August 2026: those registering later are not guaranteed the promotional items.'
   - 'Accommodation: rooms still available at Il Musaccio, tel. +39 340 602 1321 (Luca); alternatively Appartamenti FULLMONTI a few minutes from the venues, tel. +39 375 902 6861 (Andrea and Paolo), at a special rate with the code VTES26.'
   - 'Facilities: parking, Wi-Fi and the pool are free for participants and companions; bar on site, card payments accepted.'
   - 'Children under 6 go free for the buffet dinner, lunch and Pool Party.'
   - 'The Barga Scottish Festival is held in town on the same weekend: hotels and restaurants are already under pressure, so book as early as you can.'
   - 'The pre-registration form lists the detailed schedule, the door prizes, the menus and the recommended places for Saturday dinner.'
-payment: 'PayPal (amici e familiari): adonati1982@gmail.com'
+payment: 'PayPal (friends and family): adonati1982@gmail.com'
 contact: 'adonati1982@gmail.com'
 links:
   - label: 'Pre-registration'

@@ -12,6 +12,9 @@
 .gp-poster img {
   max-width: 360px;
   width: 100%;
+  /* height:auto lets the intrinsic width/height attributes set the aspect ratio
+   * (reserving space, no CLS) while the image still scales fluidly. */
+  height: auto;
   margin: 0 auto;
   display: block;
   border-radius: var(--radius);

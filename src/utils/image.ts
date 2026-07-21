@@ -1,5 +1,6 @@
-import { existsSync } from 'node:fs';
+import { existsSync, openSync, readSync, closeSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { Buffer } from 'node:buffer';
 
 /** Resolve the small-thumbnail variant for a `<name>.webp` image when one
  *  exists in `public/`. Used by components rendering at ≤120 px (PostCard,
@@ -12,4 +13,46 @@ export function thumbFor(image: string | undefined): string | undefined {
   const thumbRel = image.replace(/\.webp$/i, '-thumb.webp');
   if (existsSync(resolve('public', thumbRel.replace(/^\//, '')))) return thumbRel;
   return image;
+}
+
+/** Read the intrinsic pixel size of a WebP in `public/` at build time so an
+ *  `<img>` can carry `width`/`height` and reserve layout space (kills CLS on
+ *  posters). All site posters are `.webp`, so the RIFF/WebP header is parsed
+ *  directly — no image library, no native module, no async. Returns undefined
+ *  for a missing file, a non-WebP path, or an unrecognized header, and callers
+ *  simply omit the attributes then. Covers the three WebP variants: simple
+ *  lossy (`VP8 `), lossless (`VP8L`) and extended (`VP8X`). */
+export function webpSize(image: string | undefined): { width: number; height: number } | undefined {
+  if (!image || !/\.webp$/i.test(image)) return undefined;
+  const file = resolve('public', image.replace(/^\//, ''));
+  if (!existsSync(file)) return undefined;
+  const buf = Buffer.alloc(30);
+  let fd: number | undefined;
+  try {
+    fd = openSync(file, 'r');
+    readSync(fd, buf, 0, 30, 0);
+  } catch {
+    return undefined;
+  } finally {
+    if (fd !== undefined) closeSync(fd);
+  }
+  if (buf.toString('ascii', 0, 4) !== 'RIFF' || buf.toString('ascii', 8, 12) !== 'WEBP') return undefined;
+  const fmt = buf.toString('ascii', 12, 16);
+  if (fmt === 'VP8 ') {
+    const width = (buf[26] | (buf[27] << 8)) & 0x3fff;
+    const height = (buf[28] | (buf[29] << 8)) & 0x3fff;
+    return width && height ? { width, height } : undefined;
+  }
+  if (fmt === 'VP8L') {
+    const [b0, b1, b2, b3] = [buf[21], buf[22], buf[23], buf[24]];
+    const width = 1 + (((b1 & 0x3f) << 8) | b0);
+    const height = 1 + (((b3 & 0x0f) << 10) | (b2 << 2) | ((b1 & 0xc0) >> 6));
+    return { width, height };
+  }
+  if (fmt === 'VP8X') {
+    const width = 1 + (buf[24] | (buf[25] << 8) | (buf[26] << 16));
+    const height = 1 + (buf[27] | (buf[28] << 8) | (buf[29] << 16));
+    return { width, height };
+  }
+  return undefined;
 }

@@ -33,6 +33,9 @@ async function walk(dir) {
     if (!/\.webp$/i.test(entry.name)) continue;
     if (/-thumb\.webp$/i.test(entry.name)) continue;
     if (/-2x\.webp$/i.test(entry.name)) continue;
+    // Responsive width variants from build-poster-variants.mjs are already
+    // downscaled display images — don't thumbnail them.
+    if (/-\d+w\.webp$/i.test(entry.name)) continue;
 
     const thumb = p.replace(/\.webp$/i, '-thumb.webp');
     const srcStat = statSync(p);

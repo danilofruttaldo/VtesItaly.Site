@@ -8,7 +8,7 @@ import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 import { composeEventLine } from '../utils/calendar';
-import { webpSize } from '../utils/image';
+import ResponsiveImage from './ResponsiveImage.astro';
 import { todayLocalMidnight } from '../utils/today';
 
 interface Props {
@@ -77,22 +77,17 @@ const toIsoLocal = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const lastEventDayIso = lastEventDay ? toIsoLocal(lastEventDay) : undefined;
 const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.earlyDeadlineDate) : undefined;
-// Intrinsic poster size so the <img> reserves layout space (no CLS). Undefined
-// (missing/unreadable file) → attributes omitted, same as before.
-const posterDim = webpSize(post.data.poster);
 ---
 
 {/* Poster / locandina */}
 {
   post.data.poster && (
     <figure class="gp-poster">
-      <img
+      <ResponsiveImage
         src={post.data.poster}
         alt={post.data.title}
-        width={posterDim?.width}
-        height={posterDim?.height}
+        sizes="(max-width: 360px) 100vw, 360px"
         loading="eager"
-        decoding="async"
       />
       {post.data.posterCaption && <figcaption class="gp-poster-caption">{post.data.posterCaption}</figcaption>}
     </figure>

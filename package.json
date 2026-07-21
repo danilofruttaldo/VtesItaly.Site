@@ -13,7 +13,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev --port 4322",
-    "prebuild": "node scripts/build-thumbnails.mjs",
+    "prebuild": "node scripts/build-thumbnails.mjs && node scripts/build-poster-variants.mjs",
     "build": "astro build && node scripts/stamp-sw.mjs && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",

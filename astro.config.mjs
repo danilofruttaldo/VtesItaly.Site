@@ -1,5 +1,6 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { unified } from '@astrojs/markdown-remark';
 import { remarkAlert } from 'remark-github-blockquote-alert';
 
 export default defineConfig({
@@ -18,7 +19,10 @@ export default defineConfig({
     service: process.env.NODE_ENV !== 'production' ? passthroughImageService() : undefined,
   },
   markdown: {
-    remarkPlugins: [remarkAlert],
+    // astro 7 defaults to the Sätteri processor, which does not run remark
+    // plugins. Keep the unified/remark pipeline (from @astrojs/markdown-remark)
+    // so `remarkAlert` still renders GitHub-style `> [!NOTE]` callouts.
+    processor: unified({ remarkPlugins: [remarkAlert] }),
   },
   i18n: {
     defaultLocale: 'it',

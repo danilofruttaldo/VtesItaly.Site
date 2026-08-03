@@ -5,7 +5,7 @@ categoria: organizzare
 audience: [principe]
 ordine: 30
 versione: '0.2'
-aggiornato: 2026-05-18
+aggiornato: 2026-08-03
 correlate: [archon-principi-en, archon-giocatori-en]
 locale: en
 ---
@@ -218,6 +218,7 @@ From here the game can carry on freely — the Nosferatu might equip the <span c
 
 **Printable handouts (PDF):**
 
+- [Demo preparation sheet](/guide/demo/scheda-preparazione-demo.pdf) _(A4, 2 pages, in Italian)_ — this guide boiled down to a checklist you can carry along with the decks: what to pack, deck-by-deck setup (vampire, fixed hand, cards to stack on top), first-round outline and table reminders.
 - [Official VEKN New Player Guide](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, English)_ — one-page illustrated reference with game zones, turn phases, combat sequence, clans and disciplines; to consult during the demo or hand out to anyone who wants to dig deeper.
 
 **References:**

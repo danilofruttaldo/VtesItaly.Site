@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo V:TES — scheda di preparazione</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 11mm 10mm;
+      }
+
+      :root {
+        --ink: #16130f;
+        --muted: #5d564c;
+        --rule: #c9c1b4;
+        --accent: #7a1420;
+        --tint: #f4f0e9;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0 auto;
+        padding: 16px;
+        max-width: 196mm;
+        font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+        font-size: 9.5pt;
+        line-height: 1.32;
+        color: var(--ink);
+        background: #fff;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family:
+          'Segoe UI',
+          -apple-system,
+          system-ui,
+          sans-serif;
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 17pt;
+        letter-spacing: -0.01em;
+      }
+
+      .sub {
+        color: var(--muted);
+        font-size: 9pt;
+        margin-top: 2px;
+      }
+
+      header {
+        border-bottom: 2.5px solid var(--accent);
+        padding-bottom: 6px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+      }
+
+      header .meta {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 8pt;
+        color: var(--muted);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      h2 {
+        font-size: 11pt;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 2px;
+        margin: 11px 0 6px;
+      }
+
+      section:first-of-type h2 {
+        margin-top: 0;
+      }
+
+      h3 {
+        font-size: 10pt;
+        margin-bottom: 3px;
+      }
+
+      p {
+        margin: 0 0 5px;
+      }
+
+      ul {
+        margin: 0 0 5px;
+        padding-left: 16px;
+      }
+
+      li {
+        margin-bottom: 1px;
+      }
+
+      /* ---- checklist ---- */
+      ul.check {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      ul.check li {
+        position: relative;
+        padding-left: 16px;
+        margin-bottom: 2px;
+      }
+
+      ul.check li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.24em;
+        width: 10px;
+        height: 10px;
+        border: 1.2px solid var(--ink);
+        border-radius: 1.5px;
+      }
+
+      /* ---- clan cards ---- */
+      .clans {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .clan {
+        border: 1px solid var(--rule);
+        border-left: 3.5px solid var(--accent);
+        border-radius: 3px;
+        padding: 5px 7px 6px;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .clan h3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 6px;
+        font-size: 9.5pt;
+        border-bottom: 1px dotted var(--rule);
+        padding-bottom: 2px;
+      }
+
+      .clan h3 .seat {
+        font-size: 7pt;
+        font-weight: 600;
+        color: #fff;
+        background: var(--accent);
+        border-radius: 999px;
+        padding: 1px 6px;
+        white-space: nowrap;
+      }
+
+      .clan .role {
+        font-size: 8pt;
+        font-style: italic;
+        color: var(--muted);
+        margin: 2px 0 3px;
+      }
+
+      .lbl {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 7pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .clan ul.check li {
+        font-size: 9pt;
+      }
+
+      .fill {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 8pt;
+        background: var(--tint);
+        border-radius: 2px;
+        padding: 3px 5px;
+        margin-top: 4px;
+      }
+
+      /* ---- script table ---- */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9pt;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 3px 6px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      thead th {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 8pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        border-bottom: 1.5px solid var(--ink);
+      }
+
+      tbody tr:nth-child(odd) td {
+        background: #faf8f4;
+      }
+
+      td.who {
+        width: 21%;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      td.who small {
+        display: block;
+        font-weight: 400;
+        font-style: italic;
+        color: var(--muted);
+        font-size: 8pt;
+      }
+
+      tr {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .note {
+        border-left: 3px solid var(--accent);
+        background: var(--tint);
+        padding: 5px 8px;
+        margin: 6px 0;
+        font-size: 9pt;
+        break-inside: avoid;
+      }
+
+      .note b {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .three {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+
+      .pagebreak {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      footer {
+        margin-top: 10px;
+        padding-top: 5px;
+        border-top: 1px solid var(--rule);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 8pt;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      section {
+        break-inside: auto;
+      }
+
+      h2 {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          max-width: none;
+        }
+
+        tbody tr:nth-child(odd) td {
+          background: #f4f2ee !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .clan h3 .seat,
+        .note,
+        .fill {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+
+      @media screen and (max-width: 760px) {
+        .clans,
+        .two,
+        .three {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Demo V:TES — scheda di preparazione</h1>
+        <div class="sub">Mazzi First Blood · 5 giocatori · 30–45 minuti</div>
+      </div>
+      <div class="meta">
+        vtesitaly.com/guide/demo-eventi/<br />
+        rev. 0.2 — 2026-08-03
+      </div>
+    </header>
+
+    <section>
+      <h2>1 · Borsa: cosa portare</h2>
+      <div class="two">
+        <ul class="check">
+          <li>5 mazzi <b>First Blood</b> separati per clan (Nosferatu, Toreador, Tremere, Malkavian, Ventrue)</li>
+          <li>Contatori pool/blood: <b>30 × giocatore</b> (~150 token, monete o dadi)</li>
+          <li>Token <b>Edge</b></li>
+          <li>Stampe: <i>New Player Guide</i> VEKN (A3), schemi riassuntivi</li>
+        </ul>
+        <ul class="check">
+          <li>Locandine / flyer per il banchetto</li>
+          <li>Questa scheda + biro (per i contatti)</li>
+          <li>Foglio o telefono per raccogliere i contatti interessati</li>
+          <li>Se demo sanzionata: accesso Archon (serve un Prince)</li>
+        </ul>
+      </div>
+      <div class="note">
+        <b>Ricorda</b> — i First Blood non sono mazzi legali: servono solo a mostrare le meccaniche. Non presentarli
+        come una versione inferiore, sono un assaggio.
+      </div>
+    </section>
+
+    <section>
+      <h2>2 · Preparazione mazzo per mazzo</h2>
+      <p style="font-size: 9.5pt; color: var(--muted); margin-bottom: 9px">
+        Per ogni clan: metti il vampiro in gioco col sangue pieno (= capacità), componi la mano fissa qui sotto e
+        <b>completa a 7 carte</b> pescando dal mazzo del clan. Distribuisci le mani <b>scoperte e già ordinate</b>.
+        Tutti partono da <b>20 pool</b>.
+      </p>
+
+      <div class="clans">
+        <div class="clan">
+          <h3>Nosferatu <span class="seat">Posto 1</span></h3>
+          <div class="role">master economy · bleed · combat — <b>di norma il dimostratore</b></div>
+          <div class="lbl">In gioco</div>
+          <ul class="check">
+            <li>Cedrick Calhoun (sangue pieno)</li>
+          </ul>
+          <div class="lbl">In mano</div>
+          <ul class="check">
+            <li>Blood Doll</li>
+            <li>Roundhouse</li>
+            <li>Deep Song</li>
+            <li>Raven Spy</li>
+          </ul>
+          <div class="fill">Completa con <b>3 carte</b> a caso dal mazzo → 7 in mano</div>
+        </div>
+
+        <div class="clan">
+          <h3>Toreador <span class="seat">Posto 2</span></h3>
+          <div class="role">voto · negoziato · referendum</div>
+          <div class="lbl">In gioco</div>
+          <ul class="check">
+            <li>Catalina Vega (sangue pieno)</li>
+          </ul>
+          <div class="lbl">In mano</div>
+          <ul class="check">
+            <li>Art Museum</li>
+            <li>Majesty</li>
+            <li>Kine Resources Contested</li>
+            <li>Scalpel Tongue</li>
+            <li>Scorn of Adonis</li>
+          </ul>
+          <div class="lbl">In cima al mazzo</div>
+          <ul class="check">
+            <li>Voter Captivation <i>(pescata dopo il referendum: effetto sorpresa)</i></li>
+          </ul>
+          <div class="fill">Completa con <b>2 carte</b> a caso dal mazzo → 7 in mano</div>
+        </div>
+
+        <div class="clan">
+          <h3>Tremere <span class="seat">Posto 3</span></h3>
+          <div class="role">equip · armi — <b>il primo da togliere se siete in 4</b></div>
+          <div class="lbl">In gioco</div>
+          <ul class="check">
+            <li>Ayelech (sangue pieno)</li>
+          </ul>
+          <div class="lbl">In mano</div>
+          <ul class="check">
+            <li>Chantry</li>
+            <li>Sniper Rifle</li>
+            <li>Eyes of Argus</li>
+            <li>Apportation</li>
+            <li>Theft of Vitae</li>
+            <li>Telepathic Tracking</li>
+            <li>Rego Motum</li>
+          </ul>
+          <div class="fill">Mano già completa: <b>7 carte fisse</b></div>
+        </div>
+
+        <div class="clan">
+          <h3>Malkavian <span class="seat">Posto 4</span></h3>
+          <div class="role">stealth / intercept · deviare un bleed</div>
+          <div class="lbl">In gioco</div>
+          <ul class="check">
+            <li>Jason "Son" Newberry (sangue pieno)</li>
+          </ul>
+          <div class="lbl">In mano</div>
+          <ul class="check">
+            <li>The Barrens</li>
+            <li>Elder Impersonation</li>
+            <li>Cloak the Gathering</li>
+          </ul>
+          <div class="lbl">In cima al mazzo</div>
+          <ul class="check">
+            <li>Threats <i>(pescata al momento giusto)</i></li>
+          </ul>
+          <div class="fill">
+            Completa con <b>4 carte</b> a caso → 7 in mano. <b>Nessun intercept in mano</b>: bloccherebbe l'equip dello
+            Sniper Rifle del Tremere.
+          </div>
+        </div>
+
+        <div class="clan">
+          <h3>Ventrue <span class="seat">Posto 5</span></h3>
+          <div class="role">alleati · untap · bleed con bonus</div>
+          <div class="lbl">In gioco</div>
+          <ul class="check">
+            <li>Alexa Draper (sangue pieno)</li>
+          </ul>
+          <div class="lbl">In mano</div>
+          <ul class="check">
+            <li>Misdirection</li>
+            <li>Deflection</li>
+            <li>Freak Drive</li>
+            <li>Second Tradition: Domain</li>
+            <li>Political Ally</li>
+            <li>Enchant Kindred</li>
+          </ul>
+          <div class="fill">Completa con <b>1 carta</b> a caso dal mazzo → 7 in mano</div>
+        </div>
+
+        <div class="clan" style="border-left-color: var(--rule)">
+          <h3>Al tavolo, prima di iniziare</h3>
+          <ul class="check">
+            <li>Ordine di turno come sopra (1 → 5, in senso orario)</li>
+            <li>20 pool a testa, contati e visibili</li>
+            <li>Ogni vampiro col sangue pari alla capacità</li>
+            <li>Ogni giocatore ha una <b>master giocabile</b> al primo turno</li>
+            <li>Primo round a <b>carte scoperte</b>; dal secondo si può coprire</li>
+            <li>Edge sul tavolo, non assegnato</li>
+            <li>Timer mentale: chiudi entro 45 minuti</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pagebreak">
+      <h2>3 · Traccia del primo round</h2>
+      <p style="font-size: 9.5pt; color: var(--muted); margin-bottom: 9px">
+        Non è un copione da leggere: è una traccia per mostrare <b>un tipo di azione diverso per ogni clan</b>. Se il
+        tavolo devia, lascialo deviare.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Giocatore</th>
+            <th>Sequenza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="who">1 · Nosferatu<small>economia, bleed, combat</small></td>
+            <td>
+              <b>1.</b> Gioca <b>Blood Doll</b>. &nbsp; <b>2.</b> Bleed base con <b>Deep Song</b> → viene bloccato.
+              &nbsp; <b>3.</b> Strike <b>Roundhouse</b>; il Toreador risponde <b>Majesty</b>.
+            </td>
+          </tr>
+          <tr>
+            <td class="who">2 · Toreador<small>politica</small></td>
+            <td>
+              <b>1.</b> Gioca <b>Art Museum</b>. &nbsp; <b>2.</b> Referendum con <b>Kine Resources Contested</b> (il
+              Tremere ha solo Eyes of Argus come intercept). &nbsp; <b>3.</b> <b>Pausa didattica</b>: chi vota (vampiri
+              ready, voti extra dai titoli), come funzionano i <i>terms</i> — poi lascia negoziare il tavolo. &nbsp;
+              <b>4.</b> A seguire <b>Scalpel Tongue</b>, <b>Voter Captivation</b>, <b>Scorn of Adonis</b>.
+            </td>
+          </tr>
+          <tr>
+            <td class="who">3 · Tremere<small>equip</small></td>
+            <td>
+              <b>1.</b> Gioca <b>Chantry</b>. &nbsp; <b>2.</b> Azione di <i>equip</i>: prende lo <b>Sniper Rifle</b>.
+            </td>
+          </tr>
+          <tr>
+            <td class="who">4 · Malkavian<small>stealth &amp; intercept</small></td>
+            <td>
+              <b>1.</b> Gioca <b>The Barrens</b>. &nbsp; <b>2.</b> Bleed da 2, stealth 0 → il Ventrue tenta il blocco.
+              &nbsp; <b>3.</b> <b>Cloak the Gathering</b> (+1 stealth); il Ventrue risponde
+              <b>Second Tradition: Domain</b> (intercept). &nbsp; <b>4.</b> <b>Elder Impersonation</b>: il Ventrue non
+              può bloccare → il bleed da 2 passa. &nbsp; <b>5.</b> Seconda azione: bleed con <b>Threats</b>; il Ventrue
+              gioca <b>Deflection</b> e ridireziona sul giocatore successivo.
+            </td>
+          </tr>
+          <tr>
+            <td class="who">5 · Ventrue<small>alleati, untap</small></td>
+            <td>
+              <b>1.</b> Gioca <b>Political Ally</b>. &nbsp; <b>2.</b> Si stappa con <b>Freak Drive</b>. &nbsp;
+              <b>3.</b> Bleed con <b>Enchant Kindred</b>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 8px; font-size: 9.5pt">
+        Da qui la partita prosegue libera (il Nosferatu si equipaggia col <b>Raven Spy</b>, il Toreador inizia a votare
+        sul serio…). Quando senti che il gruppo ha visto abbastanza, <b>chiudi la demo</b>.
+      </p>
+    </section>
+
+    <section>
+      <h2>4 · Al tavolo: promemoria · 5 · Dopo la demo</h2>
+      <div class="three">
+        <div>
+          <h3 style="color: #1f6b3a">Fai</h3>
+          <ul>
+            <li>Tieniti a <b>4–5 concetti chiave</b> per round.</li>
+            <li>Quando qualcuno sbaglia mossa, spiega il <b>perché</b> della regola, non solo la regola.</li>
+            <li>Commenta ad alta voce ogni carta giocata nel primo round.</li>
+            <li>Fai negoziare: la politica è la parte che si ricorda.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: var(--accent)">Evita</h3>
+          <ul>
+            <li>Spiegare ogni regola.</li>
+            <li>Impantanarti su casi borderline: rimanda a fine demo, fai scorrere il gioco.</li>
+            <li>Presentare i First Blood come un downgrade.</li>
+            <li>Puntare a finire la partita: l'obiettivo è la voglia di tornare.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Dopo la demo</h3>
+          <ul class="check">
+            <li>Racconta la comunità più vicina: chi gioca, dove, quando</li>
+            <li>Lascia il riferimento a <b>vtesitaly.com</b> e il materiale</li>
+            <li>Prendi i contatti di chi è interessato, invitalo al prossimo evento</li>
+            <li>Se <b>demo sanzionata Archon</b>: creala a posteriori (serve un Prince)</li>
+            <li>Ricomponi i First Blood <b>ordinati</b>, separati per clan</li>
+            <li>Riconta i contatori e rimettili in borsa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">
+        <b>Aspettativa</b> — per apprezzare davvero V:TES servono una decina di partite. La demo mostra il flusso di un
+        turno e la sensazione del gioco politico, non il gioco intero.
+      </div>
+      <div class="lbl">Contatti raccolti</div>
+      <div style="border: 1px solid var(--rule); border-radius: 3px; height: 22mm; margin-top: 3px"></div>
+    </section>
+
+    <footer>
+      <span>Scheda derivata da «Condurre una demo VTES» — vtesitaly.com/guide/demo-eventi/</span>
+      <span>V:TES · First Blood</span>
+    </footer>
+  </body>
+</html>

@@ -5,7 +5,7 @@ categoria: organizzare
 audience: [principe]
 ordine: 30
 versione: '0.2'
-aggiornato: 2026-05-18
+aggiornato: 2026-08-03
 correlate: [archon-principi, archon-giocatori]
 locale: it
 ---
@@ -218,6 +218,7 @@ Da qui la partita può proseguire liberamente — per esempio il Nosferatu si eq
 
 **Stampabili (PDF):**
 
+- [Scheda di preparazione della demo](/guide/demo/scheda-preparazione-demo.pdf) _(A4, 2 pagine, un foglio fronte/retro)_ — questa guida ridotta a checklist da portare in giro insieme ai mazzi: materiale da caricare, preparazione mazzo per mazzo (vampiro, mano fissa, carte da mettere in cima), traccia del primo round e promemoria da tavolo.
 - [New Player Guide ufficiale VEKN](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, in inglese)_ — guida illustrata di una pagina con zone, fasi del turno, sequenza di combat, clan e discipline; da consultare durante la demo o consegnare a chi vuole approfondire.
 
 **Riferimenti:**

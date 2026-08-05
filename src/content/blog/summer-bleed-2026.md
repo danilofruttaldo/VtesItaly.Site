@@ -25,6 +25,7 @@ payment: 'PayPal — parmeggiani.simone@gmail.com'
 prizes:
   - 'Door prize custom forniti dal principato'
   - 'Premi finali in base al numero di partecipanti'
+standingsUrl: '/ev/summer-bleed-2026/standings-summer-bleed-2026.json'
 locale: it
 ---
 

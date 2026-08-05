@@ -1,0 +1,14 @@
+[
+  { "rank": 1, "name": "Francesco Lodolo", "gw": 2, "vp": 5.5, "fvp": null, "tp": 118 },
+  { "rank": 2, "name": "Federico Ferrarini", "gw": 2, "vp": 6.5, "fvp": null, "tp": 72 },
+  { "rank": 2, "name": "Enrico Bertusi", "gw": 1, "vp": 4, "fvp": null, "tp": 54 },
+  { "rank": 2, "name": "Damiano Ghiaroni", "gw": 1, "vp": 3.5, "fvp": null, "tp": 52 },
+  { "rank": 2, "name": "Diego Di Nicolantonio", "gw": 0, "vp": 3, "fvp": null, "tp": 42 },
+  { "rank": 6, "name": "Federico Neri", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 7, "name": "Simone Zanni", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 8, "name": "Filippo Mengoli", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 9, "name": "Simone Parmeggiani", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 10, "name": "Angelo Alvisi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 10, "name": "Giulio Roffi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 10, "name": "Stefano Chiodi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

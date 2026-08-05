@@ -25,6 +25,7 @@ payment: 'PayPal — parmeggiani.simone@gmail.com'
 prizes:
   - 'Custom door prizes provided by the principality'
   - 'Final prizes based on the number of participants'
+standingsUrl: '/ev/summer-bleed-2026/standings-summer-bleed-2026.json'
 locale: 'en'
 ---
 

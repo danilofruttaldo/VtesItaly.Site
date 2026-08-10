@@ -1,166 +1,118 @@
 ---
 title: 'Archon Online: Leagues'
-description: 'Create and manage a league on Archon: tournament series, RTP/GP/Score rankings, nested leagues (Meta-League).'
+description: 'Create and run a league on Archon: tournament series, RTP/GW-VP-TP/Grand Prix standings, meta-leagues.'
 categoria: organizzare
 audience: [principe]
 ordine: 30
-versione: '0.1'
-aggiornato: 2026-05-18
+versione: '1.0'
+aggiornato: 2026-08-10
 correlate: [archon-principi-en, archon-giocatori-en, archon-judge-en]
 locale: en
 ---
 
-[Archon Online](https://archon.vekn.net) supports **leagues** since v0.51: a league is a **series of tournaments** bundled together that produces a single cumulative ranking. It is the default tool for European _online leagues_ (monthly or weekly sessions on Lackey/Discord) but it also works for local in-person seasons.
+On [Archon Online](https://archon.vekn.net) a **league** is a **series of tournaments** with aggregated standings: a regional circuit, a season, a grand prix. It is the tool for online leagues and for local in-person cycles.
 
-This guide covers the _organizer_ side. For the standalone tournament cycle see [Archon Online for Princes](/en/guides/archon-principi/); for the player perspective see [Archon Online for players](/en/guides/archon-giocatori/).
-
-> [!NOTE]
-> The league feature is recent (v0.51, November 2025) and evolving: some operational UI details change between releases. When this guide and the live UI disagree, **trust the UI** — open an issue on the [Archon repo](https://github.com/vtes-biased/archon) or flag it to your National Coordinator so we update the guide.
-
-## 1. What a league is on Archon
-
-A league is a **container of tournaments** with an aggregated ranking computed by Archon. The **Leagues** page describes it as _"Leagues are groups of tournaments"_. Key traits:
-
-- **Three ranking algorithms** to choose from at creation: `RTP`, `GP`, `Score` (see [Scoring](#4-league-scoring)).
-- **Two league types** (the _Type_ field): `League` (the league directly aggregates tournaments — the normal case) and `Meta-League` (the league aggregates other leagues — see [Meta-League](#5-meta-league-nested-leagues)).
-- **Finals excluded** from the cumulative ranking (changelog v0.51, _"pure score ranking (finals excluded)"_): the league ranking rewards round-play performance, not the final outcome.
-
-It is not a new game format: the individual tournaments inside the league remain standard VEKN tournaments (Constructed, V5, Limited, Draft) with their own states, decklists and finals. The league is a layer **above** the tournaments, not a replacement.
-
-## 2. Creating a league
+This guide covers the organizer side. For the single tournament see [Archon Online for Princes](/en/guides/archon-principi/); for the player's view, [Archon Online for players](/en/guides/archon-giocatori/).
 
 > [!IMPORTANT]
-> As for tournaments (see [Recommended procedure](/en/guides/archon-principi/#2-creating-an-event)), until the _archon → vekn.net_ sync stabilizes **announce the league on the VEKN calendar** and manage it operationally on Archon. The VEKN **28-day advance notice** rule still applies.
+> **Archon has been rewritten and this feature changed a lot.** Standings modes are now **RTP** (the default), **GW/VP/TP** and **Grand Prix**; tournaments can be linked **from the league page** as well as from the tournament; and creating a league is restricted to **NCs and ICs**. The old `/league/<uid>/display.html` URLs are gone: it is now `archon.vekn.net/leagues/<uid>`.
 
-From the **Leagues** page on Archon (visible to users with the organizer role) you get the <span class="archon-pill archon-pill--primary">Create League</span> button. The form asks for:
+## 1. Who can create a league
 
-- **League name** — name of the league (e.g. _Italian Online League — Spring 2026_).
-- **Format** — format of the league's tournaments: `Standard`, `V5`, `Limited`, `Draft`.
-- **Ranking** — ranking algorithm: `RTP`, `GP`, `Score` (see [Scoring](#4-league-scoring)).
-- **Type** — `League` (aggregates tournaments directly: this is the normal case) or `Meta-League` (aggregates other leagues: see [Meta-League](#5-meta-league-nested-leagues)).
-- **Online** — toggle: makes the league filterable with the **Include Online** toggle on Archon.
-- **Country** — reference country; for international leagues there is the _Worldwide 🌍_ option.
-- **Parent League (Optional)** — if set, nests the league inside an existing Meta-League.
-- **Start** / **Finish** / **Timezone** — start/end dates and timezone.
-- **Description** — in [markdown](https://www.markdownguide.org/): use it for a short ruleset, calendar, tie-breaks, prizes.
-- **Add Judge** — adds judges/organizers for the league.
+Only **NC (National Coordinator)** and **IC (Inner Circle)** members. If you are a Prince and want a series, talk to your NC: they can create the league and add you as an organizer, or mark it **open to country Princes** (see below).
 
-To confirm use <span class="archon-pill archon-pill--primary">Submit</span>; <span class="archon-pill archon-pill--grey">Cancel</span> aborts.
+**League organizers** work like tournament co-organizers: equal access, no hierarchy, removable at any time — except the last one.
+
+## 2. Creating the league
+
+Go to **Leagues** and press **+ New League**:
+
+- **Name** — shown on the league page.
+- **Kind** — **League** (aggregates tournaments: the normal case) or **Meta-League** (aggregates other leagues).
+- **Standings Mode** — RTP, GW/VP/TP or Grand Prix (see [Standings modes](#4-standings-modes)).
+- **Format** — optional. If set, only tournaments of that format can be linked.
+- **Country** — optional, for regional leagues; **Worldwide** is also available.
+- **Start date** (required) and **Finish date** — leave the finish empty for an ongoing league.
+- **Parent League** — optional, to attach it to a meta-league.
+- **Open to country Princes** — when on, Princes of the league's country can link their own tournaments without being league organizers. This is the right option for a national circuit involving many cities.
+- **Description** — Markdown. Use it for the short ruleset, the calendar, drop rules and prizes: it is where players will look for them.
+
+## 3. Linking tournaments
+
+Two paths, both valid:
+
+1. **From the league page** — **Add event** lists your league-less tournaments matching the required format.
+2. **From the tournament** — **Tools → Settings → Basics**, the **League** field. It is also in the tournament creation form, so it pays to create the **league first** and the tournaments after.
+
+Who can link what: **league organizers** always; **IC** members on any league; **NCs** on leagues of their own country; **country Princes** only if the league is marked **open to country Princes**.
 
 > [!TIP]
-> **Start date required, Finish optional.** The UI validates "A start date is required"; the Finish field is "Optional finish date/time". For leagues with a fixed calendar it is still good practice to fill Finish, so players know until when results count.
+> If **Add event** says there is nothing linkable, it is almost always one of: the tournament already belongs to a league, its **format does not match** the league's, or you are not one of its organizers.
 
-Once created the league is in "empty" state (zero contenders, zero tournaments). The next step is linking tournaments (or sub-leagues).
+## 4. Standings modes
 
-## 3. Adding tournaments to a league
+The mode is chosen at creation and shown on the league's public page, so players know what they are looking at.
 
-Tournaments are not added from the league page itself. The in-app message is explicit:
-
-> _"To add a tournament, set the league in the tournament info page."_
-
-Procedure (league already created):
-
-1. Create the tournament as usual (see [Creating an event](/en/guides/archon-principi/#2-creating-an-event) in the Princes guide if it is your first time).
-2. Open the new tournament and click <span class="archon-pill archon-pill--yellow">Tournament Manager</span> → **Info** tab.
-3. Set the **league** field to the league you created and save.
-
-To add an **already-existing** tournament to a league, apply steps 2 and 3 on that tournament.
-
-Best practices:
-
-- Create **the league first**, then the tournaments: assigning the league at tournament creation time avoids the edit round-trip.
-- Keep **Format and Ranking consistent** across the league's tournaments: changing format midway generates rankings that are hard to explain to players.
-- For online leagues, enable the **Online tournament** flag on the individual events too, not only on the league.
-
-> [!WARNING]
-> **Events uploaded after the fact (historical archon Excel).** If you import historical results via archon Excel file, verify that the file correctly references the league: a tournament uploaded without the league link will not enter the cumulative. Coordinate with your National Coordinator before the bulk upload.
-
-## 4. League scoring
-
-Archon offers **three ranking algorithms** for the league standings, chosen at creation time via the **Ranking** field:
-
-| Algorithm                          | When to use it                                                                                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Score` — _pure score_ cumulative  | Sums GW/VP/TP from the rounds of the linked tournaments. **Finals excluded**. It is the historical default (changelog v0.51).                                               |
-| `RTP` — _Rating Tournament Points_ | Ranking weighted by VEKN tournament rating. Use it for long leagues where different weights (championship vs friendlies) make sense. Verify with your National Coordinator. |
-| `GP` — _Grand Prix_ style          | Points awarded by position (1st/2nd/3rd), Grand Prix style. Use it for leagues where the per-stage placement matters more than the raw cumulative.                          |
+| Mode                              | How it works                                                                                                                                                                   | What it rewards                                                                                        |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| **Rating Points (RTP)** — default | VEKN rating points earned at each event, summed across **all** league events, **finals included**. Unlike profile ratings, the season total has **no** best-8 or 18-month cap. | Participation, wins and event size. The balanced choice.                                               |
+| **GW/VP/TP**                      | Game wins, victory points and tournament points from **preliminary rounds only**, added up. Event size and finals both ignored.                                                | Pure participation and play: great for promoting small local events, but winning a final adds nothing. |
+| **Grand Prix (GP)**               | Fixed position points per tournament: **Winner 25**, other **finalists 15**, then 10, 9, 8… down the standings, to a floor of 3. Finals included, event size ignored.          | _Winning_ high-profile events. Good for a circuit of big tournaments, weak for small ones.             |
 
 > [!NOTE]
-> The three options are exposed as the `Ranking` field, but the _exact computation_ lives in `archon/scoring.py`: choosing between RTP, GP and Score means choosing _how_ Archon will turn tournament results into the league ranking. Before closing a new league with `RTP` or `GP`, do a manual check on 2-3 players to make sure the chosen formula produces what you expect.
+> **RTP includes the finals.** This is the most common thing people get wrong when explaining it: the mode that excludes finals is **GW/VP/TP**, not RTP.
 
-### Tie-breaks and drop rules
+### Drops and custom tie-breaks
 
-Archon shows the ranking as-is (Rank, VEKN #, Name, City, Country, Result): if your league applies **drops** (best 4 of 6, etc.) or **custom tie-breaks**, manage the final ranking separately (e.g. spreadsheet or [vtes-hook.com](https://www.vtes-hook.com)) and publish the "official" league standings as an attachment to the closing post. Document the drop rule in the _Description_ at creation time, so players know what to expect.
+Archon shows the standings as they are: it supports neither drop rules ("best 4 of 6") nor custom tie-breaks. If your ruleset has them, compute the official standings separately and publish **both**: Archon's raw table, so everyone can check their own leg-by-leg scores, and the one with drops applied. And write the rule in the **Description** from day one.
 
-## 5. Meta-League (nested leagues)
+## 5. Meta-leagues
 
-A `Meta-League` is a league that contains **other leagues** instead of tournaments directly. Most leagues (a single season, a linear calendar) use the simple `League` type and **don't** need a Meta-League. Use it only for cases like:
+A **Meta-League** aggregates other leagues instead of tournaments. The hierarchy is **two levels maximum**: meta-league → leagues → tournaments.
 
-- **Multi-circuit seasons**: a _season_ (Meta-League) aggregates several _circuits_ (Leagues), split by geography or format.
-- **Qualifiers → league final**: an "annual" Meta-League collects several qualifier waves, each a League.
+It exists for multi-circuit seasons (a season collecting several regional circuits) or qualification cycles. For most cases — one season, a linear calendar — the plain **League** kind is enough.
 
-As with tournaments, **the link is set from the child league**, not from the Meta-League. The in-app message:
+Children are attached by setting the **Parent League** on the child, or added from the meta-league page under **Child Leagues**.
 
-> _"To add a league, set the parent in the league page."_
+> [!NOTE]
+> A meta-league has **its own standings mode**, applied across all its children's events. A child league may use a different mode for its own table: they are two independent computations, not a sum of standings.
 
-Procedure:
+## 6. During the season
 
-1. Create the Meta-League first (Type = `Meta-League`).
-2. Open the child league with the <span class="archon-pill archon-pill--primary">Edit</span> button and set **Parent League** to the Meta-League you just created, then <span class="archon-pill archon-pill--primary">Submit</span>.
+The league page shows the description, the linked tournaments with their states, the **combined standings** and — for a meta-league — its child leagues. There is also an **.ics feed** to subscribe to the legs' calendar.
 
-On the Meta-League page you get the **Child Leagues** section with the columns `Name`, `Start Date`, `Format`, `Ranking`, `Location`.
+Things to keep in mind:
 
-> [!TIP]
-> Keep the hierarchy **flat** when you can: two levels (Meta-League → League → tournaments) are usually enough. Three or more levels make the standings hard to explain to players and multiply breakage points when a tournament is reassigned.
+- **Every leg is still a normal tournament**, with its own cycle, decklists and finals. The league is a layer on top, not a replacement.
+- **Players enter by themselves**: they are counted as soon as they play a linked leg; there is no separate league sign-up.
+- **Standings appear once tournaments finish.** A leg left open does not count toward the total: before publishing, check every leg is finished.
+- **Dropping from a leg is not dropping from the league**: someone who withdraws at leg 3 can play leg 4.
 
-## 6. Operating during the league
+### League-level disqualifications
 
-The league "lives" while its tournaments are being played. When you open a league from the list, its public page shows:
+A **disqualification** taken at one leg **blocks check-in at every other leg of the same league**, until a league organizer lifts it. It is the strongest series-level lever Archon offers: use it deliberately and account for it in your ruleset.
 
-- **`Online` badge** (if the league is online), **contenders** counter (distinct players who joined at least one tournament).
-- **Organizers** (judges and organizers of the league).
-- **Child Leagues** — for a Meta-League.
-- **Tournaments** — list of tournaments with `Name`, `Date`, `Format` and status (`Planned`, `Registration`, `In Progress`, `Finished`).
-- **Rankings** — cumulative standings (`Rank`, `VEKN #`, `Name`, `City`, `Country`, `Result`).
+### Closing the season
 
-Things to remember:
+**Finish league** ends the season at any time; the league goes to **Finished** and the top-ranked player is crowned **Champion**. Without a finish date the league stays ongoing indefinitely.
 
-- **Each league tournament has its own cycle** (PLANNED → REGISTRATION → WAITING → PLAYING → FINALS → FINISHED): the league does not override the child states.
-- **Decklists and sanctions are per-tournament**, not per-league: a `WARNING` applied in stage 1 stays on the player's VEKN profile but is not "inherited" as an active state in later stages.
-- **Stage drop ≠ league drop**: a player dropping tournament 3 can still register for tournament 4. If you want a "permanently out of the league" mechanism, document it in your league's ruleset and track it manually: Archon does not (yet) have a separate _league drop_ flag.
-- **Multideck**: the standard for European online leagues. Allows different decklists per round and per-round corrections without touching the others. See [Multideck for players](/en/guides/archon-giocatori/#multideck-tournaments).
-- **On-demand pairing**: in online sessions Archon generates tables on the fly. For high-participation leagues, when possible, use the _optimal pre-computed seating_ from the VEKN historical Excel sheet instead of automatic pairing.
+Deleting a league **does not delete its tournaments**: the tournaments stay, it is the container that goes away.
 
-### Edit or delete a league
+## 7. Good practice
 
-On the league page, organizers see the <span class="archon-pill archon-pill--primary">Edit</span> and <span class="archon-pill archon-pill--red">Delete</span> buttons.
+- **Still announce each leg** with the 28 days' notice the [VEKN rules](https://www.vekn.net/tournament-rules) require: the league does not replace the sanction of the tournaments composing it.
+- **Keep format and rank consistent** across legs: changing format mid-season produces standings that are hard to explain.
+- **For online leagues**, mark the individual tournaments **Online** too, not just the league, and consider **multideck** (a different deck per round), which is the standard for online series.
+- **Pick the mode by what you want to incentivise**: GW/VP/TP if you want people to show up at small legs, GP if you want the big legs to matter, RTP if you want the table to line up with the global VEKN ranking.
+- **Document everything in the Description** before the first leg. Changing the rules mid-season is the fastest way to lose participants' trust.
 
-> [!WARNING]
-> The Delete confirmation reads: _"This will permanently and officially delete this league. Tournaments will be kept."_ Linked tournaments **are not deleted** when you delete the league: they stay as standalone tournaments without the league reference anymore. If you also want to delete the tournaments, do it manually from each tournament's page.
+## 8. Reporting problems
 
-## 7. Standings and cross-check
+For bugs and suggestions use **Send feedback** on the **Help** page, Feedback section: it opens a GitHub issue.
 
-The **Rankings** section on the league page is affected by the same recurring bugs as online standings (see [Known bugs for Princes](/en/guides/archon-principi/#7-known-bugs-and-workarounds)). Before publishing the final league ranking:
+## References
 
-- **Cross-check with [vtes-hook.com](https://www.vtes-hook.com)**: recompute totals from the individual tournaments and verify they match what Archon shows.
-- **Check that all league tournaments are in `Finished` state**: a stage stuck in `In Progress` or `Registration` can skew totals.
-- **If you apply drops or custom tie-breaks**, also publish the "raw" Archon ranking so players can verify their per-session scores.
-
-## 8. Known bugs
-
-> [!WARNING]
-> Summary of bugs documented on the [Archon repo](https://github.com/vtes-biased/archon) and in the [CHANGELOG](https://github.com/vtes-biased/archon/blob/main/CHANGELOG.md) between November 2025 and May 2026. Check the up-to-date CHANGELOG before assuming a bug is still open.
-
-**League view on empty tournament.** Historically the league view errored out when a linked tournament was still empty (zero registrants). Fixed in v0.64 (_"Fix league view on niche case (empty tournament)"_). If you still see the issue, file a report.
-
-**Online standings bugs (historical).** Recurring online-standings bugs also reflect on the league ranking: use [vtes-hook.com](https://www.vtes-hook.com) as a fallback before publishing the final standings.
-
-**archon → vekn.net sync.** The same bug patterns as for tournaments (wrong country/venue/proxies fields post-import) can resurface on league containers: prefer announcing the league on `vekn.net` and managing it on Archon (see [Known bugs — Princes](/en/guides/archon-principi/#7-known-bugs-and-workarounds)).
-
-## 9. References
-
-- [Archon Online for Princes](/en/guides/archon-principi/) — single tournament creation, cycle, finals, reports.
-- [Archon Online for Judges](/en/guides/archon-judge/) — decklists, sanctions, overrides.
-- [VEKN Tournament Rules](https://www.vekn.net/tournament-rules) — official tournament rules.
-- Archon repository: [github.com/vtes-biased/archon](https://github.com/vtes-biased/archon) and [CHANGELOG](https://github.com/vtes-biased/archon/blob/main/CHANGELOG.md).
-- [vtes-hook.com](https://www.vtes-hook.com) — fallback for standings verification.
+- [Organizer Guide](https://archon.vekn.net/help/organizer-guide) — the Leagues section of the official in-app documentation.
+- [Archon Online for Princes](/en/guides/archon-principi/) — creating tournaments, the console, finals, wrap-up.
+- [Archon Online for Judges](/en/guides/archon-judge/) — sanctions and disqualifications, which at league level affect the other legs.
+- [VEKN Tournament Rules](https://www.vekn.net/tournament-rules).

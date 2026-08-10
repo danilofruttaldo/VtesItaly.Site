@@ -1,152 +1,156 @@
 ---
 title: 'Archon Online per Giudici'
-description: 'Verificare le decklist, applicare sanzioni e intervenire durante i round dalla piattaforma ufficiale VEKN.'
+description: 'Sanzioni, sovrascritture, chiamate a tavolo e verifica delle decklist sulla piattaforma ufficiale VEKN.'
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '0.6'
-aggiornato: 2026-05-18
-correlate: [archon-giocatori, archon-principi]
+versione: '1.0'
+aggiornato: 2026-08-10
+correlate: [archon-giocatori, archon-principi, archon-leghe]
 locale: it
 ---
 
-[Archon Online](https://archon.vekn.net) è la piattaforma ufficiale VEKN per la gestione dei tornei di **Vampire: The Eternal Struggle**. Questa guida è dedicata ai **Giudici** (_Judges_): cosa puoi fare dal portale durante un torneo e come coordinarti con il Principe organizzatore. Per la creazione dell'evento e il ciclo completo vedi [Archon Online per Principi](/guide/archon-principi/).
-
-> [!NOTE]
-> Il Giudice e il Principe sono **ruoli operativi distinti** ma con poteri **largamente sovrapponibili** sul portale. In tornei medi/grandi è prassi separarli (Principe = organizzazione/flow, Giudice = verifica decklist, sanzioni, chiamate a tavolo). In tornei piccoli è normale che la stessa persona indossi entrambi i cappelli, e Archon non vincola formalmente la divisione. Vedi la [mappa completa delle capability](#5-cosa-puoi-fare-come-giudice-e-cosa-no).
-
-## 1. Come diventare giudice di un torneo
-
-Per operare come giudice su un torneo Archon devi essere stato aggiunto dall'organizzatore al campo **Judges and Organizers** in fase di creazione (o successivamente dal _Tournament Manager_, tab _Info_). Senza questa associazione la piattaforma ti mostra l'evento come a un giocatore qualunque.
-
-Verifica con il Principe **prima dell'inizio** del torneo:
-
-- che il tuo account Archon (Discord o email) sia quello corretto;
-- che il tuo VEKN ID sia stato aggiunto come judge sull'evento;
-- accedi all'evento e controlla che compaia il pulsante <span class="archon-pill archon-pill--yellow">Tournament Manager</span>.
-
-### Ruoli VEKN nel sistema
-
-Archon riconosce diversi gradi VEKN — `JUDGEKIN`, `JUDGE`, `RULEMONGER` per i giudici; `PRINCE` per gli organizzatori con sanzione VEKN per Constructed; oltre a `NC` (National Coordinator), `ADMIN`, `PTC` (Playtest Coordinator), `PLAYTESTER`, `ETHICS` (Ethics Committee). Ai fini del Tournament Manager, **tutti i gradi judge hanno gli stessi permessi**: il grado conta per responsabilità formali e nomine (es. `RULEMONGER`, nominato dal VEKN Rules Director, co-mantiene rulebook, rulings e judges test), non per cosa puoi cliccare sul portale.
-
-## 2. Verifica delle decklist
-
-Le decklist si verificano dal **Tournament Manager → tab Registration**, prima dell'inizio del primo round.
-
-Su ogni giocatore in elenco trovi il pulsante <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**, che apre la scheda con _sanzioni_ e _decklist_. La decklist è in formato testo: qui controlli la legalità del mazzo (formato, totale carte, banlist).
-
-Se trovi una lista non conforme:
-
-- avvisa subito il Principe;
-- chiedi al giocatore di correggere la lista.
-
-> [!WARNING]
-> Con il **check-in aperto** il giocatore **non può** modificare la decklist anche se il comando appare attivo nella sua interfaccia. Per consentire l'edit serve che il Principe usi <span class="archon-pill archon-pill--grey">Cancel Check-in</span>, lasci correggere il giocatore, poi riapra il check-in. Coordina sempre questo passaggio con l'organizzatore.
-
-## 3. Sanzioni
-
-Dalla stessa scheda <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** raggiungibile dal tab _Registration_ e dal tab _Round_ si accede al modulo **sanzioni** del giocatore. Archon prevede **quattro livelli** di sanzione, cumulativi per gravità e tracciamento:
-
-| Livello            | Effetto sul torneo                                                                       | Registrazione                                                   |
-| ------------------ | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| `CAUTION`          | Solo informativa, nessun effetto meccanico — richiamo verbale al giocatore.              | **Non registrata** nel database VEKN (richiamo informale).      |
-| `WARNING`          | Richiamo formale.                                                                        | Registrata sul profilo VEKN pubblico, consultabile da chiunque. |
-| `GAME_LOSS`        | Sconfitta forzata del giocatore al tavolo corrente. Accompagnata sempre da un `WARNING`. | Registrata sul profilo VEKN pubblico (incluso il `WARNING`).    |
-| `DISQUALIFICATION` | Rimuove il giocatore dal torneo (eventualmente "without prize" nei casi gravi).          | Registrata sul profilo VEKN pubblico.                           |
-
-A ciascuna sanzione puoi associare una **categoria** che chiarisce il motivo:
-
-- `DECK_PROBLEM` — problema con la decklist.
-- `PROCEDURAL_ERRORS` — errori procedurali.
-- `CARD_DRAWING` — problemi di pesca.
-- `MARKED_CARDS` — carte marcate.
-- `SLOW_PLAY` — gioco lento.
-- `UNSPORTSMANLIKE_CONDUCT` — comportamento antisportivo.
-- `CHEATING` — comportamento fraudolento.
-
-Compila sempre **categoria** e **motivazione** in chiaro: chi rileggerà la sanzione fra sei mesi deve potersi orientare.
-
-> [!NOTE]
-> **Tracciabilità.** Ogni sanzione registra esplicitamente il **giudice che l'ha emessa** e la motivazione. Le sanzioni non sono anonime: in revisione futura si sa chi ha applicato cosa, e perché. Lo stesso vale per la rimozione di una sanzione e per gli override di punteggio (vedi [Interventi durante il round](#4-interventi-durante-il-round)).
-
-### Rimuovere una sanzione
-
-Se hai applicato una sanzione per errore o se la situazione si è poi chiarita, puoi rimuoverla cliccando il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino accanto alla sanzione nella scheda del giocatore. Coordinati con il Principe: in genere è bene farlo prima della chiusura del torneo, così la versione "pulita" finisce nel report finale.
+Questa guida è dedicata a chi fa il **giudice** su [Archon Online](https://archon.vekn.net): cosa puoi fare dal portale durante un torneo, come si emettono le sanzioni nel nuovo modello e come ci si coordina con l'organizzatore. Per il ciclo completo dell'evento vedi [Archon Online per Principi](/guide/archon-principi/).
 
 > [!IMPORTANT]
-> **`DISQUALIFICATION` ≠ Drop.** Per espellere un giocatore dal torneo per motivi disciplinari **usa la sanzione `DISQUALIFICATION`**, non il pulsante <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop**. Il drop è un'azione neutra del giocatore (rinuncia volontaria, motivi logistici); la squalifica resta nello storico VEKN e ha peso nei tornei futuri. Confondere le due cose svaluta sia il drop che la squalifica.
+> **Il modello delle sanzioni è cambiato.** Il vecchio impianto `CAUTION` / `WARNING` / `GAME_LOSS` / `DISQUALIFICATION` con categorie generiche non esiste più. Adesso Archon implementa la tabella delle penalità della **Guida del Giudice VEKN**: quattro livelli — di cui uno nuovo, l'**Aggiustamento di Classifica** — tre categorie di infrazione con sottocategorie precise, penalità base per sottocategoria e suggerimenti di escalation. Il **game loss non esiste più**.
 
-> [!TIP]
-> `CAUTION` è il richiamo più leggero e **non lascia traccia sul profilo VEKN**: usala come richiamo verbale per primi avvisi che non vuoi formalizzare. `WARNING` invece **viene registrato**: applicalo se il comportamento era già stato segnalato verbalmente o se ritieni serva una nota disciplinare permanente. Pesa bene la motivazione che scrivi nel `WARNING`: la leggerà chiunque consulti il profilo del giocatore in futuro.
+## 1. Come si diventa giudice di un torneo
 
-> [!TIP]
-> Nei **tornei online**, in assenza di clock fisico, `SLOW_PLAY` è la sanzione più ricorrente; `UNSPORTSMANLIKE_CONDUCT` copre disconnect intenzionali e abbandono del canale vocale.
+Su Archon **non esiste un ruolo "giudice del torneo" separato**: i giudici sono **co-organizzatori** dell'evento. L'organizzatore ti aggiunge da **Strumenti → Organizzatori** (o dalla scheda **Preparazione** prima dell'evento) e da quel momento hai i suoi stessi poteri sulla console — accesso paritario, nessuna gerarchia. I membri **IC** hanno accesso da organizzatore su tutti i tornei.
 
-## 4. Interventi durante il round
+Verifica **prima** dell'inizio:
 
-Dal **tab Round** del Tournament Manager vedi l'elenco completo dei tavoli. Per ogni giocatore al tavolo:
+- di essere loggato con l'account giusto (passkey, Discord o email — puoi averli tutti collegati allo stesso profilo);
+- che il tuo VEKN ID sia collegato al profilo;
+- di essere stato aggiunto come organizzatore: apri il torneo e controlla che compaia la console (barra delle azioni + schede), non solo la vista giocatore.
 
-- <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: rapida verifica della decklist e dello storico sanzioni di quel giocatore, utile quando arrivi al tavolo per una chiamata.
-- <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **matita** (inserimento risultati): nei tornei medi/grandi è il Principe a inserire i VP; nei tornei piccoli o quando ti viene chiesto, lo fai tu. I risultati che imposti come giudice **fanno fede**: i giocatori non possono sovrascriverli dalla loro vista.
+### Gradi VEKN e cosa cambiano
 
-> [!TIP]
-> Per le chiamate a tavolo, leggi la regola dal regolamento ufficiale prima di rispondere, anche se la sai a memoria: i giocatori si fidano di più di una risposta dove ti vedono consultare la fonte. Il [VEKN Rulebook](https://www.vekn.net/rulebook) è consultabile online dal cellulare.
+Archon espone i gradi come badge: **Judge**, **Judgekin** (mostrato come **Sheriff**), **Rulemonger** per la parte giudiziaria; **Prince**, **NC**, **IC** per la governance; **Ethics** per il Comitato Etico. Ai fini di quello che puoi cliccare sull'evento, **il grado non conta**: conta essere fra gli organizzatori del torneo. Il grado pesa sulle responsabilità formali (il Rulemonger, per esempio, è nominato dal Rules Director) e su alcune azioni fuori dal torneo — creare eventi, andare offline, revocare sanzioni altrui.
 
-### Override su punteggio irregolare
+> [!NOTE]
+> **Archon non distingue il capo giudice.** Non c'è un flag che separi il head judge dagli altri giudici: è una cosa che vi accordate fra co-organizzatori prima dell'evento. Nei tornei piccoli è normale che Principe e giudice siano la stessa persona.
 
-A volte un tavolo chiude con un punteggio "non standard" che il sistema non accetterebbe nel flusso normale: tipicamente una squalifica a metà round, oppure VP che non sommano a 5 per regolamento. In quei casi usa il pulsante <span class="archon-pill archon-pill--yellow">Override</span> (solo giudici).
+## 2. Sanzioni
 
-L'override si applica al singolo tavolo e ti chiede tre cose:
+Dalla scheda **Giocatori**, l'icona del martello accanto a un giocatore apre **Emetti Sanzione di Torneo**. Scegli **livello**, **categoria** e **sottocategoria**. Dopo l'emissione compare un punto colorato accanto al giocatore: premilo per rivedere o annullare le sue sanzioni per questo evento.
 
-- **Round** — numero del round.
-- **Tavolo** — numero del tavolo.
-- **Motivazione** — obbligatoria, in chiaro (es. "DQ giocatore P3 al round 2 per `CHEATING`, VP redistribuiti come da regolamento").
+### I quattro livelli di torneo
 
-L'azione resta tracciata sul tuo nome. Per annullare un override, rimuovilo dalla riga con il <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> cestino.
+| Livello                              | Effetto                                                                |
+| ------------------------------------ | ---------------------------------------------------------------------- |
+| **Avvertimento** (_Caution_)         | Richiamo verbale, non tracciato formalmente                            |
+| **Richiamo** (_Warning_)             | Registrato, visibile per 18 mesi                                       |
+| **Aggiustamento di Classifica** (SA) | Penalità di **−1 VP** applicata a un round specifico                   |
+| **Squalifica** (DQ)                  | Fuori dall'evento; blocca il check-in futuro finché non viene revocata |
 
-### CheckOut (assenza temporanea)
+**Sospensione**, **probation** e **ban** sono di livello _membership_: li emette il **Comitato Etico** dalla pagina del profilo, non tu dal torneo. Sono sempre visibili e bloccano il check-in ovunque.
 
-Distinta dal Drop, l'azione <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **Check out** marca un giocatore come **temporaneamente assente** per uno o più round (es. si è allontanato per un round senza ritirarsi). Permette ri-check-in al round successivo, mentre il Drop è permanente. Usala quando il Principe ti chiede di "saltare" un giocatore senza dropparlo definitivamente.
+### Categorie e sottocategorie
 
-## 5. Cosa puoi fare come Giudice (e cosa no)
+| Categoria                 | Sottocategorie                                                                                                                                                                                                                                                                                              |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Errore Procedurale**    | Violazione delle Regole di Gioco · Mancato Mantenimento dello Stato di Gioco · Effetto Obbligatorio Mancato · Errore di Accesso alle Carte                                                                                                                                                                  |
+| **Errore di Torneo**      | Decklist Illegale · Deck Principale Illegale (Decklist Legale) · Deck Principale Illegale (Nessuna Decklist) · Assistenza Esterna · Gioco Lento · Violazione di Procedura Limited · Errore di Comunicazione Info Pubbliche · Occultamento dello Stato di Gioco · Carte Segnate · Mescolamento Insufficiente |
+| **Condotta Antisportiva** | Minore · Maggiore · Comportamento Aggressivo · Temporeggiamento · Corruzione e Scommesse · Collusione · Cheating · Frode · Furto di Materiale di Torneo · Violazione di Salute e Sicurezza · Abbandono per Rabbia · Mancata Volontà di Vincere                                                              |
 
-Sul _Tournament Manager_ il Giudice ha accesso a tutto ciò che riguarda **giocatori, sanzioni e correzioni a tavolo**. Il Principe organizzatore mantiene il controllo del **ciclo del torneo** (avvio/chiusura round, chiusura evento, dati dell'evento).
+Ogni sottocategoria ha una **penalità base** che Archon ti mostra quando la selezioni: è il punto di partenza secondo la Guida del Giudice, non un'imposizione.
 
-Come **Giudice**, dai tab _Registration_, _Round_ e dalle schede giocatore puoi:
+### Escalation
 
-- **Iscrivere giocatori al torneo**: aprire/chiudere le iscrizioni, aggiungere un giocatore VEKN esistente o registrarne uno nuovo (con generazione VEKN ID al volo).
-- **Gestire il check-in**: aprire/annullare il check-in, fare check-in di un singolo giocatore o di tutti in blocco, fare check-out (assenza temporanea) o drop (uscita dal torneo).
-- **Modificare lo seating pre-round** con `Alter Seating` quando il Principe ti chiede di correggere un accoppiamento prima dell'avvio.
-- **Applicare e rimuovere sanzioni** dalla scheda <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** del giocatore (vedi [Sanzioni](#3-sanzioni)).
-- **Correggere punteggi anomali** con `Override` / `Unoverride` su un singolo tavolo (vedi [Override su punteggio irregolare](#override-su-punteggio-irregolare)).
-- **Gestire la finale**: calcolare il seeding (`SeedFinals`) e assegnare i posti (`SeatFinals`). Sono azioni **esclusive del giudice**: se il Principe non è anche giudice, serve un giudice presente per la finale.
-
-Restano **solo del Principe** (se ti servono, chiediglielo):
-
-- avviare, chiudere o annullare un round (`RoundStart` / `RoundFinish` / `RoundCancel`);
-- chiudere il torneo e inviare i risultati a `vekn.net` (`Finish`);
-- modificare i dati dell'evento (sede, descrizione, orari) dal tab _Info_.
-
-Per la lista esaustiva delle action (utile in caso di dubbi o per filtrare i log), vedi il [README di Archon](https://github.com/vtes-biased/archon).
+Se il giocatore ha già preso sanzioni della stessa sottocategoria, Archon mostra un **suggerimento di escalation** («N infrazioni precedenti di questo tipo — livello suggerito: …»), calcolato risalendo la scala a partire dalla penalità base. Se scegli un livello **inferiore** al suggerito compare un **avviso di declassamento**: puoi comunque procedere.
 
 > [!IMPORTANT]
-> **Ruolo misto nei tornei piccoli.** Quando il Principe è anche unico giudice (caso tipico nei tornei locali), la distinzione sopra cade: la stessa persona ha entrambi i set di poteri. In pratica puoi fare più cose, ma **non hai meno responsabilità**: anche se fai tutto da solo, applica le buone prassi di entrambi i ruoli — tracciabilità delle sanzioni, motivazione esplicita negli override, separazione netta fra Drop e squalifica.
+> **Compila sempre la sottocategoria.** Una sanzione con la sottocategoria vuota è invisibile al tracciamento dell'escalation: il prossimo giudice che incontra lo stesso giocatore non vedrà il precedente. Archon te lo segnala esplicitamente quando ci sono sanzioni pregresse nella categoria.
 
-## 6. Modalità offline
+L'app **non applica le linee guida per forza**: la decisione è del capo giudice. Detto questo, i giudici non dovrebbero discostarsene senza il suo avallo, e il capo giudice dovrebbe essere prudente nelle deviazioni. Il riferimento normativo completo è la [Guida del Giudice](https://archon.vekn.net/help/judges-guide) dentro Archon (in inglese e spagnolo).
 
-Archon supporta una **modalità offline** per tornei in sedi senza connessione affidabile: gli eventi vengono conservati localmente e sincronizzati quando torna la connettività. La modalità offline **può essere disattivata da qualsiasi giudice** una volta tornata online — non serve essere il Principe creatore dell'evento, basta avere il ruolo Judge sul torneo.
+### Chi vede cosa
 
-## 7. Coordinamento con l'organizzatore
+- **Avvertimento** — privato a questo torneo. Non compare sul profilo del giocatore né in altri eventi (fatta salva la visibilità di IC ed Etica).
+- **Richiamo, SA, Squalifica** — visibili sul profilo del giocatore e agli organizzatori dei suoi altri tornei per **18 mesi**: è così che le infrazioni ripetute emergono fra un evento e l'altro.
+- **Sospensioni e ban** — sempre visibili.
 
-Buone prassi prima e durante il torneo:
+Le regole qui sopra sono un **filtro di visualizzazione**: i record si sincronizzano sul dispositivo di ogni membro, e IC ed Etica vedono ogni livello ovunque. Scrivi le motivazioni pensando che le rileggerà qualcun altro fra sei mesi.
 
-- **Briefing iniziale** (5 minuti prima del check-in): formato, eventuali deroghe annunciate, banlist applicata, _proxies_ ammessi o no.
-- **Canale di comunicazione rapido** (chat, Telegram, voce diretta) con il Principe per coordinare apertura/chiusura check-in quando serve correggere decklist.
-- **Note di fine torneo**: passa al Principe l'elenco delle sanzioni applicate e il contesto, in modo che possa includerlo nel post di report se rilevante.
+### Aggiustamento di Classifica: come funziona davvero
+
+Emettendo un SA selezioni **il round** a cui si applica (di default la partita corrente o più recente del giocatore, finale inclusa). Il −1 VP viene sottratto dai VP rettificati di quel round.
+
+- Se i VP grezzi del giocatore in quel round sono **inferiori a 1,0**, la differenza (1,0 − VP grezzi) si riversa come deduzione dal totale VP in classifica.
+- Il SA **non modifica i punteggi memorizzati**: agisce sul calcolo di GW e TP. Un giocatore che avrebbe preso un GW può perderlo dopo l'aggiustamento.
+- Se il giocatore non ha ancora disputato alcun round, il SA non è applicabile.
+
+### Revocare ed eliminare
+
+- **Revoca** — toglie effetto a una squalifica, così il giocatore può tornare a fare check-in. Il record resta.
+- **Elimina** — rimuove del tutto la sanzione. Come organizzatore puoi eliminare solo le sanzioni emesse **nel tuo evento**, e solo finché il torneo non è **Terminato**. Serve a correggere un errore: si elimina e si riemette, non si modifica sul posto. IC ed Etica possono eliminare qualsiasi sanzione.
+
+> [!IMPORTANT]
+> **Squalifica ≠ Abbandono.** Per espellere qualcuno per motivi disciplinari usa la **Squalifica**, non il pulsante _Abbandona_. L'abbandono è un'azione neutra (il giocatore se ne va, motivi logistici); la squalifica resta nello storico VEKN, blocca il check-in e — nei [campionati](/guide/archon-leghe/) — si estende a **tutti gli altri tornei della stessa serie**. Confonderle svaluta entrambe.
+
+Se squalifichi un giocatore attualmente seduto: **rimuovilo prima dal tavolo**, poi chiudi il tavolo con una **Sovrascrittura**. I punteggi già registrati restano. Se era nel top 5, subentra il sesto in classifica.
+
+## 3. Interventi durante il round
+
+Dalla scheda **Round** vedi tutti i tavoli e il loro stato.
+
+**Sovrascrivi** è lo strumento per chiudere d'autorità un tavolo con una decisione del giudice: un giocatore che se ne va a metà partita senza VP assegnati, il tempo che scade su una situazione irrisolta, una squalifica a metà round. Richiede un **commento obbligatorio** che spiega la decisione e **blocca l'inserimento dei punteggi da parte dei giocatori** — da quel momento solo gli organizzatori possono toccare quel tavolo. **Rimuovi sovrascrittura** lo annulla se la situazione cambia.
+
+Sui punteggi vale la pena ricordare che:
+
+- i VP dei giocatori sono validati simulando l'**ordine degli oust**: le distribuzioni impossibili vengono rifiutate. Un punteggio _valido ma sbagliato_ passa: quello lo correggi tu;
+- come organizzatore puoi **forzare qualsiasi valore**; se i conti non tornano il tavolo passa in stato **Non valido**;
+- la classifica si ricalcola solo al **Termina Round**.
+
+**Chiamate al giudice**: il pulsante **Chiama il giudice** sul dispositivo del giocatore (o `/judge` sul bot Discord) fa comparire un banner ambra in cima alla tua schermata con segnale acustico, numero del tavolo e nome del giocatore. Il banner resta 2 minuti o finché non lo chiudi; le chiamate multiple si accumulano. C'è un cooldown di 30 secondi per giocatore.
+
+> [!TIP]
+> Negli eventi online la chiamata è l'unico modo che hanno per raggiungerti: entra nel canale vocale del tavolo e **fatti raccontare la situazione dal giocatore che ha chiamato**, perché non puoi vedere lo stato del tavolo.
+
+### Ritiri e assenze
+
+- **Abbandona** segna il giocatore come **Completato**. Lo possono attivare sia lui che tu.
+- **Check out** riporta un giocatore da Registrato a Iscritto: è l'assenza temporanea, e al round successivo può rifare il check-in.
+- **Rimuovi Giocatore** è per chi **non ha ancora giocato** alcun round; se ha già giocato usa **Abbandona**, che conserva i punteggi e lo esclude dalle sedute future.
+
+## 4. Decklist
+
+Il ciclo di visibilità è cambiato ed è importante saperlo:
+
+- **prima dell'inizio del primo round** gli organizzatori **non vedono** il contenuto dei mazzi; i giocatori possono caricarli, modificarli ed eliminarli liberamente;
+- **appena parte un round** puoi vedere e modificare tutti i mazzi, e i giocatori con mazzo singolo non possono più toccarlo (nei multideck possono caricare quello del round successivo);
+- **a torneo concluso** i giocatori tornano a poter caricare e correggere — serve al vincitore per completare l'invio al TWDA.
+
+Se l'organizzatore ha attivato **Decklist Obbligatoria**, chi non ha caricato prende un badge di avvertimento, ma **non viene bloccato al check-in**: è una segnalazione, non un cancello. Dalla scheda **Giocatori** il filtro dei mazzi ti mostra chi ha la lista mancante o problematica; da lì decidi se emettere un **Errore di Torneo** e a che livello.
+
+> [!NOTE]
+> **Il controllo di legalità è automatico.** Archon valida il mazzo al caricamento e segnala errori (mazzo illegale) e avvertimenti (per esempio carte non-V5 in un evento V5). Il tuo lavoro non è ricontare le carte: è decidere cosa fare quando la segnalazione compare.
+
+## 5. Modalità offline
+
+Se l'organizzatore ha messo il torneo in **modalità offline**, l'evento è **bloccato sul suo dispositivo**: nessun altro può modificarlo, e i giocatori vedono dati fermi. Se devi intervenire, o lavori sul suo dispositivo, o si torna online.
+
+**Prendi controllo** trasferisce il blocco a un altro organizzatore che sia ufficiale VEKN (Prince, NC, IC) quando il dispositivo originale non è disponibile — batteria scarica, telefono dimenticato. Attenzione: le modifiche non ancora sincronizzate su quel dispositivo possono andare perse. Usalo come ultima risorsa, non come scorciatoia.
+
+## 6. Coordinamento con l'organizzatore
+
+- **Briefing prima del check-in**: formato, proxy ammessi o no, decklist obbligatoria, chi fa il capo giudice, chi inserisce i punteggi.
+- **Concordate chi sovrascrive**: la sovrascrittura resta tracciata con il commento di chi l'ha emessa; meglio che sia una persona sola a farlo, per coerenza.
+- **Annunci**: se l'evento ne ha bisogno (chiamate a tavolo, tempi), usateli — compaiono sulla pagina di tutti e negli eventi online sono l'unico canale certo.
+- **Fine torneo**: passa all'organizzatore l'elenco delle sanzioni con il contesto, così può informarne il National Coordinator se rilevante.
+
+> [!TIP]
+> Per le chiamate a tavolo, apri la regola sul telefono anche se la sai a memoria: [Regole complete di VTES](https://archon.vekn.net/help/rules) e [Regole dei tornei](https://archon.vekn.net/help/tournament-rules) sono dentro Archon, offline incluso. I giocatori accettano molto meglio una risposta in cui ti vedono consultare la fonte.
+
+## 7. Segnalare problemi
+
+Per bug e proposte sull'app usa **Invia feedback** dalla pagina **Guida** di Archon, sezione Feedback: apre una issue su GitHub. Per dubbi di regolamento, il canale giusto resta il gruppo giudici della comunità o il tuo National Coordinator.
 
 ## Riferimenti
 
-- [VEKN Tournament Rules](https://www.vekn.net/tournament-rules) — regolamento ufficiale dei tornei.
-- [VEKN Rulebook](https://www.vekn.net/rulebook) — regolamento di gioco.
-- Repository ufficiale Archon Online: [github.com/vtes-biased/archon](https://github.com/vtes-biased/archon).
-- Per bug o suggerimenti sulla UI di Archon, pulsante **Report Issue** in alto a destra in ogni pagina di `archon.vekn.net` (serve account GitHub).
+- [Guida del Giudice](https://archon.vekn.net/help/judges-guide) — tabella delle penalità e procedure ufficiali, dentro Archon.
+- [Codice etico](https://archon.vekn.net/help/code-of-ethics) — competenza del Comitato Etico.
+- [Regole dei tornei](https://archon.vekn.net/help/tournament-rules) e [VEKN Tournament Rules](https://www.vekn.net/tournament-rules).
+- [Archon Online per Principi](/guide/archon-principi/) — console, round, finale, chiusura.

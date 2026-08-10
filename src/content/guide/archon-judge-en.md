@@ -1,152 +1,156 @@
 ---
 title: 'Archon Online for Judges'
-description: 'Verify decklists, apply sanctions and intervene during rounds from the official VEKN platform.'
+description: 'Sanctions, overrides, judge calls and decklist checks on the official VEKN platform.'
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '0.6'
-aggiornato: 2026-05-18
-correlate: [archon-giocatori-en, archon-principi-en]
+versione: '1.0'
+aggiornato: 2026-08-10
+correlate: [archon-giocatori-en, archon-principi-en, archon-leghe-en]
 locale: en
 ---
 
-[Archon Online](https://archon.vekn.net) is the official VEKN platform for managing **Vampire: The Eternal Struggle** tournaments. This guide is for **Judges**: what you can do from the portal during a tournament and how to coordinate with the organizer. For event creation and the full tournament cycle, see [Archon Online for Princes](/en/guides/archon-principi/).
+This guide is for whoever judges on [Archon Online](https://archon.vekn.net): what you can do from the portal during a tournament, how sanctions work under the new model, and how to coordinate with the organizer. For the full event cycle see [Archon Online for Princes](/en/guides/archon-principi/).
 
-> [!NOTE]
-> The Judge and the Prince are **distinct operational roles** but with **largely overlapping** powers on the portal. In medium/large tournaments it's customary to keep them separate (Prince = organization/flow, Judge = decklist review, sanctions, table calls). In small tournaments the same person wears both hats, and Archon doesn't formally enforce the split. See the [full capability map](#5-what-you-can-do-as-a-judge-and-what-you-cant).
+> [!IMPORTANT]
+> **The sanction model has changed.** The old `CAUTION` / `WARNING` / `GAME_LOSS` / `DISQUALIFICATION` scheme with generic categories is gone. Archon now implements the **VEKN Judges Guide** penalty table: four levels — including a new one, the **Standings Adjustment** — three infraction categories with precise subcategories, per-subcategory baseline penalties and escalation hints. **Game loss no longer exists.**
 
 ## 1. Becoming a judge on a tournament
 
-To act as a judge on an Archon tournament you must be added by the organizer to the **Judges and Organizers** field at event creation (or later from the _Tournament Manager_ → _Info_ tab). Without this association the platform shows you the event as any other player.
+Archon has **no separate per-tournament judge role**: judges are **co-organizers** of the event. The organizer adds you from **Tools → Organizers** (or the **Set up** tab before the event) and from then on you have the same powers on the console — equal access, no hierarchy. **IC** members have organizer access on every tournament.
 
-Verify with the Prince **before the tournament starts**:
+Check **before** the event starts:
 
-- that your Archon account (Discord or email) is the correct one;
-- that your VEKN ID has been added as a judge on the event;
-- log in to the event and check that the <span class="archon-pill archon-pill--yellow">Tournament Manager</span> button is visible.
+- that you are logged in with the right account (passkey, Discord or email — you can link them all to one profile);
+- that your VEKN ID is linked to your profile;
+- that you were added as an organizer: open the tournament and confirm the console appears (action bar + tabs), not just the player view.
 
-### VEKN roles in the system
+### VEKN grades and what they change
 
-Archon recognises several VEKN grades — `JUDGEKIN`, `JUDGE`, `RULEMONGER` for judges; `PRINCE` for organisers with a VEKN sanction for Constructed; plus `NC` (National Coordinator), `ADMIN`, `PTC` (Playtest Coordinator), `PLAYTESTER`, `ETHICS` (Ethics Committee). In the Tournament Manager **all judge grades share the same permissions**: the grade matters for formal responsibilities and appointments (e.g. `RULEMONGER`, appointed by the VEKN Rules Director, co-maintains the rulebook, the rulings database and the judges tests) — not for what you can click on the portal.
-
-## 2. Decklist verification
-
-Decklists are verified from the **Tournament Manager → Registration tab**, before the first round starts.
-
-On each player you'll find the <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** button, which opens the card with _sanctions_ and _decklist_. The decklist is shown in text form: deck legality checks (format, card count, banlist) happen here.
-
-If you find a non-compliant list:
-
-- alert the Prince right away;
-- ask the player to fix the list.
-
-> [!WARNING]
-> With the **check-in open** the player **cannot** edit the decklist even though the command appears active in their UI. To allow the edit, the Prince must use <span class="archon-pill archon-pill--grey">Cancel Check-in</span>, let the player fix the list, then reopen the check-in. Always coordinate this step with the organizer.
-
-## 3. Sanctions
-
-From the same <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** card — accessible both from the _Registration_ tab and the _Round_ tab — you reach the **sanctions** module for that player. Archon defines **four sanction levels**, cumulative by severity and tracking:
-
-| Level              | Tournament effect                                                                  | Recording                                                   |
-| ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| `CAUTION`          | Informational only, no mechanical effect — a verbal warning to the player.         | **Not recorded** in the VEKN database (informal notice).    |
-| `WARNING`          | Formal warning.                                                                    | Recorded on the public VEKN profile, visible to anyone.     |
-| `GAME_LOSS`        | Forced loss for the player at the current table. Always paired with a `WARNING`.   | Recorded on the public VEKN profile (the `WARNING` is too). |
-| `DISQUALIFICATION` | Removes the player from the tournament (possibly "without prize" in severe cases). | Recorded on the public VEKN profile.                        |
-
-You can attach a **category** to clarify the reason:
-
-- `DECK_PROBLEM` — decklist issue.
-- `PROCEDURAL_ERRORS` — procedural errors.
-- `CARD_DRAWING` — card drawing problems.
-- `MARKED_CARDS` — marked cards.
-- `SLOW_PLAY` — slow play.
-- `UNSPORTSMANLIKE_CONDUCT` — unsporting behaviour.
-- `CHEATING` — fraudulent behaviour.
-
-Always fill in **category** and a clear **reason**: whoever reads the sanction six months later must be able to make sense of it.
+Archon shows grades as badges: **Judge**, **Judgekin** (displayed as **Sheriff**) and **Rulemonger** on the judiciary side; **Prince**, **NC**, **IC** for governance; **Ethics** for the Ethics Committee. For what you can click on an event, **the grade does not matter**: what matters is being among the tournament's organizers. The grade carries formal responsibility (a Rulemonger, for instance, is appointed by the Rules Director) and gates a few actions outside the tournament — creating events, going offline, lifting other people's sanctions.
 
 > [!NOTE]
-> **Traceability.** Every sanction explicitly records the **judge who issued it** and the reason. Sanctions are not anonymous: in a future review you can see who applied what, and why. The same holds for sanction removal and for score overrides (see [Intervening during a round](#4-intervening-during-a-round)).
+> **Archon does not distinguish the head judge.** There is no flag separating the head judge from the others: that is something you agree between co-organizers before the event. At small tournaments the Prince and the judge are routinely the same person.
 
-### Removing a sanction
+## 2. Sanctions
 
-If you applied a sanction by mistake or the situation later cleared up, you can remove it by clicking the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon next to the sanction on the player card. Coordinate with the Prince: best to do this before the tournament closes, so the "clean" version ends up in the final report.
+On the **Players** tab, the gavel icon next to a player opens **Issue Tournament Sanction**. Pick a **level**, a **category** and a **subcategory**. After issuing, a coloured dot appears next to the player: tap it to review or undo their sanctions for this event.
 
-> [!IMPORTANT]
-> **`DISQUALIFICATION` ≠ Drop.** To remove a player from the tournament for disciplinary reasons, **use the `DISQUALIFICATION` sanction**, not the <span class="archon-btn archon-btn--drop archon-btn--red" aria-hidden="true"></span> **Drop** button. Drop is a neutral player action (voluntary withdrawal, logistics); a disqualification stays on the VEKN history and carries weight at future events. Mixing them up devalues both.
+### The four tournament levels
 
-> [!TIP]
-> `CAUTION` is the lightest notice and **leaves no trace on the VEKN profile**: use it as a verbal warning for first issues you don't want to formalise. `WARNING` instead **is recorded**: apply it when the behaviour was already flagged verbally, or when the situation calls for a permanent disciplinary note. Weigh the reason you write into a `WARNING`: anyone consulting the player's profile in the future will read it.
+| Level                         | Effect                                                      |
+| ----------------------------- | ----------------------------------------------------------- |
+| **Caution**                   | Verbal reminder, not formally tracked                       |
+| **Warning**                   | Recorded, visible for 18 months                             |
+| **Standings Adjustment** (SA) | A **−1 VP** penalty applied to a specific round             |
+| **Disqualification** (DQ)     | Removed from the event; blocks future check-in until lifted |
 
-> [!TIP]
-> In **online tournaments**, with no physical clock, `SLOW_PLAY` is the most recurring sanction; `UNSPORTSMANLIKE_CONDUCT` covers intentional disconnects and leaving the voice channel.
+**Suspension**, **probation** and **ban** are membership-level: the **Ethics Committee** issues them from the profile page, not you from a tournament. They are always visible and block check-in everywhere.
 
-## 4. Intervening during a round
+### Categories and subcategories
 
-From the **Round tab** of the Tournament Manager you see the full list of tables. For each player at a table:
+| Category                    | Subcategories                                                                                                                                                                                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Procedural Error**        | Game Rule Violation · Failure to Maintain Game State · Missed Mandatory Effect · Card Access Error                                                                                                                                                   |
+| **Tournament Error**        | Illegal Decklist · Illegal Main Deck (Legal Decklist) · Illegal Main Deck (No Decklist) · Outside Assistance · Slow Play · Limited Procedure Violation · Public Info Miscommunication · Obscuring Game State · Marked Cards · Insufficient Shuffling |
+| **Unsportsmanlike Conduct** | Minor · Major · Aggressive Behaviour · Stalling · Bribery and Wagering · Collusion · Cheating · Fraud · Theft of Tournament Material · Health and Safety Disruption · Rage Quitting · Failure to Play to Win                                         |
 
-- <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info**: quick view of that player's decklist and sanction history — handy when you walk up to a table for a call.
-- <span class="archon-btn archon-btn--pencil archon-btn--purple" aria-hidden="true"></span> **pencil** (results entry): in medium/large tournaments the Prince enters VP; in small ones, or when asked, you do it. Results you set as a judge **are final**: players can't overwrite them from their view.
+Every subcategory has a **baseline penalty**, which Archon shows you when you select it: it is the Judges Guide starting point, not a mandate.
 
-> [!TIP]
-> For at-table rulings, look up the rule in the official rulebook before answering, even if you know it by heart: players trust an answer more when they see you consult the source. The [VEKN Rulebook](https://www.vekn.net/rulebook) is accessible online from your phone.
+### Escalation
 
-### Override on irregular table score
-
-Sometimes a table closes with a "non-standard" score that the system wouldn't accept in the normal flow: typically a mid-round disqualification, or VP not summing to 5 by regulation. In those cases use the <span class="archon-pill archon-pill--yellow">Override</span> button (judges only).
-
-The override applies to a single table and asks for three things:
-
-- **Round** — round number.
-- **Table** — table number.
-- **Reason** — mandatory free-text (e.g., "DQ player P3 in round 2 for `CHEATING`, VP redistributed per regulation").
-
-The action is logged against your name. To revoke an override, remove it from its row with the <span class="archon-btn archon-btn--trash archon-btn--red" aria-hidden="true"></span> trash icon.
-
-### CheckOut (temporary absence)
-
-Distinct from Drop, the <span class="archon-btn archon-btn--check-out archon-btn--yellow" aria-hidden="true"></span> **Check out** action marks a player as **temporarily absent** for one or more rounds (e.g., stepping away for a round without dropping). Allows re-check-in next round; Drop is permanent. Use it when the Prince asks you to "skip" a player without dropping them.
-
-## 5. What you can do as a Judge (and what you can't)
-
-In the _Tournament Manager_ the Judge owns everything related to **players, sanctions and table-level corrections**. The Prince organizer keeps control of the **tournament lifecycle** (round start/finish, event close, event data).
-
-As a **Judge**, from the _Registration_ tab, the _Round_ tab and the player cards you can:
-
-- **Register players**: open/close registration, sign up an existing player or create a new one (with on-the-fly VEKN ID generation).
-- **Manage check-in**: open/cancel check-in, check in a single player or everyone at once, check out (temporary absence) or drop (leaving the tournament).
-- **Adjust pre-round seating** with `Alter Seating` when the Prince asks you to fix a pairing before the round starts.
-- **Apply and remove sanctions** from the player's <span class="archon-btn archon-btn--info archon-btn--blue" aria-hidden="true"></span> **info** card (see [Sanctions](#3-sanctions)).
-- **Correct anomalous scores** with `Override` / `Unoverride` on a single table (see [Override on irregular table score](#override-on-irregular-table-score)).
-- **Run the finals**: compute the seeding (`SeedFinals`) and assign seats (`SeatFinals`). These are **judge-only actions**: if the Prince is not also a judge, a judge must be present for the finals.
-
-These stay **Prince-only** (ask them if you need one):
-
-- start, finish or cancel a round (`RoundStart` / `RoundFinish` / `RoundCancel`);
-- close the tournament and submit results to `vekn.net` (`Finish`);
-- edit event data (venue, description, times) from the _Info_ tab.
-
-For the exhaustive action list (useful for doubts or to filter logs), see the [Archon README](https://github.com/vtes-biased/archon).
+If the player already has sanctions in the same subcategory, Archon shows an **escalation hint** ("N prior offences of this type — suggested level: …"), computed by walking the ladder up from the baseline. Choosing a level **below** the suggestion raises a **downgrade warning**: you can still proceed.
 
 > [!IMPORTANT]
-> **Mixed role in small tournaments.** When the Prince is also the only judge (typical at local tournaments), the split above collapses: the same person holds both sets of powers. In practice you can do more, but **you don't have fewer responsibilities**: even doing everything alone, apply both roles' best practices — traceability on sanctions, explicit reason on overrides, clean separation between Drop and disqualification.
+> **Always fill in the subcategory.** A sanction with a blank subcategory is invisible to escalation tracking: the next judge who meets that player will not see the precedent. Archon tells you so explicitly when prior sanctions exist in the category.
 
-## 6. Offline mode
+The app does **not** enforce the guidelines: the call is the head judge's. That said, judges should not deviate without the head judge's approval, and the head judge should be cautious about deviating. The full normative reference is the [Judges Guide](https://archon.vekn.net/help/judges-guide) inside Archon.
 
-Archon supports an **offline mode** for tournaments in venues without reliable connectivity: events are stored locally and synced when connectivity comes back. Offline mode **can be deactivated by any judge** once back online — you don't need to be the Prince who created the event, having the Judge role on the tournament is enough.
+### Who sees what
 
-## 7. Coordinating with the organizer
+- **Caution** — private to this tournament. It never appears on the player's profile or in other events (IC/Ethics aside).
+- **Warning, SA, Disqualification** — visible on the player's profile and to organizers of their other tournaments for **18 months**: that is how repeat offences surface across events.
+- **Suspensions and bans** — always visible.
 
-Good practices before and during the tournament:
+Those rules are a **display filter**: records sync to every member's device, and IC and Ethics see every level everywhere. Write your reasons assuming someone else will read them in six months.
 
-- **Initial briefing** (5 minutes before check-in): format, any announced deviations, applicable banlist, _proxies_ allowed or not.
-- **Quick communication channel** (chat, Telegram, voice) with the Prince to coordinate opening/closing of check-in when a decklist must be corrected.
-- **End-of-tournament notes**: hand the Prince a list of applied sanctions with context, so they can include the relevant ones in the report post.
+### How a Standings Adjustment actually works
+
+When issuing an SA you pick **the round** it applies to (by default the player's current or most recent game, finals included). The −1 VP is deducted from their adjusted VPs for that round.
+
+- If their raw VPs in that round are **below 1.0**, the difference (1.0 − raw VPs) carries over as a deduction from their total standings VPs.
+- The SA **does not modify the stored scores**: it affects the GW and TP computation. A player who would have earned a GW may lose it after the adjustment.
+- If the player has not played a round yet, an SA cannot be applied.
+
+### Lifting and deleting
+
+- **Lift** — removes the effect of a disqualification so the player can check in again. The record stays.
+- **Delete** — removes the sanction entirely. As an organizer you can only delete sanctions issued **in your own event**, and only while it is not Finished. It exists to fix a mistake: delete and reissue, there is no in-place edit. IC and Ethics can delete any sanction.
+
+> [!IMPORTANT]
+> **Disqualification ≠ Drop.** To remove someone for disciplinary reasons use **Disqualification**, not the _Drop_ button. A drop is neutral (the player leaves, logistics); a disqualification stays in the VEKN history, blocks check-in and — in [leagues](/en/guides/archon-leghe/) — extends to **every other tournament in the same series**. Confusing them devalues both.
+
+If you disqualify a currently seated player: **remove them from the table first**, then close the table with an **Override**. Scores already recorded stay. If they were in the top 5, the 6th player moves up.
+
+## 3. Intervening during a round
+
+The **Rounds** tab shows every table and its state.
+
+**Override** is the tool for closing a table on a judge's decision: a player leaving mid-game with no VPs awarded, time running out on an unresolved situation, a mid-round disqualification. It requires a **mandatory comment** explaining the decision and **locks players out of scoring** — from then on only organizers can touch that table. **Remove override** undoes it if the situation changes.
+
+Worth remembering about scoring:
+
+- player VPs are validated by simulating the **oust order**: impossible distributions are rejected. A _valid but wrong_ score passes — that one is yours to fix;
+- as an organizer you can **force any value**; if the numbers do not add up the table goes **Invalid**;
+- standings only recompute on **Finish Round**.
+
+**Judge calls**: the **Call Judge** button on a player's device (or `/judge` on the Discord bot) raises an amber banner at the top of your screen with a sound, the table number and the player's name. It persists for 2 minutes or until you dismiss it; multiple calls stack. There is a 30-second per-player cooldown.
+
+> [!TIP]
+> At online events the call is the only way they can reach you: join the table's voice channel and **have the caller describe the situation**, because you cannot see the table state.
+
+### Drops and absences
+
+- **Drop** marks the player as **Completed**. Both they and you can trigger it.
+- **Check out** moves a player from checked-in back to registered: that is the temporary absence, and they can check in again next round.
+- **Remove Player** is for someone who has **not played** any round yet; if they have, use **Drop**, which keeps their scores and excludes them from future seatings.
+
+## 4. Decklists
+
+The visibility lifecycle changed, and it matters:
+
+- **before the first round starts**, organizers **cannot see** deck contents; players can upload, edit and delete freely;
+- **once a round starts** you can see and edit every deck, and single-deck players can no longer touch theirs (in multideck events they can still upload the next round's);
+- **after the tournament finishes** players can upload and fix again — the winner needs this to complete a TWDA submission.
+
+If the organizer enabled **Decklist Required**, a player without a deck gets a warning badge but is **not blocked from checking in**: it is a flag, not a gate. On the **Players** tab the deck filter shows you who has a missing or problematic list; from there you decide whether to issue a **Tournament Error** and at what level.
+
+> [!NOTE]
+> **Legality checking is automatic.** Archon validates the deck on upload and reports errors (illegal deck) and warnings (e.g. non-V5 cards in a V5 event). Your job is not to recount cards: it is to decide what to do when the flag appears.
+
+## 5. Offline mode
+
+If the organizer put the tournament into **offline mode**, the event is **locked to their device**: nobody else can change it, and players see frozen data. If you need to act, either work on their device or wait until they go back online.
+
+**Take over** transfers the lock to another organizer who is a VEKN official (Prince, NC, IC) when the original device is unavailable — flat battery, phone left at home. Careful: unsynced changes on that device may be lost. Use it as a last resort, not a shortcut.
+
+## 6. Coordinating with the organizer
+
+- **Brief before check-in**: format, proxies allowed or not, decklist required, who is head judge, who enters scores.
+- **Agree on who overrides**: an override is tracked with the comment of whoever issued it; better that one person does it, for consistency.
+- **Announcements**: if the event needs them (table calls, timings), use them — they appear on everyone's page and at online events they are the only reliable channel.
+- **End of tournament**: hand the organizer the list of sanctions with context, so they can inform the National Coordinator if it matters.
+
+> [!TIP]
+> For table calls, open the rule on your phone even if you know it by heart: the [VTES Comprehensive Rules](https://archon.vekn.net/help/rules) and [Tournament Rules](https://archon.vekn.net/help/tournament-rules) are inside Archon, offline included. Players take a ruling far better when they see you check the source.
+
+## 7. Reporting problems
+
+For app bugs and suggestions use **Send feedback** on Archon's **Help** page, Feedback section: it opens a GitHub issue. For rules questions, the right channel is still the community judges group or your National Coordinator.
 
 ## References
 
-- [VEKN Tournament Rules](https://www.vekn.net/tournament-rules) — official tournament regulations.
-- [VEKN Rulebook](https://www.vekn.net/rulebook) — game rulebook.
-- Official Archon Online repository: [github.com/vtes-biased/archon](https://github.com/vtes-biased/archon).
-- For Archon UI bugs or suggestions, use the **Report Issue** button in the top-right corner of every page on `archon.vekn.net` (GitHub account required).
+- [Judges Guide](https://archon.vekn.net/help/judges-guide) — the official penalty table and procedures, inside Archon.
+- [Code of Ethics](https://archon.vekn.net/help/code-of-ethics) — the Ethics Committee's remit.
+- [Tournament Rules](https://archon.vekn.net/help/tournament-rules) and [VEKN Tournament Rules](https://www.vekn.net/tournament-rules).
+- [Archon Online for Princes](/en/guides/archon-principi/) — console, rounds, finals, wrap-up.

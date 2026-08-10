@@ -17,14 +17,14 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/92f03745-6ba5-4937-b354-099f09f9c299/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-a100-7414-bd8f-fc3d91bf44c6'
   - name: 'Symposium Italicum MMXXV'
     date: 2025-08-30
     time: '08:30'
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/b1119cef-b213-4f10-8338-05b0ce0fc34c/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-a0ce-7216-89db-c83dd4229312'
   - name: 'Pool Party'
     date: 2025-08-31
     time: '09:30'

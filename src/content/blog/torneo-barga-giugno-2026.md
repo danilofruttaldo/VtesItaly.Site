@@ -17,7 +17,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/ae55841a-fcb6-46d9-a9a1-d528d525b85c/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e75e-70e4-b745-eb642b86c9ca'
 standingsUrl: '/ev/old-friends-2026/standings-old-friends-2026.json'
 schedule:
   - time: '10:30 – 12:30'

@@ -29,7 +29,7 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/3c3e0baa-a2c3-4fad-b521-e2a548ce1506/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-d3ac-764e-b3e5-c6da3a28f74a'
 pricing: []
 standingsUrl: '/nc/nc-2022/standings-nc-2022.json'
 contact: 'info@vtesitaly.com'

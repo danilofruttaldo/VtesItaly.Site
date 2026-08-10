@@ -31,14 +31,14 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/5637b81d-bb5b-4f74-85b5-3c58d119e99d/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-f2f2-71ee-87b3-39e8a4ccbd86'
   - name: 'SIDE EVENT: Italian Tour 2023 - Bologna'
     date: 2023-04-29
     time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/bd602ddb-86fc-4a9d-8669-b2fedbaddebc/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-f2fb-75c3-a8a4-9d617d801582'
 pricing: []
 standingsUrl: '/nc/nc-2023/standings-nc-2023.json'
 links:

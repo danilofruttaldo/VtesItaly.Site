@@ -14,7 +14,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/320d4566-322d-4fad-bc5f-a8f8d28979e3/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/320d4566-322d-4fad-bc5f-a8f8d28979e3'
   - name: 'Lega Milano 2026: Game Day 2'
     date: 2026-07-12
     hideFromCalendar: true
@@ -22,7 +22,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/80a1e343-419e-4d07-ab84-c3551f7e947d/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ebeb-7307-bda4-51499f9b0814'
   - name: 'Lega Milano 2026: Game Day 3'
     date: 2026-05-17
     period: 'TBD'
@@ -66,7 +66,7 @@ standingsLabel: 'Standings after Game Day 2'
 timelinePerEvent: true
 links:
   - label: 'Lega Milano 2026: Standings'
-    url: 'https://archon.vekn.net/league/1ae3aede-eb9c-4b08-b00c-51414b8e3cbe/display.html'
+    url: 'https://archon.vekn.net/leagues/1ae3aede-eb9c-4b08-b00c-51414b8e3cbe'
     locale: en
 locale: 'en'
 ---

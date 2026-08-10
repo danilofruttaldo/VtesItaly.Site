@@ -18,7 +18,7 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/44b90860-7e1d-4755-b33b-a3056f71bb37/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-b23a-7145-86b2-80a5cc999844'
 pricing: []
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'

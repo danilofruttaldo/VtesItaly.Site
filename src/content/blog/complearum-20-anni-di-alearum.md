@@ -17,7 +17,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/c5ca42a2-3aca-4cbd-b4b2-3e5343eb017e/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-996d-74fe-b588-f237c4a0c099'
 contact: 'parmeggiani.simone@gmail.com'
 standingsUrl: '/ev/complearum-2025/standings-complearum-2025.json'
 locale: it

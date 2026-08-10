@@ -25,7 +25,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/5e7c9f73-b30e-4657-90a9-f60545309b82/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-7483-703d-8c50-f30c5c869f0b'
 pricing:
   - label: 'Main Event + pranzo'
     regular: '60,00 euro'

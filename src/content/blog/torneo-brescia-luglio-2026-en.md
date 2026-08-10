@@ -18,7 +18,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/25e2e49c-d13d-4425-8b4c-7a57b385519c/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ed5d-70b6-bb5d-9b17f3cbd799'
 pricing:
   - label: 'Entry fee'
     regular: '€15 (buffet lunch included)'

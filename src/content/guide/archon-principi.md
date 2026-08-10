@@ -5,7 +5,7 @@ categoria: organizzare
 audience: [principe]
 ordine: 10
 versione: '0.5'
-aggiornato: 2026-05-18
+aggiornato: 2026-08-10
 correlate: [archon-giocatori, archon-judge]
 locale: it
 ---
@@ -165,8 +165,8 @@ A finale conclusa, registra il risultato e chiudi il torneo: Archon calcola auto
 
 Pagine utili da condividere coi giocatori:
 
-- Vista pubblica del torneo: `archon.vekn.net/tournament/<uuid>/display.html`
-- Console organizzatore (privata): `archon.vekn.net/tournament/<uuid>/console.html`
+- Vista pubblica del torneo: `archon.vekn.net/tournaments/<uuid>`
+- La console organizzatore non ha più un indirizzo separato: è la stessa pagina, che mostra i controlli di gestione solo se sei loggato come organizzatore.
 
 ## 6. Tempistiche VEKN e formati
 
@@ -218,7 +218,7 @@ Gli aspetti operativi non-Archon (Discord per registrazioni e voce, Lackey CCG p
 
 Una volta concluso il torneo e sincronizzati i dati con `vekn.net`, crea il post sul forum nella sezione [Event Reports and TWD](https://www.vekn.net/forum/event-reports-and-twd) e attendi l'approvazione del National Coordinator (che ha poteri di _tournament organizer_ su tutti i tornei della sua nazione).
 
-Buona pratica: includi nel post sia il link all'evento su `vekn.net` sia la pagina `archon.vekn.net/tournament/<uuid>/display.html`, e — se hai applicato sanzioni rilevanti — la lista (senza dati personali sensibili).
+Buona pratica: includi nel post sia il link all'evento su `vekn.net` sia la pagina `archon.vekn.net/tournaments/<uuid>`, e — se hai applicato sanzioni rilevanti — la lista (senza dati personali sensibili).
 
 > [!TIP]
 > A fine torneo gli organizzatori possono **scaricare un file di testo pulito** del torneo (risultati, seating, sanzioni) dalla console Tournament Manager. Utile come backup locale, oltre alla copia per la VEKN.

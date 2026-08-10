@@ -18,7 +18,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/e9f4d9bf-0aa9-46f6-b4e8-33fb6fe0902d/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e759-7377-ac02-26610729a2e4'
 schedule:
   - time: '13:30'
     label: 'Doors open'

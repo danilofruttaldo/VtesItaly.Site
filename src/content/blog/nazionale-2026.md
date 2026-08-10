@@ -59,14 +59,14 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/66a39cdc-f873-43f5-bd5e-b4c03fee716f/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-c2e1-7184-99f5-01beeaa6e23c'
   - name: 'SIDE EVENT: Trento the day after...'
     date: 2026-03-01
     time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/04f7a1df-82f6-4c73-8d3c-c43f75f1a88b/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-c2ea-7075-9abc-4694f40b83e1'
 pricing:
   - label: 'Pacchetto weekend (Main + Side)'
     early: '50 euro'

@@ -18,7 +18,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/2e1aec19-fc9a-43b4-a2d4-85fc43e891df/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e664-716c-afe5-84de6ab05e4d'
 pricing:
   - label: 'Registration'
     regular: '5 €'

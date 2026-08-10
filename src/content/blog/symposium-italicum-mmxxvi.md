@@ -16,13 +16,13 @@ events:
     time: '14:00'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/18af5e26-5df0-4b04-915b-aadd8324c483/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f836e-5f1b-7209-be41-a7b9cccd4c00'
   - name: 'Symposium Italicum'
     date: 2026-09-05
     time: '08:30'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/997a5022-d57a-43fd-bed7-eb587802aa4c/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f836e-5f3a-75cc-8200-c14fd5627738'
     venue: 'Stadio Comunale "Johnny Moscardini"'
     location: 'Via Giacomo Puccini, 55051 Barga (LU)'
   - name: 'Pool Party'

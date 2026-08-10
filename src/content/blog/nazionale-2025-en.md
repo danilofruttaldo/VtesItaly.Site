@@ -45,14 +45,14 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/6753d30e-115f-4563-8d16-7155c2a1222b/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6c84-74be-9761-04f0c7a3cc26'
   - name: 'SIDE EVENT: Italian Tour 2025 - Pordenone'
     date: 2025-04-13
     time: '09:00'
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/aeef6927-408e-47c6-b72f-1e179af262d9/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6cb2-775a-beae-13b306cfebde'
 pricing:
   - label: 'Entry fee'
     regular: '30 euro'

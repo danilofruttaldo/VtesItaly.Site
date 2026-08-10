@@ -55,14 +55,21 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/1808ea53-e5a0-428a-8dd4-905a394b7124/display.html'
-  - name: 'SIDE EVENT: Le Due Torri'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-cfc4-71a5-964a-aaceea47a37d'
+  - name: 'SIDE EVENT: Le Due Torri - Asinelli'
     date: 2026-05-03
     time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/84cbe147-3c9a-4d79-97b4-f7cf51958eb0/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-da1e-70e6-a041-c3a0ac03e3d7'
+  - name: 'SIDE EVENT: Le Due Torri - Garisenda'
+    date: 2026-05-03
+    time: '09:30'
+    format: 'Standard'
+    proxies: true
+    rounds: 2
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e546-735b-9094-561eb9fa6cdd'
 pricing:
   - label: 'Main Event + lunch'
     early: '60.00 euro'

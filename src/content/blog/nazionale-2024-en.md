@@ -18,14 +18,14 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
-    archonUrl: 'https://archon.vekn.net/tournament/2b71f658-be71-43f1-974a-b3e7116094fe/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-31c1-759f-a600-b7d864611dd6'
   - name: 'SIDE EVENT: Italian Tour - Trento'
     date: 2024-04-28
     time: '09:00'
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/b581393a-0a1c-490e-9d32-3c26efdf3d14/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-31cb-767f-84aa-7802b11a12e8'
 pricing: []
 standingsUrl: '/nc/nc-2024/standings-nc-2024.json'
 contact: 'info@vtesitaly.com'

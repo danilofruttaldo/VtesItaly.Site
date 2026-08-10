@@ -18,7 +18,7 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 2
-    archonUrl: 'https://archon.vekn.net/tournament/38d27caf-6140-4a3d-aeac-9d62accc8dec/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-90ba-77a4-b96d-6286fd47492e'
 contact: 'asgard.aldeno@gmail.com'
 standingsUrl: '/ev/concilio-pergine-2025/standings-concilio-pergine-2025.json'
 locale: 'en'

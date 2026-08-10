@@ -36,7 +36,7 @@ stages:
     venue: 'Polisportiva Sacca'
     location: 'Via Alfonso Paltrinieri 80, 41122 Modena (MO)'
     image: '/tour/tour-2026/tour-2026-001.webp'
-    archonUrl: 'https://archon.vekn.net/tournament/5bd9a77f-4ea3-491b-89dd-851bf4fe735d/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-cec5-7621-a4db-c2844e617f6a'
     description: 'The first sin opens the Tour. Accumulate power, resources and advantage: Greed is the engine of every ambition. Those who take everything from the start set the pace of the season.'
   - name: 'ENVY'
     number: 2
@@ -49,7 +49,7 @@ stages:
     venue: 'Lucca Collezionando'
     location: 'Via della Chiesa XXXII, 237, 55100 Lucca (LU)'
     image: '/tour/tour-2026/tour-2026-002.webp'
-    archonUrl: 'https://archon.vekn.net/tournament/dfa8a0e3-8b02-4bf5-897e-0f7c54a0dd1b/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-d8b7-7519-a56c-3d03ff4105a3'
     description: 'Envy watches and learns. Wanting what others have is the first step to taking it. A subtle sin, but lethal, at the heart of competition.'
   - name: 'WRATH'
     number: 3
@@ -62,7 +62,7 @@ stages:
     venue: 'Safarà'
     location: 'Via Piave 26, Pordenone (PN)'
     image: '/tour/tour-2026/tour-2026-003.webp'
-    archonUrl: 'https://archon.vekn.net/tournament/af4edabc-8cba-4727-8beb-87d37a77ce35/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ddb5-7400-b0f6-0bed94cf37b2'
     description: "Wrath doesn't plan: it explodes. Quick decisions, direct clashes, tables on fire. Only those who can channel their fury survive."
 
   - name: 'LUST'
@@ -76,7 +76,7 @@ stages:
     venue: 'Emporium Infernalis'
     location: 'Via Edoardo Calvo 3, 10126 Torino (TO)'
     image: '/tour/tour-2026/tour-2026-004.webp'
-    archonUrl: 'https://archon.vekn.net/tournament/0b2a2f2a-8156-44ea-b68d-d60d7c608c99/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e685-724a-951d-af5b5b0bd545'
     description: 'Desire for victory, control, blood. Lust seduces and corrupts, pushing you to risk more than you should. Those who yield often pay. Those who dominate, conquer.'
 
   - name: 'GLUTTONY'
@@ -90,7 +90,7 @@ stages:
     venue: 'Dungeonpinsa'
     location: 'Via Flavio Stilicone, 125, 00175 Roma (RM)'
     image: '/tour/tour-2026/tour-2026-005.webp'
-    archonUrl: 'https://archon.vekn.net/tournament/85d1a3ea-7106-4fbf-957e-8e3b2b118b7b/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ece8-7333-b559-501120443722'
     description: "Devour everything: points, opponents, opportunities. Gluttony knows no measure and turns excess into strength. An extended stage, for those who can't stop."
 
   - name: 'SLOTH'
@@ -104,7 +104,7 @@ stages:
     venue: 'Ludoteca "Casa dei Giochi"'
     location: "Via Sant'Uguzzone 8, 20126 Milano (MI)"
     image: '/tour/tour-2026/tour-2026-006.webp'
-    archonUrl: 'https://archon.vekn.net/tournament/6f784233-dbfa-4762-a00a-bb0df5552d3f/display.html'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ec0d-747b-af2f-105aa8c62c17'
     description: 'Sloth waits. Survives, endures, strikes only when needed. A deceptive sin that rewards patience and persistence.'
 
   - name: 'PRIDE'

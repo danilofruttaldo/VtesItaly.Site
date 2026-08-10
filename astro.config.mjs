@@ -6,6 +6,19 @@ import { remarkAlert } from 'remark-github-blockquote-alert';
 export default defineConfig({
   site: 'https://vtesitaly.com',
   integrations: [sitemap()],
+  // The four archon-* guides collapsed into one when Archon shipped its own
+  // complete Italian documentation (2026-08): only the Italy-specific notes and
+  // the judge guide — the one doc VEKN never translated — still earn a page.
+  // The retired slugs are linked from Discord threads and indexed, so they keep
+  // resolving instead of 404ing.
+  redirects: {
+    '/guide/archon-principi': '/guide/archon-italia',
+    '/guide/archon-giocatori': '/guide/archon-italia',
+    '/guide/archon-leghe': '/guide/archon-italia',
+    '/en/guides/archon-principi': '/en/guides/archon-italia',
+    '/en/guides/archon-giocatori': '/en/guides/archon-italia',
+    '/en/guides/archon-leghe': '/en/guides/archon-italia',
+  },
   prefetch: {
     prefetchAll: false,
     // `tap` covers both desktops (mousedown ~ 50ms head start) and mobiles

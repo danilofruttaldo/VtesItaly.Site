@@ -4,13 +4,13 @@ description: 'Sanctions, overrides, judge calls and decklist checks on the offic
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '1.0'
+versione: '1.1'
 aggiornato: 2026-08-10
-correlate: [archon-giocatori-en, archon-principi-en, archon-leghe-en]
+correlate: [archon-italia-en, demo-eventi-en]
 locale: en
 ---
 
-This guide is for whoever judges on [Archon Online](https://archon.vekn.net): what you can do from the portal during a tournament, how sanctions work under the new model, and how to coordinate with the organizer. For the full event cycle see [Archon Online for Princes](/en/guides/archon-principi/).
+This guide is for whoever judges on [Archon Online](https://archon.vekn.net): what you can do from the portal during a tournament, how sanctions work under the new model, and how to coordinate with the organizer. For the full event cycle the reference is the [Organizer Guide](https://archon.vekn.net/help/organizer-guide) inside Archon; for the cases that recur on the Italian scene see [Archon Online: notes for the Italian scene](/en/guides/archon-italia/).
 
 > [!IMPORTANT]
 > **The sanction model has changed.** The old `CAUTION` / `WARNING` / `GAME_LOSS` / `DISQUALIFICATION` scheme with generic categories is gone. Archon now implements the **VEKN Judges Guide** penalty table: four levels — including a new one, the **Standings Adjustment** — three infraction categories with precise subcategories, per-subcategory baseline penalties and escalation hints. **Game loss no longer exists.**
@@ -88,7 +88,7 @@ When issuing an SA you pick **the round** it applies to (by default the player's
 - **Delete** — removes the sanction entirely. As an organizer you can only delete sanctions issued **in your own event**, and only while it is not Finished. It exists to fix a mistake: delete and reissue, there is no in-place edit. IC and Ethics can delete any sanction.
 
 > [!IMPORTANT]
-> **Disqualification ≠ Drop.** To remove someone for disciplinary reasons use **Disqualification**, not the _Drop_ button. A drop is neutral (the player leaves, logistics); a disqualification stays in the VEKN history, blocks check-in and — in [leagues](/en/guides/archon-leghe/) — extends to **every other tournament in the same series**. Confusing them devalues both.
+> **Disqualification ≠ Drop.** To remove someone for disciplinary reasons use **Disqualification**, not the _Drop_ button. A drop is neutral (the player leaves, logistics); a disqualification stays in the VEKN history, blocks check-in and — in [leagues](/en/guides/archon-italia/#7-leagues) — extends to **every other tournament in the same series**. Confusing them devalues both.
 
 If you disqualify a currently seated player: **remove them from the table first**, then close the table with an **Override**. Scores already recorded stay. If they were in the top 5, the 6th player moves up.
 
@@ -153,4 +153,5 @@ For app bugs and suggestions use **Send feedback** on Archon's **Help** page, Fe
 - [Judges Guide](https://archon.vekn.net/help/judges-guide) — the official penalty table and procedures, inside Archon.
 - [Code of Ethics](https://archon.vekn.net/help/code-of-ethics) — the Ethics Committee's remit.
 - [Tournament Rules](https://archon.vekn.net/help/tournament-rules) and [VEKN Tournament Rules](https://www.vekn.net/tournament-rules).
-- [Archon Online for Princes](/en/guides/archon-principi/) — console, rounds, finals, wrap-up.
+- [Organizer Guide](https://archon.vekn.net/help/organizer-guide) — console, rounds, finals, wrap-up.
+- [Archon Online: notes for the Italian scene](/en/guides/archon-italia/) — translation traps and local practice.

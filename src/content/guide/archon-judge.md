@@ -4,13 +4,13 @@ description: 'Sanzioni, sovrascritture, chiamate a tavolo e verifica delle deckl
 categoria: organizzare
 audience: [judge]
 ordine: 20
-versione: '1.0'
+versione: '1.1'
 aggiornato: 2026-08-10
-correlate: [archon-giocatori, archon-principi, archon-leghe]
+correlate: [archon-italia, demo-eventi]
 locale: it
 ---
 
-Questa guida è dedicata a chi fa il **giudice** su [Archon Online](https://archon.vekn.net): cosa puoi fare dal portale durante un torneo, come si emettono le sanzioni nel nuovo modello e come ci si coordina con l'organizzatore. Per il ciclo completo dell'evento vedi [Archon Online per Principi](/guide/archon-principi/).
+Questa guida è dedicata a chi fa il **giudice** su [Archon Online](https://archon.vekn.net): cosa puoi fare dal portale durante un torneo, come si emettono le sanzioni nel nuovo modello e come ci si coordina con l'organizzatore. Per il ciclo completo dell'evento fa fede la [Guida dell'Organizzatore](https://archon.vekn.net/help/organizer-guide) dentro Archon, in italiano; per i casi frequenti della scena italiana vedi [Archon Online: note per la scena italiana](/guide/archon-italia/).
 
 > [!IMPORTANT]
 > **Il modello delle sanzioni è cambiato.** Il vecchio impianto `CAUTION` / `WARNING` / `GAME_LOSS` / `DISQUALIFICATION` con categorie generiche non esiste più. Adesso Archon implementa la tabella delle penalità della **Guida del Giudice VEKN**: quattro livelli — di cui uno nuovo, l'**Aggiustamento di Classifica** — tre categorie di infrazione con sottocategorie precise, penalità base per sottocategoria e suggerimenti di escalation. Il **game loss non esiste più**.
@@ -88,7 +88,7 @@ Emettendo un SA selezioni **il round** a cui si applica (di default la partita c
 - **Elimina** — rimuove del tutto la sanzione. Come organizzatore puoi eliminare solo le sanzioni emesse **nel tuo evento**, e solo finché il torneo non è **Terminato**. Serve a correggere un errore: si elimina e si riemette, non si modifica sul posto. IC ed Etica possono eliminare qualsiasi sanzione.
 
 > [!IMPORTANT]
-> **Squalifica ≠ Abbandono.** Per espellere qualcuno per motivi disciplinari usa la **Squalifica**, non il pulsante _Abbandona_. L'abbandono è un'azione neutra (il giocatore se ne va, motivi logistici); la squalifica resta nello storico VEKN, blocca il check-in e — nei [campionati](/guide/archon-leghe/) — si estende a **tutti gli altri tornei della stessa serie**. Confonderle svaluta entrambe.
+> **Squalifica ≠ Abbandono.** Per espellere qualcuno per motivi disciplinari usa la **Squalifica**, non il pulsante _Abbandona_. L'abbandono è un'azione neutra (il giocatore se ne va, motivi logistici); la squalifica resta nello storico VEKN, blocca il check-in e — nei [campionati](/guide/archon-italia/#7-campionati-leghe) — si estende a **tutti gli altri tornei della stessa serie**. Confonderle svaluta entrambe.
 
 Se squalifichi un giocatore attualmente seduto: **rimuovilo prima dal tavolo**, poi chiudi il tavolo con una **Sovrascrittura**. I punteggi già registrati restano. Se era nel top 5, subentra il sesto in classifica.
 
@@ -153,4 +153,5 @@ Per bug e proposte sull'app usa **Invia feedback** dalla pagina **Guida** di Arc
 - [Guida del Giudice](https://archon.vekn.net/help/judges-guide) — tabella delle penalità e procedure ufficiali, dentro Archon.
 - [Codice etico](https://archon.vekn.net/help/code-of-ethics) — competenza del Comitato Etico.
 - [Regole dei tornei](https://archon.vekn.net/help/tournament-rules) e [VEKN Tournament Rules](https://www.vekn.net/tournament-rules).
-- [Archon Online per Principi](/guide/archon-principi/) — console, round, finale, chiusura.
+- [Guida dell'Organizzatore](https://archon.vekn.net/help/organizer-guide) — console, round, finale, chiusura.
+- [Archon Online: note per la scena italiana](/guide/archon-italia/) — trappole di traduzione e prassi italiane.

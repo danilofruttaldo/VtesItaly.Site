@@ -4,7 +4,7 @@ description: 'Creare un evento, gestire check-in, round, finali e report sulla p
 categoria: organizzare
 audience: [principe]
 ordine: 10
-versione: '0.5'
+versione: '0.6'
 aggiornato: 2026-08-10
 correlate: [archon-giocatori, archon-judge]
 locale: it

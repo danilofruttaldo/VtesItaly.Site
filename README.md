@@ -8,13 +8,13 @@ Built with [Astro 6](https://astro.build/) — static, fast, multilingual (IT/EN
 
 ## Tech Stack
 
-- **Astro 6** — static site generator
-- **TypeScript 5.9** — type-safe data and utilities
+- **Astro 7** — static site generator
+- **TypeScript 6** — type-safe data and utilities. ⚠️ **Pinned to 6.x on purpose: `astro check` does not run on 7.** Tried on 2026-08-15 with 7.0.2 — the native Go compiler does not yet expose the programmatic API `astro check` relies on, and says so with an explicit error (see [withastro/roadmap#1321](https://github.com/withastro/roadmap/discussions/1321)). ⚠️ The build stays green either way, so the upgrade looks successful while the typecheck is silently dead.
 - **Zod** — runtime validation of post frontmatter (discriminated union on `category`) and standings JSON (per-dialect schemas)
 - **Pagefind** — client-side search indexing (restricted to `<main data-pagefind-body>`)
 - **Sharp** — image processing
 - **ESLint + Prettier** — linting and formatting
-- **Vitest 3 + @vitest/coverage-v8** — unit, component, and integration tests
+- **Vitest 4 + @vitest/coverage-v8** — unit, component, and integration tests
 - **Astro Container API** — render `.astro` components inside Vitest
 - **Lighthouse CI** — accessibility/perf/SEO gating on every push to `main`
 - **GitHub Actions** — single CI workflow: audit → lint → format → typecheck → tests → coverage badge refresh → build → integration smoke → size guard → Lighthouse → deploy via tar-pipe over SSH

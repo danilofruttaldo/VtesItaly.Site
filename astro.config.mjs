@@ -44,4 +44,11 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  vite: {
+    // Minify CSS with esbuild instead of lightningcss: lightningcss ships an
+    // unsigned native module that Smart App Control blocks on the dev machine,
+    // killing `astro build`. Same reason package.json aliases esbuild to
+    // esbuild-wasm. Output is equivalent for these stylesheets.
+    build: { cssMinify: 'esbuild' },
+  },
 });

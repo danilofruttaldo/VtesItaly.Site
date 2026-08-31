@@ -23,8 +23,6 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f836e-5f3a-75cc-8200-c14fd5627738'
-    venue: 'Stadio Comunale "Johnny Moscardini"'
-    location: 'Via Giacomo Puccini, 55051 Barga (LU)'
   - name: 'Pool Party'
     date: 2026-09-06
     time: '09:30'
@@ -54,6 +52,11 @@ links:
 locale: 'en'
 ---
 
+<div class="callout">
+  <h2>Important notice</h2>
+  <p>Due to circumstances beyond the organisers' control, on <strong>Saturday 5 September</strong> the event will take place entirely at the <strong>Agriturismo Il Musaccio</strong>, instead of the Stadio Comunale; lunch, still being finalised, will be provided by a catering service at the same price. The organisers remain available for any questions or needs.</p>
+</div>
+
 The Italian Vampire: The Eternal Struggle community is pleased to announce the new edition of the **Symposium Italicum**, in partnership with **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** and sponsored by **Mistlore**, **TheCardGameGeek** and **The Pot Still**!
 
-Three days of VTES in **Barga (LU)**: **Bloodbath** on Friday, the main tournament on Saturday at the Stadio Comunale, with the final and prize ceremony back at Il Musaccio, and the **Pool Party** on Sunday. On Saturday Garfaludica will run game tables for all companions, children and adults alike; Mistlore will be there with Black Chantry products and The Pot Still with the refreshment point for the whole event.
+Three days of VTES in **Barga (LU)**, held entirely at the **Agriturismo Il Musaccio**: **Bloodbath** on Friday, the main tournament on Saturday and the **Pool Party** on Sunday. On Saturday Garfaludica will run game tables for all companions, children and adults alike; Mistlore will be there with Black Chantry products and The Pot Still with the refreshment point for the whole event.

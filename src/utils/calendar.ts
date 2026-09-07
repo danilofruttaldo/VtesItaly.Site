@@ -156,8 +156,6 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       for (const ev of post.data.events) {
         // Skip league period entries (they have period set, or date is not parseable)
         if (ev.period) continue;
-        // Opt-out: sessions listed on the post page but kept off the calendar
-        if (ev.hideFromCalendar) continue;
         const d = new Date(ev.date);
         if (isNaN(d.getTime())) continue;
         // Skip placeholder dates (1st of month without confirmed time)
@@ -332,40 +330,6 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
         });
       }
       continue;
-    }
-
-    // Opt-in: multi-session campaigns (e.g. a city league) expand each dated
-    // event into its own timeline card, so the homepage features the next
-    // session rather than treating the post's start date as a single ongoing
-    // span across the gaps between sessions.
-    if (post.data.timelinePerEvent && !isLeaguePost(post)) {
-      const dated = (post.data.events ?? []).filter((ev) => !ev.period);
-      const visible = dated.filter((ev) => !ev.hideFromCalendar);
-      // Every dated session opted out: keep the campaign off the timeline
-      // entirely. Falling through to the single post-date card would span from
-      // the post date to the last session, and that span reads as "ongoing",
-      // pinning the homepage to the campaign's start month.
-      if (visible.length === 0 && dated.length > 0) continue;
-      // No dated session at all (everything still TBD): fall through so the
-      // announcement keeps its single card.
-      if (visible.length > 0) {
-        for (const ev of visible) {
-          const d = new Date(ev.date);
-          if (isNaN(d.getTime())) continue;
-          out.push({
-            date: toIsoDate(d),
-            endDate: ev.endDate ? toIsoDate(new Date(ev.endDate)) : undefined,
-            title: ev.name,
-            url,
-            category,
-            image: baseImage,
-            imageAnchor,
-            tags,
-            excerpt,
-          });
-        }
-        continue;
-      }
     }
 
     const postDate = new Date(post.data.date);

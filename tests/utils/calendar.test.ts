@@ -284,28 +284,28 @@ describe('getCommunityTimeline', () => {
     expect(out[0].date).toBe('2026-07-15');
   });
 
-  it('expands one card per dated event when timelinePerEvent is set (skips period entries)', () => {
+  it('keeps a league to one card at the post date, whatever its game days say', () => {
     const posts = [
-      mkPost('lega-perevent', {
+      mkPost('lega-milano', {
         date: new Date('2026-05-17'),
-        title: 'Lega Milano',
+        title: 'Lega Cittadina',
         excerpt: 'shared excerpt',
         category: 'comunita',
-        timelinePerEvent: true,
+        tags: ['milano', 'lega'],
         events: [
           { name: 'Giornata 1', date: new Date('2026-05-17'), time: '14:00' },
-          { name: 'Giornata 2', date: new Date('2026-07-12'), time: '14:00', endDate: new Date('2026-07-13') },
-          { name: 'Giornata 3', date: new Date('2026-05-17'), time: '', period: 'TBD' },
+          { name: 'Giornata 2', date: new Date('2026-07-12'), time: '14:00' },
+          { name: 'Giornata 3', date: new Date('2026-10-11'), time: '14:00' },
         ],
       } as Partial<BlogEntry['data']> & { date: Date }),
     ];
-    const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('lega-perevent'));
-    // One card per dated event (period entry skipped), not a single post card.
-    expect(out.map((e) => e.title)).toEqual(['Giornata 1', 'Giornata 2']);
-    expect(out.map((e) => e.date)).toEqual(['2026-05-17', '2026-07-12']);
+    const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('lega-milano'));
+    // One piece of news, not one card per game day.
+    expect(out.map((e) => e.title)).toEqual(['Lega Cittadina']);
+    expect(out[0].date).toBe('2026-05-17');
+    // And a single day: spanning to the last game day would read as "ongoing"
+    // and pin the homepage to the league's opening month.
     expect(out[0].endDate).toBeUndefined();
-    expect(out[1].endDate).toBe('2026-07-13');
-    expect(out.every((e) => e.excerpt === 'shared excerpt')).toBe(true);
   });
 
   it('falls back to post.date for posts with no events/stages', () => {

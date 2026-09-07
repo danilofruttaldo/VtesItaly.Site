@@ -50,7 +50,6 @@ const eventSchema = z.object({
   tpLabel: z.string().optional(),
   period: z.string().optional(),
   type: z.string().optional(),
-  hideFromCalendar: z.boolean().optional(),
 });
 
 const stageSchema = z.object({
@@ -126,13 +125,6 @@ const baseFields = {
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
   // Page hero override for community events in cities without a principato entry.
   cityHeader: z.string().optional(),
-  // Opt-in for the homepage timeline: expand each dated `events` entry into its
-  // own timeline card instead of a single card at the post date. Use for a
-  // multi-session campaign whose next *session* should drive the homepage
-  // rather than the campaign's start date. Leagues are NOT the use case: they
-  // keep their sessions off calendar and timeline by category, see
-  // `isLeaguePost` in utils/calendar.ts.
-  timelinePerEvent: z.boolean().optional(),
   // Same as `events[].tpLabel`, for the post-level `standingsUrl`.
   standingsTpLabel: z.string().optional(),
 };

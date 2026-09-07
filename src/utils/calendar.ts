@@ -325,29 +325,34 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     // event into its own timeline card, so the homepage features the next
     // session rather than treating the post's start date as a single ongoing
     // span across the gaps between sessions.
-    // `hideFromCalendar` deliberately does NOT apply here: it keeps a session
-    // out of the calendar grid, not out of the timeline. Honouring it would
-    // collapse a fully hidden campaign back onto the single post-date card,
-    // whose span (first post date -> last session) then reads as "ongoing" and
-    // pins the homepage to the campaign's start month.
-    if (post.data.timelinePerEvent && post.data.events?.some((ev) => !ev.period)) {
-      for (const ev of post.data.events) {
-        if (ev.period) continue;
-        const d = new Date(ev.date);
-        if (isNaN(d.getTime())) continue;
-        out.push({
-          date: toIsoDate(d),
-          endDate: ev.endDate ? toIsoDate(new Date(ev.endDate)) : undefined,
-          title: ev.name,
-          url,
-          category,
-          image: baseImage,
-          imageAnchor,
-          tags,
-          excerpt,
-        });
+    if (post.data.timelinePerEvent) {
+      const dated = (post.data.events ?? []).filter((ev) => !ev.period);
+      const visible = dated.filter((ev) => !ev.hideFromCalendar);
+      // Every dated session opted out: keep the campaign off the timeline
+      // entirely. Falling through to the single post-date card would span from
+      // the post date to the last session, and that span reads as "ongoing",
+      // pinning the homepage to the campaign's start month.
+      if (visible.length === 0 && dated.length > 0) continue;
+      // No dated session at all (everything still TBD): fall through so the
+      // announcement keeps its single card.
+      if (visible.length > 0) {
+        for (const ev of visible) {
+          const d = new Date(ev.date);
+          if (isNaN(d.getTime())) continue;
+          out.push({
+            date: toIsoDate(d),
+            endDate: ev.endDate ? toIsoDate(new Date(ev.endDate)) : undefined,
+            title: ev.name,
+            url,
+            category,
+            image: baseImage,
+            imageAnchor,
+            tags,
+            excerpt,
+          });
+        }
+        continue;
       }
-      continue;
     }
 
     const postDate = new Date(post.data.date);

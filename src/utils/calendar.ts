@@ -108,7 +108,8 @@ export function isLeaguePost(post: CollectionEntry<'blog'>): boolean {
 
 /**
  * Extract a flat list of calendar events from blog posts.
- * Handles: stages (tour), events array (GP/NC/community), skips leagues without dates.
+ * Handles: stages (tour) and the events array (GP/NC/community). League posts
+ * are skipped entirely — see `isLeaguePost`.
  */
 export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: Locale): CalendarEvent[] {
   const t = useTranslations(locale);

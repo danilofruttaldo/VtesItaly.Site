@@ -325,12 +325,14 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     // event into its own timeline card, so the homepage features the next
     // session rather than treating the post's start date as a single ongoing
     // span across the gaps between sessions.
-    // When every session is hidden the loop emits nothing, so fall through to
-    // the single post-date card rather than dropping the post from the timeline.
-    if (post.data.timelinePerEvent && post.data.events?.some((ev) => !ev.period && !ev.hideFromCalendar)) {
+    // `hideFromCalendar` deliberately does NOT apply here: it keeps a session
+    // out of the calendar grid, not out of the timeline. Honouring it would
+    // collapse a fully hidden campaign back onto the single post-date card,
+    // whose span (first post date -> last session) then reads as "ongoing" and
+    // pins the homepage to the campaign's start month.
+    if (post.data.timelinePerEvent && post.data.events?.some((ev) => !ev.period)) {
       for (const ev of post.data.events) {
         if (ev.period) continue;
-        if (ev.hideFromCalendar) continue;
         const d = new Date(ev.date);
         if (isNaN(d.getTime())) continue;
         out.push({

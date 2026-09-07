@@ -32,6 +32,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-f2f2-71ee-87b3-39e8a4ccbd86'
+    standingsUrl: '/nc/nc-2023/standings-nc-2023.json'
   - name: 'SIDE EVENT: Italian Tour 2023 - Bologna'
     date: 2023-04-29
     time: '09:30'
@@ -39,8 +40,8 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-f2fb-75c3-a8a4-9d617d801582'
+    standingsUrl: '/nc/nc-2023/standings-tour-bologna-2023.json'
 pricing: []
-standingsUrl: '/nc/nc-2023/standings-nc-2023.json'
 links:
   - label: 'Infopack (PDF)'
     url: '/nc/nc-2023/infopack-nc-2023-it.pdf'

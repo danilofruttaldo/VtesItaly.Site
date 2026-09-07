@@ -19,13 +19,16 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://gp2025.vtesitaly.com/'
-  - name: 'SIDE EVENT: Italian Tour 2025 - Modena'
+    standingsUrl: '/gp/gp-2025/standings-gp-2025.json'
+    tpLabel: 'TP'
+  - name: 'SIDE EVENT: Italian GP - Redemption Tournament'
     date: 2025-03-02
     time: '09:00'
     format: 'Standard'
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-7483-703d-8c50-f30c5c869f0b'
+    standingsUrl: '/gp/gp-2025/standings-gp-redemption-2025.json'
 pricing:
   - label: 'Main Event + lunch'
     regular: '60.00 euro'
@@ -47,7 +50,6 @@ prizes:
   - 'Sponsored UltraPro material'
   - 'Timer for 3rd round winners'
 contact: 'info@vtesitaly.com'
-standingsUrl: '/gp/gp-2025/standings-gp-2025.json'
 notes:
   - "200m from 'Modena Sud' highway exit. Bologna Marconi airport 35 km away. Extra-urban bus #731 to Vignola, 'Ponte Guerro' stop 500m from venue."
 links:

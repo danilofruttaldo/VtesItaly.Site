@@ -1,0 +1,16 @@
+[
+  { "rank": 1, "name": "Luca Turicchi", "gw": 1, "vp": 2.5, "fvp": 2.5, "tp": 126 },
+  { "rank": 2, "name": "Alessandro Donati", "gw": 2, "vp": 7, "fvp": 0, "tp": 77 },
+  { "rank": 2, "name": "Nicola Pampaloni", "gw": 1, "vp": 3.5, "fvp": 1.5, "tp": 61 },
+  { "rank": 2, "name": "Lorenzo Becciani", "gw": 1, "vp": 3, "fvp": 0, "tp": 53 },
+  { "rank": 2, "name": "Lorenzo Ferri", "gw": 1, "vp": 2, "fvp": 0, "tp": 49 },
+  { "rank": 6, "name": "Luca Becciani", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 7, "name": "Leonardo Bensi", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 8, "name": "Filippo del Re", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 9, "name": "Andrea Casaccia", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 10, "name": "Davide Bonini", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Simone Bertagni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 11, "name": "Leonardo Barletti", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 11, "name": "Gabriele Bugliani", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Livio Biagioni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

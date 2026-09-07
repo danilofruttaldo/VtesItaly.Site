@@ -46,6 +46,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6c84-74be-9761-04f0c7a3cc26'
+    standingsUrl: '/nc/nc-2025/standings-nc-2025.json'
   - name: 'SIDE EVENT: Italian Tour 2025 - Pordenone'
     date: 2025-04-13
     time: '09:00'
@@ -53,10 +54,10 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6cb2-775a-beae-13b306cfebde'
+    standingsUrl: '/nc/nc-2025/standings-tour-pordenone-2025.json'
 pricing:
   - label: 'Iscrizione'
     regular: '30 euro'
-standingsUrl: '/nc/nc-2025/standings-nc-2025.json'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti) — pordenonevtes@gmail.com'
 hotel:

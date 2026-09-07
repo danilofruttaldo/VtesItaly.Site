@@ -20,6 +20,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-0912-7024-8169-c97b1dfbf0ef'
+    standingsUrl: '/gp/gp-2024/standings-gp-2024.json'
   - name: 'SIDE EVENT: Italian Tour 2023 Stage 9 Milano'
     date: 2023-12-08
     time: '09:30'
@@ -27,6 +28,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-0919-77d3-a948-7cdbb828700f'
+    standingsUrl: '/gp/gp-2024/standings-tour-milano-2023.json'
 pricing:
   - label: 'Iscrizione'
     regular: '25,00 euro'
@@ -34,7 +36,6 @@ payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
 contact: 'info@vtesitaly.com'
 hotel: []
 prizes: ''
-standingsUrl: '/gp/gp-2024/standings-gp-2024.json'
 links: []
 gallerySections:
   - title: 'Preparazione'

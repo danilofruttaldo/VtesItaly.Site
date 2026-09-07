@@ -24,6 +24,7 @@ payment: 'PayPal recommended: vtes.treviso@gmail.com'
 registration: 'Pre-registration required via Google Form. Limited to 25–26 participants.'
 contact: 'vtes.treviso@gmail.com'
 standingsUrl: '/ev/taste-of-spritzae-2025/standings-taste-of-spritzae-2025.json'
+standingsTpLabel: 'TP'
 prizes:
   - '2 promo cards from Promo Pack 4 for all participants'
   - 'Prizes for winner and 5 finalists'

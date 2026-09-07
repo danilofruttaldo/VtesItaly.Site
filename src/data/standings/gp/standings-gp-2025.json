@@ -65,8 +65,8 @@
   { "rank": 64, "name": "Giulio Roffi", "gw": 0, "vp": 0, "fvp": null, "tp": 66 },
   { "rank": 64, "name": "Damiano Ghiaroni", "gw": 0, "vp": 0, "fvp": null, "tp": 66 },
   { "rank": 64, "name": "Carlo Lorenzetti", "gw": 0, "vp": 0, "fvp": null, "tp": 66 },
-  { "rank": 67, "name": "Nicola Pirera", "gw": 0, "vp": 0, "fvp": null, "tp": 0 },
-  { "rank": 67, "name": "Petr Muller", "gw": 0, "vp": 0, "fvp": null, "tp": 0 },
-  { "rank": 67, "name": "Dominik Trupcevic", "gw": 0, "vp": 0, "fvp": null, "tp": 0 },
-  { "rank": 67, "name": "Tommaso Chiodi", "gw": 0, "vp": 0, "fvp": null, "tp": 0 }
+  { "rank": 64, "name": "Dominik Trupcevic", "gw": 0, "vp": 0, "fvp": null, "tp": 66 },
+  { "rank": 64, "name": "Tommaso Chiodi", "gw": 0, "vp": 0, "fvp": null, "tp": 66 },
+  { "rank": 69, "name": "Nicola Pirera", "gw": 0, "vp": 0, "fvp": null, "tp": 60 },
+  { "rank": 69, "name": "Petr Muller", "gw": 0, "vp": 0, "fvp": null, "tp": 60 }
 ]

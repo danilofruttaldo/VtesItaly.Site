@@ -18,6 +18,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-a100-7414-bd8f-fc3d91bf44c6'
+    standingsUrl: '/ev/symposium-italicum-2025/standings-field-training-2025.json'
   - name: 'Symposium Italicum MMXXV'
     date: 2025-08-30
     time: '08:30'
@@ -25,6 +26,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-a0ce-7216-89db-c83dd4229312'
+    standingsUrl: '/ev/symposium-italicum-2025/standings-symposium-italicum-2025.json'
   - name: 'Pool Party'
     date: 2025-08-31
     time: '09:30'
@@ -42,7 +44,6 @@ pricing:
     regular: '20 € (drinks excluded)'
 payment: 'PayPal (friends & family): adonati1982@gmail.com'
 contact: 'adonati1982@gmail.com'
-standingsUrl: '/ev/symposium-italicum-2025/standings-symposium-italicum-2025.json'
 notes:
   - 'Free parking, Wi-Fi and pool access for all participants and companions'
   - 'BAR available on site (NO POS)'

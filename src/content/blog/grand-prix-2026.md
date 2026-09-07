@@ -56,6 +56,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-cfc4-71a5-964a-aaceea47a37d'
+    standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
   - name: 'SIDE EVENT: Le Due Torri - Asinelli'
     date: 2026-05-03
     time: '09:30'
@@ -63,6 +64,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-da1e-70e6-a041-c3a0ac03e3d7'
+    standingsUrl: '/gp/gp-2026/standings-le-due-torri-asinelli-2026.json'
   - name: 'SIDE EVENT: Le Due Torri - Garisenda'
     date: 2026-05-03
     time: '09:30'
@@ -70,6 +72,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e546-735b-9094-561eb9fa6cdd'
+    standingsUrl: '/gp/gp-2026/standings-le-due-torri-garisenda-2026.json'
 pricing:
   - label: 'Main Event + pranzo'
     early: '60,00 euro'
@@ -91,7 +94,6 @@ prizes:
   - 'Premi per classifica'
   - 'Premi ad estrazione'
   - 'Altre formule in arrivo'
-standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
 streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=dy0WvJXhM3w'

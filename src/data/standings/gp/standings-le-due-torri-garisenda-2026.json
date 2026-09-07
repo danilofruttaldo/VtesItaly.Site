@@ -1,0 +1,22 @@
+[
+  { "rank": 1, "name": "Bram Van Stappen", "gw": 1, "vp": 4.5, "fvp": 3, "tp": 160 },
+  { "rank": 2, "name": "Stefano Tarozzi", "gw": 1, "vp": 5, "fvp": 1, "tp": 73 },
+  { "rank": 2, "name": "Diego Di Nicolantonio", "gw": 1, "vp": 4, "fvp": 0, "tp": 65 },
+  { "rank": 2, "name": "Lorenzo Becciani", "gw": 1, "vp": 3, "fvp": 1, "tp": 65 },
+  { "rank": 2, "name": "Niccolò Da Ronco", "gw": 0, "vp": 3, "fvp": 0, "tp": 53 },
+  { "rank": 6, "name": "Piotr Jurczak", "gw": 0, "vp": 3, "fvp": null, "tp": 17 },
+  { "rank": 7, "name": "Martin Weinmayer", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 8, "name": "Vincent Ripoll", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 9, "name": "Luca Manfredini", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 10, "name": "Emiliano Imeroni", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 10, "name": "Dominik Trupcevic", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 12, "name": "Laurent Ribeyre", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 13, "name": "Giovanni Gueli", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 14, "name": "Adriano Arena", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 15, "name": "Ivan Candioli", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 15, "name": "Andrea Paderni", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 17, "name": "Eleonora Basso", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 18, "name": "Patrick Benoît", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 18, "name": "Damiano Ghiaroni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 20, "name": "Filippo del Re", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

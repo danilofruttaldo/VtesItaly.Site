@@ -60,6 +60,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-c2e1-7184-99f5-01beeaa6e23c'
+    standingsUrl: '/nc/nc-2026/standings-nc-2026.json'
   - name: 'SIDE EVENT: Trento the day after...'
     date: 2026-03-01
     time: '09:30'
@@ -67,6 +68,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-c2ea-7075-9abc-4694f40b83e1'
+    standingsUrl: '/nc/nc-2026/standings-trento-the-day-after-2026.json'
 pricing:
   - label: 'Pacchetto weekend (Main + Side)'
     early: '50 euro'
@@ -87,7 +89,6 @@ prizes:
   - 'Premi per la top 10 del Main Event'
   - 'Premi a estrazione'
   - 'Welcome kit per ogni evento'
-standingsUrl: '/nc/nc-2026/standings-nc-2026.json'
 streamingUrl: 'https://www.youtube.com/watch?v=BKAhtwmUSUI'
 contact: 'info@vtesitaly.com'
 links:

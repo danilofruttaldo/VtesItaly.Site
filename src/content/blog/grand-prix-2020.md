@@ -19,6 +19,7 @@ events:
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-7b25-772e-953e-89fc49c31682'
+    standingsUrl: '/gp/gp-2020/standings-gp-2020.json'
   - name: 'SIDE EVENT: Sixth Tradition: Destruction'
     date: 2019-11-24
     time: '10:00'
@@ -26,8 +27,8 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-7b2f-7145-a2a2-b3fbbce659df'
+    standingsUrl: '/gp/gp-2020/standings-sixth-tradition-2019.json'
 pricing: []
-standingsUrl: '/gp/gp-2020/standings-gp-2020.json'
 contact: 'info@vtesitaly.com'
 payment: ''
 hotel: []

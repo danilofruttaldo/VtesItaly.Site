@@ -17,12 +17,14 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f836e-5f1b-7209-be41-a7b9cccd4c00'
-  - name: 'Symposium Italicum'
+    standingsUrl: '/ev/symposium-italicum-2026/standings-bloodbath-2026.json'
+  - name: 'Symposium Italicum MMXXVI'
     date: 2026-09-05
     time: '08:30'
     proxies: false
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f836e-5f3a-75cc-8200-c14fd5627738'
+    standingsUrl: '/ev/symposium-italicum-2026/standings-symposium-italicum-2026.json'
   - name: 'Pool Party'
     date: 2026-09-06
     time: '09:30'

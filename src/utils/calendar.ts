@@ -96,6 +96,17 @@ export function roundsLabel(rounds: number, locale: Locale): string {
 }
 
 /**
+ * A league post: a local, multi-session campaign. Its `events[]` are the single
+ * game days, which stay off the calendar and off the homepage timeline — a
+ * league surfaces as one piece of news at the post date, nothing more. Same
+ * predicate the page router uses to pick `LeagueEdition`.
+ */
+export function isLeaguePost(post: CollectionEntry<'blog'>): boolean {
+  if (post.data.pageLayout === 'article') return false;
+  return post.data.category === 'comunita' && (!!post.data.leagueStats || post.data.tags.includes('lega'));
+}
+
+/**
  * Extract a flat list of calendar events from blog posts.
  * Handles: stages (tour), events array (GP/NC/community), skips leagues without dates.
  */
@@ -139,8 +150,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       }
     }
 
-    // Events array (GP, NC, community events)
-    if (post.data.events && post.data.events.length > 0) {
+    // Events array (GP, NC, community events). League game days never enter.
+    if (!isLeaguePost(post) && post.data.events && post.data.events.length > 0) {
       for (const ev of post.data.events) {
         // Skip league period entries (they have period set, or date is not parseable)
         if (ev.period) continue;
@@ -266,6 +277,7 @@ function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
  * timeline treats them as a single calendar day.
  */
 function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): string | undefined {
+  if (isLeaguePost(post)) return undefined;
   const events = post.data.events;
   if (!events || events.length === 0) return undefined;
   let max = start;
@@ -325,7 +337,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     // event into its own timeline card, so the homepage features the next
     // session rather than treating the post's start date as a single ongoing
     // span across the gaps between sessions.
-    if (post.data.timelinePerEvent) {
+    if (post.data.timelinePerEvent && !isLeaguePost(post)) {
       const dated = (post.data.events ?? []).filter((ev) => !ev.period);
       const visible = dated.filter((ev) => !ev.hideFromCalendar);
       // Every dated session opted out: keep the campaign off the timeline

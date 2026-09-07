@@ -9,7 +9,6 @@ excerpt: 'La prima lega cittadina milanese di Vampire the Eternal Struggle: 4 do
 events:
   - name: 'Lega Milano 2026: Giornata 1'
     date: 2026-05-17
-    hideFromCalendar: true
     time: '14:00'
     format: 'Standard'
     proxies: true
@@ -17,14 +16,12 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/320d4566-322d-4fad-bc5f-a8f8d28979e3'
   - name: 'Lega Milano 2026: Giornata 2'
     date: 2026-07-12
-    hideFromCalendar: true
     time: '14:00'
     format: 'Standard'
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ebeb-7307-bda4-51499f9b0814'
   - name: 'Lega Milano 2026: Giornata 3'
-    hideFromCalendar: true
     date: 2026-10-11
     time: '14:00'
     format: 'Standard'
@@ -32,7 +29,6 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a06e4a-b1b8-7182-9018-f4bf14c17ac2'
   - name: 'Lega Milano 2026: Giornata 4'
-    hideFromCalendar: true
     date: 2026-05-17
     period: 'TBD'
     time: '14:00'
@@ -65,7 +61,6 @@ payment: 'PayPal (amici e parenti) — henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
 standingsLabel: 'Classifica dopo la Giornata 2'
-timelinePerEvent: true
 links:
   - label: 'Lega Milano 2026: Classifica'
     url: 'https://archon.vekn.net/leagues/1ae3aede-eb9c-4b08-b00c-51414b8e3cbe'

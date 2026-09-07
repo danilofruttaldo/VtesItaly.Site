@@ -24,6 +24,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ebeb-7307-bda4-51499f9b0814'
   - name: 'Lega Milano 2026: Game Day 3'
+    hideFromCalendar: true
     date: 2026-10-11
     time: '14:00'
     format: 'Standard'
@@ -31,6 +32,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a06e4a-b1b8-7182-9018-f4bf14c17ac2'
   - name: 'Lega Milano 2026: Game Day 4'
+    hideFromCalendar: true
     date: 2026-05-17
     period: 'TBD'
     time: '14:00'

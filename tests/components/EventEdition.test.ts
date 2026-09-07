@@ -37,8 +37,13 @@ describe('EventEdition', () => {
   });
 
   it('renders the standings table when standingsUrl is present', async () => {
+    // Standings live either on the post or on the matching `events[]` entry
+    // (multi-tournament pages: main event + side events).
     const post = pickPost(
-      (p) => p.data.category === 'grand-prix' && (p.data.locale ?? 'it') === 'it' && !!p.data.standingsUrl,
+      (p) =>
+        p.data.category === 'grand-prix' &&
+        (p.data.locale ?? 'it') === 'it' &&
+        (!!p.data.standingsUrl || (p.data.events ?? []).some((ev) => ev.standingsUrl)),
     );
     const html = await renderEdition(post);
     // Standings table contains player names with rank cells; assert at least

@@ -237,6 +237,48 @@
   text-align: center;
   margin-bottom: 16px;
 }
+/* One accordion per tournament: pages that host a main event plus side events
+   stack several standings, collapsed and titled so they read apart. */
+.gp-standings-group {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  scroll-margin-top: 80px;
+}
+.gp-standings-group > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px 14px 10px 30px;
+  position: relative;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: var(--font-size-sm);
+  user-select: none;
+}
+.gp-standings-group > summary::-webkit-details-marker {
+  display: none;
+}
+.gp-standings-group > summary::before {
+  content: '▸';
+  position: absolute;
+  left: 13px;
+  color: var(--color-gold);
+  transition: transform 0.18s ease;
+  display: inline-block;
+}
+.gp-standings-group[open] > summary::before {
+  transform: rotate(90deg);
+}
+.gp-standings-group > summary:hover {
+  color: var(--color-gold);
+}
+/* The accordion already draws the frame; the inner table drops its own. */
+.gp-standings-group .gp-standings-wrap {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  border-radius: 0;
+}
 .gp-standings-wrap {
   overflow: auto;
   max-height: 480px;

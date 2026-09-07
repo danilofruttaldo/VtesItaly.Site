@@ -6,7 +6,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
-import { anonymizeName } from '../utils/anonymize';
+import StandingsTable from './StandingsTable.astro';
 import { composeEventLine } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
 import { todayLocalMidnight } from '../utils/today';
@@ -41,7 +41,6 @@ if (post.data.poster) {
   galleryImages = galleryImages.filter((img) => img !== post.data.poster);
 }
 
-// Load standings if available
 interface Standing {
   rank: number;
   name: string;
@@ -50,17 +49,62 @@ interface Standing {
   fvp: number | null;
   tp: number;
 }
-let standings: Standing[] = [];
-if (post.data.standingsUrl) {
-  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
-    string,
-    { default: unknown }
-  >;
-  const key = Object.keys(allData).find((k) => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
-  if (key && Array.isArray(allData[key].default)) standings = allData[key].default as Standing[];
+const postEvents = post.data.events ?? [];
+
+// Load standings if available. A page can carry more than one tournament
+// (main event + side events, multi-tournament weekends): the post-level
+// `standingsUrl` is the single-table case, and each `events[]` entry may
+// declare its own. One block per tournament, in `events[]` order.
+const allStandingsData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
+  string,
+  { default: unknown }
+>;
+// Lenient basename match, the historical resolution rule: standingsUrl values
+// in the frontmatter are absolute, relative and extension-less alike.
+function loadStandings(url: string): Standing[] {
+  const key = Object.keys(allStandingsData).find((k) => k.includes(url.replace(/^.*\//, '')));
+  return key && Array.isArray(allStandingsData[key].default) ? (allStandingsData[key].default as Standing[]) : [];
 }
-const hasFvp = standings.some((s) => s.fvp != null);
-const postEvents = post.data.events;
+// GP and Nazionale posts prefix their events "MAIN EVENT: " / "SIDE EVENT: ";
+// the prefix is programme scaffolding, not part of the tournament name.
+const tournamentLabel = (name: string) => name.replace(/^\s*(MAIN|SIDE)\s+EVENT\s*:\s*/i, '').trim();
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+interface StandingsBlock {
+  id: string;
+  label: string | null;
+  rows: Standing[];
+  tpLabel?: string;
+}
+const allBlocks: StandingsBlock[] = [];
+if (post.data.standingsUrl) {
+  allBlocks.push({
+    id: 'classifica',
+    label: null,
+    rows: loadStandings(post.data.standingsUrl),
+    tpLabel: post.data.standingsTpLabel,
+  });
+}
+for (const ev of postEvents) {
+  if (!ev.standingsUrl) continue;
+  const label = tournamentLabel(ev.name);
+  allBlocks.push({
+    id: `classifica-${slugify(label)}`,
+    label,
+    rows: loadStandings(ev.standingsUrl),
+    tpLabel: ev.tpLabel,
+  });
+}
+const standingsBlocks = allBlocks.filter((b) => b.rows.length > 0);
+// Single unlabelled table (the pre-existing shape) stays a plain table; two or
+// more tournaments collapse into titled accordions so they read apart.
+const standingsCollapsed =
+  standingsBlocks.length > 1 || (standingsBlocks.length === 1 && standingsBlocks[0].label !== null);
 const today = todayLocalMidnight();
 const lastEventDay = postEvents.reduce<Date | null>((max, e) => {
   const d = new Date(e.date);
@@ -96,9 +140,9 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
 
 {/* Quick nav */}
 {
-  (standings.length > 0 || post.data.highlight) && (
+  (standingsBlocks.length > 0 || post.data.highlight) && (
     <nav class="gp-quicknav">
-      {standings.length > 0 && (
+      {standingsBlocks.length > 0 && (
         <a href="#classifica" class="gp-quicknav-link">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9" />
@@ -525,41 +569,29 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
 
 {/* Classifica */}
 {
-  standings.length > 0 && (
+  standingsBlocks.length > 0 && (
     <section id="classifica" class="gp-standings">
       <h2 class="gp-standings-title">{t.gp.standings_label}</h2>
-      <div class="gp-standings-wrap">
-        <table class="gp-standings-table">
-          <caption class="sr-only">{t.gp.standings_label}</caption>
-          <thead>
-            <tr>
-              <th class="tc">#</th>
-              <th>{t.gp.standings_player}</th>
-              <th class="tc">GW</th>
-              <th class="tc">VP</th>
-              {hasFvp && <th class="tc">FVP</th>}
-              <th class="tc">TP</th>
-            </tr>
-          </thead>
-          <tbody>
-            {standings.map((s) => (
-              <tr
-                class:list={[
-                  s.rank <= 1 && 'gp-standings-winner',
-                  s.rank >= 2 && s.rank <= 5 && 'gp-standings-finalist',
-                ]}
-              >
-                <td class="tc">{s.rank}</td>
-                <td>{anonymizeName(s.name)}</td>
-                <td class="tc">{s.gw}</td>
-                <td class="tc">{s.vp}</td>
-                {hasFvp && <td class="tc">{s.fvp ?? ''}</td>}
-                <td class="tc">{s.tp}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {standingsCollapsed ? (
+        standingsBlocks.map((block) => (
+          <details class="gp-standings-group" id={block.id}>
+            <summary>{block.label ?? t.gp.standings_label}</summary>
+            <StandingsTable
+              rows={block.rows}
+              caption={block.label ?? t.gp.standings_label}
+              playerLabel={t.gp.standings_player}
+              tpLabel={block.tpLabel}
+            />
+          </details>
+        ))
+      ) : (
+        <StandingsTable
+          rows={standingsBlocks[0].rows}
+          caption={t.gp.standings_label}
+          playerLabel={t.gp.standings_player}
+          tpLabel={standingsBlocks[0].tpLabel}
+        />
+      )}
     </section>
   )
 }

@@ -1,0 +1,60 @@
+---
+/* One tournament's standings table. Extracted from EventEdition so a page can
+ * stack several of them (multi-tournament weekends: main event + side events)
+ * without duplicating the markup. */
+import { anonymizeName } from '../utils/anonymize';
+
+export interface Standing {
+  rank: number;
+  name: string;
+  gw: number;
+  vp: number;
+  fvp: number | null;
+  tp: number;
+}
+
+interface Props {
+  rows: Standing[];
+  caption: string;
+  playerLabel: string;
+  /** Last column header. Archon-sourced standings store Rating Points; the few
+   *  tournaments run outside Archon (GP 2025, Taste of Spritzae) store real
+   *  Table Points and opt out via `tpLabel: 'TP'` in the frontmatter. */
+  tpLabel?: string;
+}
+
+const { rows, caption, playerLabel, tpLabel = 'RtP' } = Astro.props;
+const hasFvp = rows.some((s) => s.fvp != null);
+---
+
+<div class="gp-standings-wrap">
+  <table class="gp-standings-table">
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr>
+        <th class="tc">#</th>
+        <th>{playerLabel}</th>
+        <th class="tc">GW</th>
+        <th class="tc">VP</th>
+        {hasFvp && <th class="tc">FVP</th>}
+        <th class="tc">{tpLabel}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((s) => (
+          <tr
+            class:list={[s.rank <= 1 && 'gp-standings-winner', s.rank >= 2 && s.rank <= 5 && 'gp-standings-finalist']}
+          >
+            <td class="tc">{s.rank}</td>
+            <td>{anonymizeName(s.name)}</td>
+            <td class="tc">{s.gw}</td>
+            <td class="tc">{s.vp}</td>
+            {hasFvp && <td class="tc">{s.fvp ?? ''}</td>}
+            <td class="tc">{s.tp}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

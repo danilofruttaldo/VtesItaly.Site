@@ -41,6 +41,13 @@ const eventSchema = z.object({
   proxies: z.boolean().optional(),
   rounds: z.number().optional(),
   archonUrl: z.string().optional(),
+  // Per-event standings: set on a side event (or on each tournament of a
+  // multi-tournament weekend) so EventEdition can render one table per
+  // tournament. The post-level `standingsUrl` stays the single-table case.
+  standingsUrl: z.string().optional(),
+  // Header of the last standings column. Defaults to RtP (Archon Rating
+  // Points); set to 'TP' for tournaments run outside Archon.
+  tpLabel: z.string().optional(),
   period: z.string().optional(),
   type: z.string().optional(),
   hideFromCalendar: z.boolean().optional(),
@@ -125,6 +132,8 @@ const baseFields = {
   // homepage features the next *session* rather than mislabeling the campaign's
   // start date as "ongoing today".
   timelinePerEvent: z.boolean().optional(),
+  // Same as `events[].tpLabel`, for the post-level `standingsUrl`.
+  standingsTpLabel: z.string().optional(),
 };
 
 /* ── Per-type schemas ─────────────────────────────────────── */
@@ -142,7 +151,10 @@ const grandPrixSchema = z.object({
   contact: z.string(),
   hotel: z.array(hotelSchema),
   prizes: z.union([z.string(), z.array(z.string())]),
-  standingsUrl: z.string(),
+  // Optional at post level: multi-tournament pages carry the standings on the
+  // matching `events[]` entry instead, so each table is titled with its own
+  // tournament. Announcement posts have no standings at all yet.
+  standingsUrl: z.string().optional(),
   // optional
   earlyDeadline: z.string().optional(),
   earlyDeadlineDate: z.coerce.date().optional(),
@@ -165,7 +177,10 @@ const nazionaleSchema = z.object({
   contact: z.string(),
   hotel: z.array(hotelSchema),
   prizes: z.union([z.string(), z.array(z.string())]),
-  standingsUrl: z.string(),
+  // Optional at post level: multi-tournament pages carry the standings on the
+  // matching `events[]` entry instead, so each table is titled with its own
+  // tournament. Announcement posts have no standings at all yet.
+  standingsUrl: z.string().optional(),
   // optional
   earlyDeadline: z.string().optional(),
   earlyDeadlineDate: z.coerce.date().optional(),

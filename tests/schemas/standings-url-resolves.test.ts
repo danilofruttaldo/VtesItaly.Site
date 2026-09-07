@@ -36,15 +36,21 @@ describe('standingsUrl integrity', () => {
     const failures: string[] = [];
 
     for (const post of posts) {
-      const url = post.data.standingsUrl;
-      if (!url) continue;
-      // Mirror EventEdition.astro: strip any leading path, drop the .json
-      // suffix, then look for the basename in the standings tree.
-      const basename = url.replace(/^.*\//, '').replace(/\.json$/, '');
-      if (!standingsBasenames.has(basename)) {
-        failures.push(
-          `${post.id}: standingsUrl='${url}' resolves to '${basename}' (no match under src/data/standings/)`,
-        );
+      // Post-level standingsUrl plus the per-event ones (multi-tournament
+      // weekends: main event + side events each carry their own table).
+      const urls: [string, string][] = [];
+      if (post.data.standingsUrl) urls.push(['standingsUrl', post.data.standingsUrl]);
+      for (const ev of post.data.events ?? []) {
+        if (ev.standingsUrl) urls.push([`events["${ev.name}"].standingsUrl`, ev.standingsUrl]);
+      }
+
+      for (const [field, url] of urls) {
+        // Mirror EventEdition.astro: strip any leading path, drop the .json
+        // suffix, then look for the basename in the standings tree.
+        const basename = url.replace(/^.*\//, '').replace(/\.json$/, '');
+        if (!standingsBasenames.has(basename)) {
+          failures.push(`${post.id}: ${field}='${url}' resolves to '${basename}' (no match under src/data/standings/)`);
+        }
       }
     }
 

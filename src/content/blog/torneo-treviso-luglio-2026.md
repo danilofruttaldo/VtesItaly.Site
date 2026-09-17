@@ -30,8 +30,12 @@ pricing:
 payment: 'PayPal (amici e parenti) — vtes.treviso@gmail.com'
 standingsUrl: '/ev/praxis-seizure-2026/standings-praxis-seizure-2026.json'
 prizes:
-  - 'Door prize (in base al numero di partecipanti)'
-  - 'Premi finalisti'
+  - '1° classificato: portamazzo magnetico di clan + New Blood + trofeo araldica'
+  - 'Finalisti: portamazzo magnetico di clan + New Blood'
+  - '6° classificato: portamazzo magnetico di clan'
+  - 'Estrazione casuale #1: Echoes of Gehenna'
+  - 'Estrazione casuale #2: Edge nazionale spagnolo 2024'
+  - 'Partecipazione: 2 carte dal Promo Pack 4 + 5 promo full art'
 locale: it
 ---
 

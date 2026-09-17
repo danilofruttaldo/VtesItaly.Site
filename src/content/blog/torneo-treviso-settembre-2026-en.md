@@ -32,9 +32,13 @@ pricing:
   - label: 'Entry fee'
     regular: '€15'
 prizes:
-  - 'Prizes for finalists'
-  - 'Promo'
-  - 'Special event door prizes based on the number of participants'
+  - '1st place: clan magnetic deck box + Echoes of Gehenna + original painting'
+  - 'Finalists: clan magnetic deck box + Echoes of Gehenna'
+  - 'Extra deck box: clan magnetic deck box'
+  - 'Random draw #1: 2024 Spanish Nationals Edge'
+  - 'Random draw #2: Path of the Sabbat token — 2026 Italian Nationals'
+  - 'Door prize: pack of V:tES sleeves'
+  - 'Participation: VTES Italy promo'
 locale: 'en'
 ---
 

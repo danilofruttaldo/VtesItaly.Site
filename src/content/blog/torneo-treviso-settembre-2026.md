@@ -32,9 +32,13 @@ pricing:
   - label: 'Iscrizione'
     regular: '15 €'
 prizes:
-  - 'Premi per finalisti'
-  - 'Promo'
-  - "Door prize speciali per l'evento in base al numero di partecipanti"
+  - '1° classificato: portamazzo magnetico di clan + Echoes of Gehenna + dipinto originale'
+  - 'Finalisti: portamazzo magnetico di clan + Echoes of Gehenna'
+  - 'Portamazzo extra: portamazzo magnetico di clan'
+  - 'Estrazione casuale #1: Edge nazionale spagnolo 2024'
+  - 'Estrazione casuale #2: token Path del Sabbat — nazionale italiano 2026'
+  - 'Door prize: busta di sleeves V:tES'
+  - 'Partecipazione: promo VTES Italy'
 locale: it
 ---
 

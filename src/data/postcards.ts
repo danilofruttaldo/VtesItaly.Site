@@ -17,6 +17,15 @@ export interface PostcardGallery {
 
 export const postcardGalleries: PostcardGallery[] = [
   {
+    title: { it: 'Symposium Italicum MMXXVI', en: 'Symposium Italicum MMXXVI' },
+    subtitle: { it: 'Barga, Settembre 2026', en: 'Barga, September 2026' },
+    images: [
+      { src: '/images/carte/library-kiss-of-cathari.webp', alt: 'Kiss of Cathari' },
+      { src: '/images/carte/library-awe.webp', alt: 'Awe' },
+      { src: '/images/carte/library-sleep-of-reason.webp', alt: 'Sleep of Reason' },
+    ],
+  },
+  {
     title: { it: 'Praxis Seizure: Treviso', en: 'Praxis Seizure: Treviso' },
     subtitle: { it: 'Treviso, Luglio 2026', en: 'Treviso, July 2026' },
     images: [

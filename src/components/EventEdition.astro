@@ -40,6 +40,11 @@ if (post.data.galleryFolder && galleryImages.length === 0) {
 if (post.data.poster) {
   galleryImages = galleryImages.filter((img) => img !== post.data.poster);
 }
+// Spread the photos over as few rows as fit at five per row, then even them
+// out: seven photos read as 4 + 3 rather than 5 + 2 with a half-empty tail.
+const galleryCols = galleryImages.length
+  ? Math.min(5, Math.ceil(galleryImages.length / Math.ceil(galleryImages.length / 5)))
+  : 5;
 
 interface Standing {
   rank: number;
@@ -556,7 +561,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
   post.data.gallerySections.length === 0 && galleryImages.length > 0 && (
     <section class="gp-gallery">
       <h2 class="gp-gallery-title">{t.post.gallery}</h2>
-      <div class="gp-gallery-grid">
+      <div class="gp-gallery-grid" style={`--gallery-cols-max:${galleryCols}`}>
         {galleryImages.map((img, i) => (
           <a href={img} class="gp-gallery-item" target="_blank" rel="noopener noreferrer">
             <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />

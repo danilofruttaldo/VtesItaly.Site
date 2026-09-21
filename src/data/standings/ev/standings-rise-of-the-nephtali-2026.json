@@ -1,0 +1,15 @@
+[
+  { "rank": 1, "name": "Gioele Rubinato", "gw": 1, "vp": 4, "fvp": 4, "tp": 133 },
+  { "rank": 2, "name": "Riccardo Fabiani", "gw": 0, "vp": 2, "fvp": 1, "tp": 44 },
+  { "rank": 2, "name": "Matteo Sandrin", "gw": 1, "vp": 5, "fvp": 0, "tp": 60 },
+  { "rank": 2, "name": "Federico", "gw": 1, "vp": 4, "fvp": 0, "tp": 56 },
+  { "rank": 2, "name": "Eleonora Basso", "gw": 0, "vp": 2, "fvp": 0, "tp": 40 },
+  { "rank": 6, "name": "Danilo Fruttaldo", "gw": 1, "vp": 3.5, "fvp": null, "tp": 27 },
+  { "rank": 7, "name": "Fabrizio Grandi", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 8, "name": "Giorgio Schiavon", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 9, "name": "Daniele Di Tullio", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 10, "name": "Nicola De Nadai", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 11, "name": "Matteo Ferrari", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 11, "name": "Mariolina Gentile", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Alessandro Tomè", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

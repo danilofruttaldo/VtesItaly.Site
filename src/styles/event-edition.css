@@ -333,6 +333,9 @@
 /* Gallery */
 .gp-gallery {
   margin-top: 32px;
+  /* The standings section that follows carries no top margin of its own:
+     without this the last row of photos touches the CLASSIFICA heading. */
+  margin-bottom: 32px;
 }
 .gp-gallery-title {
   font-size: var(--font-size-lg);
@@ -387,13 +390,23 @@
 
 /* Gallery grid (fallback) */
 .gp-gallery-grid {
-  display: grid;
-  /* 220px => 5 colonne nel contenitore wide (1216px interni), 4/3/2 a scalare */
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  /* Flex rather than a grid auto-fill: when the photos do not fill the last
+     row it stays centred instead of hanging to the left. Columns are therefore
+     explicit, one count per breakpoint. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
+  /* The component sets --gallery-cols-max from the number of photos so the
+     rows stay even (7 photos => 4 + 3, not 5 + 2). */
+  --gallery-cols: var(--gallery-cols-max, 5);
 }
 .gp-gallery-item {
   display: block;
+  flex: 0 0 calc((100% - (var(--gallery-cols) - 1) * 8px) / var(--gallery-cols));
+  /* With one or two photos the computed column would be huge: the cap keeps
+     them at the scale of a full gallery. */
+  max-width: 320px;
   border-radius: var(--radius);
   overflow: hidden;
   aspect-ratio: 4/3;
@@ -406,6 +419,17 @@
 }
 .gp-gallery-item:hover img {
   transform: scale(1.05);
+}
+
+@media (max-width: 1100px) {
+  .gp-gallery-grid {
+    --gallery-cols: min(4, var(--gallery-cols-max, 5));
+  }
+}
+@media (max-width: 800px) {
+  .gp-gallery-grid {
+    --gallery-cols: min(3, var(--gallery-cols-max, 5));
+  }
 }
 
 @media (max-width: 544px) {
@@ -430,7 +454,7 @@
     border-radius: 0;
   }
   .gp-gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    --gallery-cols: min(2, var(--gallery-cols-max, 5));
   }
   .gp-table {
     font-size: var(--font-size-xs);

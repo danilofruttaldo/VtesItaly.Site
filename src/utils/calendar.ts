@@ -33,6 +33,9 @@ export interface CalendarEvent {
   format?: string;
   description?: string; // shown in popup instead of format
   image?: string; // featured image or poster URL
+  // True when `image` is not a poster (principato header, photo): the popup
+  // crops it to fill the frame instead of letterboxing it.
+  imageFill?: boolean;
   archonUrl?: string; // Archon or BCN Crisis link
   tags?: string[]; // post tags for sub-category coloring
 }
@@ -122,6 +125,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     const venue = post.data.venue?.name;
     const location = post.data.venue?.address;
     const image = pickPostImage(post);
+    const imageFill = !!image && image !== post.data.poster;
 
     // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
@@ -146,6 +150,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           location: stage.location,
           format: composeFormat(stage.format, stage.proxies, stage.rounds, locale),
           image: displayImages[si] || image,
+          imageFill: !displayImages[si] && imageFill,
           archonUrl: stage.archonUrl,
         });
       }
@@ -178,6 +183,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           format: isAltro ? undefined : (composeEventLine(ev, locale) ?? 'TBD'),
           description: isAltro ? post.data.excerpt : undefined,
           image,
+          imageFill,
           archonUrl: ev.archonUrl,
         };
 
@@ -232,6 +238,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       format: composeFormat(le.format, le.proxies, le.rounds, locale),
       archonUrl: le.archonUrl,
       image: le.image,
+      imageFill: !!le.image,
     });
   }
 

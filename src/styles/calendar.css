@@ -257,6 +257,9 @@
   object-fit: contain;
   background: var(--color-surface-alt, #1a1a1a);
 }
+.cal__popup-img--fill {
+  object-fit: cover;
+}
 
 .cal__popup-body {
   padding: 16px 20px 20px;

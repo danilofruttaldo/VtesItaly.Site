@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import type { CollectionEntry } from 'astro:content';
-import { composeFormat, pickTimelineWindow, getCommunityTimeline, type TimelineEntry } from '../../src/utils/calendar';
+import {
+  composeFormat,
+  extractCalendarEvents,
+  pickTimelineWindow,
+  getCommunityTimeline,
+  type TimelineEntry,
+} from '../../src/utils/calendar';
 
 type BlogEntry = CollectionEntry<'blog'>;
 
@@ -377,5 +383,36 @@ describe('getCommunityTimeline', () => {
     for (let i = 1; i < out.length; i++) {
       expect(out[i].date >= out[i - 1].date).toBe(true);
     }
+  });
+});
+
+describe('extractCalendarEvents imageFill', () => {
+  const event = { name: 'Torneo', date: new Date('2026-12-13'), time: '09:30' };
+  const find = (posts: BlogEntry[], id: string) =>
+    extractCalendarEvents(posts, 'it').find((e) => e.id === `comunita/${id}/2026-12-13`)!;
+
+  it('keeps the poster letterboxed', () => {
+    const p = mkPost('poster', {
+      date: new Date('2026-12-13'),
+      poster: '/p.webp',
+      featuredImage: '/p.webp',
+      events: [event],
+    } as Partial<BlogEntry['data']> & { date: Date });
+    expect(find([p], 'poster').imageFill).toBe(false);
+  });
+
+  it('fills the frame when the post has no poster (principato header)', () => {
+    const p = mkPost('header', {
+      date: new Date('2026-12-13'),
+      featuredImage: '/images/headers/header-barga.webp',
+      events: [event],
+    } as Partial<BlogEntry['data']> & { date: Date });
+    expect(find([p], 'header').imageFill).toBe(true);
+  });
+
+  it('fills the frame for local events, which never have a poster', () => {
+    const local = extractCalendarEvents([], 'it').filter((e) => e.category === 'local' && e.image);
+    expect(local.length).toBeGreaterThan(0);
+    expect(local.every((e) => e.imageFill)).toBe(true);
   });
 });

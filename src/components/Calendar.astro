@@ -123,6 +123,7 @@ const allEvents = extractCalendarEvents(posts, locale);
     location?: string;
     venue?: string;
     image?: string;
+    imageFill?: boolean;
     description?: string;
     format?: string;
     archonUrl?: string;
@@ -193,7 +194,9 @@ const allEvents = extractCalendarEvents(posts, locale);
       h += '<button type="button" class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
 
       if (ev.image) {
-        h += '<img class="cal__popup-img" src="' + esc(ev.image) + '" alt="' + esc(ev.title) + '" loading="lazy" />';
+        // No poster (principato header, photo): fill the frame; posters keep contain.
+        var imgCls = ev.imageFill ? 'cal__popup-img cal__popup-img--fill' : 'cal__popup-img';
+        h += '<img class="' + imgCls + '" src="' + esc(ev.image) + '" alt="' + esc(ev.title) + '" loading="lazy" />';
       }
 
       h += '<div class="cal__popup-body">';

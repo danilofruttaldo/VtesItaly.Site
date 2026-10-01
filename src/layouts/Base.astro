@@ -53,7 +53,7 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     }
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://stats.vtesitaly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://stats.vtesitaly.com; font-src 'self'; connect-src 'self' https://stats.vtesitaly.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
     />
 
     <title>{title} | VTES Italy</title>
@@ -131,6 +131,26 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
         }
       })();
     </script>
+    {
+      /*
+      Visit counter: Matomo self-hosted on stats.vtesitaly.com (site id 1;
+      judge = 2, draft = 3). disableCookies keeps it cookieless, so no
+      consent banner is needed. Production only, so `npm run dev` doesn't
+      pollute the stats. Matomo records document.URL, so on the 404 page
+      the requested (broken) address is what gets counted. No braces in the
+      snippet: inside a JSX expression they would open an Astro expression.
+    */
+    }
+    {
+      import.meta.env.PROD && (
+        <script is:inline>
+          var _paq = (window._paq = window._paq || []); _paq.push(['disableCookies']); _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']); _paq.push(['setTrackerUrl', 'https://stats.vtesitaly.com/matomo.php']);
+          _paq.push(['setSiteId', '1']); var _paqScript = document.createElement('script'); _paqScript.async = true;
+          _paqScript.src = 'https://stats.vtesitaly.com/matomo.js'; document.head.appendChild(_paqScript);
+        </script>
+      )
+    }
   </head>
   <body>
     <noscript><p style="text-align:center;padding:1em;color:#9b9b9b;">{t.noscript}</p></noscript>

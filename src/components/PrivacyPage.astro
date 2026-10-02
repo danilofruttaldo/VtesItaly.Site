@@ -1,0 +1,227 @@
+---
+import Base from '../layouts/Base.astro';
+import type { Locale } from '../utils/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const it = locale === 'it';
+const title = 'Privacy';
+const description = it
+  ? 'Quali dati raccolgono i siti di VTES Italy: statistiche di visita anonime, senza cookie e senza profilazione.'
+  : 'What data the VTES Italy sites collect: anonymous visit statistics, no cookies and no profiling.';
+---
+
+<Base title={title} description={description}>
+  <section class="privacy">
+    <div class="container container--narrow prose">
+      <h1>{title}</h1>
+      {
+        it ? (
+          <>
+            <p class="privacy__lead">
+              Questa pagina vale per <strong>vtesitaly.com</strong>, <strong>draft.vtesitaly.com</strong> e{' '}
+              <strong>judge.vtesitaly.com</strong>. In breve: niente cookie di tracciamento, niente profilazione, niente
+              pubblicità, solo statistiche di visita anonime.
+            </p>
+
+            <h2>Chi gestisce i siti</h2>
+            <p>
+              I siti sono un progetto non ufficiale e senza fini di lucro della community italiana di Vampire: The
+              Eternal Struggle. Per qualsiasi domanda sui dati:{' '}
+              <a href="mailto:info@vtesitaly.com">info@vtesitaly.com</a>.
+            </p>
+
+            <h2>Statistiche di visita</h2>
+            <p>
+              Contiamo le visite con <strong>Matomo</strong>, installato sul nostro hosting (stats.vtesitaly.com): i
+              dati non passano da Google né da altri servizi esterni e non vengono ceduti a nessuno. Registriamo la
+              pagina vista, il sito o motore di ricerca di provenienza, il tipo di dispositivo, browser e sistema
+              operativo, la risoluzione dello schermo, la lingua del browser e il paese approssimativo.
+            </p>
+            <p>
+              L'indirizzo IP viene <strong>troncato</strong> (gli ultimi due blocchi azzerati) prima di essere salvato,
+              e non usiamo cookie né altri identificatori persistenti: non possiamo riconoscerti tra una visita e
+              l'altra né collegare le visite a una persona. Le statistiche servono solo a capire quali contenuti sono
+              utili alla community (legittimo interesse, art. 6.1.f GDPR).
+            </p>
+
+            <h2>Log del server</h2>
+            <p>
+              Come qualsiasi sito, i server che ci ospitano (SupportHost per vtesitaly.com, GitHub Pages per draft e
+              judge) registrano indirizzo IP, data, pagina richiesta e browser per sicurezza e diagnosi dei guasti.
+              Questi log restano al fornitore per un periodo limitato e non li usiamo per altri scopi.
+            </p>
+
+            <h2>Dati salvati nel tuo browser</h2>
+            <p>
+              Alcune preferenze (lingua, filtri) e una copia dei contenuti per l'uso offline vengono salvate nel tuo
+              browser. Restano sul tuo dispositivo, non ci vengono inviate e puoi cancellarle dalle impostazioni del
+              browser.
+            </p>
+
+            <h2>Non essere conteggiato</h2>
+            <p>
+              Se il tuo browser invia il segnale <em>Do Not Track</em> non vieni conteggiato. In alternativa puoi
+              escluderti qui: per ricordare la scelta viene salvato un solo cookie tecnico, valido per tutti e tre i
+              siti.
+            </p>
+            <div class="privacy__optout" id="optout" hidden>
+              <p id="optout-in">Le tue visite vengono conteggiate in forma anonima.</p>
+              <p id="optout-out" hidden>
+                Le tue visite non vengono conteggiate.
+              </p>
+              <button
+                type="button"
+                class="btn btn--outline"
+                id="optout-btn"
+                data-label-in="Escludimi dalle statistiche"
+                data-label-out="Riprendi a conteggiarmi"
+              >
+                Escludimi dalle statistiche
+              </button>
+            </div>
+
+            <h2>I tuoi diritti</h2>
+            <p>
+              Puoi chiederci accesso, rettifica, cancellazione o limitazione dei tuoi dati e opporti al trattamento
+              scrivendo a <a href="mailto:info@vtesitaly.com">info@vtesitaly.com</a>. Poiché le statistiche sono
+              anonime, spesso non è possibile ricondurle a te. Puoi anche presentare reclamo al{' '}
+              <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">
+                Garante per la protezione dei dati personali
+              </a>
+              .
+            </p>
+
+            <p class="privacy__updated">Ultimo aggiornamento: 2 ottobre 2026.</p>
+          </>
+        ) : (
+          <>
+            <p class="privacy__lead">
+              This page covers <strong>vtesitaly.com</strong>, <strong>draft.vtesitaly.com</strong> and{' '}
+              <strong>judge.vtesitaly.com</strong>. In short: no tracking cookies, no profiling, no ads, only anonymous
+              visit statistics.
+            </p>
+
+            <h2>Who runs the sites</h2>
+            <p>
+              The sites are an unofficial, non-profit project of the Italian Vampire: The Eternal Struggle community.
+              For any question about your data: <a href="mailto:info@vtesitaly.com">info@vtesitaly.com</a>.
+            </p>
+
+            <h2>Visit statistics</h2>
+            <p>
+              We count visits with <strong>Matomo</strong>, installed on our own hosting (stats.vtesitaly.com): the data
+              does not go through Google or any other external service and is never shared. We record the page viewed,
+              the referring site or search engine, device type, browser and operating system, screen resolution, browser
+              language and approximate country.
+            </p>
+            <p>
+              Your IP address is <strong>truncated</strong> (last two blocks zeroed) before it is stored, and we use no
+              cookies or other persistent identifiers: we cannot recognise you across visits or link visits to a person.
+              The statistics only help us understand which content is useful to the community (legitimate interest, Art.
+              6(1)(f) GDPR).
+            </p>
+
+            <h2>Server logs</h2>
+            <p>
+              Like any website, our hosts (SupportHost for vtesitaly.com, GitHub Pages for draft and judge) log IP
+              address, date, requested page and browser for security and troubleshooting. These logs stay with the
+              provider for a limited time and we use them for nothing else.
+            </p>
+
+            <h2>Data stored in your browser</h2>
+            <p>
+              Some preferences (language, filters) and a copy of the content for offline use are stored in your browser.
+              They stay on your device, are never sent to us, and you can clear them from your browser settings.
+            </p>
+
+            <h2>Opting out</h2>
+            <p>
+              If your browser sends the <em>Do Not Track</em> signal you are not counted. You can also opt out here: a
+              single technical cookie remembers your choice across all three sites.
+            </p>
+            <div class="privacy__optout" id="optout" hidden>
+              <p id="optout-in">Your visits are counted anonymously.</p>
+              <p id="optout-out" hidden>
+                Your visits are not counted.
+              </p>
+              <button
+                type="button"
+                class="btn btn--outline"
+                id="optout-btn"
+                data-label-in="Opt me out"
+                data-label-out="Count me again"
+              >
+                Opt me out
+              </button>
+            </div>
+
+            <h2>Your rights</h2>
+            <p>
+              You can ask us for access, rectification, erasure or restriction of your data, or object to its
+              processing, by writing to <a href="mailto:info@vtesitaly.com">info@vtesitaly.com</a>. Since the statistics
+              are anonymous, they often cannot be traced back to you. You may also lodge a complaint with the{' '}
+              <a href="https://www.garanteprivacy.it/home_en" target="_blank" rel="noopener noreferrer">
+                Italian Data Protection Authority
+              </a>
+              .
+            </p>
+
+            <p class="privacy__updated">Last updated: 2 October 2026.</p>
+          </>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<script>
+  // The opt-out control needs the Matomo tracker, which only loads in
+  // production: until it calls back, the block stays hidden. A function
+  // pushed onto _paq runs with the tracker as `this` once it is ready.
+  type Tracker = { isUserOptedOut(): boolean };
+  const w = window as Window & { _paq?: unknown[] };
+  const paq = (w._paq = w._paq || []);
+  const box = document.getElementById('optout');
+  const btn = document.getElementById('optout-btn');
+  const msgIn = document.getElementById('optout-in');
+  const msgOut = document.getElementById('optout-out');
+
+  function render(optedOut: boolean) {
+    if (!box || !btn || !msgIn || !msgOut) return;
+    box.hidden = false;
+    msgIn.hidden = optedOut;
+    msgOut.hidden = !optedOut;
+    btn.textContent = btn.getAttribute(optedOut ? 'data-label-out' : 'data-label-in');
+  }
+
+  paq.push([
+    function (this: Tracker) {
+      render(this.isUserOptedOut());
+      btn?.addEventListener('click', () => {
+        paq.push([this.isUserOptedOut() ? 'forgetUserOptOut' : 'optUserOut']);
+        render(this.isUserOptedOut());
+      });
+    },
+  ]);
+</script>
+
+<style>
+  .privacy {
+    padding: 40px 0 48px;
+  }
+  .privacy__lead {
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+  }
+  .privacy__optout {
+    margin: 16px 0 8px;
+  }
+  .privacy__updated {
+    margin-top: 32px;
+    font-size: var(--font-size-small);
+    color: var(--color-muted);
+  }
+</style>

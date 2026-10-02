@@ -144,10 +144,11 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     {
       import.meta.env.PROD && (
         <script is:inline>
-          var _paq = (window._paq = window._paq || []); _paq.push(['disableCookies']); _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']); _paq.push(['setTrackerUrl', 'https://stats.vtesitaly.com/matomo.php']);
-          _paq.push(['setSiteId', '1']); var _paqScript = document.createElement('script'); _paqScript.async = true;
-          _paqScript.src = 'https://stats.vtesitaly.com/matomo.js'; document.head.appendChild(_paqScript);
+          var _paq = (window._paq = window._paq || []); _paq.push(['disableCookies']); _paq.push(['setCookieDomain',
+          '*.vtesitaly.com']); _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']);
+          _paq.push(['setTrackerUrl', 'https://stats.vtesitaly.com/matomo.php']); _paq.push(['setSiteId', '1']); var
+          _paqScript = document.createElement('script'); _paqScript.async = true; _paqScript.src =
+          'https://stats.vtesitaly.com/matomo.js'; document.head.appendChild(_paqScript);
         </script>
       )
     }

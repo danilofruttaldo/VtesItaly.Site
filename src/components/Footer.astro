@@ -93,6 +93,7 @@ const t = useTranslations(locale);
     <p class="legal">Vampire: The Eternal Struggle&trade; {t.footer.legal}</p>
     <p class="legal">{t.footer.disclaimer}</p>
     <p class="legal contact">{t.footer.contact} <a href="mailto:info@vtesitaly.com">info@vtesitaly.com</a></p>
+    <p class="legal"><a href={locale === 'en' ? '/en/privacy/' : '/privacy/'}>{t.footer.privacy}</a></p>
     <p class="legal">{t.footer.credits}</p>
   </div>
 </footer>

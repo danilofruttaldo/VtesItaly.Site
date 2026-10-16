@@ -97,6 +97,10 @@ jobs:
         with:
           name: dist
           path: dist
+          # Since upload-artifact 4.4 dotfiles are left out by default, and
+          # dist/.htaccess is one: without this the release reached the server
+          # without it (first release deploy, 2026-10-16, stopped by the check).
+          include-hidden-files: true
           retention-days: 1
 
   lighthouse:
@@ -200,9 +204,12 @@ jobs:
           SSH_OPTS=(-i ~/.ssh/deploy_key -p "$SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes)
           REMOTE="$SSH_USER@$SSH_HOST"
 
-          # 1. Upload into a fresh release directory.
+          # 1. Upload into a fresh release directory. Directories named after a
+          # commit are only ever in-flight uploads: one still there is left
+          # over from a run that stopped before the swap, so it goes (prev-*
+          # and fallita-* are kept).
           tar -C dist -cz . | ssh "${SSH_OPTS[@]}" "$REMOTE" \
-            "set -e; rm -rf ~/releases/$GITHUB_SHA; mkdir -p ~/releases/$GITHUB_SHA; tar -C ~/releases/$GITHUB_SHA -xz"
+            "set -e; mkdir -p ~/releases; find ~/releases -mindepth 1 -maxdepth 1 -type d -regextype posix-extended -regex '.*/[0-9a-f]{40}' -exec rm -rf {} +; mkdir -p ~/releases/$GITHUB_SHA; tar -C ~/releases/$GITHUB_SHA -xz"
 
           # 2. Swap it in. The two renames leave public_html missing for a few
           # microseconds, far less than the in-place extraction this replaces.

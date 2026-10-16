@@ -34,21 +34,19 @@ const twins = twinsData.map((tw) => ({
 
     <div class="container">
       <div class="twins-grid">
-        {
-          twins.map((twin) => (
-            <div class="twin-entry">
-              <div class="twin-image" role="button" tabindex="0">
-                <img src={twin.image} alt={twin.person} loading="lazy" decoding="async" />
-              </div>
-              <div class="twin-info">
-                <h2 class="twin-card">{twin.card}</h2>
-                <p class="twin-vs">vs</p>
-                <h3 class="twin-person">{twin.person}</h3>
-                <p class="twin-desc">{twin.description}</p>
-              </div>
+        {twins.map((twin) => (
+          <div class="twin-entry">
+            <div class="twin-image" role="button" tabindex="0">
+              <img src={twin.image} alt={twin.person} loading="lazy" decoding="async" />
             </div>
-          ))
-        }
+            <div class="twin-info">
+              <h2 class="twin-card">{twin.card}</h2>
+              <p class="twin-vs">vs</p>
+              <h3 class="twin-person">{twin.person}</h3>
+              <p class="twin-desc">{twin.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
       <ShareButtons />
     </div>

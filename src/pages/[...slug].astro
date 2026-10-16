@@ -108,70 +108,58 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
   {isEventPage && eventLd && <JsonLd slot="head" data={eventLd} />}
 
   {/* PageHero per tour, GP/NC e eventi comunità (con header principato) */}
-  {
-    usePageHero && pageMeta ? (
-      <PageHero title="" image={pageMeta.headerImage} />
-    ) : (isCommunityEvent || isLeague) && communityCity ? (
-      <PageHero title="" image={communityCity.headerImage} />
-    ) : (isCommunityEvent || isLeague) && post.data.cityHeader ? (
-      <PageHero title="" image={post.data.cityHeader} />
-    ) : (
-      post.data.featuredImage && (
-        <div class="post__hero-wrap">
-          <img
-            src={post.data.featuredImage}
-            alt={post.data.title}
-            class="post__hero"
-            loading="eager"
-            decoding="async"
-          />
-          <div class="post__hero-overlay" />
-        </div>
-      )
+  {usePageHero && pageMeta ? (
+    <PageHero title="" image={pageMeta.headerImage} />
+  ) : (isCommunityEvent || isLeague) && communityCity ? (
+    <PageHero title="" image={communityCity.headerImage} />
+  ) : (isCommunityEvent || isLeague) && post.data.cityHeader ? (
+    <PageHero title="" image={post.data.cityHeader} />
+  ) : (
+    post.data.featuredImage && (
+      <div class="post__hero-wrap">
+        <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="eager" decoding="async" />
+        <div class="post__hero-overlay" />
+      </div>
     )
-  }
+  )}
 
   <article class="post">
     <div class:list={['container', !(isEventPage || isTourWithStages || forceArticle) && 'container--narrow']}>
       {/* Back link */}
-      <a href={backUrl} class="post__back">&larr; {backLabel}</a>
+      <a href={backUrl} class="post__back">
+        &larr; {backLabel}
+      </a>
 
       {/* Title & description */}
       <header class="post__header">
         <div class="post__title-row">
           <h1 class="post__title">{post.data.title}</h1>
-          {
-            isTourWithStages && tourStatus && (
-              <span
-                class:list={['post__status', tourStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
-                data-tour-stages={tourStagesJson}
-                data-label-live={t.status.live}
-                data-label-upcoming={t.status.upcoming}
-                data-label-past={t.status.past}
-              >
-                {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
-              </span>
-            )
-          }
-          {
-            isEventPage && !isLeague && gpStatus && (
-              <span
-                class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
-                data-event-date={eventDateStr}
-                data-label-live={t.status.live}
-                data-label-upcoming={t.status.upcoming}
-                data-label-past={t.status.past}
-              >
-                {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
-              </span>
-            )
-          }
+          {isTourWithStages && tourStatus && (
+            <span
+              class:list={['post__status', tourStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
+              data-tour-stages={tourStagesJson}
+              data-label-live={t.status.live}
+              data-label-upcoming={t.status.upcoming}
+              data-label-past={t.status.past}
+            >
+              {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
+            </span>
+          )}
+          {isEventPage && !isLeague && gpStatus && (
+            <span
+              class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
+              data-event-date={eventDateStr}
+              data-label-live={t.status.live}
+              data-label-upcoming={t.status.upcoming}
+              data-label-past={t.status.past}
+            >
+              {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
+            </span>
+          )}
         </div>
-        {
-          !usePageHero && !isCommunityEvent && !isLeague && post.data.excerpt && (
-            <p class="post__excerpt">{post.data.excerpt}</p>
-          )
-        }
+        {!usePageHero && !isCommunityEvent && !isLeague && post.data.excerpt && (
+          <p class="post__excerpt">{post.data.excerpt}</p>
+        )}
       </header>
 
       {/* Metadata: category + date, then tags */}
@@ -184,89 +172,87 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
           {formatLocalDate(post.data.date, 'it')}
         </time>
       </div>
-      {
-        post.data.tags &&
-          post.data.tags.filter((t) => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).length >
-            0 && (
-            <div class="post__tags-row">
-              <div class="post__tags">
-                {post.data.tags
-                  .filter((t) => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t))
-                  .map((tag) => {
-                    const city = cityMap.get(tag);
-                    return city ? (
-                      <a href={city.url} class="post__tag post__tag--city">
-                        {city.name}
-                      </a>
-                    ) : (
-                      <span class="post__tag">{tag}</span>
-                    );
-                  })}
-              </div>
+      {post.data.tags &&
+        post.data.tags.filter((t) => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t)).length >
+          0 && (
+          <div class="post__tags-row">
+            <div class="post__tags">
+              {post.data.tags
+                .filter((t) => !['contest', 'torneo', 'lega', 'prerelease', 'annuncio'].includes(t))
+                .map((tag) => {
+                  const city = cityMap.get(tag);
+                  return city ? (
+                    <a href={city.url} class="post__tag post__tag--city">
+                      {city.name}
+                    </a>
+                  ) : (
+                    <span class="post__tag">{tag}</span>
+                  );
+                })}
             </div>
-          )
-      }
+          </div>
+        )}
       <hr class="post__divider" />
 
       {/* Layout per categoria */}
-      {
-        isTourWithStages ? (
-          <TourEdition post={post} />
-        ) : isLeague ? (
-          <LeagueEdition post={post} />
-        ) : isEventPage ? (
-          <EventEdition post={post} />
-        ) : (
-          <>
-            <div class="post__content prose">
-              <Content />
+      {isTourWithStages ? (
+        <TourEdition post={post} />
+      ) : isLeague ? (
+        <LeagueEdition post={post} />
+      ) : isEventPage ? (
+        <EventEdition post={post} />
+      ) : (
+        <>
+          <div class="post__content prose">
+            <Content />
+          </div>
+          {postLinks.length > 0 && (
+            <div class="post__links">
+              {postLinks.map((link) => (
+                <LinkButton url={link.url} label={link.label} />
+              ))}
             </div>
-            {postLinks.length > 0 && (
-              <div class="post__links">
-                {postLinks.map((link) => (
-                  <LinkButton url={link.url} label={link.label} />
+          )}
+          {post.data.standingsUrl && post.data.standingsUrl.includes('wos') && (
+            <>
+              <hr class="post__divider" />
+              <WosStandings dataUrl={post.data.standingsUrl} />
+            </>
+          )}
+          {postLinksAfter.length > 0 && (
+            <div class="post__links">
+              {postLinksAfter.map((link) => (
+                <LinkButton url={link.url} label={link.label} />
+              ))}
+            </div>
+          )}
+          {galleryImages.length > 0 && (
+            <section class="post__gallery">
+              <h2 class="post__gallery-title">{t.post.gallery}</h2>
+              <div class="post__gallery-grid">
+                {galleryImages.map((img, i) => (
+                  <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={img}
+                      alt={`${post.data.title} - ${t.post.photo} ${i + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </a>
                 ))}
               </div>
-            )}
-            {post.data.standingsUrl && post.data.standingsUrl.includes('wos') && (
-              <>
-                <hr class="post__divider" />
-                <WosStandings dataUrl={post.data.standingsUrl} />
-              </>
-            )}
-            {postLinksAfter.length > 0 && (
-              <div class="post__links">
-                {postLinksAfter.map((link) => (
-                  <LinkButton url={link.url} label={link.label} />
-                ))}
-              </div>
-            )}
-            {galleryImages.length > 0 && (
-              <section class="post__gallery">
-                <h2 class="post__gallery-title">{t.post.gallery}</h2>
-                <div class="post__gallery-grid">
-                  {galleryImages.map((img, i) => (
-                    <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
-                      <img
-                        src={img}
-                        alt={`${post.data.title} - ${t.post.photo} ${i + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </a>
-                  ))}
-                </div>
-              </section>
-            )}
-          </>
-        )
-      }
+            </section>
+          )}
+        </>
+      )}
 
       <ShareButtons />
 
       {/* Footer: back button */}
       <div class="post__footer">
-        <a href={backUrl} class="btn">&larr; {backLabel}</a>
+        <a href={backUrl} class="btn">
+          &larr; {backLabel}
+        </a>
       </div>
     </div>
   </article>

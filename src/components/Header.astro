@@ -49,24 +49,22 @@ function isCurrent(href: string): boolean {
     </a>
 
     <nav class="site-nav" aria-label={t.nav.main_label}>
-      {
-        navGroups.map((group) => (
-          <ul class="nav-group" role="list">
-            {group.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="nav-link"
-                  title={item.label !== item.fullLabel ? item.fullLabel : undefined}
-                  aria-current={isCurrent(item.href) ? 'page' : undefined}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ))
-      }
+      {navGroups.map((group) => (
+        <ul class="nav-group" role="list">
+          {group.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="nav-link"
+                title={item.label !== item.fullLabel ? item.fullLabel : undefined}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ))}
     </nav>
 
     <button class="search-trigger nav-link" id="search-btn" aria-label={t.search.aria_label} type="button">
@@ -79,30 +77,29 @@ function isCurrent(href: string): boolean {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        ><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg
       >
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
     </button>
 
     <div class="lang-dropdown" id="lang-dropdown">
       <button class="lang-dropdown__trigger nav-link" type="button" aria-expanded="false">
         <Fragment set:html={flags[locale]} />
         {locale.toUpperCase()}
-        <svg class="lang-dropdown__arrow" width="10" height="10" viewBox="0 0 10 10"
-          ><path d="M2 4l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-          ></path></svg
-        >
+        <svg class="lang-dropdown__arrow" width="10" height="10" viewBox="0 0 10 10">
+          <path d="M2 4l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
       </button>
       <div class="lang-dropdown__menu">
-        {
-          Object.entries(langLabels).map(([loc, label]) => (
-            <a
-              href={loc === locale ? '#' : getAlternateUrl(Astro.url, loc as Locale)}
-              class={`lang-dropdown__item ${loc === locale ? 'is-current' : ''}`}
-            >
-              <Fragment set:html={flags[loc]} /> {label}
-            </a>
-          ))
-        }
+        {Object.entries(langLabels).map(([loc, label]) => (
+          <a
+            href={loc === locale ? '#' : getAlternateUrl(Astro.url, loc as Locale)}
+            class={`lang-dropdown__item ${loc === locale ? 'is-current' : ''}`}
+          >
+            <Fragment set:html={flags[loc]} /> {label}
+          </a>
+        ))}
       </div>
     </div>
 
@@ -116,35 +113,31 @@ function isCurrent(href: string): boolean {
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav class="mobile-menu__nav" aria-label={t.nav.main_label}>
-    {
-      navGroups.map((group, gi) => (
-        <Fragment>
-          {gi > 0 && <hr class="mobile-menu__divider" />}
-          <ul class="mobile-menu__group" role="list">
-            {group.map((item) => (
-              <li>
-                <a href={item.href} class="mobile-menu__link" aria-current={isCurrent(item.href) ? 'page' : undefined}>
-                  {item.fullLabel}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Fragment>
-      ))
-    }
+    {navGroups.map((group, gi) => (
+      <Fragment>
+        {gi > 0 && <hr class="mobile-menu__divider" />}
+        <ul class="mobile-menu__group" role="list">
+          {group.map((item) => (
+            <li>
+              <a href={item.href} class="mobile-menu__link" aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.fullLabel}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Fragment>
+    ))}
     <hr class="mobile-menu__divider" />
     <div class="mobile-menu__bottom">
       <a href={altUrl} class="mobile-menu__lang">
-        {
-          Object.entries(flags).map(([loc, flag], i) => (
-            <Fragment>
-              {i > 0 && <span class="lang-sep">|</span>}
-              <span class={loc === locale ? 'lang-active' : 'lang-inactive'}>
-                <Fragment set:html={flag} /> {loc.toUpperCase()}
-              </span>
-            </Fragment>
-          ))
-        }
+        {Object.entries(flags).map(([loc, flag], i) => (
+          <Fragment>
+            {i > 0 && <span class="lang-sep">|</span>}
+            <span class={loc === locale ? 'lang-active' : 'lang-inactive'}>
+              <Fragment set:html={flag} /> {loc.toUpperCase()}
+            </span>
+          </Fragment>
+        ))}
       </a>
     </div>
   </nav>

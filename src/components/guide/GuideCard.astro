@@ -33,7 +33,9 @@ const dataAudience = audience.join(' ');
   <div class="guide-card__body">
     <div class="guide-card__top">
       <div class="guide-card__audience">
-        {audience.map((a) => <span class={`guide-badge guide-badge--${a}`}>{audienceLabel[a]}</span>)}
+        {audience.map((a) => (
+          <span class={`guide-badge guide-badge--${a}`}>{audienceLabel[a]}</span>
+        ))}
       </div>
       <p class="guide-card__date">
         {t.guide.updated_on}

@@ -88,56 +88,46 @@ const cardImage = thumbFor(image);
   data-end-date={isoEndDate}
   hidden={hidden}
 >
-  {
-    /* Badge is always emitted (hidden by default) so the client-side temporal
+  {/* Badge is always emitted (hidden by default) so the client-side temporal
       runtime can toggle it - and swap between the "next" and "today" label -
       without rebuilding HTML. Same gold styling for both states; only the
-      wording changes. */
-  }
-  {
-    highlightLabel && (
-      <span
-        class="post-card__highlight-badge"
-        data-label-next={highlightLabel}
-        data-label-ongoing={ongoingLabel}
-        hidden={!highlight}
-      >
-        {highlight && ongoing && ongoingLabel ? ongoingLabel : highlightLabel}
-      </span>
-    )
-  }
-  {
-    cardImage && (
-      <img
-        src={cardImage}
-        alt={title}
-        class="post-card__image"
-        loading={eager ? 'eager' : 'lazy'}
-        fetchpriority={eager ? 'high' : 'auto'}
-        decoding="async"
-        width="120"
-        height="120"
-        style={imageAnchor ? `object-position: ${imageAnchor};` : undefined}
-      />
-    )
-  }
+      wording changes. */}
+  {highlightLabel && (
+    <span
+      class="post-card__highlight-badge"
+      data-label-next={highlightLabel}
+      data-label-ongoing={ongoingLabel}
+      hidden={!highlight}
+    >
+      {highlight && ongoing && ongoingLabel ? ongoingLabel : highlightLabel}
+    </span>
+  )}
+  {cardImage && (
+    <img
+      src={cardImage}
+      alt={title}
+      class="post-card__image"
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      decoding="async"
+      width="120"
+      height="120"
+      style={imageAnchor ? `object-position: ${imageAnchor};` : undefined}
+    />
+  )}
   <div class="post-card__body">
-    {
-      date && (
-        <time class="post-card__date" datetime={date.toISOString()}>
-          {formatLocalDate(date, locale)}
-        </time>
-      )
-    }
-    {
-      badges.length > 0 && (
-        <div class="post-card__tags">
-          {badges.map((b) => (
-            <span class="post-card__tag">{b.label}</span>
-          ))}
-        </div>
-      )
-    }
+    {date && (
+      <time class="post-card__date" datetime={date.toISOString()}>
+        {formatLocalDate(date, locale)}
+      </time>
+    )}
+    {badges.length > 0 && (
+      <div class="post-card__tags">
+        {badges.map((b) => (
+          <span class="post-card__tag">{b.label}</span>
+        ))}
+      </div>
+    )}
     <span class="post-card__title">{title}</span>
     {excerpt && <p class="post-card__excerpt">{excerpt}</p>}
     <span class="post-card__cta">{t.post.read_cta} &rarr;</span>

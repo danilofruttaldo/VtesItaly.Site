@@ -17,22 +17,20 @@ const t = useTranslations(locale);
 const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
-{
-  tocItems.length > 0 && (
-    <nav class="guide-toc" aria-label={t.guide.toc_title}>
-      <h2 class="guide-toc__title">{t.guide.toc_title}</h2>
-      <ol class="guide-toc__list">
-        {tocItems.map((h) => (
-          <li class:list={['guide-toc__item', h.depth === 3 && 'guide-toc__item--nested']}>
-            <a href={`#${h.slug}`} class="guide-toc__link" data-target={h.slug}>
-              {h.text}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
-  )
-}
+{tocItems.length > 0 && (
+  <nav class="guide-toc" aria-label={t.guide.toc_title}>
+    <h2 class="guide-toc__title">{t.guide.toc_title}</h2>
+    <ol class="guide-toc__list">
+      {tocItems.map((h) => (
+        <li class:list={['guide-toc__item', h.depth === 3 && 'guide-toc__item--nested']}>
+          <a href={`#${h.slug}`} class="guide-toc__link" data-target={h.slug}>
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
 
 <script>
   function setupGuideToc() {

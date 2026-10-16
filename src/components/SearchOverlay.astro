@@ -14,7 +14,9 @@ const t = useTranslations(locale);
   aria-hidden="true"
   inert
 >
-  <button type="button" class="vtesitaly-search-close" aria-label={t.search.close_label}>&times;</button>
+  <button type="button" class="vtesitaly-search-close" aria-label={t.search.close_label}>
+    &times;
+  </button>
   <div class="vtesitaly-search-container">
     <input
       type="search"
@@ -29,8 +31,7 @@ const t = useTranslations(locale);
       class="vtesitaly-search-results"
       data-no-results={t.search.no_results}
       aria-live="polite"
-    >
-    </div>
+    ></div>
   </div>
 </div>
 

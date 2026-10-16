@@ -17,14 +17,14 @@ const filters = [
 ---
 
 <div class="guide-filter" role="group" aria-labelledby="guide-filter-label" data-no-results={t.guide.no_results}>
-  <span id="guide-filter-label" class="guide-filter__label">{t.guide.filter_label}</span>
-  {
-    filters.map(({ value, label }) => (
-      <button type="button" class="guide-filter__btn" data-filter={value} aria-pressed="false">
-        {label}
-      </button>
-    ))
-  }
+  <span id="guide-filter-label" class="guide-filter__label">
+    {t.guide.filter_label}
+  </span>
+  {filters.map(({ value, label }) => (
+    <button type="button" class="guide-filter__btn" data-filter={value} aria-pressed="false">
+      {label}
+    </button>
+  ))}
 </div>
 
 <script>

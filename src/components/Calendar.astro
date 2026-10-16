@@ -35,23 +35,30 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
 >
   {/* Navigation */}
   <div class="cal__nav">
-    <button type="button" class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>&#8249;</button>
+    <button type="button" class="cal__nav-btn cal__prev" aria-label={t.calendar.prev_month}>
+      &#8249;
+    </button>
     <button
       type="button"
       class="cal__month-title"
       aria-label={t.calendar.select_month}
       aria-haspopup="dialog"
-      aria-expanded="false"></button>
-    <button type="button" class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>&#8250;</button>
-    <button type="button" class="cal__today-btn">{t.calendar.today}</button>
+      aria-expanded="false"
+    ></button>
+    <button type="button" class="cal__nav-btn cal__next" aria-label={t.calendar.next_month}>
+      &#8250;
+    </button>
+    <button type="button" class="cal__today-btn">
+      {t.calendar.today}
+    </button>
   </div>
 
-  {
-    /* Day headers. No grid roles: the month is a visual layout, read as a
-      list of days; the days with an event are buttons named after it. */
-  }
+  {/* Day headers. No grid roles: the month is a visual layout, read as a
+      list of days; the days with an event are buttons named after it. */}
   <div class="cal__grid cal__header" aria-hidden="true">
-    {[1, 2, 3, 4, 5, 6, 0].map((i) => <span class="cal__dh">{t.days_short_array[i]}</span>)}
+    {[1, 2, 3, 4, 5, 6, 0].map((i) => (
+      <span class="cal__dh">{t.days_short_array[i]}</span>
+    ))}
   </div>
 
   {/* Calendar body, filled by JS */}
@@ -65,8 +72,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       role="dialog"
       aria-modal="true"
       aria-label={t.calendar.event_details ?? 'Event details'}
-    >
-    </div>
+    ></div>
   </div>
 
   {/* Month/Year picker modal */}
@@ -76,16 +82,18 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
         type="button"
         class="cal__popup-close cal__picker-close"
         id="cal-picker-close"
-        aria-label={t.search.close_label}>&times;</button
+        aria-label={t.search.close_label}
       >
+        &times;
+      </button>
       <div class="cal__picker-year-nav">
-        <button type="button" class="cal__picker-year-btn" id="cal-picker-prev-year" aria-label={t.calendar.prev_year}
-          >&#8249;</button
-        >
+        <button type="button" class="cal__picker-year-btn" id="cal-picker-prev-year" aria-label={t.calendar.prev_year}>
+          &#8249;
+        </button>
         <span class="cal__picker-year" id="cal-picker-year"></span>
-        <button type="button" class="cal__picker-year-btn" id="cal-picker-next-year" aria-label={t.calendar.next_year}
-          >&#8250;</button
-        >
+        <button type="button" class="cal__picker-year-btn" id="cal-picker-next-year" aria-label={t.calendar.next_year}>
+          &#8250;
+        </button>
       </div>
       <div class="cal__picker-months" id="cal-picker-months"></div>
     </div>
@@ -93,15 +101,23 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
 
   {/* Legend */}
   <div class="cal__legend">
-    <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#CE2B37"></span>GP</span>
-    <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#F0E6D3"></span>NC</span>
-    <span class="cal__legend-item"><span class="cal__legend-dot" style="background:#009246"></span>Tour</span>
-    <span class="cal__legend-item"
-      ><span class="cal__legend-dot" style="background:#4A90D9"></span>{t.calendar.legend_events}</span
-    >
-    <span class="cal__legend-item"
-      ><span class="cal__legend-dot" style="background:#9B59B6"></span>{t.calendar.legend_other}</span
-    >
+    <span class="cal__legend-item">
+      <span class="cal__legend-dot" style="background:#CE2B37"></span>GP
+    </span>
+    <span class="cal__legend-item">
+      <span class="cal__legend-dot" style="background:#F0E6D3"></span>NC
+    </span>
+    <span class="cal__legend-item">
+      <span class="cal__legend-dot" style="background:#009246"></span>Tour
+    </span>
+    <span class="cal__legend-item">
+      <span class="cal__legend-dot" style="background:#4A90D9"></span>
+      {t.calendar.legend_events}
+    </span>
+    <span class="cal__legend-item">
+      <span class="cal__legend-dot" style="background:#9B59B6"></span>
+      {t.calendar.legend_other}
+    </span>
   </div>
 </div>
 

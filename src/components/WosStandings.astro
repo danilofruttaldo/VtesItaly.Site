@@ -62,126 +62,124 @@ const cityTabs = data
   : [];
 ---
 
-{
-  data && (
-    <section class="wos-standings">
-      {/* Path standings */}
-      <div class="wos-paths">
-        <h3 class="wos-subtitle">{t.paths_title}</h3>
-        <div class="wos-paths-grid">
-          {data.paths.map((p, i) => (
-            <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
-              {pathImages[p.name] && (
-                <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
-              )}
-              <div class="wos-path-info">
-                <span class="wos-path-rank">#{p.rank}</span>
-                <span class="wos-path-name">{pathShortNames[p.name] || p.name.replace('Path of ', '')}</span>
-              </div>
-              <span class="wos-path-points">{p.points} pt</span>
+{data && (
+  <section class="wos-standings">
+    {/* Path standings */}
+    <div class="wos-paths">
+      <h3 class="wos-subtitle">{t.paths_title}</h3>
+      <div class="wos-paths-grid">
+        {data.paths.map((p, i) => (
+          <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
+            {pathImages[p.name] && (
+              <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
+            )}
+            <div class="wos-path-info">
+              <span class="wos-path-rank">#{p.rank}</span>
+              <span class="wos-path-name">{pathShortNames[p.name] || p.name.replace('Path of ', '')}</span>
             </div>
-          ))}
-        </div>
+            <span class="wos-path-points">{p.points} pt</span>
+          </div>
+        ))}
       </div>
+    </div>
 
-      {/* Classifica Nazionale */}
-      <h3 class="wos-subtitle">{t.national_title}</h3>
-      <div class="wos-table-wrap" tabindex="0" role="region" aria-label={t.national_title}>
-        <table class="wos-table">
-          <caption class="sr-only">{t.national_title}</caption>
-          <thead>
+    {/* Classifica Nazionale */}
+    <h3 class="wos-subtitle">{t.national_title}</h3>
+    <div class="wos-table-wrap" tabindex="0" role="region" aria-label={t.national_title}>
+      <table class="wos-table">
+        <caption class="sr-only">{t.national_title}</caption>
+        <thead>
+          <tr>
+            <th>{t.city}</th>
+            <th>{t.winner_path}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.cityWinners.map((cw) => (
             <tr>
-              <th>{t.city}</th>
-              <th>{t.winner_path}</th>
+              <td>{cw.city}</td>
+              <td class="wos-winner-path">{cw.winner.replace('Path of ', '')}</td>
             </tr>
-          </thead>
-          <tbody>
-            {data.cityWinners.map((cw) => (
-              <tr>
-                <td>{cw.city}</td>
-                <td class="wos-winner-path">{cw.winner.replace('Path of ', '')}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Classifiche Locali - wrapping city tables too */}
-      <h3 class="wos-subtitle">{t.local_title}</h3>
-      <div class="wos-tabs" id="wos-tabs">
-        <div class="wos-tab-bar" role="tablist" aria-label={t.local_title}>
-          {cityTabs.map((tab, i) => (
-            <button
-              class:list={['wos-tab-btn', i === 0 && 'is-active']}
-              data-tab={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={i === 0 ? 'true' : 'false'}
-              aria-controls={`wos-panel-${tab.id}`}
-              id={`wos-tab-${tab.id}`}
-            >
-              {tab.label}
-            </button>
           ))}
-        </div>
+        </tbody>
+      </table>
+    </div>
 
-        {Object.entries(data.cities).map(([cityName, players], i) => {
-          const tabId = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
-          return (
-            <div
-              class:list={['wos-tab-panel', i === 0 && 'is-active']}
-              data-panel={tabId}
-              role="tabpanel"
-              id={`wos-panel-${tabId}`}
-              aria-labelledby={`wos-tab-${tabId}`}
-            >
-              {players.length > 0 ? (
-                <div class="wos-table-wrap" tabindex="0" role="region" aria-label={cityName}>
-                  <table class="wos-table">
-                    <caption class="sr-only">{cityName}</caption>
-                    <thead>
-                      <tr>
-                        <th class="tc">#</th>
-                        <th>{t.path}</th>
-                        <th>{t.players}</th>
-                        <th class="tc">GW</th>
-                        <th class="tc">VP</th>
-                        <th class="tc">{t.points}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {players.map((p) => (
-                        <tr class:list={[p.rank === 1 && 'wos-row-winner']}>
-                          <td class="tc">{p.rank}</td>
-                          <td class="wos-path-cell-name">{p.name}</td>
-                          <td class="wos-players-cell">
-                            <Fragment
-                              set:html={p.players
-                                .replace(/&/g, '&amp;')
-                                .replace(/</g, '&lt;')
-                                .replace(/>/g, '&gt;')
-                                .split(', ')
-                                .join('<br />')}
-                            />
-                          </td>
-                          <td class="tc">{p.gw}</td>
-                          <td class="tc">{p.vp}</td>
-                          <td class="tc">{p.points}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <p class="wos-no-data">{t.no_data}</p>
-              )}
-            </div>
-          );
-        })}
+    {/* Classifiche Locali - wrapping city tables too */}
+    <h3 class="wos-subtitle">{t.local_title}</h3>
+    <div class="wos-tabs" id="wos-tabs">
+      <div class="wos-tab-bar" role="tablist" aria-label={t.local_title}>
+        {cityTabs.map((tab, i) => (
+          <button
+            class:list={['wos-tab-btn', i === 0 && 'is-active']}
+            data-tab={tab.id}
+            type="button"
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`wos-panel-${tab.id}`}
+            id={`wos-tab-${tab.id}`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
-    </section>
-  )
-}
+
+      {Object.entries(data.cities).map(([cityName, players], i) => {
+        const tabId = cityName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        return (
+          <div
+            class:list={['wos-tab-panel', i === 0 && 'is-active']}
+            data-panel={tabId}
+            role="tabpanel"
+            id={`wos-panel-${tabId}`}
+            aria-labelledby={`wos-tab-${tabId}`}
+          >
+            {players.length > 0 ? (
+              <div class="wos-table-wrap" tabindex="0" role="region" aria-label={cityName}>
+                <table class="wos-table">
+                  <caption class="sr-only">{cityName}</caption>
+                  <thead>
+                    <tr>
+                      <th class="tc">#</th>
+                      <th>{t.path}</th>
+                      <th>{t.players}</th>
+                      <th class="tc">GW</th>
+                      <th class="tc">VP</th>
+                      <th class="tc">{t.points}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {players.map((p) => (
+                      <tr class:list={[p.rank === 1 && 'wos-row-winner']}>
+                        <td class="tc">{p.rank}</td>
+                        <td class="wos-path-cell-name">{p.name}</td>
+                        <td class="wos-players-cell">
+                          <Fragment
+                            set:html={p.players
+                              .replace(/&/g, '&amp;')
+                              .replace(/</g, '&lt;')
+                              .replace(/>/g, '&gt;')
+                              .split(', ')
+                              .join('<br />')}
+                          />
+                        </td>
+                        <td class="tc">{p.gw}</td>
+                        <td class="tc">{p.vp}</td>
+                        <td class="tc">{p.points}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p class="wos-no-data">{t.no_data}</p>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </section>
+)}
 
 <style>
   .wos-standings {

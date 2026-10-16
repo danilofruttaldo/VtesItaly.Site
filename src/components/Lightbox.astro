@@ -15,7 +15,9 @@ const t = useTranslations(getLocaleFromUrl(Astro.url));
   aria-label={t.lightbox.label}
   inert
 >
-  <button type="button" class="lightbox-close" id="app-lightbox-close" aria-label={t.lightbox.close}>×</button>
+  <button type="button" class="lightbox-close" id="app-lightbox-close" aria-label={t.lightbox.close}>
+    ×
+  </button>
   <img class="lightbox-img" id="app-lightbox-img" alt="" />
 </div>
 

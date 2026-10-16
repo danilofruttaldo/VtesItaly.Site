@@ -30,20 +30,22 @@ const t = useTranslations('it');
           loading="lazy"
           decoding="async"
         />
-        <p>{t.domains_index.coordinator}<br /><strong>Miro Albertazzi</strong></p>
+        <p>
+          {t.domains_index.coordinator}
+          <br />
+          <strong>Miro Albertazzi</strong>
+        </p>
       </div>
       <div class="principati-grid">
-        {
-          cities.map((city) => (
-            <CityCard
-              name={city.name.it}
-              href={`/principati/${city.slug.it}/`}
-              princeName={city.prince.name}
-              princeAlias={city.prince.alias}
-              princeImage={city.prince.image}
-            />
-          ))
-        }
+        {cities.map((city) => (
+          <CityCard
+            name={city.name.it}
+            href={`/principati/${city.slug.it}/`}
+            princeName={city.prince.name}
+            princeAlias={city.prince.alias}
+            princeImage={city.prince.image}
+          />
+        ))}
       </div>
       <ShareButtons />
     </div>

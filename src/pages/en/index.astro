@@ -76,38 +76,36 @@ const buildWindowSet = new Set(buildWindow.entries);
             />
           ))
         }
-        {
-          /* Overflow inside a <template> stays parsed but doesn't render and
+        {/* Overflow inside a <template> stays parsed but doesn't render and
             doesn't count toward Lighthouse's DOM size budget. Holds the rest
             of the timeline in chronological order; the runtime hydrates from
-            here when the real-today pivot falls outside the visible window. */
-        }
+            here when the real-today pivot falls outside the visible window. */}
         <template data-timeline-overflow>
-          {
-            fullTimeline
-              .filter((entry) => !buildWindowSet.has(entry))
-              .map((entry) => (
-                <PostCard
-                  href={entry.url || '#'}
-                  title={entry.title}
-                  image={entry.image}
-                  imageAnchor={entry.imageAnchor}
-                  date={new Date(entry.date)}
-                  endDate={entry.endDate ? new Date(entry.endDate) : undefined}
-                  category={entry.category}
-                  tags={entry.tags}
-                  excerpt={entry.excerpt}
-                  locale="en"
-                  highlight={false}
-                  highlightLabel={t.home.next_event_label}
-                  ongoingLabel={t.home.ongoing_event_label}
-                />
-              ))
-          }
+          {fullTimeline
+            .filter((entry) => !buildWindowSet.has(entry))
+            .map((entry) => (
+              <PostCard
+                href={entry.url || '#'}
+                title={entry.title}
+                image={entry.image}
+                imageAnchor={entry.imageAnchor}
+                date={new Date(entry.date)}
+                endDate={entry.endDate ? new Date(entry.endDate) : undefined}
+                category={entry.category}
+                tags={entry.tags}
+                excerpt={entry.excerpt}
+                locale="en"
+                highlight={false}
+                highlightLabel={t.home.next_event_label}
+                ongoingLabel={t.home.ongoing_event_label}
+              />
+            ))}
         </template>
       </div>
       <div class="section-cta">
-        <a href="/en/community/" class="btn">{t.home.all_articles} &rarr;</a>
+        <a href="/en/community/" class="btn">
+          {t.home.all_articles} &rarr;
+        </a>
       </div>
     </div>
   </section>
@@ -119,10 +117,14 @@ const buildWindowSet = new Set(buildWindow.entries);
       <h2 class="section-title">{t.home.domains_title}</h2>
       <p class="section-subtitle">{t.home.domains_subtitle}</p>
       <div class="cities-quicklinks">
-        {cities.map((city) => <a href={`/en/domains/${city.slug.en}/`}>{city.name.en}</a>)}
+        {cities.map((city) => (
+          <a href={`/en/domains/${city.slug.en}/`}>{city.name.en}</a>
+        ))}
       </div>
       <div class="section-cta">
-        <a href="/en/domains/" class="btn">{t.home.all_domains} &rarr;</a>
+        <a href="/en/domains/" class="btn">
+          {t.home.all_domains} &rarr;
+        </a>
       </div>
     </div>
   </section>

@@ -3,10 +3,8 @@ import Base from '../layouts/Base.astro';
 import NotFound from '../components/NotFound.astro';
 ---
 
-{
-  /* No early language redirect: Apache serves this page in place of the
-    missing address, so there is no counterpart of that address to go to. */
-}
+{/* No early language redirect: Apache serves this page in place of the
+    missing address, so there is no counterpart of that address to go to. */}
 <Base title="404" noindex langRedirect={false}>
   <NotFound locale="it" />
 </Base>

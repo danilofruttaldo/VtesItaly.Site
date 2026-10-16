@@ -81,22 +81,24 @@ const issueUrl = `https://github.com/danilofruttaldo/VtesItaly.Site/issues/new?t
 
   <article class="guide-page">
     <div class="container">
-      <a href={t.routes.guide} class="guide-page__back">&larr; {t.guide.back_to_index}</a>
+      <a href={t.routes.guide} class="guide-page__back">
+        &larr; {t.guide.back_to_index}
+      </a>
 
       <header class="guide-page__header">
         <h1 class="guide-page__title">{guide.data.title}</h1>
         <div class="guide-page__audience">
-          {guide.data.audience.map((a) => <span class={`guide-badge guide-badge--${a}`}>{audienceLabel[a]}</span>)}
+          {guide.data.audience.map((a) => (
+            <span class={`guide-badge guide-badge--${a}`}>{audienceLabel[a]}</span>
+          ))}
         </div>
         <div class="guide-page__meta">
-          {
-            guide.data.versione && (
-              <span class="guide-page__meta-version">
-                {t.guide.version_prefix}
-                {guide.data.versione} &middot;
-              </span>
-            )
-          }
+          {guide.data.versione && (
+            <span class="guide-page__meta-version">
+              {t.guide.version_prefix}
+              {guide.data.versione} &middot;
+            </span>
+          )}
           <span>
             {t.guide.updated_on}{' '}
             <time datetime={guide.data.aggiornato.toISOString()}>{formatLocalDate(guide.data.aggiornato, locale)}</time>
@@ -114,28 +116,28 @@ const issueUrl = `https://github.com/danilofruttaldo/VtesItaly.Site/issues/new?t
         <div class="guide-content prose">
           <Content />
 
-          {
-            related.length > 0 && (
-              <section class="guide-related">
-                <h2 class="guide-related__title">{t.guide.see_also}</h2>
-                <div class="guide-related__grid">
-                  {related.map((g) => (
-                    <GuideCard
-                      href={`/guide/${g.id}/`}
-                      title={g.data.title}
-                      description={g.data.description}
-                      audience={g.data.audience}
-                      aggiornato={g.data.aggiornato}
-                      locale={locale}
-                    />
-                  ))}
-                </div>
-              </section>
-            )
-          }
+          {related.length > 0 && (
+            <section class="guide-related">
+              <h2 class="guide-related__title">{t.guide.see_also}</h2>
+              <div class="guide-related__grid">
+                {related.map((g) => (
+                  <GuideCard
+                    href={`/guide/${g.id}/`}
+                    title={g.data.title}
+                    description={g.data.description}
+                    audience={g.data.audience}
+                    aggiornato={g.data.aggiornato}
+                    locale={locale}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
           <p class="guide-report">
-            <a href={issueUrl} target="_blank" rel="noopener noreferrer">{t.guide.report_issue}</a>
+            <a href={issueUrl} target="_blank" rel="noopener noreferrer">
+              {t.guide.report_issue}
+            </a>
           </p>
         </div>
       </div>

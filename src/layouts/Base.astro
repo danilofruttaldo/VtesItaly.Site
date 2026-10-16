@@ -64,32 +64,28 @@ const og = await resolveOgImage(ogImage, Astro.site!);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    {
-      /*
+    {/*
       The Content-Security-Policy is written by Astro (security.csp in
       astro.config.mjs) as a meta tag, with the sha256 of every script it
       emits. `frame-ancestors` is not there: meta-tag CSP does not honour it.
       Clickjacking protection must come from a server-side header in
       .htaccess.
-    */
-    }
+    */}
 
     <title>{title} | VTES Italy</title>
     <meta name="description" content={description} />
-    {
-      noindex ? (
-        <meta name="robots" content="noindex, follow" />
-      ) : (
-        <>
-          <link rel="canonical" href={canonicalUrl.href} />
-          <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
-          {alternates.map((alt) => (
-            <link rel="alternate" hreflang={alt.locale} href={alt.href} />
-          ))}
-          <link rel="alternate" hreflang="x-default" href={xDefault} />
-        </>
-      )
-    }
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <>
+        <link rel="canonical" href={canonicalUrl.href} />
+        <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
+        {alternates.map((alt) => (
+          <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+        ))}
+        <link rel="alternate" hreflang="x-default" href={xDefault} />
+      </>
+    )}
 
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | VTES Italy`} />
@@ -98,11 +94,9 @@ const og = await resolveOgImage(ogImage, Astro.site!);
     {!noindex && <meta property="og:url" content={canonicalUrl.href} />}
     <meta property="og:locale" content={t.og_locale} />
     <meta property="og:site_name" content="VTES Italy" />
-    {
-      ogType === 'article' && publishedTime && (
-        <meta property="article:published_time" content={isoDate(publishedTime)} />
-      )
-    }
+    {ogType === 'article' && publishedTime && (
+      <meta property="article:published_time" content={isoDate(publishedTime)} />
+    )}
     <meta property="og:image" content={og.url} />
     {og.type && <meta property="og:image:type" content={og.type} />}
     {og.width && <meta property="og:image:width" content={String(og.width)} />}
@@ -151,8 +145,12 @@ const og = await resolveOgImage(ogImage, Astro.site!);
     {langRedirect && <script is:inline data-alt={altUrlForRedirect} set:html={langRedirectScript} />}
   </head>
   <body data-sw-title={t.sw_update.title} data-sw-reload={t.sw_update.reload} data-sw-dismiss={t.sw_update.dismiss}>
-    <noscript><p style="text-align:center;padding:1em;color:#9b9b9b;">{t.noscript}</p></noscript>
-    <a href="#main-content" class="sr-only">{t.skip_to_content}</a>
+    <noscript>
+      <p style="text-align:center;padding:1em;color:#9b9b9b;">{t.noscript}</p>
+    </noscript>
+    <a href="#main-content" class="sr-only">
+      {t.skip_to_content}
+    </a>
     <Header />
     <main id="main-content" data-pagefind-body>
       <slot />

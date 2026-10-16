@@ -22,22 +22,32 @@ const routes = {
 <section class="not-found" data-not-found={locale}>
   <div class="container">
     <h1>404</h1>
-    <p class="subtitle" id="nf-subtitle" data-en={en.not_found.subtitle}>{t.not_found.subtitle}</p>
-    <p class="hint" id="nf-hint" data-en={en.not_found.hint}>{t.not_found.hint}</p>
+    <p class="subtitle" id="nf-subtitle" data-en={en.not_found.subtitle}>
+      {t.not_found.subtitle}
+    </p>
+    <p class="hint" id="nf-hint" data-en={en.not_found.hint}>
+      {t.not_found.hint}
+    </p>
     <nav class="not-found__links" id="nf-links">
-      <a href={routes.home} class="btn" data-en-href={en.routes.home}>Home</a>
+      <a href={routes.home} class="btn" data-en-href={en.routes.home}>
+        Home
+      </a>
       <a
         href={routes.community}
         class="btn btn--outline"
         data-en-href={en.routes.comunita}
-        data-en={en.not_found.community}>{t.not_found.community}</a
+        data-en={en.not_found.community}
       >
+        {t.not_found.community}
+      </a>
       <a
         href={routes.domains}
         class="btn btn--outline"
         data-en-href={en.routes.principati}
-        data-en={en.not_found.domains}>{t.not_found.domains}</a
+        data-en={en.not_found.domains}
       >
+        {t.not_found.domains}
+      </a>
     </nav>
   </div>
 </section>

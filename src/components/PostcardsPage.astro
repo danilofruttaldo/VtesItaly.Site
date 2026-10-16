@@ -37,7 +37,9 @@ const galleries = postcardGalleries.map((g) => ({
   <section class="section">
     <div class="container container--narrow">
       <p class="tagline">{t.postcards.tagline}</p>
-      <p><Fragment set:html={t.postcards.intro} /></p>
+      <p>
+        <Fragment set:html={t.postcards.intro} />
+      </p>
 
       <h2 class="section-subtitle">{t.postcards.why_title}</h2>
       <p>{t.postcards.why_text}</p>
@@ -46,104 +48,102 @@ const galleries = postcardGalleries.map((g) => ({
     <hr class="divider" />
 
     <div class="container">
-      {
-        galleries.map((gallery, i) => (
-          <div class="gallery-section" data-gallery>
-            <button
-              type="button"
-              class="gallery-header"
-              aria-expanded={i === 0 ? 'true' : 'false'}
-              aria-controls={`gallery-body-${i}`}
-            >
-              <div class="gallery-header-text">
-                <h3 class="gallery-title">{gallery.title}</h3>
-                <p class="gallery-subtitle">{gallery.subtitle}</p>
-              </div>
-              <span class="gallery-count">{gallery.images.length}</span>
-              <span class="gallery-chevron" aria-hidden="true">
-                &#8250;
-              </span>
-            </button>
+      {galleries.map((gallery, i) => (
+        <div class="gallery-section" data-gallery>
+          <button
+            type="button"
+            class="gallery-header"
+            aria-expanded={i === 0 ? 'true' : 'false'}
+            aria-controls={`gallery-body-${i}`}
+          >
+            <div class="gallery-header-text">
+              <h3 class="gallery-title">{gallery.title}</h3>
+              <p class="gallery-subtitle">{gallery.subtitle}</p>
+            </div>
+            <span class="gallery-count">{gallery.images.length}</span>
+            <span class="gallery-chevron" aria-hidden="true">
+              &#8250;
+            </span>
+          </button>
 
-            <div class="gallery-body" id={`gallery-body-${i}`}>
-              <div class="gallery-body-inner">
+          <div class="gallery-body" id={`gallery-body-${i}`}>
+            <div class="gallery-body-inner">
+              {gallery.images
+                .filter((img) => img.highlight)
+                .map((img) => (
+                  <figure class="highlight-card">
+                    <img
+                      class="highlight-image"
+                      src={img.src}
+                      alt={img.alt}
+                      width="400"
+                      height="300"
+                      loading="lazy"
+                      decoding="async"
+                      role="button"
+                      tabindex="0"
+                    />
+                    <div class="highlight-text">
+                      {img.highlight!.label && <span class="highlight-label">{img.highlight!.label}</span>}
+                      {img.highlight!.title && <span class="highlight-title">{img.highlight!.title}</span>}
+                      <figcaption class="highlight-caption">{img.highlight!.caption}</figcaption>
+                      {img.highlight!.imageCaption && (
+                        <span class="highlight-image-caption">{img.highlight!.imageCaption}</span>
+                      )}
+                    </div>
+                  </figure>
+                ))}
+
+              {/* Desktop: grid */}
+              <div class="gallery-grid">
                 {gallery.images
-                  .filter((img) => img.highlight)
+                  .filter((img) => !img.highlight)
                   .map((img) => (
-                    <figure class="highlight-card">
-                      <img
-                        class="highlight-image"
-                        src={img.src}
-                        alt={img.alt}
-                        width="400"
-                        height="300"
-                        loading="lazy"
-                        decoding="async"
-                        role="button"
-                        tabindex="0"
-                      />
-                      <div class="highlight-text">
-                        {img.highlight!.label && <span class="highlight-label">{img.highlight!.label}</span>}
-                        {img.highlight!.title && <span class="highlight-title">{img.highlight!.title}</span>}
-                        <figcaption class="highlight-caption">{img.highlight!.caption}</figcaption>
-                        {img.highlight!.imageCaption && (
-                          <span class="highlight-image-caption">{img.highlight!.imageCaption}</span>
-                        )}
-                      </div>
+                    <figure class="gallery-item" role="button" tabindex="0">
+                      <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
                     </figure>
                   ))}
+              </div>
 
-                {/* Desktop: grid */}
-                <div class="gallery-grid">
-                  {gallery.images
-                    .filter((img) => !img.highlight)
-                    .map((img) => (
-                      <figure class="gallery-item" role="button" tabindex="0">
-                        <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
-                      </figure>
-                    ))}
-                </div>
-
-                {/* Mobile: slider */}
-                {/* Only the first slide has its `src`: the others carry it in
+              {/* Mobile: slider */}
+              {/* Only the first slide has its `src`: the others carry it in
                     `data-src` and get it when they come near the visible
                     area of the track. With plain loading="lazy" the browser
                     fetched every card of every gallery on a phone, closed
                     galleries included: 1.6 MB for a page read one card at a
                     time. */}
-                <div class="gallery-slider">
-                  <div class="slider-track" tabindex="0" aria-label={`${gallery.title}: ${t.postcards.slider_label}`}>
+              <div class="gallery-slider">
+                <div class="slider-track" tabindex="0" aria-label={`${gallery.title}: ${t.postcards.slider_label}`}>
+                  {gallery.images
+                    .filter((img) => !img.highlight)
+                    .map((img, j) => (
+                      <figure class="slider-slide">
+                        {j === 0 ? (
+                          <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                        ) : (
+                          <img data-src={img.src} alt={img.alt} width="400" height="300" decoding="async" />
+                        )}
+                      </figure>
+                    ))}
+                </div>
+                {gallery.images.filter((img) => !img.highlight).length > 1 && (
+                  <div class="slider-dots">
                     {gallery.images
                       .filter((img) => !img.highlight)
-                      .map((img, j) => (
-                        <figure class="slider-slide">
-                          {j === 0 ? (
-                            <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
-                          ) : (
-                            <img data-src={img.src} alt={img.alt} width="400" height="300" decoding="async" />
-                          )}
-                        </figure>
+                      .map((_, j) => (
+                        <button
+                          type="button"
+                          class={`slider-dot ${j === 0 ? 'is-active' : ''}`}
+                          aria-label={`${t.calendar.slide_label} ${j + 1}`}
+                        />
                       ))}
                   </div>
-                  {gallery.images.filter((img) => !img.highlight).length > 1 && (
-                    <div class="slider-dots">
-                      {gallery.images
-                        .filter((img) => !img.highlight)
-                        .map((_, j) => (
-                          <button
-                            type="button"
-                            class={`slider-dot ${j === 0 ? 'is-active' : ''}`}
-                            aria-label={`${t.calendar.slide_label} ${j + 1}`}
-                          />
-                        ))}
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
             </div>
           </div>
-        ))
-      }
+        </div>
+      ))}
       <ShareButtons />
     </div>
   </section>

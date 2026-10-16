@@ -99,111 +99,139 @@ function formatStage(val: unknown, isAway: boolean): string {
 ---
 
 <div class="tour-edition">
-  {
-    tourStandings.length > 0 && (
-      <nav class="te-quicknav">
-        <a href="#classifica" class="te-quicknav-link">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-          {t.post.jump_standings}
-        </a>
-      </nav>
-    )
-  }
+  {tourStandings.length > 0 && (
+    <nav class="te-quicknav">
+      <a href="#classifica" class="te-quicknav-link">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+        {t.post.jump_standings}
+      </a>
+    </nav>
+  )}
 
   <div class="te-content prose">
     <Content />
   </div>
 
-  {
-    post.data.rulesUrl && (
-      <div class="te-rules">
-        <a href={post.data.rulesUrl} target="_blank" rel="noopener noreferrer" class="te-rules-link">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-            <>
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
-            </>
-          </svg>
-          {t.tour.rules} (PDF)
-        </a>
-      </div>
-    )
-  }
+  {post.data.rulesUrl && (
+    <div class="te-rules">
+      <a href={post.data.rulesUrl} target="_blank" rel="noopener noreferrer" class="te-rules-link">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <>
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </>
+        </svg>
+        {t.tour.rules} (PDF)
+      </a>
+    </div>
+  )}
 
-  {
-    computedStages.length > 0 && (
-      <div class="te-stages">
-        <h2 class="te-stages-title">{stagesLabel}</h2>
-        <div class="te-stages-list">
-          {computedStages.map((stage, i) => (
-            <div
-              class:list={[
-                'te-card',
-                {
-                  'te-card--upcoming': stage.status === 'upcoming',
-                  'te-card--completed': stage.status === 'completed',
-                  'te-card--cancelled': stage.status === 'cancelled',
-                  'te-card--clickable': !!stage.archonUrl,
-                },
-              ]}
-              data-href={stage.archonUrl || undefined}
-              data-stage-date={stage.dateIso}
-              data-stage-cancelled={stage.status === 'cancelled' ? 'true' : undefined}
-              data-stage-hidden-date={stage.hideDate ? 'true' : undefined}
-            >
-              {stage.image && (
-                <div class="te-card-image">
-                  <img
-                    src={displayImages[i]}
-                    alt={stage.name}
-                    loading="lazy"
-                    decoding="async"
-                    data-real-image={stage.image}
-                  />
+  {computedStages.length > 0 && (
+    <div class="te-stages">
+      <h2 class="te-stages-title">{stagesLabel}</h2>
+      <div class="te-stages-list">
+        {computedStages.map((stage, i) => (
+          <div
+            class:list={[
+              'te-card',
+              {
+                'te-card--upcoming': stage.status === 'upcoming',
+                'te-card--completed': stage.status === 'completed',
+                'te-card--cancelled': stage.status === 'cancelled',
+                'te-card--clickable': !!stage.archonUrl,
+              },
+            ]}
+            data-href={stage.archonUrl || undefined}
+            data-stage-date={stage.dateIso}
+            data-stage-cancelled={stage.status === 'cancelled' ? 'true' : undefined}
+            data-stage-hidden-date={stage.hideDate ? 'true' : undefined}
+          >
+            {stage.image && (
+              <div class="te-card-image">
+                <img
+                  src={displayImages[i]}
+                  alt={stage.name}
+                  loading="lazy"
+                  decoding="async"
+                  data-real-image={stage.image}
+                />
+              </div>
+            )}
+            <div class="te-card-body">
+              <div class="te-card-top">
+                <div class="te-card-heading">
+                  <span class="te-number">
+                    {stageItemLabel} {i + 1}
+                  </span>
+                  <h3 class="te-name">{stage.name}</h3>
+                </div>
+                <span
+                  class:list={['te-badge', `te-badge--${stage.status}`]}
+                  data-label-completed={statusLabels.completed}
+                  data-label-upcoming={statusLabels.upcoming}
+                  data-label-future={statusLabels.future}
+                  data-label-cancelled={statusLabels.cancelled}
+                >
+                  {statusLabels[stage.status]}
+                </span>
+              </div>
+              {stage.cities && stage.cities.length > 0 && (
+                <div class="te-cities">
+                  {stage.cities.map((c) => {
+                    const city = cityMap.get(c);
+                    return city ? (
+                      <a href={city.url} class="te-city-tag">
+                        {city.name}
+                      </a>
+                    ) : (
+                      <span class="te-city-tag">{c}</span>
+                    );
+                  })}
                 </div>
               )}
-              <div class="te-card-body">
-                <div class="te-card-top">
-                  <div class="te-card-heading">
-                    <span class="te-number">
-                      {stageItemLabel} {i + 1}
-                    </span>
-                    <h3 class="te-name">{stage.name}</h3>
-                  </div>
-                  <span
-                    class:list={['te-badge', `te-badge--${stage.status}`]}
-                    data-label-completed={statusLabels.completed}
-                    data-label-upcoming={statusLabels.upcoming}
-                    data-label-future={statusLabels.future}
-                    data-label-cancelled={statusLabels.cancelled}
-                  >
-                    {statusLabels[stage.status]}
-                  </span>
-                </div>
-                {stage.cities && stage.cities.length > 0 && (
-                  <div class="te-cities">
-                    {stage.cities.map((c) => {
-                      const city = cityMap.get(c);
-                      return city ? (
-                        <a href={city.url} class="te-city-tag">
-                          {city.name}
-                        </a>
-                      ) : (
-                        <span class="te-city-tag">{c}</span>
-                      );
-                    })}
-                  </div>
-                )}
-                {stage.description && <p class="te-desc">{stage.description}</p>}
-                <div class="te-card-bottom">
-                  <div class="te-meta">
-                    {!stage.hideDate && (
-                      <div class="te-date">
+              {stage.description && <p class="te-desc">{stage.description}</p>}
+              <div class="te-card-bottom">
+                <div class="te-meta">
+                  {!stage.hideDate && (
+                    <div class="te-date">
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="14"
+                        height="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <path d="M16 2v4M8 2v4M3 10h18" />
+                      </svg>
+                      <time>{formatDate(stage.date)}</time>
+                    </div>
+                  )}
+                  {stage.time && (
+                    <div class="te-time">
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="14"
+                        height="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      {stage.time}
+                    </div>
+                  )}
+                  {(stage.venue || stage.location) && (
+                    <div class="te-venue-block">
+                      <div class="te-venue-name">
                         <svg
                           viewBox="0 0 24 24"
                           width="14"
@@ -212,115 +240,79 @@ function formatStage(val: unknown, isAway: boolean): string {
                           stroke="currentColor"
                           stroke-width="2"
                         >
-                          <rect x="3" y="4" width="18" height="18" rx="2" />
-                          <path d="M16 2v4M8 2v4M3 10h18" />
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                          <circle cx="12" cy="10" r="3" />
                         </svg>
-                        <time>{formatDate(stage.date)}</time>
+                        {stage.venue || stage.location}
                       </div>
-                    )}
-                    {stage.time && (
-                      <div class="te-time">
-                        <svg
-                          viewBox="0 0 24 24"
-                          width="14"
-                          height="14"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        {stage.time}
-                      </div>
-                    )}
-                    {(stage.venue || stage.location) && (
-                      <div class="te-venue-block">
-                        <div class="te-venue-name">
-                          <svg
-                            viewBox="0 0 24 24"
-                            width="14"
-                            height="14"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                          >
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                            <circle cx="12" cy="10" r="3" />
-                          </svg>
-                          {stage.venue || stage.location}
-                        </div>
-                        {stage.venue && stage.location && <div class="te-venue-address">{stage.location}</div>}
-                      </div>
-                    )}
-                  </div>
-                  {stage.archonUrl ? (
-                    <a
-                      href={stage.archonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class:list={['te-cta', `te-cta--${stage.status}`]}
-                    >
-                      {resolvePlatformLabel(stage.archonUrl)} &rarr;
-                    </a>
-                  ) : (
-                    <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>
+                      {stage.venue && stage.location && <div class="te-venue-address">{stage.location}</div>}
+                    </div>
                   )}
                 </div>
+                {stage.archonUrl ? (
+                  <a
+                    href={stage.archonUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={['te-cta', `te-cta--${stage.status}`]}
+                  >
+                    {resolvePlatformLabel(stage.archonUrl)} &rarr;
+                  </a>
+                ) : (
+                  <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>
+                )}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    )
-  }
+    </div>
+  )}
 
-  {
-    tourStandings.length > 0 && (
-      <div id="classifica" class="te-standings">
-        <h2 class="te-standings-title">{t.tour.standings}</h2>
-        <div class="te-standings-wrap" tabindex="0" role="region" aria-label={t.tour.standings}>
-          <table class="te-standings-table">
-            <caption class="sr-only">{t.tour.standings}</caption>
-            <thead>
-              <tr>
-                <th class="tc">#</th>
-                <th>{t.tour.standings_player}</th>
-                <th>{t.tour.standings_city}</th>
-                {Array.from({ length: stageCount }, (_, i) => (
-                  <th class="tc">{`${stageItemLabel[0]}${i + 1}`}</th>
-                ))}
-                <th class="tc">TOT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tourStandings.map((s) => (
-                <tr
-                  class:list={[
-                    tourFinished && s.rank <= 1 && 'te-standings-winner',
-                    tourFinished && s.rank >= 2 && s.rank <= 3 && 'te-standings-top',
-                  ]}
-                >
-                  <td class="tc">{s.rank}</td>
-                  <td>{anonymizeName(s.name)}</td>
-                  <td class="te-standings-city">{s.city}</td>
-                  {Array.from({ length: stageCount }, (_, i) => (
-                    <td class:list={['tc', s[`s${i + 1}`] == null && 'te-standings-empty']}>
-                      {formatStage(s[`s${i + 1}`], (s as any).away?.includes(i + 1))}
-                    </td>
-                  ))}
-                  <td class="tc te-standings-total">{hasGw ? `${(s as any).gw}GW ${s.total}` : s.total}</td>
-                </tr>
+  {tourStandings.length > 0 && (
+    <div id="classifica" class="te-standings">
+      <h2 class="te-standings-title">{t.tour.standings}</h2>
+      <div class="te-standings-wrap" tabindex="0" role="region" aria-label={t.tour.standings}>
+        <table class="te-standings-table">
+          <caption class="sr-only">{t.tour.standings}</caption>
+          <thead>
+            <tr>
+              <th class="tc">#</th>
+              <th>{t.tour.standings_player}</th>
+              <th>{t.tour.standings_city}</th>
+              {Array.from({ length: stageCount }, (_, i) => (
+                <th class="tc">{`${stageItemLabel[0]}${i + 1}`}</th>
               ))}
-            </tbody>
-          </table>
-        </div>
-        {tourStandings.some((s) => (s as any).away?.length > 0) && (
-          <p class="te-standings-note">{t.tour.standings_away_note}</p>
-        )}
+              <th class="tc">TOT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tourStandings.map((s) => (
+              <tr
+                class:list={[
+                  tourFinished && s.rank <= 1 && 'te-standings-winner',
+                  tourFinished && s.rank >= 2 && s.rank <= 3 && 'te-standings-top',
+                ]}
+              >
+                <td class="tc">{s.rank}</td>
+                <td>{anonymizeName(s.name)}</td>
+                <td class="te-standings-city">{s.city}</td>
+                {Array.from({ length: stageCount }, (_, i) => (
+                  <td class:list={['tc', s[`s${i + 1}`] == null && 'te-standings-empty']}>
+                    {formatStage(s[`s${i + 1}`], (s as any).away?.includes(i + 1))}
+                  </td>
+                ))}
+                <td class="tc te-standings-total">{hasGw ? `${(s as any).gw}GW ${s.total}` : s.total}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    )
-  }
+      {tourStandings.some((s) => (s as any).away?.length > 0) && (
+        <p class="te-standings-note">{t.tour.standings_away_note}</p>
+      )}
+    </div>
+  )}
 </div>
 
 <script>

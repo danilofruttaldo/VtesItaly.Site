@@ -30,22 +30,22 @@ const sorted = all.slice().sort((a, b) => {
       <AudienceFilter locale={locale} />
 
       <div class="guide-grid">
-        {
-          sorted.map((g) => (
-            <GuideCard
-              headingLevel={2}
-              href={`/guide/${g.id}/`}
-              title={g.data.title}
-              description={g.data.description}
-              audience={g.data.audience}
-              aggiornato={g.data.aggiornato}
-              locale={locale}
-            />
-          ))
-        }
+        {sorted.map((g) => (
+          <GuideCard
+            headingLevel={2}
+            href={`/guide/${g.id}/`}
+            title={g.data.title}
+            description={g.data.description}
+            audience={g.data.audience}
+            aggiornato={g.data.aggiornato}
+            locale={locale}
+          />
+        ))}
       </div>
 
-      <p class="guide-empty" hidden>{t.guide.no_results}</p>
+      <p class="guide-empty" hidden>
+        {t.guide.no_results}
+      </p>
     </div>
   </section>
 </Base>

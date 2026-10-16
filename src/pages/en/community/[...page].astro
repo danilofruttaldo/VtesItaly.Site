@@ -50,71 +50,63 @@ const dividerAtPageIndex =
   <section class="section">
     <div class="container container--narrow">
       <div class="post-list" data-temporal-divider>
-        {
-          page.data.map((post, i) => (
-            <>
-              {i === dividerAtPageIndex && (
-                <div class="post-list__divider" role="separator" aria-label={t.community.past_label}>
-                  <span>{t.community.past_label}</span>
-                </div>
-              )}
-              <PostCard
-                href={getEnPostUrl(post)}
-                title={post.data.title}
-                image={post.data.featuredImage || post.data.poster}
-                imageAnchor={
-                  post.data.imageAnchor ||
-                  (post.data.events && post.data.events.length > 0 && post.data.events.every((e) => e.type === 'altro')
-                    ? 'left center'
-                    : undefined)
-                }
-                date={post.data.date}
-                tags={post.data.tags}
-                excerpt={post.data.excerpt}
-                locale="en"
-                eager={i === 0}
-              />
-            </>
-          ))
-        }
-        {
-          /* Fallback divider for the runtime script to move when build-time saw
-            no past on this page but today has since advanced. */
-        }
-        {
-          dividerAtPageIndex === -1 && (
-            <div class="post-list__divider" role="separator" aria-label={t.community.past_label} hidden>
-              <span>{t.community.past_label}</span>
-            </div>
-          )
-        }
+        {page.data.map((post, i) => (
+          <>
+            {i === dividerAtPageIndex && (
+              <div class="post-list__divider" role="separator" aria-label={t.community.past_label}>
+                <span>{t.community.past_label}</span>
+              </div>
+            )}
+            <PostCard
+              href={getEnPostUrl(post)}
+              title={post.data.title}
+              image={post.data.featuredImage || post.data.poster}
+              imageAnchor={
+                post.data.imageAnchor ||
+                (post.data.events && post.data.events.length > 0 && post.data.events.every((e) => e.type === 'altro')
+                  ? 'left center'
+                  : undefined)
+              }
+              date={post.data.date}
+              tags={post.data.tags}
+              excerpt={post.data.excerpt}
+              locale="en"
+              eager={i === 0}
+            />
+          </>
+        ))}
+        {/* Fallback divider for the runtime script to move when build-time saw
+            no past on this page but today has since advanced. */}
+        {dividerAtPageIndex === -1 && (
+          <div class="post-list__divider" role="separator" aria-label={t.community.past_label} hidden>
+            <span>{t.community.past_label}</span>
+          </div>
+        )}
       </div>
 
-      {
-        page.lastPage > 1 && (
-          <nav class="pagination" aria-label={t.community.pagination}>
-            {page.url.prev ? (
-              <a href={page.url.prev} class="pagination__link">
-                &larr; {t.community.previous}
-              </a>
-            ) : (
-              <span class="pagination__link pagination__link--disabled">&larr; {t.community.previous}</span>
-            )}
-            <span class="pagination__info">
-              {t.community.page_info
-                .replace('%current%', String(page.currentPage))
-                .replace('%last%', String(page.lastPage))}
-            </span>
-            {page.url.next ? (
-              <a href={page.url.next} class="pagination__link">
-                {t.community.next} &rarr;
-              </a>
-            ) : (
-              <span class="pagination__link pagination__link--disabled">{t.community.next} &rarr;</span>
-            )}
-          </nav>
-        )
-      }
+      {page.lastPage > 1 && (
+        <nav class="pagination" aria-label={t.community.pagination}>
+          {page.url.prev ? (
+            <a href={page.url.prev} class="pagination__link">
+              &larr; {t.community.previous}
+            </a>
+          ) : (
+            <span class="pagination__link pagination__link--disabled">&larr; {t.community.previous}</span>
+          )}
+          <span class="pagination__info">
+            {t.community.page_info
+              .replace('%current%', String(page.currentPage))
+              .replace('%last%', String(page.lastPage))}
+          </span>
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination__link">
+              {t.community.next} &rarr;
+            </a>
+          ) : (
+            <span class="pagination__link pagination__link--disabled">{t.community.next} &rarr;</span>
+          )}
+        </nav>
+      )}
       <ShareButtons />
     </div>
   </section>

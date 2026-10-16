@@ -43,78 +43,78 @@ const allStandings = import.meta.glob('/src/data/standings/gp/standings-gp-*.jso
   </section>
 
   {/* Variable: current edition */}
-  {
-    current && (
-      <section class="page-section">
-        <div class="container">
-          <div class="edition-header">
-            <h2 class="edition-title">{current.data.title}</h2>
-            <span
-              class="edition-label-tag"
-              data-event-date={isoDay(current.data.date)}
-              data-label-live={t.status.live}
-              data-label-upcoming={t.status.upcoming}
-              data-label-past={t.status.past}
-            >
-              {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
-            </span>
-          </div>
-          <EventEdition post={current} locale="en" />
+  {current && (
+    <section class="page-section">
+      <div class="container">
+        <div class="edition-header">
+          <h2 class="edition-title">{current.data.title}</h2>
+          <span
+            class="edition-label-tag"
+            data-event-date={isoDay(current.data.date)}
+            data-label-live={t.status.live}
+            data-label-upcoming={t.status.upcoming}
+            data-label-past={t.status.past}
+          >
+            {gpStatus === 'live' ? t.status.live : gpStatus === 'upcoming' ? t.status.upcoming : t.status.past}
+          </span>
         </div>
-      </section>
-    )
-  }
+        <EventEdition post={current} locale="en" />
+      </div>
+    </section>
+  )}
 
   {/* Fixed: archive + share */}
 
-  {
-    pastEditions.length > 0 && (
-      <section class="page-section">
-        <div class="container container--narrow">
-          <h2 class="page-section-title">{t.gp.archive}</h2>
-          <div class="editions-list">
-            {pastEditions.map((post) => {
-              const meta = getCardMeta(post, allStandings, 'en');
-              return (
-                <a href={`/en/grand-prix/${post.id.replace(/-en$/, '')}/`} class="edition-card">
-                  {(post.data.poster || post.data.featuredImage) && (
-                    <img
-                      src={post.data.poster || post.data.featuredImage}
-                      alt={post.data.title}
-                      class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']}
-                      loading="lazy"
-                      decoding="async"
-                      width="64"
-                      height="64"
-                    />
-                  )}
-                  <div class="edition-card-body">
-                    <div class="edition-card-header">
-                      <span class="edition-year">
-                        {post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}
-                      </span>
-                      {meta.winner && <span class="edition-winner">&#127942; {meta.winner}</span>}
-                    </div>
-                    <span class="edition-info">
-                      {post.data.tags && post.data.tags.filter((tag) => tag !== 'italia').length > 0 && (
-                        <>{post.data.tags.filter((tag) => tag !== 'italia').join(', ')}</>
-                      )}
-                      {meta.eventDate && <> &middot; {meta.eventDate}</>}
-                      {meta.players > 0 && (
-                        <>
-                          {' '}
-                          &middot; {meta.players} {t.gp.players_label}
-                        </>
-                      )}
+  {pastEditions.length > 0 && (
+    <section class="page-section">
+      <div class="container container--narrow">
+        <h2 class="page-section-title">{t.gp.archive}</h2>
+        <div class="editions-list">
+          {pastEditions.map((post) => {
+            const meta = getCardMeta(post, allStandings, 'en');
+            return (
+              <a href={`/en/grand-prix/${post.id.replace(/-en$/, '')}/`} class="edition-card">
+                {(post.data.poster || post.data.featuredImage) && (
+                  <img
+                    src={post.data.poster || post.data.featuredImage}
+                    alt={post.data.title}
+                    class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']}
+                    loading="lazy"
+                    decoding="async"
+                    width="64"
+                    height="64"
+                  />
+                )}
+                <div class="edition-card-body">
+                  <div class="edition-card-header">
+                    <span class="edition-year">
+                      {post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}
                     </span>
+                    {meta.winner && <span class="edition-winner">&#127942; {meta.winner}</span>}
                   </div>
-                </a>
-              );
-            })}
-          </div>
+                  <span class="edition-info">
+                    {post.data.tags && post.data.tags.filter((tag) => tag !== 'italia').length > 0 && (
+                      <>{post.data.tags.filter((tag) => tag !== 'italia').join(', ')}</>
+                    )}
+                    {meta.eventDate && <> &middot; {meta.eventDate}</>}
+                    {meta.players > 0 && (
+                      <>
+                        {' '}
+                        &middot; {meta.players} {t.gp.players_label}
+                      </>
+                    )}
+                  </span>
+                </div>
+              </a>
+            );
+          })}
         </div>
-      </section>
-    )
-  }
-  <section class="page-section"><div class="container container--narrow"><ShareButtons /></div></section>
+      </div>
+    </section>
+  )}
+  <section class="page-section">
+    <div class="container container--narrow">
+      <ShareButtons />
+    </div>
+  </section>
 </Base>

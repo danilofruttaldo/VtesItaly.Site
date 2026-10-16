@@ -36,9 +36,9 @@ jobs:
       group: ci-${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           # Same major as `engines` in package.json; .nvmrc is the single
           # source for local tooling (nvm, fnm) and CI. setup-node caches
@@ -112,7 +112,7 @@ jobs:
       group: lighthouse-${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Download dist artifact from ci
         uses: actions/download-artifact@v8
@@ -144,7 +144,7 @@ jobs:
       cancel-in-progress: false
     steps:
       - name: Checkout (smoke test script only)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           sparse-checkout: scripts
           sparse-checkout-cone-mode: true
@@ -290,7 +290,7 @@ jobs:
       group: coverage-badge
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           # The tip of main, not the commit that triggered the run: if main
           # moved in the meantime the push would be rejected as non-fast-forward.

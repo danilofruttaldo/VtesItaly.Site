@@ -56,8 +56,32 @@ a ogni indirizzo inesistente (soft 404). Il sito è completamente statico: un ri
   `/docs/gp-AAAA/`, `/docs/nc-AAAA/`, `/docs/wos-AAAA/`, i regolamenti del tour 2026 in `/docs/tour/`, `/blog/` e
   `/week-of-sabbat`. Prima rispondevano perché i vecchi file restavano in `public_html`; il deploy a release li ha tolti
   (vedi [deploy-atomico.md](deploy-atomico.md)) e questi 301 li portano dove stanno oggi.
+- La sezione inglese delle versioni precedenti: `/en/blog/` e `/en/comunita/<slug>/` verso `/en/community/<slug>/` (gli
+  slug degli articoli non sono cambiati), `/en/nazionale/nazionale-AAAA/` verso `/en/national-championship/nc-AAAA/`,
+  `/en/week-of-sabbat/` verso l'articolo della Week of Sabbat 2025.
+- `/gp/gp-AAAA/` verso `/grand-prix/grand-prix-AAAA/`: la vecchia pagina del Grand Prix stava lì, oggi la cartella tiene
+  solo immagini e PDF. I regolamenti del tour 2026 col vecchio nome (`/tour/tour-2026/regolamento-tour-2026.pdf` e
+  `rules-tour-2026.pdf`) vanno agli infopack.
+- L'articolo della lega di Treviso rinominato (`bleeding-the-vine-lega-vtes-treviso` diventato
+  `bleeding-the-vine-lega-treviso`), in un solo salto da ogni vecchio percorso, IT ed EN.
+- I cinque articoli cancellati a marzo 2026 (7° e 8° campionato milanese, torneo dello stile di Treviso, estate emiliana,
+  EC 2024 a Varsavia): vanno all'elenco della comunità, `/comunita/` o `/en/community/`. Queste regole e quella dello slug
+  rinominato stanno **prima** delle regole generiche su `/blog/` e `/en/comunita/`, che altrimenti li manderebbero a una
+  pagina inesistente.
+
+Le sorgenti sono state verificate sulla release precedente al primo deploy a release
+(`~/releases/prev-20261016105511`), le destinazioni su `dist/`.
 
 Le destinazioni sono sempre assolute e con la barra finale per le pagine, la forma canonica.
+
+### Cartelle senza indice: 404 invece di 403
+
+Con `Options -Indexes` una cartella senza `index.html` (`/api/`, `/fonts/`, `/_astro/`, `/images/`...) risponderebbe
+con la pagina 403 di Apache, che non è del sito e dice al visitatore che lì c'è qualcosa di proibito. Le ultime righe del
+blocco di riscrittura rispondono 404, con la pagina 404 del sito: `RewriteCond %{REQUEST_FILENAME} -d`, la cartella non
+ha `index.html`, l'indirizzo non è sotto `/.well-known` (lo usa l'hosting per i certificati), e `RewriteRule ^ - [R=404,L]`.
+Le cartelle con `index.html` non sono toccate, quindi il 301 di `mod_dir` che aggiunge la barra finale resta com'è. La
+regola sta dopo tutti i redirect: messa prima, una cartella rimasta come `/gp/gp-2026/` risponderebbe 404 invece del 301.
 
 ## Se qualcosa va storto
 

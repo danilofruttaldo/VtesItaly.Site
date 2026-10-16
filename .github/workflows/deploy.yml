@@ -160,6 +160,7 @@ jobs:
           path: dist
 
       - name: Deploy a release and swap it in
+        id: swap
         # Release directory deploy (docs/deploy-atomico.md, verified on the
         # hosting on 2026-10-16): the tarball is extracted into
         # ~/releases/<sha>, then public_html is swapped with two renames.
@@ -235,17 +236,28 @@ jobs:
           echo "$SHA $PREV" > ~/releases/.ultima-precedente
           # Keep the five most recent previous releases.
           { ls -1dt ~/releases/prev-* 2>/dev/null || true; } | tail -n +6 | xargs -r rm -rf
+          # Keep the two most recent releases removed by a rollback: enough to
+          # inspect what went wrong, without filling the disk over time.
+          { ls -1dt ~/releases/fallita-* 2>/dev/null || true; } | tail -n +3 | xargs -r rm -rf
           echo "Pubblicata $SHA, precedente in $PREV"
           REMOTE_SCRIPT
 
       - name: Smoke test production
+        id: smoke
         # Runs from the runner, i.e. from outside the hosting: catches DNS,
         # firewall and missing-section problems that a check on the server
-        # itself would not see.
+        # itself would not see. The script bounds itself (about 3 minutes);
+        # the step timeout is the last guard, and a timeout counts as a
+        # failure, so the rollback below runs.
+        timeout-minutes: 5
         run: bash scripts/smoke-test.sh https://vtesitaly.com
 
       - name: Confirm the release
-        # Smoke test passed: the marker is no longer needed.
+        # Smoke test passed: the marker is no longer needed. A failure here
+        # must not roll back a release that passed the smoke test: a leftover
+        # marker is harmless, the next deploy overwrites it and the rollback
+        # acts only when the sha in it matches its own run.
+        continue-on-error: true
         env:
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
@@ -255,10 +267,13 @@ jobs:
             "$SSH_USER@$SSH_HOST" "rm -f ~/releases/.ultima-precedente"
 
       - name: Roll back to the previous release
-        # Only when the smoke test (or the swap) failed after a release went
-        # live: puts the previous public_html back and keeps the broken one
-        # aside for inspection.
-        if: failure()
+        # Only when the swap or the smoke test failed (a smoke timeout counts),
+        # or the run was cancelled in between: puts the previous public_html
+        # back and keeps the broken one aside for inspection. Not on a failure
+        # of the confirm step, which runs only after a passed smoke test. The
+        # marker check below decides whether a swap of this run really
+        # happened.
+        if: always() && (steps.swap.outcome == 'failure' || steps.smoke.outcome == 'failure' || cancelled())
         env:
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_HOST: ${{ vars.SSH_HOST }}
@@ -275,7 +290,7 @@ jobs:
           # swap of this run did not happen, the live site is the good one.
           [ "$SHA" = "$1" ] || { echo "Lo scambio di questo giro non e' avvenuto: niente da ripristinare."; exit 0; }
           [ -d "$PREV" ] || { echo "La release precedente $PREV non c'e' piu'."; exit 1; }
-          mv ~/public_html ~/releases/fallita-$(date -u +%Y%m%d%H%M%S)
+          mv ~/public_html ~/releases/"fallita-$(date -u +%Y%m%d%H%M%S)"
           mv "$PREV" ~/public_html
           rm -f ~/releases/.ultima-precedente
           echo "Ripristinata $PREV"

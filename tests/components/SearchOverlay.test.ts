@@ -47,7 +47,7 @@ describe('SearchOverlay', () => {
     // as elements this test fails before the bad code ever ships.
     const parse = excerptSegments;
 
-    // <script> never becomes a mark segment — its source is literal text
+    // <script> never becomes a mark segment: its source is literal text
     // and would be rendered as a text node by createTextNode at runtime.
     expect(parse('<script>alert(1)</script>hello')).toEqual([
       { kind: 'text', value: '<script>alert(1)</script>hello' },
@@ -60,7 +60,7 @@ describe('SearchOverlay', () => {
       { kind: 'text', value: ' baz' },
     ]);
 
-    // onerror payloads can't fire — there's no <img> segment, just text.
+    // onerror payloads can't fire: there's no <img> segment, just text.
     expect(parse('<img src=x onerror=alert(1)>boom')).toEqual([
       { kind: 'text', value: '<img src=x onerror=alert(1)>boom' },
     ]);
@@ -73,7 +73,7 @@ describe('SearchOverlay', () => {
     ]);
 
     // Uppercase <MARK> is intentionally NOT treated as a match (Pagefind
-    // only emits lowercase) — it stays as literal text.
+    // only emits lowercase), it stays as literal text.
     expect(parse('keep <MARK>x</MARK> literal')).toEqual([{ kind: 'text', value: 'keep <MARK>x</MARK> literal' }]);
 
     // No excerpt at all gives no segments.

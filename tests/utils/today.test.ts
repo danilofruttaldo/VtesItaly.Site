@@ -24,7 +24,7 @@ describe('today: todayLocalIso', () => {
     expect(todayLocalIso()).toBe('2026-01-03');
   });
 
-  it('uses local fields (not toISOString) — does not roll over before local midnight', () => {
+  it('uses local fields (not toISOString): does not roll over before local midnight', () => {
     // 23:30 local on April 21: a UTC-based formatter could yield the next day
     // in negative-offset zones. We assert the local date is preserved.
     vi.setSystemTime(new Date(2026, 3, 21, 23, 30, 0));

@@ -7,9 +7,11 @@ import sharp from 'sharp';
  *
  * The cards in public/images/og/ are JPEG at 1200x630: WhatsApp and Facebook
  * read JPEG everywhere, while WebP is still skipped by some previewers. Post
- * pages share their poster instead, whatever its size: the dimensions are read
- * from the file so the services can reserve the right box before downloading
- * it. A path that is not in public/ gets only its type.
+ * pages share their poster instead: when a WebP has the JPEG variant
+ * `<name>-og.jpg` next to it (scripts/build-poster-variants.mjs, at most
+ * 1200 px wide) that one is shared. The dimensions are read from the file so
+ * the services can reserve the right box before downloading it. A path that is
+ * not in public/ gets only its type.
  */
 export interface OgImage {
   url: string;
@@ -49,8 +51,20 @@ async function readSize(file: string): Promise<{ width?: number; height?: number
   }
 }
 
+/** The JPEG share variant of a WebP in public/, when it exists; otherwise src unchanged. */
+export function ogVariant(src: string, publicDir = join(process.cwd(), 'public')): string {
+  if (!src.startsWith('/') || !/\.webp$/i.test(src)) return src;
+  const jpg = src.replace(/\.webp$/i, '-og.jpg');
+  return existsSync(join(publicDir, decodeURI(jpg))) ? jpg : src;
+}
+
 /** Absolute URL, type and, for files in public/, the pixel size. */
-export async function ogImage(src: string, site: URL, publicDir = join(process.cwd(), 'public')): Promise<OgImage> {
+export async function ogImage(
+  original: string,
+  site: URL,
+  publicDir = join(process.cwd(), 'public'),
+): Promise<OgImage> {
+  const src = ogVariant(original, publicDir);
   const url = new URL(src, site).href;
   const type = ogImageType(src);
   const file = src.startsWith('/') ? join(publicDir, decodeURI(src.split(/[?#]/)[0])) : '';

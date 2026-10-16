@@ -1,6 +1,6 @@
 /* Post-build smoke: validates the dist/ artifact emitted by `npm run build`.
  * Run via `npm run test:build` (which builds first). Catches regressions
- * that pass `astro check` and unit tests but break the actual deployable —
+ * that pass `astro check` and unit tests but break the actual deployable:
  * missing pages, broken sitemap, no Pagefind index, missing hreflang. */
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
@@ -40,7 +40,7 @@ describe('build output: dist/', () => {
 
   it('sitemap covers both IT and EN routes', () => {
     // @astrojs/sitemap fans out to sitemap-*.xml shards. Walk dist/ for any
-    // sitemap-*.xml and assert each canonical locale shows up somewhere —
+    // sitemap-*.xml and assert each canonical locale shows up somewhere:
     // catches a regression where i18n routes silently get excluded. The
     // trailing slash on the locale roots depends on Astro's `trailingSlash`
     // setting, so we accept either form.
@@ -66,7 +66,7 @@ describe('build output: dist/', () => {
 
   it('IT homepage links to the EN alternate (slug remap), not /en+IT-slug', () => {
     const html = read('index.html');
-    // Must NOT contain a malformed path like /en/principati/ — should be /en/domains/
+    // Must NOT contain a malformed path like /en/principati/: should be /en/domains/
     expect(html).not.toMatch(/href="\/en\/principati/);
   });
 

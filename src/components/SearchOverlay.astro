@@ -59,6 +59,7 @@ const t = useTranslations(locale);
     // started is dropped, so slow results never overwrite fresher ones.
     let searchSeq = 0;
     let opener: HTMLElement | null = null;
+    let pagefindWarned = false;
 
     const initPagefind = async () => {
       if (pagefind) return;
@@ -67,8 +68,14 @@ const t = useTranslations(locale);
         const path = '/pagefind/pagefind.js';
         pagefind = (await import(/* @vite-ignore */ path)) as Pagefind;
         await pagefind.init();
-      } catch {
-        /* Pagefind not available in dev mode */
+      } catch (err) {
+        // In sviluppo l'indice non c'e' (lo crea `pagefind` dopo la build); in
+        // produzione e' un guasto vero (indice mancante, rete, CSP). In tutti e
+        // due i casi resta nella console (una volta sola: il caricamento si
+        // ritenta a ogni ricerca), e la ricerca semplicemente non mostra
+        // risultati.
+        if (!pagefindWarned) console.warn('Ricerca: Pagefind non disponibile.', err);
+        pagefindWarned = true;
       }
     };
 

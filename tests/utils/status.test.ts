@@ -63,7 +63,7 @@ describe('status: computeTourStatus', () => {
   });
 
   it("treats today's stage as future (live), regression on the e731108 timezone fix", () => {
-    // FROZEN_NOW is 2026-04-21T12:00:00Z — same calendar day in Europe/Rome.
+    // FROZEN_NOW is 2026-04-21T12:00:00Z, same calendar day in Europe/Rome.
     // Before the setHours(0,0,0,0) fix, a stage at 2026-04-21T00:00:00Z would
     // be classified as "completed" because its raw timestamp was less than now.
     expect(computeTourStatus([{ date: new Date('2026-04-21T00:00:00Z') }])).toBe('upcoming');

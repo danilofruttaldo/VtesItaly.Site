@@ -135,7 +135,7 @@ describe('url: getCardImage', () => {
   });
 });
 
-// Minimal post factory: tests only care about .data — the rest of
+// Minimal post factory: tests only care about .data: the rest of
 // CollectionEntry<'blog'> (collection, body, render, etc.) is irrelevant
 // to buildCityCards's pure transformation.
 const post = (data: Record<string, unknown>) => ({ id: 'x', data }) as Parameters<typeof buildCityCards>[0][number];

@@ -66,6 +66,18 @@ ErrorDocument 404 /404.html
     RewriteRule ^guide/archon-(?:principi|giocatori|leghe)/?$ https://vtesitaly.com/guide/archon-italia/ [R=301,L]
     RewriteRule ^en/guides/archon-(?:principi|giocatori|leghe)/?$ https://vtesitaly.com/en/guides/archon-italia/ [R=301,L]
 
+    # Articoli cancellati a marzo 2026: l'indirizzo era ancora linkato fuori,
+    # si porta all'elenco della comunita' invece di un 404. Vengono prima delle
+    # regole generiche su /blog/ e /en/comunita/ qui sotto, che li manderebbero
+    # a una pagina inesistente.
+    RewriteRule ^(?:blog|comunita)/(?:7-campionato-milanese-di-vtes|8-campionato-milanese-di-vtes|il-torneo-dello-stile-treviso|lestate-emiliana-si-tinge-di-bleed|litalia-domina-lec-2024-a-varsavia)/?$ https://vtesitaly.com/comunita/ [R=301,L]
+    RewriteRule ^en/(?:blog|comunita|community)/(?:7-campionato-milanese-di-vtes|8-campionato-milanese-di-vtes|il-torneo-dello-stile-treviso|lestate-emiliana-si-tinge-di-bleed|litalia-domina-lec-2024-a-varsavia)/?$ https://vtesitaly.com/en/community/ [R=301,L]
+
+    # Articolo della lega di Treviso rinominato: il vecchio slug porta al nuovo,
+    # in un solo salto anche dai vecchi percorsi /en/comunita/ e /blog/.
+    RewriteRule ^(?:blog|comunita)/bleeding-the-vine-lega-vtes-treviso/?$ https://vtesitaly.com/comunita/bleeding-the-vine-lega-treviso/ [R=301,L]
+    RewriteRule ^en/(?:blog|comunita|community)/bleeding-the-vine-lega-vtes-treviso/?$ https://vtesitaly.com/en/community/bleeding-the-vine-lega-treviso/ [R=301,L]
+
     # Indirizzi delle versioni precedenti del sito, ancora condivisi fuori
     # (infopack mandati per email, link sui social). Fino al 2026-10-16
     # rispondevano perche' i vecchi file restavano in public_html: il deploy
@@ -78,4 +90,30 @@ ErrorDocument 404 /404.html
     RewriteRule ^blog/?$ https://vtesitaly.com/comunita/ [R=301,L]
     RewriteRule ^blog/(.+?)/?$ https://vtesitaly.com/comunita/$1/ [R=301,L]
     RewriteRule ^week-of-sabbat/?$ https://vtesitaly.com/comunita/week-of-sabbat-2025/ [R=301,L]
+
+    # Sezione inglese delle versioni precedenti: blog e comunita' sotto i nomi
+    # italiani, il campionato nazionale come /en/nazionale/, la Week of Sabbat
+    # come pagina a parte. Gli slug degli articoli sono rimasti gli stessi.
+    RewriteRule ^en/(?:blog|comunita)/?$ https://vtesitaly.com/en/community/ [R=301,L]
+    RewriteRule ^en/(?:blog|comunita)/(.+?)/?$ https://vtesitaly.com/en/community/$1/ [R=301,L]
+    RewriteRule ^en/nazionale/nazionale-(\d{4})/?$ https://vtesitaly.com/en/national-championship/nc-$1/ [R=301,L]
+    RewriteRule ^en/week-of-sabbat/?$ https://vtesitaly.com/en/community/week-of-sabbat-2025/ [R=301,L]
+
+    # Regolamenti del tour 2026 con il vecchio nome, sostituiti dagli infopack.
+    RewriteRule ^tour/tour-2026/regolamento-tour-2026\.pdf$ https://vtesitaly.com/tour/tour-2026/infopack-tour-2026-it.pdf [R=301,L]
+    RewriteRule ^tour/tour-2026/rules-tour-2026\.pdf$ https://vtesitaly.com/tour/tour-2026/infopack-tour-2026-en.pdf [R=301,L]
+
+    # Vecchia pagina del Grand Prix sotto /gp/gp-AAAA/: oggi la cartella tiene
+    # solo immagini e PDF, la pagina sta in /grand-prix/grand-prix-AAAA/.
+    RewriteRule ^gp/gp-(\d{4})/?$ https://vtesitaly.com/grand-prix/grand-prix-$1/ [R=301,L]
+
+    # Cartelle senza index.html (/api/, /fonts/, /_astro/...): con -Indexes
+    # Apache risponderebbe con la sua pagina 403. Si serve il 404 del sito.
+    # Le cartelle con index.html non sono toccate, quindi mod_dir aggiunge
+    # ancora la barra finale; .well-known resta agli strumenti dell'hosting.
+    # Sta dopo i redirect, che altrimenti non scatterebbero sulle cartelle.
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_FILENAME}/index.html !-f
+    RewriteCond %{REQUEST_URI} !^/\.well-known(?:/|$)
+    RewriteRule ^ - [R=404,L]
 </IfModule>

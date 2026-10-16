@@ -89,8 +89,8 @@
 
   <!-- legend -->
   <text class="lgnum" x="60" y="742">1:</text>
-  <text class="lgtxt" x="80" y="742">a “combat ends” strike — ends combat as it resolves; Press is skipped, but End of round still occurs.</text>
+  <text class="lgtxt" x="80" y="742">a “combat ends” strike: ends combat as it resolves; Press is skipped, but End of round still occurs.</text>
   <text class="lgnum" x="60" y="766">2:</text>
-  <text class="lgtxt" x="80" y="766">Psyche! and similar effects (at end of combat) — restart a combat about to end.</text>
+  <text class="lgtxt" x="80" y="766">Psyche! and similar effects (at end of combat): restart a combat about to end.</text>
   <text class="lbl" x="60" y="792">Any time: if a combatant is no longer ready (burned or in torpor), combat ends.</text>
 </svg>

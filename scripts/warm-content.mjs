@@ -71,7 +71,7 @@ const timer = setInterval(() => {
 }, POLL_INTERVAL);
 
 dev.on('exit', (code) => {
-  // dev exited on its own — likely an error. If we have a store, all good.
+  // dev exited on its own: likely an error. If we have a store, all good.
   clearInterval(timer);
   if (existsSync(ROOT_STORE)) {
     log('astro dev exited but data-store is in place; continuing');

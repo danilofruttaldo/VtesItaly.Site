@@ -2,7 +2,7 @@
  * src/data/standings/. The runtime resolver in EventEdition/LeagueEdition/
  * TourEdition does a lenient `includes()` substring match against the basename
  * (strips the leading path), so absolute, relative, and extension-less forms
- * all "work" — but a typo or rename produces a silent empty standings table
+ * all "work", but a typo or rename produces a silent empty standings table
  * instead of a build error. This test pins the invariant. */
 import { describe, it } from 'vitest';
 import { getCollection } from 'astro:content';

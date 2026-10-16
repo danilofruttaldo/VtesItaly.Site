@@ -17,26 +17,38 @@
 ```
 ~/releases/<sha>/              la release in arrivo (diventa public_html)
 ~/releases/prev-AAAAMMGGhhmmss/ le release precedenti, al massimo 5
-~/releases/fallita-AAAAMMGGhhmmss/ una release rimossa dal ritorno indietro automatico
+~/releases/fallita-AAAAMMGGhhmmss/ le release rimosse dal ritorno indietro, al massimo 2
 ~/releases/.ultima-precedente  segnaposto: "<sha> <cartella prev>" fra scambio e conferma
 ~/public_html                  la release attiva
 ```
 
 1. **Caricamento**: il tarball di `dist/` viene estratto in una cartella nuova, `~/releases/<sha>`. `public_html` non
-   viene toccato: un'interruzione qui lascia online la versione precedente.
+   viene toccato: un'interruzione qui lascia online la versione precedente. Prima di estrarre, il passo cancella le
+   cartelle `~/releases/<sha>` rimaste da giri interrotti prima dello scambio (`prev-*` e `fallita-*` non le tocca).
 2. **Scambio** (script passato a `bash -s`, niente da installare sul server):
    - controlla che la release contenga `index.html` e `.htaccess`, altrimenti si ferma;
    - copia `~/public_html/.well-known` nella release e le dà i permessi `755`;
    - `mv ~/public_html ~/releases/prev-<data UTC>`, poi `mv ~/releases/<sha> ~/public_html`. Fra le due rinomine
      `public_html` manca per pochi microsecondi. Se la seconda fallisce, la prima viene annullata subito;
    - scrive `~/releases/.ultima-precedente` con lo sha di questo giro e la cartella `prev-*` appena creata;
-   - cancella le `prev-*` oltre le cinque più recenti.
-3. **Smoke test** (`scripts/smoke-test.sh`) dal runner, cioè da fuori dell'hosting.
-4. **Conferma**: se lo smoke test passa, il segnaposto viene cancellato.
-5. **Ritorno indietro automatico**, solo se un passo precedente è fallito: legge il segnaposto e agisce solo se lo sha
-   è quello di questo giro (un segnaposto rimasto da un giro precedente non va mai disfatto). Sposta la release rotta
-   in `~/releases/fallita-<data UTC>`, rimette la `prev-*` registrata come `public_html` e cancella il segnaposto. Il
-   job resta fallito, così l'errore si vede.
+   - cancella le `prev-*` oltre le cinque più recenti e le `fallita-*` oltre le due più recenti.
+3. **Smoke test** (`scripts/smoke-test.sh`) dal runner, cioè da fuori dell'hosting. Lo script si limita da solo (circa
+   3 minuti nel caso peggiore, si ferma subito se la home non risponde 200); il passo ha comunque `timeout-minutes: 5`, e
+   un timeout conta come fallimento.
+4. **Conferma**: se lo smoke test passa, il segnaposto viene cancellato. Il passo ha `continue-on-error`: se fallisce
+   non fa partire il ritorno indietro (la release ha passato lo smoke test) e il segnaposto rimasto è innocuo, perché il
+   deploy successivo lo sovrascrive.
+5. **Ritorno indietro automatico**, solo se è fallito lo scambio (passo `swap`) o lo smoke test (passo `smoke`, timeout
+   compreso), oppure se il giro è stato annullato:
+
+   ```yaml
+   if: always() && (steps.swap.outcome == 'failure' || steps.smoke.outcome == 'failure' || cancelled())
+   ```
+
+   Legge il segnaposto e agisce solo se lo sha è quello di questo giro: un segnaposto rimasto da un giro precedente non
+   va mai disfatto, e un giro fallito o annullato prima dello scambio non ha niente da ripristinare. Sposta la release
+   rotta in `~/releases/fallita-<data UTC>`, rimette la `prev-*` registrata come `public_html` e cancella il
+   segnaposto. Il job resta fallito, così l'errore si vede.
 
 Ogni deploy carica tutto il sito, senza delta: accettato perché Astro cambia comunque gli hash di quasi tutti i file a
 ogni build. I file tolti dal sito spariscono da soli con la release successiva; per gli indirizzi vecchi ancora
@@ -59,9 +71,10 @@ pipeline (`workflow_dispatch`) su un commit buono, che pubblica una release nuov
 
 ## Manutenzione
 
-- Le `fallita-*` non vengono mai cancellate in automatico: si guardano per capire cosa è andato storto e poi si
-  rimuovono a mano (`rm -rf ~/releases/fallita-*`).
-- Un `~/releases/.ultima-precedente` rimasto sul server vuol dire che un giro si è interrotto fra scambio e conferma: si
-  controlla il sito e, se è a posto, si cancella.
-- Una cartella `~/releases/<sha>` rimasta vuol dire un giro interrotto prima dello scambio: si può cancellare, il giro
-  successivo sullo stesso commit la ricrea comunque da zero.
+- Le `fallita-*` restano per capire cosa è andato storto: lo scambio tiene le due più recenti e cancella le altre, quindi
+  non serve pulirle a mano. Una da conservare più a lungo va spostata fuori da `~/releases`.
+- Un `~/releases/.ultima-precedente` rimasto sul server vuol dire che un giro si è interrotto fra scambio e conferma, o
+  che la conferma è fallita dopo uno smoke test passato. È innocuo: il deploy successivo lo sovrascrive, e il ritorno
+  indietro confronta lo sha prima di agire. Si può cancellare dopo aver controllato il sito.
+- Una cartella `~/releases/<sha>` rimasta (giro interrotto prima dello scambio) la cancella da solo il caricamento del
+  deploy successivo: non serve intervenire.

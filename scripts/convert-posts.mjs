@@ -52,7 +52,7 @@ function stripHtml(html) {
     .replace(/&#8221;/g, '"')
     .replace(/&#8230;/g, '...')
     .replace(/&#8211;/g, '–')
-    .replace(/&#8212;/g, '—')
+    .replace(/&#8212;/g, ' - ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }

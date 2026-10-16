@@ -11,9 +11,14 @@
 # Since 2026-10-16 the .htaccess is versioned in public/.htaccess and
 # deployed with the site, so its behaviour is checked here too, all blocking:
 # real 404s (IT and EN), cache headers, security headers on a 301, and the
-# 301s for retired slugs and for paths of older site versions.
+# 301s for retired slugs and for paths of older site versions, and the 404
+# (instead of Apache's 403) on directories without an index.
 #
-# Polite on purpose: about thirty requests, one at a time, with a short pause.
+# Polite on purpose: about forty requests, one at a time, with a short pause.
+# Bounded on purpose too: short per-request timeouts, one retry, and a global
+# time budget, so a deploy job never hangs here (worst case about 3 minutes).
+# If the home does not answer 200 the script stops at once: every other check
+# would fail for the same reason.
 #
 # Usage: scripts/smoke-test.sh [https://vtesitaly.com]
 
@@ -24,6 +29,8 @@ BASE="${BASE%/}"
 UA="vtesitaly-smoke-test/1.0 (+https://github.com/danilofruttaldo/VtesItaly.Site)"
 PAUSE=1
 FAILED=0
+# Global budget in seconds: past it the run stops and fails.
+BUDGET=170
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
@@ -42,14 +49,19 @@ is_challenge() {
 }
 
 # fetch URL NAME: body to $TMP/NAME.body, headers to $TMP/NAME.head, prints
-# the status code. Retries only when no response arrives at all (000).
+# the status code. Retries once, only when no response arrives at all (000).
+# Stops the whole run when the time budget is spent.
 fetch() {
     local url="$1" name="$2" code=000 attempt
-    for attempt in 1 2 3; do
-        code=$(curl -s -A "$UA" --max-time 15 -o "$TMP/$name.body" -D "$TMP/$name.head" \
+    if [ "$SECONDS" -ge "$BUDGET" ]; then
+        echo "ERROR: time budget of ${BUDGET}s spent before $url, the site is too slow or unreachable." >&2
+        exit 1
+    fi
+    for attempt in 1 2; do
+        code=$(curl -s -A "$UA" --connect-timeout 5 --max-time 8 -o "$TMP/$name.body" -D "$TMP/$name.head" \
             -w '%{http_code}' "$url") || true
         [ "$code" != "000" ] && break
-        [ "$attempt" -lt 3 ] && sleep 3
+        [ "$attempt" -lt 2 ] && sleep 2
     done
     sleep "$PAUSE"
     echo "${code:-000}"
@@ -81,10 +93,16 @@ if [ -s "$TMP/home.body" ] && is_challenge "$TMP/home.body"; then
     exit 1
 fi
 
-if [ "$HOME_CODE" = "200" ] && grep -q '<html lang="it"' "$TMP/home.body"; then
+if [ "$HOME_CODE" != "200" ]; then
+    fail "home / answered HTTP $HOME_CODE after 3 attempts (expected 200)"
+    echo "ERROR: the home does not answer 200, other checks skipped."
+    exit 1
+fi
+
+if grep -q '<html lang="it"' "$TMP/home.body"; then
     ok "home / answers 200 with the Italian page"
 else
-    fail "home / answered HTTP $HOME_CODE (expected 200 with <html lang=\"it\">)"
+    fail "home / answered 200 but without <html lang=\"it\">"
 fi
 
 # --- One page per section, IT and EN --------------------------------------
@@ -177,6 +195,8 @@ redirect /guide/archon-principi/ /guide/archon-italia/ legacy
 # Paths of older site versions, still shared outside the site.
 redirect /docs/gp-2026/infopack-gp-2026-it.pdf /gp/gp-2026/infopack-gp-2026-it.pdf legacy-docs
 redirect /week-of-sabbat /comunita/week-of-sabbat-2025/ legacy-wos
+redirect /en/blog/ /en/community/ legacy-en-blog
+redirect /gp/gp-2026/ /grand-prix/grand-prix-2026/ legacy-gp
 
 # A missing URL must answer 404 with the site's error page, in the right
 # language: before 2026-10-16 it served the home page with 200 (soft 404).
@@ -184,7 +204,7 @@ missing() {
     local path="$1" lang="$2" name="$3" code
     code=$(fetch "$BASE$path" "$name")
     if [ "$code" != "404" ]; then
-        fail "$path answered HTTP $code instead of 404 (soft 404: check ErrorDocument in public/.htaccess)"
+        fail "$path answered HTTP $code instead of 404 (check ErrorDocument and the directory rule in public/.htaccess)"
     elif ! grep -q '<title>404' "$TMP/$name.body" || ! grep -q "<html lang=\"$lang\"" "$TMP/$name.body"; then
         fail "$path answers 404, but not with the $lang 404 page of the site"
     else
@@ -194,6 +214,8 @@ missing() {
 
 missing /pagina-che-non-esiste-smoke-test/ it missing
 missing /en/page-that-does-not-exist-smoke-test/ en missing-en
+# A directory without index.html: Apache's 403 page, turned into the site 404.
+missing /api/ it missing-dir
 
 # Cache headers: HTML must revalidate, hashed assets can be cached for a year.
 html_cc=$(header home cache-control)

@@ -3,7 +3,7 @@
  * Why: the Astro compiler (`@astrojs/compiler-binding`) and the markdown
  * processor (`satteri`) are Rust modules loaded as unsigned `.node` files.
  * Smart App Control blocks them, and `astro dev`, `astro build` and the
- * pre-push hook die with "Cannot find native binding" — the same problem that
+ * pre-push hook die with "Cannot find native binding", the same problem that
  * already moved esbuild to esbuild-wasm.
  *
  * Both loaders fall back on their own to the `*-wasm32-wasi` package when the

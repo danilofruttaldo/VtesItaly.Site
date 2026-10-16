@@ -1,5 +1,5 @@
 /* Generates `<name>-thumb.webp` siblings (240x240, cover, top-anchored) for
- * every `<name>.webp` under the *allowed* image roots — currently
+ * every `<name>.webp` under the *allowed* image roots, currently
  * `public/images/comunita/` (PostCard 80–120 px slot) and
  * `public/images/principi/` (prince avatars at 120 px). Without these,
  * Lighthouse calls out `uses-responsive-images` because the full 1024x1024
@@ -34,7 +34,7 @@ async function walk(dir) {
     if (/-thumb\.webp$/i.test(entry.name)) continue;
     if (/-2x\.webp$/i.test(entry.name)) continue;
     // Responsive width variants from build-poster-variants.mjs are already
-    // downscaled display images — don't thumbnail them.
+    // downscaled display images: don't thumbnail them.
     if (/-\d+w\.webp$/i.test(entry.name)) continue;
 
     const thumb = p.replace(/\.webp$/i, '-thumb.webp');
@@ -44,7 +44,7 @@ async function walk(dir) {
       const tStat = statSync(thumb);
       if (tStat.mtimeMs >= srcStat.mtimeMs) needsRegen = false;
     } catch {
-      // missing — fall through and generate
+      // missing: fall through and generate
     }
     if (!needsRegen) {
       skipped++;

@@ -86,7 +86,7 @@ describe('i18n: formatLocalDate', () => {
 
   it('formats in IT locale', () => {
     const out = formatLocalDate(sample, 'it');
-    // IT month name "aprile" must appear (or the day "21" — locale-tolerant)
+    // IT month name "aprile" must appear (or the day "21", locale-tolerant)
     expect(out.toLowerCase()).toContain('aprile');
     expect(out).toContain('2026');
   });

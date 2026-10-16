@@ -37,7 +37,7 @@ describe('LeagueEdition', () => {
       request: new Request('http://localhost/'),
     });
     // pickLeague filters to comunita posts with leagueStats, but the
-    // discriminated union doesn't narrow through the predicate — assert here.
+    // discriminated union doesn't narrow through the predicate: assert here.
     if (post.data.category !== 'comunita' || !post.data.leagueStats) {
       throw new Error('test fixture: expected a comunita post with leagueStats');
     }

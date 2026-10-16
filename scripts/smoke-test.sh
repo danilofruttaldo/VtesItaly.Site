@@ -8,14 +8,12 @@
 # was extracted (IT and EN), that the sitemap and robots.txt are there, and
 # that Apache still answers the trailing-slash 301.
 #
-# Two kinds of checks:
-#   FAIL   blocking: the deploy is broken or unreachable.
-#   NOTE   report-only: known gaps in the server .htaccess (soft 404, cache
-#          headers, security headers on redirects, legacy 301s). They print a
-#          clear message and never fail the job until the .htaccess proposed
-#          in docs/htaccess-proposta.md is live; then move them to `check`.
+# Since 2026-10-16 the .htaccess is versioned in public/.htaccess and
+# deployed with the site, so its behaviour is checked here too, all blocking:
+# real 404s (IT and EN), cache headers, security headers on a 301, and the
+# 301s for retired slugs and for paths of older site versions.
 #
-# Polite on purpose: about twenty requests, one at a time, with a short pause.
+# Polite on purpose: about thirty requests, one at a time, with a short pause.
 #
 # Usage: scripts/smoke-test.sh [https://vtesitaly.com]
 
@@ -26,7 +24,6 @@ BASE="${BASE%/}"
 UA="vtesitaly-smoke-test/1.0 (+https://github.com/danilofruttaldo/VtesItaly.Site)"
 PAUSE=1
 FAILED=0
-NOTES=0
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
@@ -35,10 +32,6 @@ ok() { printf '  OK      %s\n' "$1"; }
 fail() {
     printf '  FAIL    %s\n' "$1"
     FAILED=$((FAILED + 1))
-}
-note() {
-    printf '  NOTE    %s\n' "$1"
-    NOTES=$((NOTES + 1))
 }
 
 # The hosting firewall answers some clients with an interstitial page
@@ -152,40 +145,61 @@ else
     fail "/principati answered HTTP $code to '$location' (expected 301 to $BASE/principati/)"
 fi
 
-# --- Report-only: known .htaccess gaps -------------------------------------
-# Security headers should be set with `Header always set` so they also apply
-# to redirects and errors.
-if [ -n "$(header slash x-content-type-options)" ]; then
+# --- .htaccess behaviour (public/.htaccess, docs/htaccess.md) -------------
+# Security headers are set with `Header always set`, so they apply to
+# redirects and errors too.
+if [ -n "$(header slash x-content-type-options)" ] && [ -n "$(header slash cross-origin-opener-policy)" ]; then
     ok "security headers are present on the 301 too"
 else
-    note "security headers (X-Content-Type-Options...) missing on the 301: the .htaccess uses 'Header set' instead of 'Header always set'. See docs/htaccess-proposta.md."
+    fail "security headers (X-Content-Type-Options, Cross-Origin-Opener-Policy) missing on the 301 of /principati: check 'Header always set' in public/.htaccess"
 fi
 
-# Legacy slugs are meta-refresh pages today (HTTP 200): search engines treat
-# them as soft redirects. A real 301 belongs in the .htaccess.
-code=$(fetch "$BASE/guide/archon-principi/" legacy)
-if [ "$code" = "301" ]; then
-    ok "legacy /guide/archon-principi/ answers 301"
-else
-    note "legacy /guide/archon-principi/ answered HTTP $code (meta refresh), not a 301. See docs/htaccess-proposta.md."
-fi
+# redirect PATH TARGET NAME: PATH must answer 301 with Location $BASE$TARGET,
+# and the destination must answer 200.
+redirect() {
+    local path="$1" target="$2" name="$3" code location
+    code=$(fetch "$BASE$path" "$name")
+    location=$(header "$name" location)
+    if [ "$code" != "301" ] || [ "$location" != "$BASE$target" ]; then
+        fail "$path answered HTTP $code to '$location' (expected 301 to $BASE$target)"
+        return
+    fi
+    code=$(fetch "$BASE$target" "$name-dest")
+    if [ "$code" = "200" ]; then
+        ok "$path answers 301 to $target (200)"
+    else
+        fail "$path answers 301, but $target answered HTTP $code"
+    fi
+}
 
-# A missing URL must answer 404 with the site's error page. Today the
-# .htaccess serves the home page with 200 (soft 404).
-code=$(fetch "$BASE/pagina-che-non-esiste-smoke-test/" missing)
-if [ "$code" = "404" ] && grep -q '<title>404' "$TMP/missing.body"; then
-    ok "a missing URL answers 404 with the site's 404 page"
-elif [ "$code" = "404" ]; then
-    note "a missing URL answers 404, but not with the site's 404 page (ErrorDocument missing?)"
-else
-    note "a missing URL answered HTTP $code instead of 404: soft 404 in the server .htaccess (a fallback to index.html). See docs/htaccess-proposta.md."
-fi
+# Retired slug of the archon guides.
+redirect /guide/archon-principi/ /guide/archon-italia/ legacy
+# Paths of older site versions, still shared outside the site.
+redirect /docs/gp-2026/infopack-gp-2026-it.pdf /gp/gp-2026/infopack-gp-2026-it.pdf legacy-docs
+redirect /week-of-sabbat /comunita/week-of-sabbat-2025/ legacy-wos
+
+# A missing URL must answer 404 with the site's error page, in the right
+# language: before 2026-10-16 it served the home page with 200 (soft 404).
+missing() {
+    local path="$1" lang="$2" name="$3" code
+    code=$(fetch "$BASE$path" "$name")
+    if [ "$code" != "404" ]; then
+        fail "$path answered HTTP $code instead of 404 (soft 404: check ErrorDocument in public/.htaccess)"
+    elif ! grep -q '<title>404' "$TMP/$name.body" || ! grep -q "<html lang=\"$lang\"" "$TMP/$name.body"; then
+        fail "$path answers 404, but not with the $lang 404 page of the site"
+    else
+        ok "$path answers 404 with the $lang 404 page"
+    fi
+}
+
+missing /pagina-che-non-esiste-smoke-test/ it missing
+missing /en/page-that-does-not-exist-smoke-test/ en missing-en
 
 # Cache headers: HTML must revalidate, hashed assets can be cached for a year.
 html_cc=$(header home cache-control)
 case "$html_cc" in
-    *no-cache* | *max-age=0*) ok "HTML Cache-Control: $html_cc" ;;
-    *) note "HTML has Cache-Control '${html_cc:-none}' (expected no-cache). See docs/htaccess-proposta.md." ;;
+    *no-cache*) ok "HTML Cache-Control: $html_cc" ;;
+    *) fail "HTML has Cache-Control '${html_cc:-none}' (expected no-cache)" ;;
 esac
 
 asset=$(grep -o '/_astro/[^"]*\.\(css\|js\)' "$TMP/home.body" | head -n 1)
@@ -197,7 +211,7 @@ if [ -n "$asset" ]; then
     else
         case "$asset_cc" in
             *immutable*) ok "$asset is 200, Cache-Control: $asset_cc" ;;
-            *) note "$asset is 200 but Cache-Control is '${asset_cc:-none}' (expected 1 year, immutable). See docs/htaccess-proposta.md." ;;
+            *) fail "$asset is 200 but Cache-Control is '${asset_cc:-none}' (expected 1 year, immutable)" ;;
         esac
     fi
 else
@@ -205,9 +219,8 @@ else
 fi
 
 echo
-[ "$NOTES" -gt 0 ] && echo "$NOTES report-only notes (not blocking)."
 if [ "$FAILED" -gt 0 ]; then
     echo "ERROR: $FAILED checks failed."
     exit 1
 fi
-echo "All blocking checks passed."
+echo "All checks passed."

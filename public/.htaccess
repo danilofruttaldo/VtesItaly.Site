@@ -1,0 +1,81 @@
+# .htaccess di vtesitaly.com, versionato nel repository dal 2026-10-16 e
+# pubblicato insieme al sito: si modifica qui, non sul server.
+# Spiegazione blocco per blocco: docs/htaccess.md.
+
+# Intestazioni di sicurezza. "always" perche' valgano anche su 301, 404 e
+# pagine di errore: con "Header set" mancavano proprio li'.
+# X-XSS-Protection non c'e' piu': i browser l'hanno abbandonato.
+# La CSP degli script sta nel meta che genera Astro (security.csp, con gli
+# hash); qui solo le direttive che un meta non puo' portare o che non
+# riguardano gli script. Le due politiche si applicano insieme.
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Content-Security-Policy "frame-ancestors 'self'; object-src 'none'; base-uri 'self'"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
+# Cache. I file sotto /_astro/ hanno l'impronta nel nome: cambiano indirizzo
+# quando cambiano, quindi un anno e immutable. Immagini, PDF e icone un mese.
+# Tutto il resto (HTML, sw.js, manifest, sitemap, /api/) va ricontrollato a
+# ogni visita, altrimenti una pagina aggiornata resta vecchia nel browser.
+<IfModule mod_headers.c>
+    <If "%{REQUEST_URI} =~ m#^/_astro/#">
+        Header always set Cache-Control "public, max-age=31536000, immutable"
+    </If>
+    <ElseIf "%{REQUEST_URI} =~ m#\.(?:webp|avif|png|jpe?g|gif|svg|ico|pdf)$#">
+        Header always set Cache-Control "public, max-age=2592000"
+    </ElseIf>
+    <Else>
+        Header always set Cache-Control "no-cache"
+    </Else>
+</IfModule>
+
+# Niente compressione per i formati gia' compressi.
+<IfModule mod_setenvif.c>
+    SetEnvIfNoCase Request_URI "\.(?:webp|avif|png|jpe?g|gif|woff2|pdf)$" no-gzip no-brotli
+</IfModule>
+
+# File che non devono uscire.
+<FilesMatch "^(error_log|\.htaccess)">
+    Require all denied
+</FilesMatch>
+
+Options -Indexes
+
+# Pagina 404 vera. Fino al 2026-10-16 qui c'era il ripiego da SPA verso
+# /index.html, che rispondeva con la home e codice 200 a ogni indirizzo
+# inesistente: il sito e' completamente statico, non serve.
+ErrorDocument 404 /404.html
+<If "%{REQUEST_URI} =~ m#^/en/#">
+    ErrorDocument 404 /en/404/index.html
+</If>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # www -> dominio senza www.
+    RewriteCond %{HTTP_HOST} ^www\.vtesitaly\.com$ [NC]
+    RewriteRule ^(.*)$ https://vtesitaly.com/$1 [R=301,L]
+
+    # Guide archon unificate: 301 veri al posto delle pagine con meta refresh
+    # di Astro (astro.config.mjs, redirects), che restano come rete di sicurezza.
+    RewriteRule ^guide/archon-(?:principi|giocatori|leghe)/?$ https://vtesitaly.com/guide/archon-italia/ [R=301,L]
+    RewriteRule ^en/guides/archon-(?:principi|giocatori|leghe)/?$ https://vtesitaly.com/en/guides/archon-italia/ [R=301,L]
+
+    # Indirizzi delle versioni precedenti del sito, ancora condivisi fuori
+    # (infopack mandati per email, link sui social). Fino al 2026-10-16
+    # rispondevano perche' i vecchi file restavano in public_html: il deploy
+    # a release li ha tolti, e questi 301 li portano dove stanno oggi.
+    RewriteRule ^docs/gp-(\d{4})/(.+)$ https://vtesitaly.com/gp/gp-$1/$2 [R=301,L]
+    RewriteRule ^docs/nc-(\d{4})/(.+)$ https://vtesitaly.com/nc/nc-$1/$2 [R=301,L]
+    RewriteRule ^docs/wos-(\d{4})/(.+)$ https://vtesitaly.com/ev/wos-$1/$2 [R=301,L]
+    RewriteRule ^docs/tour/regolamento-tour-2026\.pdf$ https://vtesitaly.com/tour/tour-2026/infopack-tour-2026-it.pdf [R=301,L]
+    RewriteRule ^docs/tour/rules-tour-2026\.pdf$ https://vtesitaly.com/tour/tour-2026/infopack-tour-2026-en.pdf [R=301,L]
+    RewriteRule ^blog/?$ https://vtesitaly.com/comunita/ [R=301,L]
+    RewriteRule ^blog/(.+?)/?$ https://vtesitaly.com/comunita/$1/ [R=301,L]
+    RewriteRule ^week-of-sabbat/?$ https://vtesitaly.com/comunita/week-of-sabbat-2025/ [R=301,L]
+</IfModule>

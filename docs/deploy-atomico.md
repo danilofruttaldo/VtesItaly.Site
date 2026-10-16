@@ -1,192 +1,67 @@
-# Deploy atomico e pulizia dei file vecchi
+# Deploy per cartelle di release
 
-> **Da verificare sull'hosting prima di attivarlo.** Niente di quello che segue è attivo: il deploy di oggi resta il
-> tar-pipe in `.github/workflows/deploy.yml`. Questo documento descrive come passare a un deploy per cartelle di release,
-> con i comandi esatti, ma le premesse (rinomine nella home, symlink come document root, posizione dei sottodomini)
-> dipendono dall'hosting condiviso e nessuno le ha ancora provate.
+> **Attivo dal 16/10/2026.** Il job `deploy` di `.github/workflows/deploy.yml` fa quello che descrive questo documento.
+> Prima di quella data il sito veniva estratto direttamente dentro `public_html` con un tar-pipe: niente atomicità,
+> nessun file vecchio cancellato, nessun ritorno indietro.
 
-## Il problema
+## Premesse verificate sull'hosting (16/10/2026)
 
-Il job `deploy` fa `tar -C dist -cz . | ssh ... "tar -C ~/public_html -xz"`. Funziona, ma:
+- `public_html` è una cartella vera, e `~/releases` sta sullo stesso filesystem: `mv` è una rinomina istantanea.
+- Matomo (`~/stats.vtesitaly.com`) e gp2025 (`~/gp2025.vtesitaly.com`) hanno la document root fuori da `public_html`:
+  lo scambio non li tocca.
+- L'unico file che esiste solo sul server è `.well-known/` (le verifiche di AutoSSL). Il `.htaccess` arriva dal repo
+  (`public/.htaccess`, vedi [htaccess.md](htaccess.md)).
 
-- **non è atomico**: per i secondi dell'estrazione `public_html` contiene un misto di vecchia e nuova versione. Una
-  pagina nuova può chiedere un CSS in `/_astro/` non ancora arrivato;
-- **non cancella mai niente**: i file con hash di ogni release precedente (`/_astro/*`, i frammenti di Pagefind) e le
-  pagine tolte dal sito restano pubblicati per sempre. Una pagina rimossa continua a rispondere 200;
-- **non ha un ritorno indietro**: per tornare alla versione precedente bisogna rilanciare la pipeline sul commit vecchio;
-- il controllo dopo il deploy c'è da ottobre 2026 (`scripts/smoke-test.sh`), ma se fallisce il sito rotto resta online.
+## Cosa fa il job
 
-Le due soluzioni sotto sono indipendenti. La **B** (pulizia con manifest) è la meno invasiva e si può adottare da sola.
+```
+~/releases/<sha>/              la release in arrivo (diventa public_html)
+~/releases/prev-AAAAMMGGhhmmss/ le release precedenti, al massimo 5
+~/releases/fallita-AAAAMMGGhhmmss/ una release rimossa dal ritorno indietro automatico
+~/releases/.ultima-precedente  segnaposto: "<sha> <cartella prev>" fra scambio e conferma
+~/public_html                  la release attiva
+```
 
-## Verifiche da fare prima (una volta, via SSH)
+1. **Caricamento**: il tarball di `dist/` viene estratto in una cartella nuova, `~/releases/<sha>`. `public_html` non
+   viene toccato: un'interruzione qui lascia online la versione precedente.
+2. **Scambio** (script passato a `bash -s`, niente da installare sul server):
+   - controlla che la release contenga `index.html` e `.htaccess`, altrimenti si ferma;
+   - copia `~/public_html/.well-known` nella release e le dà i permessi `755`;
+   - `mv ~/public_html ~/releases/prev-<data UTC>`, poi `mv ~/releases/<sha> ~/public_html`. Fra le due rinomine
+     `public_html` manca per pochi microsecondi. Se la seconda fallisce, la prima viene annullata subito;
+   - scrive `~/releases/.ultima-precedente` con lo sha di questo giro e la cartella `prev-*` appena creata;
+   - cancella le `prev-*` oltre le cinque più recenti.
+3. **Smoke test** (`scripts/smoke-test.sh`) dal runner, cioè da fuori dell'hosting.
+4. **Conferma**: se lo smoke test passa, il segnaposto viene cancellato.
+5. **Ritorno indietro automatico**, solo se un passo precedente è fallito: legge il segnaposto e agisce solo se lo sha
+   è quello di questo giro (un segnaposto rimasto da un giro precedente non va mai disfatto). Sposta la release rotta
+   in `~/releases/fallita-<data UTC>`, rimette la `prev-*` registrata come `public_html` e cancella il segnaposto. Il
+   job resta fallito, così l'errore si vede.
+
+Ogni deploy carica tutto il sito, senza delta: accettato perché Astro cambia comunque gli hash di quasi tutti i file a
+ogni build. I file tolti dal sito spariscono da soli con la release successiva; per gli indirizzi vecchi ancora
+condivisi fuori ci sono i 301 nel `.htaccess`.
+
+## Ritorno indietro a mano
+
+Per esempio quando un difetto passa lo smoke test e si nota dopo. Via SSH:
 
 ```bash
-# 1. public_html è una cartella vera, non già un symlink?
-ls -ld ~/public_html
-
-# 2. ~/releases starebbe sullo stesso filesystem di public_html?
-#    Serve perché `mv` sia una rinomina istantanea e non una copia.
-mkdir -p ~/releases && df ~/public_html ~/releases
-
-# 3. Dove stanno le document root dei sottodomini (stats.vtesitaly.com, Matomo)?
-#    cPanel > Domini. Se una sta DENTRO public_html (es. public_html/stats),
-#    lo scambio di cartella della soluzione A la farebbe sparire: va prima
-#    spostata fuori, oppure si usa solo la soluzione B.
-ls -la ~/public_html | grep -v -e '_astro' -e '\.html$'
-
-# 4. File che esistono solo sul server, da preservare a ogni release.
-ls -la ~/public_html/.htaccess ~/public_html/.well-known ~/public_html/cgi-bin \
-       ~/public_html/.user.ini ~/public_html/php.ini 2>/dev/null
-
-# 5. Strumenti GNU disponibili (servono -T, -d, comm).
-mv --version | head -n 1; xargs --version | head -n 1; command -v comm
+PREV=$(ls -1dt ~/releases/prev-* | head -n 1)   # la release precedente più recente
+ls "$PREV/index.html" && \
+  mv ~/public_html ~/releases/fallita-$(date -u +%Y%m%d%H%M%S) && \
+  mv "$PREV" ~/public_html
+rm -f ~/releases/.ultima-precedente
 ```
 
-File solo-server noti o probabili: `.htaccess` (gestito a mano), `.well-known/` (rinnovo AutoSSL di cPanel), `cgi-bin/`,
-`.user.ini` / `php.ini`, `error_log`, e le cartelle di eventuali sottodomini o addon domain.
+Per tornare ancora più indietro si ripete: ogni giro consuma la `prev-*` più recente. In alternativa si rilancia la
+pipeline (`workflow_dispatch`) su un commit buono, che pubblica una release nuova.
 
-## Soluzione A: cartelle di release
+## Manutenzione
 
-Struttura sul server:
-
-```
-~/releases/<sha>/     una cartella per release, al massimo 5
-~/releases/CURRENT    lo sha della release attiva
-~/public_html         la release attiva (cartella rinominata, oppure symlink)
-```
-
-### A1. Estrazione dalla pipeline
-
-Al posto del passo `Deploy via tar-pipe over SSH`, stesse variabili d'ambiente e stessa preparazione della chiave:
-
-```bash
-SHA="${GITHUB_SHA}"
-SSH="ssh -i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes -o BatchMode=yes $SSH_USER@$SSH_HOST"
-
-# Estrae in una cartella nuova: public_html non viene toccato.
-$SSH "rm -rf ~/releases/$SHA.tmp && mkdir -p ~/releases/$SHA.tmp"
-tar -C dist -cz . | $SSH "tar -C ~/releases/$SHA.tmp -xz && mv ~/releases/$SHA.tmp ~/releases/$SHA"
-
-# Attiva (script sotto, passato su stdin: niente da installare sul server).
-$SSH "bash -s -- $SHA" < scripts/activate-release.sh
-```
-
-Se la pipeline viene interrotta durante l'estrazione resta solo una cartella `.tmp`: il sito non se ne accorge.
-
-### A2. Attivazione con due rinomine (variante senza symlink)
-
-Contenuto proposto per `scripts/activate-release.sh` (non ancora nel repo):
-
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-SHA="$1"
-R="$HOME/releases"
-NEW="$R/$SHA"
-LIVE="$HOME/public_html"
-
-[ -f "$NEW/index.html" ] || { echo "release $SHA incompleta"; exit 1; }
-
-# File che esistono solo sul server: copiati dalla release attiva nella nuova.
-for f in .htaccess .well-known cgi-bin .user.ini php.ini; do
-  if [ -e "$LIVE/$f" ] && [ ! -e "$NEW/$f" ]; then cp -a "$LIVE/$f" "$NEW/"; fi
-done
-
-PREV="$(cat "$R/CURRENT" 2>/dev/null || echo "pre-release-$(date +%Y%m%d%H%M%S)")"
-
-# Lo scambio: due rinomine sullo stesso filesystem, pochi millisecondi in cui
-# public_html non esiste (una richiesta in quell'istante riceve un errore).
-mv "$LIVE" "$R/$PREV"
-mv "$NEW" "$LIVE"
-echo "$SHA" > "$R/CURRENT"
-echo "$PREV" > "$R/PREVIOUS"
-
-# Tiene le ultime 5 release (le cartelle in ~/releases sono tutte quelle non attive).
-ls -1dt "$R"/*/ | tail -n +6 | xargs -r -d '\n' rm -rf --
-echo "attiva $SHA, precedente $PREV"
-```
-
-### A3. Attivazione con symlink (variante atomica, se l'hosting la permette)
-
-Con `public_html` symlink verso la release, lo scambio è una sola rinomina atomica del link: nessun istante a vuoto. Va
-provato prima su un sottodominio di prova: alcuni hosting cPanel non accettano una document root che sia un symlink, o
-richiedono `SymLinksIfOwnerMatch`.
-
-Prima volta (a mano): `mv ~/public_html ~/releases/iniziale && ln -s ~/releases/iniziale ~/public_html`.
-
-Poi, al posto delle due `mv` dell'A2:
-
-```bash
-cp -a "$HOME/shared/.htaccess" "$NEW/"          # con i symlink il .htaccess vive in ~/shared
-ln -sfn "$NEW" "$HOME/public_html.next"
-mv -T "$HOME/public_html.next" "$HOME/public_html"   # rinomina atomica del link
-echo "$SHA" > "$R/CURRENT"
-# Pulizia: tutte le release tranne le 5 più recenti, mai quella attiva.
-ls -1dt "$R"/*/ | grep -v "/$SHA/$" | tail -n +5 | xargs -r -d '\n' rm -rf --
-```
-
-### A4. Ritorno alla release precedente
-
-Variante con rinomine:
-
-```bash
-R=~/releases; CUR=$(cat $R/CURRENT); PREV=$(cat $R/PREVIOUS)
-mv ~/public_html "$R/$CUR" && mv "$R/$PREV" ~/public_html
-echo "$PREV" > $R/CURRENT; echo "$CUR" > $R/PREVIOUS
-```
-
-Variante con symlink:
-
-```bash
-ln -sfn ~/releases/<sha-precedente> ~/public_html.next && mv -T ~/public_html.next ~/public_html
-echo <sha-precedente> > ~/releases/CURRENT
-```
-
-Lo smoke test (`scripts/smoke-test.sh`) può fare da innesco: se fallisce, la pipeline esegue il ritorno indietro con lo
-stesso `bash -s` e poi fallisce lo stesso, così l'errore resta visibile.
-
-## Soluzione B: pulizia dei file vecchi con un manifest
-
-Funziona anche con il deploy in place di oggi, e non tocca mai i file solo-server: cancella **solo** file che un deploy
-precedente ha creato e che il deploy nuovo non contiene più. Un file che nessun manifest ha mai elencato (`.htaccess`,
-`.well-known/`, Matomo) non può essere cancellato.
-
-Nella pipeline, dopo il tar-pipe:
-
-```bash
-# Elenco dei file della release, fuori da public_html (non va pubblicato).
-(cd dist && find . -type f | LC_ALL=C sort) | $SSH "cat > ~/deploy-manifest.new"
-$SSH 'bash -s' <<'EOF'
-set -euo pipefail
-cd ~/public_html
-if [ -f ~/deploy-manifest ]; then
-  # Righe del manifest vecchio assenti dal nuovo, con una rete di sicurezza in più
-  # sui file solo-server anche se per errore fossero finiti in un manifest.
-  LC_ALL=C comm -23 ~/deploy-manifest ~/deploy-manifest.new \
-    | grep -vE '^\./(\.htaccess|\.well-known/|cgi-bin/|\.user\.ini$|php\.ini$|error_log$)' \
-    > ~/deploy-stale || true
-  echo "file da rimuovere: $(wc -l < ~/deploy-stale)"
-  xargs -r -d '\n' rm -f -- < ~/deploy-stale
-  # Cartelle rimaste vuote, solo fra quelle che contenevano file rimossi.
-  xargs -r -d '\n' -n 1 dirname < ~/deploy-stale | LC_ALL=C sort -u \
-    | xargs -r -d '\n' rmdir -p --ignore-fail-on-non-empty -- 2>/dev/null || true
-fi
-mv ~/deploy-manifest.new ~/deploy-manifest
-EOF
-```
-
-Note:
-
-- **Al primo giro non cancella niente**: non esiste ancora un manifest vecchio. I file stantii accumulati fino a oggi si
-  trovano una volta a mano confrontando `find . -type f` su `public_html` con il manifest, e vanno guardati uno per uno
-  prima di cancellarli.
-- **Un giro di ritardo, se serve**: chi ha la pagina vecchia aperta (o in cache nel service worker) chiede ancora i CSS e
-  JS della release precedente. Per lasciarli vivi una release in più, confrontare con il manifest di due deploy fa
-  (`deploy-manifest.prev`) invece che con l'ultimo.
-- `-d '\n'` richiede GNU xargs (verifica 5). I nomi dei file generati da Astro non contengono a capo.
-
-## Ordine consigliato
-
-1. Verifiche della sezione iniziale, annotando i risultati in questo file.
-2. Soluzione B da sola: è reversibile (basta togliere il passo) e risolve le pagine rimosse che rispondono ancora 200.
-3. Soluzione A2 o A3 solo se le verifiche 2 e 3 sono positive, provata prima a mano con uno sha già pubblicato.
+- Le `fallita-*` non vengono mai cancellate in automatico: si guardano per capire cosa è andato storto e poi si
+  rimuovono a mano (`rm -rf ~/releases/fallita-*`).
+- Un `~/releases/.ultima-precedente` rimasto sul server vuol dire che un giro si è interrotto fra scambio e conferma: si
+  controlla il sito e, se è a posto, si cancella.
+- Una cartella `~/releases/<sha>` rimasta vuol dire un giro interrotto prima dello scambio: si può cancellare, il giro
+  successivo sullo stesso commit la ricrea comunque da zero.

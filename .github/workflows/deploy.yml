@@ -155,12 +155,16 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via tar-pipe over SSH
-        # Single SSH session, gzip-streamed tarball extracted in place.
-        # Additive (like scp): never deletes user-managed files (.htaccess),
-        # but also never deletes stale files from older releases. A release
-        # directory deploy with rollback is described in docs/deploy-atomico.md,
-        # to be verified on the hosting before switching to it.
+      - name: Deploy a release and swap it in
+        # Release directory deploy (docs/deploy-atomico.md, verified on the
+        # hosting on 2026-10-16): the tarball is extracted into
+        # ~/releases/<sha>, then public_html is swapped with two renames.
+        # Nothing is ever written into the live directory, files removed from
+        # the site disappear, and the previous release stays on disk for the
+        # rollback below. .htaccess comes from the repo (public/.htaccess);
+        # .well-known (AutoSSL challenges) is the only server-only file and is
+        # copied over. Matomo (~/stats.vtesitaly.com) and gp2025 live outside
+        # public_html and are not touched.
         # Trade-off vs lftp: no delta, uploads everything each run. Accepted
         # because shared hosting throttles parallel SFTP, and Astro's content
         # hashes mean most files change anyway on rebuild.
@@ -193,15 +197,82 @@ jobs:
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
 
-          tar -C dist -cz . | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" \
-            -o StrictHostKeyChecking=yes -o BatchMode=yes \
-            "$SSH_USER@$SSH_HOST" "tar -C /home/$SSH_USER/public_html -xz"
+          SSH_OPTS=(-i ~/.ssh/deploy_key -p "$SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes)
+          REMOTE="$SSH_USER@$SSH_HOST"
+
+          # 1. Upload into a fresh release directory.
+          tar -C dist -cz . | ssh "${SSH_OPTS[@]}" "$REMOTE" \
+            "set -e; rm -rf ~/releases/$GITHUB_SHA; mkdir -p ~/releases/$GITHUB_SHA; tar -C ~/releases/$GITHUB_SHA -xz"
+
+          # 2. Swap it in. The two renames leave public_html missing for a few
+          # microseconds, far less than the in-place extraction this replaces.
+          ssh "${SSH_OPTS[@]}" "$REMOTE" bash -s -- "$GITHUB_SHA" <<'REMOTE_SCRIPT'
+          set -euo pipefail
+          SHA=$1
+          NEW=~/releases/$SHA
+          [ -f "$NEW/index.html" ] || { echo "Release incompleta: manca index.html"; exit 1; }
+          [ -f "$NEW/.htaccess" ] || { echo "Release incompleta: manca .htaccess"; exit 1; }
+          if [ -d ~/public_html/.well-known ]; then
+            cp -a ~/public_html/.well-known "$NEW/"
+          fi
+          chmod 755 "$NEW"
+          PREV=~/releases/prev-$(date -u +%Y%m%d%H%M%S)
+          mv ~/public_html "$PREV"
+          if ! mv "$NEW" ~/public_html; then
+            # Never leave the site without a document root.
+            mv "$PREV" ~/public_html
+            echo "Scambio fallito: rimessa la release precedente."
+            exit 1
+          fi
+          # Marker tied to this commit: the rollback acts only on its own swap.
+          echo "$SHA $PREV" > ~/releases/.ultima-precedente
+          # Keep the five most recent previous releases.
+          { ls -1dt ~/releases/prev-* 2>/dev/null || true; } | tail -n +6 | xargs -r rm -rf
+          echo "Pubblicata $SHA, precedente in $PREV"
+          REMOTE_SCRIPT
 
       - name: Smoke test production
         # Runs from the runner, i.e. from outside the hosting: catches DNS,
         # firewall and missing-section problems that a check on the server
         # itself would not see.
         run: bash scripts/smoke-test.sh https://vtesitaly.com
+
+      - name: Confirm the release
+        # Smoke test passed: the marker is no longer needed.
+        env:
+          SSH_USER: ${{ vars.SSH_USER }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            "$SSH_USER@$SSH_HOST" "rm -f ~/releases/.ultima-precedente"
+
+      - name: Roll back to the previous release
+        # Only when the smoke test (or the swap) failed after a release went
+        # live: puts the previous public_html back and keeps the broken one
+        # aside for inspection.
+        if: failure()
+        env:
+          SSH_USER: ${{ vars.SSH_USER }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
+        run: |
+          set -euo pipefail
+          [ -f ~/.ssh/deploy_key ] || { echo "Nessuna chiave: il deploy non era partito."; exit 0; }
+          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes \
+            "$SSH_USER@$SSH_HOST" bash -s -- "$GITHUB_SHA" <<'REMOTE_SCRIPT'
+          set -euo pipefail
+          [ -f ~/releases/.ultima-precedente ] || { echo "Nessuna release precedente registrata: niente da ripristinare."; exit 0; }
+          read -r SHA PREV < ~/releases/.ultima-precedente
+          # A marker from an earlier, successful run must never be undone: if the
+          # swap of this run did not happen, the live site is the good one.
+          [ "$SHA" = "$1" ] || { echo "Lo scambio di questo giro non e' avvenuto: niente da ripristinare."; exit 0; }
+          [ -d "$PREV" ] || { echo "La release precedente $PREV non c'e' piu'."; exit 1; }
+          mv ~/public_html ~/releases/fallita-$(date -u +%Y%m%d%H%M%S)
+          mv "$PREV" ~/public_html
+          rm -f ~/releases/.ultima-precedente
+          echo "Ripristinata $PREV"
+          REMOTE_SCRIPT
 
   coverage-badge:
     # Refreshes `.github/coverage-badge.json` (read by the README badge via

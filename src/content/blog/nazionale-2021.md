@@ -8,7 +8,7 @@ excerpt: 'Il Campionato Nazionale Italiano VTES 2021 si terrà sabato 8 gennaio 
 poster: '/nc/nc-2021/nc-2021-poster.webp'
 venue:
   name: 'Circolo Arci Benassi'
-  address: 'Viale Sergio Cavina 4 — Bologna'
+  address: 'Viale Sergio Cavina 4, Bologna'
   siteUrl: 'https://circolobenassi.wixsite.com/arci-benassi'
   mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Benassi+Viale+Sergio+Cavina+4+Bologna'
 events:
@@ -21,7 +21,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-b23a-7145-86b2-80a5cc999844'
 pricing: []
 contact: 'info@vtesitaly.com'
-payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
 standingsUrl: '/nc/nc-2021/standings-nc-2021.json'

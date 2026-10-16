@@ -56,8 +56,8 @@ venue:
   address: 'Via f.lli Picardi 126, Sesto San Giovanni (MI)'
   mapUrl: 'https://maps.google.com/?q=Cantina+e+Coscienza+Via+Picardi+126+Sesto+San+Giovanni+MI'
   siteUrl: 'https://www.cantinaecoscienza.it/'
-registration: 'Pre-registration and decklists required — max 15 spots per game day'
-payment: 'PayPal (friends & family) — henry.hinde1973@gmail.com'
+registration: 'Pre-registration and decklists required, max 15 spots per game day'
+payment: 'PayPal (friends & family): henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
 standingsLabel: 'Standings after Game Day 2'
@@ -68,7 +68,7 @@ links:
 locale: 'en'
 ---
 
-The first Milan city league of _Vampire: The Eternal Struggle_! Four Sundays of gaming, food and vampires — because the main goal is to hang out together and have fun, and with the small entry fee support the Milan Community for prizes, promotional materials and various goodies.
+The first Milan city league of _Vampire: The Eternal Struggle_! Four Sundays of gaming, food and vampires, because the main goal is to hang out together and have fun, and with the small entry fee support the Milan Community for prizes, promotional materials and various goodies.
 
 Game days are open to anyone from the Italian Community, with a maximum of 15 players per game day. The first 2 rounds are played with the **same deck** posted on Archon, while for the final you can switch decks freely to add variety and unpredictability to the game.
 

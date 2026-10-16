@@ -86,7 +86,7 @@ const cityTabs = data
 
       {/* Classifica Nazionale */}
       <h3 class="wos-subtitle">{t.national_title}</h3>
-      <div class="wos-table-wrap">
+      <div class="wos-table-wrap" tabindex="0" role="region" aria-label={t.national_title}>
         <table class="wos-table">
           <caption class="sr-only">{t.national_title}</caption>
           <thead>
@@ -136,7 +136,7 @@ const cityTabs = data
               aria-labelledby={`wos-tab-${tabId}`}
             >
               {players.length > 0 ? (
-                <div class="wos-table-wrap">
+                <div class="wos-table-wrap" tabindex="0" role="region" aria-label={cityName}>
                   <table class="wos-table">
                     <caption class="sr-only">{cityName}</caption>
                     <thead>
@@ -376,34 +376,28 @@ const cityTabs = data
   }
 </style>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    var container = document.getElementById('wos-tabs');
-    if (!container) return;
-    var btns = Array.from(container.querySelectorAll('.wos-tab-btn'));
-    var panels = container.querySelectorAll('.wos-tab-panel');
+<script>
+  const container = document.getElementById('wos-tabs');
+  if (container) {
+    const btns = Array.from(container.querySelectorAll<HTMLElement>('.wos-tab-btn'));
+    const panels = container.querySelectorAll('.wos-tab-panel');
 
-    function activateTab(btn) {
-      btns.forEach(function (b) {
+    const activateTab = (btn: HTMLElement) => {
+      btns.forEach((b) => {
         b.classList.remove('is-active');
         b.setAttribute('aria-selected', 'false');
       });
-      panels.forEach(function (p) {
-        p.classList.remove('is-active');
-      });
+      panels.forEach((p) => p.classList.remove('is-active'));
       btn.classList.add('is-active');
       btn.setAttribute('aria-selected', 'true');
-      var panel = container.querySelector('[data-panel="' + btn.dataset.tab + '"]');
-      if (panel) panel.classList.add('is-active');
-    }
+      container.querySelector('[data-panel="' + btn.dataset.tab + '"]')?.classList.add('is-active');
+    };
 
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        activateTab(btn);
-      });
-      btn.addEventListener('keydown', function (e) {
-        var idx = btns.indexOf(btn);
-        var next = -1;
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => activateTab(btn));
+      btn.addEventListener('keydown', (e) => {
+        const idx = btns.indexOf(btn);
+        let next = -1;
         if (e.key === 'ArrowRight') next = (idx + 1) % btns.length;
         else if (e.key === 'ArrowLeft') next = (idx - 1 + btns.length) % btns.length;
         else if (e.key === 'Home') next = 0;
@@ -415,5 +409,5 @@ const cityTabs = data
         }
       });
     });
-  });
+  }
 </script>

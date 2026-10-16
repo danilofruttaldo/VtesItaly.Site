@@ -3,7 +3,7 @@ title: 'Grand Prix 2026'
 date: 2026-05-02
 category: 'grand-prix'
 tags: ['bologna', 'italia']
-excerpt: 'IT GP 2026 — Bologna. La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek, Mistlore e TCG Market, presenta il GP 2026!'
+excerpt: 'IT GP 2026 - Bologna. La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek, Mistlore e TCG Market, presenta il GP 2026!'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'
 poster: '/gp/gp-2026/gp-2026-poster.webp'
 gallerySections:
@@ -82,7 +82,7 @@ pricing:
     regular: '40,00 euro'
 earlyDeadline: '10 Aprile'
 earlyDeadlineDate: 2026-04-10
-payment: 'PayPal (amici e parenti) — info@vtesitaly.com'
+payment: 'PayPal (amici e parenti): info@vtesitaly.com'
 hotel:
   - room: 'Doppia uso singolo + colazione'
     price: '78,00 euro'
@@ -114,10 +114,10 @@ highlight:
   label: 'Superb Owl Fashion Parade'
 highlightHtml: |
   <div id="superb-owl" class="callout callout--media callout--with-winner">
-    <a href="/gp/gp-2026/superb-owl-poster.webp" target="_blank" rel="noopener noreferrer" aria-label="Ingrandisci la locandina del Superb Owl Fashion Parade"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Locandina Superb Owl Fashion Parade — la civetta ti vuole" width="220" height="311" loading="lazy" decoding="async" /></a>
+    <a href="/gp/gp-2026/superb-owl-poster.webp" target="_blank" rel="noopener noreferrer" aria-label="Ingrandisci la locandina del Superb Owl Fashion Parade"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Locandina Superb Owl Fashion Parade: la civetta ti vuole" width="220" height="311" loading="lazy" decoding="async" /></a>
     <div class="callout-body">
       <h2>Superb Owl Fashion Parade</h2>
-      <p>Sabato 2 maggio, durante il Main Event, si terrà la prima edizione della <strong>Superb Owl Fashion Parade</strong>: il contest sartoriale più improvvisato del circuito europeo. Premieremo il capo d'abbigliamento più <em>inquietante, sgargiante e divertente</em> della giornata. Presentati al tavolo della giuria e pronuncia la formula di rito — caffè e cioccolatini in dono sono graditi, ma non obbligatori.</p>
+      <p>Sabato 2 maggio, durante il Main Event, si terrà la prima edizione della <strong>Superb Owl Fashion Parade</strong>: il contest sartoriale più improvvisato del circuito europeo. Premieremo il capo d'abbigliamento più <em>inquietante, sgargiante e divertente</em> della giornata. Presentati al tavolo della giuria e pronuncia la formula di rito. Caffè e cioccolatini in dono sono graditi, ma non obbligatori.</p>
       <div class="callout-footer">
         <a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-it.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Regolamento, giuria e premi (PDF)</a>
         <p class="callout-winner">🏆 Vincitore: <strong>Lovre</strong></p>

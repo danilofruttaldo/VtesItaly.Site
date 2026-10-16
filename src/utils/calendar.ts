@@ -3,6 +3,7 @@ import type { Locale } from './i18n';
 import { useTranslations } from './i18n';
 import { computeStageDisplayImages } from './status';
 import { postUrl } from './url';
+import { isoDate } from './date';
 import localEventsData from '../data/local-events.json';
 
 export interface LocalEvent {
@@ -40,10 +41,14 @@ export interface CalendarEvent {
   tags?: string[]; // post tags for sub-category coloring
 }
 
-/** Format a Date to YYYY-MM-DD */
-function toIsoDate(d: Date): string {
-  return d.toISOString().slice(0, 10);
-}
+/**
+ * `time: 'tbd'` in the frontmatter: the event has a day but no announced
+ * start time. Tournaments then show "to be defined", other events no time.
+ */
+export const TIME_TBD = 'tbd';
+
+/** Calendar `time` value the browser script prints as the localized "to be defined". */
+const CAL_TIME_TBD = 'TBD';
 
 /** Pick the post-level image: poster-first for tournament categories, otherwise featured-first. */
 function pickPostImage(post: CollectionEntry<'blog'>): string | undefined {
@@ -54,18 +59,23 @@ function pickPostImage(post: CollectionEntry<'blog'>): string | undefined {
 
 const KNOWN_FORMATS = ['Standard', 'V5', 'Limited', 'Draft', 'TBD'];
 
+/** "Da definire" / "TBD": the format is not announced yet. */
+function tbd(locale: Locale): string {
+  return useTranslations(locale).calendar.tbd;
+}
+
 export function composeFormat(
   format: string | undefined,
   proxies: boolean | undefined,
   rounds: number | undefined,
   locale: Locale,
 ): string | undefined {
-  if (!format) return 'TBD';
+  if (!format) return tbd(locale);
   if (!KNOWN_FORMATS.includes(format)) return locale === 'en' ? 'Special' : 'Speciale';
-  if (format === 'TBD') return 'TBD';
+  if (format === 'TBD') return tbd(locale);
   let s = format;
   if (proxies !== undefined) s += `, ${proxiesLabel(proxies, locale)}`;
-  if (rounds) s += ` — ${roundsLabel(rounds, locale)}`;
+  if (rounds) s += ` - ${roundsLabel(rounds, locale)}`;
   return s;
 }
 
@@ -79,7 +89,7 @@ export function proxiesLabel(proxies: boolean, locale: Locale): string {
 /** Format line for a single event, shared by the event page and the calendar
  *  popup so the two never disagree. Falls back to the proxy policy and round
  *  structure when the format itself is not announced yet; returns undefined
- *  when nothing at all is known (callers decide whether to print "TBD"). */
+ *  when nothing at all is known (callers decide what to print instead). */
 export function composeEventLine(
   ev: { format?: string; proxies?: boolean; rounds?: number },
   locale: Locale,
@@ -88,7 +98,7 @@ export function composeEventLine(
   const parts: string[] = [];
   if (ev.proxies !== undefined) parts.push(proxiesLabel(ev.proxies, locale));
   if (ev.rounds) parts.push(roundsLabel(ev.rounds, locale));
-  return parts.length > 0 ? parts.join(' — ') : undefined;
+  return parts.length > 0 ? parts.join(' - ') : undefined;
 }
 
 /** "3 Round + Finale" / "3 Rounds + Final". Split out of `composeFormat` so the
@@ -100,7 +110,7 @@ export function roundsLabel(rounds: number, locale: Locale): string {
 
 /**
  * A league post: a local, multi-session campaign. Its `events[]` are the single
- * game days, which stay off the calendar and off the homepage timeline — a
+ * game days, which stay off the calendar and off the homepage timeline: a
  * league surfaces as one piece of news at the post date, nothing more. Same
  * predicate the page router uses to pick `LeagueEdition`.
  */
@@ -112,7 +122,7 @@ export function isLeaguePost(post: CollectionEntry<'blog'>): boolean {
 /**
  * Extract a flat list of calendar events from blog posts.
  * Handles: stages (tour) and the events array (GP/NC/community). League posts
- * are skipped entirely — see `isLeaguePost`.
+ * are skipped entirely (see `isLeaguePost`).
  */
 export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: Locale): CalendarEvent[] {
   const t = useTranslations(locale);
@@ -136,13 +146,13 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         if (stage.hideDate) continue;
         const d = new Date(stage.date);
         // Skip placeholder dates (1st of month without confirmed time)
-        if (d.getDate() === 1 && !stage.time) continue;
-        const yearShort = String(d.getFullYear()).slice(2);
+        if (d.getUTCDate() === 1 && (!stage.time || stage.time === TIME_TBD)) continue;
+        const yearShort = String(d.getUTCFullYear()).slice(2);
         events.push({
-          id: `${category}/${post.id}/${toIsoDate(d)}`,
-          date: toIsoDate(d),
-          time: stage.time || 'TBD',
-          title: `IT${yearShort} — ${stage.name}`,
+          id: `${category}/${post.id}/${isoDate(d)}`,
+          date: isoDate(d),
+          time: stage.time && stage.time !== TIME_TBD ? stage.time : CAL_TIME_TBD,
+          title: `IT${yearShort} - ${stage.name}`,
           postTitle,
           category,
           url,
@@ -164,10 +174,10 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         const d = new Date(ev.date);
         if (isNaN(d.getTime())) continue;
         // Skip placeholder dates (1st of month without confirmed time)
-        if (d.getDate() === 1 && (!ev.time || ev.time === '—')) continue;
+        if (d.getUTCDate() === 1 && (!ev.time || ev.time === TIME_TBD)) continue;
         const isTournament = category === 'grand-prix' || category === 'nazionale' || category === 'tour';
         const endD = ev.endDate ? new Date(ev.endDate) : null;
-        const hasEndDate = endD && !isNaN(endD.getTime()) && toIsoDate(endD) !== toIsoDate(d);
+        const hasEndDate = endD && !isNaN(endD.getTime()) && isoDate(endD) !== isoDate(d);
 
         const tags = post.data.tags || [];
         const isAltro = ev.type === 'altro';
@@ -180,14 +190,14 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           // weekends); the address falls back with it so the two stay paired.
           venue: ev.venue ?? venue,
           location: ev.venue ? ev.location : location,
-          format: isAltro ? undefined : (composeEventLine(ev, locale) ?? 'TBD'),
+          format: isAltro ? undefined : (composeEventLine(ev, locale) ?? tbd(locale)),
           description: isAltro ? post.data.excerpt : undefined,
           image,
           imageFill,
           archonUrl: ev.archonUrl,
         };
 
-        // Start date entry — for community posts, use the post title when:
+        // Start date entry. For community posts, use the post title when:
         //   - it's a single event (the event IS the post), or
         //   - all events share the same name (multi-day event split across calendar cells).
         // Otherwise fall back to the event's own name (e.g. league nights).
@@ -198,10 +208,10 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         const startTitle = hasEndDate ? `${t.calendar.starts}: ${displayName}` : displayName;
         events.push({
           ...baseEvent,
-          id: `${category}/${post.id}/${toIsoDate(d)}`,
-          date: toIsoDate(d),
-          endDate: hasEndDate ? toIsoDate(endD) : undefined,
-          time: ev.time === '—' ? (isTournament ? 'TBD' : '') : ev.time || (isTournament ? 'TBD' : ''),
+          id: `${category}/${post.id}/${isoDate(d)}`,
+          date: isoDate(d),
+          endDate: hasEndDate ? isoDate(endD) : undefined,
+          time: ev.time && ev.time !== TIME_TBD ? ev.time : isTournament ? CAL_TIME_TBD : '',
           title: startTitle,
         });
 
@@ -209,9 +219,9 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         if (hasEndDate) {
           events.push({
             ...baseEvent,
-            id: `${category}/${post.id}/${toIsoDate(endD)}`,
-            date: toIsoDate(endD),
-            endDate: toIsoDate(endD),
+            id: `${category}/${post.id}/${isoDate(endD)}`,
+            date: isoDate(endD),
+            endDate: isoDate(endD),
             time: '',
             title: `${t.calendar.ends}: ${displayName}`,
           });
@@ -228,7 +238,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     events.push({
       id: `local/${le.city}/${le.date}`,
       date: le.date,
-      time: le.time || 'TBD',
+      time: le.time || CAL_TIME_TBD,
       title: le.name,
       postTitle: le.name,
       category: 'local',
@@ -252,8 +262,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
  * `post.data.date` (multi-day side events are NOT split into separate cards).
  */
 export interface TimelineEntry {
-  date: string; // YYYY-MM-DD — start day
-  endDate?: string; // YYYY-MM-DD — last day of a multi-day event; absent for single-day
+  date: string; // YYYY-MM-DD, start day
+  endDate?: string; // YYYY-MM-DD, last day of a multi-day event; absent for single-day
   title: string;
   url: string;
   category: string;
@@ -293,7 +303,7 @@ function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): stri
       if (!cand) continue;
       const d = new Date(cand);
       if (isNaN(d.getTime())) continue;
-      const iso = toIsoDate(d);
+      const iso = isoDate(d);
       if (iso > max) max = iso;
     }
   }
@@ -303,7 +313,7 @@ function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): stri
 /**
  * Build the community events timeline from blog posts + local events.
  * Tour posts emit one entry per stage; all other posts emit a single entry
- * anchored at `post.data.date` — same logic as the comunita/principato pages,
+ * anchored at `post.data.date`, the same logic as the comunita/principato pages,
  * so multi-day events (GP, NC, leagues) show as one card, not per side event.
  */
 export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: Locale): TimelineEntry[] {
@@ -323,11 +333,11 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
         const stage = post.data.stages[si];
         if (!stage.date || stage.hideDate) continue;
         const d = new Date(stage.date);
-        if (d.getDate() === 1 && !stage.time) continue;
-        const yearShort = String(d.getFullYear()).slice(2);
+        if (d.getUTCDate() === 1 && (!stage.time || stage.time === TIME_TBD)) continue;
+        const yearShort = String(d.getUTCFullYear()).slice(2);
         out.push({
-          date: toIsoDate(d),
-          title: `IT${yearShort} — ${stage.name}`,
+          date: isoDate(d),
+          title: `IT${yearShort} - ${stage.name}`,
           url,
           category,
           image: displayImages[si] || baseImage,
@@ -341,7 +351,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
 
     const postDate = new Date(post.data.date);
     if (isNaN(postDate.getTime())) continue;
-    const startIso = toIsoDate(postDate);
+    const startIso = isoDate(postDate);
     out.push({
       date: startIso,
       endDate: pickTimelineEndDate(post, startIso),
@@ -361,7 +371,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     const d = new Date(le.date);
     if (isNaN(d.getTime())) continue;
     const cityName = le.city.charAt(0).toUpperCase() + le.city.slice(1);
-    const leExcerpt = le.venue ? `${cityName} — ${le.venue}` : cityName;
+    const leExcerpt = le.venue ? `${cityName} - ${le.venue}` : cityName;
     out.push({
       date: le.date,
       title: le.name,
@@ -399,7 +409,7 @@ export function pickTimelineWindow(entries: TimelineEntry[], today: string): Tim
 
   const pivot = entries.findIndex((e) => (e.endDate || e.date) >= today);
   if (pivot === -1) {
-    // No upcoming — show the 5 most recent past, newest at top, no highlight.
+    // No upcoming: show the 5 most recent past, newest at top, no highlight.
     const tail = entries.slice(-5).reverse();
     return { entries: tail, highlightIndex: -1 };
   }

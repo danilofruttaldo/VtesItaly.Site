@@ -1,4 +1,5 @@
 ---
+import { isoDay } from '../utils/date';
 import '../styles/prose.css';
 import '../styles/tour-edition.css';
 import { render } from 'astro:content';
@@ -37,7 +38,7 @@ const stages = post.data.stages || [];
 const today = todayLocalMidnight();
 const displayImages = computeStageDisplayImages(stages);
 const computedStages = stages.map((s) => {
-  const dateIso = s.date instanceof Date ? s.date.toISOString().slice(0, 10) : s.date;
+  const dateIso = isoDay(s.date);
   if (s.status === 'cancelled') return { ...s, dateIso };
   if (s.hideDate) return { ...s, dateIso, status: 'future' as const };
   const stageDate = new Date(s.date);
@@ -137,7 +138,7 @@ function formatStage(val: unknown, isAway: boolean): string {
   {
     computedStages.length > 0 && (
       <div class="te-stages">
-        <h3 class="te-stages-title">{stagesLabel}</h3>
+        <h2 class="te-stages-title">{stagesLabel}</h2>
         <div class="te-stages-list">
           {computedStages.map((stage, i) => (
             <div
@@ -277,8 +278,8 @@ function formatStage(val: unknown, isAway: boolean): string {
   {
     tourStandings.length > 0 && (
       <div id="classifica" class="te-standings">
-        <h3 class="te-standings-title">{t.tour.standings}</h3>
-        <div class="te-standings-wrap">
+        <h2 class="te-standings-title">{t.tour.standings}</h2>
+        <div class="te-standings-wrap" tabindex="0" role="region" aria-label={t.tour.standings}>
           <table class="te-standings-table">
             <caption class="sr-only">{t.tour.standings}</caption>
             <thead>

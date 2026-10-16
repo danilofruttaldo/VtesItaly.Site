@@ -6,13 +6,32 @@ import SearchOverlay from '../components/SearchOverlay.astro';
 import Lightbox from '../components/Lightbox.astro';
 import JsonLd from '../components/JsonLd.astro';
 import LangChooser from '../components/LangChooser.astro';
-import { getLocaleFromUrl, getAlternateUrl, useTranslations, getOtherLocales } from '../utils/i18n';
+import { getLocaleFromUrl, getAlternateUrl, useTranslations, getOtherLocales, DEFAULT_LOCALE } from '../utils/i18n';
+import { ogImage as resolveOgImage } from '../utils/og';
+import { isoDate } from '../utils/date';
+// Classic inline script, run before the body is parsed so a saved language
+// preference redirects without showing the wrong page first. It is the only
+// inline script left: Astro does not hash `is:inline` scripts, so its sha256
+// is computed from this same file in astro.config.mjs and added to the CSP.
+// Its content must stay static: the per-page target travels in `data-alt`.
+import langRedirectScript from '../scripts/lang-redirect.inline.js?raw';
+// `?url` gives the hashed address Vite assigns to the file: the same one the
+// @font-face in global.css points to, so the preload and the rule share a
+// single download.
+import manropeLatin from '../assets/fonts/manrope-latin.woff2?url';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  /** Service pages (404, pagination): no indexing, and no canonical/hreflang. */
   noindex?: boolean;
+  /** `article` for dated content (posts), `website` for indexes. */
+  ogType?: 'website' | 'article';
+  /** Publication date, used only when `ogType` is `article`. */
+  publishedTime?: Date;
+  /** Early redirect to the saved language. Off on the 404, whose URL is not its own. */
+  langRedirect?: boolean;
 }
 
 const locale = getLocaleFromUrl(Astro.url);
@@ -20,12 +39,23 @@ const t = useTranslations(locale);
 const {
   title,
   description = t.default_description,
-  ogImage = '/images/og/og-default.webp',
+  ogImage = '/images/og/og-default.jpg',
   noindex = false,
+  ogType = 'website',
+  publishedTime,
+  langRedirect = true,
 } = Astro.props;
 const otherLocales = getOtherLocales(locale);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const alternates = otherLocales.map((alt) => ({
+  locale: alt,
+  href: new URL(getAlternateUrl(Astro.url, alt), Astro.site).href,
+}));
+// x-default is the Italian page, whichever language this one is.
+const xDefault =
+  locale === DEFAULT_LOCALE ? canonicalUrl.href : alternates.find((a) => a.locale === DEFAULT_LOCALE)!.href;
 const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
+const og = await resolveOgImage(ogImage, Astro.site!);
 ---
 
 <!doctype html>
@@ -34,67 +64,67 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-
     {
       /*
-      Content-Security-Policy as a meta tag — defense-in-depth alongside the
-      existing escapeHtml/no-untrusted-set:html discipline.
-
-      `'unsafe-inline'` is required because Astro injects inline scripts for
-      view transitions, prefetch, and several components use `is:inline` with
-      `define:vars`. Even with unsafe-inline, the policy still blocks loading
-      of external scripts/styles/images/fonts/data, which is the main payload
-      vector for a stored-XSS attempt.
-
-      `frame-ancestors` is intentionally absent: meta-tag CSP does not honour
-      it. Clickjacking protection must come from a server-side header
-      (X-Frame-Options or CSP HTTP header in .htaccess) — tracked separately.
+      The Content-Security-Policy is written by Astro (security.csp in
+      astro.config.mjs) as a meta tag, with the sha256 of every script it
+      emits. `frame-ancestors` is not there: meta-tag CSP does not honour it.
+      Clickjacking protection must come from a server-side header in
+      .htaccess.
     */
     }
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://stats.vtesitaly.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://stats.vtesitaly.com; font-src 'self'; connect-src 'self' https://stats.vtesitaly.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
-    />
 
     <title>{title} | VTES Italy</title>
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
-
-    <!-- Canonical & hreflang -->
-    <link rel="canonical" href={canonicalUrl.href} />
-    <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
     {
-      otherLocales.map((alt) => (
-        <link rel="alternate" hreflang={alt} href={new URL(getAlternateUrl(Astro.url, alt), Astro.site).href} />
-      ))
+      noindex ? (
+        <meta name="robots" content="noindex, follow" />
+      ) : (
+        <>
+          <link rel="canonical" href={canonicalUrl.href} />
+          <link rel="alternate" hreflang={locale} href={canonicalUrl.href} />
+          {alternates.map((alt) => (
+            <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={xDefault} />
+        </>
+      )
     }
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl.href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={`${title} | VTES Italy`} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:type" content={ogType} />
+    {!noindex && <meta property="og:url" content={canonicalUrl.href} />}
     <meta property="og:locale" content={t.og_locale} />
     <meta property="og:site_name" content="VTES Italy" />
-    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    {
+      ogType === 'article' && publishedTime && (
+        <meta property="article:published_time" content={isoDate(publishedTime)} />
+      )
+    }
+    <meta property="og:image" content={og.url} />
+    {og.type && <meta property="og:image:type" content={og.type} />}
+    {og.width && <meta property="og:image:width" content={String(og.width)} />}
+    {og.height && <meta property="og:image:height" content={String(og.height)} />}
     <meta property="og:image:alt" content={`${title} | VTES Italy`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | VTES Italy`} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    <meta name="twitter:image" content={og.url} />
     <meta name="twitter:image:alt" content={`${title} | VTES Italy`} />
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#121416" />
+    <meta name="color-scheme" content="dark" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- Font preload (eliminates discovery delay) -->
-    <link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -118,42 +148,9 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
       }}
     />
     <slot name="head" />
-    <!-- Early lang redirect (before body renders to avoid flash) -->
-    <script is:inline define:vars={{ currentLocale: locale, altUrl: altUrlForRedirect }}>
-      (function () {
-        try {
-          var saved = localStorage.getItem('vtesitaly-lang');
-          if (saved && (saved === 'it' || saved === 'en') && saved !== currentLocale) {
-            location.replace(altUrl);
-          }
-        } catch {
-          /* storage unavailable */
-        }
-      })();
-    </script>
-    {
-      /*
-      Visit counter: Matomo self-hosted on stats.vtesitaly.com (site id 1;
-      judge = 2, draft = 3). disableCookies keeps it cookieless, so no
-      consent banner is needed. Production only, so `npm run dev` doesn't
-      pollute the stats. Matomo records document.URL, so on the 404 page
-      the requested (broken) address is what gets counted. No braces in the
-      snippet: inside a JSX expression they would open an Astro expression.
-    */
-    }
-    {
-      import.meta.env.PROD && (
-        <script is:inline>
-          var _paq = (window._paq = window._paq || []); _paq.push(['disableCookies']); _paq.push(['setCookieDomain',
-          '*.vtesitaly.com']); _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']);
-          _paq.push(['setTrackerUrl', 'https://stats.vtesitaly.com/matomo.php']); _paq.push(['setSiteId', '1']); var
-          _paqScript = document.createElement('script'); _paqScript.async = true; _paqScript.src =
-          'https://stats.vtesitaly.com/matomo.js'; document.head.appendChild(_paqScript);
-        </script>
-      )
-    }
+    {langRedirect && <script is:inline data-alt={altUrlForRedirect} set:html={langRedirectScript} />}
   </head>
-  <body>
+  <body data-sw-title={t.sw_update.title} data-sw-reload={t.sw_update.reload} data-sw-dismiss={t.sw_update.dismiss}>
     <noscript><p style="text-align:center;padding:1em;color:#9b9b9b;">{t.noscript}</p></noscript>
     <a href="#main-content" class="sr-only">{t.skip_to_content}</a>
     <Header />
@@ -175,304 +172,13 @@ const altUrlForRedirect = getAlternateUrl(Astro.url, otherLocales[0]);
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
     </button>
-    <script is:inline define:vars={{ swUpdate: t.sw_update }}>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', async () => {
-          function showUpdateBanner() {
-            if (document.getElementById('sw-update')) return;
-            const bar = document.createElement('div');
-            bar.id = 'sw-update';
-            bar.className = 'sw-update';
-            bar.setAttribute('role', 'status');
-            bar.setAttribute('aria-live', 'polite');
-            const msg = document.createElement('span');
-            msg.textContent = swUpdate.title;
-            const reload = document.createElement('button');
-            reload.type = 'button';
-            reload.className = 'sw-update-btn';
-            reload.textContent = swUpdate.reload;
-            reload.addEventListener('click', () => window.location.reload());
-            const dismiss = document.createElement('button');
-            dismiss.type = 'button';
-            dismiss.className = 'sw-update-dismiss';
-            dismiss.setAttribute('aria-label', swUpdate.dismiss);
-            dismiss.textContent = '×';
-            dismiss.addEventListener('click', () => bar.remove());
-            bar.append(msg, reload, dismiss);
-            document.body.appendChild(bar);
-          }
-          try {
-            const reg = await navigator.serviceWorker.register('/sw.js');
-            reg.addEventListener('updatefound', () => {
-              const worker = reg.installing;
-              if (!worker) return;
-              worker.addEventListener('statechange', () => {
-                if (worker.state === 'installed' && navigator.serviceWorker.controller) {
-                  showUpdateBanner();
-                }
-              });
-            });
-            navigator.serviceWorker.addEventListener('controllerchange', () => {
-              if (!document.getElementById('sw-update')) showUpdateBanner();
-            });
-          } catch {
-            /* SW registration is best-effort */
-          }
-        });
-      }
-    </script>
-    <script is:inline>
-      (function () {
-        var btn = document.getElementById('back-to-top');
-        if (!btn) return;
-        var visible = false;
-        function toggle() {
-          var show = window.scrollY > 400;
-          if (show !== visible) {
-            visible = show;
-            btn.classList.toggle('back-to-top--visible', show);
-          }
-        }
-        window.addEventListener('scroll', toggle, { passive: true });
-        btn.addEventListener('click', function () {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        toggle();
-      })();
-    </script>
-    <script is:inline>
-      // Client-side mirrors of computeEventStatus/computeTourStatus from
-      // src/utils/status.ts. Required because this script runs after page
-      // hydration to recompute statuses against the user's local "today"
-      // (the server-rendered status uses build-time today and would go
-      // stale on cached HTML). Keep the logic in sync with status.ts;
-      // stages here arrive already serialized as { date, cancelled } from
-      // src/pages/[...slug].astro:tourStagesJson.
-      (function () {
-        var now = new Date();
-        var todayISO =
-          now.getFullYear() +
-          '-' +
-          String(now.getMonth() + 1).padStart(2, '0') +
-          '-' +
-          String(now.getDate()).padStart(2, '0');
-
-        function computeEvent(dateStr) {
-          if (dateStr === todayISO) return 'live';
-          return dateStr > todayISO ? 'upcoming' : 'past';
-        }
-
-        function computeTour(stages) {
-          var active = stages.filter(function (s) {
-            return !s.cancelled;
-          });
-          if (active.length === 0) return null;
-          var statuses = active.map(function (s) {
-            return s.date < todayISO ? 'completed' : 'future';
-          });
-          if (
-            statuses.every(function (s) {
-              return s === 'completed';
-            })
-          )
-            return 'past';
-          if (
-            statuses.every(function (s) {
-              return s === 'future';
-            })
-          )
-            return 'upcoming';
-          return 'live';
-        }
-
-        function applyStatus(el, status) {
-          if (!status) {
-            el.style.display = 'none';
-            return;
-          }
-          el.textContent = el.getAttribute('data-label-' + status) || status;
-          if (el.classList.contains('post__status')) {
-            el.classList.remove('post__status--active', 'post__status--finished');
-            el.classList.add(status === 'past' ? 'post__status--finished' : 'post__status--active');
-          }
-        }
-
-        // Single-date events
-        document.querySelectorAll('[data-event-date]').forEach(function (el) {
-          applyStatus(el, computeEvent(el.getAttribute('data-event-date')));
-        });
-
-        // Tour (multi-stage)
-        document.querySelectorAll('[data-tour-stages]').forEach(function (el) {
-          try {
-            var stages = JSON.parse(el.getAttribute('data-tour-stages') || '[]');
-            applyStatus(el, computeTour(stages));
-          } catch {
-            /* malformed data */
-          }
-        });
-
-        // Timeline window: pick 5 cards centered on real-today pivot, shipping
-        // the rest of the timeline inside a <template data-timeline-overflow>
-        // so they're parsed but inert (don't count toward Lighthouse DOM size
-        // and don't trigger <img> loads). Cards move between container and
-        // template as the pivot shifts away from the build-time window.
-        document.querySelectorAll('[data-temporal-window]').forEach(function (container) {
-          var template = container.querySelector('template[data-timeline-overflow]');
-          var visible = Array.prototype.slice.call(container.querySelectorAll(':scope > .post-card[data-date]'));
-          var overflow = template
-            ? Array.prototype.slice.call(template.content.querySelectorAll('.post-card[data-date]'))
-            : [];
-          var all = visible.concat(overflow);
-          if (all.length === 0) return;
-          all.sort(function (a, b) {
-            var da = a.getAttribute('data-date') || '';
-            var db = b.getAttribute('data-date') || '';
-            return da < db ? -1 : da > db ? 1 : 0;
-          });
-
-          // Reset highlight markers on every card (visible + overflow)
-          all.forEach(function (c) {
-            c.classList.remove('post-card--highlight');
-            var b = c.querySelector('.post-card__highlight-badge');
-            if (b) b.hidden = true;
-          });
-
-          // Pivot compares against data-end-date (data-date fallback) so a
-          // multi-day event stays the highlighted card for its whole run.
-          var pivot = -1;
-          for (var i = 0; i < all.length; i++) {
-            var cardEnd = all[i].getAttribute('data-end-date') || all[i].getAttribute('data-date') || '';
-            if (cardEnd >= todayISO) {
-              pivot = i;
-              break;
-            }
-          }
-          var chosen;
-          if (pivot === -1) {
-            chosen = all.slice(-5).reverse();
-          } else {
-            var idealAbove = 2;
-            var idealBelow = 2;
-            var above = all.slice(pivot + 1, pivot + 1 + idealAbove);
-            var below = all.slice(Math.max(0, pivot - idealBelow), pivot);
-            var aboveShort = idealAbove - above.length;
-            var belowShort = idealBelow - below.length;
-            if (aboveShort > 0) below = all.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
-            if (belowShort > 0) above = all.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
-            chosen = above.slice().reverse().concat([all[pivot]], below.slice().reverse());
-            all[pivot].classList.add('post-card--highlight');
-            // Already started (data-date <= today) → "Oggi" label; else "Prossimo".
-            var pivotOngoing = (all[pivot].getAttribute('data-date') || '') <= todayISO;
-            var pivotBadge = all[pivot].querySelector('.post-card__highlight-badge');
-            if (pivotBadge) {
-              var nextLabel = pivotBadge.getAttribute('data-label-next') || '';
-              var ongoingLabel = pivotBadge.getAttribute('data-label-ongoing') || nextLabel;
-              pivotBadge.textContent = pivotOngoing ? ongoingLabel : nextLabel;
-              pivotBadge.hidden = false;
-            }
-          }
-
-          // Move visible cards not in `chosen` into the template (parks them).
-          var chosenSet = chosen.reduce(function (m, c) {
-            m.set(c, true);
-            return m;
-          }, new Map());
-          if (template) {
-            visible.forEach(function (c) {
-              if (!chosenSet.get(c)) template.content.appendChild(c);
-            });
-          }
-          // Append chosen cards to the container in visual order; this moves
-          // them out of the template if needed and reorders existing ones.
-          chosen.forEach(function (c) {
-            container.appendChild(c);
-          });
-          // Keep the template as the last child so its position is stable.
-          if (template && container.lastChild !== template) container.appendChild(template);
-        });
-
-        // Past divider: in [data-temporal-divider] containers, position the
-        // .post-list__divider between future (top) and past (bottom) cards.
-        // Cards are sorted descending (newest first).
-        document.querySelectorAll('[data-temporal-divider]').forEach(function (container) {
-          var divider = container.querySelector('.post-list__divider');
-          if (!divider) return;
-          var cards = Array.prototype.slice.call(container.querySelectorAll('.post-card[data-date]'));
-          if (cards.length === 0) {
-            divider.hidden = true;
-            return;
-          }
-          var firstPast = -1;
-          for (var j = 0; j < cards.length; j++) {
-            if ((cards[j].getAttribute('data-date') || '') < todayISO) {
-              firstPast = j;
-              break;
-            }
-          }
-          if (firstPast <= 0) {
-            // No past on this page, OR all cards are past (no future above) → no divider.
-            divider.hidden = true;
-          } else {
-            divider.hidden = false;
-            var target = cards[firstPast];
-            if (divider.nextSibling !== target) container.insertBefore(divider, target);
-          }
-        });
-
-        // Next-event highlight: cards in [data-temporal-next-event] are sorted
-        // future-first then past. Highlight the last future card (just before the
-        // first past). If all future, highlight the very last; if all past, none.
-        document.querySelectorAll('[data-temporal-next-event]').forEach(function (container) {
-          var cards = Array.prototype.slice.call(container.querySelectorAll('.post-card[data-date]'));
-          cards.forEach(function (c) {
-            c.classList.remove('post-card--highlight');
-            var b = c.querySelector('.post-card__highlight-badge');
-            if (b) b.hidden = true;
-          });
-          if (cards.length === 0) return;
-          var firstPast = -1;
-          for (var k = 0; k < cards.length; k++) {
-            if ((cards[k].getAttribute('data-date') || '') < todayISO) {
-              firstPast = k;
-              break;
-            }
-          }
-          var idx;
-          if (firstPast === -1) idx = cards.length - 1;
-          else if (firstPast === 0) idx = -1;
-          else idx = firstPast - 1;
-          if (idx >= 0) {
-            cards[idx].classList.add('post-card--highlight');
-            var b2 = cards[idx].querySelector('.post-card__highlight-badge');
-            if (b2) b2.hidden = false;
-          }
-        });
-
-        // Pricing column highlight in [data-temporal-pricing]. Toggles
-        // gp-price-active / gp-price-inactive on .gp-price-cell--early and
-        // .gp-price-cell--regular based on today vs deadline + last-event date.
-        document.querySelectorAll('[data-temporal-pricing]').forEach(function (table) {
-          var lastEventDate = table.getAttribute('data-event-last-date') || '';
-          var earlyDeadlineDate = table.getAttribute('data-early-deadline-date') || '';
-          if (!lastEventDate) return;
-          var eventFinished = todayISO >= lastEventDate;
-          var earlyActive = !eventFinished && (!earlyDeadlineDate || todayISO < earlyDeadlineDate);
-          var regularActive = !eventFinished && !earlyActive;
-          function applyPrice(selector, active) {
-            table.querySelectorAll(selector).forEach(function (el) {
-              el.classList.remove('gp-price-active', 'gp-price-inactive');
-              el.classList.add(active ? 'gp-price-active' : 'gp-price-inactive');
-            });
-          }
-          applyPrice('.gp-price-cell--early', earlyActive);
-          applyPrice('.gp-price-cell--regular', regularActive);
-        });
-
-        // Footer copyright year
-        var copy = document.querySelector('.footer-bottom p');
-        if (copy) copy.textContent = copy.textContent.replace(/–\d{4}/, '–' + now.getFullYear());
-      })();
+    <script>
+      // One bundled module for the whole layout: no inline code, so the CSP
+      // needs no 'unsafe-inline' for scripts.
+      import '../scripts/sw-register';
+      import '../scripts/back-to-top';
+      import '../scripts/temporal';
+      import '../scripts/matomo';
     </script>
   </body>
 </html>

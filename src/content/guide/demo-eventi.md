@@ -17,7 +17,7 @@ I mazzi **First Blood** sono il modo più rapido per far provare V:TES a tavolo.
 
 ## 1. Obiettivo della demo
 
-L'obiettivo non è insegnare V:TES nella sua interezza — per apprezzarlo davvero servono indicativamente **una decina di partite** — ma far vedere il flusso di un turno, le interazioni base e la sensazione del gioco politico, lasciando il partecipante con la voglia di tornare a sedersi al tavolo.
+L'obiettivo non è insegnare V:TES nella sua interezza (per apprezzarlo davvero servono indicativamente **una decina di partite**) ma far vedere il flusso di un turno, le interazioni base e la sensazione del gioco politico, lasciando il partecipante con la voglia di tornare a sedersi al tavolo.
 
 Tieni la demo entro **30–45 minuti**. Una partita completa dura molto di più e perde l'effetto vetrina.
 
@@ -38,11 +38,11 @@ Si parte con **20 pool** ma con qualche scorciatoia rispetto al setup standard, 
 
 Schieramento consigliato in ordine di turno:
 
-1. **Nosferatu** — vampiro <span class="card-hover">Cedrick Calhoun<img src="https://static.krcg.org/card/cedrickcalhoun.jpg" alt="Cedrick Calhoun" loading="lazy" /></span>, master <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="Blood Doll" loading="lazy" /></span>
-2. **Toreador** — vampiro <span class="card-hover">Catalina Vega<img src="https://static.krcg.org/card/catalinavega.jpg" alt="Catalina Vega" loading="lazy" /></span>, master <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="Art Museum" loading="lazy" /></span>
-3. **Tremere** — vampiro <span class="card-hover">Ayelech<img src="https://static.krcg.org/card/ayelech.jpg" alt="Ayelech" loading="lazy" /></span>, master <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="Chantry" loading="lazy" /></span>
-4. **Malkavian** — vampiro <span class="card-hover">Jason "Son" Newberry<img src="https://static.krcg.org/card/jasonsonnewberry.jpg" alt="Jason &quot;Son&quot; Newberry" loading="lazy" /></span>, master <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="The Barrens" loading="lazy" /></span>
-5. **Ventrue** — vampiro <span class="card-hover">Alexa Draper<img src="https://static.krcg.org/card/alexadraper.jpg" alt="Alexa Draper" loading="lazy" /></span>, master <span class="card-hover">Misdirection<img src="https://static.krcg.org/card/misdirection.jpg" alt="Misdirection" loading="lazy" /></span>
+1. **Nosferatu**: vampiro <span class="card-hover">Cedrick Calhoun<img src="https://static.krcg.org/card/cedrickcalhoun.jpg" alt="Cedrick Calhoun" loading="lazy" /></span>, master <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="Blood Doll" loading="lazy" /></span>
+2. **Toreador**: vampiro <span class="card-hover">Catalina Vega<img src="https://static.krcg.org/card/catalinavega.jpg" alt="Catalina Vega" loading="lazy" /></span>, master <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="Art Museum" loading="lazy" /></span>
+3. **Tremere**: vampiro <span class="card-hover">Ayelech<img src="https://static.krcg.org/card/ayelech.jpg" alt="Ayelech" loading="lazy" /></span>, master <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="Chantry" loading="lazy" /></span>
+4. **Malkavian**: vampiro <span class="card-hover">Jason "Son" Newberry<img src="https://static.krcg.org/card/jasonsonnewberry.jpg" alt="Jason &quot;Son&quot; Newberry" loading="lazy" /></span>, master <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="The Barrens" loading="lazy" /></span>
+5. **Ventrue**: vampiro <span class="card-hover">Alexa Draper<img src="https://static.krcg.org/card/alexadraper.jpg" alt="Alexa Draper" loading="lazy" /></span>, master <span class="card-hover">Misdirection<img src="https://static.krcg.org/card/misdirection.jpg" alt="Misdirection" loading="lazy" /></span>
 
 > [!TIP]
 > Se nessuno ha preferenze, **il dimostratore prende il Nosferatu**: è il primo a giocare (utile per dare l'esempio del turno tipo) ed è anche il primo a uscire se la partita prosegue, liberandolo per andare a parlare con altri partecipanti o iniziare una seconda demo.
@@ -58,7 +58,7 @@ Ogni giocatore ha **7 carte in mano**. Le carte elencate qui sotto sono fissate 
 
 <div>
 
-#### Nosferatu
+### Nosferatu
 
 - <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="Blood Doll" loading="lazy" /></span>
 - <span class="card-hover">Roundhouse<img src="https://static.krcg.org/card/roundhouse.jpg" alt="Roundhouse" loading="lazy" /></span>
@@ -69,7 +69,7 @@ Ogni giocatore ha **7 carte in mano**. Le carte elencate qui sotto sono fissate 
 
 <div>
 
-#### Toreador
+### Toreador
 
 - <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="Art Museum" loading="lazy" /></span>
 - <span class="card-hover">Majesty<img src="https://static.krcg.org/card/majesty.jpg" alt="Majesty" loading="lazy" /></span>
@@ -82,7 +82,7 @@ Ogni giocatore ha **7 carte in mano**. Le carte elencate qui sotto sono fissate 
 
 <div>
 
-#### Tremere
+### Tremere
 
 - <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="Chantry" loading="lazy" /></span>
 - <span class="card-hover">Sniper Rifle<img src="https://static.krcg.org/card/sniperrifle.jpg" alt="Sniper Rifle" loading="lazy" /></span>
@@ -96,7 +96,7 @@ Ogni giocatore ha **7 carte in mano**. Le carte elencate qui sotto sono fissate 
 
 <div>
 
-#### Malkavian
+### Malkavian
 
 - <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="The Barrens" loading="lazy" /></span>
 - <span class="card-hover">Elder Impersonation<img src="https://static.krcg.org/card/elderimpersonation.jpg" alt="Elder Impersonation" loading="lazy" /></span>
@@ -107,7 +107,7 @@ Ogni giocatore ha **7 carte in mano**. Le carte elencate qui sotto sono fissate 
 
 <div>
 
-#### Ventrue
+### Ventrue
 
 - <span class="card-hover">Misdirection<img src="https://static.krcg.org/card/misdirection.jpg" alt="Misdirection" loading="lazy" /></span>
 - <span class="card-hover">Deflection<img src="https://static.krcg.org/card/deflection.jpg" alt="Deflection" loading="lazy" /></span>
@@ -126,10 +126,10 @@ Ogni giocatore ha **7 carte in mano**. Le carte elencate qui sotto sono fissate 
 
 ## 5. Sequenza di gioco guidata
 
-Il primo round dovrebbe scorrere più o meno così — non leggerlo come un copione, ma usalo come traccia: l'obiettivo è mostrare un'azione di tipo diverso per ogni clan.
+Il primo round dovrebbe scorrere più o meno così. Non leggerlo come un copione, ma usalo come traccia: l'obiettivo è mostrare un'azione di tipo diverso per ogni clan.
 
 <details>
-<summary><strong>Nosferatu</strong> — <em>master economy, bleed, combat</em></summary>
+<summary><strong>Nosferatu</strong>: <em>master economy, bleed, combat</em></summary>
 
 1. Gioca <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="Blood Doll" loading="lazy" /></span>.
 2. Bleeda con <span class="card-hover">Deep Song<img src="https://static.krcg.org/card/deepsong.jpg" alt="Deep Song" loading="lazy" /></span> base; viene bloccato.
@@ -138,7 +138,7 @@ Il primo round dovrebbe scorrere più o meno così — non leggerlo come un copi
 </details>
 
 <details>
-<summary><strong>Toreador</strong> — <em>voto, negoziato, referendum</em></summary>
+<summary><strong>Toreador</strong>: <em>voto, negoziato, referendum</em></summary>
 
 1. Gioca <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="Art Museum" loading="lazy" /></span>.
 2. Chiama un referendum con <span class="card-hover">Kine Resources Contested<img src="https://static.krcg.org/card/kineresourcescontested.jpg" alt="Kine Resources Contested" loading="lazy" /></span>; il Tremere ha solo <span class="card-hover">Eyes of Argus<img src="https://static.krcg.org/card/eyesofargus.jpg" alt="Eyes of Argus" loading="lazy" /></span> come intercept.
@@ -148,7 +148,7 @@ Il primo round dovrebbe scorrere più o meno così — non leggerlo come un copi
 </details>
 
 <details>
-<summary><strong>Tremere</strong> — <em>equip, armi</em></summary>
+<summary><strong>Tremere</strong>: <em>equip, armi</em></summary>
 
 1. Gioca <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="Chantry" loading="lazy" /></span>.
 2. Prende lo <span class="card-hover">Sniper Rifle<img src="https://static.krcg.org/card/sniperrifle.jpg" alt="Sniper Rifle" loading="lazy" /></span> con un'azione di _equip_.
@@ -156,7 +156,7 @@ Il primo round dovrebbe scorrere più o meno così — non leggerlo come un copi
 </details>
 
 <details>
-<summary><strong>Malkavian</strong> — <em>stealth/intercept, deviare un bleed</em></summary>
+<summary><strong>Malkavian</strong>: <em>stealth/intercept, deviare un bleed</em></summary>
 
 1. Gioca <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="The Barrens" loading="lazy" /></span>.
 2. Bleeda da 2 con stealth 0; il Ventrue tenta di bloccare.
@@ -167,7 +167,7 @@ Il primo round dovrebbe scorrere più o meno così — non leggerlo come un copi
 </details>
 
 <details>
-<summary><strong>Ventrue</strong> — <em>alleati, untap, bleed con bonus</em></summary>
+<summary><strong>Ventrue</strong>: <em>alleati, untap, bleed con bonus</em></summary>
 
 1. Gioca <span class="card-hover">Political Ally<img src="https://static.krcg.org/card/politicalally.jpg" alt="Political Ally" loading="lazy" /></span>.
 2. Si stappa con <span class="card-hover">Freak Drive<img src="https://static.krcg.org/card/freakdrive.jpg" alt="Freak Drive" loading="lazy" /></span>.
@@ -175,7 +175,7 @@ Il primo round dovrebbe scorrere più o meno così — non leggerlo come un copi
 
 </details>
 
-Da qui la partita può proseguire liberamente — per esempio il Nosferatu si equipaggia con il <span class="card-hover">Raven Spy<img src="https://static.krcg.org/card/ravenspy.jpg" alt="Raven Spy" loading="lazy" /></span>, il Toreador inizia a votare seriamente, ecc. Quando senti che il gruppo ha visto abbastanza, **chiudi la demo**.
+Da qui la partita può proseguire liberamente: per esempio il Nosferatu si equipaggia con il <span class="card-hover">Raven Spy<img src="https://static.krcg.org/card/ravenspy.jpg" alt="Raven Spy" loading="lazy" /></span>, il Toreador inizia a votare seriamente, ecc. Quando senti che il gruppo ha visto abbastanza, **chiudi la demo**.
 
 > [!TIP]
 > Quando un giocatore fa una mossa "sbagliata" (es. blocco impossibile, voto su un referendum a cui non può partecipare), correggi spiegando il **perché** della regola, non solo la regola. Un nuovo giocatore ricorda meglio l'intuizione che la formulazione del rulebook.
@@ -192,21 +192,21 @@ Da qui la partita può proseguire liberamente — per esempio il Nosferatu si eq
 - Lascia il riferimento a **vtesitaly.com**, eventualmente con materiale informativo.
 - Per chi mostra interesse concreto, prendi un contatto e invitalo al prossimo [evento locale](/comunita/).
 - Se l'evento è una **Demo sanzionata Archon**, ricordati di crearlo su Archon a posteriori (serve essere Prince o avere il supporto di un Prince): vedi la [Guida dell'Organizzatore](https://archon.vekn.net/help/organizer-guide) di Archon.
-- Restituisci i mazzi First Blood ordinati — la prossima persona che fa una demo te ne sarà grata.
+- Restituisci i mazzi First Blood ordinati: la prossima persona che fa una demo te ne sarà grata.
 
 ## Materiale e link utili
 
-**Locandine, flyer e illustrazioni** — da stampare (per esposizione al banchetto, gadget come il token Edge) o da condividere in digitale (post social, locandine online). Clicca per ingrandire:
+**Locandine, flyer e illustrazioni**: da stampare (per esposizione al banchetto, gadget come il token Edge) o da condividere in digitale (post social, locandine online). Clicca per ingrandire:
 
 <div class="image-grid-3plus2">
   <a href="/guide/demo/locandina-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la prima locandina a dimensione piena"><img src="/guide/demo/locandina-1.webp" alt="Locandina 1 per la demo VTES" height="220" width="87" loading="lazy" decoding="async" /></a>
   <a href="/guide/demo/locandina-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la seconda locandina a dimensione piena"><img src="/guide/demo/locandina-2.webp" alt="Locandina 2 per la demo VTES" height="220" width="155" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-flyer-generic.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer generico VEKN a dimensione piena"><img src="/guide/demo/vtes-flyer-generic.webp" alt="Flyer generico VEKN — presentazione del gioco" height="220" width="170" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-flyer-generic.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer generico VEKN a dimensione piena"><img src="/guide/demo/vtes-flyer-generic.webp" alt="Flyer generico VEKN: presentazione del gioco" height="220" width="170" loading="lazy" decoding="async" /></a>
   <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la cover di V:TES 5th di Samuel Araya a dimensione piena"><img src="/guide/demo/vtes-5th-araya-cover.webp" alt="Cover di V:TES 5th Edition, illustrazione di Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
   <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri l'illustrazione dell'Edge a dimensione piena"><img src="/guide/demo/edge.webp" alt="Illustrazione dell'Edge, il token conteso di V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
 </div>
 
-**Schemi riassuntivi** da consultare durante la demo o consegnare a chi vuole approfondire (combat, politica, azioni, ecc.) — clicca per ingrandire:
+**Schemi riassuntivi** da consultare durante la demo o consegnare a chi vuole approfondire (combat, politica, azioni, ecc.). Clicca per ingrandire:
 
 <div class="image-grid-feature">
   <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 0 a dimensione piena"><img src="/guide/demo/schema-0.webp" alt="Schema riassuntivo V:TES (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
@@ -218,11 +218,11 @@ Da qui la partita può proseguire liberamente — per esempio il Nosferatu si eq
 
 **Stampabili (PDF):**
 
-- [Scheda di preparazione della demo](/guide/demo/scheda-preparazione-demo.pdf) _(A4, 2 pagine, un foglio fronte/retro)_ — questa guida ridotta a checklist da portare in giro insieme ai mazzi: materiale da caricare, preparazione mazzo per mazzo (vampiro, mano fissa, carte da mettere in cima), traccia del primo round e promemoria da tavolo.
-- [New Player Guide ufficiale VEKN](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, in inglese)_ — guida illustrata di una pagina con zone, fasi del turno, sequenza di combat, clan e discipline; da consultare durante la demo o consegnare a chi vuole approfondire.
+- [Scheda di preparazione della demo](/guide/demo/scheda-preparazione-demo.pdf) _(A4, 2 pagine, un foglio fronte/retro)_: questa guida ridotta a checklist da portare in giro insieme ai mazzi: materiale da caricare, preparazione mazzo per mazzo (vampiro, mano fissa, carte da mettere in cima), traccia del primo round e promemoria da tavolo.
+- [New Player Guide ufficiale VEKN](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, in inglese)_: guida illustrata di una pagina con zone, fasi del turno, sequenza di combat, clan e discipline; da consultare durante la demo o consegnare a chi vuole approfondire.
 
 **Riferimenti:**
 
-- [VEKN Rulebook](https://www.vekn.net/rulebook) — regolamento di gioco ufficiale.
-- [VEKN Tournament Rules](https://www.vekn.net/tournament-rules) — utile se la demo si trasforma in eventi sanzionati.
-- [Archon Online: note per la scena italiana](/guide/archon-italia/) — per creare la demo come evento sanzionato su Archon.
+- [VEKN Rulebook](https://www.vekn.net/rulebook): regolamento di gioco ufficiale.
+- [VEKN Tournament Rules](https://www.vekn.net/tournament-rules): utile se la demo si trasforma in eventi sanzionati.
+- [Archon Online: note per la scena italiana](/guide/archon-italia/): per creare la demo come evento sanzionato su Archon.

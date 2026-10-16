@@ -13,4 +13,4 @@ La Comunità Italiana di _Vampire: The Eternal Struggle_ è lieta di annunciare 
 
 **Stefano Orlandini**, noto come **Ischemose**, assume il ruolo di Principe e guiderà la community elbana con ritrovi settimanali ogni **lunedì** presso lo **Scoglio-nati Viola Club** e il **Sir Williams Pub**.
 
-Un risultato notevole per una piccola isola che conta già **10 giocatori** attivi — la dimostrazione che la passione per VTES non conosce confini, nemmeno quelli del mare. Un nuovo punto di riferimento per i Methuselah dell'arcipelago toscano e per tutti quelli di passaggio sull'isola. Benvenuto Principato di Elba!
+Un risultato notevole per una piccola isola che conta già **10 giocatori** attivi: la dimostrazione che la passione per VTES non conosce confini, nemmeno quelli del mare. Un nuovo punto di riferimento per i Methuselah dell'arcipelago toscano e per tutti quelli di passaggio sull'isola. Benvenuto Principato di Elba!

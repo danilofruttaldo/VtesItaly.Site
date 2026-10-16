@@ -4,6 +4,9 @@ interface Props {
 }
 
 const { data } = Astro.props;
+// `</` written as `<\/`, still valid JSON: a `</script>` inside a title
+// cannot close the tag.
+const json = JSON.stringify(data).replace(/<\//g, '<\\/');
 ---
 
-<script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />
+<script is:inline type="application/ld+json" set:html={json} />

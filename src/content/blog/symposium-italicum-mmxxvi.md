@@ -6,6 +6,7 @@ tags: ['barga', 'torneo']
 featuredImage: '/images/comunita/barga/symposium-italicum-2026.webp'
 poster: '/images/comunita/barga/symposium-italicum-2026.webp'
 excerpt: "La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare, in collaborazione con l'Associazione Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana e sponsorizzato da Mistlore, TheCardGameGeek e The Pot Still, la nuova edizione del Symposium Italicum!"
+seoDescription: 'Nuova edizione del Symposium Italicum a Barga (LU), dal 4 al 6 settembre 2026, in collaborazione con Garfaludica APS – Tana dei Goblin.'
 venue:
   name: 'Agriturismo Il Musaccio'
   address: 'Località Pian di Gragno 15, 55051 Barga (LU)'
@@ -30,15 +31,15 @@ events:
     time: '09:30'
     type: 'altro'
 pricing:
-  - label: 'Venerdì — Bloodbath'
+  - label: 'Venerdì: Bloodbath'
     regular: 'torneo 15 € + apericena 15 € (10 € bambini, bevande escluse)'
-  - label: 'Sabato — Symposium Italicum'
+  - label: 'Sabato: Symposium Italicum'
     regular: 'torneo 25 € + pranzo 20 € (12 € bambini, bevande incluse)'
-  - label: 'Domenica — Pool Party'
+  - label: 'Domenica: Pool Party'
     regular: '25 €, pranzo incluso (20 € ospiti struttura; bambini 15 €, 10 € se ospiti)'
 judges:
-  - 'Filippo "Fil" Mengoli — Head Judge (Official VEKN Elder Judge)'
-  - 'Alessandro "Nekròs" Donati — Assistant Judge (Official VEKN Ancilla Judge)'
+  - 'Filippo "Fil" Mengoli, Head Judge (Official VEKN Elder Judge)'
+  - 'Alessandro "Nekròs" Donati, Assistant Judge (Official VEKN Ancilla Judge)'
 notes:
   - 'Pagamento anticipato entro domenica 16 agosto 2026: chi si iscrive dopo non ha garantita la gadgettistica promozionale.'
   - 'Pernottamento: posti ancora disponibili al Musaccio, tel. +39 340 602 1321 (Luca); in alternativa Appartamenti FULLMONTI a pochi minuti dalle sedi, tel. +39 375 902 6861 (Andrea e Paolo), in convenzione con il codice VTES26.'

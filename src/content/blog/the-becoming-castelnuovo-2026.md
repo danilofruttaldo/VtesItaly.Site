@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['barga', 'torneo']
 featuredImage: '/images/comunita/barga/the-becoming-2026.webp'
 poster: '/images/comunita/barga/the-becoming-2026.webp'
-excerpt: 'The Becoming — torneo VTES Standard a Castelnuovo di Garfagnana domenica 13 dicembre 2026, alla Garfaludica APS – Tana dei Goblin.'
+excerpt: 'The Becoming: torneo VTES Standard a Castelnuovo di Garfagnana domenica 13 dicembre 2026, alla Garfaludica APS – Tana dei Goblin.'
 venue:
   name: 'Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana'
   address: 'Via Vittorio Emanuele snc, 55032 Castelnuovo di Garfagnana (LU)'
@@ -25,6 +25,6 @@ contact: 'adonati1982@gmail.com'
 locale: it
 ---
 
-**The Becoming** — torneo VTES Standard a **Castelnuovo di Garfagnana** domenica **13 dicembre 2026**, dalle 9:30 alle 18:30: due round più finale, proxy ammessi.
+**The Becoming**: torneo VTES Standard a **Castelnuovo di Garfagnana** domenica **13 dicembre 2026**, dalle 9:30 alle 18:30: due round più finale, proxy ammessi.
 
 Si gioca alla **Garfaludica APS – Tana dei Goblin**. I posti sono limitati a **15–20 giocatori**: prima di iscrivervi contattate l'organizzatore.

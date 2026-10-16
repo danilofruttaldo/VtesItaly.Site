@@ -10,9 +10,12 @@ interface Props {
   audience: Audience[];
   aggiornato: Date;
   locale: Locale;
+  /** 2 on the guide index (cards right under the h1), 3 under the "related" h2. */
+  headingLevel?: 2 | 3;
 }
 
-const { href, title, description, audience, aggiornato, locale } = Astro.props;
+const { href, title, description, audience, aggiornato, locale, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
 const t = useTranslations(locale);
 
 const audienceLabel: Record<Audience, string> = {
@@ -37,7 +40,7 @@ const dataAudience = audience.join(' ');
         <time datetime={aggiornato.toISOString()}>{formatLocalDate(aggiornato, locale)}</time>
       </p>
     </div>
-    <h3 class="guide-card__title">{title}</h3>
+    <Heading class="guide-card__title">{title}</Heading>
     <p class="guide-card__desc">{description}</p>
   </div>
 </a>

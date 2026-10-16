@@ -507,127 +507,106 @@ function isCurrent(href: string): boolean {
   }
 </style>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Search
-    var searchBtn = document.getElementById('search-btn');
+<script>
+  // Bundled module: deferred, so the DOM is already parsed when it runs.
+  const STORAGE_KEY = 'vtesitaly-lang';
+  const FOCUSABLE = 'a[href], button, [tabindex]:not([tabindex="-1"])';
 
-    function openSearch() {
-      document.dispatchEvent(new CustomEvent('open-search'));
+  const searchBtn = document.getElementById('search-btn');
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-backdrop');
+
+  function closeMenu() {
+    if (!hamburger || !mobileMenu || !backdrop) return;
+    const wasOpen = mobileMenu.classList.contains('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.classList.remove('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    backdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (wasOpen) hamburger.focus();
+  }
+
+  function toggleMenu() {
+    if (!hamburger || !mobileMenu || !backdrop) return;
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
       closeMenu();
+      return;
     }
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.classList.add('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    mobileMenu.querySelector<HTMLElement>(FOCUSABLE)?.focus();
+  }
 
-    if (searchBtn) searchBtn.addEventListener('click', openSearch);
+  // Search: the overlay listens for this event and returns focus to the
+  // element passed in `detail` when it closes.
+  searchBtn?.addEventListener('click', () => {
+    closeMenu();
+    document.dispatchEvent(new CustomEvent('open-search', { detail: { opener: searchBtn } }));
+  });
 
-    // Hamburger menu
-    var hamburger = document.getElementById('hamburger-btn');
-    var mobileMenu = document.getElementById('mobile-menu');
-    var backdrop = document.getElementById('mobile-backdrop');
-
-    function toggleMenu() {
-      var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', String(!isOpen));
-      mobileMenu.classList.toggle('is-open', !isOpen);
-      mobileMenu.setAttribute('aria-hidden', String(isOpen));
-      backdrop.classList.toggle('is-open', !isOpen);
-      document.body.style.overflow = !isOpen ? 'hidden' : '';
-      if (!isOpen) {
-        var focusable = mobileMenu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
-        if (focusable.length) focusable[0].focus();
-      }
+  // Focus trap for mobile menu
+  mobileMenu?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !mobileMenu.classList.contains('is-open')) return;
+    const focusable = mobileMenu.querySelectorAll<HTMLElement>(FOCUSABLE);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
     }
+  });
 
-    function closeMenu() {
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.classList.remove('is-open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      backdrop.classList.remove('is-open');
-      document.body.style.overflow = '';
-      hamburger.focus();
-    }
+  hamburger?.addEventListener('click', toggleMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
-    // Focus trap for mobile menu (registered once)
-    if (mobileMenu) {
-      mobileMenu.addEventListener('keydown', function (e) {
-        if (e.key !== 'Tab' || !mobileMenu.classList.contains('is-open')) return;
-        var focusable = mobileMenu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
-        if (!focusable.length) return;
-        var first = focusable[0];
-        var last = focusable[focusable.length - 1];
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      });
-    }
-
-    if (hamburger) hamburger.addEventListener('click', toggleMenu);
-    if (backdrop) backdrop.addEventListener('click', closeMenu);
-
-    if (mobileMenu) {
-      var links = mobileMenu.querySelectorAll('a');
-      for (var i = 0; i < links.length; i++) {
-        links[i].addEventListener('click', closeMenu);
-      }
-    }
-
-    // Save language preference on any lang switch link
-    var STORAGE_KEY = 'vtesitaly-lang';
-    var langLinks = document.querySelectorAll('.lang-dropdown__item:not(.is-current), .mobile-menu__lang');
-    for (var li = 0; li < langLinks.length; li++) {
-      langLinks[li].addEventListener('click', function () {
-        // Determine target locale from the href
-        var href = this.getAttribute('href') || '';
-        var targetLang = href.match(/^\/en(\/|$)/) ? 'en' : 'it';
+  // Save language preference on any lang switch link
+  document
+    .querySelectorAll<HTMLAnchorElement>('.lang-dropdown__item:not(.is-current), .mobile-menu__lang')
+    .forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const targetLang = /^\/en(\/|$)/.test(href) ? 'en' : 'it';
         try {
           localStorage.setItem(STORAGE_KEY, targetLang);
         } catch {
           /* storage unavailable */
         }
       });
-    }
-
-    // Language dropdown
-    var langDropdown = document.getElementById('lang-dropdown');
-
-    function closeLangDropdown() {
-      if (!langDropdown) return;
-      langDropdown.classList.remove('is-open');
-      langDropdown.setAttribute('aria-expanded', 'false');
-    }
-
-    if (langDropdown) {
-      var langTrigger = langDropdown.querySelector('.lang-dropdown__trigger');
-
-      function toggleLangDropdown() {
-        var isOpen = langDropdown.classList.contains('is-open');
-        if (isOpen) {
-          closeLangDropdown();
-        } else {
-          langDropdown.classList.add('is-open');
-          langDropdown.setAttribute('aria-expanded', 'true');
-        }
-      }
-
-      if (langTrigger) langTrigger.addEventListener('click', toggleLangDropdown);
-
-      document.addEventListener('click', function (e) {
-        if (!langDropdown.contains(e.target)) closeLangDropdown();
-      });
-    }
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        if (mobileMenu && mobileMenu.classList.contains('is-open')) closeMenu();
-        closeLangDropdown();
-      }
     });
+
+  // Language dropdown
+  const langDropdown = document.getElementById('lang-dropdown');
+  const langTrigger = langDropdown?.querySelector<HTMLElement>('.lang-dropdown__trigger');
+
+  function setLangDropdown(open: boolean) {
+    if (!langDropdown) return;
+    langDropdown.classList.toggle('is-open', open);
+    langDropdown.setAttribute('aria-expanded', String(open));
+    langTrigger?.setAttribute('aria-expanded', String(open));
+  }
+
+  if (langDropdown) {
+    langTrigger?.addEventListener('click', () => setLangDropdown(!langDropdown.classList.contains('is-open')));
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target as Node)) setLangDropdown(false);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (mobileMenu?.classList.contains('is-open')) closeMenu();
+      setLangDropdown(false);
+    }
   });
 </script>

@@ -6,6 +6,7 @@ tags: ['trento', 'torneo']
 featuredImage: '/images/comunita/trento/concilio-di-pergine.webp'
 poster: '/images/comunita/trento/concilio-di-pergine.webp'
 excerpt: 'Asgard Aldeno is pleased to invite you to the National V:TES event, inside the Pergine Comics convention.'
+seoTitle: "Concilio di Pergine – In the Castle's Shadow"
 venue:
   name: 'Pergine Comics'
   siteUrl: 'https://www.perginecomics.it/'

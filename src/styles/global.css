@@ -1,5 +1,5 @@
 /* ========================================
-   VTES Italy — Design Tokens & Base Styles
+   VTES Italy - Design Tokens & Base Styles
    ======================================== */
 
 /* Self-hosted Manrope variable font */
@@ -8,7 +8,7 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('/fonts/manrope-latin.woff2') format('woff2');
+  src: url('../assets/fonts/manrope-latin.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -18,13 +18,17 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('/fonts/manrope-latin-ext.woff2') format('woff2');
+  src: url('../assets/fonts/manrope-latin-ext.woff2') format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
     U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 :root {
+  /* The site has a single dark theme: form controls, scrollbars and the
+     page behind the first paint follow it too. */
+  color-scheme: dark;
+
   /* Colors */
   --color-base: #121416;
   --color-surface: #1c1e21;
@@ -46,7 +50,7 @@
   --color-web: #4a90d9;
   --color-success: #4ade80;
 
-  /* Typography — Font sizes */
+  /* Typography - Font sizes */
   --font-family: 'Manrope', system-ui, -apple-system, sans-serif;
   --font-size-3xs: 0.65rem;
   --font-size-2xs: 0.7rem;
@@ -60,13 +64,13 @@
   --font-size-xl: clamp(1.2rem, 1.1rem + 0.5vw, 1.55rem);
   --font-size-xxl: clamp(1.4rem, 1.25rem + 0.7vw, 1.9rem);
 
-  /* Typography — Letter spacing */
+  /* Typography - Letter spacing */
   --tracking-tight: -0.2px;
   --tracking-wide: 0.3px;
   --tracking-wider: 0.5px;
   --tracking-widest: 1px;
 
-  /* Typography — Line height */
+  /* Typography - Line height */
   --leading-none: 1;
   --leading-tight: 1.25;
   --leading-snug: 1.4;
@@ -159,6 +163,14 @@ a:hover {
   color: var(--color-accent-2);
 }
 
+/* Links inside running text: the accent red is 4.5:1 on the background but
+   barely 2:1 against the body text, so color alone does not mark them.
+   Class-less links only: buttons, cards and menus style themselves. */
+:where(p, li, td, dd, blockquote, figcaption) a:not([class]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 button {
   font-family: var(--font-family);
   cursor: pointer;
@@ -232,6 +244,27 @@ button {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* The skip link is .sr-only until it takes keyboard focus, then it shows up
+   in the top-left corner above the header. */
+.sr-only:focus,
+.sr-only:focus-visible {
+  top: 8px;
+  left: 8px;
+  z-index: 10001;
+  width: auto;
+  height: auto;
+  padding: 10px 16px;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+  color: #fff;
+  background: var(--color-accent);
+  border-radius: var(--radius);
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
 }
 
 img {
@@ -510,10 +543,11 @@ img {
   border-color: var(--color-accent-1);
 }
 
+/* Muted color only: the old 0.5 opacity dropped the text under the 4.5:1
+   contrast threshold. */
 .pagination__link--disabled {
   color: var(--color-muted);
   pointer-events: none;
-  opacity: 0.5;
 }
 
 .pagination__info {
@@ -668,6 +702,22 @@ img {
   font-size: var(--font-size-small);
   z-index: 600;
   max-width: calc(100vw - 2rem);
+}
+/* On a phone the message gets its own line and the buttons go under it,
+   instead of squeezing the text into a narrow pill. */
+@media (max-width: 480px) {
+  .sw-update {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc(100vw - 2rem);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    row-gap: 0.5rem;
+  }
+  .sw-update-msg {
+    flex: 1 1 100%;
+    text-align: center;
+  }
 }
 .sw-update-btn {
   background: var(--color-accent);

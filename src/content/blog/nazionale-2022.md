@@ -19,7 +19,7 @@ gallerySections:
       - '/nc/nc-2022/nc-2022-finale-01.webp'
 venue:
   name: 'Circolo Barbanera'
-  address: 'Via Ranzani 13/2 — Bologna'
+  address: 'Via Ranzani 13/2, Bologna'
   siteUrl: 'https://www.facebook.com/circolobarbanera/'
   mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Via+Ranzani+13+Bologna'
 events:
@@ -33,7 +33,7 @@ events:
 pricing: []
 standingsUrl: '/nc/nc-2022/standings-nc-2022.json'
 contact: 'info@vtesitaly.com'
-payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
 locale: it

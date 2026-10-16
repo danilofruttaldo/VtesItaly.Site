@@ -1,6 +1,6 @@
 const particles = new Set(['di', 'de', 'del', 'della', 'delle', 'dei', 'degli', 'da', 'lo', 'la', 'le', 'li']);
 
-/** Converts "Filippo Mengoli" → "Filippo M." — keeps single names as-is.
+/** Converts "Filippo Mengoli" → "Filippo M." - keeps single names as-is.
  *  Handles Italian surname particles: "Diego Di Nicolantonio" → "Diego D." */
 export function anonymizeName(fullName: string): string {
   const parts = fullName.trim().split(/\s+/);

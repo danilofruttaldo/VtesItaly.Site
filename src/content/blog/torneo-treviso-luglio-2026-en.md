@@ -6,7 +6,7 @@ tags: ['treviso', 'torneo']
 featuredImage: '/images/comunita/treviso/praxis-seizure.webp'
 poster: '/images/comunita/treviso/praxis-seizure.webp'
 galleryFolder: 'praxis-seizure-2026'
-excerpt: 'Praxis Seizure: Treviso — Standard Constructed VTES tournament on Saturday, July 18, 2026 at GiOlly Comics in Villorba (TV). Proxies allowed, €15 entry.'
+excerpt: 'Praxis Seizure: Treviso, Standard Constructed VTES tournament on Saturday, July 18, 2026 at GiOlly Comics in Villorba (TV). Proxies allowed, €15 entry.'
 venue:
   name: 'GiOlly Comics'
   address: 'Largo I Maggio 5/3, 31020 Villorba (TV), Italy'
@@ -27,7 +27,7 @@ schedule:
 pricing:
   - label: 'Entry fee'
     regular: '€15'
-payment: 'PayPal (friends and family) — vtes.treviso@gmail.com'
+payment: 'PayPal (friends and family): vtes.treviso@gmail.com'
 standingsUrl: '/ev/praxis-seizure-2026/standings-praxis-seizure-2026.json'
 prizes:
   - '1st place: clan magnetic deck box + New Blood + heraldry trophy'
@@ -39,7 +39,7 @@ prizes:
 locale: 'en'
 ---
 
-**Praxis Seizure: Treviso** — **Standard Constructed** VTES tournament on Saturday, **July 18, 2026** at **GiOlly Comics** in Villorba (TV).
+**Praxis Seizure: Treviso**, **Standard Constructed** VTES tournament on Saturday, **July 18, 2026** at **GiOlly Comics** in Villorba (TV).
 
 It is the **first sanctioned tournament of the Principality of Treviso**, following the unofficial friendly tournament that launched the community last year (_Taste of Spritzae_, July 2025).
 

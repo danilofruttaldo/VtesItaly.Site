@@ -76,7 +76,8 @@
     "close_label": "Close search",
     "placeholder": "Search articles, events, domains...",
     "submit": "Search",
-    "no_results": "No results found."
+    "no_results": "No results found.",
+    "dialog_label": "Site search"
   },
   "nav": {
     "main_label": "Main navigation",
@@ -218,7 +219,8 @@
     "why_title": "Why Postcards?",
     "why_text": "Like postcards sent from a trip, meant to be shared memories: an alternative album of what makes the VTES community in Italy come alive. Browsing rediscovers friends, games, gags and small legends born around the tables.",
     "scroll_left": "Scroll left",
-    "scroll_right": "Scroll right"
+    "scroll_right": "Scroll right",
+    "slider_label": "scroll the postcards"
   },
   "twins": {
     "lead": "The world of Vampire: The Eternal Struggle is populated by dark, enigmatic and fascinating faces. But looking closely at card illustrations, sometimes you spot surprising similarities with well-known figures: actors, musicians, politicians or pop culture icons. This section collects the coincidences in a light-hearted and ironic way.",
@@ -252,6 +254,10 @@
     "players": "Players",
     "points": "Points",
     "no_data": "No results available"
+  },
+  "lightbox": {
+    "label": "Enlarged photo",
+    "close": "Close the photo"
   },
   "sw_update": {
     "title": "A new version is available.",

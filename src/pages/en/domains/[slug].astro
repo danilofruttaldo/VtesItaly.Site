@@ -9,6 +9,7 @@ import { filterByLocale, useTranslations } from '../../../utils/i18n';
 import { getEnPostUrl, buildCityCards } from '../../../utils/url';
 import { todayLocalMidnight } from '../../../utils/today';
 import { thumbFor } from '../../../utils/image';
+import { cityOgImage } from '../../../utils/og';
 
 const t = useTranslations('en');
 
@@ -31,11 +32,7 @@ const firstPastIndex = cards.findIndex((c) => c.date < today);
 const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length - 1 : -1) : firstPastIndex - 1;
 ---
 
-<Base
-  title={city.name.en}
-  description={city.description.en}
-  ogImage={city.headerImage.replace('/headers/header-', '/og/og-')}
->
+<Base title={city.name.en} description={city.description.en} ogImage={cityOgImage(city.headerImage)}>
   <PageHero
     title={city.name.en}
     image={city.headerImage}
@@ -53,7 +50,7 @@ const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length 
             loading="lazy"
             decoding="async"
           />
-          <h3>{city.prince.name}</h3>
+          <h2 class="prince-name">{city.prince.name}</h2>
           <p class="prince-alias"><em>{city.prince.alias}</em></p>
           <p class="prince-role">{t.domain.prince_role} {city.name.en}</p>
           <div class="prince-socials">
@@ -132,10 +129,10 @@ const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length 
           <h2>{t.domain.meetups_title}</h2>
           {
             city.meetupSchedule.length > 0 ? (
-              <div class="meetup-table-wrap">
+              <div class="meetup-table-wrap" tabindex="0" role="region" aria-label={t.domain.meetups_title}>
                 <table class="meetup-table">
                   <caption class="sr-only">
-                    {t.domain.meetups_title} — {city.name.en}
+                    {t.domain.meetups_title} - {city.name.en}
                   </caption>
                   <thead>
                     <tr>
@@ -269,7 +266,7 @@ const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length 
     margin-inline: auto;
     margin-bottom: 8px;
   }
-  .prince-card h3 {
+  .prince-card .prince-name {
     font-size: var(--font-size-md);
     margin-bottom: 0;
   }

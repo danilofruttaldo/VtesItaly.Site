@@ -1,13 +1,14 @@
 /* Static render of SearchOverlay via Astro Container.
  * Verifies the localised aria-labels/placeholders make it into the markup
- * and that the inline script keeps the XSS-safe excerpt parser. The parser
- * (replaced the older regex+innerHTML sanitiser) splits the Pagefind excerpt
+ * and that the excerpt parser stays XSS-safe. The parser in
+ * src/utils/search-excerpt.ts (replaced the older regex+innerHTML sanitiser) splits the Pagefind excerpt
  * on <mark>...</mark> and rebuilds the DOM with text nodes + <mark>
  * elements, so injected HTML (including entity-encoded payloads) cannot
  * escape into the document. */
 import { describe, it, expect } from 'vitest';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import SearchOverlay from '../../src/components/SearchOverlay.astro';
+import { excerptSegments } from '../../src/utils/search-excerpt';
 
 describe('SearchOverlay', () => {
   it('renders the IT placeholder + aria-labels by default', async () => {
@@ -28,38 +29,23 @@ describe('SearchOverlay', () => {
     expect(html.toLowerCase()).toContain('search');
   });
 
-  it('inline script must not pipe excerpts through innerHTML (XSS regression)', async () => {
+  it('renders as a modal dialog, inert until opened', async () => {
     const container = await AstroContainer.create();
     const html = await container.renderToString(SearchOverlay, {
       request: new Request('http://localhost/'),
     });
-    // The excerpt parser is the only place an attacker-controlled string
-    // could reach the DOM; it must build elements via createElement +
-    // textContent, never via innerHTML.
-    expect(html).toContain('split(/<mark>([\\s\\S]*?)<\\/mark>/g)');
-    expect(html).toContain('createTextNode(part)');
-    expect(html).toMatch(/mark\.textContent\s*=\s*part/);
-    expect(html).not.toMatch(/excerpt\.innerHTML\s*=/);
+    expect(html).toMatch(/id="search-overlay"[^>]*role="dialog"/);
+    expect(html).toContain('aria-modal="true"');
+    expect(html).toContain('aria-label="Ricerca nel sito"');
+    expect(html).toMatch(/id="search-overlay"[^>]*inert/);
   });
 
   it('XSS regression: parser keeps non-<mark> tags as literal text segments', () => {
-    // Mirrors the parser embedded in SearchOverlay.astro. If somebody changes
-    // the split or starts treating extra tags as elements this test fails
-    // before the bad code ever ships. The parser models its DOM output as
-    // a sequence of {kind: 'text' | 'mark', value} segments.
-    type Seg = { kind: 'text' | 'mark'; value: string };
-    const parse = (raw: string): Seg[] => {
-      const parts = (raw || '').split(/<mark>([\s\S]*?)<\/mark>/g);
-      const out: Seg[] = [];
-      parts.forEach((p, i) => {
-        if (i % 2 === 0) {
-          if (p) out.push({ kind: 'text', value: p });
-        } else {
-          out.push({ kind: 'mark', value: p });
-        }
-      });
-      return out;
-    };
+    // excerptSegments is the parser the overlay script uses: it builds the
+    // DOM from these segments with createTextNode and mark.textContent, never
+    // innerHTML. If somebody changes the split or starts treating extra tags
+    // as elements this test fails before the bad code ever ships.
+    const parse = excerptSegments;
 
     // <script> never becomes a mark segment — its source is literal text
     // and would be rendered as a text node by createTextNode at runtime.
@@ -89,6 +75,10 @@ describe('SearchOverlay', () => {
     // Uppercase <MARK> is intentionally NOT treated as a match (Pagefind
     // only emits lowercase) — it stays as literal text.
     expect(parse('keep <MARK>x</MARK> literal')).toEqual([{ kind: 'text', value: 'keep <MARK>x</MARK> literal' }]);
+
+    // No excerpt at all gives no segments.
+    expect(parse(undefined)).toEqual([]);
+    expect(parse(null)).toEqual([]);
 
     // Multiple <mark> spans interleave correctly.
     expect(parse('<mark>a</mark><mark>b</mark>')).toEqual([

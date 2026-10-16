@@ -33,7 +33,7 @@ contact: 'henry.hinde1973@gmail.com'
 locale: it
 ---
 
-**Super Sloth** — _They came for the Sloth. Now they're here for…_ Il side event della **VI tappa dell'[Italian Tour 2026](/tour)** (Accidia), domenica **15 novembre 2026** alla **Casa dei Giochi** di Milano, il giorno dopo la tappa.
+**Super Sloth**: _They came for the Sloth. Now they're here for…_ Il side event della **VI tappa dell'[Italian Tour 2026](/tour/)** (Accidia), domenica **15 novembre 2026** alla **Casa dei Giochi** di Milano, il giorno dopo la tappa.
 
 Sede raggiungibile con la **Metro 1 Rossa**, fermata _Villa San Giovanni_ (direzione Sesto San Giovanni).
 

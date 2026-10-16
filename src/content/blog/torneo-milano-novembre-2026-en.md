@@ -33,7 +33,7 @@ contact: 'henry.hinde1973@gmail.com'
 locale: 'en'
 ---
 
-**Super Sloth** — _They came for the Sloth. Now they're here for…_ The side event of the **6th stage of the [Italian Tour 2026](/en/tour)** (Sloth), on Sunday, **November 15, 2026** at **Casa dei Giochi** in Milan, the day after the stage.
+**Super Sloth**: _They came for the Sloth. Now they're here for…_ The side event of the **6th stage of the [Italian Tour 2026](/en/tour/)** (Sloth), on Sunday, **November 15, 2026** at **Casa dei Giochi** in Milan, the day after the stage.
 
 Easy to reach by **Metro 1 (Red Line)**, stop _Villa San Giovanni_ (direction Sesto San Giovanni).
 

@@ -26,7 +26,7 @@ schedule:
 pricing:
   - label: 'Entry fee'
     regular: '€10'
-payment: 'PayPal (friends and family) — henry.hinde1973@gmail.com'
+payment: 'PayPal (friends and family): henry.hinde1973@gmail.com'
 prizes:
   - 'Finalist prizes: V5 decks, gadgets, sleeves (based on the number of participants)'
   - 'Promo door prize for everyone'
@@ -34,13 +34,13 @@ standingsUrl: '/ev/milano-giugno-2026/standings-milano-giugno-2026.json'
 locale: 'en'
 ---
 
-**Milano Awakening** — the first Milan city tournament after a 3-year hiatus, on Saturday, **June 27, 2026** at **UESM Casa dei Giochi**.
+**Milano Awakening**: the first Milan city tournament after a 3-year hiatus, on Saturday, **June 27, 2026** at **UESM Casa dei Giochi**.
 
 Easy to reach by **Metro 1 (Red Line)**, stop _Villa San Giovanni_ (direction Sesto San Giovanni).
 
 ## Lunch and breaks
 
-Inside the venue there is a **bar with a cold buffet** (sandwiches, piadinas and similar) — around **€10** for sandwich + drink + coffee.
+Inside the venue there is a **bar with a cold buffet** (sandwiches, piadinas and similar): around **€10** for sandwich + drink + coffee.
 
 Alternatively, **100 m** from the venue there is a **pizza-by-the-slice / trattoria** we regularly use: about **€12** for pizza + drink, **€25–30** for a full meal (first course + main + side).
 

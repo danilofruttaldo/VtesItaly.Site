@@ -6,6 +6,7 @@ tags: ['barga', 'torneo']
 featuredImage: '/images/comunita/barga/old-friends.webp'
 poster: '/images/comunita/barga/old-friends.webp'
 excerpt: 'Old Friends: VTES tournament in Barga on Saturday, June 6, 2026 at Agriturismo Il Musaccio. Standard, proxies allowed, single deck with mandatory decklist. €5 entry, limited seats.'
+seoDescription: 'Old Friends: VTES tournament in Barga on Saturday, June 6, 2026 at Agriturismo Il Musaccio. Standard, proxies allowed, €5 entry.'
 venue:
   name: 'Agriturismo Il Musaccio'
   address: 'Località Pian di Gragno 15, 55051 Barga (LU), Italy'
@@ -37,7 +38,7 @@ prizes:
 locale: 'en'
 ---
 
-**Old Friends** — VTES tournament on Saturday, **June 6, 2026** at **Agriturismo Il Musaccio** in Barga (LU), Italy.
+**Old Friends**: VTES tournament on Saturday, **June 6, 2026** at **Agriturismo Il Musaccio** in Barga (LU), Italy.
 
 **Standard** format with **proxies allowed**, single deck and mandatory decklist. **2 rounds + final**, €5 entry.
 

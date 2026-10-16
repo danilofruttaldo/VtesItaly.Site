@@ -42,10 +42,14 @@
   border-radius: var(--radius);
   margin: 16px 0;
 }
-.prose a {
+/* Class-less links only: buttons and chips inside .prose (Archon, streaming)
+   keep their own colors, which this rule used to override. */
+.prose a:not([class]) {
   color: var(--color-accent-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
-.prose a:hover {
+.prose a:not([class]):hover {
   color: var(--color-accent-2);
 }
 .prose strong {
@@ -494,7 +498,7 @@
   color: var(--color-success);
 }
 
-/* Variant: IMPORTANT (rose accent — site primary) */
+/* Variant: IMPORTANT (rose accent - site primary) */
 .prose .markdown-alert-important {
   border-left-color: var(--color-accent-1);
   background: rgba(232, 90, 114, 0.06);

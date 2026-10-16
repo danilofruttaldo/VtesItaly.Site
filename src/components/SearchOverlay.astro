@@ -5,7 +5,15 @@ const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
 
-<div class="vtesitaly-search-overlay" id="search-overlay">
+<div
+  class="vtesitaly-search-overlay"
+  id="search-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label={t.search.dialog_label}
+  aria-hidden="true"
+  inert
+>
   <button type="button" class="vtesitaly-search-close" aria-label={t.search.close_label}>&times;</button>
   <div class="vtesitaly-search-container">
     <input
@@ -16,122 +24,165 @@ const t = useTranslations(locale);
       aria-label={t.search.aria_label}
       autocomplete="off"
     />
-    <div id="pagefind-results" class="vtesitaly-search-results" data-no-results={t.search.no_results}></div>
+    <div
+      id="pagefind-results"
+      class="vtesitaly-search-results"
+      data-no-results={t.search.no_results}
+      aria-live="polite"
+    >
+    </div>
   </div>
 </div>
 
-<script is:inline>
-  (function () {
-    var overlay = document.getElementById('search-overlay');
-    if (!overlay) return;
+<script>
+  import { excerptSegments } from '../utils/search-excerpt';
 
-    var closeBtn = overlay.querySelector('.vtesitaly-search-close');
-    var input = document.getElementById('pagefind-input');
-    var resultsContainer = document.getElementById('pagefind-results');
-    var pagefind = null;
-    var debounceTimer = null;
+  type PagefindResult = { url: string; excerpt: string; meta: { title: string } };
+  type Pagefind = {
+    init: () => Promise<void>;
+    search: (q: string) => Promise<{ results: { data: () => Promise<PagefindResult> }[] }>;
+  };
 
-    async function initPagefind() {
+  const overlay = document.getElementById('search-overlay');
+  const closeBtn = overlay?.querySelector<HTMLButtonElement>('.vtesitaly-search-close');
+  const input = document.getElementById('pagefind-input') as HTMLInputElement | null;
+  const resultsContainer = document.getElementById('pagefind-results');
+
+  if (overlay && closeBtn && input && resultsContainer) {
+    const box = overlay;
+    const field = input;
+    const results = resultsContainer;
+    let pagefind: Pagefind | null = null;
+    let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+    // Every query gets a number; an answer that arrives after a newer query
+    // started is dropped, so slow results never overwrite fresher ones.
+    let searchSeq = 0;
+    let opener: HTMLElement | null = null;
+
+    const initPagefind = async () => {
       if (pagefind) return;
       try {
-        pagefind = await import('/pagefind/pagefind.js');
+        // Built by `pagefind --site dist` after astro: not a module Vite can see.
+        const path = '/pagefind/pagefind.js';
+        pagefind = (await import(/* @vite-ignore */ path)) as Pagefind;
         await pagefind.init();
       } catch {
         /* Pagefind not available in dev mode */
       }
-    }
+    };
 
-    async function doSearch(query) {
-      if (!pagefind || !query || query.length < 2) {
-        resultsContainer.innerHTML = '';
-        return;
-      }
-
-      var search = await pagefind.search(query, {
-        filters: {},
-      });
-
-      var results = await Promise.all(
-        search.results.slice(0, 8).map(function (r) {
-          return r.data();
-        }),
-      );
-
-      if (results.length === 0) {
-        resultsContainer.textContent = '';
-        var noRes = document.createElement('p');
+    const render = (items: PagefindResult[]) => {
+      results.textContent = '';
+      if (items.length === 0) {
+        const noRes = document.createElement('p');
         noRes.className = 'search-no-results';
-        noRes.textContent = resultsContainer.getAttribute('data-no-results') || '';
-        resultsContainer.appendChild(noRes);
+        noRes.textContent = results.getAttribute('data-no-results') || '';
+        results.appendChild(noRes);
         return;
       }
-
-      resultsContainer.textContent = '';
-      results.forEach(function (r) {
-        var a = document.createElement('a');
+      items.forEach((r) => {
+        const a = document.createElement('a');
         a.href = r.url;
         a.className = 'search-result';
 
-        var title = document.createElement('span');
+        const title = document.createElement('span');
         title.className = 'search-result__title';
         title.textContent = r.meta.title;
         a.appendChild(title);
 
-        var excerpt = document.createElement('span');
+        const excerpt = document.createElement('span');
         excerpt.className = 'search-result__excerpt';
-        // Pagefind emits excerpts with <mark>...</mark> only. Rebuild via DOM
-        // (text nodes for prose, <mark> elements for matches) so any other
-        // tag — or HTML entity injection — is rendered as literal text.
-        var parts = (r.excerpt || '').split(/<mark>([\s\S]*?)<\/mark>/g);
-        parts.forEach(function (part, i) {
-          if (i % 2 === 0) {
-            if (part) excerpt.appendChild(document.createTextNode(part));
+        excerptSegments(r.excerpt).forEach((seg) => {
+          if (seg.kind === 'text') {
+            excerpt.appendChild(document.createTextNode(seg.value));
           } else {
-            var mark = document.createElement('mark');
-            mark.textContent = part;
+            const mark = document.createElement('mark');
+            mark.textContent = seg.value;
             excerpt.appendChild(mark);
           }
         });
         a.appendChild(excerpt);
-
-        resultsContainer.appendChild(a);
+        results.appendChild(a);
       });
-    }
+    };
 
-    function openOverlay() {
-      overlay.classList.add('open');
-      initPagefind();
-      if (input) {
-        input.value = '';
-        resultsContainer.innerHTML = '';
-        input.focus();
+    const doSearch = async (query: string) => {
+      const seq = ++searchSeq;
+      if (!query || query.length < 2) {
+        results.textContent = '';
+        return;
       }
-    }
+      await initPagefind();
+      if (!pagefind || seq !== searchSeq) return;
+      const search = await pagefind.search(query);
+      const items = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+      if (seq !== searchSeq) return;
+      render(items);
+    };
 
-    function closeOverlay() {
-      overlay.classList.remove('open');
-    }
+    const isOpen = () => box.classList.contains('open');
+
+    const openOverlay = (e: Event) => {
+      const detail = (e as CustomEvent<{ opener?: HTMLElement }>).detail;
+      opener = detail?.opener ?? (document.activeElement as HTMLElement | null);
+      box.inert = false;
+      box.setAttribute('aria-hidden', 'false');
+      box.classList.add('open');
+      initPagefind();
+      field.value = '';
+      results.textContent = '';
+      searchSeq++;
+      // Visibility flips at once (see the CSS); the frame lets the browser
+      // apply it before the focus moves.
+      requestAnimationFrame(() => field.focus());
+    };
+
+    const closeOverlay = () => {
+      if (!isOpen()) return;
+      searchSeq++;
+      clearTimeout(debounceTimer);
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+      box.inert = true;
+      opener?.focus();
+      opener = null;
+    };
 
     document.addEventListener('open-search', openOverlay);
-
-    if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closeOverlay();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeOverlay();
+    closeBtn.addEventListener('click', closeOverlay);
+    box.addEventListener('click', (e) => {
+      if (e.target === box) closeOverlay();
     });
 
-    if (input) {
-      input.addEventListener('input', function () {
-        clearTimeout(debounceTimer);
-        var query = input.value.trim();
-        debounceTimer = setTimeout(function () {
-          doSearch(query);
-        }, 200);
-      });
-    }
-  })();
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') {
+        closeOverlay();
+        return;
+      }
+      // Focus trap: Tab cycles between the input, the results and the close button.
+      if (e.key === 'Tab') {
+        const focusable = Array.from(box.querySelectorAll<HTMLElement>('button, input, a[href]'));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        if (e.shiftKey && (active === first || !box.contains(active))) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (active === last || !box.contains(active))) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    field.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const query = field.value.trim();
+      debounceTimer = setTimeout(() => doSearch(query), 200);
+    });
+  }
 </script>
 
 <style>
@@ -146,15 +197,20 @@ const t = useTranslations(locale);
     background-color: rgba(18, 20, 22, 0.95);
     opacity: 0;
     visibility: hidden;
+    /* On close, visibility waits for the fade-out to end. */
     transition:
       opacity 0.2s ease,
-      visibility 0.2s ease;
+      visibility 0s linear 0.2s;
     overflow-y: auto;
   }
 
   .vtesitaly-search-overlay:global(.open) {
     opacity: 1;
     visibility: visible;
+    /* On open, visibility flips at once so the input can take focus. */
+    transition:
+      opacity 0.2s ease,
+      visibility 0s;
   }
 
   .vtesitaly-search-close {

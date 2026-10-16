@@ -21,7 +21,7 @@ gallerySections:
       - '/nc/nc-2023/nc-2023-round-06.webp'
 venue:
   name: 'The Sydney Hotel'
-  address: 'Via Michelino, 74 — Bologna'
+  address: 'Via Michelino, 74, Bologna'
   siteUrl: 'https://www.thesydneyhotel.eu/'
   mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+74+Bologna'
 events:
@@ -50,7 +50,7 @@ links:
     url: '/nc/nc-2023/infopack-nc-2023-en.pdf'
     locale: en
 contact: 'info@vtesitaly.com'
-payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
 locale: it

@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { computeStageDisplayImages } from './status';
-import type { Locale } from './i18n';
+import { translatePostSlug, translateSection, type Locale } from './i18n';
 
 /** Build the canonical post URL in the active locale. Centralises the slug
  *  rewrite so calendar timelines, city pages, and search results agree on
@@ -12,15 +12,9 @@ export function postUrl(post: { id: string; data: { category: string } }, locale
 
 /** Builds the EN URL for a blog post, applying slug cleanup and category translation. */
 export function getEnPostUrl(post: { id: string; data: { category: string } }): string {
-  let cleanSlug = post.id.replace(/-en$/, '');
-  let catSlug = post.data.category;
-  if (catSlug === 'nazionale') {
-    catSlug = 'national-championship';
-    cleanSlug = cleanSlug.replace('nazionale-', 'nc-');
-  } else if (catSlug === 'comunita') {
-    catSlug = 'community';
-  }
-  return `/en/${catSlug}/${cleanSlug}/`;
+  const itSection = post.data.category;
+  const slug = translatePostSlug(itSection, post.id.replace(/-en$/, ''), 'en');
+  return `/en/${translateSection(itSection, 'en')}/${slug}/`;
 }
 
 /** Returns the best card image for a post, checking tour stage images for a specific city. */
@@ -78,7 +72,7 @@ export function buildCityCards(
         const stageImg = stageImages[si];
         out.push({
           href: hrefBuilder(post),
-          title: `IT${yearShort} — ${stage.name}`,
+          title: `IT${yearShort} - ${stage.name}`,
           image: stageImg || post.data.poster || post.data.featuredImage,
           date: new Date(stage.date),
           category: post.data.category,

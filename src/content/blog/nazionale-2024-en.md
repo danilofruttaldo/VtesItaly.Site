@@ -30,7 +30,7 @@ events:
     standingsUrl: '/nc/nc-2024/standings-tour-trento-2024.json'
 pricing: []
 contact: 'info@vtesitaly.com'
-payment: 'PayPal (friends and family) — vtesitaly@gmail.com'
+payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
 locale: en

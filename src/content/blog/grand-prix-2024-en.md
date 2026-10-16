@@ -32,7 +32,7 @@ events:
 pricing:
   - label: 'Entry fee'
     regular: '25.00 euro'
-payment: 'PayPal (friends and family) — vtesitaly@gmail.com'
+payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 contact: 'info@vtesitaly.com'
 hotel: []
 prizes: ''

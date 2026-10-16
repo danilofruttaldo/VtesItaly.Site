@@ -1,4 +1,5 @@
-import { todayLocalMidnight } from './today';
+import { todayLocalIso, todayLocalMidnight } from './today';
+import { isoDay } from './date';
 
 interface Stage {
   date: Date;
@@ -8,37 +9,52 @@ interface Stage {
 export type TourStatus = 'past' | 'live' | 'upcoming';
 export type EventStatus = 'past' | 'live' | 'upcoming';
 
+/** A tour stage reduced to what the status needs, as serialized for the client. */
+export interface StageDay {
+  date: string; // YYYY-MM-DD
+  cancelled: boolean;
+}
+
+/**
+ * Tour status from its stages as calendar days, against `today` (YYYY-MM-DD).
+ * Shared by the build (computeTourStatus) and by the browser script
+ * (src/scripts/temporal.ts), which re-runs it against the visitor's own day
+ * so cached HTML does not keep the build-day status.
+ */
+export function tourStatusOn(stages: StageDay[], today: string): TourStatus | null {
+  const active = stages.filter((s) => !s.cancelled);
+  if (active.length === 0) return null;
+  const statuses = active.map((s) => (s.date < today ? 'completed' : 'future'));
+  if (statuses.every((s) => s === 'completed')) return 'past';
+  if (statuses.every((s) => s === 'future')) return 'upcoming';
+  return 'live';
+}
+
+/** Single-date event status from its calendar day, against `today` (YYYY-MM-DD). */
+export function eventStatusOn(date: string, today: string): EventStatus {
+  if (date === today) return 'live';
+  return date > today ? 'upcoming' : 'past';
+}
+
+/** Stages as `StageDay`, the shape the page hands to the browser. */
+export function toStageDays(stages: Stage[]): StageDay[] {
+  return stages.map((s) => ({ date: isoDay(s.date), cancelled: s.status === 'cancelled' }));
+}
+
 /**
  * Compute the overall tour status from its stages.
  * Returns null when the stages array is empty.
  */
 export function computeTourStatus(stages: Stage[]): TourStatus | null {
   if (stages.length === 0) return null;
-
-  const today = todayLocalMidnight();
-
-  const statuses = stages.map((s) => {
-    if (s.status === 'cancelled') return 'cancelled';
-    const d = new Date(s.date);
-    d.setHours(0, 0, 0, 0);
-    return d < today ? 'completed' : 'future';
-  });
-
-  const active = statuses.filter((s) => s !== 'cancelled');
-  if (active.length === 0) return null;
-  if (active.every((s) => s === 'completed')) return 'past';
-  if (active.every((s) => s === 'future')) return 'upcoming';
-  return 'live';
+  return tourStatusOn(toStageDays(stages), todayLocalIso());
 }
 
 /**
  * Compute event status for a single-date event (GP, NC, community events).
  */
 export function computeEventStatus(eventDate: Date): EventStatus {
-  const now = new Date();
-  const isToday = eventDate.toDateString() === now.toDateString();
-  if (isToday) return 'live';
-  return eventDate > now ? 'upcoming' : 'past';
+  return eventStatusOn(isoDay(eventDate), todayLocalIso());
 }
 
 /**
@@ -81,14 +97,14 @@ export function resolvePlatformLabel(url: string): string {
  * Choose the display label for a tournament link. For known platforms (Archon,
  * BCN Crisis) the platform name is always shown so the chip is recognizable at
  * a glance: an editorial label, when present, is kept as a prefix
- * (`{label} — {platform}`, mirroring the per-event link chips); otherwise just
+ * (`{label} - {platform}`, mirroring the per-event link chips); otherwise just
  * the platform name. Non-platform links use the editorial label verbatim.
  * Used by Event/Tour/League pages and standalone post link chips.
  */
 export function resolveLinkLabel(l: { label: string; url: string }): string {
   if (l.url.includes('bcncrisis') || l.url.includes('archon')) {
     const platform = resolvePlatformLabel(l.url);
-    return l.label ? `${l.label} — ${platform}` : platform;
+    return l.label ? `${l.label} - ${platform}` : platform;
   }
   return l.label;
 }

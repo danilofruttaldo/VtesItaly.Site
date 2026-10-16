@@ -5,7 +5,8 @@ category: 'comunita'
 tags: ['treviso', 'lega']
 featuredImage: '/images/comunita/treviso/church-of-st-blaise.webp'
 poster: '/images/comunita/treviso/church-of-st-blaise.webp'
-excerpt: 'Second edition of the Treviso V:tES league: 10 Methuselahs ready to clash with no mercy — fragile alliances, calculated betrayals and low blows at the table.'
+excerpt: 'Second edition of the Treviso V:tES league: 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.'
+seoTitle: 'Church of St. Blaise – Treviso League'
 events:
   - name: 'Constructed League'
     date: 2026-03-02
@@ -66,13 +67,13 @@ leagueBonusPoints:
 registration: 'Entry fee: €10'
 prizes:
   - 'Winner: 3 full-art promos'
-  - 'Finalists (1st–5th): a New Blood of choice — 1st place picks first, then in descending order'
+  - 'Finalists (1st–5th): a New Blood of choice: 1st place picks first, then in descending order'
   - 'Every game: 2 random cards from 30th Anniversary + 1 New Blood (while supplies last)'
   - 'Final draw: 5 packs of 6× Ashur Tablets raffled among all participants at the end of the league'
 standingsUrl: 'standings-church-of-st-blaise-2026'
 locale: 'en'
 ---
 
-Second edition of the Treviso _Vampire: The Eternal Struggle_ league. The **Principato di Treviso** is back with 10 Methuselahs ready to clash with no mercy — fragile alliances, calculated betrayals and low blows at the table.
+Second edition of the Treviso _Vampire: The Eternal Struggle_ league. The **Principato di Treviso** is back with 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.
 
-Each player must complete **10 valid games** — the league has no fixed duration in days but continues until everyone has reached the quota. Points earned beyond the tenth game do not count toward the standings. Once all players have 10 games, the total sum of GW, VP and BP determines the **League Point** and the **top 5 finalists**.
+Each player must complete **10 valid games**: the league has no fixed duration in days but continues until everyone has reached the quota. Points earned beyond the tenth game do not count toward the standings. Once all players have 10 games, the total sum of GW, VP and BP determines the **League Point** and the **top 5 finalists**.

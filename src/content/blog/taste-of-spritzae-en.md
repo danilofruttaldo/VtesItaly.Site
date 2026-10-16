@@ -28,9 +28,9 @@ standingsTpLabel: 'TP'
 prizes:
   - '2 promo cards from Promo Pack 4 for all participants'
   - 'Prizes for winner and 5 finalists'
-  - 'Baron of Spritz — for those who raise the style bar'
-  - 'Prince of Cards — for those sporting game accessories worthy of a sobriety test'
-  - 'Seal of Sparkling Blood — for those who reached the bottom of the glass and beyond'
+  - 'Baron of Spritz: for those who raise the style bar'
+  - 'Prince of Cards: for those sporting game accessories worthy of a sobriety test'
+  - 'Seal of Sparkling Blood: for those who reached the bottom of the glass and beyond'
 notes:
   - 'The shop will be closed from 12:30 to 14:30 during lunch break.'
 links:

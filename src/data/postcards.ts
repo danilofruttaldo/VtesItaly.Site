@@ -59,8 +59,8 @@ export const postcardGalleries: PostcardGallery[] = [
             en: 'Marko talks about the cards in memory of Lauri.',
           },
           caption: {
-            it: 'Giocare insieme non è solo classifiche e mazzi — sono le persone che incontriamo, le serate che si allungano, le storie che ci portiamo dietro. E chi non è più al tavolo resta con noi in quelle storie: in una mano che qualcuno ricorderà, in una giocata che ci ha sorpresi, in una risata alla fine di una partita.',
-            en: "Playing together isn't just about standings and decks — it's the people we meet, the evenings that stretch on, the stories we carry with us. And those who are no longer at the table stay with us in those stories: in a hand someone will remember, in a play that surprised us, in a laugh at the end of a game.",
+            it: 'Giocare insieme non è solo classifiche e mazzi: sono le persone che incontriamo, le serate che si allungano, le storie che ci portiamo dietro. E chi non è più al tavolo resta con noi in quelle storie: in una mano che qualcuno ricorderà, in una giocata che ci ha sorpresi, in una risata alla fine di una partita.',
+            en: "Playing together isn't just about standings and decks: it's the people we meet, the evenings that stretch on, the stories we carry with us. And those who are no longer at the table stay with us in those stories: in a hand someone will remember, in a play that surprised us, in a laugh at the end of a game.",
           },
         },
       },

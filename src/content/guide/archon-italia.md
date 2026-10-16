@@ -50,14 +50,14 @@ Sono l'inciampo più frequente, perché la traduzione dell'interfaccia e quella 
 
 Tre funzioni sono documentate come riservate agli eventi online, ma nell'app non lo sono:
 
-- **Timer** — la guida e l'impostazione lo indicano come «solo online», ma il conto alla rovescia compare in **qualsiasi** torneo per cui hai impostato un **Tempo del round**, comprese le estensioni per singolo tavolo. Funziona benissimo anche in presenza.
-- **Chiama il giudice** — non dipende dal fatto che il torneo sia marcato Online: il pulsante c'è ogni volta che il dispositivo del giocatore ha rete e il torneo non è in modalità offline. In una sala grande è più efficace di alzare la mano.
-- **Annunci** — disponibili dal check-in in poi, anche in presenza. «Round 2 fra 10 minuti» arriva sul telefono di tutti.
+- **Timer**: la guida e l'impostazione lo indicano come «solo online», ma il conto alla rovescia compare in **qualsiasi** torneo per cui hai impostato un **Tempo del round**, comprese le estensioni per singolo tavolo. Funziona benissimo anche in presenza.
+- **Chiama il giudice**: non dipende dal fatto che il torneo sia marcato Online: il pulsante c'è ogni volta che il dispositivo del giocatore ha rete e il torneo non è in modalità offline. In una sala grande è più efficace di alzare la mano.
+- **Annunci**: disponibili dal check-in in poi, anche in presenza. «Round 2 fra 10 minuti» arriva sul telefono di tutti.
 
 ## 4. Prima del torneo (per i Principi)
 
 - **Crea l'evento su Archon, non su `vekn.net`.** Finisce sul calendario VEKN da solo. Se lo crei in entrambi i posti ottieni un doppione difficile da smontare: se succede, avvisa subito il tuo National Coordinator.
-- **Attenzione ai campi che si bloccano subito.** Formato, rank, orario di inizio, proxy, numero di round e round aperti si congelano nel momento in cui l'evento arriva sul calendario — cioè appena lo crei. È l'errore più costoso: si correggono solo cancellando e rifacendo l'evento.
+- **Attenzione ai campi che si bloccano subito.** Formato, rank, orario di inizio, proxy, numero di round e round aperti si congelano nel momento in cui l'evento arriva sul calendario, cioè appena lo crei. È l'errore più costoso: si correggono solo cancellando e rifacendo l'evento.
 - **Solo Prince, NC e IC creano tornei.** Non c'è più la possibilità per chiunque di creare eventi Demo o non sanzionati: se organizzi una demo, fattela creare da un Prince (vedi [Condurre una demo VTES](/guide/demo-eventi/)).
 - **I giudici sono co-organizzatori.** Non esiste un ruolo "giudice del torneo": aggiungili da **Strumenti → Organizzatori** e hanno i tuoi stessi poteri.
 - **Il banner conta.** Caricane uno da **Strumenti → Preparazione** (1200 × 630): è l'anteprima del link quando lo incolli su WhatsApp o Discord, e senza sembra spam.
@@ -70,13 +70,13 @@ I casi che ricorrono a ogni evento:
 - **Giocatore senza VEKN ID.** Cercalo in **Comunità → Membri** e premi **Sponsor**: gli crea il numero sul momento. Serve essere ufficiale VEKN, quindi fallo tu che sei al banco.
 - **Walk-in.** Non serve iscriverlo prima: fare il check-in di chi non è iscritto lo **iscrive e registra in un colpo solo**.
 - **Ritardatari.** Il check-in non chiude mai: puoi registrare qualcuno anche a round già iniziato. Diventa _presente ma non seduto_ e lo decidi tu se farlo entrare a un tavolo con posto libero (**Fai sedere un giocatore**) o tenerlo per il round dopo.
-- **Chi non fa il check-in viene droppato automaticamente** quando parte il round — ma è reversibile: se si presenta, rifai il check-in e rientra.
+- **Chi non fa il check-in viene droppato automaticamente** quando parte il round, ma è reversibile: se si presenta, rifai il check-in e rientra.
 - **Decklist obbligatoria non blocca nessuno.** Chi non l'ha caricata prende un badge di avvertimento e basta: cosa farne è una decisione da giudice.
 - **Il pagamento è solo un promemoria.** Il badge In attesa/Pagato non impedisce niente.
 
 ## 6. Sedi senza rete
 
-Il seminterrato del negozio senza campo è il caso italiano tipico, e la modalità offline lo copre bene — a patto di prepararsi:
+Il seminterrato del negozio senza campo è il caso italiano tipico, e la modalità offline lo copre bene, a patto di prepararsi:
 
 1. **Da casa, con la rete**: apri la pagina del torneo, premi **Vai offline**, chiudi l'app. In sede riapri e funziona tutto dai dati locali.
 2. È riservata agli organizzatori che sono **ufficiali VEKN** (Prince, NC, IC), perché offline si possono creare membri nuovi sul posto.
@@ -85,13 +85,13 @@ Il seminterrato del negozio senza campo è il caso italiano tipico, e la modalit
 > [!WARNING]
 > Mentre sei offline i giocatori **non vedono niente di aggiornato** sul telefono: tavoli, punteggi e classifica restano fermi. Dillo ad alta voce a inizio evento e **stampa la disposizione** (**Round → Stampa la disposizione**), altrimenti passi la giornata a rispondere a domande.
 
-Se il dispositivo dell'organizzatore muore, un altro organizzatore ufficiale VEKN può usare **Prendi controllo** — ma le modifiche non ancora sincronizzate su quel dispositivo si perdono. È l'ultima risorsa, non una scorciatoia.
+Se il dispositivo dell'organizzatore muore, un altro organizzatore ufficiale VEKN può usare **Prendi controllo**, ma le modifiche non ancora sincronizzate su quel dispositivo si perdono. È l'ultima risorsa, non una scorciatoia.
 
 ## 7. Campionati (leghe)
 
 Su Archon un **campionato** raggruppa una serie di tornei in una classifica unica. Quello che conviene sapere prima di aprirne uno per la scena italiana:
 
-- **Li creano solo NC e IC.** Se sei Prince, chiedi al tuo National Coordinator: può crearlo e aggiungerti come organizzatore, oppure marcarlo **Aperto ai Prince del paese** — l'opzione giusta per un circuito nazionale con molte città, perché ognuno collega i propri tornei da solo.
+- **Li creano solo NC e IC.** Se sei Prince, chiedi al tuo National Coordinator: può crearlo e aggiungerti come organizzatore, oppure marcarlo **Aperto ai Prince del paese**, l'opzione giusta per un circuito nazionale con molte città, perché ognuno collega i propri tornei da solo.
 - **Scegli la modalità pensando a cosa vuoi incentivare:**
   - **Punti Rating (RTP)**, la predefinita, somma i punti rating di ogni tappa **finali comprese**, senza il limite dei migliori 8 o dei 18 mesi. Allinea la classifica al ranking VEKN.
   - **GW/VP/TP** somma solo i round preliminari: premia chi viene a giocare, ottima per far vivere le tappe piccole, ma vincere una finale non dà nulla in più.

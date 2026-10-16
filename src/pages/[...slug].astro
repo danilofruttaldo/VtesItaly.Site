@@ -14,7 +14,9 @@ import { mainPages } from '../data/pages';
 import { categoryLabels, categoryUrls, typeTagLabels as typeTagLabelsMap } from '../data/categories';
 import { cities } from '../data/cities';
 import { filterByLocale, useTranslations, formatLocalDate } from '../utils/i18n';
-import { computeTourStatus, computeEventStatus, resolveLinkLabel } from '../utils/status';
+import { computeTourStatus, computeEventStatus, resolveLinkLabel, toStageDays } from '../utils/status';
+import { isoDay } from '../utils/date';
+import { articleJsonLd, eventJsonLd, postDescription } from '../utils/structured-data';
 
 const t = useTranslations('it');
 
@@ -49,14 +51,7 @@ const postLinksAfter = (post.data.linksAfter ?? [])
 
 const isTourWithStages = post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0;
 const tourStatus = isTourWithStages ? computeTourStatus(post.data.stages!) : null;
-const tourStagesJson = isTourWithStages
-  ? JSON.stringify(
-      post.data.stages!.map((s) => ({
-        date: s.date instanceof Date ? s.date.toISOString().slice(0, 10) : s.date,
-        cancelled: s.status === 'cancelled',
-      })),
-    )
-  : null;
+const tourStagesJson = isTourWithStages ? JSON.stringify(toStageDays(post.data.stages!)) : null;
 const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
 const forceArticle = post.data.pageLayout === 'article';
@@ -66,10 +61,10 @@ const isCommunityEvent =
   !forceArticle && post.data.category === 'comunita' && !isLeague && !!(post.data.venue || post.data.events.length > 0);
 const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
 const gpStatus = isEventPage ? computeEventStatus(new Date(post.data.date)) : null;
-const eventDateStr =
-  post.data.date instanceof Date ? post.data.date.toISOString().slice(0, 10) : String(post.data.date);
+const eventDateStr = isoDay(post.data.date);
 const communityCity = isCommunityEvent || isLeague ? cities.find((c) => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
+const eventLd = isEventPage ? eventJsonLd(post.data, Astro.site!) : null;
 const pageMeta =
   usePageHero && !isCommunityEvent && !isLeague ? mainPages.find((p) => p.category === post.data.category) : null;
 
@@ -86,31 +81,13 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
 ---
 
 <Base
-  title={post.data.title}
-  description={post.data.excerpt || post.data.title}
+  title={post.data.seoTitle || post.data.title}
+  description={postDescription(post.data)}
   ogImage={post.data.poster || post.data.featuredImage}
+  ogType="article"
+  publishedTime={post.data.date}
 >
-  <JsonLd
-    slot="head"
-    data={{
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: post.data.title,
-      datePublished: post.data.date.toISOString(),
-      dateModified: post.data.date.toISOString(),
-      description: post.data.excerpt || post.data.title,
-      ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
-      ...(post.data.poster || post.data.featuredImage
-        ? { image: new URL((post.data.poster || post.data.featuredImage)!, Astro.site).href }
-        : {}),
-      author: { '@type': 'Organization', name: 'VTES Italy' },
-      publisher: {
-        '@type': 'Organization',
-        name: 'VTES Italy',
-        logo: { '@type': 'ImageObject', url: new URL('/images/logo.webp', Astro.site).href },
-      },
-    }}
-  />
+  <JsonLd slot="head" data={articleJsonLd(post.data, Astro.site!)} />
   <JsonLd
     slot="head"
     data={{
@@ -128,35 +105,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
       ],
     }}
   />
-  {
-    isEventPage && (
-      <JsonLd
-        slot="head"
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'Event',
-          name: post.data.title,
-          startDate: post.data.date.toISOString(),
-          description: post.data.excerpt || post.data.title,
-          ...(post.data.venue
-            ? {
-                location: {
-                  '@type': 'Place',
-                  name: post.data.venue.name,
-                  ...(post.data.venue.address ? { address: post.data.venue.address } : {}),
-                },
-              }
-            : {}),
-          ...(post.data.poster || post.data.featuredImage
-            ? { image: new URL((post.data.poster || post.data.featuredImage)!, Astro.site).href }
-            : {}),
-          organizer: { '@type': 'Organization', name: 'VTES Italy', url: Astro.site?.href },
-          eventStatus: 'https://schema.org/EventScheduled',
-          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        }}
-      />
-    )
-  }
+  {isEventPage && eventLd && <JsonLd slot="head" data={eventLd} />}
 
   {/* PageHero per tour, GP/NC e eventi comunità (con header principato) */}
   {
@@ -231,7 +180,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
           <span class="post__category">{label}</span>
           {typeLabel && <span class="post__type-tag">{typeLabel}</span>}
         </div>
-        <time class="post__date" datetime={post.data.date.toISOString()}>
+        <time class="post__date" datetime={isoDay(post.data.date)}>
           {formatLocalDate(post.data.date, 'it')}
         </time>
       </div>
@@ -300,7 +249,7 @@ const cityMap = new Map(cities.map((c) => [c.slug.it, { name: c.name.it, url: `/
                     <a href={img} class="post__gallery-item" data-gallery target="_blank" rel="noopener noreferrer">
                       <img
                         src={img}
-                        alt={`${post.data.title} — ${t.post.photo} ${i + 1}`}
+                        alt={`${post.data.title} - ${t.post.photo} ${i + 1}`}
                         loading="lazy"
                         decoding="async"
                       />

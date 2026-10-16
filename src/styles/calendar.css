@@ -95,7 +95,7 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
-/* Cells — desktop: square with images */
+/* Cells - desktop: square with images */
 .cal__cell {
   position: relative;
   aspect-ratio: 1;
@@ -170,12 +170,12 @@
   color: var(--color-gold);
 }
 
-/* Dot indicator — hidden on desktop, shown on mobile */
+/* Dot indicator - hidden on desktop, shown on mobile */
 .cal__cell-dot {
   display: none;
 }
 
-/* Event label — shown on desktop */
+/* Event label - shown on desktop */
 .cal__cell-label {
   position: relative;
   z-index: 1;
@@ -306,7 +306,6 @@
   font-size: var(--font-size-2xs);
   padding-left: 22px;
   color: var(--color-muted);
-  opacity: 0.7;
 }
 .cal__popup-row--desc {
   font-size: var(--font-size-2xs);
@@ -324,7 +323,7 @@
   justify-content: center;
 }
 
-/* CTA button — prominent, same row */
+/* CTA button - prominent, same row */
 .cal__popup-cta {
   display: inline-flex;
   align-items: center;

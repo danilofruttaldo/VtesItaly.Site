@@ -105,13 +105,23 @@ const galleries = postcardGalleries.map((g) => ({
                 </div>
 
                 {/* Mobile: slider */}
+                {/* Only the first slide has its `src`: the others carry it in
+                    `data-src` and get it when they come near the visible
+                    area of the track. With plain loading="lazy" the browser
+                    fetched every card of every gallery on a phone, closed
+                    galleries included: 1.6 MB for a page read one card at a
+                    time. */}
                 <div class="gallery-slider">
-                  <div class="slider-track">
+                  <div class="slider-track" tabindex="0" aria-label={`${gallery.title}: ${t.postcards.slider_label}`}>
                     {gallery.images
                       .filter((img) => !img.highlight)
-                      .map((img) => (
+                      .map((img, j) => (
                         <figure class="slider-slide">
-                          <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                          {j === 0 ? (
+                            <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                          ) : (
+                            <img data-src={img.src} alt={img.alt} width="400" height="300" decoding="async" />
+                          )}
                         </figure>
                       ))}
                   </div>
@@ -398,21 +408,36 @@ const galleries = postcardGalleries.map((g) => ({
     .slider-dots {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
+      gap: 0;
+      margin-top: 4px;
     }
+    /* The button is the 24px touch target; the visible dot is drawn inside. */
     .slider-dot {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-dot::before {
+      content: '';
       width: 8px;
       height: 8px;
       border-radius: 50%;
       border: 1px solid var(--color-gold);
-      background: transparent;
-      padding: 0;
-      cursor: pointer;
       transition: background 0.2s ease;
     }
-    .slider-dot.is-active {
+    .slider-dot.is-active::before {
       background: var(--color-gold);
+    }
+    .slider-dot:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: -2px;
+      border-radius: 50%;
     }
     .gallery-item {
       cursor: default;
@@ -423,65 +448,105 @@ const galleries = postcardGalleries.map((g) => ({
   }
 </style>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Accordion
-    document.querySelectorAll('.gallery-header').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      });
-    });
+<script>
+  const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Mobile slider dots
-    document.querySelectorAll('.slider-track').forEach((track) => {
-      const dots = track.parentElement.querySelectorAll('.slider-dot');
-      if (!dots.length) return;
-      const slides = track.querySelectorAll('.slider-slide');
-
-      let scrollTick = false;
-      track.addEventListener(
-        'scroll',
-        () => {
-          if (scrollTick) return;
-          scrollTick = true;
-          requestAnimationFrame(() => {
-            const slideWidth = slides[0].offsetWidth + 12;
-            const index = Math.round(track.scrollLeft / slideWidth);
-            dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
-            scrollTick = false;
-          });
-        },
-        { passive: true },
-      );
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-          const slideWidth = slides[0].offsetWidth + 12;
-          track.scrollTo({ left: i * slideWidth, behavior: 'smooth' });
-        });
-      });
-    });
-
-    // Lightbox (desktop only)
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    if (!lightbox || !lightboxImg) return;
-
-    function isMobile() {
-      return window.innerWidth <= 768;
+  // Slider images after the first: `src` is set when the slide comes near
+  // the visible part of the track, and only once its gallery is open: the
+  // closed ones are folded to zero height, but an observer rooted on the
+  // track would still see their slides.
+  const lazyTracks = new WeakSet<HTMLElement>();
+  const loadSlide = (img: HTMLImageElement) => {
+    const src = img.dataset.src;
+    if (src) {
+      img.src = src;
+      img.removeAttribute('data-src');
     }
+  };
 
-    document.querySelectorAll('.gallery-item, .highlight-image').forEach((el) => {
-      const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+  const startLazy = (track: HTMLElement | null | undefined) => {
+    if (!track || lazyTracks.has(track)) return;
+    lazyTracks.add(track);
+    const pending = track.querySelectorAll<HTMLImageElement>('img[data-src]');
+    if (pending.length) {
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              loadSlide(entry.target as HTMLImageElement);
+              io.unobserve(entry.target);
+            });
+          },
+          { root: track, rootMargin: '0px 50% 0px 50%' },
+        );
+        pending.forEach((img) => io.observe(img));
+      } else {
+        pending.forEach(loadSlide);
+      }
+    }
+  };
+
+  // Accordion
+  document.querySelectorAll<HTMLElement>('.gallery-header').forEach((btn) => {
+    const track = btn.parentElement?.querySelector<HTMLElement>('.slider-track');
+    if (btn.getAttribute('aria-expanded') === 'true') startLazy(track);
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      if (!expanded) startLazy(track);
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('.slider-track').forEach((track) => {
+    // Mobile slider dots
+    const dots = track.parentElement?.querySelectorAll('.slider-dot');
+    if (!dots || !dots.length) return;
+    const slides = track.querySelectorAll<HTMLElement>('.slider-slide');
+    const slideWidth = () => slides[0].offsetWidth + 12;
+
+    let scrollTick = false;
+    track.addEventListener(
+      'scroll',
+      () => {
+        if (scrollTick) return;
+        scrollTick = true;
+        requestAnimationFrame(() => {
+          const index = Math.round(track.scrollLeft / slideWidth());
+          dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+          scrollTick = false;
+        });
+      },
+      { passive: true },
+    );
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: i * slideWidth(), behavior: reduceMotion() ? 'auto' : 'smooth' });
+      });
+    });
+  });
+
+  // Lightbox (desktop only)
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  if (lightbox && lightboxImg) {
+    const isMobile = () => window.innerWidth <= 768;
+    const close = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+    };
+
+    document.querySelectorAll<HTMLElement>('.gallery-item, .highlight-image').forEach((el) => {
+      const img = el.tagName === 'IMG' ? (el as HTMLImageElement) : el.querySelector('img');
       if (!img) return;
-      function open() {
+      const open = () => {
         if (isMobile()) return;
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
-      }
+      };
       el.addEventListener('click', open);
       el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -491,16 +556,9 @@ const galleries = postcardGalleries.map((g) => ({
       });
     });
 
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('is-open');
-      lightbox.setAttribute('aria-hidden', 'true');
-    });
-
+    lightbox.addEventListener('click', close);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('is-open');
-        lightbox.setAttribute('aria-hidden', 'true');
-      }
+      if (e.key === 'Escape') close();
     });
-  });
+  }
 </script>

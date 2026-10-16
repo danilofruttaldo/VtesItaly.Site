@@ -5,6 +5,7 @@ category: 'nazionale'
 tags: ['italia', 'trento']
 featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: "Il Campionato Nazionale Italiano VTES 2026 si terrà nel weekend dal 27 febbraio al 1 marzo a Caldonazzo (TN), presso l'Hotel Paoli, immerso nel cuore del Trentino."
+seoDescription: "Il Campionato Nazionale Italiano VTES 2026 si terrà dal 27 febbraio al 1 marzo a Caldonazzo (TN), presso l'Hotel Paoli, in Trentino."
 poster: '/nc/nc-2026/nc-2026-poster.webp'
 gallerySections:
   - title: 'Preparazione'
@@ -52,7 +53,7 @@ events:
   - name: 'SIDE EVENT: Non mi dire di dimenticare!'
     date: 2026-02-27
     time: '21:00'
-    format: 'Mono partita — VP + Punti Pestaggio'
+    format: 'Mono partita, VP + Punti Pestaggio'
   - name: 'MAIN EVENT: Italian Championship 2026'
     date: 2026-02-28
     time: '09:15'
@@ -80,7 +81,7 @@ pricing:
     early: '15 euro'
     regular: '18 euro'
 earlyDeadline: '31 Gennaio'
-payment: 'PayPal (amici e parenti) — vtesitaly@gmail.com'
+payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 hotel:
   - room: 'Tariffa agevolata Hotel Paoli (sede evento)'
     price: 'prenotare chiamando in struttura'

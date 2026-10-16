@@ -27,7 +27,7 @@ const { rows, caption, playerLabel, tpLabel = 'RtP' } = Astro.props;
 const hasFvp = rows.some((s) => s.fvp != null);
 ---
 
-<div class="gp-standings-wrap">
+<div class="gp-standings-wrap" tabindex="0" role="region" aria-label={caption}>
   <table class="gp-standings-table">
     <caption class="sr-only">{caption}</caption>
     <thead>

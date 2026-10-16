@@ -5,6 +5,7 @@ category: 'tour'
 tags: ['barga', 'bologna', 'massa', 'milano', 'modena', 'pordenone', 'prato', 'roma', 'trento']
 featuredImage: '/images/headers/header-tour.webp'
 excerpt: 'A year of challenges across Italy. The Italian Tour 2025 brings Vampire: The Eternal Struggle to major Italian cities with a series of stages linked by an overall ranking.'
+seoDescription: 'The Italian Tour 2025 brings Vampire: The Eternal Struggle to major Italian cities, with stages linked by an overall ranking.'
 stages:
   - name: 'Trento'
     number: 1
@@ -41,7 +42,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    venue: 'Lucca Collezionando — Polo Fiere'
+    venue: 'Lucca Collezionando - Polo Fiere'
     location: 'Via della Chiesa XXXII, trav. I, 237, 55100 Lucca (LU)'
     image: '/tour/tour-2025/tour-2025-003.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-82de-761a-911d-aa370075d1ce'

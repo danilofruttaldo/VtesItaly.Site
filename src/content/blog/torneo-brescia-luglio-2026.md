@@ -6,7 +6,7 @@ tags: ['brescia', 'torneo']
 featuredImage: '/images/comunita/brescia/smudge-is-back-to-town.webp'
 poster: '/images/comunita/brescia/smudge-is-back-to-town.webp'
 cityHeader: '/images/headers/header-brescia.webp'
-excerpt: 'Torneo VTES a Rezzato (BS) sabato 4 luglio 2026 — proxy e multideck, 3 round e finale, €15 con pranzo a buffet incluso.'
+excerpt: 'Torneo VTES a Rezzato (BS) sabato 4 luglio 2026: proxy e multideck, 3 round e finale, €15 con pranzo a buffet incluso.'
 venue:
   name: 'Osteria da Silvia'
   address: 'Via Manzoni 12, 25086 Rezzato (BS)'
@@ -28,6 +28,6 @@ locale: it
 
 **Smudge è tornato**, e Brescia torna a tremare a colpi di bleed, politiche e rush.
 
-Si gioca senza soste: a fine round si mangia al tavolo comune — pranzo a buffet incluso nei 15 € — e si riparte subito, così entrano tre round e una finale.
+Si gioca senza soste: a fine round si mangia al tavolo comune (pranzo a buffet incluso nei 15 €) e si riparte subito, così entrano tre round e una finale.
 
-Sabato **4 luglio 2026**, **Osteria da Silvia**. Porta il tuo metodo migliore — il resto si decide al tavolo.
+Sabato **4 luglio 2026**, **Osteria da Silvia**. Porta il tuo metodo migliore: il resto si decide al tavolo.

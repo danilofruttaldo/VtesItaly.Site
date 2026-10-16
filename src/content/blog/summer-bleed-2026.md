@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/summer-bleed.webp'
 poster: '/images/comunita/modena/summer-bleed.webp'
-excerpt: 'Torneo VTES a Spilamberto (MO) sabato 1 agosto 2026 — 20 € con pranzo incluso, door prize custom del principato.'
+excerpt: 'Torneo VTES a Spilamberto (MO) sabato 1 agosto 2026, 20 € con pranzo incluso, door prize custom del principato.'
 venue:
   name: 'Alearum Mundus'
   address: 'Via Castelnuovo R. 796, 41057 Spilamberto (MO)'
@@ -21,7 +21,7 @@ events:
 pricing:
   - label: 'Iscrizione'
     regular: '20 € (pranzo incluso)'
-payment: 'PayPal — parmeggiani.simone@gmail.com'
+payment: 'PayPal: parmeggiani.simone@gmail.com'
 prizes:
   - 'Door prize custom forniti dal principato'
   - 'Premi finali in base al numero di partecipanti'
@@ -31,7 +31,7 @@ locale: it
 
 Agosto è alle porte e con lui quella certa **setina** di sangue: sabato **1 agosto 2026** si rimedia a Spilamberto con **Summer Bleed**, all'**Alearum Mundus**, dalle 9:30 fino alla finale di fine pomeriggio.
 
-Venti euro di iscrizione con **pranzo incluso** — pizza o piadina e bibita o birra — così tra un round e l'altro non si esce a cercare da mangiare. Si gioca **deck singolo** e la **decklist è obbligatoria**.
+Venti euro di iscrizione con **pranzo incluso** (pizza o piadina e bibita o birra), così tra un round e l'altro non si esce a cercare da mangiare. Si gioca **deck singolo** e la **decklist è obbligatoria**.
 
 Il torneo sarà **sanzionato dai 14 giocatori in su**: sotto quella soglia si gioca lo stesso, ma senza ranking.
 

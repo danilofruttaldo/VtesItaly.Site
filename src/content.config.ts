@@ -98,6 +98,11 @@ const baseFields = {
   title: z.string(),
   date: z.coerce.date(),
   excerpt: z.string(),
+  // Search-engine overrides for <title> and meta description. The excerpt is
+  // also the card text and can run long; the snippet wants 50-160 characters
+  // and the title, with the " | VTES Italy" suffix, at most 60.
+  seoTitle: z.string().max(47).optional(),
+  seoDescription: z.string().min(50).max(160).optional(),
   tags: z.array(z.string()).optional().default([]),
   locale: z.enum(LOCALES).default(DEFAULT_LOCALE),
   featuredImage: z.string().optional(),
@@ -200,14 +205,14 @@ const tourSchema = z.object({
 
 // Comunita: subtypes (league, event, article) determined by field presence.
 // `articleOnly: true` is the explicit opt-out for posts that are pure prose
-// with no venue/events/league data — without it, the superRefine below would
+// with no venue/events/league data - without it, the superRefine below would
 // reject a comunita post that lacks all event/league markers as "incomplete".
 const comunitaSchema = z
   .object({
     ...baseFields,
     category: z.literal('comunita'),
     articleOnly: z.boolean().optional(),
-    // event fields (optional — present for events)
+    // event fields (optional - present for events)
     venue: venueSchema.optional(),
     events: z.array(eventSchema).optional().default([]),
     schedule: z.array(scheduleSchema).optional().default([]),

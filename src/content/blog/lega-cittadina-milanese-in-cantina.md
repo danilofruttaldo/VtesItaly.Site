@@ -56,8 +56,8 @@ venue:
   address: 'Via f.lli Picardi 126, Sesto San Giovanni (MI)'
   mapUrl: 'https://maps.google.com/?q=Cantina+e+Coscienza+Via+Picardi+126+Sesto+San+Giovanni+MI'
   siteUrl: 'https://www.cantinaecoscienza.it/'
-registration: 'Preiscrizione e decklist obbligatorie — max 15 posti a giornata'
-payment: 'PayPal (amici e parenti) — henry.hinde1973@gmail.com'
+registration: 'Preiscrizione e decklist obbligatorie, max 15 posti a giornata'
+payment: 'PayPal (amici e parenti): henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
 standingsLabel: 'Classifica dopo la Giornata 2'
@@ -68,7 +68,7 @@ links:
 locale: it
 ---
 
-La prima lega cittadina milanese di _Vampire: The Eternal Struggle_! Quattro domeniche di gioco, cibo e vampiri — perché lo scopo è in primis stare insieme e divertirci, e con il piccolo contributo di partecipazione sostenere la Comunità Milanese per l'acquisto di premi, supporti promozionali e amenità varie.
+La prima lega cittadina milanese di _Vampire: The Eternal Struggle_! Quattro domeniche di gioco, cibo e vampiri, perché lo scopo è in primis stare insieme e divertirci, e con il piccolo contributo di partecipazione sostenere la Comunità Milanese per l'acquisto di premi, supporti promozionali e amenità varie.
 
 Le giornate sono aperte a chiunque voglia partecipare della Comunità Italiana con il massimo di 15 partecipanti per giornata. I primi 2 round saranno disputati con lo **stesso mazzo** postato su Archon, mentre per la finale si potrà cambiare mazzo a propria scelta in maniera da dare varietà e imprevedibilità al gioco.
 

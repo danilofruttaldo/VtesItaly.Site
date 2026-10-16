@@ -1,15 +1,15 @@
 ---
 import '../styles/calendar.css';
-import { getCollection } from 'astro:content';
-import { getLocaleFromUrl, useTranslations, filterByLocale } from '../utils/i18n';
-import { extractCalendarEvents } from '../utils/calendar';
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
-
-const allPosts = await getCollection('blog');
-const posts = filterByLocale(allPosts, locale);
-const allEvents = extractCalendarEvents(posts, locale);
+// The events come from the JSON endpoint (src/pages/api/), not from a data-*
+// attribute: embedded, they were 97 KB of the 241 KB homepage, downloaded
+// again with every HTML request. The calendar is drawn by JS anyway, so
+// without JS there was nothing to show with or without them; the file is
+// cached by the browser and by the service worker.
+const eventsUrl = `/api/calendar-events-${locale}.json`;
 ---
 
 <div
@@ -31,7 +31,7 @@ const allEvents = extractCalendarEvents(posts, locale);
   data-prev-year={t.calendar.prev_year}
   data-next-year={t.calendar.next_year}
   data-tbd={t.calendar.tbd}
-  data-server-events={JSON.stringify(allEvents)}
+  data-events-url={eventsUrl}
 >
   {/* Navigation */}
   <div class="cal__nav">
@@ -46,19 +46,16 @@ const allEvents = extractCalendarEvents(posts, locale);
     <button type="button" class="cal__today-btn">{t.calendar.today}</button>
   </div>
 
-  {/* Day headers */}
-  <div class="cal__grid cal__header" role="row">
-    {
-      [1, 2, 3, 4, 5, 6, 0].map((i) => (
-        <span class="cal__dh" role="columnheader">
-          {t.days_short_array[i]}
-        </span>
-      ))
-    }
+  {
+    /* Day headers. No grid roles: the month is a visual layout, read as a
+      list of days; the days with an event are buttons named after it. */
+  }
+  <div class="cal__grid cal__header" aria-hidden="true">
+    {[1, 2, 3, 4, 5, 6, 0].map((i) => <span class="cal__dh">{t.days_short_array[i]}</span>)}
   </div>
 
-  {/* Calendar body — filled by JS */}
-  <div class="cal__grid cal__body" id="cal-body" role="grid" aria-label={t.calendar.aria_calendar ?? 'Calendar'}></div>
+  {/* Calendar body, filled by JS */}
+  <div class="cal__grid cal__body" id="cal-body" role="group" aria-label={t.calendar.aria_calendar ?? 'Calendar'}></div>
 
   {/* Event detail popup */}
   <div class="cal__popup" id="cal-popup" hidden>
@@ -142,7 +139,8 @@ const allEvents = extractCalendarEvents(posts, locale);
     var catLabels: Record<string, string> = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
     var tbdLabel = cal.getAttribute('data-tbd') || 'TBD';
 
-    var events: CalEvent[] = JSON.parse(cal.getAttribute('data-server-events') || '[]');
+    var events: CalEvent[] = [];
+    var eventsUrl = cal.getAttribute('data-events-url') || '';
     var now = new Date();
     var displayYear = now.getFullYear();
     var displayMonth = now.getMonth();
@@ -326,7 +324,7 @@ const allEvents = extractCalendarEvents(posts, locale);
 
       // Empty cells before first day
       for (var i = 0; i < startOffset; i++) {
-        html += '<div class="cal__cell cal__cell--empty" role="gridcell"></div>';
+        html += '<div class="cal__cell cal__cell--empty" aria-hidden="true"></div>';
       }
 
       // Day cells
@@ -342,14 +340,14 @@ const allEvents = extractCalendarEvents(posts, locale);
         html +=
           '<div class="' +
           cls +
-          '" role="gridcell"' +
+          '"' +
           (ev
-            ? ' data-day="' +
+            ? ' role="button" data-day="' +
               d +
               '" data-cat="' +
               esc(ev.category) +
               '" tabindex="0" aria-label="' +
-              esc(ev.title) +
+              esc(d + ' ' + (monthNames[displayMonth] || '') + ': ' + ev.title) +
               '"'
             : '') +
           '>';
@@ -378,7 +376,7 @@ const allEvents = extractCalendarEvents(posts, locale);
       var rem = total % 7;
       if (rem > 0) {
         for (var j = 0; j < 7 - rem; j++) {
-          html += '<div class="cal__cell cal__cell--empty" role="gridcell"></div>';
+          html += '<div class="cal__cell cal__cell--empty" aria-hidden="true"></div>';
         }
       }
 
@@ -500,5 +498,18 @@ const allEvents = extractCalendarEvents(posts, locale);
     });
 
     render();
+    if (eventsUrl) {
+      fetch(eventsUrl)
+        .then(function (res) {
+          return res.ok ? res.json() : [];
+        })
+        .then(function (data: CalEvent[]) {
+          events = Array.isArray(data) ? data : [];
+          render();
+        })
+        .catch(function () {
+          /* offline and not cached: the month stays empty */
+        });
+    }
   })();
 </script>

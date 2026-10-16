@@ -2,16 +2,16 @@
  *
  * The repo has three dialects (discovered by inspecting the 22 standings JSON):
  *
- *  - **EventStanding** — gp/, nc/, ev/ single-tournament results
+ *  - **EventStanding** - gp/, nc/, ev/ single-tournament results
  *      { rank, name, gw, vp, fvp?, tp }
- *  - **TourStanding** — tour/ aggregate per-stage breakdown
+ *  - **TourStanding** - tour/ aggregate per-stage breakdown
  *      base + { city?, total?, away?, s1..sN? } where stage scores can be
  *      number or a per-game breakdown object
- *  - **LeagueStanding** — league/ league standings
+ *  - **LeagueStanding** - league/ league standings
  *      { rank, name, games, bp, lp, pp, fp? }
  *
  * The WoS file (src/data/standings/ev/standings-wos-2025.json) is a
- * top-level object instead of an array — handled separately by
+ * top-level object instead of an array - handled separately by
  * `WosStandings.astro` and intentionally not covered by these schemas.
  */
 import { z } from 'zod';
@@ -34,7 +34,7 @@ const eventStandingRowSchema = baseRowSchema.extend({
   tp: z.number().int().min(0),
 });
 
-/** Tour aggregate row — only rank+name are guaranteed; everything else is
+/** Tour aggregate row - only rank+name are guaranteed; everything else is
  *  optional because the tour table mixes "scored stages" (s1, s2…) with the
  *  aggregate `total` and per-row `city`. Some rows have a per-stage tournament
  *  score (vp, gw, fvp, tp), others are pure aggregates. */
@@ -59,7 +59,7 @@ const tourStandingRowSchema = baseRowSchema.extend({
   s11: stageScoreSchema.optional(),
 });
 
-/** League season row — different point system from tournaments. */
+/** League season row - different point system from tournaments. */
 const leagueStandingRowSchema = baseRowSchema.extend({
   games: z.number().int().min(0),
   bp: z.number().int(),
@@ -77,14 +77,14 @@ const leagueTournamentRowSchema = eventStandingRowSchema.extend({
 /** Pick the right row schema for a standings file based on its repo path.
  *  Single-day league files (one giornata = one tournament) reuse the
  *  tournament row shape, so /league/ accepts either dialect. */
-export function rowSchemaForPath(path: string): z.ZodTypeAny {
+export function rowSchemaForPath(path: string): z.ZodType {
   if (path.includes('/league/')) return z.union([leagueStandingRowSchema, leagueTournamentRowSchema]);
   if (path.includes('/tour/')) return tourStandingRowSchema;
   // gp/, nc/, ev/ all use the single-event tournament shape
   return eventStandingRowSchema;
 }
 
-/** The WoS file is a single object, not an array — opt out by name. */
+/** The WoS file is a single object, not an array - opt out by name. */
 export function isStructuralEdgeCase(path: string): boolean {
   return /standings-wos-/.test(path);
 }

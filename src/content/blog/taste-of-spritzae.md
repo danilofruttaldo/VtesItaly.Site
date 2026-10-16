@@ -28,9 +28,9 @@ standingsTpLabel: 'TP'
 prizes:
   - '2 carte promo dai Promo Pack 4 per tutti i partecipanti'
   - 'Premi per vincitore e 5 finalisti'
-  - 'Barone dello Spritz — per chi alza anche il livello dello stile'
-  - 'Principe delle Briscole — per chi sfoggia accessori da test alcolemico'
-  - 'Sigillo del Sangue Frizzante — per chi è arrivato in fondo al bicchiere e non solo'
+  - 'Barone dello Spritz: per chi alza anche il livello dello stile'
+  - 'Principe delle Briscole: per chi sfoggia accessori da test alcolemico'
+  - 'Sigillo del Sangue Frizzante: per chi è arrivato in fondo al bicchiere e non solo'
 notes:
   - 'Il negozio sarà chiuso dalle 12:30 alle 14:30 durante la pausa pranzo.'
 links:

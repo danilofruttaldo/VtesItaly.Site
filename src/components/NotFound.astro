@@ -1,0 +1,105 @@
+---
+/* Body of the 404 pages, /404.html and /en/404/. Apache has one
+   ErrorDocument for the whole site, the Italian page: when the missing
+   address is under /en/ (or the visitor chose English), the script below
+   switches that page to the English texts and links. */
+import { useTranslations, type Locale } from '../utils/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const en = useTranslations('en');
+const routes = {
+  home: t.routes.home,
+  community: t.routes.comunita,
+  domains: t.routes.principati,
+};
+---
+
+<section class="not-found" data-not-found={locale}>
+  <div class="container">
+    <h1>404</h1>
+    <p class="subtitle" id="nf-subtitle" data-en={en.not_found.subtitle}>{t.not_found.subtitle}</p>
+    <p class="hint" id="nf-hint" data-en={en.not_found.hint}>{t.not_found.hint}</p>
+    <nav class="not-found__links" id="nf-links">
+      <a href={routes.home} class="btn" data-en-href={en.routes.home}>Home</a>
+      <a
+        href={routes.community}
+        class="btn btn--outline"
+        data-en-href={en.routes.comunita}
+        data-en={en.not_found.community}>{t.not_found.community}</a
+      >
+      <a
+        href={routes.domains}
+        class="btn btn--outline"
+        data-en-href={en.routes.principati}
+        data-en={en.not_found.domains}>{t.not_found.domains}</a
+      >
+    </nav>
+  </div>
+</section>
+
+<script>
+  const page = document.querySelector<HTMLElement>('[data-not-found="it"]');
+  if (page) {
+    let isEn = /^\/en(\/|$)/.test(window.location.pathname);
+    if (!isEn) {
+      try {
+        isEn = localStorage.getItem('vtesitaly-lang') === 'en';
+      } catch {
+        /* storage unavailable */
+      }
+    }
+    if (isEn) {
+      document.documentElement.lang = 'en';
+      page.querySelectorAll<HTMLElement>('[data-en]').forEach((el) => {
+        el.textContent = el.dataset.en || el.textContent;
+      });
+      page.querySelectorAll<HTMLAnchorElement>('[data-en-href]').forEach((a) => {
+        a.href = a.dataset.enHref || a.href;
+      });
+    }
+  }
+</script>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 100px 20px;
+  }
+  .not-found h1 {
+    font-size: 5rem;
+    color: var(--color-accent-1);
+    margin-bottom: 8px;
+    line-height: var(--leading-none);
+  }
+  .subtitle {
+    color: var(--color-muted);
+    margin-bottom: 8px;
+    font-size: var(--font-size-md);
+  }
+  .hint {
+    color: var(--color-gold);
+    font-style: italic;
+    margin-bottom: 32px;
+    font-size: var(--font-size-small);
+  }
+  .not-found__links {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn--outline {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent-1);
+  }
+  .btn--outline:hover {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+</style>

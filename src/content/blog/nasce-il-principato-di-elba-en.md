@@ -13,4 +13,4 @@ The Italian Community of _Vampire: The Eternal Struggle_ is pleased to announce 
 
 **Stefano Orlandini**, known as **Ischemose**, takes the role of Prince and will lead the Elban community with weekly meetups every **Monday** at **Scoglio-nati Viola Club** and **Sir Williams Pub**.
 
-A remarkable achievement for a small island that already boasts **10 active players** — proof that the passion for VTES knows no boundaries, not even the sea. A new hub for Methuselahs in the Tuscan archipelago and for all those passing through the island. Welcome, Domain of Elba!
+A remarkable achievement for a small island that already boasts **10 active players**: proof that the passion for VTES knows no boundaries, not even the sea. A new hub for Methuselahs in the Tuscan archipelago and for all those passing through the island. Welcome, Domain of Elba!

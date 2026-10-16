@@ -10,7 +10,7 @@ correlate: [archon-judge-en, demo-eventi-en]
 locale: en
 ---
 
-[Archon Online](https://archon.vekn.net) is the official VEKN platform for **Vampire: The Eternal Struggle** tournaments. Since the 2026 rewrite it ships **complete official documentation, translated into Italian and other languages**, inside the app itself — there is no point in us copying it out.
+[Archon Online](https://archon.vekn.net) is the official VEKN platform for **Vampire: The Eternal Struggle** tournaments. Since the 2026 rewrite it ships **complete official documentation, translated into Italian and other languages**, inside the app itself. There is no point in us copying it out.
 
 This page collects the rest: what the official documentation does not say or says confusingly, and the cases that keep coming up at our events.
 
@@ -47,14 +47,14 @@ The most frequent stumble, because the interface translation and the in-app guid
 
 Three features are documented as online-only but are not:
 
-- **Timer** — the guide and the setting both label it "online only", but the countdown appears in **any** tournament you set a **round time** for, per-table extensions included. It works fine in person.
-- **Call Judge** — it does not depend on the tournament being marked Online: the button is there whenever the player's device has connectivity and the tournament is not in offline mode. In a large room it beats raising your hand.
-- **Announcements** — available from check-in onwards, in person too. "Round 2 in 10 minutes" lands on everyone's phone.
+- **Timer**: the guide and the setting both label it "online only", but the countdown appears in **any** tournament you set a **round time** for, per-table extensions included. It works fine in person.
+- **Call Judge**: it does not depend on the tournament being marked Online: the button is there whenever the player's device has connectivity and the tournament is not in offline mode. In a large room it beats raising your hand.
+- **Announcements**: available from check-in onwards, in person too. "Round 2 in 10 minutes" lands on everyone's phone.
 
 ## 4. Before the tournament (for Princes)
 
 - **Create the event on Archon, not on `vekn.net`.** It reaches the VEKN calendar by itself. Creating it in both places produces a duplicate that is painful to untangle: if it happens, tell your National Coordinator straight away.
-- **Mind the fields that lock immediately.** Format, rank, start time, proxies, round count and open rounds freeze the moment the event hits the calendar — which is when you create it. This is the expensive mistake: the only fix is deleting and recreating the event.
+- **Mind the fields that lock immediately.** Format, rank, start time, proxies, round count and open rounds freeze the moment the event hits the calendar, which is when you create it. This is the expensive mistake: the only fix is deleting and recreating the event.
 - **Only Princes, NCs and ICs can create tournaments.** Anyone can no longer spin up a Demo or unsanctioned event: if you are running a demo, have a Prince create it (see [Running a V:TES demo](/en/guides/demo-eventi/)).
 - **Judges are co-organizers.** There is no per-tournament judge role: add them from **Tools → Organizers** and they get your powers.
 - **The banner matters.** Upload one from **Tools → Set up** (1200 × 630): it is the link preview when you paste the event into WhatsApp or Discord, and without it the link reads as spam.
@@ -67,13 +67,13 @@ The cases that come up at every event:
 - **Player with no VEKN ID.** Find them under **Community → Members** and press **Sponsor**: it creates their number on the spot. You need to be a VEKN official, so do it yourself at the desk.
 - **Walk-ins.** No need to register them first: checking in someone who never registered **signs them up and checks them in at once**.
 - **Latecomers.** Check-in never closes: you can check someone in mid-round. They become _present but unseated_, and you decide whether to slot them into a table with room (**Seat a player**) or hold them for the next round.
-- **Whoever misses check-in is dropped automatically** when the round starts — but it is reversible: if they turn up, check them in again.
+- **Whoever misses check-in is dropped automatically** when the round starts, but it is reversible: if they turn up, check them in again.
 - **Decklist Required blocks nobody.** A player without one gets a warning badge, nothing more: what to do about it is a judge's call.
 - **Payment is just a reminder.** The Pending/Paid badge prevents nothing.
 
 ## 6. Venues with no signal
 
-The shop basement with no coverage is the typical case here, and offline mode covers it well — provided you prepare:
+The shop basement with no coverage is the typical case here, and offline mode covers it well, provided you prepare:
 
 1. **At home, on the network**: open the tournament page, press **Go offline**, close the app. On site, reopen it and everything runs from local data.
 2. It is restricted to organizers who are **VEKN officials** (Prince, NC, IC), because offline mode can create new members on the spot.
@@ -82,13 +82,13 @@ The shop basement with no coverage is the typical case here, and offline mode co
 > [!WARNING]
 > While you are offline, players **see nothing current** on their phones: tables, scores and standings stay frozen. Say so out loud at the start and **print the seating** (**Rounds → Print the seating**), or you will spend the day answering questions.
 
-If the organizer's device dies, another organizer who is a VEKN official can **Take over** — but unsynced changes on that device are lost. It is a last resort, not a shortcut.
+If the organizer's device dies, another organizer who is a VEKN official can **Take over**, but unsynced changes on that device are lost. It is a last resort, not a shortcut.
 
 ## 7. Leagues
 
 A **league** groups a series of tournaments into single standings. What is worth knowing before opening one:
 
-- **Only NCs and ICs can create them.** If you are a Prince, ask your National Coordinator: they can create it and add you as an organizer, or mark it **open to country Princes** — the right option for a national circuit spanning many cities, since everyone then links their own tournaments.
+- **Only NCs and ICs can create them.** If you are a Prince, ask your National Coordinator: they can create it and add you as an organizer, or mark it **open to country Princes**, the right option for a national circuit spanning many cities, since everyone then links their own tournaments.
 - **Pick the mode by what you want to incentivise:**
   - **Rating Points (RTP)**, the default, sums each leg's rating points **including finals**, with no best-8 or 18-month cap. It lines the table up with the global VEKN ranking.
   - **GW/VP/TP** sums preliminary rounds only: it rewards turning up and playing, great for keeping small legs alive, but winning a final adds nothing.

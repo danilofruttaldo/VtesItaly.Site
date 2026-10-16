@@ -41,7 +41,7 @@ if (post.data.poster) {
   galleryImages = galleryImages.filter((img) => img !== post.data.poster);
 }
 
-// League standings — supports two dialects:
+// League standings, two dialects:
 //   - league shape (full season): { fp?, lp, gw, vp, pp, bp, games }
 //   - tournament shape (single giornata): { gw, vp, fvp?, tp }
 // We discriminate by the presence of `tp` on the first row.
@@ -192,7 +192,7 @@ function fmt(n: number): string {
                 ev.period
               ) : (
                 <>
-                  {formatLocalDate(new Date(ev.date), locale, { weekday: 'long', day: 'numeric', month: 'long' })} —{' '}
+                  {formatLocalDate(new Date(ev.date), locale, { weekday: 'long', day: 'numeric', month: 'long' })},{' '}
                   {`${t.gp.time_prefix} ${ev.time}`}
                 </>
               )}
@@ -266,7 +266,7 @@ function fmt(n: number): string {
                         <polyline points="15 3 21 3 21 9" />
                         <line x1="10" y1="14" x2="21" y2="3" />
                       </svg>
-                      {`${ev.name} — ${platform}`}
+                      {`${ev.name} - ${platform}`}
                     </a>
                   );
                 })}
@@ -386,7 +386,12 @@ function fmt(n: number): string {
   standings.length > 0 && (
     <section id="classifica" class="le-standings">
       <h2 class="le-section-title">{post.data.standingsLabel ?? t.league.standings_label}</h2>
-      <div class="le-standings-wrap">
+      <div
+        class="le-standings-wrap"
+        tabindex="0"
+        role="region"
+        aria-label={post.data.standingsLabel ?? t.league.standings_label}
+      >
         <table class="le-standings-table">
           <caption class="sr-only">{post.data.standingsLabel ?? t.league.standings_label}</caption>
           {isTournamentShape ? (
@@ -480,7 +485,7 @@ function fmt(n: number): string {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={img} alt={`${section.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+                <img src={img} alt={`${section.title} - ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
               </a>
             ))}
           </div>
@@ -496,7 +501,7 @@ function fmt(n: number): string {
       <div class="le-gallery-grid">
         {galleryImages.map((img, i) => (
           <a href={img} class="le-gallery-item" target="_blank" rel="noopener noreferrer">
-            <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+            <img src={img} alt={`${post.data.title} - ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
           </a>
         ))}
       </div>

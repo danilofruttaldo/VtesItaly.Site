@@ -6,7 +6,7 @@ import { Buffer } from 'node:buffer';
  *  exists in `public/`. Used by components rendering at ≤120 px (PostCard,
  *  CityCard, prince avatars) so the full 1024² poster isn't shipped for an
  *  80² slot. Falls back to the original when no thumb has been generated yet
- *  — silent fallback prevents broken images during dev iteration before
+ *  - silent fallback prevents broken images during dev iteration before
  *  `scripts/build-thumbnails.mjs` has run for a newly added file. */
 export function thumbFor(image: string | undefined): string | undefined {
   if (!image || !/\.webp$/i.test(image)) return image;
@@ -18,7 +18,7 @@ export function thumbFor(image: string | undefined): string | undefined {
 /** Read the intrinsic pixel size of a WebP in `public/` at build time so an
  *  `<img>` can carry `width`/`height` and reserve layout space (kills CLS on
  *  posters). All site posters are `.webp`, so the RIFF/WebP header is parsed
- *  directly — no image library, no native module, no async. Returns undefined
+ *  directly - no image library, no native module, no async. Returns undefined
  *  for a missing file, a non-WebP path, or an unrecognized header, and callers
  *  simply omit the attributes then. Covers the three WebP variants: simple
  *  lossy (`VP8 `), lossless (`VP8L`) and extended (`VP8X`). */
@@ -65,8 +65,8 @@ export const POSTER_WIDTHS = [400, 800, 1200];
  *  only the `<name>-<w>w.webp` variants that actually exist on disk (plus the
  *  source at its intrinsic width as the largest candidate), and `width`/`height`
  *  come from the source header so the `<img>` reserves layout space (no CLS).
- *  When no variants exist yet — `astro dev` (no prebuild) or a brand-new poster
- *  — `srcset` is undefined and the caller renders a plain `<img src>`, so the
+ *  When no variants exist yet - `astro dev` (no prebuild) or a brand-new poster
+ *  - `srcset` is undefined and the caller renders a plain `<img src>`, so the
  *  image never breaks. Callers supply their own `sizes`. */
 export function responsiveImage(
   image: string | undefined,

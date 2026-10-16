@@ -17,7 +17,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: '', en: '' },
     title: { it: 'Home', en: 'Home' },
     headerImage: '/images/headers/header-home.webp',
-    ogImage: '/images/og/og-home.webp',
+    ogImage: '/images/og/og-home.jpg',
     description: {
       it: 'La community italiana di Vampire: The Eternal Struggle. Tornei, raduni e campionati in tutta Italia.',
       en: 'The Italian Methuselah community. Tournaments, gatherings and championships across Italy.',
@@ -27,7 +27,7 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'principati', en: 'domains' },
     title: { it: 'Principati', en: 'The Domains' },
     headerImage: '/images/headers/header-principati.webp',
-    ogImage: '/images/og/og-principati.webp',
+    ogImage: '/images/og/og-principati.jpg',
     description: {
       it: 'Le città dove si gioca a VTES in Italia. Ogni principato ha il suo Principe.',
       en: 'The cities where VTES is played in Italy. Each domain has its own Prince.',
@@ -37,10 +37,10 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'tour', en: 'tour' },
     title: { it: 'Italian Tour', en: 'Italian Tour' },
     headerImage: '/images/headers/header-tour.webp',
-    ogImage: '/images/og/og-tour.webp',
+    ogImage: '/images/og/og-tour.jpg',
     description: {
-      it: 'Il circuito di tornei VTES in Italia.',
-      en: 'The VTES tournament circuit in Italy.',
+      it: 'Il VTES Italian Tour: il circuito annuale di tornei VTES nei Principati italiani, con tappe, classifica generale ed edizioni dal 2023.',
+      en: 'The VTES Italian Tour: the annual circuit of VTES tournaments across the Italian Domains, with stages, overall ranking and editions since 2023.',
     },
     category: 'tour',
     leadHtml: {
@@ -60,10 +60,10 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'grand-prix', en: 'grand-prix' },
     title: { it: 'Grand Prix', en: 'Grand Prix' },
     headerImage: '/images/headers/header-grand-prix.webp',
-    ogImage: '/images/og/og-grand-prix.webp',
+    ogImage: '/images/og/og-grand-prix.jpg',
     description: {
-      it: 'Il Grand Prix italiano di VTES.',
-      en: 'The Italian VTES Grand Prix.',
+      it: 'Il Grand Prix italiano di VTES, torneo del circuito europeo aperto a tutti: date, sedi e risultati delle edizioni dal 2020.',
+      en: 'The Italian VTES Grand Prix, a European circuit tournament open to everyone: dates, venues and results of the editions since 2020.',
     },
     category: 'grand-prix',
     leadHtml: {
@@ -83,10 +83,10 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'nazionale', en: 'national-championship' },
     title: { it: 'Nazionale', en: 'National Championship' },
     headerImage: '/images/headers/header-nazionale.webp',
-    ogImage: '/images/og/og-nazionale.webp',
+    ogImage: '/images/og/og-nazionale.jpg',
     description: {
-      it: 'Il Campionato Nazionale italiano di VTES.',
-      en: 'The Italian VTES National Championship.',
+      it: "Il Campionato Nazionale italiano di VTES, un weekend all'anno per il titolo di Campione d'Italia: sedi, programma ed edizioni dal 2021.",
+      en: 'The Italian VTES National Championship, one weekend a year to decide the Italian Champion: venues, schedule and editions since 2021.',
     },
     category: 'nazionale',
     leadHtml: {
@@ -106,27 +106,27 @@ export const mainPages: PageMeta[] = [
     slug: { it: 'cartoline', en: 'postcards' },
     title: { it: 'Cartoline', en: 'Postcards' },
     headerImage: '/images/headers/header-cartoline.webp',
-    ogImage: '/images/og/og-cartoline.webp',
+    ogImage: '/images/og/og-cartoline.jpg',
     description: {
-      it: 'Foto ironiche di carte VTES dalla community.',
-      en: 'Ironic VTES card photos from the community.',
+      it: 'Foto ironiche di carte VTES dalla community italiana, raccolte in gallerie per evento: tornei locali, Grand Prix e Campionati Nazionali.',
+      en: 'Ironic VTES card photos from the Italian community, collected in galleries by event: local tournaments, Grand Prix and National Championships.',
     },
   },
   {
     slug: { it: 'gemelli', en: 'twins' },
     title: { it: 'Gemelli', en: 'Twins' },
     headerImage: '/images/headers/header-gemelli.webp',
-    ogImage: '/images/og/og-gemelli.webp',
+    ogImage: '/images/og/og-gemelli.jpg',
     description: {
-      it: 'Confronti tra personaggi VTES e figure reali.',
-      en: 'Comparisons between VTES characters and real-world figures.',
+      it: 'Confronti tra personaggi VTES e figure reali: i volti delle carte accostati ai cantanti, attori e personaggi pubblici a cui somigliano.',
+      en: 'Comparisons between VTES characters and real-world figures: faces from the cards set beside the singers, actors and public figures they resemble.',
     },
   },
   {
     slug: { it: 'comunita', en: 'community' },
     title: { it: 'Comunità', en: 'Community' },
     headerImage: '/images/headers/header-comunita.webp',
-    ogImage: '/images/og/og-comunita.webp',
+    ogImage: '/images/og/og-comunita.jpg',
     description: {
       it: 'Articoli, report e novità dalla comunità VTES Italia.',
       en: 'Articles, reports and news from the Italian VTES community.',

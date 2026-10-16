@@ -59,7 +59,7 @@ pricing:
   - label: 'Entry fee'
     regular: '30 euro'
 contact: 'info@vtesitaly.com'
-payment: 'PayPal (friends and family) — pordenonevtes@gmail.com'
+payment: 'PayPal (friends and family): pordenonevtes@gmail.com'
 hotel:
   - room: 'Single room (lunch+dinner+overnight Sat, breakfast+lunch Sun)'
     price: '136 euro'
@@ -69,7 +69,7 @@ hotel:
     price: '111 euro'
   - room: 'Meals only, no overnight (lunch+dinner Sat, lunch Sun)'
     price: '76 euro'
-hotelNote: "Additional Friday night: single 100€, double 85€, multi 75€. Book directly: tel. 0427 97037 — hotel@gelindo.it mentioning 'Vtes 2025 National Championship'."
+hotelNote: "Additional Friday night: single 100€, double 85€, multi 75€. Book directly: tel. 0427 97037 or hotel@gelindo.it mentioning 'Vtes 2025 National Championship'."
 prizes:
   - 'Door prize included'
 links:

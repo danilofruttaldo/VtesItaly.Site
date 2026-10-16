@@ -31,7 +31,7 @@ events:
   - name: 'Week of Sabbat 2025'
     date: 2025-10-18
     endDate: 2025-10-26
-    time: '—'
+    time: 'tbd'
     type: 'altro'
 standingsUrl: '/ev/wos-2025/standings-wos-2025.json'
 links:

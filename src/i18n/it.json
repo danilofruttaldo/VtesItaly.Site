@@ -68,7 +68,8 @@
     "close_label": "Chiudi ricerca",
     "placeholder": "Cerca articoli, eventi, principati...",
     "submit": "Cerca",
-    "no_results": "Nessun risultato trovato."
+    "no_results": "Nessun risultato trovato.",
+    "dialog_label": "Ricerca nel sito"
   },
   "nav": {
     "main_label": "Navigazione principale",
@@ -123,7 +124,7 @@
     "latest_subtitle": "Cosa sta per arrivare e cosa abbiamo appena vissuto.",
     "next_event_label": "Prossimo",
     "ongoing_event_label": "Oggi",
-    "all_articles": "Tutti i post della community",
+    "all_articles": "Tutti gli articoli della Comunità",
     "domains_title": "Trova il tuo Principato",
     "domains_subtitle": "15 città in tutta Italia dove si gioca a VTES. Trova quella più vicina a te.",
     "all_domains": "Tutti i Principati"
@@ -210,7 +211,8 @@
     "why_title": "Perché Cartoline?",
     "why_text": "Come cartoline spedite da un viaggio, pensate per essere ricordi condivisi: un album alternativo di ciò che anima la community VTES in Italia. Sfogliando si riscoprono amici, partite, gag e piccole leggende nate attorno ai tavoli.",
     "scroll_left": "Scorri a sinistra",
-    "scroll_right": "Scorri a destra"
+    "scroll_right": "Scorri a destra",
+    "slider_label": "scorri le cartoline"
   },
   "twins": {
     "lead": "Il mondo di Vampire: The Eternal Struggle è popolato da volti oscuri, enigmatici e affascinanti. Ma guardando bene le illustrazioni delle carte, a volte si scorgono somiglianze sorprendenti con personaggi noti: attori, musicisti, politici o icone della cultura pop. Questa sezione raccoglie le coincidenze in modo leggero e ironico.",
@@ -244,6 +246,10 @@
     "players": "Giocatori",
     "points": "Punti",
     "no_data": "Nessun risultato disponibile"
+  },
+  "lightbox": {
+    "label": "Foto ingrandita",
+    "close": "Chiudi la foto"
   },
   "sw_update": {
     "title": "È disponibile una nuova versione.",

@@ -1,6 +1,6 @@
 ---
 title: 'Rule summary diagrams'
-description: 'Reference diagrams for the key phases of V:TES — the turn phases, the sequence of an action and that of a round of combat.'
+description: 'Reference diagrams for the key phases of V:TES: the turn phases, the sequence of an action and that of a round of combat.'
 categoria: regole-formati
 audience: [giocatore, nuovi, judge]
 ordine: 20
@@ -28,11 +28,11 @@ Each player's (**Methuselah's**) turn runs through **five fixed phases**, always
 
 The five phases (descriptions from the [official rulebook](https://www.vekn.net/rulebook/4-detailed-turn-sequence)):
 
-1. **Unlock** — unlock all your cards; if you have the **Edge**, you may gain 1 _pool_.
-2. **Master** — you receive 1 **master phase action** (default): use it to play a _master card_ (some cards change this number or give alternate uses).
-3. **Minion** — your ready _minions_ take **actions** (taking an action **locks** the minion). **Opponents'** ready minions may attempt to **block**, and blocking puts them in **combat** with the acting minion.
-4. **Influence** — you receive 4 **transfers** (default) to influence _uncontrolled_ vampires into play (1 transfer = move 1 _pool_ to an uncontrolled vampire; 4 transfers + 1 pool = move a vampire from your crypt to the uncontrolled region).
-5. **Discard** — you receive 1 **discard phase action** (default): discard a card and **draw to replace it**; or put 1 **event** card into play (no more than one per phase).
+1. **Unlock**: unlock all your cards; if you have the **Edge**, you may gain 1 _pool_.
+2. **Master**: you receive 1 **master phase action** (default): use it to play a _master card_ (some cards change this number or give alternate uses).
+3. **Minion**: your ready _minions_ take **actions** (taking an action **locks** the minion). **Opponents'** ready minions may attempt to **block**, and blocking puts them in **combat** with the acting minion.
+4. **Influence**: you receive 4 **transfers** (default) to influence _uncontrolled_ vampires into play (1 transfer = move 1 _pool_ to an uncontrolled vampire; 4 transfers + 1 pool = move a vampire from your crypt to the uncontrolled region).
+5. **Discard**: you receive 1 **discard phase action** (default): discard a card and **draw to replace it**; or put 1 **event** card into play (no more than one per phase).
 
 After the **Discard** phase, the turn **ends** and passes to the next _Methuselah_.
 
@@ -52,11 +52,11 @@ From the announcement of an action to after it resolves: block attempts, the two
 
 In short:
 
-- **As the action is announced** — the dedicated play window that opens when the action is announced (cards like _Seduction_).
-- **Block attempts** — the **separate** window where blocks are declared.
+- **As the action is announced**: the dedicated play window that opens when the action is announced (cards like _Seduction_).
+- **Block attempts**: the **separate** window where blocks are declared.
 - If the action is **successful** (unblocked), its **effects are applied**.
 - If it is **blocked**, you move to the **block resolution** (block / combat).
-- Either branch may include a **queued combat** — optional, and no more than one at a time. Cards like <em>Psyche!</em> or <em>Coordinated Attacks</em> queue another one (<strong>1</strong>); cards like <em>Hidden Lurker</em> or <em>Fast Reaction</em> jump straight to "after combat" (<strong>2</strong>).
+- Either branch may include a **queued combat**, optional, and no more than one at a time. Cards like <em>Psyche!</em> or <em>Coordinated Attacks</em> queue another one (<strong>1</strong>); cards like <em>Hidden Lurker</em> or <em>Fast Reaction</em> jump straight to "after combat" (<strong>2</strong>).
 - After resolution the action **continues** its cycle (new block attempts, and so on).
 
 ## Combat
@@ -72,25 +72,25 @@ A round of combat runs through **seven steps**. At the end of the round, combat 
 
 The seven steps:
 
-1. **Before range** — window for cards before range is chosen.
-2. **Determine range** — **Close** (default) or **Long**; maneuvers change it.
-3. **Before strikes** — cards playable after range, before choosing strikes.
-4. **Strikes** — the acting minion announces first; strikes resolve together (barring _first strike_ effects, etc.).
-5. **Damage resolution** — first prevent damage, then handle the rest (by burning blood or life counters).
-6. **Press** — combatants decide whether to continue the combat or separate.
-7. **End of round** — end-of-round cards and effects are played.
+1. **Before range**: window for cards before range is chosen.
+2. **Determine range**: **Close** (default) or **Long**; maneuvers change it.
+3. **Before strikes**: cards playable after range, before choosing strikes.
+4. **Strikes**: the acting minion announces first; strikes resolve together (barring _first strike_ effects, etc.).
+5. **Damage resolution**: first prevent damage, then handle the rest (by burning blood or life counters).
+6. **Press**: combatants decide whether to continue the combat or separate.
+7. **End of round**: end-of-round cards and effects are played.
 
-Any **additional strikes** (granted by cards such as _Additional Strike_) repeat steps 4–5 — strike and damage resolution — one at a time, **before the Press step**. A minion cannot use more than one card or effect to gain additional strikes per round.
+Any **additional strikes** (granted by cards such as _Additional Strike_) repeat steps 4–5 (strike and damage resolution), one at a time, **before the Press step**. A minion cannot use more than one card or effect to gain additional strikes per round.
 
 A **new round** begins if there is an uncancelled "press to continue": **one minion's press is enough** (the opponent may cancel it with their own press). Combat **ends immediately** if a combatant is burned or sent to torpor, at any point in the sequence.
 
 Two interactions break the sequence (references **1** and **2** in the diagram):
 
-- **1 — a strike with “combat ends”**: combat **ends as that strike resolves**; the rest of strike resolution and the **Press** step are skipped, but the **End of round** step still occurs.
-- **2 — _Psyche!_ and similar effects** (played at _end of combat_): conversely, they **keep a combat going that would otherwise end**, forcing a new round.
+- **1 - a strike with “combat ends”**: combat **ends as that strike resolves**; the rest of strike resolution and the **Press** step are skipped, but the **End of round** step still occurs.
+- **2 - _Psyche!_ and similar effects** (played at _end of combat_): conversely, they **keep a combat going that would otherwise end**, forcing a new round.
 
 ## References
 
-- [VEKN Rulebook](https://www.vekn.net/rulebook) — the official rules.
-- [Official VEKN New Player Guide](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, English)_ — illustrated overview of zones, turn phases, combat, clans and disciplines.
-- [Running a V:TES demo](/guide/demo-eventi-en/) — to use these diagrams during a demonstration.
+- [VEKN Rulebook](https://www.vekn.net/rulebook): the official rules.
+- [Official VEKN New Player Guide](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, English)_: illustrated overview of zones, turn phases, combat, clans and disciplines.
+- [Running a V:TES demo](/en/guides/demo-eventi/): to use these diagrams during a demonstration.

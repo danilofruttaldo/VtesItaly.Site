@@ -6,6 +6,8 @@ tags: ['treviso', 'lega']
 featuredImage: '/images/comunita/treviso/church-of-st-blaise.webp'
 poster: '/images/comunita/treviso/church-of-st-blaise.webp'
 excerpt: 'Seconda edizione della lega trevigiana di V:tES: 10 Methuselah pronti a sfidarsi senza tregua tra alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.'
+seoTitle: 'Church of St. Blaise – Lega Treviso'
+seoDescription: 'Seconda edizione della lega trevigiana di V:tES: 10 Methuselah, alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.'
 events:
   - name: 'Lega Constructed'
     date: 2026-03-02
@@ -66,13 +68,13 @@ leagueBonusPoints:
 registration: 'Iscrizione: 10€'
 prizes:
   - 'Vincitore: 3 promo full art'
-  - 'Finalisti (1°–5°): un New Blood a scelta — il 1° classificato sceglie per primo, poi a scendere'
+  - 'Finalisti (1°–5°): un New Blood a scelta: il 1° classificato sceglie per primo, poi a scendere'
   - 'Ogni partita: 2 carte casuali dal 30th Anniversary + 1 New Blood (fino a esaurimento)'
   - 'Estrazione finale: 5 pacchetti da 6× Ashur Tablets sorteggiati tra tutti gli iscritti a fine lega'
 standingsUrl: 'standings-church-of-st-blaise-2026'
 locale: it
 ---
 
-Seconda edizione della lega trevigiana di _Vampire: The Eternal Struggle_. Il **Principato di Treviso** torna in campo con 10 Methuselah pronti a sfidarsi senza tregua — alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.
+Seconda edizione della lega trevigiana di _Vampire: The Eternal Struggle_. Il **Principato di Treviso** torna in campo con 10 Methuselah pronti a sfidarsi senza tregua: alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.
 
-Ogni giocatore deve completare **10 partite valide** — la lega non ha una durata fissa in giornate, ma prosegue finché tutti hanno raggiunto la quota. I punti accumulati oltre la decima partita non fanno classifica. Una volta che tutti i giocatori hanno 10 partite, la somma complessiva di GW, VP e BP determina il **League Point** e i **5 finalisti**.
+Ogni giocatore deve completare **10 partite valide**: la lega non ha una durata fissa in giornate, ma prosegue finché tutti hanno raggiunto la quota. I punti accumulati oltre la decima partita non fanno classifica. Una volta che tutti i giocatori hanno 10 partite, la somma complessiva di GW, VP e BP determina il **League Point** e i **5 finalisti**.

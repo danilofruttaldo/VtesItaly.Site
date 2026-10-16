@@ -19,6 +19,17 @@ export default [
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/triple-slash-reference': 'off',
+      // The TypeScript compiler (astro check) already reports undefined names,
+      // with the right globals for each file: browser ones in src/scripts,
+      // Node ones in src/utils. typescript-eslint recommends turning it off.
+      'no-undef': 'off',
+    },
+  },
+  {
+    // The early language redirect: a classic script inlined in the page head.
+    files: ['src/scripts/**/*.js'],
+    languageOptions: {
+      globals: { document: 'readonly', localStorage: 'readonly', location: 'readonly' },
     },
   },
   ...astroPlugin.configs.recommended,
@@ -40,6 +51,7 @@ export default [
     files: ['**/*.mjs', 'scripts/**'],
     languageOptions: {
       globals: {
+        URL: 'readonly',
         console: 'readonly',
         process: 'readonly',
         setTimeout: 'readonly',

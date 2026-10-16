@@ -5,6 +5,9 @@ import {
   computeStageDisplayImages,
   resolvePlatformLabel,
   resolveLinkLabel,
+  tourStatusOn,
+  eventStatusOn,
+  toStageDays,
 } from '../../src/utils/status';
 
 // All tests pin "now" to a specific instant so date comparisons are
@@ -134,16 +137,42 @@ describe('status: resolvePlatformLabel', () => {
 describe('status: resolveLinkLabel', () => {
   it('prefixes an editorial label before the platform name for Archon URLs', () => {
     expect(resolveLinkLabel({ label: 'Lega Milano 2026: Classifica', url: 'https://archon.example/league/1' })).toBe(
-      'Lega Milano 2026: Classifica — Archon',
+      'Lega Milano 2026: Classifica - Archon',
     );
   });
   it('prefixes the label for BCN Crisis URLs', () => {
-    expect(resolveLinkLabel({ label: 'Standings', url: 'https://bcncrisis.com/t/1' })).toBe('Standings — BCN Crisis');
+    expect(resolveLinkLabel({ label: 'Standings', url: 'https://bcncrisis.com/t/1' })).toBe('Standings - BCN Crisis');
   });
   it('falls back to just the platform name when the label is empty', () => {
     expect(resolveLinkLabel({ label: '', url: 'https://archon.example/123' })).toBe('Archon');
   });
   it('returns the editorial label verbatim for non-platform URLs', () => {
     expect(resolveLinkLabel({ label: 'Infopack (PDF)', url: '/gp/2026/infopack.pdf' })).toBe('Infopack (PDF)');
+  });
+});
+
+describe('status: tourStatusOn / eventStatusOn (shared with the browser script)', () => {
+  it('computes the tour status from calendar days', () => {
+    const day = (date: string, cancelled = false) => ({ date, cancelled });
+    expect(tourStatusOn([], '2026-04-21')).toBeNull();
+    expect(tourStatusOn([day('2026-05-01', true)], '2026-04-21')).toBeNull();
+    expect(tourStatusOn([day('2026-01-01'), day('2026-02-01')], '2026-04-21')).toBe('past');
+    expect(tourStatusOn([day('2026-04-21'), day('2026-06-01')], '2026-04-21')).toBe('upcoming');
+    expect(tourStatusOn([day('2026-01-01'), day('2026-06-01')], '2026-04-21')).toBe('live');
+  });
+
+  it('computes the event status from calendar days', () => {
+    expect(eventStatusOn('2026-04-21', '2026-04-21')).toBe('live');
+    expect(eventStatusOn('2026-04-22', '2026-04-21')).toBe('upcoming');
+    expect(eventStatusOn('2026-04-20', '2026-04-21')).toBe('past');
+  });
+
+  it('serializes stages for the page as days plus a cancelled flag', () => {
+    expect(
+      toStageDays([{ date: new Date('2026-03-01') }, { date: new Date('2026-04-01'), status: 'cancelled' }]),
+    ).toEqual([
+      { date: '2026-03-01', cancelled: false },
+      { date: '2026-04-01', cancelled: true },
+    ]);
   });
 });

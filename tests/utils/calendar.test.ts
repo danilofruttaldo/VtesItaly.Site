@@ -35,13 +35,15 @@ const ENTRY = (date: string, title = date): TimelineEntry => ({
 });
 
 describe('composeFormat', () => {
-  it('returns TBD when format is missing', () => {
-    expect(composeFormat(undefined, false, 3, 'it')).toBe('TBD');
-    expect(composeFormat('', false, 3, 'it')).toBe('TBD');
+  it('returns the localized "to be defined" when format is missing', () => {
+    expect(composeFormat(undefined, false, 3, 'it')).toBe('Da definire');
+    expect(composeFormat('', false, 3, 'it')).toBe('Da definire');
+    expect(composeFormat(undefined, false, 3, 'en')).toBe('TBD');
   });
 
-  it('returns the literal "TBD" without decorations when format === "TBD"', () => {
-    expect(composeFormat('TBD', true, 4, 'it')).toBe('TBD');
+  it('returns only the localized label, without decorations, when format === "TBD"', () => {
+    expect(composeFormat('TBD', true, 4, 'it')).toBe('Da definire');
+    expect(composeFormat('TBD', true, 4, 'en')).toBe('TBD');
   });
 
   it('marks unknown formats as Speciale (IT) / Special (EN)', () => {
@@ -64,21 +66,21 @@ describe('composeFormat', () => {
   });
 
   it('appends rounds + final in IT (singular)', () => {
-    expect(composeFormat('Standard', undefined, 1, 'it')).toBe('Standard — 1 Round + Finale');
+    expect(composeFormat('Standard', undefined, 1, 'it')).toBe('Standard - 1 Round + Finale');
   });
 
   it('appends rounds + final in IT (3 rounds, IT keeps "Round" invariant)', () => {
-    expect(composeFormat('Standard', undefined, 3, 'it')).toBe('Standard — 3 Round + Finale');
+    expect(composeFormat('Standard', undefined, 3, 'it')).toBe('Standard - 3 Round + Finale');
   });
 
   it('pluralises rounds in EN', () => {
-    expect(composeFormat('V5', undefined, 1, 'en')).toBe('V5 — 1 Round + Final');
-    expect(composeFormat('V5', undefined, 3, 'en')).toBe('V5 — 3 Rounds + Final');
+    expect(composeFormat('V5', undefined, 1, 'en')).toBe('V5 - 1 Round + Final');
+    expect(composeFormat('V5', undefined, 3, 'en')).toBe('V5 - 3 Rounds + Final');
   });
 
   it('combines proxies + rounds correctly', () => {
-    expect(composeFormat('Standard', true, 4, 'it')).toBe('Standard, Proxy Ammesse — 4 Round + Finale');
-    expect(composeFormat('V5', false, 4, 'en')).toBe('V5, No Proxies — 4 Rounds + Final');
+    expect(composeFormat('Standard', true, 4, 'it')).toBe('Standard, Proxy Ammesse - 4 Round + Finale');
+    expect(composeFormat('V5', false, 4, 'en')).toBe('V5, No Proxies - 4 Rounds + Final');
   });
 });
 
@@ -331,7 +333,7 @@ describe('getCommunityTimeline', () => {
     expect(out[0].excerpt).toBe('A new domain appears');
   });
 
-  it('emits one entry per tour stage with IT<yy> — <name> title', () => {
+  it('emits one entry per tour stage with IT<yy> - <name> title', () => {
     const posts = [
       mkPost('tour', {
         date: new Date('2026-01-01'),
@@ -352,7 +354,7 @@ describe('getCommunityTimeline', () => {
       } as Partial<BlogEntry['data']> & { date: Date }),
     ];
     const out = getCommunityTimeline(posts, 'it').filter((e) => e.url.includes('tour'));
-    expect(out.map((e) => e.title)).toEqual(['IT26 — STAGE A', 'IT26 — STAGE B']);
+    expect(out.map((e) => e.title)).toEqual(['IT26 - STAGE A', 'IT26 - STAGE B']);
     expect(out[0].excerpt).toBe('tour excerpt');
     expect(out[1].excerpt).toBe('Specific desc');
   });
@@ -414,5 +416,61 @@ describe('extractCalendarEvents imageFill', () => {
     const local = extractCalendarEvents([], 'it').filter((e) => e.category === 'local' && e.image);
     expect(local.length).toBeGreaterThan(0);
     expect(local.every((e) => e.imageFill)).toBe(true);
+  });
+});
+
+describe("extractCalendarEvents: time 'tbd'", () => {
+  const mk = (id: string, category: string, events: { name: string; date: Date; time: string; type?: string }[]) =>
+    mkPost(id, { date: events[0].date, category, events } as Partial<BlogEntry['data']> & { date: Date });
+
+  it('prints no time for a non-tournament event and TBD for a tournament', () => {
+    const altro = mk('wos', 'comunita', [{ name: 'Week', date: new Date('2026-10-18'), time: 'tbd', type: 'altro' }]);
+    const gp = mk('gp', 'grand-prix', [{ name: 'GP', date: new Date('2026-10-18'), time: 'tbd' }]);
+    const out = extractCalendarEvents([altro, gp], 'it');
+    expect(out.find((e) => e.id === 'comunita/wos/2026-10-18')?.time).toBe('');
+    expect(out.find((e) => e.id === 'grand-prix/gp/2026-10-18')?.time).toBe('TBD');
+  });
+
+  it('skips a first-of-month placeholder without a real time', () => {
+    const p = mk('placeholder', 'comunita', [{ name: 'X', date: new Date('2026-11-01'), time: 'tbd' }]);
+    expect(extractCalendarEvents([p], 'it').some((e) => e.id === 'comunita/placeholder/2026-11-01')).toBe(false);
+  });
+});
+
+describe('extractCalendarEvents: tour stages', () => {
+  const stage = (name: string, date: string, extra: Record<string, unknown> = {}) => ({
+    name,
+    number: 1,
+    date: new Date(date),
+    cities: ['milano'],
+    status: 'future',
+    ...extra,
+  });
+  const tour = mkPost('tour-2027', {
+    date: new Date('2027-01-01'),
+    category: 'tour',
+    poster: '/tour/poster.webp',
+    stages: [
+      stage('Con orario', '2027-02-14', { time: '10:00', format: 'V5', rounds: 3 }),
+      stage('Senza orario', '2027-03-14'),
+      stage('Orario da definire', '2027-04-14', { time: 'tbd' }),
+      stage('Segnaposto', '2027-05-01'),
+      stage('Nascosta', '2027-06-14', { hideDate: true }),
+    ],
+  } as Partial<BlogEntry['data']> & { date: Date });
+
+  const out = extractCalendarEvents([tour], 'it').filter((e) => e.category === 'tour');
+
+  it('emits one entry per dated, visible stage with the IT<yy> - name title', () => {
+    expect(out.map((e) => e.title)).toEqual(['IT27 - Con orario', 'IT27 - Senza orario', 'IT27 - Orario da definire']);
+  });
+
+  it('keeps a real time and marks missing or tbd times as TBD for the browser script', () => {
+    expect(out.map((e) => e.time)).toEqual(['10:00', 'TBD', 'TBD']);
+  });
+
+  it('localizes an unannounced format', () => {
+    expect(out[0].format).toBe('V5 - 3 Round + Finale');
+    expect(out[1].format).toBe('Da definire');
   });
 });

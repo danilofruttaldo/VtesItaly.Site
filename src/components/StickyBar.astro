@@ -21,33 +21,26 @@ const t = useTranslations(locale);
   </div>
 </div>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    var bar = document.querySelector('.vtesitaly-sticky-bar');
-    if (!bar) return;
-
-    var lastY = 0;
-    var ticking = false;
-
+<script>
+  const bar = document.querySelector('.vtesitaly-sticky-bar');
+  if (bar) {
+    let lastY = 0;
+    let ticking = false;
     window.addEventListener(
       'scroll',
-      function () {
+      () => {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(function () {
-          var y = window.scrollY;
-          if (y > 200 && y > lastY) {
-            bar.classList.add('hidden');
-          } else {
-            bar.classList.remove('hidden');
-          }
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          bar.classList.toggle('hidden', y > 200 && y > lastY);
           lastY = y;
           ticking = false;
         });
       },
       { passive: true },
     );
-  });
+  }
 </script>
 
 <style>

@@ -7,7 +7,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import StandingsTable from './StandingsTable.astro';
-import { composeEventLine } from '../utils/calendar';
+import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
 import { todayLocalMidnight } from '../utils/today';
 
@@ -218,7 +218,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
         <div class="gp-value">
           {post.data.events.map((ev) => {
             const isAltro = ev.type === 'altro';
-            const hasTime = ev.time && ev.time !== '—';
+            const hasTime = ev.time && ev.time !== TIME_TBD;
             const formatLine = composeEventLine(ev, locale);
             const showFormat = !isAltro && formatLine;
             // Hide the event name when it just repeats the page title (single-event tournaments).
@@ -241,7 +241,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
                 )}
                 {formatLocalDate(startDate, locale, startOpts)}
                 {ev.endDate && <> → {formatLocalDate(ev.endDate, locale, endOpts)}</>}
-                {hasTime && <> — {`${t.gp.time_prefix} ${ev.time}`}</>}
+                {hasTime && <>, {`${t.gp.time_prefix} ${ev.time}`}</>}
                 {showFormat && (
                   <>
                     <br />
@@ -251,7 +251,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
                 {ev.venue && (
                   <>
                     <br />
-                    <span class="gp-muted">{ev.location ? `${ev.venue} — ${ev.location}` : ev.venue}</span>
+                    <span class="gp-muted">{ev.location ? `${ev.venue}, ${ev.location}` : ev.venue}</span>
                   </>
                 )}
               </div>
@@ -268,7 +268,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
         <div class="gp-value">
           {post.data.schedule.map((s) => (
             <div class="gp-schedule-item">
-              <span class="gp-muted">{s.time}</span> — {s.label}
+              <span class="gp-muted">{s.time}</span> - {s.label}
             </div>
           ))}
         </div>
@@ -303,7 +303,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
             {post.data.earlyDeadline && (
               <thead>
                 <tr>
-                  <th />
+                  <td />
                   <th class={`gp-price-cell--early ${earlyActive ? 'gp-price-active' : 'gp-price-inactive'}`}>
                     {t.gp.early_col} {post.data.earlyDeadline}
                   </th>
@@ -409,7 +409,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
                         <polyline points="15 3 21 3 21 9" />
                         <line x1="10" y1="14" x2="21" y2="3" />
                       </svg>
-                      {hasMultiple ? `${ev.name} — ${platform}` : platform}
+                      {hasMultiple ? `${ev.name} - ${platform}` : platform}
                     </a>
                   );
                 })}
@@ -546,7 +546,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={img} alt={`${section.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+                <img src={img} alt={`${section.title} - ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
               </a>
             ))}
           </div>
@@ -564,7 +564,7 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
       <div class="gp-gallery-grid" style={`--gallery-cols-max:${galleryCols}`}>
         {galleryImages.map((img, i) => (
           <a href={img} class="gp-gallery-item" target="_blank" rel="noopener noreferrer">
-            <img src={img} alt={`${post.data.title} — ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
+            <img src={img} alt={`${post.data.title} - ${t.post.photo} ${i + 1}`} loading="lazy" decoding="async" />
           </a>
         ))}
       </div>

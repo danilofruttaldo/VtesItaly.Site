@@ -1,11 +1,22 @@
 ---
 /* Site-wide lightbox: opens any <a> linking to a photo (.webp/.jpg/.jpeg/.png/.avif/.gif)
    in an overlay instead of a new tab. Falls back to the original target on no-JS. */
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
+
+const t = useTranslations(getLocaleFromUrl(Astro.url));
 ---
 
-<div class="lightbox" id="app-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Foto ingrandita">
-  <button type="button" class="lightbox-close" id="app-lightbox-close" aria-label="Chiudi">×</button>
-  <img class="lightbox-img" id="app-lightbox-img" src="" alt="" />
+<div
+  class="lightbox"
+  id="app-lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-label={t.lightbox.label}
+  inert
+>
+  <button type="button" class="lightbox-close" id="app-lightbox-close" aria-label={t.lightbox.close}>×</button>
+  <img class="lightbox-img" id="app-lightbox-img" alt="" />
 </div>
 
 <style>
@@ -64,40 +75,48 @@
   }
 </style>
 
-<script is:inline>
-  (function () {
-    const lb = document.getElementById('app-lightbox');
-    const img = document.getElementById('app-lightbox-img');
-    const closeBtn = document.getElementById('app-lightbox-close');
-    if (!lb || !img || !closeBtn) return;
+<script>
+  const lb = document.getElementById('app-lightbox');
+  const img = document.getElementById('app-lightbox-img') as HTMLImageElement | null;
+  const closeBtn = document.getElementById('app-lightbox-close');
 
+  if (lb && img && closeBtn) {
     const PHOTO_RE = /\.(webp|jpe?g|png|avif|gif)(\?.*)?(#.*)?$/i;
+    // The link that opened the photo, to give focus back on close.
+    let opener: HTMLElement | null = null;
 
-    function open(href, alt) {
+    const open = (href: string, alt: string, from: HTMLElement) => {
+      opener = from;
       img.src = href;
       img.alt = alt || '';
       lb.classList.add('is-open');
       lb.setAttribute('aria-hidden', 'false');
+      lb.inert = false;
       document.body.style.overflow = 'hidden';
-    }
-    function close() {
+      closeBtn.focus();
+    };
+    const close = () => {
+      if (!lb.classList.contains('is-open')) return;
       lb.classList.remove('is-open');
       lb.setAttribute('aria-hidden', 'true');
-      img.src = '';
+      lb.inert = true;
+      img.removeAttribute('src');
       document.body.style.overflow = '';
-    }
+      opener?.focus();
+      opener = null;
+    };
 
     document.addEventListener('click', (e) => {
-      const a = e.target.closest && e.target.closest('a');
+      const a = (e.target as Element | null)?.closest?.('a');
       if (!a) return;
-      if (a.dataset && a.dataset.noLightbox !== undefined) return;
+      if (a.dataset.noLightbox !== undefined) return;
       const href = a.getAttribute('href');
       if (!href || !PHOTO_RE.test(href)) return;
       // Skip modifier-clicks so users can still open in new tab on purpose.
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
       const innerImg = a.querySelector('img');
-      open(href, innerImg ? innerImg.alt : '');
+      open(href, innerImg ? innerImg.alt : '', a);
     });
 
     lb.addEventListener('click', (e) => {
@@ -106,7 +125,13 @@
     });
     closeBtn.addEventListener('click', close);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lb.classList.contains('is-open')) close();
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      // The close button is the only control: keep focus on it.
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        closeBtn.focus();
+      }
     });
-  })();
+  }
 </script>

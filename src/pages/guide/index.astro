@@ -33,6 +33,7 @@ const sorted = all.slice().sort((a, b) => {
         {
           sorted.map((g) => (
             <GuideCard
+              headingLevel={2}
               href={`/guide/${g.id}/`}
               title={g.data.title}
               description={g.data.description}

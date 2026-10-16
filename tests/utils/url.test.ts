@@ -206,7 +206,7 @@ describe('url: buildCityCards', () => {
     );
     expect(out).toHaveLength(1);
     expect(out[0]).toMatchObject({
-      title: 'IT26 — Milano',
+      title: 'IT26 - Milano',
       image: '/stages/milano-002.webp',
       excerpt: 'M',
     });
@@ -232,7 +232,7 @@ describe('url: buildCityCards', () => {
       'milano',
       href,
     );
-    expect(out.map((c) => c.title)).toEqual(['IT26 — Visible']);
+    expect(out.map((c) => c.title)).toEqual(['IT26 - Visible']);
   });
 
   it('uses the stage description as excerpt, falling back to the post excerpt', () => {

@@ -6,6 +6,7 @@ tags: ['barga', 'torneo']
 featuredImage: '/images/comunita/barga/symposium-italicum.webp'
 poster: '/images/comunita/barga/symposium-italicum.webp'
 excerpt: "La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare un nuovo evento in collaborazione con l'Associazione Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana, e sponsorizzato da Mistlore, TheCardGameGeek, Kraken Nest e The Pot Still."
+seoDescription: 'Symposium Italicum MMXXV a Barga (LU), dal 29 al 31 agosto 2025, in collaborazione con Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana.'
 venue:
   name: 'Agriturismo Il Musaccio'
   address: 'Località Pian di Gragno 15, 55051 Barga (LU)'

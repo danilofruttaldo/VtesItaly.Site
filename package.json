@@ -11,6 +11,9 @@
   },
   "homepage": "https://vtesitaly.com",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "postinstall": "node scripts/wasi-bindings.mjs",
     "dev": "astro dev --port 4322",
@@ -28,7 +31,11 @@
     "pretest:coverage": "node scripts/warm-content.mjs",
     "test:coverage": "vitest run --coverage",
     "test:build": "npm run build && vitest run --config vitest.integration.config.ts",
-    "ci:verify": "npm audit --omit=dev && npm run lint && npm run format:check && npm run check && npm run test:coverage && npm run test:build",
+    "check:pages": "node scripts/check-pages.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check:dist": "npm run check:pages && npm run check:links",
+    "smoke": "bash scripts/smoke-test.sh",
+    "ci:verify": "npm audit --omit=dev && npm run lint && npm run format:check && npm run check && npm run test:coverage && npm run test:build && npm run check:dist",
     "clean": "rimraf dist .astro"
   },
   "dependencies": {

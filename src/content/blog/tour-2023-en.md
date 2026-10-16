@@ -5,6 +5,7 @@ category: 'tour'
 tags: ['barga', 'bologna', 'genova', 'massa', 'milano', 'prato', 'torino', 'trento', 'verona']
 featuredImage: '/images/headers/header-tour.webp'
 excerpt: 'A year of challenges across Italy. The Italian Tour 2023 brings Vampire: The Eternal Struggle to major Italian cities with a series of stages linked by an overall ranking.'
+seoDescription: 'The Italian Tour 2023 brings Vampire: The Eternal Struggle to major Italian cities, with stages linked by an overall ranking.'
 stages:
   - name: 'Prato'
     number: 1

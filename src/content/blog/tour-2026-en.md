@@ -19,7 +19,8 @@ tags:
     'verona',
   ]
 featuredImage: '/images/headers/header-tour.webp'
-excerpt: "SABBAT'S BACK! Seven Deadly Sins — The Sabbat has returned, wielding the power of its most unholy sacraments. The Italian Tour 2026 spans 7 stages, each dedicated to one of the Seven Deadly Sins."
+excerpt: "SABBAT'S BACK! Seven Deadly Sins. The Sabbat has returned, wielding the power of its most unholy sacraments. The Italian Tour 2026 spans 7 stages, each dedicated to one of the Seven Deadly Sins."
+seoDescription: "SABBAT'S BACK! The Italian Tour 2026 spans 7 stages, each dedicated to one of the Seven Deadly Sins."
 rulesUrl: '/tour/tour-2026/infopack-tour-2026-en.pdf'
 standingsUrl: 'standings-tour-2026.json'
 stagesLabel: 'The sins'
@@ -120,7 +121,7 @@ stages:
 locale: en
 ---
 
-## SABBAT'S BACK! — Seven Deadly Sins
+## SABBAT'S BACK! Seven Deadly Sins
 
 The Sabbat has returned, wielding the power of its most unholy sacraments.
 

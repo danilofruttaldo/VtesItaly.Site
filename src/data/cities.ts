@@ -55,7 +55,7 @@ export const cities: City[] = [
     },
     headerImage: '/images/headers/header-barga.webp',
     description: {
-      it: 'Community attiva nella valle del Serchio con partite settimanali e tornei presso la Garfaludica APS. Un punto di riferimento per i giocatori della Garfagnana e della Toscana nord-occidentale.',
+      it: 'Community attiva nella valle del Serchio con partite settimanali e tornei alla Garfaludica APS, punto di riferimento per Garfagnana e Toscana nord-occidentale.',
       en: 'Active community in the Serchio valley with weekly games and tournaments at Garfaludica APS. A hub for players from Garfagnana and north-western Tuscany.',
     },
     meetupSchedule: [
@@ -159,8 +159,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Il Hobra Hai!', en: 'Il Hobra Hai!' },
       text: {
-        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te — e zero pietà.",
-        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato — and zero mercy.',
+        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te, e zero pietà.",
+        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato, and zero mercy.',
       },
       image: '/images/comunita/firenze-prato/hobra-hai.webp',
     },
@@ -324,8 +324,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Principato, Gioco e Community', en: 'Domain, Game and Community' },
       text: {
-        it: "Il Principato di Parma si basa su tre regole fondamentali: Divertimento, Compagnia e Gruppo. La cosa più importante è mantenere il sorriso e vivere il gioco come un'esperienza di svago. \"Uno per tutti, tutti per uno\" — e quando capita un'incomprensione, si risolve tutto con una birra!<br/><br/>Nessuno pretende di essere il migliore: l'obiettivo è crescere insieme nella qualità del gioco, tra conoscenza delle regole, visione di gioco e capacità di dialogo.<br/><br/>Sei curioso di provare, vuoi conoscere persone nuove o sei appassionato del mondo dei Vampiri? Contatta il Principe: ti aspettiamo per una demo e un'ottima serata in compagnia!",
-        en: 'The Domain of Parma is built on three fundamental rules: Fun, Fellowship and Teamwork. The most important thing is to keep smiling and enjoy the game as a fun experience. "All for one, one for all" — and when a misunderstanding arises, we settle it over a beer!<br/><br/>Nobody claims to be the best: the goal is to grow together in game quality, through rules knowledge, game vision and communication skills.<br/><br/>Curious to try, want to meet new people or passionate about the world of Vampires? Contact the Prince: we\'re waiting for you for a demo and a great evening together!',
+        it: "Il Principato di Parma si basa su tre regole fondamentali: Divertimento, Compagnia e Gruppo. La cosa più importante è mantenere il sorriso e vivere il gioco come un'esperienza di svago. \"Uno per tutti, tutti per uno\", e quando capita un'incomprensione, si risolve tutto con una birra!<br/><br/>Nessuno pretende di essere il migliore: l'obiettivo è crescere insieme nella qualità del gioco, tra conoscenza delle regole, visione di gioco e capacità di dialogo.<br/><br/>Sei curioso di provare, vuoi conoscere persone nuove o sei appassionato del mondo dei Vampiri? Contatta il Principe: ti aspettiamo per una demo e un'ottima serata in compagnia!",
+        en: 'The Domain of Parma is built on three fundamental rules: Fun, Fellowship and Teamwork. The most important thing is to keep smiling and enjoy the game as a fun experience. "All for one, one for all", and when a misunderstanding arises, we settle it over a beer!<br/><br/>Nobody claims to be the best: the goal is to grow together in game quality, through rules knowledge, game vision and communication skills.<br/><br/>Curious to try, want to meet new people or passionate about the world of Vampires? Contact the Prince: we\'re waiting for you for a demo and a great evening together!',
       },
       image: '/images/comunita/parma/gruppo.webp',
     },
@@ -384,8 +384,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Il Hobra Hai!', en: 'Il Hobra Hai!' },
       text: {
-        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te — e zero pietà.",
-        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato — and zero mercy.',
+        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te, e zero pietà.",
+        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato, and zero mercy.',
       },
       image: '/images/comunita/firenze-prato/hobra-hai.webp',
     },

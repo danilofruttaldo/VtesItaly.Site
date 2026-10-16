@@ -1,5 +1,5 @@
 /* ========================================
-   Guide — hub + single page
+   Guide - hub + single page
    ======================================== */
 
 .guide-hub {
@@ -181,7 +181,7 @@
 }
 
 .guide-badge--judge {
-  color: var(--color-accent-1);
+  color: var(--color-accent-2);
   background: rgba(232, 90, 114, 0.12);
   border: 1px solid rgba(232, 90, 114, 0.35);
 }
@@ -267,7 +267,7 @@
   }
 }
 
-/* TOC — sticky lives on the <aside> grid item, not on the inner nav, so it
+/* TOC - sticky lives on the <aside> grid item, not on the inner nav, so it
  * has the full grid row height to operate within (the article column). */
 .guide-layout > aside {
   position: sticky;
@@ -442,9 +442,9 @@
   color: var(--color-muted);
 }
 .prose .schema-figure figcaption::after {
-  content: ' — clicca per ingrandire';
+  content: ' (clicca per ingrandire)';
   opacity: 0.7;
 }
 .prose .schema-figure--en figcaption::after {
-  content: ' — click to enlarge';
+  content: ' (click to enlarge)';
 }

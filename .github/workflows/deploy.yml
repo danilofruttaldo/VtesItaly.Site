@@ -1,36 +1,50 @@
 name: CI
 
-# Single workflow per commit: ci → lighthouse → deploy.
+# Single workflow per commit: ci -> lighthouse -> deploy -> coverage badge.
 # Lighthouse and deploy reuse the dist/ artifact uploaded by `ci`, so the
 # whole build pipeline runs only once per push.
+#
+# Pull requests (including Dependabot's) run only the `ci` job: no Lighthouse,
+# no deploy, no badge commit, and no access to the deploy secrets.
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  # Collapse concurrent pushes to the same ref so a newer commit supersedes
-  # an in-flight run.
-  group: deploy-vtesitaly-${{ github.ref }}
-  cancel-in-progress: true
+# No workflow-level concurrency on purpose: a workflow-level group with
+# cancel-in-progress would also kill a deploy halfway through the tar
+# extraction, leaving public_html with a mix of two releases. Each job
+# declares its own group instead (see below).
 
 jobs:
   ci:
-    # Gate that runs on every push: lint/format/typecheck/test/build/smoke.
-    runs-on: ubuntu-latest
+    # Gate that runs on every push and PR: audit, lint, format, typecheck,
+    # tests, build, integration smoke, site-wide checks, size guard.
+    # Pinned instead of ubuntu-latest: the -latest label moves to a newer
+    # image without notice, and the pipeline breaks for reasons unrelated
+    # to the commit being tested.
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
-    permissions:
-      contents: write # required so the coverage-badge step can push back
+    concurrency:
+      # A newer commit on the same ref supersedes the in-flight check.
+      group: ci-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          # Same major as `engines` in package.json; .nvmrc is the single
+          # source for local tooling (nvm, fnm) and CI. setup-node caches
+          # ~/.npm keyed on the lockfile, which is Node-version agnostic;
+          # node_modules is never cached (npm ci rebuilds it).
+          node-version-file: .nvmrc
           cache: npm
 
       - run: npm ci
@@ -42,28 +56,28 @@ jobs:
       - run: npm run check
       - run: npm run test:coverage
 
-      - name: Refresh README coverage badge
-        # Re-generates `.github/coverage-badge.json` from the json-summary
-        # reporter output. Commits back to main with `[skip ci]` only when
-        # the value actually changes — keeps history quiet on no-op runs.
+      - name: Keep the coverage summary for the badge job
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          node scripts/coverage-badge.mjs
-          if [ -n "$(git status --porcelain .github/coverage-badge.json)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add .github/coverage-badge.json
-            git commit -m "chore(site): refresh coverage badge [skip ci]"
-            git push
-          else
-            echo "Coverage badge unchanged — skipping commit."
-          fi
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-summary
+          path: coverage/coverage-summary.json
+          retention-days: 1
 
       - run: npm run build
         env:
           NODE_ENV: production
 
       - run: npx vitest run --config vitest.integration.config.ts
+
+      - name: Site-wide page checks on dist
+        # Every built page: title, description, one h1, canonical, hreflang,
+        # x-default, no em dash, CSP hashes for inline scripts, img alt.
+        # Accepted cases are listed by name in the script.
+        run: npm run check:pages
+
+      - name: Internal link check on dist
+        run: npm run check:links
 
       - name: Enforce dist size budget
         # Use apparent size (real bytes) instead of disk-allocated blocks: on
@@ -86,13 +100,17 @@ jobs:
           retention-days: 1
 
   lighthouse:
-    # Lighthouse is a deploy gate. Reuses the dist artifact from ci so a
-    # lighthouse rerun doesn't redo lint/test/build.
+    # Lighthouse is a deploy gate, so it runs only where a deploy can follow.
+    # Reuses the dist artifact from ci so a rerun doesn't redo lint/test/build.
     needs: ci
-    runs-on: ubuntu-latest
-    # 8 URLs × 3 runs × devtools throttling (~20-30s each) ≈ 8-12 min.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    # 8 URLs x 3 runs x devtools throttling (~20-30s each) = 8-12 min.
     # Cushion for runner variance.
     timeout-minutes: 20
+    concurrency:
+      group: lighthouse-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v6
 
@@ -110,12 +128,27 @@ jobs:
 
   deploy:
     needs: [ci, lighthouse]
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # Only main reaches production. workflow_dispatch on another branch runs
+    # ci and lighthouse but stops here.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     environment:
       name: vtesitaly
       url: https://vtesitaly.com
+    concurrency:
+      # One deploy at a time, and never cancelled: killing the job while
+      # tar is extracting would leave public_html half old, half new.
+      # A newer run waits for this one to finish.
+      group: deploy-vtesitaly-production
+      cancel-in-progress: false
     steps:
+      - name: Checkout (smoke test script only)
+        uses: actions/checkout@v6
+        with:
+          sparse-checkout: scripts
+          sparse-checkout-cone-mode: true
+
       - name: Download dist artifact from ci
         uses: actions/download-artifact@v8
         with:
@@ -124,7 +157,10 @@ jobs:
 
       - name: Deploy via tar-pipe over SSH
         # Single SSH session, gzip-streamed tarball extracted in place.
-        # Additive (like scp) — never deletes user-managed files (.htaccess).
+        # Additive (like scp): never deletes user-managed files (.htaccess),
+        # but also never deletes stale files from older releases. A release
+        # directory deploy with rollback is described in docs/deploy-atomico.md,
+        # to be verified on the hosting before switching to it.
         # Trade-off vs lftp: no delta, uploads everything each run. Accepted
         # because shared hosting throttles parallel SFTP, and Astro's content
         # hashes mean most files change anyway on rebuild.
@@ -136,19 +172,75 @@ jobs:
           SSH_PORT: ${{ vars.SSH_PORT }}
         run: |
           set -euo pipefail
-          install -m 600 -D /dev/null ~/.ssh/deploy_key
-          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
 
-          # Pin the host key from secrets (TOFU-free). Generate locally with
-          # `ssh-keyscan -p $PORT $HOST` and store as the SSH_KNOWN_HOSTS
-          # secret. Falls back to runtime keyscan only if the secret isn't
-          # set yet, which leaves a one-shot MITM window — set the secret.
-          if [ -n "$SSH_KNOWN_HOSTS" ]; then
-            printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          else
-            echo "::warning::SSH_KNOWN_HOSTS not set; falling back to ssh-keyscan (MITM window)."
-            ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # The host key is pinned from the environment secret, never learnt
+          # at runtime: an ssh-keyscan fallback would trust whoever answers
+          # on the first connection. Generate it locally with
+          # `ssh-keyscan -p $PORT $HOST` and store it as SSH_KNOWN_HOSTS.
+          if [ -z "$SSH_KNOWN_HOSTS" ]; then
+            echo "::error::SSH_KNOWN_HOSTS secret is not set on the vtesitaly environment. Refusing to deploy without a pinned host key."
+            exit 1
           fi
+          for v in SSH_KEY SSH_USER SSH_HOST SSH_PORT; do
+            if [ -z "${!v}" ]; then
+              echo "::error::$v is not set on the vtesitaly environment."
+              exit 1
+            fi
+          done
+
+          install -m 700 -d ~/.ssh
+          install -m 600 /dev/null ~/.ssh/deploy_key
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
 
           tar -C dist -cz . | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" \
+            -o StrictHostKeyChecking=yes -o BatchMode=yes \
             "$SSH_USER@$SSH_HOST" "tar -C /home/$SSH_USER/public_html -xz"
+
+      - name: Smoke test production
+        # Runs from the runner, i.e. from outside the hosting: catches DNS,
+        # firewall and missing-section problems that a check on the server
+        # itself would not see.
+        run: bash scripts/smoke-test.sh https://vtesitaly.com
+
+  coverage-badge:
+    # Refreshes `.github/coverage-badge.json` (read by the README badge via
+    # shields.io) after a successful deploy. Kept out of `ci` so a badge
+    # commit can never block or fail the gate, and serialised so two runs
+    # never push at the same time.
+    needs: deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      contents: write # push the badge commit back to main
+    concurrency:
+      group: coverage-badge
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # The tip of main, not the commit that triggered the run: if main
+          # moved in the meantime the push would be rejected as non-fast-forward.
+          ref: main
+
+      - name: Download coverage summary from ci
+        uses: actions/download-artifact@v8
+        with:
+          name: coverage-summary
+          path: coverage
+
+      - name: Commit the badge only when the value changes
+        run: |
+          node scripts/coverage-badge.mjs
+          if [ -z "$(git status --porcelain .github/coverage-badge.json)" ]; then
+            echo "Coverage badge unchanged, skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/coverage-badge.json
+          git commit -m "chore(site): refresh coverage badge [skip ci]"
+          # One retry if main moved between checkout and push.
+          git push || { git pull --rebase origin main && git push; }

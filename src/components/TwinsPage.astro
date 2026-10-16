@@ -41,9 +41,9 @@ const twins = twinsData.map((tw) => ({
                 <img src={twin.image} alt={twin.person} loading="lazy" decoding="async" />
               </div>
               <div class="twin-info">
-                <h3 class="twin-card">{twin.card}</h3>
+                <h2 class="twin-card">{twin.card}</h2>
                 <p class="twin-vs">vs</p>
-                <h4 class="twin-person">{twin.person}</h4>
+                <h3 class="twin-person">{twin.person}</h3>
                 <p class="twin-desc">{twin.description}</p>
               </div>
             </div>
@@ -175,25 +175,26 @@ const twins = twinsData.map((tw) => ({
   }
 </style>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    if (!lightbox || !lightboxImg) return;
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  if (lightbox && lightboxImg) {
+    const isMobile = () => window.innerWidth <= 768;
+    const close = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+    };
 
-    document.querySelectorAll('.twin-image').forEach((el) => {
+    document.querySelectorAll<HTMLElement>('.twin-image').forEach((el) => {
       const img = el.querySelector('img');
       if (!img) return;
-      function isMobile() {
-        return window.innerWidth <= 768;
-      }
-      function open() {
+      const open = () => {
         if (isMobile()) return;
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
-      }
+      };
       el.addEventListener('click', open);
       el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -203,16 +204,9 @@ const twins = twinsData.map((tw) => ({
       });
     });
 
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('is-open');
-      lightbox.setAttribute('aria-hidden', 'true');
-    });
-
+    lightbox.addEventListener('click', close);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('is-open');
-        lightbox.setAttribute('aria-hidden', 'true');
-      }
+      if (e.key === 'Escape') close();
     });
-  });
+  }
 </script>

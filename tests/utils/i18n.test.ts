@@ -9,6 +9,8 @@ import {
   getOtherLocales,
   formatLocalDate,
   getAlternateUrl,
+  translatePostSlug,
+  translateSection,
 } from '../../src/utils/i18n';
 
 const url = (path: string) => new URL(`https://vtesitaly.com${path}`);
@@ -136,5 +138,50 @@ describe('i18n: getAlternateUrl (hreflang + slug remap)', () => {
   it('preserves nested paths under a remapped slug', () => {
     expect(getAlternateUrl(url('/principati/torino/'), 'en')).toBe('/en/domains/torino/');
     expect(getAlternateUrl(url('/en/community/week-of-sabbat-2025/'), 'it')).toBe('/comunita/week-of-sabbat-2025/');
+  });
+});
+
+describe('i18n: shared slug mapping', () => {
+  it('translates the section segment both ways and leaves unmapped ones alone', () => {
+    expect(translateSection('nazionale', 'en')).toBe('national-championship');
+    expect(translateSection('community', 'it')).toBe('comunita');
+    expect(translateSection('tour', 'en')).toBe('tour');
+  });
+
+  it('maps nazionale-YYYY <-> nc-YYYY only inside the National Championship', () => {
+    expect(translatePostSlug('nazionale', 'nazionale-2026', 'en')).toBe('nc-2026');
+    expect(translatePostSlug('nazionale', 'nc-2026', 'it')).toBe('nazionale-2026');
+    expect(translatePostSlug('comunita', 'nazionale-party', 'en')).toBe('nazionale-party');
+  });
+
+  it('gives the hreflang alternate of a National Championship post with the nc- slug', () => {
+    expect(getAlternateUrl(url('/nazionale/nazionale-2026/'), 'en')).toBe('/en/national-championship/nc-2026/');
+    expect(getAlternateUrl(url('/en/national-championship/nc-2026/'), 'it')).toBe('/nazionale/nazionale-2026/');
+  });
+
+  it('maps only whole segments: a slug that merely contains a section name is untouched', () => {
+    expect(getAlternateUrl(url('/comunita/guide-alla-lega/'), 'en')).toBe('/en/community/guide-alla-lega/');
+  });
+
+  it('keeps the trailing-slash form of the source path', () => {
+    expect(getAlternateUrl(url('/principati'), 'en')).toBe('/en/domains');
+    expect(getAlternateUrl(url('/en'), 'it')).toBe('/');
+  });
+
+  it('returns the same path when the target is the current locale', () => {
+    expect(getAlternateUrl(url('/en/tour/'), 'en')).toBe('/en/tour/');
+  });
+
+  it('pairs the two 404 pages', () => {
+    expect(getAlternateUrl(url('/404.html'), 'en')).toBe('/en/404/');
+    expect(getAlternateUrl(url('/404'), 'en')).toBe('/en/404/');
+    expect(getAlternateUrl(url('/en/404/'), 'it')).toBe('/404.html');
+  });
+});
+
+describe('i18n: formatLocalDate in UTC', () => {
+  it('prints the frontmatter day whatever the process timezone', () => {
+    // Midnight UTC is still the previous evening west of Greenwich.
+    expect(formatLocalDate(new Date('2026-03-01'), 'it')).toBe('1 marzo 2026');
   });
 });

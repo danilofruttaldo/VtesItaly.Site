@@ -259,6 +259,7 @@
     "no_data": "No results available"
   },
   "lightbox": {
+    "open": "Enlarge",
     "label": "Enlarged photo",
     "close": "Close the photo"
   },

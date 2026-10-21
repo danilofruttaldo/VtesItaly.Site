@@ -251,6 +251,7 @@
     "no_data": "Nessun risultato disponibile"
   },
   "lightbox": {
+    "open": "Ingrandisci",
     "label": "Foto ingrandita",
     "close": "Chiudi la foto"
   },

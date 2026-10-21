@@ -28,6 +28,7 @@ interface Props {
 }
 
 import { useTranslations } from '../utils/i18n';
+import Zoomable from './Zoomable.astro';
 
 const { dataUrl, locale = 'it' } = Astro.props;
 
@@ -71,7 +72,9 @@ const cityTabs = data
         {data.paths.map((p, i) => (
           <div class:list={['wos-path-card', i === 0 && 'wos-path-card--winner']}>
             {pathImages[p.name] && (
-              <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
+              <Zoomable href={pathImages[p.name]} alt={p.name}>
+                <img src={pathImages[p.name]} alt={p.name} class="wos-path-img" loading="lazy" decoding="async" />
+              </Zoomable>
             )}
             <div class="wos-path-info">
               <span class="wos-path-rank">#{p.rank}</span>

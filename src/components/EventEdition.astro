@@ -11,6 +11,7 @@ import StandingsTable from './StandingsTable.astro';
 import { loadStandings, type Standing } from '../utils/standings';
 import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
+import Zoomable from './Zoomable.astro';
 import { todayLocalIso } from '../utils/today';
 import { priceColumns } from '../utils/timeline';
 import { isoDate, lastEventDay } from '../utils/date';
@@ -101,13 +102,15 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
 {/* Poster / locandina */}
 {post.data.poster && (
   <figure class="gp-poster">
-    <ResponsiveImage
-      src={post.data.poster}
-      alt={post.data.title}
-      sizes="(max-width: 360px) 100vw, 360px"
-      loading="eager"
-      fetchpriority="high"
-    />
+    <Zoomable href={post.data.poster} alt={post.data.title}>
+      <ResponsiveImage
+        src={post.data.poster}
+        alt={post.data.title}
+        sizes="(max-width: 360px) 100vw, 360px"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </Zoomable>
     {post.data.posterCaption && <figcaption class="gp-poster-caption">{post.data.posterCaption}</figcaption>}
   </figure>
 )}

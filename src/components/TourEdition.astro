@@ -9,6 +9,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel, computeStageDisplayImages, stagePlaceholder, stageStatusesOn } from '../utils/status';
 import { responsiveImage } from '../utils/image';
+import Zoomable from './Zoomable.astro';
 import { anonymizeName } from '../utils/anonymize';
 import { cities } from '../data/cities';
 import { todayLocalIso } from '../utils/today';
@@ -142,7 +143,7 @@ function formatStage(val: unknown, isAway: boolean): string {
             data-stage-hidden-date={stage.hideDate ? 'true' : undefined}
           >
             {stage.image && (
-              <div class="te-card-image">
+              <Zoomable href={displayImages[i]} alt={stage.name} class="te-card-image">
                 <img
                   src={displayImages[i]}
                   srcset={stageSrcset(displayImages[i])}
@@ -154,7 +155,7 @@ function formatStage(val: unknown, isAway: boolean): string {
                   data-real-srcset={stageSrcset(stage.image)}
                   data-placeholder-srcset={stageSrcset(placeholderImage)}
                 />
-              </div>
+              </Zoomable>
             )}
             <div class="te-card-body">
               <div class="te-card-top">
@@ -358,6 +359,8 @@ function formatStage(val: unknown, isAway: boolean): string {
         if (srcset) img.srcset = srcset;
         else img.removeAttribute('srcset');
         img.src = future ? img.dataset.realImage.replace(/\d{3}\.webp$/, '000.webp') : img.dataset.realImage;
+        // The zoom link opens what the card shows.
+        img.closest('a.zoomable')?.setAttribute('href', img.src);
       }
     });
   })();

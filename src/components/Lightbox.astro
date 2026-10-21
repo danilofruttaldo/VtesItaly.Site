@@ -1,6 +1,8 @@
 ---
 /* Site-wide lightbox: opens any <a> linking to a photo (.webp/.jpg/.jpeg/.png/.avif/.gif)
-   in an overlay instead of a new tab. Falls back to the original target on no-JS. */
+   in an overlay instead of a new tab. Falls back to the original target on no-JS.
+   Images in post and guide text (.prose) that are not links already get one at
+   load, to their largest srcset candidate, so they open zoomed too. */
 import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
 
 const t = useTranslations(getLocaleFromUrl(Astro.url));
@@ -13,6 +15,7 @@ const t = useTranslations(getLocaleFromUrl(Astro.url));
   aria-modal="true"
   aria-hidden="true"
   aria-label={t.lightbox.label}
+  data-open-label={t.lightbox.open}
   inert
 >
   <button type="button" class="lightbox-close" id="app-lightbox-close" aria-label={t.lightbox.close}>
@@ -70,6 +73,10 @@ const t = useTranslations(getLocaleFromUrl(Astro.url));
     background: rgba(255, 255, 255, 0.18);
     outline: none;
   }
+  /* Zoom links around images, here and from Zoomable.astro */
+  :global(a.zoomable) {
+    cursor: zoom-in;
+  }
   @media (prefers-reduced-motion: reduce) {
     .lightbox {
       transition: none;
@@ -119,6 +126,26 @@ const t = useTranslations(getLocaleFromUrl(Astro.url));
       e.preventDefault();
       const innerImg = a.querySelector('img');
       open(href, innerImg ? innerImg.alt : '', a);
+    });
+
+    // Body images of the markdown: wrap the bare ones in a link to the full file.
+    const largest = (el: HTMLImageElement) => {
+      const set = (el.getAttribute('srcset') || '')
+        .split(',')
+        .map((c) => c.trim().split(/\s+/)[0])
+        .filter(Boolean);
+      return set[set.length - 1] || el.getAttribute('src') || '';
+    };
+    document.querySelectorAll<HTMLImageElement>('.prose img').forEach((el) => {
+      if (el.closest('a, .card-hover')) return;
+      const href = largest(el);
+      if (!PHOTO_RE.test(href)) return;
+      const a = document.createElement('a');
+      a.href = href;
+      a.className = 'zoomable';
+      a.setAttribute('aria-label', `${lb.dataset.openLabel || ''}: ${el.alt}`);
+      el.replaceWith(a);
+      a.appendChild(el);
     });
 
     lb.addEventListener('click', (e) => {

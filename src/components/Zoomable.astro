@@ -1,0 +1,37 @@
+---
+/**
+ * Wraps an image in a link to its full-size file: the site-wide Lightbox
+ * opens any link to a photo in an overlay (zoom), and without JavaScript the
+ * link still opens the image. Renders the slot alone when there is no file.
+ */
+import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
+
+interface Props {
+  href: string | undefined;
+  /** What the image shows, for the link name ("Ingrandisci: <alt>"). */
+  alt: string;
+  class?: string;
+}
+
+const { href, alt, class: className } = Astro.props;
+const t = useTranslations(getLocaleFromUrl(Astro.url));
+---
+
+{href ? (
+  <a href={href} class:list={['zoomable', className]} aria-label={`${t.lightbox.open}: ${alt}`}>
+    <slot />
+  </a>
+) : (
+  <slot />
+)}
+
+<style>
+  .zoomable {
+    display: block;
+    cursor: zoom-in;
+  }
+  .zoomable:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+</style>

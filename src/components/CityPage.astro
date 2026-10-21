@@ -5,6 +5,7 @@ import ShareButtons from './ShareButtons.astro';
 import PostCard from './PostCard.astro';
 import type { City } from '../data/cities';
 import { useTranslations } from '../utils/i18n';
+import Zoomable from './Zoomable.astro';
 import type { Locale } from '../utils/i18n';
 import type { CityCardEntry } from '../utils/url';
 import { todayLocalIso } from '../utils/today';
@@ -37,13 +38,15 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
     <div class="container">
       <div class="city-layout">
         <aside class="prince-card">
-          <img
-            src={thumbFor(city.prince.image)}
-            alt={city.prince.name}
-            class="prince-avatar"
-            loading="lazy"
-            decoding="async"
-          />
+          <Zoomable href={city.prince.image} alt={city.prince.name} class="prince-avatar-link">
+            <img
+              src={thumbFor(city.prince.image)}
+              alt={city.prince.name}
+              class="prince-avatar"
+              loading="lazy"
+              decoding="async"
+            />
+          </Zoomable>
           <h2 class="prince-name">{city.prince.name}</h2>
           <p class="prince-alias">
             <em>{city.prince.alias}</em>
@@ -173,13 +176,15 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
       {city.highlight && (
         <div class="highlight-box">
           {city.highlight.image && (
-            <img
-              src={city.highlight.image}
-              alt={city.highlight.title[locale]}
-              class="highlight-image"
-              loading="lazy"
-              decoding="async"
-            />
+            <Zoomable href={city.highlight.image} alt={city.highlight.title[locale]} class="highlight-image-link">
+              <img
+                src={city.highlight.image}
+                alt={city.highlight.title[locale]}
+                class="highlight-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </Zoomable>
           )}
           <div class="highlight-content">
             <h3 class="highlight-title">{city.highlight.title[locale]}</h3>
@@ -373,6 +378,10 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
     border-radius: 12px;
     overflow: hidden;
   }
+  /* The zoom link around the image (Zoomable): a flex item of its own. */
+  :global(.highlight-image-link) {
+    flex-shrink: 0;
+  }
   .highlight-image {
     width: 200px;
     min-height: 140px;
@@ -428,6 +437,7 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
     .highlight-box {
       flex-direction: column;
     }
+    :global(.highlight-image-link),
     .highlight-image {
       width: 100%;
       min-height: 160px;

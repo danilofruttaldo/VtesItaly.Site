@@ -174,6 +174,14 @@ else
     fail "security headers (X-Content-Type-Options, Cross-Origin-Opener-Policy) missing on the 301 of /principati: check 'Header always set' in public/.htaccess"
 fi
 
+# Apache advertises HTTP/2 with an Upgrade header on HTTP/1.1 answers;
+# public/.htaccess removes it. Reported only: the site works either way.
+if curl -sSI --http1.1 --max-time 20 "$BASE/" 2>/dev/null | grep -qi '^upgrade:'; then
+    warn "the home still sends an Upgrade header over HTTP/1.1: check 'Header unset Upgrade' in public/.htaccess"
+else
+    ok "no Upgrade header over HTTP/1.1"
+fi
+
 # redirect PATH TARGET NAME: PATH must answer 301 with Location $BASE$TARGET,
 # and the destination must answer 200.
 redirect() {

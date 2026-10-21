@@ -20,7 +20,10 @@
     # preload.
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     # Upgrade lo aggiunge Apache con HTTP/2 disponibile: su una risposta
-    # HTTP/2 e' vietato, e Safari rifiuta la pagina.
+    # HTTP/2 e' vietato, e Safari rifiuta la pagina. Apache lo scrive fra gli
+    # header normali, che "always" (gli header d'errore) non tocca: servono
+    # tutte e due le righe.
+    Header unset Upgrade
     Header always unset Upgrade
 </IfModule>
 

@@ -15,8 +15,9 @@ Tutto quello che il file promette lo verifica `scripts/smoke-test.sh` dopo ogni 
 gli header mancavano. Ci sono `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`,
 `Permissions-Policy` (camera, microfono, posizione, pagamenti, USB e Topics spenti), `Cross-Origin-Opener-Policy:
 same-origin` e HSTS. HSTS è senza condizione `env=HTTPS`: sulle risposte in http il browser lo ignora comunque, e la
-condizione lo toglieva dove la variabile non arrivava; niente `preload`. `Header always unset Upgrade` toglie l'header
-che Apache aggiunge quando c'è HTTP/2: su una risposta HTTP/2 è vietato e Safari rifiuta la pagina. `X-XSS-Protection`
+condizione lo toglieva dove la variabile non arrivava; niente `preload`. `Header unset Upgrade` (più la variante `always`,
+perché Apache lo scrive fra gli header normali) toglie l'header che Apache aggiunge quando c'è HTTP/2: su una risposta
+HTTP/2 è vietato e Safari rifiuta la pagina. `X-XSS-Protection`
 non c'è più: i browser l'hanno abbandonato.
 
 `AddDefaultCharset UTF-8` e `AddCharset utf-8` per `.js`, `.mjs`, `.css`, `.json`, `.webmanifest`, `.xml` e `.txt`:

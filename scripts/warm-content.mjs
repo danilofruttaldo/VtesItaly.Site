@@ -5,8 +5,10 @@
  *
  * This script:
  *  1. If `.astro/data-store.json` already exists and is newer than every file
- *     under src/content and src/data, exits 0 (warm). A stale store is
- *     deleted, so the tests never run on old content.
+ *     under src/content, exits 0 (warm). A stale store is set
+ *     aside and rebuilt; if rebuilding fails (e.g. `astro dev` refuses to
+ *     start because the developer's own dev server is running), the stale one
+ *     comes back with a warning rather than leaving the tests with nothing.
  *  2. Otherwise runs `astro sync` to (best-effort) populate node_modules/.astro/.
  *  3. If a file ended up at node_modules/.astro/data-store.json, copies it
  *     into .astro/data-store.json so vitest can read it.
@@ -19,13 +21,14 @@
  * and every component test that pulls real posts fails. See:
  *   https://github.com/withastro/astro/issues/7051
  */
-import { existsSync, mkdirSync, copyFileSync, readdirSync, statSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, copyFileSync, readdirSync, statSync, rmSync, renameSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 
 const ROOT_STORE = '.astro/data-store.json';
 const NODE_MODULES_STORE = 'node_modules/.astro/data-store.json';
-const SOURCE_DIRS = ['src/content', 'src/data'];
+// The collections the data-store holds (src/data is plain modules, not in it).
+const SOURCE_DIRS = ['src/content'];
 const IS_WIN = process.platform === 'win32';
 
 function log(msg) {
@@ -65,9 +68,11 @@ function killTree(child, signal) {
   }
 }
 
+// Called right after `astro sync`, which brings the store up to date with the
+// content. Sync leaves the file untouched when nothing in it changed, so its
+// mtime proves nothing: existing is enough.
 function tryCopyFromNodeModules() {
-  // A store left over from an earlier sync would bring stale content back.
-  if (!isFresh(NODE_MODULES_STORE)) return false;
+  if (!existsSync(NODE_MODULES_STORE)) return false;
   mkdirSync('.astro', { recursive: true });
   copyFileSync(NODE_MODULES_STORE, ROOT_STORE);
   return existsSync(ROOT_STORE);
@@ -77,17 +82,33 @@ if (isFresh(ROOT_STORE)) {
   log('.astro/data-store.json already present and up to date, skipping');
   process.exit(0);
 }
+const STALE_STORE = `${ROOT_STORE}.stale`;
 if (existsSync(ROOT_STORE)) {
   log('.astro/data-store.json is older than src/content or src/data, rebuilding');
-  rmSync(ROOT_STORE);
+  renameSync(ROOT_STORE, STALE_STORE);
 }
+
+// Rebuild failed: put the stale store back (better than none) and say so.
+function giveUp(reason) {
+  if (existsSync(STALE_STORE) && !existsSync(ROOT_STORE)) {
+    renameSync(STALE_STORE, ROOT_STORE);
+    log(`${reason}; WARNING: using the previous, stale data-store`);
+    process.exit(0);
+  }
+  log(reason);
+  process.exit(1);
+}
+const done = (code) => {
+  if (existsSync(STALE_STORE)) rmSync(STALE_STORE);
+  process.exit(code);
+};
 
 log('running `astro sync` …');
 spawnSync('npx', ['astro', 'sync'], { stdio: 'inherit', shell: IS_WIN });
 
 if (tryCopyFromNodeModules()) {
   log('copied data-store from node_modules/.astro into .astro/');
-  process.exit(0);
+  done(0);
 }
 
 log('sync did not produce a data-store; starting `astro dev` briefly to warm it');
@@ -108,12 +129,11 @@ const timer = setInterval(() => {
     clearInterval(timer);
     log(`data-store appeared after ${Date.now() - start}ms`);
     killTree(dev, 'SIGTERM');
-    setTimeout(() => process.exit(0), 250);
+    setTimeout(() => done(0), 250);
   } else if (Date.now() - start > HARD_TIMEOUT) {
     clearInterval(timer);
-    log(`timed out after ${HARD_TIMEOUT}ms waiting for .astro/data-store.json`);
     killTree(dev, 'SIGKILL');
-    setTimeout(() => process.exit(1), 250);
+    setTimeout(() => giveUp(`timed out after ${HARD_TIMEOUT}ms waiting for .astro/data-store.json`), 250);
   }
 }, POLL_INTERVAL);
 
@@ -122,8 +142,7 @@ dev.on('exit', (code) => {
   clearInterval(timer);
   if (existsSync(ROOT_STORE)) {
     log('astro dev exited but data-store is in place; continuing');
-    process.exit(0);
+    done(0);
   }
-  log(`astro dev exited with code ${code} and no data-store appeared`);
-  process.exit(1);
+  giveUp(`astro dev exited with code ${code} and no data-store appeared (is another dev server running?)`);
 });

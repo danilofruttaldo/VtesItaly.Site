@@ -15,7 +15,7 @@ venue:
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2024'
     date: 2023-12-09
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: false
     rounds: 3

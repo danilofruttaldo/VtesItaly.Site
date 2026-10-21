@@ -54,7 +54,7 @@ stages:
     cities: ['pordenone']
     time: '10:00'
     format: 'Standard'
-    proxies: true
+    proxies: false
     rounds: 2
     venue: 'Gelindo dei Magredi'
     location: 'Via Roma 14, 33099 Vivaro (PN)'

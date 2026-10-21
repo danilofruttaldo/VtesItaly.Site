@@ -41,7 +41,7 @@ venue:
 events:
   - name: 'MAIN EVENT: Italian Championship 2025'
     date: 2025-04-12
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: false
     rounds: 3
@@ -51,7 +51,7 @@ events:
     date: 2025-04-13
     time: '10:00'
     format: 'Standard'
-    proxies: true
+    proxies: false
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6cb2-775a-beae-13b306cfebde'
     standingsUrl: '/nc/nc-2025/standings-tour-pordenone-2025.json'

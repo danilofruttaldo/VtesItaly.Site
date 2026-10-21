@@ -25,7 +25,7 @@ events:
     date: 2025-03-02
     time: '10:00'
     format: 'Standard'
-    proxies: true
+    proxies: false
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-7483-703d-8c50-f30c5c869f0b'
     standingsUrl: '/gp/gp-2025/standings-gp-redemption-2025.json'

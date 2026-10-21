@@ -27,7 +27,7 @@ venue:
 events:
   - name: 'MAIN EVENT: Italian Championship 2023'
     date: 2023-04-30
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: false
     rounds: 3

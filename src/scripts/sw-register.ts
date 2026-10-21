@@ -37,7 +37,13 @@ function showUpdateBanner() {
   document.body.appendChild(bar);
 }
 
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && import.meta.env.DEV) {
+  // Dev server: no worker. public/sw.js is unstamped there (one fixed cache
+  // name) and serves scripts cache-first, so edits would never show up. A
+  // worker left over from an earlier dev session is removed with its caches.
+  navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
+  caches?.keys().then((keys) => keys.filter((k) => k.startsWith('vtesitaly-')).forEach((k) => caches.delete(k)));
+} else if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (hadController) showUpdateBanner();
   });

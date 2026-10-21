@@ -51,6 +51,11 @@ describe('composeFormat', () => {
     expect(composeFormat('SuperWeird', false, 3, 'en')).toBe('Special');
   });
 
+  it('labels storyline tournaments as unsanctioned', () => {
+    expect(composeFormat('Storyline', undefined, 2, 'it')).toBe('Storyline (non sanzionato) - 2 Round + Finale');
+    expect(composeFormat('Storyline', undefined, 2, 'en')).toBe('Storyline (unsanctioned) - 2 Rounds + Final');
+  });
+
   it('appends the proxies clause in IT', () => {
     expect(composeFormat('Standard', true, undefined, 'it')).toBe('Standard, Proxy Ammesse');
     expect(composeFormat('Standard', false, undefined, 'it')).toBe('Standard, No Proxy');

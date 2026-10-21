@@ -1,5 +1,6 @@
 ---
-import { isoDay } from '../utils/date';
+import { isoDay, lastEventDay } from '../utils/date';
+import { todayLocalIso } from '../utils/today';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ShareButtons from '../components/ShareButtons.astro';
@@ -18,11 +19,14 @@ const posts = filterByLocale(await getCollection('blog'), 'it')
   .filter((p) => p.data.category === page.category)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-const now = new Date();
-const current = posts.find((p) => new Date(p.data.date) >= now) || posts[0];
+// Current edition: the nearest one not over yet (posts are newest first), else
+// the latest. Build-time pick; the status badge is re-run in the browser.
+const todayIso = todayLocalIso();
+const endOf = (p: (typeof posts)[number]) => lastEventDay(p.data.events, isoDay(p.data.date));
+const current = posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
 const pastEditions = posts.filter((p) => p !== current);
 
-const ncStatus = current ? computeEventStatus(new Date(current.data.date)) : null;
+const ncStatus = current ? computeEventStatus(new Date(current.data.date), endOf(current)) : null;
 
 const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.json', { eager: true }) as Record<
   string,
@@ -51,6 +55,7 @@ const allStandings = import.meta.glob('/src/data/standings/nc/standings-nc-*.jso
           <span
             class="edition-label-tag"
             data-event-date={isoDay(current.data.date)}
+            data-event-end-date={endOf(current)}
             data-label-live={t.status.live}
             data-label-upcoming={t.status.upcoming}
             data-label-past={t.status.past}

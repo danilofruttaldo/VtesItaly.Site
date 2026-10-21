@@ -154,6 +154,10 @@
   gap: 10px;
   margin-bottom: 28px;
 }
+.gp-link-btn[hidden],
+.gp-links:not(:has(> :not([hidden]))) {
+  display: none;
+}
 .gp-link-btn {
   display: inline-flex;
   align-items: center;

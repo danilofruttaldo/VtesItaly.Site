@@ -15,3 +15,26 @@ export function isoDate(d: Date): string {
 export function isoDay(d: Date | string): string {
   return d instanceof Date ? isoDate(d) : d;
 }
+
+/**
+ * Last calendar day (YYYY-MM-DD) of a post's events, never earlier than
+ * `start`. League `period` rows carry no real date and are ignored. Shared by
+ * the status badges, the timeline cards and the structured data.
+ */
+export function lastEventDay(
+  events: { date?: Date | string; endDate?: Date | string; period?: string }[] | undefined,
+  start: string,
+): string {
+  let last = start;
+  for (const ev of events ?? []) {
+    if (ev.period) continue;
+    for (const cand of [ev.date, ev.endDate]) {
+      if (!cand) continue;
+      const d = new Date(cand);
+      if (isNaN(d.getTime())) continue;
+      const iso = isoDate(d);
+      if (iso > last) last = iso;
+    }
+  }
+  return last;
+}

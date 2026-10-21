@@ -1,4 +1,4 @@
-import { todayLocalIso, todayLocalMidnight } from './today';
+import { todayLocalIso } from './today';
 import { isoDay } from './date';
 
 interface Stage {
@@ -24,16 +24,21 @@ export interface StageDay {
 export function tourStatusOn(stages: StageDay[], today: string): TourStatus | null {
   const active = stages.filter((s) => !s.cancelled);
   if (active.length === 0) return null;
+  if (active.some((s) => s.date === today)) return 'live';
   const statuses = active.map((s) => (s.date < today ? 'completed' : 'future'));
   if (statuses.every((s) => s === 'completed')) return 'past';
   if (statuses.every((s) => s === 'future')) return 'upcoming';
   return 'live';
 }
 
-/** Single-date event status from its calendar day, against `today` (YYYY-MM-DD). */
-export function eventStatusOn(date: string, today: string): EventStatus {
-  if (date === today) return 'live';
-  return date > today ? 'upcoming' : 'past';
+/**
+ * Event status from its first and last calendar day, against `today`
+ * (YYYY-MM-DD). A multi-day event (GP, NC) stays live for its whole run;
+ * `endDate` defaults to `date` for single-day events.
+ */
+export function eventStatusOn(date: string, today: string, endDate: string = date): EventStatus {
+  if (today < date) return 'upcoming';
+  return today > (endDate || date) ? 'past' : 'live';
 }
 
 /** Stages as `StageDay`, the shape the page hands to the browser. */
@@ -51,36 +56,77 @@ export function computeTourStatus(stages: Stage[]): TourStatus | null {
 }
 
 /**
- * Compute event status for a single-date event (GP, NC, community events).
+ * Compute event status for an event (GP, NC, community events), live from its
+ * first to its last day (`endDate`, YYYY-MM-DD).
  */
-export function computeEventStatus(eventDate: Date): EventStatus {
-  return eventStatusOn(isoDay(eventDate), todayLocalIso());
+export function computeEventStatus(eventDate: Date, endDate?: string): EventStatus {
+  return eventStatusOn(isoDay(eventDate), todayLocalIso(), endDate);
+}
+
+type DisplayStage = { date: Date; image?: string; status?: string; hideDate?: boolean };
+
+/**
+ * Day (YYYY-MM-DD) from which each stage shows its real cover instead of the
+ * placeholder: '' when always, null when no date reveals it (a hidden-date
+ * stage after another unrevealed one). A stage is real once its day has come,
+ * or once every earlier stage has, which makes it the next one up. The build
+ * uses it for the placeholder and the browser re-runs it against the visitor's
+ * day (src/scripts/temporal.ts, Calendar), so cached HTML does not keep a
+ * placeholder after the previous stage is over.
+ */
+export function stageRevealDates(stages: DisplayStage[]): (string | null)[] {
+  let earlierHidden = false;
+  let earlierMax = '';
+  return stages.map((s) => {
+    if (s.status === 'cancelled') return '';
+    const asNext = earlierHidden ? null : earlierMax;
+    if (s.hideDate) {
+      earlierHidden = true;
+      return asNext;
+    }
+    const own = isoDay(s.date);
+    if (own > earlierMax) earlierMax = own;
+    return asNext !== null && asNext < own ? asNext : own;
+  });
+}
+
+/** The placeholder cover of a tour: the `000.webp` sibling of the first stage image. */
+export function stagePlaceholder(stages: DisplayStage[]): string {
+  return stages[0]?.image?.replace(/\d{3}\.webp$/, '000.webp') || '';
 }
 
 /**
- * Compute per-stage display images: future stages get the placeholder,
- * completed and upcoming stages show their real cover.
+ * Per-stage display images against `today` (YYYY-MM-DD): the placeholder for
+ * stages not revealed yet (see `stageRevealDates`), the real cover otherwise.
  */
 export function computeStageDisplayImages(
-  stages: { date: Date; image?: string; status?: string; hideDate?: boolean }[],
+  stages: DisplayStage[],
+  today: string = todayLocalIso(),
 ): (string | undefined)[] {
-  const today = todayLocalMidnight();
-
-  const statuses = stages.map((s) => {
-    if (s.status === 'cancelled') return 'cancelled';
-    if (s.hideDate) return 'future';
-    const d = new Date(s.date);
-    d.setHours(0, 0, 0, 0);
-    if (d.getTime() === today.getTime()) return 'upcoming';
-    return d < today ? 'completed' : 'future';
+  const reveal = stageRevealDates(stages);
+  const placeholder = stagePlaceholder(stages);
+  return stages.map((s, i) => {
+    if (!s.image) return undefined;
+    const from = reveal[i];
+    return from !== null && today >= from ? s.image : placeholder;
   });
+}
 
-  const firstFuture = statuses.indexOf('future');
-  if (firstFuture !== -1) statuses[firstFuture] = 'upcoming';
-
-  const placeholder = stages[0]?.image?.replace(/\d{3}\.webp$/, '000.webp') || '';
-
-  return stages.map((s, i) => (!s.image ? undefined : statuses[i] === 'future' ? placeholder : s.image));
+/**
+ * Build-time cover of a stage plus, when it is still the placeholder but a
+ * later day reveals it, the real image and that day for the browser swap.
+ */
+export function stageDisplay(
+  stages: DisplayStage[],
+  today: string = todayLocalIso(),
+): { image: string | undefined; revealImage?: string; revealFrom?: string }[] {
+  const reveal = stageRevealDates(stages);
+  const shown = computeStageDisplayImages(stages, today);
+  return stages.map((s, i) => {
+    const from = reveal[i];
+    if (!s.image || shown[i] === s.image || from === null) return { image: shown[i] };
+    return { image: shown[i], revealImage: s.image, revealFrom: from };
+  });
 }
 
 /**

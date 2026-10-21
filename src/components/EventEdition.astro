@@ -9,7 +9,8 @@ import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import StandingsTable from './StandingsTable.astro';
 import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
-import { todayLocalMidnight } from '../utils/today';
+import { todayLocalIso } from '../utils/today';
+import { isoDate, lastEventDay } from '../utils/date';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -110,22 +111,18 @@ const standingsBlocks = allBlocks.filter((b) => b.rows.length > 0);
 // more tournaments collapse into titled accordions so they read apart.
 const standingsCollapsed =
   standingsBlocks.length > 1 || (standingsBlocks.length === 1 && standingsBlocks[0].label !== null);
-const today = todayLocalMidnight();
-const lastEventDay = postEvents.reduce<Date | null>((max, e) => {
-  const d = new Date(e.date);
-  d.setHours(0, 0, 0, 0);
-  return !max || d > max ? d : max;
-}, null);
-const eventFinished = lastEventDay !== null && today >= lastEventDay;
-const earlyActive = !eventFinished && (!post.data.earlyDeadlineDate || today < post.data.earlyDeadlineDate);
+// Calendar days as written in the frontmatter (utils/date), compared as strings
+// against the local today, here and in the runtime script (temporal.ts). The
+// prices stay active through the last day of the event.
+const today = todayLocalIso();
+const lastEventDayIso = lastEventDay(postEvents, '') || undefined;
+const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? isoDate(post.data.earlyDeadlineDate) : undefined;
+const eventFinished = lastEventDayIso !== undefined && today > lastEventDayIso;
+const earlyActive = !eventFinished && (!earlyDeadlineDateIso || today < earlyDeadlineDateIso);
 const regularActive = !eventFinished && !earlyActive;
-// Local-anchored ISO so the runtime script in Base.astro can compare dates as
-// strings against today (also local-anchored). The toISOString() approach
-// would silently shift dates near midnight in positive-offset timezones.
-const toIsoLocal = (d: Date) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-const lastEventDayIso = lastEventDay ? toIsoLocal(lastEventDay) : undefined;
-const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.earlyDeadlineDate) : undefined;
+// Sign-up forms are pointless once the event is over: hidden from the day
+// after its last day, re-checked by the runtime script (temporal.ts).
+const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com\/forms\/)/.test(url);
 ---
 
 {/* Poster / locandina */}
@@ -433,9 +430,12 @@ const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? toIsoLocal(post.data.
     {links.map((link) => {
       const isPdf = /\.pdf(?:[?#]|$)/i.test(link.url);
       const isWeb = /^https?:\/\//i.test(link.url) && !isPdf;
+      const expires = isSignupUrl(link.url) ? lastEventDayIso : undefined;
       return (
         <a
           href={link.url}
+          data-expires={expires}
+          hidden={expires !== undefined && today > expires}
           target="_blank"
           rel="noopener noreferrer"
           class={`gp-link-btn${isWeb ? ' gp-link-btn--web' : ''}`}

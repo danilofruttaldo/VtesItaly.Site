@@ -3,6 +3,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { categoryLabels, typeTagLabels } from '../data/categories';
 import { thumbFor } from '../utils/image';
+import { isoDay } from '../utils/date';
 
 interface Props {
   href: string;
@@ -27,6 +28,10 @@ interface Props {
   ongoing?: boolean;
   /** Prioritise the image as LCP candidate (above-the-fold cards). */
   eager?: boolean;
+  /** Tour stage still on its placeholder at build time: the real cover and the
+      day (YYYY-MM-DD) from which the temporal runtime swaps it in. */
+  revealImage?: string;
+  revealFrom?: string;
   /** Server-side hidden state. The runtime script in Base.astro clears this
       when it re-picks the timeline window against the user's real "today". */
   hidden?: boolean;
@@ -49,6 +54,8 @@ const {
   ongoing = false,
   eager = false,
   hidden = false,
+  revealImage,
+  revealFrom,
 } = Astro.props;
 
 const RELEVANT_CATEGORIES = new Set(['tour', 'grand-prix', 'nazionale']);
@@ -65,15 +72,10 @@ if (category) {
 }
 if (typeTag) badges.push({ label: typeTags[typeTag] });
 
-// Local-anchored ISO (YYYY-MM-DD) so the runtime script in Base.astro can compare
-// it as a string against today (also local-anchored). Using toISOString() here
-// would silently shift dates near midnight in positive-offset timezones.
-const isoDate = date
-  ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
-  : undefined;
-const isoEndDate = endDate
-  ? `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`
-  : undefined;
+// Calendar day as written in the frontmatter (see utils/date), compared as a
+// string by the runtime against the visitor's local today.
+const isoDate = date ? isoDay(date) : undefined;
+const isoEndDate = endDate ? isoDay(endDate) : undefined;
 
 // PostCard renders at 120 px (desktop) / 80 px (mobile). `thumbFor` swaps
 // the full poster for the 240² `-thumb.webp` emitted by
@@ -105,6 +107,8 @@ const cardImage = thumbFor(image);
   {cardImage && (
     <img
       src={cardImage}
+      data-reveal-src={revealImage && revealFrom ? thumbFor(revealImage) : undefined}
+      data-reveal-from={revealImage && revealFrom ? revealFrom : undefined}
       alt={title}
       class="post-card__image"
       loading={eager ? 'eager' : 'lazy'}

@@ -1,8 +1,9 @@
 // Recomputes, in the browser, everything on the page that depends on "today":
 // event and tour status badges, the homepage timeline window, the past/future
-// divider, the next-event highlight, the active price column and the footer
-// year. The HTML carries the build-day values and can sit in a cache for days,
-// so the visitor's own date wins. Status rules come from src/utils/status.ts,
+// divider, the next-event highlight, the active price column, the sign-up
+// links of past events, the tour stage covers and the footer year. The HTML
+// carries the build-day values and can sit in a cache for days, so the
+// visitor's own date wins. Status rules come from src/utils/status.ts,
 // the same functions the build uses: there is no second copy to keep in sync.
 import { eventStatusOn, tourStatusOn, type StageDay } from '../utils/status';
 import { todayLocalIso } from '../utils/today';
@@ -21,9 +22,10 @@ function applyStatus(el: HTMLElement, status: string | null) {
   }
 }
 
-// Single-date events
+// Events: live from data-event-date to data-event-end-date (multi-day GP/NC)
 document.querySelectorAll<HTMLElement>('[data-event-date]').forEach((el) => {
-  applyStatus(el, eventStatusOn(el.getAttribute('data-event-date') || '', todayISO));
+  const start = el.getAttribute('data-event-date') || '';
+  applyStatus(el, eventStatusOn(start, todayISO, el.getAttribute('data-event-end-date') || start));
 });
 
 // Tour (multi-stage)
@@ -36,7 +38,25 @@ document.querySelectorAll<HTMLElement>('[data-tour-stages]').forEach((el) => {
   }
 });
 
+// Tour stage covers left on the placeholder by the build: swap in the real one
+// once its reveal day has come (rule in stageRevealDates, src/utils/status.ts).
+// Covers parked in the timeline <template> are swapped too.
+function revealCovers(root: ParentNode) {
+  root.querySelectorAll<HTMLImageElement>('img[data-reveal-from]').forEach((img) => {
+    if (todayISO >= (img.getAttribute('data-reveal-from') || '')) {
+      img.src = img.getAttribute('data-reveal-src') || img.src;
+      img.removeAttribute('data-reveal-from');
+    }
+  });
+}
+revealCovers(document);
+document
+  .querySelectorAll<HTMLTemplateElement>('template[data-timeline-overflow]')
+  .forEach((t) => revealCovers(t.content));
+
 const dateOf = (c: Element) => c.getAttribute('data-date') || '';
+// Last day of the card's event: a multi-day event in progress is not past yet.
+const endDateOf = (c: Element) => c.getAttribute('data-end-date') || dateOf(c);
 
 function resetHighlight(cards: Element[]) {
   cards.forEach((c) => {
@@ -63,7 +83,7 @@ document.querySelectorAll('[data-temporal-window]').forEach((container) => {
 
   // Pivot compares against data-end-date (data-date fallback) so a
   // multi-day event stays the highlighted card for its whole run.
-  const pivot = all.findIndex((c) => (c.getAttribute('data-end-date') || dateOf(c)) >= todayISO);
+  const pivot = all.findIndex((c) => endDateOf(c) >= todayISO);
   let chosen: Element[];
   if (pivot === -1) {
     chosen = all.slice(-5).reverse();
@@ -110,7 +130,7 @@ document.querySelectorAll('[data-temporal-divider]').forEach((container) => {
   const divider = container.querySelector<HTMLElement>('.post-list__divider');
   if (!divider) return;
   const cards = Array.from(container.querySelectorAll('.post-card[data-date]'));
-  const firstPast = cards.findIndex((c) => dateOf(c) < todayISO);
+  const firstPast = cards.findIndex((c) => endDateOf(c) < todayISO);
   if (firstPast <= 0) {
     // No past on this page, OR all cards are past (no future above): no divider.
     divider.hidden = true;
@@ -128,7 +148,7 @@ document.querySelectorAll('[data-temporal-next-event]').forEach((container) => {
   const cards = Array.from(container.querySelectorAll('.post-card[data-date]'));
   resetHighlight(cards);
   if (cards.length === 0) return;
-  const firstPast = cards.findIndex((c) => dateOf(c) < todayISO);
+  const firstPast = cards.findIndex((c) => endDateOf(c) < todayISO);
   const idx = firstPast === -1 ? cards.length - 1 : firstPast - 1;
   if (idx >= 0) {
     cards[idx].classList.add('post-card--highlight');
@@ -144,7 +164,7 @@ document.querySelectorAll('[data-temporal-pricing]').forEach((table) => {
   const lastEventDate = table.getAttribute('data-event-last-date') || '';
   const earlyDeadlineDate = table.getAttribute('data-early-deadline-date') || '';
   if (!lastEventDate) return;
-  const eventFinished = todayISO >= lastEventDate;
+  const eventFinished = todayISO > lastEventDate;
   const earlyActive = !eventFinished && (!earlyDeadlineDate || todayISO < earlyDeadlineDate);
   const regularActive = !eventFinished && !earlyActive;
   const applyPrice = (selector: string, active: boolean) => {
@@ -155,6 +175,11 @@ document.querySelectorAll('[data-temporal-pricing]').forEach((table) => {
   };
   applyPrice('.gp-price-cell--early', earlyActive);
   applyPrice('.gp-price-cell--regular', regularActive);
+});
+
+// Sign-up links of an event that is over (data-expires = its last day)
+document.querySelectorAll<HTMLElement>('[data-expires]').forEach((el) => {
+  el.hidden = todayISO > (el.getAttribute('data-expires') || '');
 });
 
 // Footer copyright year

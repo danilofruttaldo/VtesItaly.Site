@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isoDate, isoDay } from '../../src/utils/date';
+import { isoDate, isoDay, lastEventDay } from '../../src/utils/date';
 
 describe('date: isoDate / isoDay', () => {
   it('returns the calendar day of a frontmatter date (midnight UTC)', () => {
@@ -9,5 +9,21 @@ describe('date: isoDate / isoDay', () => {
   it('passes YYYY-MM-DD strings through', () => {
     expect(isoDay('2026-03-01')).toBe('2026-03-01');
     expect(isoDay(new Date('2026-12-31'))).toBe('2026-12-31');
+  });
+});
+
+describe('date: lastEventDay', () => {
+  it('returns the latest day among dates and end dates, skipping league periods', () => {
+    const events = [
+      { date: new Date('2026-02-27') },
+      { date: new Date('2026-02-28'), endDate: new Date('2026-03-01') },
+      { date: new Date('2026-12-01'), period: 'TBD' },
+    ];
+    expect(lastEventDay(events, '2026-02-27')).toBe('2026-03-01');
+  });
+
+  it('falls back to the start day', () => {
+    expect(lastEventDay(undefined, '2026-04-21')).toBe('2026-04-21');
+    expect(lastEventDay([], '')).toBe('');
   });
 });

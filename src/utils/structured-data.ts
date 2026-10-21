@@ -1,4 +1,4 @@
-import { isoDate } from './date';
+import { isoDate, lastEventDay } from './date';
 
 /** The post fields the structured data reads: a subset of the blog schema. */
 export interface JsonLdPost {
@@ -19,21 +19,6 @@ export function postDescription(data: Pick<JsonLdPost, 'title' | 'excerpt' | 'se
 }
 
 /**
- * Last day of the post's events when it is later than the start day.
- * League `period` rows carry no real date and are ignored.
- */
-function lastEventDay(data: JsonLdPost, start: string): string | undefined {
-  let last = start;
-  for (const ev of data.events ?? []) {
-    if (ev.period) continue;
-    for (const d of [ev.date, ev.endDate]) {
-      if (d instanceof Date && !isNaN(d.getTime()) && isoDate(d) > last) last = isoDate(d);
-    }
-  }
-  return last > start ? last : undefined;
-}
-
-/**
  * schema.org `Event` for an event page, or null when the post has no venue.
  *
  * Google requires `location` on an Event and drops the whole item without
@@ -45,7 +30,8 @@ function lastEventDay(data: JsonLdPost, start: string): string | undefined {
 export function eventJsonLd(data: JsonLdPost, site: URL): Record<string, unknown> | null {
   if (!data.venue?.name) return null;
   const startDate = isoDate(data.date);
-  const endDate = lastEventDay(data, startDate);
+  const lastDay = lastEventDay(data.events, startDate);
+  const endDate = lastDay > startDate ? lastDay : undefined;
   const image = data.poster || data.featuredImage;
   return {
     '@context': 'https://schema.org',

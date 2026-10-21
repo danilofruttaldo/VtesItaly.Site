@@ -1,9 +1,9 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './i18n';
 import { useTranslations } from './i18n';
-import { computeStageDisplayImages } from './status';
+import { stageDisplay } from './status';
 import { postUrl } from './url';
-import { isoDate } from './date';
+import { isoDate, lastEventDay } from './date';
 import localEventsData from '../data/local-events.json';
 
 export interface LocalEvent {
@@ -39,6 +39,10 @@ export interface CalendarEvent {
   imageFill?: boolean;
   archonUrl?: string; // Archon or BCN Crisis link
   tags?: string[]; // post tags for sub-category coloring
+  // Tour stage still on the placeholder at build time: the real cover and the
+  // day (YYYY-MM-DD) the browser swaps it in.
+  revealImage?: string;
+  revealFrom?: string;
 }
 
 /**
@@ -139,7 +143,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
 
     // Tour stages
     if (post.data.stages && post.data.stages.length > 0) {
-      const displayImages = computeStageDisplayImages(post.data.stages);
+      const display = stageDisplay(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
         if (!stage.date) continue;
@@ -159,9 +163,11 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           venue: stage.venue,
           location: stage.location,
           format: composeFormat(stage.format, stage.proxies, stage.rounds, locale),
-          image: displayImages[si] || image,
-          imageFill: !displayImages[si] && imageFill,
+          image: display[si].image || image,
+          imageFill: !display[si].image && imageFill,
           archonUrl: stage.archonUrl,
+          revealImage: display[si].revealImage,
+          revealFrom: display[si].revealFrom,
         });
       }
     }
@@ -271,6 +277,8 @@ export interface TimelineEntry {
   imageAnchor?: string;
   tags: string[];
   excerpt?: string;
+  revealImage?: string; // see CalendarEvent.revealImage
+  revealFrom?: string;
 }
 
 /** Pick `object-position` for the card thumbnail / timeline image.
@@ -294,20 +302,14 @@ function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
  */
 function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): string | undefined {
   if (isLeaguePost(post)) return undefined;
-  const events = post.data.events;
-  if (!events || events.length === 0) return undefined;
-  let max = start;
-  for (const ev of events) {
-    if (ev.period) continue;
-    for (const cand of [ev.date, ev.endDate]) {
-      if (!cand) continue;
-      const d = new Date(cand);
-      if (isNaN(d.getTime())) continue;
-      const iso = isoDate(d);
-      if (iso > max) max = iso;
-    }
-  }
-  return max > start ? max : undefined;
+  const last = lastEventDay(post.data.events, start);
+  return last > start ? last : undefined;
+}
+
+/** Last day (YYYY-MM-DD) of a post's event, its start day when single-day. */
+export function postEndDay(post: CollectionEntry<'blog'>): string {
+  const start = isoDate(new Date(post.data.date));
+  return pickTimelineEndDate(post, start) ?? start;
 }
 
 /**
@@ -328,7 +330,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     const imageAnchor = pickImageAnchor(post);
 
     if (post.data.stages && post.data.stages.length > 0) {
-      const displayImages = computeStageDisplayImages(post.data.stages);
+      const display = stageDisplay(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
         if (!stage.date || stage.hideDate) continue;
@@ -340,10 +342,12 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
           title: `IT${yearShort} - ${stage.name}`,
           url,
           category,
-          image: displayImages[si] || baseImage,
+          image: display[si].image || baseImage,
           imageAnchor,
           tags,
           excerpt: stage.description || excerpt,
+          revealImage: display[si].revealImage,
+          revealFrom: display[si].revealFrom,
         });
       }
       continue;

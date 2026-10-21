@@ -3,6 +3,8 @@ import {
   computeTourStatus,
   computeEventStatus,
   computeStageDisplayImages,
+  stageDisplay,
+  stageRevealDates,
   resolvePlatformLabel,
   resolveLinkLabel,
   tourStatusOn,
@@ -62,11 +64,12 @@ describe('status: computeTourStatus', () => {
     ).toBe('live');
   });
 
-  it("treats today's stage as future (live), regression on the e731108 timezone fix", () => {
+  it("treats today's stage as live, regression on the e731108 timezone fix", () => {
     // FROZEN_NOW is 2026-04-21T12:00:00Z, same calendar day in Europe/Rome.
     // Before the setHours(0,0,0,0) fix, a stage at 2026-04-21T00:00:00Z would
     // be classified as "completed" because its raw timestamp was less than now.
-    expect(computeTourStatus([{ date: new Date('2026-04-21T00:00:00Z') }])).toBe('upcoming');
+    // The day of a stage is live, like a single event on its day.
+    expect(computeTourStatus([{ date: new Date('2026-04-21T00:00:00Z') }])).toBe('live');
   });
 });
 
@@ -113,6 +116,48 @@ describe('status: computeStageDisplayImages', () => {
     expect(out[1]).toBe('/tour/2026/002.webp');
   });
 
+  it('reveals a stage cover once the previous stage day has come', () => {
+    const stages = [
+      { date: new Date('2026-01-15'), image: '/tour/2026/001.webp' },
+      { date: new Date('2026-05-15'), image: '/tour/2026/002.webp' },
+      { date: new Date('2026-06-15'), image: '/tour/2026/003.webp' },
+      { date: new Date('2026-07-15'), image: '/tour/2026/004.webp', hideDate: true },
+      { date: new Date('2026-08-15'), image: '/tour/2026/005.webp' },
+    ];
+    // After a hidden-date stage, a stage shows its cover only on its own day
+    expect(stageRevealDates(stages)).toEqual(['', '2026-01-15', '2026-05-15', '2026-06-15', '2026-08-15']);
+    expect(stageRevealDates([{ ...stages[3] }, { ...stages[3] }])).toEqual(['', null]);
+    // Same rule as the build, re-run against a later day
+    expect(computeStageDisplayImages(stages, '2026-05-15')).toEqual([
+      '/tour/2026/001.webp',
+      '/tour/2026/002.webp',
+      '/tour/2026/003.webp',
+      '/tour/2026/000.webp',
+      '/tour/2026/000.webp',
+    ]);
+    // Build day 2026-04-21: stage 3 waits on the placeholder, with its swap day
+    const display = stageDisplay(stages);
+    expect(display[1]).toEqual({ image: '/tour/2026/002.webp' });
+    expect(display[2]).toEqual({
+      image: '/tour/2026/000.webp',
+      revealImage: '/tour/2026/003.webp',
+      revealFrom: '2026-05-15',
+    });
+    expect(display[4]).toEqual({
+      image: '/tour/2026/000.webp',
+      revealImage: '/tour/2026/005.webp',
+      revealFrom: '2026-08-15',
+    });
+  });
+
+  it('never hides a cancelled stage cover', () => {
+    const stages = [
+      { date: new Date('2026-06-01'), image: '/tour/2026/001.webp' },
+      { date: new Date('2026-07-01'), image: '/tour/2026/002.webp', status: 'cancelled' },
+    ];
+    expect(stageRevealDates(stages)).toEqual(['', '']);
+  });
+
   it('handles a today-stage as "upcoming" not "future"', () => {
     const out = computeStageDisplayImages([{ date: new Date('2026-04-21T08:00:00Z'), image: '/tour/2026/001.webp' }]);
     expect(out).toEqual(['/tour/2026/001.webp']);
@@ -157,7 +202,8 @@ describe('status: tourStatusOn / eventStatusOn (shared with the browser script)'
     expect(tourStatusOn([], '2026-04-21')).toBeNull();
     expect(tourStatusOn([day('2026-05-01', true)], '2026-04-21')).toBeNull();
     expect(tourStatusOn([day('2026-01-01'), day('2026-02-01')], '2026-04-21')).toBe('past');
-    expect(tourStatusOn([day('2026-04-21'), day('2026-06-01')], '2026-04-21')).toBe('upcoming');
+    expect(tourStatusOn([day('2026-04-21'), day('2026-06-01')], '2026-04-21')).toBe('live');
+    expect(tourStatusOn([day('2026-04-22'), day('2026-06-01')], '2026-04-21')).toBe('upcoming');
     expect(tourStatusOn([day('2026-01-01'), day('2026-06-01')], '2026-04-21')).toBe('live');
   });
 
@@ -165,6 +211,15 @@ describe('status: tourStatusOn / eventStatusOn (shared with the browser script)'
     expect(eventStatusOn('2026-04-21', '2026-04-21')).toBe('live');
     expect(eventStatusOn('2026-04-22', '2026-04-21')).toBe('upcoming');
     expect(eventStatusOn('2026-04-20', '2026-04-21')).toBe('past');
+  });
+
+  it('keeps a multi-day event live through its last day', () => {
+    // NC 2026: 27 Feb - 1 Mar, main event on the 28th
+    expect(eventStatusOn('2026-02-27', '2026-02-28', '2026-03-01')).toBe('live');
+    expect(eventStatusOn('2026-02-27', '2026-03-01', '2026-03-01')).toBe('live');
+    expect(eventStatusOn('2026-02-27', '2026-03-02', '2026-03-01')).toBe('past');
+    expect(eventStatusOn('2026-02-27', '2026-02-26', '2026-03-01')).toBe('upcoming');
+    expect(computeEventStatus(new Date('2026-04-20'), '2026-04-22')).toBe('live');
   });
 
   it('serializes stages for the page as days plus a cancelled flag', () => {

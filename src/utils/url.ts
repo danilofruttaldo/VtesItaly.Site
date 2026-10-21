@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import { computeStageDisplayImages } from './status';
+import { computeStageDisplayImages, stageDisplay } from './status';
 import { translatePostSlug, translateSection, type Locale } from './i18n';
 
 /** Build the canonical post URL in the active locale. Centralises the slug
@@ -45,6 +45,8 @@ export interface CityCardEntry {
   category: string;
   tags: string[];
   excerpt: string;
+  revealImage?: string; // see CalendarEvent.revealImage
+  revealFrom?: string;
 }
 
 /**
@@ -64,12 +66,12 @@ export function buildCityCards(
 
     if (post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0) {
       const yearShort = String(new Date(post.data.date).getFullYear()).slice(2);
-      const stageImages = computeStageDisplayImages(post.data.stages);
+      const display = stageDisplay(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
         if (!stage.cities?.includes(citySlug)) continue;
         if (!stage.date || stage.hideDate) continue;
-        const stageImg = stageImages[si];
+        const stageImg = display[si].image;
         out.push({
           href: hrefBuilder(post),
           title: `IT${yearShort} - ${stage.name}`,
@@ -78,6 +80,8 @@ export function buildCityCards(
           category: post.data.category,
           tags: post.data.tags,
           excerpt: stage.description || post.data.excerpt,
+          revealImage: display[si].revealImage,
+          revealFrom: display[si].revealFrom,
         });
       }
       continue;

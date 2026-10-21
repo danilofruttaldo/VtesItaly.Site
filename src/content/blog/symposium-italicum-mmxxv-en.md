@@ -59,5 +59,5 @@ Garfaludica was present with gaming tables for all companions, children and adul
 
 Three days of VTES in the Tuscan countryside: **Field Training** on Friday, the main tournament on Saturday with 3 rounds + final, and **Pool Party** on Sunday.
 
-**Head Judge:** Alessandro "Nekròs" Donati
+**Head Judge:** Alessandro "Nekros" Donati
 **Assistant Judges:** Luca "Il Lordo" Pinchiroli, Marco "Rollo" Tagliabue, Simone "Panda" Longobardi

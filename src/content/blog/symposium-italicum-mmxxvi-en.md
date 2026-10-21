@@ -39,7 +39,7 @@ pricing:
     regular: '€25, lunch included (€20 for guests of the venue; children €15, €10 if guests)'
 judges:
   - 'Filippo "Fil" Mengoli, Head Judge (Official VEKN Elder Judge)'
-  - 'Alessandro "Nekròs" Donati, Assistant Judge (Official VEKN Ancilla Judge)'
+  - 'Alessandro "Nekros" Donati, Assistant Judge (Official VEKN Ancilla Judge)'
 notes:
   - 'Advance payment by Sunday 16 August 2026: those registering later are not guaranteed the promotional items.'
   - 'Accommodation: rooms still available at Il Musaccio, tel. +39 340 602 1321 (Luca); alternatively Appartamenti FULLMONTI a few minutes from the venues, tel. +39 375 902 6861 (Andrea and Paolo), at a special rate with the code VTES26.'

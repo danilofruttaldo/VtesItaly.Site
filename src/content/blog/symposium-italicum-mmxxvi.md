@@ -39,7 +39,7 @@ pricing:
     regular: '25 €, pranzo incluso (20 € ospiti struttura; bambini 15 €, 10 € se ospiti)'
 judges:
   - 'Filippo "Fil" Mengoli, Head Judge (Official VEKN Elder Judge)'
-  - 'Alessandro "Nekròs" Donati, Assistant Judge (Official VEKN Ancilla Judge)'
+  - 'Alessandro "Nekros" Donati, Assistant Judge (Official VEKN Ancilla Judge)'
 notes:
   - 'Pagamento anticipato entro domenica 16 agosto 2026: chi si iscrive dopo non ha garantita la gadgettistica promozionale.'
   - 'Pernottamento: posti ancora disponibili al Musaccio, tel. +39 340 602 1321 (Luca); in alternativa Appartamenti FULLMONTI a pochi minuti dalle sedi, tel. +39 375 902 6861 (Andrea e Paolo), in convenzione con il codice VTES26.'

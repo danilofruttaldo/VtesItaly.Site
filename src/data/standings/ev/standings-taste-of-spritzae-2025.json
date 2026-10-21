@@ -1,9 +1,9 @@
 [
   { "rank": 1, "name": "Paolo Centis", "gw": 1, "vp": 6.5, "fvp": 2.5, "tp": 132 },
   { "rank": 2, "name": "Giulio De Cicco", "gw": 1, "vp": 4.5, "fvp": 1.0, "tp": 150 },
-  { "rank": 3, "name": "Thomas Marchiori", "gw": 2, "vp": 6.5, "fvp": 0.5, "tp": 156 },
-  { "rank": 4, "name": "Federico Ferrarini", "gw": 1, "vp": 5.5, "fvp": 0.0, "tp": 126 },
-  { "rank": 5, "name": "Marcello Bertocchi", "gw": 1, "vp": 3.0, "fvp": 0.0, "tp": 102 },
+  { "rank": 2, "name": "Thomas Marchiori", "gw": 2, "vp": 6.5, "fvp": 0.5, "tp": 156 },
+  { "rank": 2, "name": "Federico Ferrarini", "gw": 1, "vp": 5.5, "fvp": 0.0, "tp": 126 },
+  { "rank": 2, "name": "Marcello Bertocchi", "gw": 1, "vp": 3.0, "fvp": 0.0, "tp": 102 },
   { "rank": 6, "name": "Eleonora Basso", "gw": 2, "vp": 7.0, "fvp": null, "tp": 120 },
   { "rank": 7, "name": "Danny Buset", "gw": 1, "vp": 3.0, "fvp": null, "tp": 78 },
   { "rank": 8, "name": "Adriano Arena", "gw": 0, "vp": 2.0, "fvp": null, "tp": 96 },

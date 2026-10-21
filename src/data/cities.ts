@@ -49,7 +49,7 @@ export const cities: City[] = [
     region: 'Toscana',
     prince: {
       name: 'Alessandro Donati',
-      alias: 'Nekrós',
+      alias: 'Nekros',
       image: '/images/principi/principi-alessandro-donati.webp',
       email: 'adonati1982@gmail.com',
     },

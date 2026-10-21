@@ -18,6 +18,15 @@ const webp2x = image?.replace(/\.webp$/, '-2x.webp');
 const avif1x = image?.replace(/\.webp$/, '.avif');
 const avif2x = image?.replace(/\.webp$/, '-2x.avif');
 const webpSrcset = image && webp2x && has(webp2x) ? `${image} 1x, ${webp2x} 2x` : undefined;
+// Width variants from scripts/build-poster-variants.mjs (768w, 1280w): with
+// the 1920 px source they make a width srcset, so phones get a small banner.
+const widthVariants = image
+  ? [768, 1280].map((w) => ({ w, src: image.replace(/\.webp$/, `-${w}w.webp`) })).filter((v) => has(v.src))
+  : [];
+const widthSrcset =
+  image && widthVariants.length > 0
+    ? [...widthVariants.map((v) => `${v.src} ${v.w}w`), `${image} 1920w`].join(', ')
+    : undefined;
 const avifSrcset =
   image && avif1x && has(avif1x) ? (avif2x && has(avif2x) ? `${avif1x} 1x, ${avif2x} 2x` : avif1x) : undefined;
 ---
@@ -27,7 +36,17 @@ const avifSrcset =
     <picture>
       {avifSrcset && <source type="image/avif" srcset={avifSrcset} />}
       {webpSrcset && <source type="image/webp" srcset={webpSrcset} />}
-      <img src={image} alt={title} class="page-hero__img" loading="eager" decoding="async" fetchpriority="high" />
+      {/* Decorative: the title is the h1 right below. */}
+      <img
+        src={image}
+        srcset={widthSrcset}
+        sizes={widthSrcset ? '100vw' : undefined}
+        alt=""
+        class="page-hero__img"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
     </picture>
   )}
   <div class="page-hero__overlay"></div>

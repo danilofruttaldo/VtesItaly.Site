@@ -10,6 +10,10 @@
  * `ogImage()` in `src/utils/og.ts` uses as og:image. Some link previewers
  * (WhatsApp, older Facebook crawlers) still skip WebP; JPEG is read everywhere.
  *
+ * Page hero headers (`public/images/headers/*.webp`, 1920 px wide) get
+ * `<name>-768w.webp` and `<name>-1280w.webp` the same way: `PageHero` lists
+ * them in a width `srcset`, so a phone no longer downloads the 1920 px banner.
+ *
  * Source of truth is the content itself (the frontmatter), so adding an event
  * needs no edit here: its poster is picked up automatically. Only poster and
  * featured images are touched: gallery/header art used elsewhere is left alone.
@@ -25,6 +29,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const WIDTHS = [400, 800, 1200];
+const HERO_WIDTHS = [768, 1280];
+const HEADERS_DIR = 'public/images/headers';
 const OG_WIDTH = 1200;
 const CONTENT_DIR = 'src/content/blog';
 const PUBLIC_DIR = 'public';
@@ -108,6 +114,24 @@ for (const image of ogSources) {
     .jpeg({ quality: 82, mozjpeg: true })
     .toFile(out);
   generated++;
+}
+
+// Hero header width variants
+for (const name of readdirSync(HEADERS_DIR)) {
+  if (!/\.webp$/i.test(name) || /-(thumb|2x|\d+w)\.webp$/i.test(name)) continue;
+  const srcFile = join(HEADERS_DIR, name);
+  const srcStat = statSync(srcFile);
+  const srcWidth = (await sharp(srcFile).metadata()).width ?? 0;
+  for (const w of HERO_WIDTHS) {
+    if (w >= srcWidth) continue;
+    const out = srcFile.replace(/\.webp$/i, `-${w}w.webp`);
+    if (!isStale(out, srcStat)) {
+      skipped++;
+      continue;
+    }
+    await sharp(srcFile).resize(w).webp({ quality: 78, effort: 6 }).toFile(out);
+    generated++;
+  }
 }
 
 console.log(

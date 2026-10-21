@@ -58,7 +58,7 @@ const buildWindowSet = new Set(buildWindow.entries);
             the user's real "today" has moved the pivot since the last deploy. */
           buildWindow.entries.map((entry, i) => (
             <PostCard
-              href={entry.url || '#'}
+              href={entry.url}
               title={entry.title}
               image={entry.image}
               imageAnchor={entry.imageAnchor}
@@ -87,7 +87,7 @@ const buildWindowSet = new Set(buildWindow.entries);
             .filter((entry) => !buildWindowSet.has(entry))
             .map((entry) => (
               <PostCard
-                href={entry.url || '#'}
+                href={entry.url}
                 title={entry.title}
                 image={entry.image}
                 imageAnchor={entry.imageAnchor}

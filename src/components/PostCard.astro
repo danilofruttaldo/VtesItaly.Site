@@ -26,7 +26,8 @@ interface Props {
   ongoingLabel?: string;
   /** Build-time initial state: the highlighted card is currently in progress. */
   ongoing?: boolean;
-  /** Prioritise the image as LCP candidate (above-the-fold cards). */
+  /** Load the image eagerly (first card, above the fold). No high fetch
+      priority: that belongs to the page hero, the LCP. */
   eager?: boolean;
   /** Tour stage still on its placeholder at build time: the real cover and the
       day (YYYY-MM-DD) from which the temporal runtime swaps it in. */
@@ -81,10 +82,14 @@ const isoEndDate = endDate ? isoDay(endDate) : undefined;
 // the full poster for the 240² `-thumb.webp` emitted by
 // scripts/build-thumbnails.mjs, saving ~280 KB per card.
 const cardImage = thumbFor(image);
+
+// Calendar-only events have no page: the card is plain text, with no link
+// and no "read" call to action.
+const Card = href ? 'a' : 'div';
 ---
 
-<a
-  href={href}
+<Card
+  href={href || undefined}
   class:list={['post-card', categoryAccent, highlight && 'post-card--highlight']}
   data-date={isoDate}
   data-end-date={isoEndDate}
@@ -109,10 +114,9 @@ const cardImage = thumbFor(image);
       src={cardImage}
       data-reveal-src={revealImage && revealFrom ? thumbFor(revealImage) : undefined}
       data-reveal-from={revealImage && revealFrom ? revealFrom : undefined}
-      alt={title}
+      alt=""
       class="post-card__image"
       loading={eager ? 'eager' : 'lazy'}
-      fetchpriority={eager ? 'high' : 'auto'}
       decoding="async"
       width="120"
       height="120"
@@ -134,6 +138,6 @@ const cardImage = thumbFor(image);
     )}
     <span class="post-card__title">{title}</span>
     {excerpt && <p class="post-card__excerpt">{excerpt}</p>}
-    <span class="post-card__cta">{t.post.read_cta} &rarr;</span>
+    {href && <span class="post-card__cta">{t.post.read_cta} &rarr;</span>}
   </div>
-</a>
+</Card>

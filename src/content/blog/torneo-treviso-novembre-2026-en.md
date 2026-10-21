@@ -24,6 +24,9 @@ schedule:
     label: 'Doors open'
   - time: '10:00'
     label: 'Tournament starts'
+pricing:
+  - label: 'Entry fee'
+    regular: '€5'
 links:
   - label: 'Storyline rules (PDF)'
     url: '/ev/endless-night-2026/regole-endless-night-2026-en.pdf'

@@ -24,6 +24,9 @@ schedule:
     label: 'Ritrovo'
   - time: '10:00'
     label: 'Inizio torneo'
+pricing:
+  - label: 'Iscrizione'
+    regular: '5 €'
 links:
   - label: 'Regole della storyline (PDF)'
     url: '/ev/endless-night-2026/regole-endless-night-2026-it.pdf'

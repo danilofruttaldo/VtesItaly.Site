@@ -20,6 +20,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   data-add-google={t.calendar.add_google}
   data-read-cta={t.post.read_cta}
   data-close-label={t.search.close_label}
+  data-prev-event={t.calendar.prev_event}
+  data-next-event={t.calendar.next_event}
   data-cat-labels={JSON.stringify({
     'grand-prix': t.calendar.cat_gp,
     tour: t.calendar.cat_tour,
@@ -127,6 +129,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   // ~270 lines into every page that uses <Calendar />. The HTML payload drops
   // by the same amount without changing visual behavior (the calendar body is
   // still built from JS on load, never SSG'd).
+  import { todayLocalIso } from '../utils/today';
+
   type CalEvent = {
     date: string;
     endDate?: string;
@@ -142,6 +146,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     archonUrl?: string;
     url?: string;
     tags?: string[];
+    revealImage?: string;
+    revealFrom?: string;
   };
 
   (function () {
@@ -152,6 +158,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     var addGoogle = cal.getAttribute('data-add-google') || '';
     var readCta = cal.getAttribute('data-read-cta') || '';
     var closeLabel = cal.getAttribute('data-close-label') || 'Close';
+    var prevEventLabel = cal.getAttribute('data-prev-event') || '';
+    var nextEventLabel = cal.getAttribute('data-next-event') || '';
     var catLabels: Record<string, string> = JSON.parse(cal.getAttribute('data-cat-labels') || '{}');
     var tbdLabel = cal.getAttribute('data-tbd') || 'TBD';
 
@@ -201,11 +209,41 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       popupInner.innerHTML = '';
     }
 
-    function showPopup(ev: CalEvent) {
-      var ts = ev.time || '';
+    // One event at a time; a day with more gets a pager (buttons and the
+    // left/right arrow keys), so the second event no longer hides behind the first.
+    var pagerEvts: CalEvent[] = [];
+    var pagerIndex = 0;
 
+    function showPopup(dayEvts: CalEvent[], index = 0, focusSel = '.cal__popup-close') {
+      pagerEvts = dayEvts;
+      pagerIndex = (index + dayEvts.length) % dayEvts.length;
       var h = '';
       h += '<button type="button" class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
+      h += eventHtml(dayEvts[pagerIndex]);
+      if (dayEvts.length > 1) {
+        h += '<div class="cal__popup-pager">';
+        h +=
+          '<button type="button" class="cal__popup-page cal__popup-page--prev" aria-label="' +
+          esc(prevEventLabel) +
+          '">&#8249;</button>';
+        h +=
+          '<span class="cal__popup-count" aria-live="polite">' + (pagerIndex + 1) + ' / ' + dayEvts.length + '</span>';
+        h +=
+          '<button type="button" class="cal__popup-page cal__popup-page--next" aria-label="' +
+          esc(nextEventLabel) +
+          '">&#8250;</button>';
+        h += '</div>';
+      }
+      openPopup(h, focusSel);
+    }
+
+    function pageBy(step: number, focusSel: string) {
+      if (pagerEvts.length > 1) showPopup(pagerEvts, pagerIndex + step, focusSel);
+    }
+
+    function eventHtml(ev: CalEvent): string {
+      var ts = ev.time || '';
+      var h = '';
 
       if (ev.image) {
         // No poster (principato header, photo): fill the frame; posters keep contain.
@@ -279,13 +317,23 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       h += '</div>';
 
       h += '</div>';
+      return h;
+    }
 
+    function openPopup(h: string, focusSel: string) {
+      if (focusTrapHandler) popupInner.removeEventListener('keydown', focusTrapHandler);
       popupInner.innerHTML = h;
       popup.hidden = false;
 
       var closeBtn = popupInner.querySelector('.cal__popup-close') as HTMLElement;
       closeBtn.addEventListener('click', closePopup);
-      closeBtn.focus();
+      popupInner.querySelector('.cal__popup-page--prev')?.addEventListener('click', function () {
+        pageBy(-1, '.cal__popup-page--prev');
+      });
+      popupInner.querySelector('.cal__popup-page--next')?.addEventListener('click', function () {
+        pageBy(1, '.cal__popup-page--next');
+      });
+      ((popupInner.querySelector(focusSel) as HTMLElement | null) || closeBtn).focus();
 
       // Focus trap inside popup
       focusTrapHandler = function (e: KeyboardEvent) {
@@ -310,7 +358,10 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       if (e.target === popup) closePopup();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !popup.hidden) closePopup();
+      if (popup.hidden) return;
+      if (e.key === 'Escape') closePopup();
+      else if (e.key === 'ArrowLeft') pageBy(-1, '.cal__popup-page--prev');
+      else if (e.key === 'ArrowRight') pageBy(1, '.cal__popup-page--next');
     });
 
     function eventColor(ev: CalEvent) {
@@ -363,7 +414,17 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
               '" data-cat="' +
               esc(ev.category) +
               '" tabindex="0" aria-label="' +
-              esc(d + ' ' + (monthNames[displayMonth] || '') + ': ' + ev.title) +
+              esc(
+                d +
+                  ' ' +
+                  (monthNames[displayMonth] || '') +
+                  ': ' +
+                  dayEvts
+                    .map(function (e) {
+                      return e.title;
+                    })
+                    .join(', '),
+              ) +
               '"'
             : '') +
           '>';
@@ -378,10 +439,16 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
         html += '<span class="cal__cell-day">' + d + '</span>';
 
         if (ev) {
-          // Dot indicator (visible on mobile)
-          html += '<span class="cal__cell-dot" style="background:' + eventColor(ev) + '"></span>';
-          // Text label (hidden on mobile)
-          html += '<span class="cal__cell-label" style="color:' + eventColor(ev) + '">' + esc(ev.title) + '</span>';
+          // One dot per event (visible on mobile)
+          html += '<span class="cal__cell-dots">';
+          for (var k = 0; k < dayEvts.length; k++) {
+            html += '<span class="cal__cell-dot" style="background:' + eventColor(dayEvts[k]) + '"></span>';
+          }
+          html += '</span>';
+          // Text label of the first event, "+N" for the others (hidden on mobile)
+          html += '<span class="cal__cell-label" style="color:' + eventColor(ev) + '">' + esc(ev.title);
+          if (dayEvts.length > 1) html += ' <span class="cal__cell-more">+' + (dayEvts.length - 1) + '</span>';
+          html += '</span>';
         }
 
         html += '</div>';
@@ -495,7 +562,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     function openCell(cell: Element) {
       var day = parseInt(cell.getAttribute('data-day') || '0');
       var dayEvts = eventsForDay(displayYear, displayMonth, day);
-      if (dayEvts.length > 0) showPopup(dayEvts[0]);
+      if (dayEvts.length > 0) showPopup(dayEvts);
     }
     body.addEventListener('click', function (e) {
       var target = e.target as HTMLElement | null;
@@ -521,6 +588,12 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
         })
         .then(function (data: CalEvent[]) {
           events = Array.isArray(data) ? data : [];
+          // Tour covers still on the placeholder at build time (see
+          // stageRevealDates in src/utils/status.ts)
+          var today = todayLocalIso();
+          events.forEach(function (e) {
+            if (e.revealImage && e.revealFrom && today >= e.revealFrom) e.image = e.revealImage;
+          });
           render();
         })
         .catch(function () {

@@ -170,9 +170,15 @@
   color: var(--color-gold);
 }
 
-/* Dot indicator - hidden on desktop, shown on mobile */
-.cal__cell-dot {
+/* Dot indicators - hidden on desktop, shown on mobile */
+.cal__cell-dots {
   display: none;
+}
+
+/* "+N" after the first event's label when the day has more */
+.cal__cell-more {
+  color: var(--color-contrast);
+  font-weight: 400;
 }
 
 /* Event label - shown on desktop */
@@ -224,6 +230,37 @@
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+/* Pager for days with more than one event */
+.cal__popup-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px 16px;
+}
+.cal__popup-page {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-gold);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cal__popup-page:hover {
+  border-color: var(--color-gold);
+}
+.cal__popup-count {
+  font-size: var(--font-size-xs);
+  color: var(--color-contrast);
+  font-variant-numeric: tabular-nums;
 }
 
 .cal__popup-close {
@@ -513,7 +550,11 @@
     text-shadow: none;
   }
 
-  /* Show dot, hide text label */
+  /* Show dots, hide text label */
+  .cal__cell-dots {
+    display: flex;
+    gap: 3px;
+  }
   .cal__cell-dot {
     display: block;
     width: 7px;

@@ -13,8 +13,14 @@ Tutto quello che il file promette lo verifica `scripts/smoke-test.sh` dopo ogni 
 
 `Header always set` invece di `Header set`: la variante semplice vale solo per le risposte 2xx, e sui 301 e sui 404
 gli header mancavano. Ci sono `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`,
-`Permissions-Policy`, `Cross-Origin-Opener-Policy: same-origin` e HSTS (solo su HTTPS). `X-XSS-Protection` non c'è più:
-i browser l'hanno abbandonato.
+`Permissions-Policy` (camera, microfono, posizione, pagamenti, USB e Topics spenti), `Cross-Origin-Opener-Policy:
+same-origin` e HSTS. HSTS è senza condizione `env=HTTPS`: sulle risposte in http il browser lo ignora comunque, e la
+condizione lo toglieva dove la variabile non arrivava; niente `preload`. `Header always unset Upgrade` toglie l'header
+che Apache aggiunge quando c'è HTTP/2: su una risposta HTTP/2 è vietato e Safari rifiuta la pagina. `X-XSS-Protection`
+non c'è più: i browser l'hanno abbandonato.
+
+`AddDefaultCharset UTF-8` e `AddCharset utf-8` per `.js`, `.mjs`, `.css`, `.json`, `.webmanifest`, `.xml` e `.txt`:
+anche i file di testo che non sono HTML arrivano con `charset=utf-8`.
 
 La CSP degli script resta nel `<meta>` che genera Astro (`security.csp` in `astro.config.mjs`, con gli hash `sha256`).
 L'header porta solo le direttive che un meta non può esprimere o che non riguardano gli script: `frame-ancestors 'self'`,
@@ -24,8 +30,12 @@ questo l'header non deve mai contenere `script-src`, che senza gli hash della bu
 ### Cache
 
 - `/_astro/`: un anno, `immutable`. I nomi contengono l'impronta del contenuto, quindi cambiano quando cambia il file.
-- Immagini, PDF e icone: 30 giorni. Un'immagine sostituita con lo stesso nome può restare vecchia fino a un mese per chi
-  l'ha già vista: per un cambio urgente si rinomina il file.
+- Pagefind con l'hash nel nome (`/pagefind/fragment/`, `/pagefind/index/`, `/pagefind/filter/` e i file `*.pf_*`):
+  un anno, `immutable`. `pagefind.js`, `pagefind-entry.json`, `pagefind-ui.*` e `wasm.*.pagefind` hanno nomi fissi e
+  restano `no-cache`: sono loro a puntare ai file con hash della build corrente.
+- Immagini, PDF e icone: `max-age=604800, must-revalidate`, una settimana. I nomi non hanno hash e un file può essere
+  sostituito con lo stesso nome: dopo una settimana il browser lo ricontrolla. Per un cambio urgente si rinomina il
+  file.
 - Tutto il resto (HTML, `sw.js`, manifest, sitemap, `/api/`): `no-cache`, cioè «ricontrolla prima di riusare». Per
   `sw.js` è indispensabile: in cache, gli utenti non vedrebbero mai la versione nuova del sito.
 

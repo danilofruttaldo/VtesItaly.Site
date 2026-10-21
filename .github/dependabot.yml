@@ -8,6 +8,10 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    # A release must be five days old before a PR is opened: time for a
+    # compromised or broken version to be yanked first.
+    cooldown:
+      default-days: 5
     groups:
       # Minor and patch bumps land together in one PR a week. Majors keep
       # their own PR: they are the ones that break things (see the
@@ -22,6 +26,8 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 5
     groups:
       actions:
         patterns: ['*']

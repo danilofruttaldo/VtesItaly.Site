@@ -36,6 +36,8 @@ TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 
 ok() { printf '  OK      %s\n' "$1"; }
+# Reported, never fails the run: not worth a rollback.
+warn() { printf '  WARN    %s\n' "$1"; }
 fail() {
     printf '  FAIL    %s\n' "$1"
     FAILED=$((FAILED + 1))
@@ -235,9 +237,43 @@ if [ -n "$asset" ]; then
             *immutable*) ok "$asset is 200, Cache-Control: $asset_cc" ;;
             *) fail "$asset is 200 but Cache-Control is '${asset_cc:-none}' (expected 1 year, immutable)" ;;
         esac
+        # AddCharset in public/.htaccess: CSS and JS declare UTF-8 too.
+        asset_ct=$(header asset content-type)
+        case "$(printf '%s' "$asset_ct" | tr '[:upper:]' '[:lower:]')" in
+            *charset=utf-8*) ok "$asset Content-Type: $asset_ct" ;;
+            *) warn "$asset has Content-Type '${asset_ct:-none}' (expected charset=utf-8, see AddCharset in public/.htaccess)" ;;
+        esac
     fi
 else
     fail "no /_astro/ asset referenced from the home page"
+fi
+
+# Pagefind: the entry file has a fixed name and must revalidate; the files it
+# points to carry a hash and are cached for a year.
+code=$(fetch "$BASE/pagefind/pagefind-entry.json" pf-entry)
+pf_cc=$(header pf-entry cache-control)
+if [ "$code" != "200" ]; then
+    fail "/pagefind/pagefind-entry.json answered HTTP $code"
+else
+    case "$pf_cc" in
+        *no-cache*) ok "/pagefind/pagefind-entry.json Cache-Control: $pf_cc" ;;
+        *) fail "/pagefind/pagefind-entry.json has Cache-Control '${pf_cc:-none}' (expected no-cache)" ;;
+    esac
+    pf_hash=$(grep -o '"hash":"[^"]*"' "$TMP/pf-entry.body" | head -n 1 | cut -d'"' -f4)
+    if [ -z "$pf_hash" ]; then
+        fail "/pagefind/pagefind-entry.json lists no language hash"
+    else
+        code=$(fetch "$BASE/pagefind/pagefind.$pf_hash.pf_meta" pf-meta)
+        pf_meta_cc=$(header pf-meta cache-control)
+        if [ "$code" != "200" ]; then
+            fail "/pagefind/pagefind.$pf_hash.pf_meta answered HTTP $code"
+        else
+            case "$pf_meta_cc" in
+                *immutable*) ok "/pagefind/pagefind.$pf_hash.pf_meta Cache-Control: $pf_meta_cc" ;;
+                *) fail "/pagefind/pagefind.$pf_hash.pf_meta has Cache-Control '${pf_meta_cc:-none}' (expected 1 year, immutable)" ;;
+            esac
+        fi
+    fi
 fi
 
 echo

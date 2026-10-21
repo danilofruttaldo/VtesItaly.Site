@@ -14,5 +14,11 @@ try {
   stamp = Date.now().toString(36);
 }
 const src = readFileSync(file, 'utf8');
+if (!src.includes('__BUILD_TS__')) {
+  console.error(
+    `stamp-sw: placeholder __BUILD_TS__ not found in ${file}. Already stamped, or public/sw.js lost the CACHE_NAME placeholder: the cache name would not change per deploy.`,
+  );
+  process.exit(1);
+}
 writeFileSync(file, src.replace('__BUILD_TS__', stamp));
 console.log(`sw.js stamped with cache version: vtesitaly-${stamp}`);

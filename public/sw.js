@@ -3,6 +3,7 @@ const MAX_CACHE_ENTRIES = 200;
 
 const PRECACHE = [
   '/',
+  '/en/',
   '/manifest.json',
   '/favicon-32.png',
   '/logo-192.png',
@@ -82,14 +83,18 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
 
-  // Skip pagefind and external requests
+  // Network only: pagefind (its own fetches, hashed index) and PDFs (large,
+  // replaced under the same name: a cached copy would stay stale).
   if (url.pathname.startsWith('/pagefind/')) return;
+  if (url.pathname.toLowerCase().endsWith('.pdf')) return;
   if (url.origin !== self.location.origin) return;
 
   const isPage = request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html');
 
   if (isPage) {
-    event.respondWith(networkFirst(request, '/'));
+    // Offline fallback in the page's own language.
+    const fallback = url.pathname === '/en' || url.pathname.startsWith('/en/') ? '/en/' : '/';
+    event.respondWith(networkFirst(request, fallback));
   } else if (url.pathname.startsWith('/api/')) {
     // The calendar events: same address across deploys, so the network wins.
     event.respondWith(networkFirst(request));

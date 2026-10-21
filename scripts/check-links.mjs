@@ -1,7 +1,8 @@
 /* Internal link checker on the built site (dist/), no server needed.
  *
- * Every href/src/srcset in every HTML file, plus absolute URLs on the site
- * origin (og:image, canonical, hreflang), is resolved the way Apache would
+ * Every href/src/srcset (plus data-src, data-reveal-src, data-real-image:
+ * lazy and stage cover images) in every HTML file, plus absolute URLs on the
+ * site origin (og:image, canonical, hreflang), is resolved the way Apache would
  * serve it from public_html:
  *
  * - `/path/`          needs dist/path/index.html
@@ -94,7 +95,8 @@ function flag(category, from, target) {
   } else errors.push(row);
 }
 
-const ATTR_RE = /\s(href|src|srcset|content|poster|data-src)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+const ATTR_RE =
+  /\s(href|src|srcset|content|poster|data-src|data-reveal-src|data-real-image)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
 
 for (const file of files) {
   const html = readFileSync(file, 'utf8')

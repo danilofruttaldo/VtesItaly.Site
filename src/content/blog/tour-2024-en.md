@@ -46,7 +46,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    venue: 'Safarà'
+    venue: 'Fumetteria Safarà'
     location: 'Via Piave 26, Pordenone (PN)'
     image: '/images/headers/header-pordenone.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-377e-74e4-abc4-4f6778b7d43c'

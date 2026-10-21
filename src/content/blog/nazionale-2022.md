@@ -19,9 +19,9 @@ gallerySections:
       - '/nc/nc-2022/nc-2022-finale-01.webp'
 venue:
   name: 'Circolo Barbanera'
-  address: 'Via Ranzani 13/2, Bologna (BO)'
+  address: 'Via Camillo Ranzani 13/2C, Bologna (BO)'
   siteUrl: 'https://www.facebook.com/circolobarbanera/'
-  mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Via+Ranzani+13+Bologna'
+  mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Via+Camillo+Ranzani+13/2C+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Championship 2022'
     date: 2022-10-15

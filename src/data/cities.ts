@@ -235,7 +235,7 @@ export const cities: City[] = [
     meetupSchedule: [
       {
         day: { it: 'Giovedì', en: 'Thursday' },
-        place: 'La Casa dei Giochi',
+        place: 'UESM Ludoteca "Casa dei Giochi"',
         address: "Via Sant'Uguzzone 8, Milano (MI)",
         mapUrl: 'https://maps.app.goo.gl/YnLLiJ1cwJ1pR61b8',
       },

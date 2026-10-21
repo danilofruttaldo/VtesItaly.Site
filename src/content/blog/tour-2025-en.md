@@ -127,7 +127,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Circolo Barbanera'
-    location: 'Via Ranzani 13/2, Bologna (BO)'
+    location: 'Via Camillo Ranzani 13/2C, Bologna (BO)'
     image: '/tour/tour-2025/tour-2025-009.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-b1c0-768b-83ca-29e5c346e0da'
     description: "The ninth and final stage of the Italian Tour 2025 takes place in Bologna, closing an intense and hard-fought season. A concluding event that celebrates the players' journey throughout the year, awards the last ranking points, and crowns the Tour champions."

@@ -60,7 +60,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    venue: 'Safarà'
+    venue: 'Fumetteria Safarà'
     location: 'Via Piave 26, Pordenone (PN)'
     image: '/tour/tour-2026/tour-2026-003.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ddb5-7400-b0f6-0bed94cf37b2'
@@ -102,7 +102,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    venue: 'Ludoteca "Casa dei Giochi"'
+    venue: 'UESM Ludoteca "Casa dei Giochi"'
     location: "Via Sant'Uguzzone 8, 20126 Milano (MI)"
     image: '/tour/tour-2026/tour-2026-006.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ec0d-747b-af2f-105aa8c62c17'

@@ -7,7 +7,7 @@ featuredImage: '/images/comunita/milano/super-sloth-2026.webp'
 poster: '/images/comunita/milano/super-sloth-2026.webp'
 excerpt: "Super Sloth: side event della VI tappa dell'Italian Tour 2026, domenica 15 novembre alla Casa dei Giochi di Milano. Standard, 2 round + finale, iscrizione 10€."
 venue:
-  name: 'UESM – Casa dei Giochi'
+  name: 'UESM Ludoteca "Casa dei Giochi"'
   address: "Via Sant'Uguzzone 8, 20126 Milano (MI)"
   mapUrl: "https://maps.google.com/?q=UESM+Casa+dei+Giochi+Via+Sant'Uguzzone+8+Milano"
 events:

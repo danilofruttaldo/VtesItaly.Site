@@ -7,7 +7,7 @@ featuredImage: '/images/comunita/milano/milano-awakening.webp'
 poster: '/images/comunita/milano/milano-awakening.webp'
 excerpt: 'Milano Awakening: VTES tournament on Saturday, June 27, 2026 at UESM Casa dei Giochi. Standard, 2 rounds + final, 10€ entry.'
 venue:
-  name: 'UESM – Casa dei Giochi'
+  name: 'UESM Ludoteca "Casa dei Giochi"'
   address: "Via Sant'Uguzzone 8, 20126 Milano (MI)"
   mapUrl: "https://maps.google.com/?q=UESM+Casa+dei+Giochi+Via+Sant'Uguzzone+8+Milano"
 events:

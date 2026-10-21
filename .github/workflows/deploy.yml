@@ -223,6 +223,16 @@ jobs:
           if [ -d ~/public_html/.well-known ]; then
             cp -a ~/public_html/.well-known "$NEW/"
           fi
+          # Hashed files of the live release (Astro chunks, Pagefind index and
+          # fragments) stay for one more release: a tab opened before this
+          # deploy can still load its chunks and run a search. Only the files
+          # the live release shipped itself are carried, so they don't pile up.
+          (cd "$NEW" && find _astro pagefind -type f 2>/dev/null || true) > ~/releases/.asset-list.new
+          if [ -f ~/releases/.asset-list ]; then
+            (cd ~/public_html && while IFS= read -r f; do
+              if [ -f "$f" ] && [ ! -e "$NEW/$f" ]; then cp -p --parents "$f" "$NEW/"; fi
+            done < ~/releases/.asset-list)
+          fi
           chmod 755 "$NEW"
           PREV=~/releases/prev-$(date -u +%Y%m%d%H%M%S)
           mv ~/public_html "$PREV"
@@ -234,6 +244,7 @@ jobs:
           fi
           # Marker tied to this commit: the rollback acts only on its own swap.
           echo "$SHA $PREV" > ~/releases/.ultima-precedente
+          mv ~/releases/.asset-list.new ~/releases/.asset-list
           # Keep the five most recent previous releases.
           { ls -1dt ~/releases/prev-* 2>/dev/null || true; } | tail -n +6 | xargs -r rm -rf
           # Keep the two most recent releases removed by a rollback: enough to

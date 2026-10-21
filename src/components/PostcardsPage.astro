@@ -1,4 +1,5 @@
 ---
+import { webpSize } from '../utils/image';
 import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import ShareButtons from './ShareButtons.astro';
@@ -30,6 +31,9 @@ const galleries = postcardGalleries.map((g) => ({
       : null,
   })),
 }));
+// Intrinsic size of each card scan, so the box is reserved before it loads
+// (the scans are portrait; most are 358x500, the size used as fallback).
+const cardSize = (src: string) => webpSize(src) ?? { width: 358, height: 500 };
 ---
 
 <Base title={page.title[locale]} description={page.description[locale]} ogImage={page.ogImage}>
@@ -76,8 +80,8 @@ const galleries = postcardGalleries.map((g) => ({
                       class="highlight-image"
                       src={img.src}
                       alt={img.alt}
-                      width="400"
-                      height="300"
+                      width={cardSize(img.src).width}
+                      height={cardSize(img.src).height}
                       loading="lazy"
                       decoding="async"
                       role="button"
@@ -100,7 +104,14 @@ const galleries = postcardGalleries.map((g) => ({
                   .filter((img) => !img.highlight)
                   .map((img) => (
                     <figure class="gallery-item" role="button" tabindex="0">
-                      <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        width={cardSize(img.src).width}
+                        height={cardSize(img.src).height}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </figure>
                   ))}
               </div>
@@ -119,9 +130,22 @@ const galleries = postcardGalleries.map((g) => ({
                     .map((img, j) => (
                       <figure class="slider-slide">
                         {j === 0 ? (
-                          <img src={img.src} alt={img.alt} width="400" height="300" loading="lazy" decoding="async" />
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            width={cardSize(img.src).width}
+                            height={cardSize(img.src).height}
+                            loading="lazy"
+                            decoding="async"
+                          />
                         ) : (
-                          <img data-src={img.src} alt={img.alt} width="400" height="300" decoding="async" />
+                          <img
+                            data-src={img.src}
+                            alt={img.alt}
+                            width={cardSize(img.src).width}
+                            height={cardSize(img.src).height}
+                            decoding="async"
+                          />
                         )}
                       </figure>
                     ))}

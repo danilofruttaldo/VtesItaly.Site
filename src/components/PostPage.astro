@@ -74,6 +74,8 @@ const eventEndStr = lastEventDay(post.data.events, isoDay(post.data.date));
 const gpStatus = isEventPage ? computeEventStatus(new Date(eventDateStr), eventEndStr) : null;
 const communityCity = isCommunityEvent || isLeague ? cities.find((c) => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
+// On an event page the poster, not the banner above it, is the LCP image.
+const heroYieldsToPoster = isEventPage && !!post.data.poster;
 const gitDates = post.filePath ? contentGitDates().get(post.filePath) : undefined;
 const ldPage = {
   url: new URL(Astro.url.pathname, Astro.site).href,
@@ -115,11 +117,11 @@ const pageMeta =
 
   {/* PageHero for tour, GP/NC and community events (with principato header) */}
   {usePageHero && pageMeta ? (
-    <PageHero title="" image={pageMeta.headerImage} />
+    <PageHero title="" image={pageMeta.headerImage} priority={!heroYieldsToPoster} />
   ) : (isCommunityEvent || isLeague) && communityCity ? (
-    <PageHero title="" image={communityCity.headerImage} />
+    <PageHero title="" image={communityCity.headerImage} priority={!heroYieldsToPoster} />
   ) : (isCommunityEvent || isLeague) && post.data.cityHeader ? (
-    <PageHero title="" image={post.data.cityHeader} />
+    <PageHero title="" image={post.data.cityHeader} priority={!heroYieldsToPoster} />
   ) : (
     post.data.featuredImage && (
       <div class="post__hero-wrap">

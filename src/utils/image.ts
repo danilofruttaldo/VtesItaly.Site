@@ -126,9 +126,10 @@ export function galleryFor(
 }
 
 /**
- * Width `srcset` of a full-width header (1920 px): the 768w/1280w variants
- * from scripts/build-poster-variants.mjs, the source, and its `-2x` (3840w)
- * when there is one. Undefined without variants (dev before prebuild).
+ * Width `srcset` of a full-width header: the 768w/1280w variants from
+ * scripts/build-poster-variants.mjs, the source and its `-2x`, each at its
+ * real width (read from the file: not every header is 1920 px). Undefined
+ * without variants (dev before prebuild).
  */
 export function heroSrcset(image: string | undefined, root = 'public'): string | undefined {
   if (!image || !/\.webp$/i.test(image)) return undefined;
@@ -136,12 +137,14 @@ export function heroSrcset(image: string | undefined, root = 'public'): string |
   const variants = [768, 1280]
     .map((w) => ({ w, src: image.replace(/\.webp$/i, `-${w}w.webp`) }))
     .filter((v) => has(v.src));
-  if (variants.length === 0) return undefined;
+  const width = webpSize(image)?.width;
+  if (variants.length === 0 || !width) return undefined;
   const retina = image.replace(/\.webp$/i, '-2x.webp');
+  const retinaWidth = has(retina) ? webpSize(retina)?.width : undefined;
   return [
-    ...variants.map((v) => `${v.src} ${v.w}w`),
-    `${image} 1920w`,
-    ...(has(retina) ? [`${retina} 3840w`] : []),
+    ...variants.filter((v) => v.w < width).map((v) => `${v.src} ${v.w}w`),
+    `${image} ${width}w`,
+    ...(retinaWidth && retinaWidth > width ? [`${retina} ${retinaWidth}w`] : []),
   ].join(', ');
 }
 

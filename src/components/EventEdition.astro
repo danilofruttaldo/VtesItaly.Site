@@ -106,6 +106,7 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
       alt={post.data.title}
       sizes="(max-width: 360px) 100vw, 360px"
       loading="eager"
+      fetchpriority="high"
     />
     {post.data.posterCaption && <figcaption class="gp-poster-caption">{post.data.posterCaption}</figcaption>}
   </figure>

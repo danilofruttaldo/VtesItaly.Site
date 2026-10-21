@@ -49,7 +49,7 @@ const allStandings = standingsBySlug[slug];
 ---
 
 <Base title={page.title[locale]} description={page.description[locale]} ogImage={page.ogImage}>
-  <PageHero title={page.title[locale]} image={page.headerImage} />
+  <PageHero title={page.title[locale]} image={page.headerImage} priority={!current?.data.poster} />
 
   {/* Fixed: intro */}
   <section class="page-section">

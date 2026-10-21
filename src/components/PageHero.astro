@@ -7,9 +7,12 @@ interface Props {
   title: string;
   image?: string;
   breadcrumb?: { label: string; href: string };
+  /** False when another image of the page is the LCP (an event poster): the
+      banner then loads at normal priority. */
+  priority?: boolean;
 }
 
-const { title, image, breadcrumb } = Astro.props;
+const { title, image, breadcrumb, priority = true } = Astro.props;
 
 // Width srcset when the header has its width variants (phones get a small
 // banner). Without them, the older density sources: `-2x.webp` and `.avif`
@@ -43,7 +46,7 @@ const avifSrcset =
         class="page-hero__img"
         loading="eager"
         decoding="async"
-        fetchpriority="high"
+        fetchpriority={priority ? 'high' : 'auto'}
       />
     </picture>
   )}

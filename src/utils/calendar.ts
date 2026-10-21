@@ -259,6 +259,29 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     });
   }
 
+  // A Tour stage played as a GP/NC side event is in both posts: one entry per
+  // tournament (same day, same Archon link), the GP/NC one, which carries
+  // the weekend's venue and schedule.
+  const byTournament = new Map<string, CalendarEvent>();
+  const deduped: CalendarEvent[] = [];
+  for (const e of events) {
+    if (!e.archonUrl) {
+      deduped.push(e);
+      continue;
+    }
+    const key = `${e.date} ${e.archonUrl}`;
+    const seen = byTournament.get(key);
+    if (!seen) {
+      byTournament.set(key, e);
+      deduped.push(e);
+    } else if (seen.category === 'tour' && e.category !== 'tour') {
+      deduped[deduped.indexOf(seen)] = e;
+      byTournament.set(key, e);
+    }
+  }
+  events.length = 0;
+  events.push(...deduped);
+
   // Same platform label as the event pages (resolvePlatformLabel)
   for (const e of events) {
     if (!e.archonUrl) continue;

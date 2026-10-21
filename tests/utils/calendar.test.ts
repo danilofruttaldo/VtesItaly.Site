@@ -479,3 +479,16 @@ describe('extractCalendarEvents: tour stages', () => {
     expect(out[1].format).toBe('Da definire');
   });
 });
+
+describe('extractCalendarEvents duplicates', () => {
+  it('lists each Archon tournament once per day, from the GP/NC post when it is also a tour stage', async () => {
+    const { getCollection } = await import('astro:content');
+    const events = extractCalendarEvents(await getCollection('blog'), 'it');
+    const keys = events.filter((e) => e.archonUrl).map((e) => `${e.date} ${e.archonUrl}`);
+    expect(keys.length).toBe(new Set(keys).size);
+    // NC 2025 side event = Tour 2025 Modena stage
+    const day = events.filter((e) => e.date === '2025-03-02');
+    expect(day).toHaveLength(1);
+    expect(day[0].category).not.toBe('tour');
+  });
+});

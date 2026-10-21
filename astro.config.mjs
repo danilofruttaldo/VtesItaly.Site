@@ -2,6 +2,7 @@ import { defineConfig, passthroughImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { unified } from '@astrojs/markdown-remark';
 import { remarkAlert } from 'remark-github-blockquote-alert';
+import { remarkAlertLocale } from './src/utils/remark-alert-locale.ts';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { sitemapDates, sitemapFilter } from './src/utils/sitemap.ts';
@@ -67,7 +68,8 @@ export default defineConfig({
     // astro 7 defaults to the Sätteri processor, which does not run remark
     // plugins. Keep the unified/remark pipeline (from @astrojs/markdown-remark)
     // so `remarkAlert` still renders GitHub-style `> [!NOTE]` callouts.
-    processor: unified({ remarkPlugins: [remarkAlert] }),
+    // remarkAlertLocale translates the callout titles on Italian pages.
+    processor: unified({ remarkPlugins: [remarkAlert, remarkAlertLocale] }),
     // No fenced code in the content: without Shiki there are no inline
     // styles in the HTML and no build warning about them and the CSP.
     syntaxHighlight: false,

@@ -241,8 +241,8 @@
   padding: 0 20px 16px;
 }
 .cal__popup-page {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -553,6 +553,8 @@
   /* Show dots, hide text label */
   .cal__cell-dots {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 3px;
   }
   .cal__cell-dot {

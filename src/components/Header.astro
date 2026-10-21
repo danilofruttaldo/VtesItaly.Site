@@ -94,7 +94,8 @@ function isCurrent(href: string): boolean {
       <div class="lang-dropdown__menu">
         {Object.entries(langLabels).map(([loc, label]) => (
           <a
-            href={loc === locale ? '#' : getAlternateUrl(Astro.url, loc as Locale)}
+            href={loc === locale ? undefined : getAlternateUrl(Astro.url, loc as Locale)}
+            aria-current={loc === locale ? 'true' : undefined}
             class={`lang-dropdown__item ${loc === locale ? 'is-current' : ''}`}
           >
             <Fragment set:html={flags[loc]} /> {label}

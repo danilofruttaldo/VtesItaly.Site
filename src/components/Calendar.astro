@@ -19,7 +19,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   data-no-events={t.calendar.no_events_month}
   data-add-google={t.calendar.add_google}
   data-read-cta={t.post.read_cta}
-  data-close-label={t.search.close_label}
+  data-close-label={t.calendar.close}
   data-prev-event={t.calendar.prev_event}
   data-next-event={t.calendar.next_event}
   data-cat-labels={JSON.stringify({
@@ -79,12 +79,12 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
 
   {/* Month/Year picker modal */}
   <div class="cal__picker" id="cal-picker" hidden>
-    <div class="cal__picker-inner" role="dialog" aria-modal="true">
+    <div class="cal__picker-inner" role="dialog" aria-modal="true" aria-label={t.calendar.select_month}>
       <button
         type="button"
         class="cal__popup-close cal__picker-close"
         id="cal-picker-close"
-        aria-label={t.search.close_label}
+        aria-label={t.calendar.close}
       >
         &times;
       </button>
@@ -200,13 +200,19 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       return 'https://calendar.google.com/calendar/render?' + p;
     }
 
+    // The day cell that opened the popup gets the focus back on close.
+    var opener: HTMLElement | null = null;
+
     function closePopup() {
+      var wasOpen = !popup.hidden;
       popup.hidden = true;
       if (focusTrapHandler) {
         popupInner.removeEventListener('keydown', focusTrapHandler);
         focusTrapHandler = null;
       }
       popupInner.innerHTML = '';
+      if (wasOpen && opener && opener.isConnected) opener.focus();
+      opener = null;
     }
 
     // One event at a time; a day with more gets a pager (buttons and the
@@ -214,31 +220,38 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     var pagerEvts: CalEvent[] = [];
     var pagerIndex = 0;
 
-    function showPopup(dayEvts: CalEvent[], index = 0, focusSel = '.cal__popup-close') {
+    function showPopup(dayEvts: CalEvent[]) {
       pagerEvts = dayEvts;
-      pagerIndex = (index + dayEvts.length) % dayEvts.length;
+      pagerIndex = 0;
       var h = '';
       h += '<button type="button" class="cal__popup-close" aria-label="' + esc(closeLabel) + '">&times;</button>';
-      h += eventHtml(dayEvts[pagerIndex]);
+      h += '<div class="cal__popup-event">' + eventHtml(dayEvts[0]) + '</div>';
       if (dayEvts.length > 1) {
+        // Only the event block and the count change while paging: the
+        // buttons keep the focus and the live count is announced.
         h += '<div class="cal__popup-pager">';
         h +=
           '<button type="button" class="cal__popup-page cal__popup-page--prev" aria-label="' +
           esc(prevEventLabel) +
           '">&#8249;</button>';
-        h +=
-          '<span class="cal__popup-count" aria-live="polite">' + (pagerIndex + 1) + ' / ' + dayEvts.length + '</span>';
+        h += '<span class="cal__popup-count" aria-live="polite">1 / ' + dayEvts.length + '</span>';
         h +=
           '<button type="button" class="cal__popup-page cal__popup-page--next" aria-label="' +
           esc(nextEventLabel) +
           '">&#8250;</button>';
         h += '</div>';
       }
-      openPopup(h, focusSel);
+      openPopup(h);
     }
 
-    function pageBy(step: number, focusSel: string) {
-      if (pagerEvts.length > 1) showPopup(pagerEvts, pagerIndex + step, focusSel);
+    function pageBy(step: number) {
+      var n = pagerEvts.length;
+      if (n < 2 || popup.hidden) return;
+      pagerIndex = (pagerIndex + step + n) % n;
+      var eventEl = popupInner.querySelector('.cal__popup-event');
+      var countEl = popupInner.querySelector('.cal__popup-count');
+      if (eventEl) eventEl.innerHTML = eventHtml(pagerEvts[pagerIndex]);
+      if (countEl) countEl.textContent = pagerIndex + 1 + ' / ' + n;
     }
 
     function eventHtml(ev: CalEvent): string {
@@ -320,20 +333,19 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       return h;
     }
 
-    function openPopup(h: string, focusSel: string) {
-      if (focusTrapHandler) popupInner.removeEventListener('keydown', focusTrapHandler);
+    function openPopup(h: string) {
       popupInner.innerHTML = h;
       popup.hidden = false;
 
       var closeBtn = popupInner.querySelector('.cal__popup-close') as HTMLElement;
       closeBtn.addEventListener('click', closePopup);
       popupInner.querySelector('.cal__popup-page--prev')?.addEventListener('click', function () {
-        pageBy(-1, '.cal__popup-page--prev');
+        pageBy(-1);
       });
       popupInner.querySelector('.cal__popup-page--next')?.addEventListener('click', function () {
-        pageBy(1, '.cal__popup-page--next');
+        pageBy(1);
       });
-      ((popupInner.querySelector(focusSel) as HTMLElement | null) || closeBtn).focus();
+      closeBtn.focus();
 
       // Focus trap inside popup
       focusTrapHandler = function (e: KeyboardEvent) {
@@ -360,8 +372,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     document.addEventListener('keydown', function (e) {
       if (popup.hidden) return;
       if (e.key === 'Escape') closePopup();
-      else if (e.key === 'ArrowLeft') pageBy(-1, '.cal__popup-page--prev');
-      else if (e.key === 'ArrowRight') pageBy(1, '.cal__popup-page--next');
+      else if (e.key === 'ArrowLeft') pageBy(-1);
+      else if (e.key === 'ArrowRight') pageBy(1);
     });
 
     function eventColor(ev: CalEvent) {
@@ -529,8 +541,10 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     }
 
     function closePicker() {
+      var wasOpen = !picker.hidden;
       picker.hidden = true;
       titleEl.setAttribute('aria-expanded', 'false');
+      if (wasOpen) (titleEl as HTMLElement).focus();
     }
 
     titleEl.addEventListener('click', function () {
@@ -562,7 +576,9 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     function openCell(cell: Element) {
       var day = parseInt(cell.getAttribute('data-day') || '0');
       var dayEvts = eventsForDay(displayYear, displayMonth, day);
-      if (dayEvts.length > 0) showPopup(dayEvts);
+      if (dayEvts.length === 0) return;
+      showPopup(dayEvts);
+      opener = cell as HTMLElement;
     }
     body.addEventListener('click', function (e) {
       var target = e.target as HTMLElement | null;

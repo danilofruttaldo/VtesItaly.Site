@@ -26,6 +26,9 @@ interface Props {
   ogImage?: string;
   /** Service pages (404, pagination): no indexing, and no canonical/hreflang. */
   noindex?: boolean;
+  /** False keeps an indexable page out of the site search (privacy). Noindex
+      pages are always out of it. */
+  searchable?: boolean;
   /** `article` for dated content (posts), `website` for indexes. */
   ogType?: 'website' | 'article';
   /** Publication date, used only when `ogType` is `article`. */
@@ -41,6 +44,7 @@ const {
   description = t.default_description,
   ogImage = '/images/og/og-default.jpg',
   noindex = false,
+  searchable = true,
   ogType = 'website',
   publishedTime,
   langRedirect = true,
@@ -101,7 +105,7 @@ const og = await resolveOgImage(ogImage, Astro.site!);
     {og.type && <meta property="og:image:type" content={og.type} />}
     {og.width && <meta property="og:image:width" content={String(og.width)} />}
     {og.height && <meta property="og:image:height" content={String(og.height)} />}
-    <meta property="og:image:alt" content={`${title} | VTES Italy`} />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -153,7 +157,7 @@ const og = await resolveOgImage(ogImage, Astro.site!);
       {t.skip_to_content}
     </a>
     <Header />
-    <main id="main-content" data-pagefind-body>
+    <main id="main-content" data-pagefind-body={noindex || !searchable ? undefined : ''}>
       <slot />
     </main>
     <Footer />

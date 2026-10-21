@@ -40,18 +40,18 @@ describe('structured-data: eventJsonLd', () => {
     expect(ld.location).toEqual({
       '@type': 'Place',
       name: 'Hotel Paoli',
-      address: { '@type': 'PostalAddress', addressCountry: 'IT', streetAddress: 'Caldonazzo (TN)' },
+      address: { '@type': 'PostalAddress', addressCountry: 'IT', addressLocality: 'Caldonazzo', addressRegion: 'TN' },
     });
     expect(ld.image).toBe('https://vtesitaly.com/nc/poster.webp');
   });
 
   it('ends a single-day event on its start day and falls back to the venue name as address', () => {
-    const ld = eventJsonLd({ ...base, featuredImage: '/f.webp', venue: { name: 'Italia' } }, site)!;
+    const ld = eventJsonLd({ ...base, featuredImage: '/f.webp', venue: { name: 'Hotel Paoli' } }, site)!;
     expect(ld.endDate).toBe(ld.startDate);
     expect(ld.location).toEqual({
       '@type': 'Place',
-      name: 'Italia',
-      address: { '@type': 'PostalAddress', addressCountry: 'IT', streetAddress: 'Italia' },
+      name: 'Hotel Paoli',
+      address: { '@type': 'PostalAddress', addressCountry: 'IT', streetAddress: 'Hotel Paoli' },
     });
     expect(ld.image).toBe('https://vtesitaly.com/f.webp');
   });
@@ -75,7 +75,35 @@ describe('structured-data: event start and page', () => {
   });
 });
 
+describe('structured-data: online events', () => {
+  it('gives no Event when the venue is just "Italia"', () => {
+    expect(eventJsonLd({ ...base, venue: { name: 'Italia', address: 'Italia' } }, site)).toBeNull();
+  });
+});
+
 describe('structured-data: postalAddress', () => {
+  it('reads the town in the other address forms of the posts', () => {
+    expect(postalAddress('Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)')).toMatchObject({
+      streetAddress: 'Via Marco Emilio Lepido, 203/14',
+      postalCode: '40132',
+      addressLocality: 'Bologna',
+    });
+    expect(postalAddress('Via Ranzani 13/2, Bologna')).toMatchObject({ addressLocality: 'Bologna' });
+    expect(postalAddress('Viale X 5, 31100 Treviso')).toMatchObject({
+      postalCode: '31100',
+      addressLocality: 'Treviso',
+    });
+    expect(postalAddress('Via Roma 62/c, Paderno Dugnano (MI)')).toMatchObject({
+      addressLocality: 'Paderno Dugnano',
+      addressRegion: 'MI',
+    });
+    expect(postalAddress('Hotel Paoli')).toEqual({
+      '@type': 'PostalAddress',
+      addressCountry: 'IT',
+      streetAddress: 'Hotel Paoli',
+    });
+  });
+
   it('splits the Italian address form into its parts', () => {
     expect(postalAddress('Viale della Fiera 20, 40127 Bologna (BO), Italy')).toEqual({
       '@type': 'PostalAddress',
@@ -104,6 +132,17 @@ describe('structured-data: articleJsonLd', () => {
     expect(ld.dateModified).toBe('2026-03-05');
     expect(ld.inLanguage).toBe('en');
     expect(ld.mainEntityOfPage).toEqual({ '@type': 'WebPage', '@id': 'https://vtesitaly.com/x/' });
+  });
+
+  it('dates an imported post by its own date, not by the import commit', () => {
+    const ld = articleJsonLd({ ...base, date: new Date('2019-11-23') }, site, {
+      url: 'https://vtesitaly.com/x/',
+      locale: 'it',
+      published: '2026-03-17',
+      modified: '2026-10-21',
+    });
+    expect(ld.datePublished).toBe('2019-11-23');
+    expect(ld.dateModified).toBe('2026-10-21');
   });
 
   it('never publishes in the future without git days', () => {

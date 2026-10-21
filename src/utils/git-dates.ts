@@ -1,6 +1,6 @@
 /**
  * First and last commit day (YYYY-MM-DD) of each content file, from one
- * `git log` over src/content. These are the real publication and update days:
+ * `git log` over src/content (and the data files of the non-markdown pages). These are the real publication and update days:
  * a post's `date` is the day of its event, often weeks after the post went up.
  *
  * Empty when git is missing or the clone is shallow (a shallow history would
@@ -15,6 +15,10 @@ export interface GitDates {
 }
 
 const cache = new Map<string, Map<string, GitDates>>();
+
+// The content, plus the data and component files behind pages that have no
+// markdown (principati, cartoline, gemelli, privacy).
+const DATED_PATHS = ['src/content', 'src/data', 'src/components/PrivacyPage.astro'];
 
 function git(args: string[], cwd: string): string {
   return execFileSync('git', args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 << 20 });
@@ -44,7 +48,7 @@ export function contentGitDates(root = process.cwd()): Map<string, GitDates> {
   if (dates) return dates;
   try {
     const shallow = git(['rev-parse', '--is-shallow-repository'], root).trim() !== 'false';
-    dates = shallow ? new Map() : parseGitLog(git(['log', '--format=@%cs', '--name-only', '--', 'src/content'], root));
+    dates = shallow ? new Map() : parseGitLog(git(['log', '--format=@%cs', '--name-only', '--', ...DATED_PATHS], root));
   } catch {
     dates = new Map();
   }

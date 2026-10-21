@@ -9,6 +9,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { translatePostSlug, translateSection } from './i18n';
 import { categoryUrls } from '../data/categories';
+import { cities } from '../data/cities';
 import { contentGitDates } from './git-dates';
 
 /**
@@ -88,5 +89,22 @@ export function sitemapDates(
     bump(isEn ? '/en/guides/' : '/guide/', d);
   }
   for (const [hub, d] of hubs) dates.set(hub, d);
+
+  // Pages built from data files rather than markdown: their last commit.
+  const fileDay = (file: string) => gitDates.get(file)?.modified;
+  const citiesDay = fileDay('src/data/cities.ts');
+  add('/principati/', citiesDay);
+  add('/en/domains/', citiesDay);
+  for (const city of cities) {
+    add(`/principati/${city.slug.it}/`, citiesDay);
+    add(`/en/domains/${city.slug.en}/`, citiesDay);
+  }
+  for (const [paths, file] of [
+    [['/cartoline/', '/en/postcards/'], 'src/data/postcards.ts'],
+    [['/gemelli/', '/en/twins/'], 'src/data/twins.ts'],
+    [['/privacy/', '/en/privacy/'], 'src/components/PrivacyPage.astro'],
+  ] as const) {
+    for (const path of paths) add(path, fileDay(file));
+  }
   return dates;
 }

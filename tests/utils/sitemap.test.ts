@@ -64,4 +64,16 @@ describe('sitemap: sitemapDates', () => {
     expect(withGit.get('/nazionale/nazionale-2026/')?.toISOString()).toBe('2026-03-05T00:00:00.000Z');
     expect(withGit.get('/nazionale/')?.toISOString()).toBe('2026-03-05T00:00:00.000Z');
   });
+
+  it('dates the pages built from data files by their last commit', () => {
+    const git = new Map([
+      ['src/data/cities.ts', { created: '2026-03-12', modified: '2026-10-01' }],
+      ['src/data/twins.ts', { created: '2026-03-12', modified: '2026-09-01' }],
+    ]);
+    const withGit = sitemapDates(root, new Date('2026-10-16T12:00:00Z'), git);
+    expect(withGit.get('/principati/barga/')?.toISOString()).toBe('2026-10-01T00:00:00.000Z');
+    expect(withGit.get('/en/domains/')?.toISOString()).toBe('2026-10-01T00:00:00.000Z');
+    expect(withGit.get('/en/twins/')?.toISOString()).toBe('2026-09-01T00:00:00.000Z');
+    expect(withGit.has('/cartoline/')).toBe(false);
+  });
 });

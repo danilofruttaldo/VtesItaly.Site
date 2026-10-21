@@ -33,6 +33,6 @@ August is at the door, and so is a certain **thirst**: Saturday, **August 1, 202
 
 Twenty euros to enter, **lunch included** (pizza or piadina with a soft drink or a beer), so nobody has to go hunting for food between rounds. **Single deck**, and a **decklist is required**.
 
-The tournament will be **sanctioned from 14 players up**: below that we still play, just without ranking points.
+The tournament was **sanctioned from 14 players up**: below that we still played, just without ranking points.
 
 Not the ideal time of year, we know. But sunbathing is bad for your skin, and indoors there's air conditioning and a table of opponents to drain.

@@ -55,7 +55,7 @@ links:
 locale: 'en'
 ---
 
-Garfaludica will be present with gaming tables for all companions, children and adults! Mistlore will be there throughout the event with Black Chantry products. Kraken Nest will be present as in previous editions with their singles "stall"! The Pot Still will run a refreshment point where you can hydrate, in style, for the entire duration of the event!
+Garfaludica was present with gaming tables for all companions, children and adults! Mistlore was there throughout the event with Black Chantry products. Kraken Nest was present as in previous editions with their singles "stall"! The Pot Still ran a refreshment point where you could hydrate, in style, for the entire duration of the event!
 
 Three days of VTES in the Tuscan countryside: **Field Training** on Friday, the main tournament on Saturday with 3 rounds + final, and **Pool Party** on Sunday.
 

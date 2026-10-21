@@ -117,7 +117,7 @@ highlightHtml: |
     <a href="/gp/gp-2026/superb-owl-poster.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the Superb Owl Fashion Parade poster full size"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Superb Owl Fashion Parade poster: the owl wants you" width="220" height="311" loading="lazy" decoding="async" /></a>
     <div class="callout-body">
       <h2>Superb Owl Fashion Parade</h2>
-      <p>On Saturday May 2, during the Main Event, the first edition of the <strong>Superb Owl Fashion Parade</strong> will take place: the most improvised fashion contest of the European circuit. We'll crown the most <em>unsettling, flashy and fun</em> outfit of the day. Step up to the jury table and declare your intent to participate. Coffee and chocolates as gifts are appreciated, though not strictly required.</p>
+      <p>On Saturday May 2, during the Main Event, the first edition of the <strong>Superb Owl Fashion Parade</strong> took place: the most improvised fashion contest of the European circuit. The most <em>unsettling, flashy and fun</em> outfit of the day was crowned.</p>
       <div class="callout-footer">
         <a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Rules, jury and prizes (PDF)</a>
         <p class="callout-winner">🏆 Winner: <strong>Lovre</strong></p>

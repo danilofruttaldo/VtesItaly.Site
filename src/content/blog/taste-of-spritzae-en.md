@@ -45,4 +45,4 @@ The Italian Community of _Vampire: The Eternal Struggle_ with the support of **M
 
 A **friendly and unsanctioned** event, ideal for **new players** or those who recently started. Loaner decks available, no pressure, no formalities: just cards, curses and plenty of spirit.
 
-The event is open to everyone, but there will be many new players: **let's arm ourselves with patience, convivial spirit and cold blood**… even though red is generally better at room temperature.
+The event was open to everyone, with many new players: **patience, convivial spirit and cold blood**… even though red is generally better at room temperature.

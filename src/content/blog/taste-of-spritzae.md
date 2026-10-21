@@ -45,4 +45,4 @@ La Comunità Italiana di _Vampire: The Eternal Struggle_ con il supporto di **Mi
 
 Evento **amichevole e NON sanzionato**, ideale per **nuovi giocatori** o per chi si è avvicinato da poco. Mazzi prestati disponibili, nessuna pressione, nessuna formalità: solo carte, imprecazioni e tanto spirito.
 
-L'evento è aperto a tutti, ma sarà presente un buon numero di nuovi giocatori: **armiamoci di pazienza, spirito conviviale e sangue freddo**… anche se il rosso, in genere, è meglio a temperatura ambiente.
+L'evento era aperto a tutti, con un buon numero di nuovi giocatori: **pazienza, spirito conviviale e sangue freddo**… anche se il rosso, in genere, è meglio a temperatura ambiente.

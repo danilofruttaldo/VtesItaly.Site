@@ -39,7 +39,7 @@ On **May 22, 23 and 24, 2026** the Italian community of _Vampire: The Eternal St
 
 Three days, one invitation: **come and try VTES**. We'll be in **Hall 18**, in the **Vampire: The Masquerade area** (booth **J11 - Camarilla Italia** / **J13 - Area Vampiri**). Whether you've never seen the game or you've only heard about it, you'll find a table ready, the decks already set up, and players from the Italian community to walk you through a 30–45 minute taster round. No registration, no deck to bring: just sit down.
 
-The booth will be staffed in shifts by **players from different cities**: a chance to meet who plays near you and find out where the game runs in your area.
+The booth was staffed in shifts by **players from different cities**: a chance to meet who plays near you and find out where the game runs in your area.
 
 ## Where to find us: Hall 18
 

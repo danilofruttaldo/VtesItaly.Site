@@ -33,6 +33,6 @@ Agosto è alle porte e con lui quella certa **setina** di sangue: sabato **1 ago
 
 Venti euro di iscrizione con **pranzo incluso** (pizza o piadina e bibita o birra), così tra un round e l'altro non si esce a cercare da mangiare. Si gioca **deck singolo** e la **decklist è obbligatoria**.
 
-Il torneo sarà **sanzionato dai 14 giocatori in su**: sotto quella soglia si gioca lo stesso, ma senza ranking.
+Il torneo era **sanzionato dai 14 giocatori in su**: sotto quella soglia si giocava lo stesso, ma senza ranking.
 
 Non è il periodo ideale, lo sappiamo. Ma il sole fa male alla pelle, e in sala ci sono l'aria condizionata e un tavolo di avversari da svuotare.

@@ -62,4 +62,4 @@ locale: it
 
 La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare, in collaborazione con l'Associazione **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** e sponsorizzato da **Mistlore**, **TheCardGameGeek** e **The Pot Still**, la nuova edizione del **Symposium Italicum**!
 
-Tre giorni di VTES a **Barga (LU)**, interamente all'**Agriturismo Il Musaccio**: **Bloodbath** il venerdì, il torneo principale il sabato e il **Pool Party** la domenica. Sabato Garfaludica sarà presente con tavoli da gioco per tutti gli accompagnatori, bambini e non; Mistlore con i prodotti Black Chantry e The Pot Still con il punto ristoro per tutta la durata dell'evento.
+Tre giorni di VTES a **Barga (LU)**, interamente all'**Agriturismo Il Musaccio**: **Bloodbath** il venerdì, il torneo principale il sabato e il **Pool Party** la domenica. Sabato Garfaludica era presente con tavoli da gioco per tutti gli accompagnatori, bambini e non; Mistlore con i prodotti Black Chantry e The Pot Still con il punto ristoro per tutta la durata dell'evento.

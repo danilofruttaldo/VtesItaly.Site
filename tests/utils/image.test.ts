@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { mkdirSync, rmSync, copyFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { webpSize, responsiveImage, POSTER_WIDTHS } from '../../src/utils/image';
+import { webpSize, responsiveImage, POSTER_WIDTHS, galleryFor, heroSrcset, gallerySrcset } from '../../src/utils/image';
 
 // Real committed fixtures with known dimensions and WebP variants.
 const VP8_POSTER = '/images/comunita/barga/symposium-italicum-2026.webp'; // simple lossy, 1320x1320
@@ -21,6 +21,14 @@ beforeAll(() => {
   copyFileSync(real, resolve(DIR, 'orig-400w.webp'));
   copyFileSync(real, resolve(DIR, 'orig-800w.webp'));
   copyFileSync(real, resolve(DIR, 'solo.webp')); // no variants alongside
+  // Hero header with its width variants, and a gallery photo with a 640w one
+  copyFileSync(real, resolve(DIR, 'hero.webp'));
+  copyFileSync(real, resolve(DIR, 'hero-768w.webp'));
+  copyFileSync(real, resolve(DIR, 'hero-1280w.webp'));
+  copyFileSync(real, resolve(DIR, 'orig-640w.webp'));
+  mkdirSync(resolve(DIR, 'sub'), { recursive: true });
+  copyFileSync(real, resolve(DIR, 'sub', 'photo.webp'));
+  copyFileSync(real, resolve(DIR, 'sub', 'photo-thumb.webp'));
 });
 
 afterAll(() => {
@@ -75,5 +83,44 @@ describe('image: responsiveImage', () => {
 
   it('exposes the width ladder used by the build script', () => {
     expect(POSTER_WIDTHS).toEqual([400, 800, 1200]);
+  });
+});
+
+describe('image: heroSrcset', () => {
+  it('lists the width variants and the source at its real width', () => {
+    expect(heroSrcset('/__img_test__/hero.webp')).toBe(
+      '/__img_test__/hero-768w.webp 768w, /__img_test__/hero-1280w.webp 1280w, /__img_test__/hero.webp 1320w',
+    );
+  });
+
+  it('is undefined without variants or for non-WebP images', () => {
+    expect(heroSrcset(SOLO)).toBeUndefined();
+    expect(heroSrcset('/x.jpg')).toBeUndefined();
+    expect(heroSrcset(undefined)).toBeUndefined();
+  });
+});
+
+describe('image: gallerySrcset', () => {
+  it('offers the 640w variant next to the original', () => {
+    expect(gallerySrcset(ORIG)).toBe('/__img_test__/orig-640w.webp 640w, /__img_test__/orig.webp 1320w');
+    expect(gallerySrcset(SOLO)).toBeUndefined();
+  });
+});
+
+describe('image: galleryFor', () => {
+  it('reads the folder recursively, without generated variants or the poster', () => {
+    const images = galleryFor({ galleryFolder: '/__img_test__/', poster: ORIG });
+    expect(images).toContain('/__img_test__/sub/photo.webp');
+    expect(images).toContain('/__img_test__/hero.webp');
+    expect(images).not.toContain(ORIG);
+    expect(images.some((i) => /-(thumb|\d+w)\.webp$/.test(i))).toBe(false);
+    expect(images).toEqual([...images].sort());
+  });
+
+  it('prefers the explicit list and tolerates a missing folder', () => {
+    expect(galleryFor({ gallery: ['/a.webp', '/b.webp'], galleryFolder: '__img_test__', poster: '/a.webp' })).toEqual([
+      '/b.webp',
+    ]);
+    expect(galleryFor({ galleryFolder: 'no-such-folder' })).toEqual([]);
   });
 });

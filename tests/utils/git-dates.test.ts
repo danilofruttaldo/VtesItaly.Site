@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { parseGitLog } from '../../src/utils/git-dates';
+import { mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { contentGitDates, parseGitLog } from '../../src/utils/git-dates';
 
 describe('git-dates: parseGitLog', () => {
   it('takes the newest commit as modified and the oldest as created', () => {
@@ -18,5 +21,17 @@ describe('git-dates: parseGitLog', () => {
     const dates = parseGitLog(log);
     expect(dates.get('src/content/blog/a.md')).toEqual({ created: '2026-05-17', modified: '2026-10-21' });
     expect(dates.get('src/content/blog/b.md')).toEqual({ created: '2026-10-21', modified: '2026-10-21' });
+  });
+});
+
+describe('git-dates: contentGitDates', () => {
+  it('is empty outside a git repository', () => {
+    expect(contentGitDates(mkdtempSync(join(tmpdir(), 'nogit-'))).size).toBe(0);
+  });
+
+  it('dates the repository content, created never after modified, and caches the result', () => {
+    const dates = contentGitDates();
+    expect(contentGitDates()).toBe(dates);
+    for (const d of dates.values()) expect(d.created <= d.modified).toBe(true);
   });
 });

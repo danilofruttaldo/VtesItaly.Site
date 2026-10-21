@@ -69,4 +69,35 @@ describe('getCardMeta', () => {
     // EN locale → month name "June"
     expect(meta.eventDate.toLowerCase()).toContain('june');
   });
+
+  it('reads the main event standings when they live on events[]', () => {
+    const side: Standing[] = [{ rank: 1, name: 'Side Winner', gw: 1, vp: 4, fvp: null, tp: 60 }];
+    const meta = getCardMeta(
+      {
+        data: {
+          events: [
+            {
+              date: new Date('2025-06-14'),
+              name: 'SIDE EVENT: Redemption',
+              standingsUrl: '/gp/x/standings-gp-r-2025.json',
+            },
+            { date: new Date('2025-06-15'), name: 'MAIN EVENT: GP 2025', standingsUrl: '/gp/x/standings-gp-2025.json' },
+          ],
+        },
+      },
+      { ...allStandings, '/src/data/standings/gp/standings-gp-r-2025.json': { default: side } },
+      'it',
+    );
+    expect(meta.winner).toBe('Federico P.');
+    expect(meta.players).toBe(3);
+  });
+
+  it('matches the standings file name exactly, not as a substring', () => {
+    const meta = getCardMeta(
+      { data: { events: [{ date: new Date('2025-06-15') }], standingsUrl: '/gp/standings-2025.json' } },
+      allStandings,
+      'it',
+    );
+    expect(meta.players).toBe(0);
+  });
 });

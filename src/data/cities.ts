@@ -202,7 +202,7 @@ export const cities: City[] = [
       {
         day: { it: 'Lunedì\nMercoledì\nVenerdì', en: 'Monday\nWednesday\nFriday' },
         place: 'Associazione Ludica Apuana',
-        address: 'Via San Ginese, Via Poveromo 15, Massa (MS)',
+        address: 'Via San Ginese 15 (loc. Poveromo), 54100 Massa (MS)',
         mapUrl: 'https://maps.app.goo.gl/X1s6gBRCKJViPWew5',
       },
     ],

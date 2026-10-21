@@ -4,6 +4,7 @@ date: 2027-04-23
 category: 'comunita'
 tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2027-featured.webp'
+poster: '/images/comunita/bologna/play-2027-poster.webp'
 excerpt: 'Il 23, 24 e 25 aprile 2027 VTES Italy torna al Play – Festival del Gioco di BolognaFiere con tavoli demo aperti a tutti per provare Vampire: The Eternal Struggle.'
 seoDescription: 'Il 23, 24 e 25 aprile 2027 VTES Italy torna al Play di BolognaFiere con tavoli demo aperti a tutti per provare V:TES.'
 venue:

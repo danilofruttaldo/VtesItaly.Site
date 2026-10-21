@@ -60,7 +60,7 @@ registration: 'Preiscrizione e decklist obbligatorie, max 15 posti a giornata'
 payment: 'PayPal (amici e parenti): henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
-standingsLabel: 'Classifica dopo la Giornata 2'
+standingsLabel: 'Classifica dopo la Giornata 3'
 links:
   - label: 'Lega Milano 2026: Classifica'
     url: 'https://archon.vekn.net/leagues/1ae3aede-eb9c-4b08-b00c-51414b8e3cbe'

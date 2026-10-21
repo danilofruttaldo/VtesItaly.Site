@@ -467,6 +467,16 @@
   },
   {
     "rank": 45,
+    "name": "Ivan Candioli",
+    "city": "Trento",
+    "s1": 3.4,
+    "s4": 4.5,
+    "s5": 13.8,
+    "s11": 2.9,
+    "total": 24.6
+  },
+  {
+    "rank": 46,
     "name": "Arturo Parise",
     "city": "Bologna",
     "s5": 2.2,
@@ -475,7 +485,7 @@
     "total": 24.05
   },
   {
-    "rank": 46,
+    "rank": 47,
     "name": "Manuel Segatori",
     "city": "Genova",
     "s1": 8.5,
@@ -483,28 +493,19 @@
     "total": 23.65
   },
   {
-    "rank": 47,
+    "rank": 48,
     "name": "Marco Buseghin",
     "city": "Milano",
     "s8": 22.5,
     "total": 22.5
   },
   {
-    "rank": 48,
+    "rank": 49,
     "name": "Marco Benassi",
     "city": "Massa",
     "s6": 15,
     "s8": 7,
     "total": 22
-  },
-  {
-    "rank": 49,
-    "name": "Ivan Candioli",
-    "city": "Trento",
-    "s4": 4.5,
-    "s5": 13.8,
-    "s11": 2.9,
-    "total": 21.2
   },
   {
     "rank": 50,
@@ -895,105 +896,98 @@
     "total": 3.4
   },
   {
-    "rank": 100,
-    "name": "Candioli Ivan",
-    "city": "Trento",
-    "s1": 3.4,
-    "total": 3.4
-  },
-  {
-    "rank": 103,
+    "rank": 102,
     "name": "Thomas Marchiori",
     "city": "Trento",
     "s11": 2.9,
     "total": 2.9
   },
   {
-    "rank": 103,
+    "rank": 102,
     "name": "Sébastien Francomme",
     "city": "Lyon",
     "s11": 2.9,
     "total": 2.9
   },
   {
-    "rank": 105,
+    "rank": 104,
     "name": "Emanuele Sinagra",
     "city": "Bologna",
     "s2": 2.8,
     "total": 2.8
   },
   {
-    "rank": 106,
+    "rank": 105,
     "name": "Stefano Chiodi",
     "city": "Modena",
     "s9": 2.5,
     "total": 2.5
   },
   {
-    "rank": 107,
+    "rank": 106,
     "name": "Luca Monti",
     "city": "Pordenone",
     "s3": 2.4,
     "total": 2.4
   },
   {
-    "rank": 107,
+    "rank": 106,
     "name": "Kristijan Kauzlarić",
     "city": "Zagreb",
     "s3": 2.4,
     "total": 2.4
   },
   {
-    "rank": 107,
+    "rank": 106,
     "name": "Giuseppe Migliorati",
     "city": "Pordenone",
     "s3": 2.4,
     "total": 2.4
   },
   {
-    "rank": 110,
+    "rank": 109,
     "name": "Roberto Antonio Giampaolo",
     "city": "Torino",
     "s7": 2.3,
     "total": 2.3
   },
   {
-    "rank": 110,
+    "rank": 109,
     "name": "Francesco Marassi",
     "city": "Udine",
     "s7": 2.3,
     "total": 2.3
   },
   {
-    "rank": 112,
+    "rank": 111,
     "name": "Vito Ranieri",
     "city": "Modena",
     "s5": 2.2,
     "total": 2.2
   },
   {
-    "rank": 112,
+    "rank": 111,
     "name": "Michael Merendi",
     "city": "Modena",
     "s5": 2.2,
     "total": 2.2
   },
   {
-    "rank": 112,
+    "rank": 111,
     "name": "Giacomo Pacciani",
     "city": "Modena",
     "s5": 2.2,
     "total": 2.2
   },
   {
-    "rank": 112,
+    "rank": 111,
     "name": "Davor Himmelreich",
     "city": "Zagreb",
     "s5": 2.2,
     "total": 2.2
   },
   {
-    "rank": 112,
+    "rank": 111,
     "name": "Alessandro Belloni",
     "city": "Modena",
     "s5": 2.2,

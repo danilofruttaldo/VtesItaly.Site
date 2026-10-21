@@ -60,7 +60,7 @@ registration: 'Pre-registration and decklists required, max 15 spots per game da
 payment: 'PayPal (friends & family): henry.hinde1973@gmail.com'
 contact: 'henry.hinde1973@gmail.com'
 standingsUrl: 'standings-lega-milanese-in-cantina-2026'
-standingsLabel: 'Standings after Game Day 2'
+standingsLabel: 'Standings after Game Day 3'
 links:
   - label: 'Lega Milano 2026: Standings'
     url: 'https://archon.vekn.net/leagues/1ae3aede-eb9c-4b08-b00c-51414b8e3cbe'

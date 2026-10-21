@@ -14,6 +14,8 @@ if (import.meta.env.PROD) {
   const paq = (w._paq = w._paq || []);
   paq.push(['disableCookies']);
   paq.push(['setCookieDomain', '*.vtesitaly.com']);
+  // The privacy page promises it: a browser sending Do Not Track is not counted.
+  paq.push(['setDoNotTrack', true]);
   paq.push(['trackPageView']);
   paq.push(['enableLinkTracking']);
   paq.push(['setTrackerUrl', 'https://stats.vtesitaly.com/matomo.php']);

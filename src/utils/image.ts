@@ -124,3 +124,29 @@ export function galleryFor(
   }
   return data.poster ? images.filter((img) => img !== data.poster) : images;
 }
+
+/**
+ * Width `srcset` of a full-width header (1920 px): the 768w/1280w variants
+ * from scripts/build-poster-variants.mjs, the source, and its `-2x` (3840w)
+ * when there is one. Undefined without variants (dev before prebuild).
+ */
+export function heroSrcset(image: string | undefined, root = 'public'): string | undefined {
+  if (!image || !/\.webp$/i.test(image)) return undefined;
+  const has = (rel: string) => existsSync(resolve(root, rel.replace(/^\//, '')));
+  const variants = [768, 1280]
+    .map((w) => ({ w, src: image.replace(/\.webp$/i, `-${w}w.webp`) }))
+    .filter((v) => has(v.src));
+  if (variants.length === 0) return undefined;
+  const retina = image.replace(/\.webp$/i, '-2x.webp');
+  return [
+    ...variants.map((v) => `${v.src} ${v.w}w`),
+    `${image} 1920w`,
+    ...(has(retina) ? [`${retina} 3840w`] : []),
+  ].join(', ');
+}
+
+/** Grid thumbnail of a gallery photo: its 640w variant, when built. */
+export const GALLERY_SIZES = '(max-width: 640px) 50vw, 320px';
+export function gallerySrcset(image: string): string | undefined {
+  return responsiveImage(image, [640]).srcset;
+}

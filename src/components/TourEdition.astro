@@ -7,7 +7,8 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
-import { resolvePlatformLabel, computeStageDisplayImages, stageStatusesOn } from '../utils/status';
+import { resolvePlatformLabel, computeStageDisplayImages, stagePlaceholder, stageStatusesOn } from '../utils/status';
+import { responsiveImage } from '../utils/image';
 import { anonymizeName } from '../utils/anonymize';
 import { cities } from '../data/cities';
 import { todayLocalIso } from '../utils/today';
@@ -37,6 +38,11 @@ const { Content } = await render(post);
 const stages = post.data.stages || [];
 
 const displayImages = computeStageDisplayImages(stages);
+const placeholderImage = stagePlaceholder(stages);
+// Width variants of the covers (scripts/build-poster-variants.mjs): the cards
+// are 220 px wide, full width on phones.
+const STAGE_SIZES = '(max-width: 640px) 100vw, 220px';
+const stageSrcset = (image: string | undefined) => responsiveImage(image).srcset;
 const stageStates = stages.map((s) => ({
   date: isoDay(s.date),
   cancelled: s.status === 'cancelled',
@@ -139,10 +145,14 @@ function formatStage(val: unknown, isAway: boolean): string {
               <div class="te-card-image">
                 <img
                   src={displayImages[i]}
+                  srcset={stageSrcset(displayImages[i])}
+                  sizes={STAGE_SIZES}
                   alt={stage.name}
                   loading="lazy"
                   decoding="async"
                   data-real-image={stage.image}
+                  data-real-srcset={stageSrcset(stage.image)}
+                  data-placeholder-srcset={stageSrcset(placeholderImage)}
                 />
               </div>
             )}
@@ -339,11 +349,15 @@ function formatStage(val: unknown, isAway: boolean): string {
         badge.textContent = badge.dataset['label' + status.charAt(0).toUpperCase() + status.slice(1)] || status;
       }
 
-      // Swap cover: show real image for non-future, placeholder for future
+      // Swap cover: show real image for non-future, placeholder for future.
+      // srcset first: with one set, the browser ignores src.
       const img = card.querySelector<HTMLImageElement>('.te-card-image img');
       if (img?.dataset.realImage) {
-        img.src =
-          status === 'future' ? img.dataset.realImage.replace(/\d{3}\.webp$/, '000.webp') : img.dataset.realImage;
+        const future = status === 'future';
+        const srcset = future ? img.dataset.placeholderSrcset : img.dataset.realSrcset;
+        if (srcset) img.srcset = srcset;
+        else img.removeAttribute('srcset');
+        img.src = future ? img.dataset.realImage.replace(/\d{3}\.webp$/, '000.webp') : img.dataset.realImage;
       }
     });
   })();

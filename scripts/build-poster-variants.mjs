@@ -10,6 +10,12 @@
  * `ogImage()` in `src/utils/og.ts` uses as og:image. Some link previewers
  * (WhatsApp, older Facebook crawlers) still skip WebP; JPEG is read everywhere.
  *
+ * Tour stage covers (and their `…-000.webp` placeholder) get the same width
+ * variants: the tour page shows them in 220 px cards.
+ *
+ * Gallery photos under `public/{gp,nc,ev,tour}/` get one `-640w.webp`, the
+ * size of the grid thumbnails.
+ *
  * Page hero headers (`public/images/headers/*.webp`, 1920 px wide) get
  * `<name>-768w.webp` and `<name>-1280w.webp` the same way: `PageHero` lists
  * them in a width `srcset`, so a phone no longer downloads the 1920 px banner.
@@ -25,7 +31,7 @@
  * candidate.
  */
 import sharp from 'sharp';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const WIDTHS = [400, 800, 1200];
@@ -57,8 +63,25 @@ function isStale(out, srcStat) {
   }
 }
 
-const posters = collectField('poster');
-const ogSources = new Set([...posters, ...collectField('featuredImage')]);
+/** Tour stage covers (`image:` inside `stages`) and their `000` placeholder. */
+function collectStageImages() {
+  const found = new Set();
+  for (const name of readdirSync(CONTENT_DIR)) {
+    if (!name.endsWith('.md')) continue;
+    const text = readFileSync(join(CONTENT_DIR, name), 'utf8');
+    for (const m of text.matchAll(/^\s+image:\s*['"]?(\/tour\/[^'"\s]+\.webp)/gm)) {
+      found.add(m[1]);
+      // The placeholder only exists for tours that still have stages to come.
+      const placeholder = m[1].replace(/\d{3}\.webp$/, '000.webp');
+      if (existsSync(resolve(PUBLIC_DIR, placeholder.slice(1)))) found.add(placeholder);
+    }
+  }
+  return [...found];
+}
+
+// Width variants: posters, plus the tour stage covers (220 px cards).
+const posters = [...new Set([...collectField('poster'), ...collectStageImages()])];
+const ogSources = new Set([...collectField('poster'), ...collectField('featuredImage')]);
 
 let generated = 0;
 let skipped = 0;
@@ -114,6 +137,38 @@ for (const image of ogSources) {
     .jpeg({ quality: 82, mozjpeg: true })
     .toFile(out);
   generated++;
+}
+
+// Gallery photos: one 640w variant each, so the grid thumbnails (~300 px)
+// stop downloading the full photo; the link still opens the original.
+const GALLERY_WIDTH = 640;
+const GALLERY_ROOTS = ['gp', 'nc', 'ev', 'tour'];
+const DERIVED = /-(?:thumb|2x|small|\d+w)\.webp$/i;
+const sized = new Set(posters);
+function walkWebp(dir) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) return walkWebp(p);
+    return /\.webp$/i.test(e.name) && !DERIVED.test(e.name) ? [p] : [];
+  });
+}
+for (const root of GALLERY_ROOTS) {
+  const dir = join(PUBLIC_DIR, root);
+  if (!existsSync(dir)) continue;
+  for (const srcFile of walkWebp(dir)) {
+    const rel = '/' + srcFile.slice(PUBLIC_DIR.length + 1).replace(/\\/g, '/');
+    if (sized.has(rel)) continue; // posters and stage covers have their own set
+    const srcStat = statSync(srcFile);
+    const out = srcFile.replace(/\.webp$/i, `-${GALLERY_WIDTH}w.webp`);
+    if (!isStale(out, srcStat)) {
+      skipped++;
+      continue;
+    }
+    const srcWidth = (await sharp(srcFile).metadata()).width ?? 0;
+    if (GALLERY_WIDTH >= srcWidth) continue;
+    await sharp(srcFile).resize(GALLERY_WIDTH).webp({ quality: 78, effort: 6 }).toFile(out);
+    generated++;
+  }
 }
 
 // Hero header width variants

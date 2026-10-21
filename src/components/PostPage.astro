@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
-import { galleryFor } from '../utils/image';
+import { galleryFor, heroSrcset } from '../utils/image';
 import '../styles/prose.css';
 import Base from '../layouts/Base.astro';
 import JsonLd from './JsonLd.astro';
@@ -21,7 +21,7 @@ import { computeTourStatus, computeEventStatus, resolveLinkLabel, toStageDays } 
 import { firstEventDay, isoDay, lastEventDay } from '../utils/date';
 import { isLeaguePost } from '../utils/post';
 import { contentGitDates } from '../utils/git-dates';
-import { articleJsonLd, eventJsonLd, postDescription } from '../utils/structured-data';
+import { publishedDay, articleJsonLd, eventJsonLd, postDescription } from '../utils/structured-data';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -91,7 +91,7 @@ const pageMeta =
   description={postDescription(post.data)}
   ogImage={post.data.poster || post.data.featuredImage}
   ogType="article"
-  publishedTime={post.data.date}
+  publishedTime={new Date(publishedDay(post.data.date, gitDates?.created))}
 >
   <JsonLd slot="head" data={articleJsonLd(post.data, Astro.site!, ldPage)} />
   <JsonLd
@@ -123,7 +123,17 @@ const pageMeta =
   ) : (
     post.data.featuredImage && (
       <div class="post__hero-wrap">
-        <img src={post.data.featuredImage} alt={post.data.title} class="post__hero" loading="eager" decoding="async" />
+        {/* Decorative: the title is the h1 below. The LCP of the page. */}
+        <img
+          src={post.data.featuredImage}
+          srcset={heroSrcset(post.data.featuredImage)}
+          sizes={heroSrcset(post.data.featuredImage) ? '100vw' : undefined}
+          alt=""
+          class="post__hero"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
         <div class="post__hero-overlay" />
       </div>
     )

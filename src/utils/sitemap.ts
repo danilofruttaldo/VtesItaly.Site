@@ -8,6 +8,8 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { translatePostSlug, translateSection } from './i18n';
+import { categoryUrls } from '../data/categories';
+import { contentGitDates } from './git-dates';
 
 /**
  * Pages that say `noindex` must stay out of the sitemap: listing them asks a
@@ -33,17 +35,30 @@ function field(fm: string, name: string): string | undefined {
 /**
  * Page path (with trailing slash) -> last content date, for `<lastmod>`.
  *
- * Future dates are left out: an event post is dated on the day it is played,
- * and a `lastmod` in the future is discarded by search engines as wrong.
- * Index pages get no date: theirs would be the build day, a change claimed
- * at every deploy.
+ * A post's date is its last commit (utils/git-dates); without git history,
+ * its frontmatter `date`. Future dates are left out: an event post is dated
+ * on the day it is played, and a `lastmod` in the future is discarded by
+ * search engines as wrong. Guides use their curated `aggiornato`. The home
+ * and the section hubs take the latest date of the posts they list, never
+ * the build day, which would claim a change at every deploy.
  */
-export function sitemapDates(root = process.cwd(), now = new Date()): Map<string, Date> {
+export function sitemapDates(
+  root = process.cwd(),
+  now = new Date(),
+  gitDates = contentGitDates(root),
+): Map<string, Date> {
   const dates = new Map<string, Date>();
   const add = (path: string, day: string | undefined) => {
     if (!day) return;
     const d = new Date(`${day}T00:00:00Z`);
-    if (d.getTime() <= now.getTime()) dates.set(path, d);
+    if (d.getTime() > now.getTime()) return;
+    dates.set(path, d);
+    return d;
+  };
+  // Hub path -> latest date among its posts
+  const hubs = new Map<string, Date>();
+  const bump = (hub: string, d: Date | undefined) => {
+    if (d && (!hubs.get(hub) || d > hubs.get(hub)!)) hubs.set(hub, d);
   };
 
   const blog = join(root, 'src/content/blog');
@@ -56,7 +71,12 @@ export function sitemapDates(root = process.cwd(), now = new Date()): Map<string
     const path = isEn
       ? `/en/${translateSection(category, 'en')}/${translatePostSlug(category, id.replace(/-en$/, ''), 'en')}/`
       : `/${category}/${id}/`;
-    add(path, field(fm, 'date'));
+    const day = gitDates.get(`src/content/blog/${file}`)?.modified ?? field(fm, 'date');
+    const d = add(path, day);
+    const locale = isEn ? 'en' : 'it';
+    bump(locale === 'en' ? '/en/' : '/', d);
+    const hub = categoryUrls[category]?.[locale];
+    if (hub) bump(hub, d);
   }
 
   const guides = join(root, 'src/content/guide');
@@ -64,7 +84,9 @@ export function sitemapDates(root = process.cwd(), now = new Date()): Map<string
     const fm = frontmatter(join(guides, file));
     const id = file.replace(/\.md$/, '');
     const isEn = /^locale:\s*['"]?en\b/m.test(fm);
-    add(isEn ? `/en/guides/${id.replace(/-en$/, '')}/` : `/guide/${id}/`, field(fm, 'aggiornato'));
+    const d = add(isEn ? `/en/guides/${id.replace(/-en$/, '')}/` : `/guide/${id}/`, field(fm, 'aggiornato'));
+    bump(isEn ? '/en/guides/' : '/guide/', d);
   }
+  for (const [hub, d] of hubs) dates.set(hub, d);
   return dates;
 }

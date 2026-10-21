@@ -1,4 +1,5 @@
 ---
+import { galleryFor } from '../../utils/image';
 import '../../styles/prose.css';
 import Base from '../../layouts/Base.astro';
 import JsonLd from '../../components/JsonLd.astro';
@@ -15,8 +16,10 @@ import { categoryLabels, categoryUrls, typeTagLabels as typeTagLabelsMap } from 
 import { cities } from '../../data/cities';
 import { filterByLocale, useTranslations, formatLocalDate } from '../../utils/i18n';
 import { computeTourStatus, computeEventStatus, resolveLinkLabel, toStageDays } from '../../utils/status';
-import { isoDay, lastEventDay } from '../../utils/date';
+import { firstEventDay, isoDay, lastEventDay } from '../../utils/date';
 import { getEnPostUrl } from '../../utils/url';
+import { isLeaguePost } from '../../utils/post';
+import { contentGitDates } from '../../utils/git-dates';
 import { articleJsonLd, eventJsonLd, postDescription } from '../../utils/structured-data';
 
 const t = useTranslations('en');
@@ -34,16 +37,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-// Build gallery: explicit list or auto-glob from folder
-let galleryImages: string[] = post.data.gallery || [];
-if (post.data.galleryFolder && galleryImages.length === 0) {
-  const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
-  const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
-  galleryImages = Object.keys(allImages)
-    .filter((p) => p.includes(`/${folder}/`))
-    .map((p) => p.replace('/public', ''))
-    .sort();
-}
+// Gallery: explicit list or the photos in its folder
+const galleryImages = galleryFor({ gallery: post.data.gallery, galleryFolder: post.data.galleryFolder });
 
 const postLinks = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === 'en')
@@ -69,17 +64,24 @@ const tourStagesJson = isTourWithStages ? JSON.stringify(toStageDays(post.data.s
 const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
 const forceArticle = post.data.pageLayout === 'article';
-const isLeague =
-  !forceArticle && post.data.category === 'comunita' && (!!post.data.leagueStats || post.data.tags.includes('lega'));
+const isLeague = isLeaguePost(post);
 const isCommunityEvent =
   !forceArticle && post.data.category === 'comunita' && !isLeague && !!(post.data.venue || post.data.events.length > 0);
 const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
-const eventDateStr = isoDay(post.data.date);
-const eventEndStr = lastEventDay(post.data.events, eventDateStr);
-const gpStatus = isEventPage ? computeEventStatus(new Date(post.data.date), eventEndStr) : null;
+// Status runs from the first event day (a Friday side event) to the last one.
+const eventDateStr = firstEventDay(post.data.events, isoDay(post.data.date));
+const eventEndStr = lastEventDay(post.data.events, isoDay(post.data.date));
+const gpStatus = isEventPage ? computeEventStatus(new Date(eventDateStr), eventEndStr) : null;
 const communityCity = isCommunityEvent || isLeague ? cities.find((c) => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
-const eventLd = isEventPage ? eventJsonLd(post.data, Astro.site!) : null;
+const gitDates = post.filePath ? contentGitDates().get(post.filePath) : undefined;
+const ldPage = {
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  locale: 'en' as const,
+  published: gitDates?.created,
+  modified: gitDates?.modified,
+};
+const eventLd = isEventPage ? eventJsonLd(post.data, Astro.site!, ldPage) : null;
 const pageMeta =
   usePageHero && !isCommunityEvent && !isLeague ? mainPages.find((p) => p.category === post.data.category) : null;
 ---
@@ -91,7 +93,7 @@ const pageMeta =
   ogType="article"
   publishedTime={post.data.date}
 >
-  <JsonLd slot="head" data={articleJsonLd(post.data, Astro.site!)} />
+  <JsonLd slot="head" data={articleJsonLd(post.data, Astro.site!, ldPage)} />
   <JsonLd
     slot="head"
     data={{

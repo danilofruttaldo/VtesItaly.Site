@@ -17,6 +17,23 @@ export function isoDay(d: Date | string): string {
 }
 
 /**
+ * First calendar day (YYYY-MM-DD) of a post's events, never later than
+ * `start` (the post date): a Friday side event opens a Saturday-dated
+ * weekend. League `period` rows are ignored.
+ */
+export function firstEventDay(events: { date?: Date | string; period?: string }[] | undefined, start: string): string {
+  let first = start;
+  for (const ev of events ?? []) {
+    if (ev.period || !ev.date) continue;
+    const d = new Date(ev.date);
+    if (isNaN(d.getTime())) continue;
+    const iso = isoDate(d);
+    if (!first || iso < first) first = iso;
+  }
+  return first;
+}
+
+/**
  * Last calendar day (YYYY-MM-DD) of a post's events, never earlier than
  * `start`. League `period` rows carry no real date and are ignored. Shared by
  * the status badges, the timeline cards and the structured data.

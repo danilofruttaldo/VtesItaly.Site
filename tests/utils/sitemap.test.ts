@@ -33,7 +33,7 @@ describe('sitemap: sitemapDates', () => {
   write('guide', 'demo-eventi-en.md', 'aggiornato: 2026-08-11\nlocale: en');
   writeFileSync(join(root, 'src/content/guide', 'notes.txt'), 'ignored');
 
-  const dates = sitemapDates(root, new Date('2026-10-16T12:00:00Z'));
+  const dates = sitemapDates(root, new Date('2026-10-16T12:00:00Z'), new Map());
 
   it('maps posts to their IT and EN paths, nc- slug included', () => {
     expect(dates.get('/nazionale/nazionale-2026/')?.toISOString()).toBe('2026-02-27T00:00:00.000Z');
@@ -47,6 +47,21 @@ describe('sitemap: sitemapDates', () => {
 
   it('leaves out future dates and posts without a category', () => {
     expect(dates.has('/comunita/future/')).toBe(false);
-    expect(dates.size).toBe(4);
+    expect(dates.has('/comunita/')).toBe(false);
+  });
+
+  it('dates the home and the section hubs by their latest post or guide', () => {
+    expect(dates.get('/')?.toISOString()).toBe('2026-02-27T00:00:00.000Z');
+    expect(dates.get('/nazionale/')?.toISOString()).toBe('2026-02-27T00:00:00.000Z');
+    expect(dates.get('/en/national-championship/')?.toISOString()).toBe('2026-02-27T00:00:00.000Z');
+    expect(dates.get('/en/guides/')?.toISOString()).toBe('2026-08-11T00:00:00.000Z');
+    expect(dates.size).toBe(10);
+  });
+
+  it('prefers the last commit day of a post over its event date', () => {
+    const git = new Map([['src/content/blog/nazionale-2026.md', { created: '2026-01-10', modified: '2026-03-05' }]]);
+    const withGit = sitemapDates(root, new Date('2026-10-16T12:00:00Z'), git);
+    expect(withGit.get('/nazionale/nazionale-2026/')?.toISOString()).toBe('2026-03-05T00:00:00.000Z');
+    expect(withGit.get('/nazionale/')?.toISOString()).toBe('2026-03-05T00:00:00.000Z');
   });
 });

@@ -3,7 +3,10 @@ import type { Locale } from './i18n';
 import { useTranslations } from './i18n';
 import { stageDisplay } from './status';
 import { postUrl } from './url';
-import { isoDate, lastEventDay } from './date';
+import { isoDate } from './date';
+import { isLeaguePost, postEndDay } from './post';
+
+export { isLeaguePost, postEndDay };
 import localEventsData from '../data/local-events.json';
 
 export interface LocalEvent {
@@ -117,17 +120,6 @@ export function composeEventLine(
  *  yet but whose structure is. */
 export function roundsLabel(rounds: number, locale: Locale): string {
   return locale === 'en' ? `${rounds} Round${rounds > 1 ? 's' : ''} + Final` : `${rounds} Round + Finale`;
-}
-
-/**
- * A league post: a local, multi-session campaign. Its `events[]` are the single
- * game days, which stay off the calendar and off the homepage timeline: a
- * league surfaces as one piece of news at the post date, nothing more. Same
- * predicate the page router uses to pick `LeagueEdition`.
- */
-export function isLeaguePost(post: CollectionEntry<'blog'>): boolean {
-  if (post.data.pageLayout === 'article') return false;
-  return post.data.category === 'comunita' && (!!post.data.leagueStats || post.data.tags.includes('lega'));
 }
 
 /**
@@ -301,22 +293,10 @@ function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
   return undefined;
 }
 
-/**
- * Last day of a multi-day event, derived from the post's `events` array
- * (`date` and per-event `endDate`). League `period` entries have no concrete
- * dates and are skipped. Returns undefined for single-day posts so the
- * timeline treats them as a single calendar day.
- */
+/** Last day of a multi-day post, undefined when single-day (see `postEndDay`). */
 function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): string | undefined {
-  if (isLeaguePost(post)) return undefined;
-  const last = lastEventDay(post.data.events, start);
+  const last = postEndDay(post);
   return last > start ? last : undefined;
-}
-
-/** Last day (YYYY-MM-DD) of a post's event, its start day when single-day. */
-export function postEndDay(post: CollectionEntry<'blog'>): string {
-  const start = isoDate(new Date(post.data.date));
-  return pickTimelineEndDate(post, start) ?? start;
 }
 
 /**

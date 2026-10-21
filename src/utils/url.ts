@@ -1,6 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 import { computeStageDisplayImages, stageDisplay } from './status';
 import { translatePostSlug, translateSection, type Locale } from './i18n';
+import { isoDate } from './date';
+import { postEndDay } from './post';
 
 /** Build the canonical post URL in the active locale. Centralises the slug
  *  rewrite so calendar timelines, city pages, and search results agree on
@@ -42,6 +44,8 @@ export interface CityCardEntry {
   title: string;
   image: string | undefined;
   date: Date;
+  /** Last day (YYYY-MM-DD) of a multi-day event, for the past/next split. */
+  endDate: string;
   category: string;
   tags: string[];
   excerpt: string;
@@ -65,7 +69,7 @@ export function buildCityCards(
     if (!post.data.tags?.includes(citySlug)) continue;
 
     if (post.data.category === 'tour' && post.data.stages && post.data.stages.length > 0) {
-      const yearShort = String(new Date(post.data.date).getFullYear()).slice(2);
+      const yearShort = String(new Date(post.data.date).getUTCFullYear()).slice(2);
       const display = stageDisplay(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
@@ -77,6 +81,7 @@ export function buildCityCards(
           title: `IT${yearShort} - ${stage.name}`,
           image: stageImg || post.data.poster || post.data.featuredImage,
           date: new Date(stage.date),
+          endDate: isoDate(new Date(stage.date)),
           category: post.data.category,
           tags: post.data.tags,
           excerpt: stage.description || post.data.excerpt,
@@ -92,6 +97,7 @@ export function buildCityCards(
       title: post.data.title,
       image: getCardImage(post, citySlug),
       date: new Date(post.data.date),
+      endDate: postEndDay(post),
       category: post.data.category,
       tags: post.data.tags,
       excerpt: post.data.excerpt,

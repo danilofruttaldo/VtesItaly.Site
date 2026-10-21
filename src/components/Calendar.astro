@@ -144,6 +144,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     description?: string;
     format?: string;
     archonUrl?: string;
+    platform?: string;
     url?: string;
     tags?: string[];
     revealImage?: string;
@@ -316,12 +317,12 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
         h += ' ' + esc(addGoogle) + '</a>';
       }
       if (ev.archonUrl) {
-        var platform = ev.archonUrl.indexOf('bcncrisis') !== -1 ? 'BCN Crisis' : 'Archon';
+        var platform = ev.platform || 'Archon';
         h +=
           '<a href="' +
           esc(ev.archonUrl) +
           '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">' +
-          platform +
+          esc(platform) +
           '</a>';
       }
       if (ev.url) {

@@ -8,6 +8,7 @@ import PostCard from '../../components/PostCard.astro';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { buildCityCards } from '../../utils/url';
 import { todayLocalIso } from '../../utils/today';
+import { nextEventIndex } from '../../utils/timeline';
 import { thumbFor } from '../../utils/image';
 import { cityOgImage } from '../../utils/og';
 
@@ -29,8 +30,7 @@ const { city, cards } = Astro.props;
 
 // Past = over by its last day; the runtime (temporal.ts) re-runs this.
 const today = todayLocalIso();
-const firstPastIndex = cards.findIndex((c) => c.endDate < today);
-const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length - 1 : -1) : firstPastIndex - 1;
+const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
 ---
 
 <Base title={city.name.it} description={city.description.it} ogImage={cityOgImage(city.headerImage)}>
@@ -218,7 +218,7 @@ const nextEventIndex = firstPastIndex === -1 ? (cards.length > 0 ? cards.length 
                 tags={card.tags}
                 excerpt={card.excerpt}
                 locale="it"
-                highlight={i === nextEventIndex}
+                highlight={i === nextEventIdx}
                 highlightLabel={t.home.next_event_label}
               />
             ))}

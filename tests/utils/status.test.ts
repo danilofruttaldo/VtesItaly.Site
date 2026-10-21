@@ -5,6 +5,7 @@ import {
   computeStageDisplayImages,
   stageDisplay,
   stageRevealDates,
+  stageStatusesOn,
   resolvePlatformLabel,
   resolveLinkLabel,
   tourStatusOn,
@@ -229,5 +230,32 @@ describe('status: tourStatusOn / eventStatusOn (shared with the browser script)'
       { date: '2026-03-01', cancelled: false },
       { date: '2026-04-01', cancelled: true },
     ]);
+  });
+});
+
+describe('status: stageStatusesOn', () => {
+  const stage = (date: string, extra: Partial<{ cancelled: boolean; hidden: boolean }> = {}) => ({
+    date,
+    cancelled: false,
+    hidden: false,
+    ...extra,
+  });
+
+  it('marks the stage of the day and the next one as upcoming', () => {
+    expect(
+      stageStatusesOn(
+        [stage('2026-03-01'), stage('2026-04-21'), stage('2026-05-01'), stage('2026-06-01')],
+        '2026-04-21',
+      ),
+    ).toEqual(['completed', 'upcoming', 'upcoming', 'future']);
+  });
+
+  it('keeps cancelled stages and treats hidden dates as future', () => {
+    expect(
+      stageStatusesOn(
+        [stage('2026-03-01', { cancelled: true }), stage('2026-09-01', { hidden: true }), stage('2026-10-01')],
+        '2026-04-21',
+      ),
+    ).toEqual(['cancelled', 'upcoming', 'future']);
   });
 });

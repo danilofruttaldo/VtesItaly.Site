@@ -7,10 +7,10 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
-import { resolvePlatformLabel, computeStageDisplayImages } from '../utils/status';
+import { resolvePlatformLabel, computeStageDisplayImages, stageStatusesOn } from '../utils/status';
 import { anonymizeName } from '../utils/anonymize';
 import { cities } from '../data/cities';
-import { todayLocalMidnight } from '../utils/today';
+import { todayLocalIso } from '../utils/today';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -36,20 +36,14 @@ const stageItemLabel = post.data.stageItemLabel || t.tour.stage_item;
 const { Content } = await render(post);
 const stages = post.data.stages || [];
 
-const today = todayLocalMidnight();
 const displayImages = computeStageDisplayImages(stages);
-const computedStages = stages.map((s) => {
-  const dateIso = isoDay(s.date);
-  if (s.status === 'cancelled') return { ...s, dateIso };
-  if (s.hideDate) return { ...s, dateIso, status: 'future' as const };
-  const stageDate = new Date(s.date);
-  stageDate.setHours(0, 0, 0, 0);
-  const status = stageDate.getTime() === today.getTime() ? 'upcoming' : stageDate < today ? 'completed' : 'future';
-  return { ...s, dateIso, status };
-});
-// Mark first future as upcoming
-const firstFuture = computedStages.findIndex((s) => s.status === 'future');
-if (firstFuture !== -1) computedStages[firstFuture].status = 'upcoming';
+const stageStates = stages.map((s) => ({
+  date: isoDay(s.date),
+  cancelled: s.status === 'cancelled',
+  hidden: !!s.hideDate,
+}));
+const stageStatuses = stageStatusesOn(stageStates, todayLocalIso());
+const computedStages = stages.map((s, i) => ({ ...s, dateIso: stageStates[i].date, status: stageStatuses[i] }));
 
 const statusLabels: Record<string, string> = {
   completed: t.tour.status_completed,
@@ -306,6 +300,9 @@ function formatStage(val: unknown, isAway: boolean): string {
 </div>
 
 <script>
+  import { stageStatusesOn } from '../utils/status';
+  import { todayLocalIso } from '../utils/today';
+
   document.querySelectorAll('.te-card--clickable').forEach((card) => {
     card.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
@@ -315,33 +312,19 @@ function formatStage(val: unknown, isAway: boolean): string {
     });
   });
 
-  // Recompute stage statuses client-side
+  // Recompute stage statuses client-side, with the build's own rule
   (function () {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const cards = document.querySelectorAll<HTMLElement>('.te-card[data-stage-date]');
-    const statuses: string[] = [];
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.te-card[data-stage-date]'));
+    const statuses = stageStatusesOn(
+      cards.map((card) => ({
+        date: card.dataset.stageDate || '',
+        cancelled: card.dataset.stageCancelled === 'true',
+        hidden: card.dataset.stageHiddenDate === 'true',
+      })),
+      todayLocalIso(),
+    );
 
-    // First pass: compute raw status per card
-    cards.forEach((card) => {
-      if (card.dataset.stageCancelled === 'true') {
-        statuses.push('cancelled');
-        return;
-      }
-      if (card.dataset.stageHiddenDate === 'true') {
-        statuses.push('future');
-        return;
-      }
-      const d = new Date(card.dataset.stageDate + 'T00:00:00');
-      d.setHours(0, 0, 0, 0);
-      statuses.push(d < today ? 'completed' : 'future');
-    });
-
-    // Mark first future as upcoming
-    const firstFuture = statuses.indexOf('future');
-    if (firstFuture !== -1) statuses[firstFuture] = 'upcoming';
-
-    // Second pass: apply
+    // Apply
     cards.forEach((card, i) => {
       const status = statuses[i];
       if (status === 'cancelled') return; // keep build-time state

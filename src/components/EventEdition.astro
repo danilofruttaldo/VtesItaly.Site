@@ -12,6 +12,7 @@ import { loadStandings, type Standing } from '../utils/standings';
 import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
 import { todayLocalIso } from '../utils/today';
+import { priceColumns } from '../utils/timeline';
 import { isoDate, lastEventDay } from '../utils/date';
 
 interface Props {
@@ -91,9 +92,7 @@ const standingsCollapsed =
 const today = todayLocalIso();
 const lastEventDayIso = lastEventDay(postEvents, isoDate(post.data.date));
 const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? isoDate(post.data.earlyDeadlineDate) : undefined;
-const eventFinished = today > lastEventDayIso;
-const earlyActive = !eventFinished && (!earlyDeadlineDateIso || today <= earlyDeadlineDateIso);
-const regularActive = !eventFinished && !earlyActive;
+const { earlyActive, regularActive } = priceColumns(today, lastEventDayIso, earlyDeadlineDateIso);
 // Sign-up forms are pointless once the event is over: hidden from the day
 // after its last day, re-checked by the runtime script (temporal.ts).
 const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com\/forms\/)/.test(url);

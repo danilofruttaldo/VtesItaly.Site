@@ -3,10 +3,12 @@
 // divider, the next-event highlight, the active price column, the sign-up
 // links of past events, the tour stage covers and the footer year. The HTML
 // carries the build-day values and can sit in a cache for days, so the
-// visitor's own date wins. Status rules come from src/utils/status.ts,
-// the same functions the build uses: there is no second copy to keep in sync.
+// visitor's own date wins. The rules come from src/utils/status.ts and
+// src/utils/timeline.ts, the same functions the build uses: there is no
+// second copy to keep in sync.
 import { eventStatusOn, tourStatusOn, type StageDay } from '../utils/status';
 import { todayLocalIso } from '../utils/today';
+import { firstPastIndex, nextEventIndex, priceColumns, timelineWindow } from '../utils/timeline';
 
 const todayISO = todayLocalIso();
 
@@ -55,8 +57,9 @@ document
   .forEach((t) => revealCovers(t.content));
 
 const dateOf = (c: Element) => c.getAttribute('data-date') || '';
-// Last day of the card's event: a multi-day event in progress is not past yet.
-const endDateOf = (c: Element) => c.getAttribute('data-end-date') || dateOf(c);
+// Start and last day of the card's event: a multi-day event in progress is
+// not past yet.
+const spanOf = (c: Element) => ({ date: dateOf(c), endDate: c.getAttribute('data-end-date') || undefined });
 
 function resetHighlight(cards: Element[]) {
   cards.forEach((c) => {
@@ -81,26 +84,13 @@ document.querySelectorAll('[data-temporal-window]').forEach((container) => {
 
   resetHighlight(all);
 
-  // Pivot compares against data-end-date (data-date fallback) so a
-  // multi-day event stays the highlighted card for its whole run.
-  const pivot = all.findIndex((c) => endDateOf(c) >= todayISO);
-  let chosen: Element[];
-  if (pivot === -1) {
-    chosen = all.slice(-5).reverse();
-  } else {
-    const idealAbove = 2;
-    const idealBelow = 2;
-    let above = all.slice(pivot + 1, pivot + 1 + idealAbove);
-    let below = all.slice(Math.max(0, pivot - idealBelow), pivot);
-    const aboveShort = idealAbove - above.length;
-    const belowShort = idealBelow - below.length;
-    if (aboveShort > 0) below = all.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
-    if (belowShort > 0) above = all.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
-    chosen = above.slice().reverse().concat([all[pivot]], below.slice().reverse());
-    all[pivot].classList.add('post-card--highlight');
+  const { entries: chosen, highlightIndex } = timelineWindow(all, todayISO, spanOf);
+  if (highlightIndex !== -1) {
+    const pivotCard = chosen[highlightIndex];
+    pivotCard.classList.add('post-card--highlight');
     // Already started (data-date <= today): "Oggi" label; else "Prossimo".
-    const pivotOngoing = dateOf(all[pivot]) <= todayISO;
-    const pivotBadge = all[pivot].querySelector<HTMLElement>('.post-card__highlight-badge');
+    const pivotOngoing = dateOf(pivotCard) <= todayISO;
+    const pivotBadge = pivotCard.querySelector<HTMLElement>('.post-card__highlight-badge');
     if (pivotBadge) {
       const nextLabel = pivotBadge.getAttribute('data-label-next') || '';
       const ongoingLabel = pivotBadge.getAttribute('data-label-ongoing') || nextLabel;
@@ -130,7 +120,7 @@ document.querySelectorAll('[data-temporal-divider]').forEach((container) => {
   const divider = container.querySelector<HTMLElement>('.post-list__divider');
   if (!divider) return;
   const cards = Array.from(container.querySelectorAll('.post-card[data-date]'));
-  const firstPast = cards.findIndex((c) => endDateOf(c) < todayISO);
+  const firstPast = firstPastIndex(cards, todayISO, spanOf);
   if (firstPast <= 0) {
     // No past on this page, OR all cards are past (no future above): no divider.
     divider.hidden = true;
@@ -148,8 +138,7 @@ document.querySelectorAll('[data-temporal-next-event]').forEach((container) => {
   const cards = Array.from(container.querySelectorAll('.post-card[data-date]'));
   resetHighlight(cards);
   if (cards.length === 0) return;
-  const firstPast = cards.findIndex((c) => endDateOf(c) < todayISO);
-  const idx = firstPast === -1 ? cards.length - 1 : firstPast - 1;
+  const idx = nextEventIndex(cards, todayISO, spanOf);
   if (idx >= 0) {
     cards[idx].classList.add('post-card--highlight');
     const b = cards[idx].querySelector<HTMLElement>('.post-card__highlight-badge');
@@ -164,9 +153,7 @@ document.querySelectorAll('[data-temporal-pricing]').forEach((table) => {
   const lastEventDate = table.getAttribute('data-event-last-date') || '';
   const earlyDeadlineDate = table.getAttribute('data-early-deadline-date') || '';
   if (!lastEventDate) return;
-  const eventFinished = todayISO > lastEventDate;
-  const earlyActive = !eventFinished && (!earlyDeadlineDate || todayISO <= earlyDeadlineDate);
-  const regularActive = !eventFinished && !earlyActive;
+  const { earlyActive, regularActive } = priceColumns(todayISO, lastEventDate, earlyDeadlineDate || undefined);
   const applyPrice = (selector: string, active: boolean) => {
     table.querySelectorAll(selector).forEach((el) => {
       el.classList.remove('gp-price-active', 'gp-price-inactive');

@@ -10,6 +10,7 @@ import { mainPages } from '../../data/pages';
 import { filterByLocale, useTranslations } from '../../utils/i18n';
 import { todayLocalIso } from '../../utils/today';
 import { postEndDay } from '../../utils/calendar';
+import { firstPastIndex } from '../../utils/timeline';
 
 const t = useTranslations('it');
 
@@ -19,7 +20,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
   // Past = over by its last day: a multi-day event in progress stays above.
   const today = todayLocalIso();
-  const pastStartGlobal = posts.findIndex((p) => postEndDay(p) < today);
+  const pastStartGlobal = firstPastIndex(posts, today, (p) => ({ date: postEndDay(p) }));
   return paginate(posts, { pageSize: 8 }).map((path) => ({
     ...path,
     props: { ...path.props, pastStartGlobal },

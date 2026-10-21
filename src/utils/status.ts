@@ -41,6 +41,34 @@ export function eventStatusOn(date: string, today: string, endDate: string = dat
   return today > (endDate || date) ? 'past' : 'live';
 }
 
+export type StageStatus = 'completed' | 'upcoming' | 'future' | 'cancelled';
+
+/**
+ * Per-stage status of a tour page against `today` (YYYY-MM-DD): a stage on
+ * its day and the first one after it are "upcoming", hidden-date stages are
+ * "future". Run at build time and again in the browser (TourEdition script),
+ * where `future` also means the placeholder cover (see stageRevealDates).
+ */
+export function stageStatusesOn(
+  stages: { date: string; cancelled: boolean; hidden: boolean }[],
+  today: string,
+): StageStatus[] {
+  const out: StageStatus[] = stages.map((s) =>
+    s.cancelled
+      ? 'cancelled'
+      : s.hidden
+        ? 'future'
+        : s.date === today
+          ? 'upcoming'
+          : s.date < today
+            ? 'completed'
+            : 'future',
+  );
+  const firstFuture = out.indexOf('future');
+  if (firstFuture !== -1) out[firstFuture] = 'upcoming';
+  return out;
+}
+
 /** Stages as `StageDay`, the shape the page hands to the browser. */
 export function toStageDays(stages: Stage[]): StageDay[] {
   return stages.map((s) => ({ date: isoDay(s.date), cancelled: s.status === 'cancelled' }));

@@ -1,9 +1,10 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './i18n';
 import { useTranslations } from './i18n';
-import { stageDisplay } from './status';
+import { resolvePlatformLabel, stageDisplay } from './status';
 import { postUrl } from './url';
 import { isoDate } from './date';
+import { timelineWindow } from './timeline';
 import { isLeaguePost, postEndDay } from './post';
 
 export { isLeaguePost, postEndDay };
@@ -41,6 +42,7 @@ export interface CalendarEvent {
   // crops it to fill the frame instead of letterboxing it.
   imageFill?: boolean;
   archonUrl?: string; // Archon or BCN Crisis link
+  platform?: string; // label of the archonUrl button ("Archon", "BCN Crisis")
   tags?: string[]; // post tags for sub-category coloring
   // Tour stage still on the placeholder at build time: the real cover and the
   // day (YYYY-MM-DD) the browser swaps it in.
@@ -257,6 +259,12 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     });
   }
 
+  // Same platform label as the event pages (resolvePlatformLabel)
+  for (const e of events) {
+    if (!e.archonUrl) continue;
+    const label = resolvePlatformLabel(e.archonUrl);
+    e.platform = label === e.archonUrl ? 'Archon' : label;
+  }
   events.sort((a, b) => a.date.localeCompare(b.date));
   return events;
 }
@@ -385,42 +393,7 @@ export interface TimelineWindow {
   highlightIndex: number;
 }
 
-/**
- * Pick 5 entries centered on the next upcoming (or currently in-progress) event:
- *   - 2 entries above (further future, farthest first)
- *   - 1 highlighted entry (the "next" or "today" card)
- *   - 2 entries below (recent past, most recent first)
- * Falls back to the other side when one side is short.
- *
- * The pivot compares against `endDate` (falling back to `date`) so a multi-day
- * event stays highlighted for its whole run, not just on its first day.
- */
+/** The homepage window over the timeline: see `timelineWindow`. */
 export function pickTimelineWindow(entries: TimelineEntry[], today: string): TimelineWindow {
-  if (entries.length === 0) return { entries: [], highlightIndex: -1 };
-
-  const pivot = entries.findIndex((e) => (e.endDate || e.date) >= today);
-  if (pivot === -1) {
-    // No upcoming: show the 5 most recent past, newest at top, no highlight.
-    const tail = entries.slice(-5).reverse();
-    return { entries: tail, highlightIndex: -1 };
-  }
-
-  const idealAbove = 2;
-  const idealBelow = 2;
-
-  let above = entries.slice(pivot + 1, pivot + 1 + idealAbove);
-  let below = entries.slice(Math.max(0, pivot - idealBelow), pivot);
-
-  const aboveShort = idealAbove - above.length;
-  const belowShort = idealBelow - below.length;
-
-  if (aboveShort > 0) {
-    below = entries.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
-  }
-  if (belowShort > 0) {
-    above = entries.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
-  }
-
-  const display = [...above.slice().reverse(), entries[pivot], ...below.slice().reverse()];
-  return { entries: display, highlightIndex: above.length };
+  return timelineWindow(entries, today, (e) => e);
 }

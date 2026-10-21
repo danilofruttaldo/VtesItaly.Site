@@ -57,7 +57,7 @@ locale: 'en'
 
 <div class="callout">
   <h2>Important notice</h2>
-  <p>Due to circumstances beyond the organisers' control, on <strong>Saturday 5 September</strong> the event will take place entirely at the <strong>Agriturismo Il Musaccio</strong>, instead of the Stadio Comunale; lunch, still being finalised, will be provided by a catering service at the same price. The organisers remain available for any questions or needs.</p>
+  <p>Due to circumstances beyond the organisers' control, on <strong>Saturday 5 September</strong> the event took place entirely at the <strong>Agriturismo Il Musaccio</strong>, instead of the Stadio Comunale; lunch was planned with a catering service at the same price.</p>
 </div>
 
 The Italian Vampire: The Eternal Struggle community is pleased to announce the new edition of the **Symposium Italicum**, in partnership with **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** and sponsored by **Mistlore**, **TheCardGameGeek** and **The Pot Still**!

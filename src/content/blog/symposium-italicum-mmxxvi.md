@@ -57,7 +57,7 @@ locale: it
 
 <div class="callout">
   <h2>Comunicazione importante</h2>
-  <p>Per cause indipendenti dall'organizzazione, <strong>sabato 5 settembre</strong> l'evento si svolgerà interamente presso l'<strong>Agriturismo Il Musaccio</strong>, invece che allo Stadio Comunale; il pranzo, in via di definizione, sarà fornito da un catering alla medesima cifra. L'organizzazione resta a disposizione per eventuali chiarimenti o necessità.</p>
+  <p>Per cause indipendenti dall'organizzazione, <strong>sabato 5 settembre</strong> l'evento si è svolto interamente presso l'<strong>Agriturismo Il Musaccio</strong>, invece che allo Stadio Comunale; per il pranzo era previsto un catering alla medesima cifra.</p>
 </div>
 
 La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare, in collaborazione con l'Associazione **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** e sponsorizzato da **Mistlore**, **TheCardGameGeek** e **The Pot Still**, la nuova edizione del **Symposium Italicum**!

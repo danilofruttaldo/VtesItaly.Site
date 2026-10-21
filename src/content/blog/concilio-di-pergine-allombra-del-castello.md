@@ -26,4 +26,4 @@ locale: it
 
 Asgard Aldeno è lieta di invitarvi all'evento Nazionale del gioco di carte di V:TES.
 
-All'interno della manifestazione Pergine Comics avremo il piacere di farvi giocare nella caratteristica cittadina di Pergine Valsugana, dove voi e le vostre famiglie potrete godere delle varie attività presenti tutto il weekend.
+All'interno della manifestazione Pergine Comics abbiamo avuto il piacere di farvi giocare nella caratteristica cittadina di Pergine Valsugana, dove voi e le vostre famiglie avete potuto godere delle varie attività presenti tutto il weekend.

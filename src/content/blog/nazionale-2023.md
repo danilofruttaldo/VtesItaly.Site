@@ -21,7 +21,7 @@ gallerySections:
       - '/nc/nc-2023/nc-2023-round-06.webp'
 venue:
   name: 'The Sydney Hotel'
-  address: 'Via Michelino, 73, Bologna'
+  address: 'Via Michelino 73, Bologna (BO)'
   siteUrl: 'https://www.thesydneyhotel.eu/'
   mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+73+Bologna'
 events:

@@ -7,7 +7,7 @@ excerpt: 'The Italian Grand Prix 2025 was held in Modena on Saturday 1 March 202
 featuredImage: '/gp/gp-2025/gp-2025-featured.webp'
 poster: '/gp/gp-2025/gp-2025-poster.webp'
 venue:
-  name: 'Hotel Baia del Re ****'
+  name: 'Hotel Baia del Re'
   address: 'Str. Vignolese, 1684, 41126 Modena (MO)'
   siteUrl: 'https://www.hotelbaiadelre.com/'
   mapUrl: 'https://maps.google.com/?q=Hotel+Baia+del+Re+Str.+Vignolese+1684+Modena'

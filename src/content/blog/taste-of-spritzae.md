@@ -8,7 +8,7 @@ poster: '/images/comunita/treviso/taste-of-spritzae.webp'
 excerpt: 'Evento amichevole e NON sanzionato, ideale per nuovi giocatori o per chi si è avvicinato da poco.'
 venue:
   name: 'GiOlly Comics'
-  address: 'Strada dei Biscari 2, 31100 Treviso'
+  address: 'Strada dei Biscari 2, 31100 Treviso (TV)'
   mapUrl: 'https://maps.google.com/?q=Strada+dei+Biscari+2+31100+Treviso'
 events:
   - name: 'Constructed (Proxy Legal)'

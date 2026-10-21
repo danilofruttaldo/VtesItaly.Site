@@ -8,7 +8,7 @@ featuredImage: '/gp/gp-2023/gp-2023-poster.webp'
 poster: '/gp/gp-2023/gp-2023-poster.webp'
 venue:
   name: 'UNA Hotel Fiera'
-  address: 'Piazza della Costituzione 1, Bologna'
+  address: 'Piazza della Costituzione 1, Bologna (BO)'
   siteUrl: 'https://www.unaitalianhospitality.com/it/soggiorni/una-hotels-bologna-fiera'
   mapUrl: 'https://maps.google.com/?q=UNA+Hotel+Fiera+Piazza+della+Costituzione+1+Bologna'
 events:

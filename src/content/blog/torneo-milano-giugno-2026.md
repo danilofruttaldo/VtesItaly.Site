@@ -44,4 +44,4 @@ All'interno della struttura c'è un **bar con tavola fredda** (panini, piadine e
 
 In alternativa, a **100 m** dalla sede c'è una **pizzeria a taglio / trattoria** che frequentiamo abitualmente: circa **12 €** per pizza + bibita, **25–30 €** per primo + secondo + contorno.
 
-Cercheremo di concordare un **menu base a prezzo fisso** per agevolare l'organizzazione del pranzo.
+Per agevolare il pranzo era previsto un **menu base a prezzo fisso**.

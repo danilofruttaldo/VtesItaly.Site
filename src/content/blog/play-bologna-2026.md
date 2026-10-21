@@ -37,7 +37,7 @@ locale: it
 
 Il **22, 23 e 24 maggio 2026** la comunità italiana di _Vampire: The Eternal Struggle_ era al **Play – Festival del Gioco** di **BolognaFiere** con **tavoli demo** aperti a chiunque voglia cimentarsi nel gioco politico più longevo del mondo dei giochi di carte collezionabili.
 
-Tre giorni, un solo invito: **vieni a provare VTES**. Saremo al **Padiglione 18**, nell'**Area Vampiri La Masquerade** (stand **J11 - Camarilla Italia** / **J13 - Area Vampiri**). Che tu non abbia mai visto il gioco o che ne abbia solo sentito parlare, troverai un tavolo pronto, i mazzi già preparati e giocatori della comunità italiana a guidarti in una partita di assaggio di 30–45 minuti. Nessuna iscrizione, nessun mazzo da portare: basta sederti.
+Tre giorni, un solo invito: **vieni a provare VTES**. Eravamo al **Padiglione 18**, nell'**Area Vampiri La Masquerade** (stand **J11 - Camarilla Italia** / **J13 - Area Vampiri**). Che tu non abbia mai visto il gioco o che ne avesse solo sentito parlare, trovava un tavolo pronto, i mazzi già preparati e giocatori della comunità italiana a guidarlo in una partita di assaggio di 30–45 minuti. Nessuna iscrizione, nessun mazzo da portare: bastava sedersi.
 
 Al banchetto si sono alternati **giocatori di diverse città**: un'occasione per conoscere chi gioca vicino a te e scoprire dove si gioca nel tuo dominio.
 

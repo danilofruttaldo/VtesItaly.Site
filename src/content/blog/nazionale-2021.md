@@ -8,7 +8,7 @@ excerpt: 'Il Campionato Nazionale Italiano VTES 2021 si è tenuto sabato 8 genna
 poster: '/nc/nc-2021/nc-2021-poster.webp'
 venue:
   name: 'Circolo Arci Benassi'
-  address: 'Viale Sergio Cavina 4, Bologna'
+  address: 'Viale Sergio Cavina 4, Bologna (BO)'
   siteUrl: 'https://circolobenassi.wixsite.com/arci-benassi'
   mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Benassi+Viale+Sergio+Cavina+4+Bologna'
 events:

@@ -44,4 +44,4 @@ Inside the venue there is a **bar with a cold buffet** (sandwiches, piadinas and
 
 Alternatively, **100 m** from the venue there is a **pizza-by-the-slice / trattoria** we regularly use: about **€12** for pizza + drink, **€25–30** for a full meal (first course + main + side).
 
-We will try to agree on a **fixed-price set menu** to streamline lunch organisation.
+A **fixed-price set menu** was planned to streamline lunch.

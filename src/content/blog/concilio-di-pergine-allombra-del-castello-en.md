@@ -27,4 +27,4 @@ locale: 'en'
 
 Asgard Aldeno is pleased to invite you to the National V:TES card game event.
 
-Inside the Pergine Comics convention, we will have the pleasure of hosting you in the charming town of Pergine Valsugana, where you and your families can enjoy the various activities throughout the weekend.
+Inside the Pergine Comics convention, we had the pleasure of hosting you in the charming town of Pergine Valsugana, where you and your families could enjoy the various activities throughout the weekend.

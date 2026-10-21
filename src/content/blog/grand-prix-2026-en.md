@@ -44,7 +44,7 @@ gallerySections:
     wideImages:
       - '/gp/gp-2026/gp-2026-bonus-04.webp'
 venue:
-  name: 'Hotel Airport Bologna ****'
+  name: 'Hotel Airport Bologna'
   address: 'Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)'
   siteUrl: 'https://www.airporthotelbologna.it/'
   mapUrl: 'https://maps.google.com/?q=Hotel+Airport+Bologna+Via+Marco+Emilio+Lepido+203+Bologna'

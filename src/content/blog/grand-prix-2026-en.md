@@ -46,7 +46,7 @@ gallerySections:
 venue:
   name: 'Hotel Airport Bologna ****'
   address: 'Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)'
-  siteUrl: 'http://www.airporthotelbologna.it/'
+  siteUrl: 'https://www.airporthotelbologna.it/'
   mapUrl: 'https://maps.google.com/?q=Hotel+Airport+Bologna+Via+Marco+Emilio+Lepido+203+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2026'

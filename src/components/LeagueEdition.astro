@@ -1,6 +1,7 @@
 ---
 import { galleryFor } from '../utils/image';
 import { loadStandings } from '../utils/standings';
+import ResponsiveImage from './ResponsiveImage.astro';
 import '../styles/prose.css';
 import '../styles/league-edition.css';
 import { render } from 'astro:content';
@@ -64,7 +65,12 @@ function fmt(n: number): string {
 {/* Poster */}
 {post.data.poster && (
   <div class="le-poster">
-    <img src={post.data.poster} alt={post.data.title} loading="eager" decoding="async" />
+    <ResponsiveImage
+      src={post.data.poster}
+      alt={post.data.title}
+      sizes="(max-width: 360px) 100vw, 360px"
+      loading="eager"
+    />
   </div>
 )}
 

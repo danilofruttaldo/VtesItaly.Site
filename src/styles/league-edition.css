@@ -34,6 +34,7 @@
 .le-poster img {
   max-width: 360px;
   width: 100%;
+  height: auto;
   margin: 0 auto;
   display: block;
   border-radius: var(--radius);

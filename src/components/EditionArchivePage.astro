@@ -1,0 +1,137 @@
+---
+import { firstEventDay, isoDay, lastEventDay } from '../utils/date';
+import { todayLocalIso } from '../utils/today';
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import ShareButtons from './ShareButtons.astro';
+import EventEdition from './EventEdition.astro';
+import { getCollection } from 'astro:content';
+import { mainPages } from '../data/pages';
+import { filterByLocale, useTranslations } from '../utils/i18n';
+import type { Locale } from '../utils/i18n';
+import { computeEventStatus } from '../utils/status';
+import { getCardMeta, type Standing } from '../utils/standings';
+import { postUrl } from '../utils/url';
+import '../styles/edition-archive.css';
+
+interface Props {
+  locale: Locale;
+  /** Italian slug of the archive page, which is also the posts' category. */
+  slug: 'grand-prix' | 'nazionale';
+}
+
+const { locale, slug } = Astro.props;
+const t = useTranslations(locale);
+
+const page = mainPages.find((p) => p.slug.it === slug)!;
+const posts = filterByLocale(await getCollection('blog'), locale)
+  .filter((p) => p.data.category === page.category)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Current edition: the nearest one not over yet (posts are newest first), else
+// the latest. Build-time pick; the status badge is re-run in the browser.
+const todayIso = todayLocalIso();
+const endOf = (p: (typeof posts)[number]) => lastEventDay(p.data.events, isoDay(p.data.date));
+const startOf = (p: (typeof posts)[number]) => firstEventDay(p.data.events, isoDay(p.data.date));
+const current = posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
+const pastEditions = posts.filter((p) => p !== current);
+
+const status = current ? computeEventStatus(new Date(startOf(current)), endOf(current)) : null;
+
+// import.meta.glob takes literal patterns only: one per archive, picked by slug.
+type StandingsModules = Record<string, { default: Standing[] }>;
+const standingsBySlug: Record<Props['slug'], StandingsModules> = {
+  'grand-prix': import.meta.glob('/src/data/standings/gp/standings-gp-*.json', { eager: true }) as StandingsModules,
+  nazionale: import.meta.glob('/src/data/standings/nc/standings-nc-*.json', { eager: true }) as StandingsModules,
+};
+const allStandings = standingsBySlug[slug];
+---
+
+<Base title={page.title[locale]} description={page.description[locale]} ogImage={page.ogImage}>
+  <PageHero title={page.title[locale]} image={page.headerImage} />
+
+  {/* Fixed: intro */}
+  <section class="page-section">
+    <div class="container container--narrow">
+      <div class="intro-lead">
+        <Fragment set:html={page.leadHtml?.[locale] ?? ''} />
+      </div>
+    </div>
+  </section>
+
+  {/* Variable: current edition */}
+  {current && (
+    <section class="page-section">
+      <div class="container">
+        <div class="edition-header">
+          <h2 class="edition-title">{current.data.title}</h2>
+          <span
+            class="edition-label-tag"
+            data-event-date={startOf(current)}
+            data-event-end-date={endOf(current)}
+            data-label-live={t.status.live}
+            data-label-upcoming={t.status.upcoming}
+            data-label-past={t.status.past}
+          >
+            {status === 'live' ? t.status.live : status === 'upcoming' ? t.status.upcoming : t.status.past}
+          </span>
+        </div>
+        <EventEdition post={current} locale={locale} />
+      </div>
+    </section>
+  )}
+
+  {/* Fixed: archive + share */}
+  {pastEditions.length > 0 && (
+    <section class="page-section">
+      <div class="container container--narrow">
+        <h2 class="page-section-title">{t.gp.archive}</h2>
+        <div class="editions-list">
+          {pastEditions.map((post) => {
+            const meta = getCardMeta(post, allStandings, locale);
+            return (
+              <a href={postUrl(post, locale)} class="edition-card">
+                {(post.data.poster || post.data.featuredImage) && (
+                  <img
+                    src={post.data.poster || post.data.featuredImage}
+                    alt={post.data.title}
+                    class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']}
+                    loading="lazy"
+                    decoding="async"
+                    width="64"
+                    height="64"
+                  />
+                )}
+                <div class="edition-card-body">
+                  <div class="edition-card-header">
+                    <span class="edition-year">
+                      {post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}
+                    </span>
+                    {meta.winner && <span class="edition-winner">&#127942; {meta.winner}</span>}
+                  </div>
+                  <span class="edition-info">
+                    {post.data.tags && post.data.tags.filter((tag) => tag !== 'italia').length > 0 && (
+                      <>{post.data.tags.filter((tag) => tag !== 'italia').join(', ')}</>
+                    )}
+                    {meta.eventDate && <> &middot; {meta.eventDate}</>}
+                    {meta.players > 0 && (
+                      <>
+                        {' '}
+                        &middot; {meta.players} {t.gp.players_label}
+                      </>
+                    )}
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+  <section class="page-section">
+    <div class="container container--narrow">
+      <ShareButtons />
+    </div>
+  </section>
+</Base>

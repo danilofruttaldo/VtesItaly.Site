@@ -1,0 +1,109 @@
+---
+import '../styles/community-page.css';
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import ShareButtons from './ShareButtons.astro';
+import PostCard from './PostCard.astro';
+import { mainPages } from '../data/pages';
+import { useTranslations } from '../utils/i18n';
+import type { Locale } from '../utils/i18n';
+import { postUrl } from '../utils/url';
+import { postEndDay } from '../utils/calendar';
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>;
+  /** Index, across all pages, of the first post already over (-1: none). */
+  pastStartGlobal: number;
+  locale: Locale;
+}
+
+const { page, pastStartGlobal, locale } = Astro.props;
+const t = useTranslations(locale);
+const pageMeta = mainPages.find((p) => p.slug.it === 'comunita')!;
+
+const pageStart = (page.currentPage - 1) * page.size;
+const dividerAtPageIndex =
+  pastStartGlobal === -1 || pastStartGlobal < pageStart || pastStartGlobal >= pageStart + page.data.length
+    ? -1
+    : pastStartGlobal - pageStart;
+---
+
+<Base
+  title={pageMeta.title[locale]}
+  description={pageMeta.description[locale]}
+  ogImage={pageMeta.ogImage}
+  noindex={page.currentPage > 1}
+>
+  <PageHero title={pageMeta.title[locale]} image={pageMeta.headerImage} />
+  <section class="hero-subtitle">
+    <div class="container container--narrow">
+      <p>{t.community.subtitle}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="post-list" data-temporal-divider>
+        {page.data.map((post, i) => (
+          <>
+            {i === dividerAtPageIndex && (
+              <div class="post-list__divider" role="separator" aria-label={t.community.past_label}>
+                <span>{t.community.past_label}</span>
+              </div>
+            )}
+            <PostCard
+              href={postUrl(post, locale)}
+              title={post.data.title}
+              image={post.data.featuredImage || post.data.poster}
+              imageAnchor={
+                post.data.imageAnchor ||
+                (post.data.events && post.data.events.length > 0 && post.data.events.every((e) => e.type === 'altro')
+                  ? 'left center'
+                  : undefined)
+              }
+              date={post.data.date}
+              endDate={new Date(postEndDay(post))}
+              tags={post.data.tags}
+              excerpt={post.data.excerpt}
+              locale={locale}
+              eager={i === 0}
+            />
+          </>
+        ))}
+        {/* Fallback divider for the runtime script to move when build-time saw
+            no past on this page but today has since advanced. */}
+        {dividerAtPageIndex === -1 && (
+          <div class="post-list__divider" role="separator" aria-label={t.community.past_label} hidden>
+            <span>{t.community.past_label}</span>
+          </div>
+        )}
+      </div>
+
+      {page.lastPage > 1 && (
+        <nav class="pagination" aria-label={t.community.pagination}>
+          {page.url.prev ? (
+            <a href={page.url.prev} class="pagination__link">
+              &larr; {t.community.previous}
+            </a>
+          ) : (
+            <span class="pagination__link pagination__link--disabled">&larr; {t.community.previous}</span>
+          )}
+          <span class="pagination__info">
+            {t.community.page_info
+              .replace('%current%', String(page.currentPage))
+              .replace('%last%', String(page.lastPage))}
+          </span>
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination__link">
+              {t.community.next} &rarr;
+            </a>
+          ) : (
+            <span class="pagination__link pagination__link--disabled">{t.community.next} &rarr;</span>
+          )}
+        </nav>
+      )}
+      <ShareButtons />
+    </div>
+  </section>
+</Base>

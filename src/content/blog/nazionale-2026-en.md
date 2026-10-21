@@ -81,6 +81,7 @@ pricing:
     early: '15 euro'
     regular: '18 euro'
 earlyDeadline: 'January 31'
+earlyDeadlineDate: 2026-01-31
 payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 hotel:
   - room: 'Discounted rate at Hotel Paoli (event venue)'

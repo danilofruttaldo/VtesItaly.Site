@@ -7,24 +7,29 @@ const DEFAULT_LOCALE = 'it';
 
 /* ── Shared field schemas ─────────────────────────────────── */
 
+// External address (Archon, maps, venue site, streaming).
+const httpUrl = z.string().regex(/^https?:\/\//, 'must be an absolute http(s) URL');
+// Link target: external, or a file/page of the site (root-relative).
+const linkUrl = z.string().regex(/^(https?:\/\/|\/)/, 'must be an http(s) URL or start with /');
+
 const linkSchema = z.object({
   label: z.string(),
-  url: z.string(),
+  url: linkUrl,
   locale: z.enum(LOCALES).optional(),
 });
 
 const venueSchema = z.object({
   name: z.string(),
   address: z.string(),
-  mapUrl: z.string().optional(),
-  siteUrl: z.string().optional(),
+  mapUrl: httpUrl.optional(),
+  siteUrl: httpUrl.optional(),
 });
 
 const venueFullSchema = z.object({
   name: z.string(),
   address: z.string(),
-  mapUrl: z.string(),
-  siteUrl: z.string(),
+  mapUrl: httpUrl,
+  siteUrl: httpUrl,
 });
 
 const eventSchema = z.object({
@@ -40,7 +45,7 @@ const eventSchema = z.object({
   format: z.string().optional(),
   proxies: z.boolean().optional(),
   rounds: z.number().optional(),
-  archonUrl: z.string().optional(),
+  archonUrl: httpUrl.optional(),
   // Per-event standings: set on a side event (or on each tournament of a
   // multi-tournament weekend) so EventEdition can render one table per
   // tournament. The post-level `standingsUrl` stays the single-table case.
@@ -63,7 +68,7 @@ const stageSchema = z.object({
   format: z.string().optional(),
   proxies: z.boolean().optional(),
   rounds: z.number().optional(),
-  archonUrl: z.string().optional(),
+  archonUrl: httpUrl.optional(),
   image: z.string().optional(),
   description: z.string().optional(),
   hideDate: z.boolean().optional(),
@@ -124,7 +129,7 @@ const baseFields = {
   highlight: z.object({ id: z.string(), label: z.string() }).optional(),
   highlightHtml: z.string().optional(),
   streamingLinks: z
-    .array(z.object({ url: z.string(), label: z.string() }))
+    .array(z.object({ url: httpUrl, label: z.string() }))
     .optional()
     .default([]),
   pageLayout: z.enum(['auto', 'article']).optional().default('auto'),
@@ -136,58 +141,50 @@ const baseFields = {
 
 /* ── Per-type schemas ─────────────────────────────────────── */
 
-// Grand Prix & Nazionale: full event pages
-const grandPrixSchema = z.object({
-  ...baseFields,
-  category: z.literal('grand-prix'),
-  poster: z.string(),
-  venue: venueFullSchema,
-  events: z.array(eventSchema).min(1),
-  pricing: z.array(pricingSchema),
-  payment: z.string(),
-  registration: z.string().optional(),
-  contact: z.string(),
-  hotel: z.array(hotelSchema),
-  prizes: z.union([z.string(), z.array(z.string())]),
-  // Optional at post level: multi-tournament pages carry the standings on the
-  // matching `events[]` entry instead, so each table is titled with its own
-  // tournament. Announcement posts have no standings at all yet.
-  standingsUrl: z.string().optional(),
-  // optional
-  earlyDeadline: z.string().optional(),
-  earlyDeadlineDate: z.coerce.date().optional(),
-  hotelNote: z.string().optional(),
-  schedule: z.array(scheduleSchema).optional().default([]),
-  streamingUrl: z.string().optional(),
-  streamingLabel: z.string().optional(),
-  stages: z.array(stageSchema).optional(),
-});
+// `earlyDeadline` is the printed label ("10 Aprile"); the date behind it
+// decides which price column is active, so one never comes without the other.
+function requireEarlyDeadlineDate(data: { earlyDeadline?: string; earlyDeadlineDate?: Date }, ctx: z.RefinementCtx) {
+  if (data.earlyDeadline && !data.earlyDeadlineDate) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['earlyDeadlineDate'],
+      message: 'earlyDeadline needs earlyDeadlineDate (the day it ends), or the early price never expires.',
+    });
+  }
+}
 
-const nazionaleSchema = z.object({
-  ...baseFields,
-  category: z.literal('nazionale'),
-  poster: z.string(),
-  venue: venueFullSchema,
-  events: z.array(eventSchema).min(1),
-  pricing: z.array(pricingSchema),
-  payment: z.string(),
-  registration: z.string().optional(),
-  contact: z.string(),
-  hotel: z.array(hotelSchema),
-  prizes: z.union([z.string(), z.array(z.string())]),
-  // Optional at post level: multi-tournament pages carry the standings on the
-  // matching `events[]` entry instead, so each table is titled with its own
-  // tournament. Announcement posts have no standings at all yet.
-  standingsUrl: z.string().optional(),
-  // optional
-  earlyDeadline: z.string().optional(),
-  earlyDeadlineDate: z.coerce.date().optional(),
-  hotelNote: z.string().optional(),
-  schedule: z.array(scheduleSchema).optional().default([]),
-  streamingUrl: z.string().optional(),
-  streamingLabel: z.string().optional(),
-  stages: z.array(stageSchema).optional(),
-});
+// Grand Prix & Nazionale: full event pages, same shape
+const editionSchema = <C extends 'grand-prix' | 'nazionale'>(category: C) =>
+  z
+    .object({
+      ...baseFields,
+      category: z.literal(category),
+      poster: z.string(),
+      venue: venueFullSchema,
+      events: z.array(eventSchema).min(1),
+      pricing: z.array(pricingSchema),
+      payment: z.string(),
+      registration: z.string().optional(),
+      contact: z.string(),
+      hotel: z.array(hotelSchema),
+      prizes: z.union([z.string(), z.array(z.string())]),
+      // Optional at post level: multi-tournament pages carry the standings on the
+      // matching `events[]` entry instead, so each table is titled with its own
+      // tournament. Announcement posts have no standings at all yet.
+      standingsUrl: z.string().optional(),
+      // optional
+      earlyDeadline: z.string().optional(),
+      earlyDeadlineDate: z.coerce.date().optional(),
+      hotelNote: z.string().optional(),
+      schedule: z.array(scheduleSchema).optional().default([]),
+      streamingUrl: httpUrl.optional(),
+      streamingLabel: z.string().optional(),
+      stages: z.array(stageSchema).optional(),
+    })
+    .superRefine(requireEarlyDeadlineDate);
+
+const grandPrixSchema = editionSchema('grand-prix');
+const nazionaleSchema = editionSchema('nazionale');
 
 // Tour: multi-stage circuit
 const tourSchema = z.object({
@@ -225,7 +222,7 @@ const comunitaSchema = z
     prizes: z.union([z.string(), z.array(z.string())]).optional(),
     registration: z.string().optional(),
     contact: z.string().optional(),
-    streamingUrl: z.string().optional(),
+    streamingUrl: httpUrl.optional(),
     streamingLabel: z.string().optional(),
     standingsUrl: z.string().optional(),
     standingsLabel: z.string().optional(),
@@ -246,6 +243,7 @@ const comunitaSchema = z
     stages: z.array(stageSchema).optional(),
   })
   .superRefine((data, ctx) => {
+    requireEarlyDeadlineDate(data, ctx);
     const isEvent = !!data.venue || (data.events?.length ?? 0) > 0;
     const isLeague = !!data.leagueStats;
     const isArticle = data.articleOnly === true;

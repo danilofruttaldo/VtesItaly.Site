@@ -1,4 +1,6 @@
 ---
+import { galleryFor } from '../utils/image';
+import { loadStandings } from '../utils/standings';
 import '../styles/prose.css';
 import '../styles/league-edition.css';
 import { render } from 'astro:content';
@@ -28,18 +30,7 @@ const links = (post.data.links ?? [])
   .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
 
 // Gallery (same pattern as EventEdition)
-let galleryImages: string[] = post.data.gallery || [];
-if (post.data.galleryFolder && galleryImages.length === 0) {
-  const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
-  const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
-  galleryImages = Object.keys(allImages)
-    .filter((p) => p.includes(`/${folder}/`))
-    .map((p) => p.replace('/public', ''))
-    .sort();
-}
-if (post.data.poster) {
-  galleryImages = galleryImages.filter((img) => img !== post.data.poster);
-}
+const galleryImages = galleryFor(post.data);
 
 // League standings, two dialects:
 //   - league shape (full season): { fp?, lp, gw, vp, pp, bp, games }
@@ -58,15 +49,7 @@ interface LeagueStanding {
   fvp?: number | null;
   tp?: number;
 }
-let standings: LeagueStanding[] = [];
-if (post.data.standingsUrl) {
-  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
-    string,
-    { default: unknown }
-  >;
-  const key = Object.keys(allData).find((k) => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
-  if (key && Array.isArray(allData[key].default)) standings = allData[key].default as LeagueStanding[];
-}
+const standings = loadStandings<LeagueStanding>(post.data.standingsUrl);
 const isTournamentShape = standings.length > 0 && 'tp' in standings[0];
 const hasFp = standings.some((s) => s.fp != null);
 const hasPp = standings.some((s) => (s.pp ?? 0) !== 0);

@@ -165,7 +165,7 @@ document.querySelectorAll('[data-temporal-pricing]').forEach((table) => {
   const earlyDeadlineDate = table.getAttribute('data-early-deadline-date') || '';
   if (!lastEventDate) return;
   const eventFinished = todayISO > lastEventDate;
-  const earlyActive = !eventFinished && (!earlyDeadlineDate || todayISO < earlyDeadlineDate);
+  const earlyActive = !eventFinished && (!earlyDeadlineDate || todayISO <= earlyDeadlineDate);
   const regularActive = !eventFinished && !earlyActive;
   const applyPrice = (selector: string, active: boolean) => {
     table.querySelectorAll(selector).forEach((el) => {

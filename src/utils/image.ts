@@ -1,5 +1,5 @@
-import { existsSync, openSync, readSync, closeSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { existsSync, openSync, readSync, closeSync, readdirSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { Buffer } from 'node:buffer';
 
 /** Resolve the small-thumbnail variant for a `<name>.webp` image when one
@@ -90,4 +90,37 @@ export function responsiveImage(
     width: dim?.width,
     height: dim?.height,
   };
+}
+
+/** Generated siblings of a source image (thumb, width variants, retina, OG). */
+const DERIVED = /-(?:thumb|2x|\d+w)\.webp$|-og\.jpg$/i;
+
+/**
+ * Photos of an event gallery: the explicit `gallery` list, else every image
+ * under `public/<galleryFolder>/` (sorted, generated variants left out), minus
+ * the poster. The folder is read from disk: an `import.meta.glob` over
+ * `public/` made Vite copy every photo into `/_astro/` as well, doubling them
+ * in the deploy.
+ */
+export function galleryFor(
+  data: { gallery?: string[]; galleryFolder?: string; poster?: string },
+  root = 'public',
+): string[] {
+  let images = data.gallery ?? [];
+  if (images.length === 0 && data.galleryFolder) {
+    const folder = data.galleryFolder.replace(/^\/|\/$/g, '');
+    const dir = resolve(root, folder);
+    const walk = (d: string, rel: string): string[] =>
+      existsSync(d)
+        ? readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+            e.isDirectory()
+              ? walk(join(d, e.name), `${rel}/${e.name}`)
+              : /\.(webp|jpe?g|png)$/i.test(e.name) && !DERIVED.test(e.name)
+                ? [`${rel}/${e.name}`]
+                : [],
+          )
+        : [];
+    images = walk(dir, `/${folder}`).sort();
+  }
+  return data.poster ? images.filter((img) => img !== data.poster) : images;
 }

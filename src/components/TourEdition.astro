@@ -1,4 +1,5 @@
 ---
+import { loadStandings } from '../utils/standings';
 import { isoDay } from '../utils/date';
 import '../styles/prose.css';
 import '../styles/tour-edition.css';
@@ -72,19 +73,8 @@ interface TourStanding {
   total: number;
   [key: string]: number | string | null;
 }
-let tourStandings: TourStanding[] = [];
-let stageCount = 0;
-if (post.data.standingsUrl) {
-  const allData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
-    string,
-    { default: unknown }
-  >;
-  const key = Object.keys(allData).find((k) => k.includes(post.data.standingsUrl!.replace(/^.*\//, '')));
-  if (key && Array.isArray(allData[key].default)) {
-    tourStandings = allData[key].default as TourStanding[];
-    stageCount = stages.length;
-  }
-}
+const tourStandings = loadStandings<TourStanding>(post.data.standingsUrl);
+const stageCount = tourStandings.length > 0 ? stages.length : 0;
 const hasGw = tourStandings.some((s) => (s as any).gw != null);
 const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.status === 'completed');
 

@@ -1,4 +1,5 @@
 ---
+import { galleryFor } from '../utils/image';
 import '../styles/prose.css';
 import '../styles/event-edition.css';
 import { render } from 'astro:content';
@@ -7,6 +8,7 @@ import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolveLinkLabel, resolvePlatformLabel } from '../utils/status';
 import StandingsTable from './StandingsTable.astro';
+import { loadStandings, type Standing } from '../utils/standings';
 import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
 import { todayLocalIso } from '../utils/today';
@@ -28,49 +30,20 @@ const links = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === locale)
   .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
 
-// Build gallery (exclude poster)
-let galleryImages: string[] = post.data.gallery || [];
-if (post.data.galleryFolder && galleryImages.length === 0) {
-  const folder = post.data.galleryFolder.replace(/^\//, '').replace(/\/$/, '');
-  const allImages = import.meta.glob('/public/{gp,nc,tour,ev}/**/*.{webp,jpg,jpeg,png}');
-  galleryImages = Object.keys(allImages)
-    .filter((p) => p.includes(`/${folder}/`))
-    .map((p) => p.replace('/public', ''))
-    .sort();
-}
-if (post.data.poster) {
-  galleryImages = galleryImages.filter((img) => img !== post.data.poster);
-}
+// Gallery: explicit list or the photos in its folder
+const galleryImages = galleryFor(post.data);
 // Spread the photos over as few rows as fit at five per row, then even them
 // out: seven photos read as 4 + 3 rather than 5 + 2 with a half-empty tail.
 const galleryCols = galleryImages.length
   ? Math.min(5, Math.ceil(galleryImages.length / Math.ceil(galleryImages.length / 5)))
   : 5;
 
-interface Standing {
-  rank: number;
-  name: string;
-  gw: number;
-  vp: number;
-  fvp: number | null;
-  tp: number;
-}
 const postEvents = post.data.events ?? [];
 
 // Load standings if available. A page can carry more than one tournament
 // (main event + side events, multi-tournament weekends): the post-level
 // `standingsUrl` is the single-table case, and each `events[]` entry may
 // declare its own. One block per tournament, in `events[]` order.
-const allStandingsData = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
-  string,
-  { default: unknown }
->;
-// Lenient basename match, the historical resolution rule: standingsUrl values
-// in the frontmatter are absolute, relative and extension-less alike.
-function loadStandings(url: string): Standing[] {
-  const key = Object.keys(allStandingsData).find((k) => k.includes(url.replace(/^.*\//, '')));
-  return key && Array.isArray(allStandingsData[key].default) ? (allStandingsData[key].default as Standing[]) : [];
-}
 // GP and Nazionale posts prefix their events "MAIN EVENT: " / "SIDE EVENT: ";
 // the prefix is programme scaffolding, not part of the tournament name.
 const tournamentLabel = (name: string) => name.replace(/^\s*(MAIN|SIDE)\s+EVENT\s*:\s*/i, '').trim();
@@ -113,12 +86,13 @@ const standingsCollapsed =
   standingsBlocks.length > 1 || (standingsBlocks.length === 1 && standingsBlocks[0].label !== null);
 // Calendar days as written in the frontmatter (utils/date), compared as strings
 // against the local today, here and in the runtime script (temporal.ts). The
+// early price holds through its deadline day ("Entro il 10 Aprile") and the
 // prices stay active through the last day of the event.
 const today = todayLocalIso();
-const lastEventDayIso = lastEventDay(postEvents, '') || undefined;
+const lastEventDayIso = lastEventDay(postEvents, isoDate(post.data.date));
 const earlyDeadlineDateIso = post.data.earlyDeadlineDate ? isoDate(post.data.earlyDeadlineDate) : undefined;
-const eventFinished = lastEventDayIso !== undefined && today > lastEventDayIso;
-const earlyActive = !eventFinished && (!earlyDeadlineDateIso || today < earlyDeadlineDateIso);
+const eventFinished = today > lastEventDayIso;
+const earlyActive = !eventFinished && (!earlyDeadlineDateIso || today <= earlyDeadlineDateIso);
 const regularActive = !eventFinished && !earlyActive;
 // Sign-up forms are pointless once the event is over: hidden from the day
 // after its last day, re-checked by the runtime script (temporal.ts).

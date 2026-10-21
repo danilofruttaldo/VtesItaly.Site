@@ -11,6 +11,33 @@ export interface Standing {
   tp: number;
 }
 
+/** Every standings table under src/data/standings, by module path. */
+const STANDINGS_FILES = import.meta.glob('/src/data/standings/**/*.json', { eager: true }) as Record<
+  string,
+  { default: unknown }
+>;
+
+/**
+ * Module key of the standings file a frontmatter `standingsUrl` names. The
+ * value may be absolute, relative or without `.json`: only its file name
+ * counts, matched exactly (file names are unique across the folders).
+ */
+export function findStandingsKey(keys: string[], url: string): string | undefined {
+  const file = url.replace(/^.*\//, '').replace(/(\.json)?$/, '.json');
+  return keys.find((k) => k.endsWith(`/${file}`));
+}
+
+/** Rows of the standings file a `standingsUrl` names; empty when unresolved. */
+export function loadStandings<T = Standing>(
+  url: string | undefined,
+  files: Record<string, { default: unknown }> = STANDINGS_FILES,
+): T[] {
+  if (!url) return [];
+  const key = findStandingsKey(Object.keys(files), url);
+  const rows = key ? files[key].default : undefined;
+  return Array.isArray(rows) ? (rows as T[]) : [];
+}
+
 /**
  * The standings file behind an edition's archive card: the post-level one, else
  * the main event's (multi-tournament weekends keep theirs on `events[]`), else
@@ -36,16 +63,11 @@ export function getCardMeta(
   const eventDate = rawDate instanceof Date ? formatLocalDate(rawDate, locale) : rawDate || '';
   let winner = '';
   let players = 0;
-  const url = cardStandingsUrl(post.data);
-  if (url) {
-    const file = url.replace(/^.*\//, '');
-    const key = Object.keys(allStandings).find((k) => k.endsWith(`/${file}`));
-    if (key) {
-      const data = allStandings[key].default;
-      players = data.length;
-      const first = data.find((s: Standing) => s.rank === 1);
-      if (first) winner = anonymizeName(first.name);
-    }
+  const data = loadStandings(cardStandingsUrl(post.data), allStandings);
+  if (data.length > 0) {
+    players = data.length;
+    const first = data.find((s) => s.rank === 1);
+    if (first) winner = anonymizeName(first.name);
   }
   return { eventDate, winner, players };
 }

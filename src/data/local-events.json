@@ -260,19 +260,6 @@
     "image": "/images/headers/header-firenze.webp"
   },
   {
-    "name": "2° Monster VTES Italian Tournament",
-    "date": "2024-07-14",
-    "city": "torino",
-    "time": "10:30",
-    "venue": "Magic Lair",
-    "location": "Corso Principe Oddone 14/F, Torino (TO)",
-    "format": "Standard",
-    "proxies": true,
-    "rounds": 2,
-    "archonUrl": "https://archon.vekn.net/tournaments/019f1a1a-441a-73e3-b548-cb62074a127b",
-    "image": "/images/headers/header-torino.webp"
-  },
-  {
     "name": "Æmilia by Night - Chapter 3 - Parma",
     "date": "2024-06-30",
     "city": "parma",
@@ -583,19 +570,6 @@
     "rounds": 2,
     "archonUrl": "https://archon.vekn.net/tournaments/019f1a19-abce-75a6-9fd7-5a7927a57983",
     "image": "/images/headers/header-brescia.webp"
-  },
-  {
-    "name": "Sixth Tradition: Destruction",
-    "date": "2019-11-24",
-    "city": "bologna",
-    "time": "10:00",
-    "venue": "Circolo Arci \"Benassi\"",
-    "location": "Viale S. Cavina 4, Bologna (BO)",
-    "format": "Standard",
-    "proxies": true,
-    "rounds": 2,
-    "archonUrl": "https://archon.vekn.net/tournaments/019f1a19-7b2f-7145-a2a2-b3fbbce659df",
-    "image": "/images/headers/header-bologna.webp"
   },
   {
     "name": "Sins of the Cauchemar",

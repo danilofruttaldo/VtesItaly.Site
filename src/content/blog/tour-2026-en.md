@@ -112,10 +112,14 @@ stages:
     number: 7
     date: 2026-12-05
     cities: ['firenze', 'prato']
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
+    venue: 'Game'
+    location: 'Via Francesco Baracca 168/R, Firenze (FI)'
     image: '/tour/tour-2026/tour-2026-007.webp'
+    archonUrl: 'https://archon.vekn.net/tournaments/01a0e225-0aad-7493-a9b5-179abc978600'
     description: 'Pride closes the circle. Here the marks collected and the valor shown are displayed. Only those who have come this far can claim their name.'
 
 locale: en

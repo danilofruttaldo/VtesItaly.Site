@@ -10,8 +10,8 @@ seoTitle: "Concilio di Pergine – In the Castle's Shadow"
 venue:
   name: 'Pergine Comics'
   siteUrl: 'https://www.perginecomics.it/'
-  address: 'Municipio di, 38057 Pergine Valsugana (TN)'
-  mapUrl: 'https://maps.google.com/?q=Municipio+di+38057+Pergine+Valsugana+TN'
+  address: '38057 Pergine Valsugana (TN)'
+  mapUrl: 'https://maps.google.com/?q=38057+Pergine+Valsugana+TN'
 events:
   - name: 'Standard'
     date: 2025-06-21

@@ -10,8 +10,8 @@ seoTitle: 'Concilio di Pergine 2026 – Kindred vs Garou'
 venue:
   name: 'Pergine Comics'
   siteUrl: 'https://www.perginecomics.it/'
-  address: 'Municipio di, 38057 Pergine Valsugana (TN)'
-  mapUrl: 'https://maps.google.com/?q=Municipio+di+38057+Pergine+Valsugana+TN'
+  address: '38057 Pergine Valsugana (TN)'
+  mapUrl: 'https://maps.google.com/?q=38057+Pergine+Valsugana+TN'
 events:
   - name: "All'ombra del Castello – Kindred vs Garou"
     date: 2026-06-13

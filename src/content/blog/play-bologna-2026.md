@@ -1,12 +1,12 @@
 ---
-title: 'PLAY VTESItaly'
+title: 'PLAY VTESItaly 2026'
 date: 2026-05-22
 category: 'comunita'
 tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2026-featured.webp'
 poster: '/images/comunita/bologna/play-2026-poster.webp'
-excerpt: 'Il 22, 23 e 24 maggio 2026 VTES Italy sarà al Play – Festival del Gioco di BolognaFiere (Padiglione 18, area Vampiri La Masquerade) con tavoli demo aperti a tutti per provare Vampire: The Eternal Struggle.'
-seoDescription: 'Il 22, 23 e 24 maggio 2026 VTES Italy sarà al Play di BolognaFiere, Padiglione 18, con tavoli demo aperti a tutti per provare V:TES.'
+excerpt: 'Il 22, 23 e 24 maggio 2026 VTES Italy era al Play – Festival del Gioco di BolognaFiere (Padiglione 18, area Vampiri La Masquerade) con tavoli demo aperti a tutti per provare Vampire: The Eternal Struggle.'
+seoDescription: 'Il 22, 23 e 24 maggio 2026 VTES Italy era al Play di BolognaFiere, Padiglione 18, con tavoli demo aperti a tutti per provare V:TES.'
 venue:
   name: 'BolognaFiere - Play, Festival del Gioco (Padiglione 18, J11–J13)'
   address: 'Viale della Fiera 20, 40127 Bologna (BO)'
@@ -35,7 +35,7 @@ links:
 locale: it
 ---
 
-Il **22, 23 e 24 maggio 2026** la comunità italiana di _Vampire: The Eternal Struggle_ sarà al **Play – Festival del Gioco** di **BolognaFiere** con **tavoli demo** aperti a chiunque voglia cimentarsi nel gioco politico più longevo del mondo dei giochi di carte collezionabili.
+Il **22, 23 e 24 maggio 2026** la comunità italiana di _Vampire: The Eternal Struggle_ era al **Play – Festival del Gioco** di **BolognaFiere** con **tavoli demo** aperti a chiunque voglia cimentarsi nel gioco politico più longevo del mondo dei giochi di carte collezionabili.
 
 Tre giorni, un solo invito: **vieni a provare VTES**. Saremo al **Padiglione 18**, nell'**Area Vampiri La Masquerade** (stand **J11 - Camarilla Italia** / **J13 - Area Vampiri**). Che tu non abbia mai visto il gioco o che ne abbia solo sentito parlare, troverai un tavolo pronto, i mazzi già preparati e giocatori della comunità italiana a guidarti in una partita di assaggio di 30–45 minuti. Nessuna iscrizione, nessun mazzo da portare: basta sederti.
 

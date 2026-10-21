@@ -23,7 +23,7 @@ events:
     tpLabel: 'TP'
   - name: 'SIDE EVENT: Italian GP - Redemption Tournament'
     date: 2025-03-02
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: true
     rounds: 2

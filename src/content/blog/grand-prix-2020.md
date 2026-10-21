@@ -3,7 +3,7 @@ title: 'Grand Prix 2020'
 date: 2019-11-23
 category: 'grand-prix'
 tags: ['italia', 'bologna']
-excerpt: 'Il Grand Prix Italiano 2020 si terrà sabato 23 novembre 2019 presso il Circolo Arci Benassi a Bologna.'
+excerpt: 'Il Grand Prix Italiano 2020 si è tenuto sabato 23 novembre 2019 presso il Circolo Arci Benassi a Bologna.'
 poster: ''
 featuredImage: '/images/headers/header-grand-prix.webp'
 venue:
@@ -36,4 +36,4 @@ prizes: ''
 locale: it
 ---
 
-Il **Grand Prix Italiano 2020** si terrà **sabato 23 novembre 2019** presso il **Circolo Arci Benassi** a **Bologna**, l'appuntamento annuale più atteso dalla community italiana.
+Il **Grand Prix Italiano 2020** si è tenuto **sabato 23 novembre 2019** presso il **Circolo Arci Benassi** a **Bologna**, l'appuntamento annuale più atteso dalla community italiana.

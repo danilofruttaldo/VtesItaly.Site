@@ -5,8 +5,9 @@ category: 'comunita'
 tags: ['treviso', 'lega']
 featuredImage: '/images/comunita/treviso/church-of-st-blaise.webp'
 poster: '/images/comunita/treviso/church-of-st-blaise.webp'
-excerpt: 'Second edition of the Treviso V:tES league: 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.'
+excerpt: 'Second edition of the Treviso V:TES league: 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.'
 seoTitle: 'Church of St. Blaise – Treviso League'
+seoDescription: 'Second edition of the Treviso V:TES league: 10 Methuselahs, fragile alliances, calculated betrayals and low blows at the table.'
 events:
   - name: 'Constructed League'
     date: 2026-03-02

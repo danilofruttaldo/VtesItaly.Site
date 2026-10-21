@@ -446,7 +446,7 @@ export const cities: City[] = [
         day: { it: 'Venerdì', en: 'Friday' },
         time: { it: '20:30–01:00', en: '20:30–01:00' },
         place: 'Asgard Aldeno',
-        address: 'Via Roma 3, Aldeno (TN)',
+        address: 'Via Roma 1, Aldeno (TN)',
         mapUrl: 'https://maps.app.goo.gl/AchwBLz3fYaFHHVr9',
       },
     ],

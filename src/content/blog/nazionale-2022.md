@@ -4,7 +4,7 @@ date: 2022-10-15
 category: 'nazionale'
 tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'Il Campionato Nazionale Italiano VTES 2022 si terrà sabato 15 ottobre a Bologna.'
+excerpt: 'Il Campionato Nazionale Italiano VTES 2022 si è tenuto sabato 15 ottobre a Bologna.'
 poster: '/nc/nc-2022/nc-2022-poster.webp'
 gallerySections:
   - title: 'Preparazione'
@@ -39,4 +39,4 @@ prizes: ''
 locale: it
 ---
 
-Il **Campionato Nazionale Italiano VTES 2022** si terrà **sabato 15 ottobre** presso il **Circolo Barbanera** a **Bologna**, l'appuntamento annuale più atteso dalla community italiana.
+Il **Campionato Nazionale Italiano VTES 2022** si è tenuto **sabato 15 ottobre** presso il **Circolo Barbanera** a **Bologna**, l'appuntamento annuale più atteso dalla community italiana.

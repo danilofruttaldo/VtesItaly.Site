@@ -4,7 +4,7 @@ date: 2022-10-15
 category: 'nazionale'
 tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'The Italian VTES National Championship 2022 will take place on Saturday 15 October in Bologna.'
+excerpt: 'The Italian VTES National Championship 2022 took place on Saturday 15 October in Bologna.'
 poster: '/nc/nc-2022/nc-2022-poster.webp'
 gallerySections:
   - title: 'Setup'
@@ -39,4 +39,4 @@ prizes: ''
 locale: en
 ---
 
-The **Italian VTES National Championship 2022** will take place on **Saturday 15 October** at **Circolo Barbanera** in **Bologna**, the most anticipated annual event for the Italian community.
+The **Italian VTES National Championship 2022** took place on **Saturday 15 October** at **Circolo Barbanera** in **Bologna**, the most anticipated annual event for the Italian community.

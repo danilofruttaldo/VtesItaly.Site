@@ -4,7 +4,7 @@ date: 2025-04-12
 category: 'nazionale'
 tags: ['italia', 'pordenone']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'Il Campionato Nazionale Italiano VTES 2025 si terrà sabato 12 aprile presso la tenuta Gelindo dei Magredi a Vivaro (PN).'
+excerpt: 'Il Campionato Nazionale Italiano VTES 2025 si è tenuto sabato 12 aprile presso la tenuta Gelindo dei Magredi a Vivaro (PN).'
 poster: '/nc/nc-2025/nc-2025-poster.webp'
 gallerySections:
   - title: 'Preparazione'
@@ -49,7 +49,7 @@ events:
     standingsUrl: '/nc/nc-2025/standings-nc-2025.json'
   - name: 'SIDE EVENT: Italian Tour 2025 - Pordenone'
     date: 2025-04-13
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -81,6 +81,6 @@ notes:
 locale: it
 ---
 
-Il **Campionato Nazionale Italiano VTES 2025** si terrà **sabato 12 aprile** presso la **suggestiva tenuta Gelindo dei Magredi** a **Vivaro (PN)**, immersa nella campagna friulana, con possibilità di pernottamento e pasti in loco.
+Il **Campionato Nazionale Italiano VTES 2025** si è tenuto **sabato 12 aprile** presso la **suggestiva tenuta Gelindo dei Magredi** a **Vivaro (PN)**, immersa nella campagna friulana, con possibilità di pernottamento e pasti in loco.
 
-Il sabato sarà dedicato al **Main Event**, che incoronerà il nuovo **Campione Nazionale 2025**, mentre la domenica ospiterà il side event della tappa **Italian Tour** di Pordenone.
+Il sabato è stato dedicato al **Main Event**, che ha incoronato il nuovo **Campione Nazionale 2025**, mentre la domenica ha ospitato il side event della tappa **Italian Tour** di Pordenone.

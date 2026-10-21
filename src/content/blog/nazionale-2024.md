@@ -4,7 +4,7 @@ date: 2024-04-27
 category: 'nazionale'
 tags: ['italia', 'trento']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: "Il Campionato Nazionale Italiano VTES 2024 si terrà sabato 27 aprile presso l'Hotel Paoli a Caldonazzo (TN), immerso nel cuore del Trentino."
+excerpt: "Il Campionato Nazionale Italiano VTES 2024 si è tenuto sabato 27 aprile presso l'Hotel Paoli a Caldonazzo (TN), immerso nel cuore del Trentino."
 poster: '/nc/nc-2024/nc-2024-poster.webp'
 venue:
   name: 'Hotel Paoli'
@@ -22,7 +22,7 @@ events:
     standingsUrl: '/nc/nc-2024/standings-nc-2024.json'
   - name: 'SIDE EVENT: Italian Tour - Tappa di Trento'
     date: 2024-04-28
-    time: '09:00'
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -36,6 +36,6 @@ prizes: ''
 locale: it
 ---
 
-Il **Campionato Nazionale Italiano VTES 2024** si terrà **sabato 27 aprile** presso l'**Hotel Paoli** a **Caldonazzo (TN)**, immerso nel cuore del Trentino.
+Il **Campionato Nazionale Italiano VTES 2024** si è tenuto **sabato 27 aprile** presso l'**Hotel Paoli** a **Caldonazzo (TN)**, immerso nel cuore del Trentino.
 
-Il sabato sarà dedicato al **Main Event**, che incoronerà il nuovo **Campione Nazionale 2024**, mentre la domenica ospiterà il side event della tappa **Italian Tour** di Trento.
+Il sabato è stato dedicato al **Main Event**, che ha incoronato il nuovo **Campione Nazionale 2024**, mentre la domenica ha ospitato il side event della tappa **Italian Tour** di Trento.

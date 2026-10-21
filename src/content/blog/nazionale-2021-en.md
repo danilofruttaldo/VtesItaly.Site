@@ -4,7 +4,7 @@ date: 2022-01-08
 category: 'nazionale'
 tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'The Italian VTES National Championship 2021 will take place on Saturday 8 January 2022 in Bologna.'
+excerpt: 'The Italian VTES National Championship 2021 took place on Saturday 8 January 2022 in Bologna.'
 poster: '/nc/nc-2021/nc-2021-poster.webp'
 venue:
   name: 'Circolo Arci Benassi'
@@ -28,4 +28,4 @@ standingsUrl: '/nc/nc-2021/standings-nc-2021.json'
 locale: en
 ---
 
-The **Italian VTES National Championship 2021** will take place on **Saturday 8 January 2022** at **Circolo Arci Benassi** in **Bologna**, the most anticipated annual event for the Italian community.
+The **Italian VTES National Championship 2021** took place on **Saturday 8 January 2022** at **Circolo Arci Benassi** in **Bologna**, the most anticipated annual event for the Italian community.

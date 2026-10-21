@@ -5,7 +5,7 @@ categoria: piattaforme
 audience: [giocatore, principe]
 ordine: 10
 versione: '1.0'
-aggiornato: 2026-08-10
+aggiornato: 2026-10-21
 correlate: [archon-judge-en, demo-eventi-en]
 locale: en
 ---
@@ -42,6 +42,9 @@ The most frequent stumble, because the interface translation and the in-app guid
 - The same applies to tournament states: **Registration** means sign-ups are open, **Check-in** is the roll-call phase. Between rounds the tournament goes back to **Check-in**, not to sign-ups.
 - **Sanctions have two sets of names.** The interface says **Caution** and **Warning**; the in-app Player Guide calls them "verbal warning" and "warning". They are the same two things. When in doubt: the one that stays on the profile for 18 months is the Warning.
 - **Player states.** Whoever misses check-in, or drops, ends up **Completed**; a withdrawn player shows **Dropped**. The in-app guide calls them "Finished" and "Dropped", and "Finished" is not a label the app shows.
+
+> [!TIP]
+> At the registration desk, talk about _iscritto_ (signed up) and _check-in_. Saying _ti ho registrato_ ("I registered you") is the quickest way to talk past each other.
 
 ## 3. Where the app does more than the guide says
 

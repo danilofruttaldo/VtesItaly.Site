@@ -3,7 +3,7 @@ title: 'Grand Prix 2020'
 date: 2019-11-23
 category: 'grand-prix'
 tags: ['italia', 'bologna']
-excerpt: 'The Italian Grand Prix 2020 will take place on Saturday 23 November 2019 at Circolo Arci Benassi in Bologna.'
+excerpt: 'The Italian Grand Prix 2020 took place on Saturday 23 November 2019 at Circolo Arci Benassi in Bologna.'
 poster: ''
 featuredImage: '/images/headers/header-grand-prix.webp'
 venue:
@@ -36,4 +36,4 @@ prizes: ''
 locale: en
 ---
 
-The **Italian Grand Prix 2020** will take place on **Saturday 23 November 2019** at **Circolo Arci Benassi** in **Bologna**, the most anticipated annual event for the Italian community.
+The **Italian Grand Prix 2020** took place on **Saturday 23 November 2019** at **Circolo Arci Benassi** in **Bologna**, the most anticipated annual event for the Italian community.

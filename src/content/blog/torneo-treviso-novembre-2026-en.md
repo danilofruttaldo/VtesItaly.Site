@@ -9,13 +9,14 @@ excerpt: 'Endless Night: VTES Halloween Storyline tournament in Treviso on Satur
 venue:
   name: 'GiOlly Comics'
   address: 'Largo I Maggio 5/3, 31020 Villorba (TV), Italy'
-  mapUrl: 'https://maps.app.goo.gl/mUhro4SixTu2Hj7eA'
+  mapUrl: 'https://maps.app.goo.gl/zhsHyxTxDhTcQeGh6'
   siteUrl: 'https://giollycomics.it/'
 events:
   - name: 'Endless Night'
     date: 2026-11-07
     time: '10:00'
     format: 'Storyline'
+    proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a15b68-f83e-7518-a186-9c63a0cb5058'
 schedule:

@@ -89,7 +89,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Associazione A.L.A.'
-    location: 'Via San Ginese, 15, 54100 Massa (MS)'
+    location: 'Via San Ginese 15, 54100 Massa (MS)'
     image: '/images/headers/header-massa.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-435b-71f3-a094-9b709724b618'
     status: 'completed'
@@ -145,7 +145,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Game'
-    location: 'Via Francesco Baracca, 168/R, Firenze (FI)'
+    location: 'Via Francesco Baracca 168/R, Firenze (FI)'
     image: '/images/headers/header-firenze.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6129-7464-841f-8897fe23593c'
     status: 'completed'

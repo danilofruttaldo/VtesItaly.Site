@@ -4,7 +4,7 @@ date: 2023-04-30
 category: 'nazionale'
 tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'Il Campionato Nazionale Italiano VTES 2023 si terrà il 30 aprile a Bologna.'
+excerpt: 'Il Campionato Nazionale Italiano VTES 2023 si è tenuto il 30 aprile a Bologna.'
 poster: ''
 gallerySections:
   - title: 'Preparazione'
@@ -21,9 +21,9 @@ gallerySections:
       - '/nc/nc-2023/nc-2023-round-06.webp'
 venue:
   name: 'The Sydney Hotel'
-  address: 'Via Michelino, 74, Bologna'
+  address: 'Via Michelino, 73, Bologna'
   siteUrl: 'https://www.thesydneyhotel.eu/'
-  mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+74+Bologna'
+  mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+73+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Championship 2023'
     date: 2023-04-30
@@ -56,6 +56,6 @@ prizes: ''
 locale: it
 ---
 
-Il **Campionato Nazionale Italiano VTES 2023** si terrà **domenica 30 aprile** a **Bologna**, crocevia perfetto per i Methuselah di tutta la penisola.
+Il **Campionato Nazionale Italiano VTES 2023** si è tenuto **domenica 30 aprile** a **Bologna**, crocevia perfetto per i Methuselah di tutta la penisola.
 
-La domenica sarà dedicata al **Main Event**, che incoronerà il nuovo **Campione Nazionale 2023**, in un'edizione all'insegna della competizione e della convivialità.
+La domenica è stata dedicata al **Main Event**, che ha incoronato il nuovo **Campione Nazionale 2023**, in un'edizione all'insegna della competizione e della convivialità.

@@ -4,7 +4,7 @@ date: 2024-04-27
 category: 'nazionale'
 tags: ['italia', 'trento']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'The Italian VTES National Championship 2024 will take place on Saturday 27 April at Hotel Paoli in Caldonazzo (TN), in the heart of Trentino.'
+excerpt: 'The Italian VTES National Championship 2024 took place on Saturday 27 April at Hotel Paoli in Caldonazzo (TN), in the heart of Trentino.'
 poster: '/nc/nc-2024/nc-2024-poster.webp'
 venue:
   name: 'Hotel Paoli'
@@ -22,7 +22,7 @@ events:
     standingsUrl: '/nc/nc-2024/standings-nc-2024.json'
   - name: 'SIDE EVENT: Italian Tour - Trento'
     date: 2024-04-28
-    time: '09:00'
+    time: '09:30'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -36,6 +36,6 @@ prizes: ''
 locale: en
 ---
 
-The **Italian VTES National Championship 2024** will take place on **Saturday 27 April** at **Hotel Paoli** in **Caldonazzo (TN)**, in the heart of Trentino.
+The **Italian VTES National Championship 2024** took place on **Saturday 27 April** at **Hotel Paoli** in **Caldonazzo (TN)**, in the heart of Trentino.
 
-Saturday will be dedicated to the **Main Event**, crowning the new **2024 National Champion**, while Sunday will host the **Italian Tour** side event in Trento.
+Saturday was dedicated to the **Main Event**, crowning the new **2024 National Champion**, while Sunday hosted the **Italian Tour** side event in Trento.

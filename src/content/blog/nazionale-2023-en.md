@@ -4,7 +4,7 @@ date: 2023-04-30
 category: 'nazionale'
 tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'The Italian VTES National Championship 2023 will take place on Sunday 30 April in Bologna.'
+excerpt: 'The Italian VTES National Championship 2023 took place on Sunday 30 April in Bologna.'
 poster: ''
 gallerySections:
   - title: 'Setup'
@@ -21,9 +21,9 @@ gallerySections:
       - '/nc/nc-2023/nc-2023-round-06.webp'
 venue:
   name: 'The Sydney Hotel'
-  address: 'Via Michelino, 74, Bologna'
+  address: 'Via Michelino, 73, Bologna'
   siteUrl: 'https://www.thesydneyhotel.eu/'
-  mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+74+Bologna'
+  mapUrl: 'https://maps.google.com/?q=The+Sydney+Hotel+Via+Michelino+73+Bologna'
 events:
   - name: 'MAIN EVENT: Italian Championship 2023'
     date: 2023-04-30
@@ -56,6 +56,6 @@ prizes: ''
 locale: en
 ---
 
-The **Italian VTES National Championship 2023** will take place on **Sunday 30 April** in **Bologna**, a perfect crossroads for Methuselahs from across the country.
+The **Italian VTES National Championship 2023** took place on **Sunday 30 April** in **Bologna**, a perfect crossroads for Methuselahs from across the country.
 
-Sunday will be dedicated to the **Main Event**, crowning the new **2023 National Champion**, in an edition full of competition and camaraderie.
+Sunday was dedicated to the **Main Event**, crowning the new **2023 National Champion**, in an edition full of competition and camaraderie.

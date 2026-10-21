@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/complearum-alearum-mundus.webp'
 poster: '/images/comunita/modena/complearum-alearum-mundus.webp'
-excerpt: 'To celebrate 20 years of our gaming association, 25 Methuselahs will gather for a timeless battle.'
+excerpt: 'To celebrate 20 years of our gaming association, 25 Methuselahs gathered for a timeless battle.'
 venue:
   name: 'Alearum Mundus'
   address: 'Via Castelnuovo R. 796, 41057 Spilamberto (MO)'
@@ -23,8 +23,8 @@ standingsUrl: '/ev/complearum-2025/standings-complearum-2025.json'
 locale: 'en'
 ---
 
-To celebrate 20 years of our gaming association, 25 Methuselahs will gather for a timeless battle. A special event, full of tension and twists, where every player will have the chance to leave their mark… or fall under their rivals' blows.
+To celebrate 20 years of our gaming association, 25 Methuselahs gathered for a timeless battle. A special event, full of tension and twists, where every player had the chance to leave their mark… or fall under their rivals' blows.
 
-Who will claim victory? Will someone achieve their first triumph on this historic occasion?
+Who claimed victory? Did someone achieve their first triumph on this historic occasion?
 
 Prepare your decks, sharpen your strategies and keep an eye on the timer: when blood flows and time runs out, only one can emerge as the true winner.

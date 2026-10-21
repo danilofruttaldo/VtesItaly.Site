@@ -1,12 +1,12 @@
 ---
-title: 'PLAY VTESItaly'
+title: 'PLAY VTESItaly 2026'
 date: 2026-05-22
 category: 'comunita'
 tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2026-featured.webp'
 poster: '/images/comunita/bologna/play-2026-poster.webp'
-excerpt: 'On May 22-24, 2026 VTES Italy will be at Play – Festival del Gioco at BolognaFiere (Hall 18, Vampire: The Masquerade area) with open demo tables for anyone who wants to try Vampire: The Eternal Struggle.'
-seoDescription: 'On May 22-24, 2026 VTES Italy will be at Play in BolognaFiere, Hall 18, with open demo tables for anyone who wants to try V:TES.'
+excerpt: 'On May 22-24, 2026 VTES Italy was at Play – Festival del Gioco at BolognaFiere (Hall 18, Vampire: The Masquerade area) with open demo tables for anyone who wants to try Vampire: The Eternal Struggle.'
+seoDescription: 'On May 22-24, 2026 VTES Italy was at Play in BolognaFiere, Hall 18, with open demo tables for anyone who wants to try V:TES.'
 venue:
   name: 'BolognaFiere - Play, Festival del Gioco (Hall 18, J11–J13)'
   address: 'Viale della Fiera 20, 40127 Bologna (BO), Italy'
@@ -35,7 +35,7 @@ links:
 locale: 'en'
 ---
 
-On **May 22, 23 and 24, 2026** the Italian community of _Vampire: The Eternal Struggle_ will be at **Play – Festival del Gioco** at **BolognaFiere** with **open demo tables** for anyone who wants to step into the longest-running political card game in the hobby.
+On **May 22, 23 and 24, 2026** the Italian community of _Vampire: The Eternal Struggle_ was at **Play – Festival del Gioco** at **BolognaFiere** with **open demo tables** for anyone who wants to step into the longest-running political card game in the hobby.
 
 Three days, one invitation: **come and try VTES**. We'll be in **Hall 18**, in the **Vampire: The Masquerade area** (booth **J11 - Camarilla Italia** / **J13 - Area Vampiri**). Whether you've never seen the game or you've only heard about it, you'll find a table ready, the decks already set up, and players from the Italian community to walk you through a 30–45 minute taster round. No registration, no deck to bring: just sit down.
 

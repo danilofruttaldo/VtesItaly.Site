@@ -27,8 +27,6 @@ events:
 links:
   - label: 'Play Festival del Gioco: sito ufficiale'
     url: 'https://www.play-festival.it/'
-  - label: 'Programma Play 2027'
-    url: 'https://www.play-festival.it/2027/programma/'
   - label: 'Orari e contatti'
     url: 'https://www.play-festival.it/informazioni/orari-contatti/'
 locale: it

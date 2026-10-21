@@ -4,7 +4,7 @@ date: 2025-04-12
 category: 'nazionale'
 tags: ['italia', 'pordenone']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'The Italian VTES National Championship 2025 will take place on Saturday 12 April at Tenuta Gelindo dei Magredi in Vivaro (PN).'
+excerpt: 'The Italian VTES National Championship 2025 took place on Saturday 12 April at Tenuta Gelindo dei Magredi in Vivaro (PN).'
 poster: '/nc/nc-2025/nc-2025-poster.webp'
 gallerySections:
   - title: 'Setup'
@@ -49,7 +49,7 @@ events:
     standingsUrl: '/nc/nc-2025/standings-nc-2025.json'
   - name: 'SIDE EVENT: Italian Tour 2025 - Pordenone'
     date: 2025-04-13
-    time: '09:00'
+    time: '10:00'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -81,6 +81,6 @@ notes:
 locale: en
 ---
 
-The **Italian VTES National Championship 2025** will take place on **Saturday 12 April** at the **stunning Tenuta Gelindo dei Magredi** in **Vivaro (PN)**, nestled in the Friulian countryside, with overnight stay and meals available on-site.
+The **Italian VTES National Championship 2025** took place on **Saturday 12 April** at the **stunning Tenuta Gelindo dei Magredi** in **Vivaro (PN)**, nestled in the Friulian countryside, with overnight stay and meals available on-site.
 
-Saturday will be dedicated to the **Main Event**, crowning the new **2025 National Champion**, while Sunday will host the **Italian Tour** side event in Pordenone.
+Saturday was dedicated to the **Main Event**, crowning the new **2025 National Champion**, while Sunday hosted the **Italian Tour** side event in Pordenone.

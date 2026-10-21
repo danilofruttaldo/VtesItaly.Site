@@ -23,7 +23,9 @@ events:
     standingsUrl: '/gp/gp-2024/standings-gp-2024.json'
   - name: 'SIDE EVENT: Italian Tour 2023 Stage 9 Milano'
     date: 2023-12-08
-    time: '09:30'
+    time: '10:00'
+    venue: 'Secret Base'
+    location: 'Via Roma 62/c, Paderno Dugnano (MI)'
     format: 'Standard'
     proxies: true
     rounds: 2

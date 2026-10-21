@@ -88,7 +88,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    venue: 'Dungeonpinsa'
+    venue: 'Dungeon Pinsa'
     location: 'Via Flavio Stilicone, 125, 00175 Roma (RM)'
     image: '/tour/tour-2026/tour-2026-005.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ece8-7333-b559-501120443722'

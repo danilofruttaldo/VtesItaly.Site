@@ -1,7 +1,16 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { mkdirSync, rmSync, copyFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { webpSize, responsiveImage, POSTER_WIDTHS, galleryFor, heroSrcset, gallerySrcset } from '../../src/utils/image';
+import {
+  webpSize,
+  responsiveImage,
+  POSTER_WIDTHS,
+  galleryFor,
+  heroSrcset,
+  gallerySrcset,
+  squarestImage,
+  imageFocus,
+} from '../../src/utils/image';
 
 // Real committed fixtures with known dimensions and WebP variants.
 const VP8_POSTER = '/images/comunita/barga/symposium-italicum-2026.webp'; // simple lossy, 1320x1320
@@ -122,5 +131,34 @@ describe('image: galleryFor', () => {
       '/b.webp',
     ]);
     expect(galleryFor({ galleryFolder: 'no-such-folder' })).toEqual([]);
+  });
+});
+
+describe('squarestImage', () => {
+  it('prefers the candidate closest to square', () => {
+    // PLAY 2027: 1200x630 social banner vs 1080x1080 poster.
+    expect(
+      squarestImage(
+        '/images/comunita/bologna/play-2027-featured.webp',
+        '/images/comunita/bologna/play-2027-poster.webp',
+      ),
+    ).toBe('/images/comunita/bologna/play-2027-poster.webp');
+  });
+
+  it('keeps the given order on unreadable sizes and skips empty candidates', () => {
+    expect(squarestImage('/missing-a.webp', '/missing-b.webp')).toBe('/missing-a.webp');
+    expect(squarestImage(undefined, '/missing-b.webp')).toBe('/missing-b.webp');
+    expect(squarestImage(undefined, undefined)).toBeUndefined();
+  });
+});
+
+describe('imageFocus', () => {
+  it('returns the point of interest written by the thumbnail script', () => {
+    expect(imageFocus('/images/headers/header-bologna.webp')).toMatch(/^\d{1,3}% \d{1,3}%$/);
+  });
+
+  it('is undefined for an image the script never saw', () => {
+    expect(imageFocus('/nowhere.webp')).toBeUndefined();
+    expect(imageFocus(undefined)).toBeUndefined();
   });
 });

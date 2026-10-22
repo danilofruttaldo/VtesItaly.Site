@@ -10,6 +10,7 @@ import { mainPages } from '../data/pages';
 import { useTranslations } from '../utils/i18n';
 import type { Locale } from '../utils/i18n';
 import { postUrl } from '../utils/url';
+import { squarestImage } from '../utils/image';
 import { postEndDay } from '../utils/calendar';
 
 interface Props {
@@ -55,13 +56,8 @@ const dividerAtPageIndex =
             <PostCard
               href={postUrl(post, locale)}
               title={post.data.title}
-              image={post.data.featuredImage || post.data.poster}
-              imageAnchor={
-                post.data.imageAnchor ||
-                (post.data.events && post.data.events.length > 0 && post.data.events.every((e) => e.type === 'altro')
-                  ? 'left center'
-                  : undefined)
-              }
+              image={squarestImage(post.data.featuredImage, post.data.poster)}
+              imageAnchor={post.data.imageAnchor}
               date={post.data.date}
               endDate={new Date(postEndDay(post))}
               tags={post.data.tags}

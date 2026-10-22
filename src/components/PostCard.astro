@@ -2,7 +2,7 @@
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { categoryLabels, typeTagLabels } from '../data/categories';
-import { thumbFor } from '../utils/image';
+import { imageFocus, thumbFor } from '../utils/image';
 import { isoDay } from '../utils/date';
 
 interface Props {
@@ -82,6 +82,10 @@ const isoEndDate = endDate ? isoDay(endDate) : undefined;
 // the full poster for the 240² `-thumb.webp` emitted by
 // scripts/build-thumbnails.mjs, saving ~280 KB per card.
 const cardImage = thumbFor(image);
+// The thumb is already cut around the point of interest; a full image (no
+// thumb yet) is framed on the same point, unless the post pins its own anchor.
+// With neither, from the top, where a poster has its title.
+const imagePosition = imageAnchor ?? (cardImage === image ? (imageFocus(image) ?? '50% 0%') : undefined);
 ---
 
 <a
@@ -116,7 +120,7 @@ const cardImage = thumbFor(image);
       decoding="async"
       width="120"
       height="120"
-      style={imageAnchor ? `object-position: ${imageAnchor};` : undefined}
+      style={imagePosition ? `object-position: ${imagePosition};` : undefined}
     />
   )}
   <div class="post-card__body">

@@ -449,7 +449,6 @@ img {
   height: 120px;
   border-radius: 8px;
   object-fit: cover;
-  object-position: top;
   flex-shrink: 0;
 }
 

@@ -1,7 +1,7 @@
 ---
 import { firstEventDay, isoDay, lastEventDay } from '../utils/date';
 import { todayLocalIso } from '../utils/today';
-import { thumbFor } from '../utils/image';
+import { squarestImage, thumbFor } from '../utils/image';
 import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import ShareButtons from './ShareButtons.astro';
@@ -94,9 +94,13 @@ const allStandings = standingsBySlug[slug];
               <a href={postUrl(post, locale)} class="edition-card">
                 {(post.data.poster || post.data.featuredImage) && (
                   <img
-                    src={thumbFor(post.data.poster || post.data.featuredImage)}
+                    src={thumbFor(squarestImage(post.data.poster, post.data.featuredImage))}
                     alt={post.data.title}
-                    class:list={['edition-thumb', post.data.poster && 'edition-thumb--poster']}
+                    class:list={[
+                      'edition-thumb',
+                      squarestImage(post.data.poster, post.data.featuredImage) === post.data.poster &&
+                        'edition-thumb--poster',
+                    ]}
                     loading="lazy"
                     decoding="async"
                     width="64"

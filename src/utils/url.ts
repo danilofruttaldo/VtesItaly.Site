@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { computeStageDisplayImages, stageDisplay } from './status';
+import { squarestImage } from './image';
 import { translatePostSlug, translateSection, type Locale } from './i18n';
 import { isoDate } from './date';
 import { postEndDay } from './post';
@@ -36,7 +37,7 @@ export function getCardImage(
     const idx = post.data.stages.findIndex((s) => s.cities?.includes(citySlug));
     if (idx !== -1 && displayImages[idx]) return displayImages[idx];
   }
-  return post.data.poster || post.data.featuredImage;
+  return squarestImage(post.data.poster, post.data.featuredImage);
 }
 
 export interface CityCardEntry {
@@ -79,7 +80,7 @@ export function buildCityCards(
         out.push({
           href: hrefBuilder(post),
           title: `IT${yearShort} - ${stage.name}`,
-          image: stageImg || post.data.poster || post.data.featuredImage,
+          image: stageImg || squarestImage(post.data.poster, post.data.featuredImage),
           date: new Date(stage.date),
           endDate: isoDate(new Date(stage.date)),
           category: post.data.category,

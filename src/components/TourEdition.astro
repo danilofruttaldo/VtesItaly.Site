@@ -8,7 +8,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import { resolvePlatformLabel, computeStageDisplayImages, stagePlaceholder, stageStatusesOn } from '../utils/status';
-import { responsiveImage } from '../utils/image';
+import { imageFocus, responsiveImage } from '../utils/image';
 import Zoomable from './Zoomable.astro';
 import { anonymizeName } from '../utils/anonymize';
 import { cities } from '../data/cities';
@@ -44,6 +44,11 @@ const placeholderImage = stagePlaceholder(stages);
 // are 220 px wide, full width on phones.
 const STAGE_SIZES = '(max-width: 640px) 100vw, 220px';
 const stageSrcset = (image: string | undefined) => responsiveImage(image).srcset;
+// The square card crops the stage cover in CSS: keep its point of interest in view.
+const stagePosition = (image: string | undefined) => {
+  const p = imageFocus(image);
+  return p ? `object-position: ${p}` : undefined;
+};
 const stageStates = stages.map((s) => ({
   date: isoDay(s.date),
   cancelled: s.status === 'cancelled',
@@ -151,9 +156,12 @@ function formatStage(val: unknown, isAway: boolean): string {
                   alt={stage.name}
                   loading="lazy"
                   decoding="async"
+                  style={stagePosition(displayImages[i])}
                   data-real-image={stage.image}
                   data-real-srcset={stageSrcset(stage.image)}
+                  data-real-position={imageFocus(stage.image)}
                   data-placeholder-srcset={stageSrcset(placeholderImage)}
+                  data-placeholder-position={imageFocus(placeholderImage)}
                 />
               </Zoomable>
             )}
@@ -359,6 +367,7 @@ function formatStage(val: unknown, isAway: boolean): string {
         if (srcset) img.srcset = srcset;
         else img.removeAttribute('srcset');
         img.src = future ? img.dataset.realImage.replace(/\d{3}\.webp$/, '000.webp') : img.dataset.realImage;
+        img.style.objectPosition = (future ? img.dataset.placeholderPosition : img.dataset.realPosition) || '';
         // The zoom link opens what the card shows.
         img.closest('a.zoomable')?.setAttribute('href', img.src);
       }

@@ -3,6 +3,7 @@ import type { Locale } from './i18n';
 import { useTranslations } from './i18n';
 import { resolvePlatformLabel, stageDisplay } from './status';
 import { postUrl } from './url';
+import { imageFocus, squarestImage } from './image';
 import { isoDate } from './date';
 import { timelineWindow } from './timeline';
 import { isLeaguePost, postEndDay } from './post';
@@ -25,6 +26,8 @@ export interface CalendarEvent {
   // True when `image` is not a poster (principato header, photo): the popup
   // crops it to fill the frame instead of letterboxing it.
   imageFill?: boolean;
+  // `object-position` of a filled image: its point of interest (utils/image imageFocus).
+  imagePosition?: string;
   archonUrl?: string; // Archon or BCN Crisis link
   platform?: string; // label of the archonUrl button ("Archon", "BCN Crisis")
   tags?: string[]; // post tags for sub-category coloring
@@ -43,11 +46,14 @@ export const TIME_TBD = 'tbd';
 /** Calendar `time` value the browser script prints as the localized "to be defined". */
 const CAL_TIME_TBD = 'TBD';
 
-/** Pick the post-level image: poster-first for tournament categories, otherwise featured-first. */
+/** Pick the post-level image: the one closest to square (see `squarestImage`); on a
+ *  tie, poster-first for tournament categories, otherwise featured-first. */
 function pickPostImage(post: CollectionEntry<'blog'>): string | undefined {
   const cat = post.data.category;
   const usesPoster = cat === 'grand-prix' || cat === 'nazionale';
-  return usesPoster ? post.data.poster || post.data.featuredImage : post.data.featuredImage || post.data.poster;
+  return usesPoster
+    ? squarestImage(post.data.poster, post.data.featuredImage)
+    : squarestImage(post.data.featuredImage, post.data.poster);
 }
 
 const KNOWN_FORMATS = ['Standard', 'V5', 'Limited', 'Draft', 'Storyline', 'TBD'];
@@ -150,6 +156,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           format: composeFormat(stage.format, stage.proxies, stage.rounds, locale),
           image: display[si].image || image,
           imageFill: !display[si].image && imageFill,
+          imagePosition: !display[si].image && imageFill ? imageFocus(image) : undefined,
           archonUrl: stage.archonUrl,
           revealImage: display[si].revealImage,
           revealFrom: display[si].revealFrom,
@@ -185,6 +192,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           description: isAltro ? post.data.excerpt : undefined,
           image,
           imageFill,
+          imagePosition: imageFill ? imageFocus(image) : undefined,
           archonUrl: ev.archonUrl,
         };
 
@@ -273,17 +281,11 @@ export interface TimelineEntry {
   revealFrom?: string;
 }
 
-/** Pick `object-position` for the card thumbnail / timeline image.
- *  Honors an explicit `imageAnchor` from the post's frontmatter; otherwise
- *  anchors left for `type: 'altro'` events whose featured image is typically
- *  a wide-landscape social-kit composition. */
+/** `object-position` for the card image: only an explicit `imageAnchor` from the
+ *  frontmatter. Otherwise the card shows the square thumb, already cut around
+ *  the image's point of interest (scripts/build-thumbnails.mjs). */
 function pickImageAnchor(post: CollectionEntry<'blog'>): string | undefined {
-  if (post.data.imageAnchor) return post.data.imageAnchor;
-  const events = post.data.events;
-  if (events && events.length > 0 && events.every((e) => e.type === 'altro')) {
-    return 'left center';
-  }
-  return undefined;
+  return post.data.imageAnchor;
 }
 
 /** Last day of a multi-day post, undefined when single-day (see `postEndDay`). */

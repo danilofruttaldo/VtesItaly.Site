@@ -381,6 +381,8 @@ jobs:
       - name: Sync Google Calendar
         env:
           GCAL_CREDENTIALS: ${{ secrets.GCAL_CREDENTIALS }}
+          # Set to 1 only for one intended mass cleanup (see removalLimit).
+          GCAL_ALLOW_REMOVALS: ${{ vars.GCAL_ALLOW_REMOVALS }}
         run: node scripts/sync-gcal.mjs
 
   coverage-badge:

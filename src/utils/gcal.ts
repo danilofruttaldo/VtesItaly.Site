@@ -98,6 +98,15 @@ export interface GcalPlan {
   remove: string[];
 }
 
+/**
+ * Most events one sync may delete on its own: 10, or a tenth of what is on
+ * the calendar when that is more. Past it, a build that lost events is likelier
+ * than a real cleanup, so the sync stops instead of emptying the calendar.
+ */
+export function removalLimit(existing: number): number {
+  return Math.max(10, Math.ceil(existing / 10));
+}
+
 /** What to change on Google so that it matches the site: new, changed (by hash), gone. */
 export function planSync(desired: GcalEvent[], existing: GcalExisting[]): GcalPlan {
   const current = new Map(existing.map((e) => [e.id, e.extendedProperties?.private?.hash]));

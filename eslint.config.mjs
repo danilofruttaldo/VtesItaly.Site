@@ -55,6 +55,7 @@ export default [
         URLSearchParams: 'readonly',
         Buffer: 'readonly',
         fetch: 'readonly',
+        AbortSignal: 'readonly',
         console: 'readonly',
         process: 'readonly',
         setTimeout: 'readonly',

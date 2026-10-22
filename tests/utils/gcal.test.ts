@@ -1,6 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import type { CalendarEvent } from '../../src/utils/calendar';
-import { GCAL_SOURCE, gcalColor, gcalId, planSync, toGcalEvents, type GcalEvent } from '../../src/utils/gcal';
+import {
+  GCAL_SOURCE,
+  gcalColor,
+  gcalId,
+  planSync,
+  removalLimit,
+  toGcalEvents,
+  type GcalEvent,
+} from '../../src/utils/gcal';
 import { parseTime } from '../../src/utils/gcal-event';
 
 const OPTS = { siteUrl: 'https://vtesitaly.com', startsPrefix: 'Inizia' };
@@ -165,5 +173,13 @@ describe('gcalColor', () => {
     expect(gcalColor({ category: 'comunita', tags: ['prerelease'] })).toBe('3');
     expect(gcalColor({ category: 'comunita', tags: ['contest'] })).toBe('3');
     expect(gcalColor({ category: 'altro' })).toBe('3');
+  });
+});
+
+describe('removalLimit', () => {
+  it('allows 10 removals, or a tenth of the calendar when larger', () => {
+    expect(removalLimit(0)).toBe(10);
+    expect(removalLimit(127)).toBe(13);
+    expect(removalLimit(250)).toBe(25);
   });
 });

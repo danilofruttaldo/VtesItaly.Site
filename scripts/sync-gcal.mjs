@@ -15,12 +15,15 @@
  */
 import { createSign } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { GCAL_SOURCE, planSync, toGcalEvents } from '../src/utils/gcal.ts';
+import { GCAL_SOURCE, planSync, removalLimit, toGcalEvents } from '../src/utils/gcal.ts';
 import { GCAL_PUBLIC_CALENDAR } from '../src/utils/gcal-event.ts';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const SITE_URL = 'https://vtesitaly.com';
 const API = 'https://www.googleapis.com/calendar/v3';
+// Per request: a call Google never answers is cut here and retried, instead
+// of holding the job until its own timeout.
+const REQUEST_TIMEOUT_MS = 30_000;
 
 const events = JSON.parse(readFileSync('dist/api/calendar-events-it.json', 'utf8'));
 const it = JSON.parse(readFileSync('src/i18n/it.json', 'utf8'));
@@ -55,7 +58,7 @@ async function accessToken(key) {
   };
   const unsigned = `${b64({ alg: 'RS256', typ: 'JWT' })}.${b64(claims)}`;
   const signature = createSign('RSA-SHA256').update(unsigned).sign(key.private_key, 'base64url');
-  const res = await fetch('https://oauth2.googleapis.com/token', {
+  const res = await request('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
@@ -63,28 +66,50 @@ async function accessToken(key) {
       assertion: `${unsigned}.${signature}`,
     }),
   });
-  if (!res.ok) throw new Error(`token: ${res.status} ${await res.text()}`);
-  return (await res.json()).access_token;
+  return JSON.parse(res.text).access_token;
+}
+
+/**
+ * One HTTP request, body included; retries rate limits, 5xx, timeouts (headers
+ * or body past REQUEST_TIMEOUT_MS) and network errors with backoff. Returns
+ * { status, text }. Retrying a write is safe: event ids are fixed, so a
+ * repeated insert answers 409 and becomes an update.
+ */
+async function request(url, init, okStatuses = []) {
+  for (let attempt = 0; ; attempt++) {
+    let status;
+    let text;
+    try {
+      const res = await fetch(url, { ...init, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+      status = res.status;
+      text = await res.text();
+      if (res.ok || okStatuses.includes(status)) return { status, text };
+    } catch (err) {
+      if (attempt >= 4) throw new Error(`${init.method} ${url}: ${err.name} ${err.message}`, { cause: err });
+      await new Promise((r) => setTimeout(r, 1000 * 2 ** attempt));
+      continue;
+    }
+    // Google answers rate limits with 403 too, but a 403 is also "calendar not shared".
+    const retriable = status === 429 || status >= 500 || (status === 403 && /rateLimit/i.test(text));
+    if (!retriable || attempt >= 4) throw new Error(`${init.method} ${url}: ${status} ${text}`);
+    await new Promise((r) => setTimeout(r, 1000 * 2 ** attempt));
+  }
 }
 
 const token = await accessToken(JSON.parse(GCAL_CREDENTIALS));
 const base = `${API}/calendars/${encodeURIComponent(GCAL_PUBLIC_CALENDAR)}/events`;
 
-/** One API call; retries rate limits and 5xx with backoff. Returns the Response. */
-async function call(method, url, body, okStatuses = []) {
-  for (let attempt = 0; ; attempt++) {
-    const res = await fetch(url, {
+/** One Calendar API call with the token (see `request`). */
+function call(method, url, body, okStatuses = []) {
+  return request(
+    url,
+    {
       method,
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: body ? JSON.stringify(body) : undefined,
-    });
-    if (res.ok || okStatuses.includes(res.status)) return res;
-    const text = await res.text();
-    // Google answers rate limits with 403 too, but a 403 is also "calendar not shared".
-    const retriable = res.status === 429 || res.status >= 500 || (res.status === 403 && /rateLimit/i.test(text));
-    if (!retriable || attempt >= 4) throw new Error(`${method} ${url}: ${res.status} ${text}`);
-    await new Promise((r) => setTimeout(r, 1000 * 2 ** attempt));
-  }
+    },
+    okStatuses,
+  );
 }
 
 const existing = [];
@@ -96,7 +121,7 @@ do {
     fields: 'items(id,extendedProperties),nextPageToken',
   });
   if (pageToken) q.set('pageToken', pageToken);
-  const page = await (await call('GET', `${base}?${q}`)).json();
+  const page = JSON.parse((await call('GET', `${base}?${q}`)).text);
   existing.push(...(page.items ?? []));
   pageToken = page.nextPageToken ?? '';
 } while (pageToken);
@@ -106,6 +131,16 @@ console.log(
   `Google Calendar: ${plan.insert.length} nuovi, ${plan.update.length} modificati, ${plan.remove.length} rimossi ` +
     `(${desired.length} sul sito, ${existing.length} sul calendario)`,
 );
+// GCAL_ALLOW_REMOVALS=1 (repo variable) lets one intended big cleanup through.
+// Checked before the dry-run exit, so a dry run tells what the real sync would do.
+const limit = removalLimit(existing.length);
+if (plan.remove.length > limit && process.env.GCAL_ALLOW_REMOVALS !== '1') {
+  console.error(
+    `::error::Lo sync rimuoverebbe ${plan.remove.length} eventi (limite ${limit}): interrotto senza modifiche. ` +
+      'Se è voluto, imposta la variabile GCAL_ALLOW_REMOVALS=1 sul repo, rilancia il job e poi toglila.',
+  );
+  process.exit(1);
+}
 if (DRY_RUN) process.exit(0);
 
 for (const e of plan.insert) {

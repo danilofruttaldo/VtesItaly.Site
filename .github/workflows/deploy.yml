@@ -343,6 +343,47 @@ jobs:
           echo "Ripristinata $PREV"
           REMOTE_SCRIPT
 
+  gcal-sync:
+    # Pushes the calendar of the release just deployed to the public Google
+    # calendar (scripts/sync-gcal.mjs). Its own job: the site is already live,
+    # so a Google failure shows red here without touching the deploy or its
+    # rollback. Skipped with a warning while the secrets are not set.
+    needs: deploy
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    environment:
+      name: vtesitaly
+    concurrency:
+      # Never two syncs writing at once; the newer run waits and then wins.
+      group: gcal-sync
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: |
+            scripts
+            src/utils
+            src/i18n
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          # Node >= 22.18 runs the .ts import of the script (type stripping).
+          node-version-file: .nvmrc
+
+      - name: Download dist artifact from ci
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist
+
+      - name: Sync Google Calendar
+        env:
+          GCAL_CREDENTIALS: ${{ secrets.GCAL_CREDENTIALS }}
+          GCAL_CALENDAR_ID: ${{ vars.GCAL_CALENDAR_ID }}
+        run: node scripts/sync-gcal.mjs
+
   coverage-badge:
     # Refreshes `.github/coverage-badge.json` (read by the README badge via
     # shields.io) after a successful deploy. Kept out of `ci` so a badge

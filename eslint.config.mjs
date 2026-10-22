@@ -52,6 +52,9 @@ export default [
     languageOptions: {
       globals: {
         URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Buffer: 'readonly',
+        fetch: 'readonly',
         console: 'readonly',
         process: 'readonly',
         setTimeout: 'readonly',

@@ -1,0 +1,21 @@
+[
+  { "rank": 1, "name": "Alessandro Palozzo", "gw": 1, "vp": 4, "fvp": 4, "tp": 159 },
+  { "rank": 2, "name": "Simone Zanni", "gw": 2, "vp": 8, "fvp": 1, "tp": 92 },
+  { "rank": 2, "name": "Filippo Mengoli", "gw": 3, "vp": 9.5, "fvp": 0, "tp": 102 },
+  { "rank": 2, "name": "Andrea Paderni", "gw": 1, "vp": 5, "fvp": 0, "tp": 68 },
+  { "rank": 2, "name": "Enrico Bertusi", "gw": 1, "vp": 4.5, "fvp": 0, "tp": 66 },
+  { "rank": 6, "name": "Angelo Alvisi", "gw": 1, "vp": 4, "fvp": null, "tp": 29 },
+  { "rank": 7, "name": "Luca Lanzarini", "gw": 1, "vp": 3, "fvp": null, "tp": 25 },
+  { "rank": 8, "name": "Diego Di Nicolantonio", "gw": 0, "vp": 3.5, "fvp": null, "tp": 19 },
+  { "rank": 9, "name": "Stefano Tarozzi", "gw": 0, "vp": 2.5, "fvp": null, "tp": 15 },
+  { "rank": 10, "name": "Dario Coccioni", "gw": 0, "vp": 2.5, "fvp": null, "tp": 15 },
+  { "rank": 11, "name": "Riccardo Fabiani", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 12, "name": "Luca Schincaglia", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 13, "name": "Federico Neri", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 14, "name": "Daniele Davilli", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 15, "name": "Alessio Bianchi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 16, "name": "Massimo Vaccari", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 17, "name": "Giulio Roffi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 18, "name": "Lorenzo Ferri", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 19, "name": "Stefano Remartini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

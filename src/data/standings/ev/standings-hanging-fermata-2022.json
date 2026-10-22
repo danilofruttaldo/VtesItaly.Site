@@ -1,0 +1,19 @@
+[
+  { "rank": 1, "name": "Andrea Ravera", "gw": 1, "vp": 4, "fvp": 3, "tp": 147 },
+  { "rank": 2, "name": "Massimo Vaccari", "gw": 1, "vp": 5, "fvp": 1, "tp": 70 },
+  { "rank": 2, "name": "Federico Neri", "gw": 1, "vp": 4, "fvp": 1, "tp": 66 },
+  { "rank": 2, "name": "Enrico De Stefano", "gw": 2, "vp": 6, "fvp": 0, "tp": 78 },
+  { "rank": 2, "name": "Riccardo Fabiani", "gw": 1, "vp": 5, "fvp": 0, "tp": 66 },
+  { "rank": 6, "name": "Pau Vilar", "gw": 1, "vp": 3, "fvp": null, "tp": 25 },
+  { "rank": 7, "name": "Carlo Daniele", "gw": 1, "vp": 3, "fvp": null, "tp": 25 },
+  { "rank": 8, "name": "Stefano Tarozzi", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 9, "name": "Gianluca Marini", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Dario Coccioni", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Luca Lanzarini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 12, "name": "Manuel Segatori", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Manlio Poggi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Simone Zanni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Filippo Mengoli", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Paolo Pasqualin", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Filippo Tomov", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

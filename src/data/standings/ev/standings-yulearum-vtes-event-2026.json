@@ -1,0 +1,17 @@
+[
+  { "rank": 1, "name": "Damiano Ghiaroni", "gw": 1, "vp": 6, "fvp": 3, "tp": 147 },
+  { "rank": 2, "name": "Luca Manfredini", "gw": 0, "vp": 1.5, "fvp": 2, "tp": 49 },
+  { "rank": 2, "name": "Federico Ferrarini", "gw": 1, "vp": 5, "fvp": 0, "tp": 63 },
+  { "rank": 2, "name": "Gianluca Barzaghi", "gw": 0, "vp": 3, "fvp": 0, "tp": 47 },
+  { "rank": 2, "name": "Andrea Paderni", "gw": 0, "vp": 2, "fvp": 0, "tp": 43 },
+  { "rank": 6, "name": "Simone Parmeggiani", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 7, "name": "Adriano Arena", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 8, "name": "Niccolò Da Ronco", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 9, "name": "Ivan Candioli", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Giovanni De Grandis", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Enrico Bertusi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 12, "name": "Thomas Marchiori", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 13, "name": "Gianluca Marini", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 14, "name": "Henry Hinde", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Andrea Piserchia", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

@@ -1,0 +1,17 @@
+[
+  { "rank": 1, "name": "Enrico Bertusi", "gw": 1, "vp": 3, "fvp": 1.5, "tp": 129 },
+  { "rank": 2, "name": "Angelo Alvisi", "gw": 1, "vp": 5, "fvp": 0.5, "tp": 65 },
+  { "rank": 2, "name": "Andrea Piserchia", "gw": 1, "vp": 3.5, "fvp": 0.5, "tp": 59 },
+  { "rank": 2, "name": "Filippo Mengoli", "gw": 0, "vp": 3, "fvp": 0.5, "tp": 49 },
+  { "rank": 2, "name": "Tommaso Chiodi", "gw": 1, "vp": 5, "fvp": 0, "tp": 63 },
+  { "rank": 6, "name": "Damiano Ghiaroni", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 7, "name": "Simone Sacchi", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 8, "name": "Gianluca Barzaghi", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 9, "name": "Alessandro Bellomini", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Simone Zanni", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Miro Albertazzi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 12, "name": "Arianna Zanetti", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 13, "name": "Luca Manfredini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Federico Neri", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Simone Parmeggiani", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

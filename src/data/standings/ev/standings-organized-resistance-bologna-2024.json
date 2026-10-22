@@ -1,0 +1,20 @@
+[
+  { "rank": 1, "name": "Simone Zanni", "gw": 2, "vp": 6.5, "fvp": 1.5, "tp": 163 },
+  { "rank": 2, "name": "Federico Neri", "gw": 1, "vp": 3, "fvp": 1.5, "tp": 65 },
+  { "rank": 2, "name": "Giulio Roffi", "gw": 1, "vp": 4, "fvp": 1, "tp": 67 },
+  { "rank": 2, "name": "Simone Parmeggiani", "gw": 1, "vp": 6, "fvp": 0, "tp": 71 },
+  { "rank": 2, "name": "Miro Albertazzi", "gw": 1, "vp": 4, "fvp": 0, "tp": 63 },
+  { "rank": 6, "name": "Andrea Paderni", "gw": 1, "vp": 3, "fvp": null, "tp": 25 },
+  { "rank": 7, "name": "Diego Di Nicolantonio", "gw": 1, "vp": 3, "fvp": null, "tp": 25 },
+  { "rank": 8, "name": "Filippo Mengoli", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 9, "name": "Stefano Tarozzi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Angelo Alvisi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Arturo Parise", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Danilo Fruttaldo", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 13, "name": "Enrico Bertusi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Luca Manfredini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Luca Schincaglia", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 16, "name": "Nicola Pampaloni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 17, "name": "Nicola Pirera", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 18, "name": "Francesco La Rosa", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

@@ -1,0 +1,17 @@
+[
+  { "rank": 1, "name": "Enrico De Stefano", "gw": 1, "vp": 5.5, "fvp": 3, "tp": 145 },
+  { "rank": 2, "name": "Gianluca Bianco", "gw": 1, "vp": 4.5, "fvp": 1, "tp": 65 },
+  { "rank": 2, "name": "Ivan Candioli", "gw": 0, "vp": 2, "fvp": 1, "tp": 47 },
+  { "rank": 2, "name": "Vanni Borz", "gw": 1, "vp": 3.5, "fvp": 0, "tp": 57 },
+  { "rank": 2, "name": "Giulio De Cicco", "gw": 1, "vp": 3, "fvp": 0, "tp": 55 },
+  { "rank": 6, "name": "Fabio Gallina", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 7, "name": "Massimo Vaccari", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 7, "name": "Nicola Lonardi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 9, "name": "Tiziano Zancarli", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 10, "name": "Stefano Tarozzi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 11, "name": "Simone Canale", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 12, "name": "Elisa Stringari", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Simone Zanni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Riccardo Fabiani", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 14, "name": "Riccardo Nicolin", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

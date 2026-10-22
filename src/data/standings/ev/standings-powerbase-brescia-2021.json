@@ -1,0 +1,11 @@
+[
+  { "rank": 1, "name": "Manuel Segatori", "gw": 1, "vp": 5.5, "fvp": 2.5, "tp": 109 },
+  { "rank": 2, "name": "Riccardo Fabiani", "gw": 1, "vp": 4, "fvp": 0.5, "tp": 50 },
+  { "rank": 2, "name": "Paolo Pasqualin", "gw": 0, "vp": 1.5, "fvp": 0.5, "tp": 32 },
+  { "rank": 2, "name": "Cinzia Martinoni", "gw": 1, "vp": 3, "fvp": 0, "tp": 44 },
+  { "rank": 2, "name": "Giovanni Ambrosio", "gw": 0, "vp": 2, "fvp": 0, "tp": 32 },
+  { "rank": 6, "name": "Nicola Lonardi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 7, "name": "Gianluca Marini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 8, "name": "Mariolina Gentile", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 9, "name": "Andrea Cuni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

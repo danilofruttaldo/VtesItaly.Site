@@ -1,0 +1,19 @@
+[
+  { "rank": 1, "name": "Nicola Lonardi", "gw": 1, "vp": 3, "fvp": 2.5, "tp": 141 },
+  { "rank": 2, "name": "Alessandro Lanza", "gw": 1, "vp": 3.5, "fvp": 1, "tp": 64 },
+  { "rank": 2, "name": "Paolo Pasqualin", "gw": 1, "vp": 5, "fvp": 0.5, "tp": 68 },
+  { "rank": 2, "name": "Federico Neri", "gw": 1, "vp": 3, "fvp": 0, "tp": 58 },
+  { "rank": 2, "name": "Riccardo Fabiani", "gw": 0, "vp": 3.5, "fvp": 0, "tp": 52 },
+  { "rank": 6, "name": "Alessandro Aprigliano", "gw": 0, "vp": 3, "fvp": null, "tp": 17 },
+  { "rank": 7, "name": "Arturo Parise", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 8, "name": "Andrea Ghini", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 9, "name": "Alessio Bianchi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Vincenzo Rotondo", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Manuel Segatori", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 12, "name": "Luca Visonà", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 13, "name": "Daniele Davilli", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 14, "name": "Luca Lanzarini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Simone Zanni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 16, "name": "Angelo Alvisi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 16, "name": "Giovanni De Grandis", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

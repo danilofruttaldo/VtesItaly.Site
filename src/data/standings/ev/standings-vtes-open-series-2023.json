@@ -1,0 +1,22 @@
+[
+  { "rank": 1, "name": "Nicola Lonardi", "gw": 1, "vp": 2.5, "fvp": 4, "tp": 156 },
+  { "rank": 2, "name": "Andrea Paderni", "gw": 2, "vp": 9, "fvp": 1, "tp": 97 },
+  { "rank": 2, "name": "Alessio Bianchi", "gw": 1, "vp": 5, "fvp": 0, "tp": 69 },
+  { "rank": 2, "name": "Emanuele Sinagra", "gw": 1, "vp": 2.5, "fvp": 0, "tp": 59 },
+  { "rank": 2, "name": "Andrea Piserchia", "gw": 0, "vp": 2.5, "fvp": 0, "tp": 51 },
+  { "rank": 6, "name": "Arturo Parise", "gw": 1, "vp": 3, "fvp": null, "tp": 25 },
+  { "rank": 7, "name": "Luca Schincaglia", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 8, "name": "Massimo Rossetti", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 8, "name": "Filippo Mengoli", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 10, "name": "Tommaso Chiodi", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 11, "name": "Giulio Roffi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 12, "name": "Miro Albertazzi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 13, "name": "Roberto Antonio Giampaolo", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 14, "name": "Enrico Bertusi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 14, "name": "Simone Parmeggiani", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 14, "name": "Stefano Tarozzi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 17, "name": "Simone Zanni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 17, "name": "Marco Lombardo", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 19, "name": "Federico Neri", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 19, "name": "Luca Lanzarini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

@@ -1,0 +1,14 @@
+[
+  { "rank": 1, "name": "Davide Bonini", "gw": 1, "vp": 5, "fvp": 4, "tp": 132 },
+  { "rank": 2, "name": "Gabriele Bugliani", "gw": 1, "vp": 5, "fvp": 1, "tp": 62 },
+  { "rank": 2, "name": "Paolo Teobaldelli", "gw": 1, "vp": 4, "fvp": 0, "tp": 54 },
+  { "rank": 2, "name": "Alessandro Donati", "gw": 1, "vp": 3, "fvp": 0, "tp": 50 },
+  { "rank": 2, "name": "Emiliano Pellegrini", "gw": 1, "vp": 2, "fvp": 0, "tp": 46 },
+  { "rank": 6, "name": "Cristiano Fossi", "gw": 1, "vp": 2, "fvp": null, "tp": 21 },
+  { "rank": 7, "name": "Lorenzo Ferri", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 8, "name": "Leonardo Bensi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 8, "name": "Luca Turicchi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Niccolò Petrocchi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 11, "name": "Francesco La Rosa", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 11, "name": "Maria Giulia Fenili", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

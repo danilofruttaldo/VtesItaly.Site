@@ -1,0 +1,17 @@
+[
+  { "rank": 1, "name": "Diego Di Nicolantonio", "gw": 1, "vp": 5, "fvp": 2.5, "tp": 141 },
+  { "rank": 2, "name": "Federico Neri", "gw": 1, "vp": 4, "fvp": 0.5, "tp": 61 },
+  { "rank": 2, "name": "Thomas Marchiori", "gw": 1, "vp": 4, "fvp": 0.5, "tp": 61 },
+  { "rank": 2, "name": "Alessio Camola", "gw": 1, "vp": 7, "fvp": 0, "tp": 71 },
+  { "rank": 2, "name": "Federico Ferrarini", "gw": 1, "vp": 4.5, "fvp": 0, "tp": 61 },
+  { "rank": 6, "name": "Adriano Arena", "gw": 1, "vp": 2.5, "fvp": null, "tp": 23 },
+  { "rank": 7, "name": "Giovanni Langella", "gw": 0, "vp": 3.5, "fvp": null, "tp": 19 },
+  { "rank": 8, "name": "Gianluca Marini", "gw": 0, "vp": 3, "fvp": null, "tp": 17 },
+  { "rank": 9, "name": "Simone Parmeggiani", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 10, "name": "Marco Lombardo", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 11, "name": "Tiziano Zancarli", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 12, "name": "Simone Canale", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 13, "name": "Marcello Bertocchi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Niccolò Da Ronco", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Giulio Weikmann", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

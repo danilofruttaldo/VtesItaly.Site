@@ -1,0 +1,22 @@
+[
+  { "rank": 1, "name": "Federico Neri", "gw": 1, "vp": 6, "fvp": 3, "tp": 166 },
+  { "rank": 2, "name": "Simone Zanni", "gw": 2, "vp": 7, "fvp": 1, "tp": 89 },
+  { "rank": 2, "name": "Giulio Roffi", "gw": 1, "vp": 4, "fvp": 1, "tp": 69 },
+  { "rank": 2, "name": "Alessandro Aprigliano", "gw": 1, "vp": 5, "fvp": 0, "tp": 69 },
+  { "rank": 2, "name": "Davide Antoni", "gw": 1, "vp": 4, "fvp": 0, "tp": 65 },
+  { "rank": 6, "name": "Danilo Torrisi", "gw": 1, "vp": 4, "fvp": null, "tp": 29 },
+  { "rank": 7, "name": "Luca Lanzarini", "gw": 0, "vp": 3, "fvp": null, "tp": 17 },
+  { "rank": 8, "name": "Mariolina Gentile", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 9, "name": "Riccardo Fabiani", "gw": 0, "vp": 2, "fvp": null, "tp": 13 },
+  { "rank": 10, "name": "Angelo Alvisi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 11, "name": "Gabriele Bugliani", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 12, "name": "Alessio Bianchi", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 13, "name": "Paolo Pasqualin", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 13, "name": "Marco Vassallo", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Stefano Tarozzi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Pietro Donati", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Luca Schincaglia", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Gino Tessa", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Fabrizio Bernardi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 20, "name": "Mirko Della Bona", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

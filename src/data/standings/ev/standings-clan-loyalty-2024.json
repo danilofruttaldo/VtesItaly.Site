@@ -1,0 +1,10 @@
+[
+  { "rank": 1, "name": "Luca Turicchi", "gw": 1, "vp": 4, "fvp": 2.5, "tp": 110 },
+  { "rank": 2, "name": "Stefano Bertolini", "gw": 0, "vp": 1.5, "fvp": 1, "tp": 36 },
+  { "rank": 2, "name": "Gabriele Bugliani", "gw": 0, "vp": 2, "fvp": 0.5, "tp": 36 },
+  { "rank": 2, "name": "Davide Antoni", "gw": 1, "vp": 2.5, "fvp": 0, "tp": 44 },
+  { "rank": 2, "name": "Davide Bonini", "gw": 0, "vp": 1.5, "fvp": 0, "tp": 32 },
+  { "rank": 6, "name": "Andrea Poli", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 7, "name": "Marco Ulivi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 8, "name": "Simone Bertagni", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

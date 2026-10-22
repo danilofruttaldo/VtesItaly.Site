@@ -1,0 +1,17 @@
+[
+  { "rank": 1, "name": "Luca Turicchi", "gw": 1, "vp": 5, "fvp": 3, "tp": 143 },
+  { "rank": 2, "name": "Andrea Paderni", "gw": 1, "vp": 5.5, "fvp": 2, "tp": 73 },
+  { "rank": 2, "name": "Paolo Pasqualin", "gw": 1, "vp": 5, "fvp": 0, "tp": 63 },
+  { "rank": 2, "name": "Danilo Torrisi", "gw": 1, "vp": 3, "fvp": 0, "tp": 55 },
+  { "rank": 2, "name": "Dario Manzo", "gw": 0, "vp": 2, "fvp": 0, "tp": 43 },
+  { "rank": 6, "name": "Leonardo Bensi", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 6, "name": "Alessandro Aprigliano", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 8, "name": "Filippo Mengoli", "gw": 0, "vp": 1.5, "fvp": null, "tp": 11 },
+  { "rank": 9, "name": "Francesco La Rosa", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 10, "name": "Stefano Tarozzi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 11, "name": "Angelo Alvisi", "gw": 0, "vp": 0.5, "fvp": null, "tp": 7 },
+  { "rank": 12, "name": "Javier Pérez Sasntiago", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 12, "name": "Cristiano Fossi", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 12, "name": "Lorenzo Ferri", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 15, "name": "Damiano Posa", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

@@ -1,0 +1,10 @@
+[
+  { "rank": 1, "name": "Henry Hinde", "gw": 1, "vp": 4, "fvp": 3, "tp": 97 },
+  { "rank": 2, "name": "Paolo Pasqualin", "gw": 1, "vp": 3, "fvp": 1, "tp": 45 },
+  { "rank": 2, "name": "Patrizio Zippone", "gw": 1, "vp": 2, "fvp": 0, "tp": 37 },
+  { "rank": 2, "name": "Alain Desitter", "gw": 0, "vp": 3, "fvp": 0, "tp": 33 },
+  { "rank": 2, "name": "Riccardo Fabiani", "gw": 0, "vp": 3, "fvp": 0, "tp": 33 },
+  { "rank": 6, "name": "Massimo Vaccari", "gw": 0, "vp": 1, "fvp": null, "tp": 9 },
+  { "rank": 7, "name": "Gianluca Marini", "gw": 0, "vp": 0, "fvp": null, "tp": 5 },
+  { "rank": 8, "name": "Enrico De Stefano", "gw": 0, "vp": 0, "fvp": null, "tp": 5 }
+]

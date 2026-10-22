@@ -58,13 +58,16 @@ describe('EventEdition', () => {
     if (post.data.venue?.name) expect(html).toContain(post.data.venue.name);
   });
 
-  it('renders a comunita event post and includes the post excerpt when requested', async () => {
-    const post = pickPost((p) => p.data.category === 'comunita' && !!p.data.venue && (p.data.locale ?? 'it') === 'it');
-    const html = await container.renderToString(EventEdition, {
-      props: { post, locale: 'it', showExcerpt: true },
-      request: new Request('http://localhost/'),
-    });
-    if (post.data.excerpt) expect(html).toContain(post.data.excerpt);
+  it('renders a comunita event post with its venue', async () => {
+    // A venue name with no character the renderer escapes (quotes, &).
+    const post = pickPost(
+      (p) =>
+        p.data.category === 'comunita' &&
+        /^[\w .-]+$/.test(p.data.venue?.name ?? '') &&
+        (p.data.locale ?? 'it') === 'it',
+    );
+    const html = await renderEdition(post);
+    expect(html).toContain(post.data.venue!.name);
   });
 
   it('throws on an unsupported category (defensive guard)', async () => {

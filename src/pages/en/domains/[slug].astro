@@ -1,5 +1,4 @@
 ---
-import localEvents from '../../../data/local-events.json';
 import { getCollection } from 'astro:content';
 import CityPage from '../../../components/CityPage.astro';
 import { cities } from '../../../data/cities';
@@ -10,7 +9,7 @@ export async function getStaticPaths() {
   const allPosts = filterByLocale(await getCollection('blog'), 'en');
   return cities.map((city) => {
     const cityTag = city.slug.it;
-    const cards = buildCityCards(allPosts, cityTag, (post) => getEnPostUrl(post), localEvents);
+    const cards = buildCityCards(allPosts, cityTag, (post) => getEnPostUrl(post));
     return {
       params: { slug: city.slug.en },
       props: { city, cards },

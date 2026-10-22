@@ -364,15 +364,6 @@ describe('getCommunityTimeline', () => {
     expect(out[1].excerpt).toBe('Specific desc');
   });
 
-  it('always appends local events with city-based excerpt', () => {
-    // No blog posts → only local events flow through.
-    const out = getCommunityTimeline([], 'it');
-    expect(out.length).toBeGreaterThan(0);
-    expect(out.every((e) => e.category === 'local')).toBe(true);
-    const sample = out[0];
-    expect(sample.excerpt).toBeTruthy();
-  });
-
   it('output is sorted ascending by date', () => {
     const posts = [
       mkPost('a', {
@@ -415,12 +406,6 @@ describe('extractCalendarEvents imageFill', () => {
       events: [event],
     } as Partial<BlogEntry['data']> & { date: Date });
     expect(find([p], 'header').imageFill).toBe(true);
-  });
-
-  it('fills the frame for local events, which never have a poster', () => {
-    const local = extractCalendarEvents([], 'it').filter((e) => e.category === 'local' && e.image);
-    expect(local.length).toBeGreaterThan(0);
-    expect(local.every((e) => e.imageFill)).toBe(true);
   });
 });
 

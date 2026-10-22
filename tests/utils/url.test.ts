@@ -296,20 +296,3 @@ describe('url: buildCityCards', () => {
     expect(out[0].image).toBe('/poster.webp');
   });
 });
-
-describe('url: buildCityCards with calendar-only events', () => {
-  it('adds the local events of the city as cards without a page', () => {
-    const cards = buildCityCards([], 'firenze', () => '', [
-      {
-        name: 'Shadow Shift',
-        date: '2026-11-01',
-        city: 'firenze',
-        venue: 'Game',
-        image: '/images/headers/header-firenze.webp',
-      },
-      { name: 'Pool', date: '2026-12-19', city: 'bologna', venue: 'Circolo Barbanera' },
-    ]);
-    expect(cards).toHaveLength(1);
-    expect(cards[0]).toMatchObject({ href: '', title: 'Shadow Shift', endDate: '2026-11-01', excerpt: 'Game' });
-  });
-});

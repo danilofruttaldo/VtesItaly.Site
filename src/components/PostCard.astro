@@ -82,14 +82,10 @@ const isoEndDate = endDate ? isoDay(endDate) : undefined;
 // the full poster for the 240² `-thumb.webp` emitted by
 // scripts/build-thumbnails.mjs, saving ~280 KB per card.
 const cardImage = thumbFor(image);
-
-// Calendar-only events have no page: the card is plain text, with no link
-// and no "read" call to action.
-const Card = href ? 'a' : 'div';
 ---
 
-<Card
-  href={href || undefined}
+<a
+  href={href}
   class:list={['post-card', categoryAccent, highlight && 'post-card--highlight']}
   data-date={isoDate}
   data-end-date={isoEndDate}
@@ -138,6 +134,6 @@ const Card = href ? 'a' : 'div';
     )}
     <span class="post-card__title">{title}</span>
     {excerpt && <p class="post-card__excerpt">{excerpt}</p>}
-    {href && <span class="post-card__cta">{t.post.read_cta} &rarr;</span>}
+    <span class="post-card__cta">{t.post.read_cta} &rarr;</span>
   </div>
-</Card>
+</a>

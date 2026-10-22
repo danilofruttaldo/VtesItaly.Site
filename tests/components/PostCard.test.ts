@@ -64,11 +64,4 @@ describe('PostCard temporal markers', () => {
     });
     expect(html).toMatch(/<a\b(?=[^>]*class="post-card")(?=[^>]*\bhidden\b)[^>]*>/);
   });
-
-  it('renders a page-less card as plain text, without link or call to action', async () => {
-    const html = await render({ href: '', title: 'Local event' });
-    expect(html).toMatch(/<div\b[^>]*class="post-card"/);
-    expect(html).not.toMatch(/<a\b/);
-    expect(html).not.toContain('post-card__cta');
-  });
 });

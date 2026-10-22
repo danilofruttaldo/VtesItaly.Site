@@ -8,22 +8,6 @@ import { timelineWindow } from './timeline';
 import { isLeaguePost, postEndDay } from './post';
 
 export { isLeaguePost, postEndDay };
-import localEventsData from '../data/local-events.json';
-
-export interface LocalEvent {
-  name: string;
-  date: string; // YYYY-MM-DD
-  city: string;
-  time?: string;
-  venue?: string;
-  location?: string;
-  format?: string;
-  proxies?: boolean;
-  rounds?: number;
-  archonUrl?: string;
-  image?: string;
-}
-
 export interface CalendarEvent {
   id: string;
   date: string; // ISO date string YYYY-MM-DD
@@ -237,28 +221,6 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
     }
   }
 
-  // Local events (calendar-only, no dedicated page)
-  const localEvents = localEventsData as LocalEvent[];
-  for (const le of localEvents) {
-    const d = new Date(le.date);
-    if (isNaN(d.getTime())) continue;
-    events.push({
-      id: `local/${le.city}/${le.date}`,
-      date: le.date,
-      time: le.time || CAL_TIME_TBD,
-      title: le.name,
-      postTitle: le.name,
-      category: 'local',
-      url: '',
-      venue: le.venue || le.city.charAt(0).toUpperCase() + le.city.slice(1),
-      location: le.location,
-      format: composeFormat(le.format, le.proxies, le.rounds, locale),
-      archonUrl: le.archonUrl,
-      image: le.image,
-      imageFill: !!le.image,
-    });
-  }
-
   // A Tour stage played as a GP/NC side event is in both posts: one entry per
   // tournament (same day, same Archon link), the GP/NC one, which carries
   // the weekend's venue and schedule.
@@ -331,7 +293,7 @@ function pickTimelineEndDate(post: CollectionEntry<'blog'>, start: string): stri
 }
 
 /**
- * Build the community events timeline from blog posts + local events.
+ * Build the community events timeline from blog posts.
  * Tour posts emit one entry per stage; all other posts emit a single entry
  * anchored at `post.data.date`, the same logic as the comunita/principato pages,
  * so multi-day events (GP, NC, leagues) show as one card, not per side event.
@@ -384,24 +346,6 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
       imageAnchor,
       tags,
       excerpt,
-    });
-  }
-
-  // Local events (no post page; links resolve to empty)
-  const localEvents = localEventsData as LocalEvent[];
-  for (const le of localEvents) {
-    const d = new Date(le.date);
-    if (isNaN(d.getTime())) continue;
-    const cityName = le.city.charAt(0).toUpperCase() + le.city.slice(1);
-    const leExcerpt = le.venue ? `${cityName} - ${le.venue}` : cityName;
-    out.push({
-      date: le.date,
-      title: le.name,
-      url: '',
-      category: 'local',
-      image: le.image,
-      tags: [],
-      excerpt: leExcerpt,
     });
   }
 

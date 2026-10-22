@@ -53,26 +53,15 @@ export interface CityCardEntry {
   revealFrom?: string;
 }
 
-/** A calendar-only event (src/data/local-events.json), as the city cards need it. */
-export interface CityLocalEvent {
-  name: string;
-  date: string; // YYYY-MM-DD
-  city: string;
-  venue?: string;
-  image?: string;
-}
-
 /**
  * Build per-city card entries: expands Tour posts so each stage in `citySlug`
  * becomes its own card with the stage date and image. Non-tour posts stay as-is.
- * Calendar-only events of the city join as cards without a page (empty href),
- * as on the homepage timeline. Output sorted descending by date.
+ * Output sorted descending by date.
  */
 export function buildCityCards(
   posts: CollectionEntry<'blog'>[],
   citySlug: string,
   hrefBuilder: (post: CollectionEntry<'blog'>) => string,
-  localEvents: CityLocalEvent[] = [],
 ): CityCardEntry[] {
   const out: CityCardEntry[] = [];
 
@@ -112,22 +101,6 @@ export function buildCityCards(
       category: post.data.category,
       tags: post.data.tags,
       excerpt: post.data.excerpt,
-    });
-  }
-
-  for (const le of localEvents) {
-    if (le.city !== citySlug) continue;
-    const date = new Date(le.date);
-    if (isNaN(date.getTime())) continue;
-    out.push({
-      href: '',
-      title: le.name,
-      image: le.image,
-      date,
-      endDate: le.date,
-      category: 'local',
-      tags: [],
-      excerpt: le.venue ?? '',
     });
   }
 

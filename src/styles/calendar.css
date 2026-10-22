@@ -520,6 +520,22 @@
   flex-shrink: 0;
 }
 
+.cal__subscribe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.cal__subscribe-label {
+  font-size: var(--font-size-3xs);
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
 /* ===== Mobile: compact grid, no images, dot indicators ===== */
 @media (max-width: 640px) {
   .cal__month-title {

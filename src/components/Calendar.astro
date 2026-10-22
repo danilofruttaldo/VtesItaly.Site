@@ -1,6 +1,7 @@
 ---
 import '../styles/calendar.css';
 import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
+import { GCAL_SUBSCRIBE_GOOGLE, GCAL_SUBSCRIBE_ICAL } from '../utils/gcal-event';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
@@ -18,6 +19,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   data-months-json={JSON.stringify(t.months_array)}
   data-no-events={t.calendar.no_events_month}
   data-add-google={t.calendar.add_google}
+  data-starts={t.calendar.starts}
   data-read-cta={t.post.read_cta}
   data-close-label={t.calendar.close}
   data-prev-event={t.calendar.prev_event}
@@ -121,6 +123,23 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       {t.calendar.legend_other}
     </span>
   </div>
+
+  {/* Subscribe: the public Google calendar the deploy keeps in sync (scripts/sync-gcal.mjs) */}
+  <div class="cal__subscribe">
+    <span class="cal__subscribe-label">{t.calendar.subscribe}</span>
+    <a href={GCAL_SUBSCRIBE_GOOGLE} target="_blank" rel="noopener noreferrer" class="cal__popup-btn">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      Google Calendar
+    </a>
+    <a href={GCAL_SUBSCRIBE_ICAL} class="cal__popup-btn">
+      Apple / Outlook (iCal)
+    </a>
+  </div>
 </div>
 
 <script>
@@ -130,6 +149,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   // by the same amount without changing visual behavior (the calendar body is
   // still built from JS on load, never SSG'd).
   import { todayLocalIso } from '../utils/today';
+  import { googleTemplateUrl } from '../utils/gcal-event';
 
   type CalEvent = {
     date: string;
@@ -157,6 +177,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
 
     var monthNames: string[] = JSON.parse(cal.getAttribute('data-months-json') || '[]');
     var addGoogle = cal.getAttribute('data-add-google') || '';
+    var startsPrefix = cal.getAttribute('data-starts') || '';
     var readCta = cal.getAttribute('data-read-cta') || '';
     var closeLabel = cal.getAttribute('data-close-label') || 'Close';
     var prevEventLabel = cal.getAttribute('data-prev-event') || '';
@@ -189,16 +210,10 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       });
     }
 
+    // Same timing, title, place and description as the event the sync puts on
+    // the public Google calendar (utils/gcal-event).
     function googleUrl(ev: CalEvent) {
-      var d = ev.date.replace(/-/g, '');
-      var endStr = ev.endDate || ev.date;
-      var parts = endStr.split('-');
-      var nd = new Date(Date.UTC(+parts[0], +parts[1] - 1, +parts[2] + 1));
-      var dates = d + '/' + nd.toISOString().slice(0, 10).replace(/-/g, '');
-      var p = 'action=TEMPLATE&text=' + encodeURIComponent(ev.title) + '&dates=' + dates + '&ctz=Europe/Rome';
-      if (ev.location) p += '&location=' + encodeURIComponent(ev.location);
-      else if (ev.venue) p += '&location=' + encodeURIComponent(ev.venue);
-      return 'https://calendar.google.com/calendar/render?' + p;
+      return googleTemplateUrl(ev, events, { siteUrl: location.origin, startsPrefix: startsPrefix });
     }
 
     // The day cell that opened the popup gets the focus back on close.
@@ -308,14 +323,12 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       h += '</div>';
 
       // Actions row
-      var hasTBD = ts === 'TBD' || !ts;
+      // Every event: one without a start time is added as all-day.
       h += '<div class="cal__popup-actions">';
-      if (!hasTBD) {
-        h += '<a href="' + googleUrl(ev) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
-        h +=
-          '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
-        h += ' ' + esc(addGoogle) + '</a>';
-      }
+      h += '<a href="' + esc(googleUrl(ev)) + '" target="_blank" rel="noopener noreferrer" class="cal__popup-btn">';
+      h +=
+        '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+      h += ' ' + esc(addGoogle) + '</a>';
       if (ev.archonUrl) {
         var platform = ev.platform || 'Archon';
         h +=

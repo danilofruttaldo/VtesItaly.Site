@@ -1,27 +1,24 @@
 import { createHash } from 'node:crypto';
 import type { CalendarEvent } from './calendar';
+import { eventDetails, eventPageUrl, eventPlace, eventSummary, eventTiming, type GcalTime } from './gcal-event.ts';
 
 /**
  * Mapping from the site calendar (dist/api/calendar-events-it.json) to Google
  * Calendar events, and the diff that `scripts/sync-gcal.mjs` applies after
  * each deploy. The site stays the only source: events created by hand on the
  * Google calendar are never touched, because the sync lists only the events
- * tagged with `GCAL_SOURCE`.
+ * tagged with `GCAL_SOURCE`. Timing, place and description come from
+ * ./gcal-event.ts, shared with the popup's "add to Google Calendar" link.
  */
 
 export const GCAL_SOURCE = 'vtesitaly';
-export const GCAL_TIMEZONE = 'Europe/Rome';
-
-/** Single-day events with a start time but no end: Google needs one. */
-const DEFAULT_HOURS = 6;
-
-type GcalTime = { date: string } | { dateTime: string; timeZone: string };
 
 export interface GcalEvent {
   id: string;
   summary: string;
   description?: string;
   location?: string;
+  colorId: string;
   start: GcalTime;
   end: GcalTime;
   source?: { title: string; url: string };
@@ -50,47 +47,21 @@ export function gcalId(siteId: string): string {
   return createHash('sha256').update(siteId).digest('hex').slice(0, 32);
 }
 
-/** "09:30" or "9:00 – 19:00" → start (and end) as HH:MM; null for "", "TBD" and free text. */
-export function parseTime(time: string): { start: string; end?: string } | null {
-  const m = /^(\d{1,2}):(\d{2})(?:\s*[–-]\s*(\d{1,2}):(\d{2}))?$/.exec(time.trim());
-  if (!m) return null;
-  const pad = (h: string) => h.padStart(2, '0');
-  return { start: `${pad(m[1])}:${m[2]}`, end: m[3] ? `${pad(m[3])}:${m[4]}` : undefined };
-}
-
-/** YYYY-MM-DD plus `days`, on the calendar (no timezone involved). */
-function addDays(date: string, days: number): string {
-  const [y, m, d] = date.split('-').map(Number);
-  return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10);
-}
-
-/** Wall-clock "YYYY-MM-DDTHH:MM:00" plus `hours`, rolling over midnight. */
-function addHours(date: string, time: string, hours: number): string {
-  const [y, m, d] = date.split('-').map(Number);
-  const [hh, mm] = time.split(':').map(Number);
-  return new Date(Date.UTC(y, m - 1, d, hh + hours, mm)).toISOString().slice(0, 19);
-}
-
-function timing(ev: CalendarEvent): { start: GcalTime; end: GcalTime } {
-  const t = parseTime(ev.time);
-  // Multi-day events and days without a start time are all-day: Google's
-  // end date is exclusive, hence the extra day.
-  if (ev.endDate || !t) {
-    return { start: { date: ev.date }, end: { date: addDays(ev.endDate ?? ev.date, 1) } };
+/**
+ * Google's event palette (`colorId`, no custom hex) closest to the site
+ * calendar colors (eventColor in Calendar.astro): Tomato for GP, Basil for
+ * the Tour, Banana for the NC, Peacock for tournaments, Grape for the rest.
+ */
+export function gcalColor(ev: Pick<CalendarEvent, 'category' | 'tags'>): string {
+  if (ev.category === 'grand-prix') return '11';
+  if (ev.category === 'tour') return '10';
+  if (ev.category === 'nazionale') return '5';
+  if (ev.category === 'local') return '7';
+  if (ev.category === 'comunita') {
+    const tags = ev.tags ?? [];
+    return tags.includes('contest') || tags.includes('prerelease') ? '3' : '7';
   }
-  const start = `${ev.date}T${t.start}:00`;
-  const end = t.end && t.end > t.start ? `${ev.date}T${t.end}:00` : addHours(ev.date, t.start, DEFAULT_HOURS);
-  return {
-    start: { dateTime: start, timeZone: GCAL_TIMEZONE },
-    end: { dateTime: end, timeZone: GCAL_TIMEZONE },
-  };
-}
-
-/** "Circolo Barbanera, Via Ranzani 13, Bologna": the venue only when the address doesn't already name it. */
-function place(ev: CalendarEvent): string | undefined {
-  const { venue, location } = ev;
-  if (venue && location && !location.includes(venue)) return `${venue}, ${location}`;
-  return location || venue || undefined;
+  return '3';
 }
 
 /**
@@ -99,7 +70,6 @@ function place(ev: CalendarEvent): string | undefined {
  */
 export function toGcalEvents(events: CalendarEvent[], opts: GcalOptions): GcalEvent[] {
   const out: GcalEvent[] = [];
-  const prefix = `${opts.startsPrefix}: `;
   // Site ids are post + day, so two side events on the same day share one:
   // the second and later get their position appended.
   const seen = new Map<string, number>();
@@ -109,15 +79,14 @@ export function toGcalEvents(events: CalendarEvent[], opts: GcalOptions): GcalEv
     const n = (seen.get(ev.id) ?? 0) + 1;
     seen.set(ev.id, n);
     const key = n === 1 ? ev.id : `${ev.id}#${n}`;
-    const summary = ev.endDate && ev.title.startsWith(prefix) ? ev.title.slice(prefix.length) : ev.title;
-    const pageUrl = ev.url ? opts.siteUrl + ev.url : undefined;
-    const lines = [ev.description ?? ev.format, ev.archonUrl && `${ev.platform ?? 'Archon'}: ${ev.archonUrl}`, pageUrl];
+    const pageUrl = eventPageUrl(ev, opts.siteUrl);
     const body: Omit<GcalEvent, 'extendedProperties'> = {
       id: gcalId(key),
-      summary,
-      description: lines.filter(Boolean).join('\n') || undefined,
-      location: place(ev),
-      ...timing(ev),
+      summary: eventSummary(ev, opts.startsPrefix),
+      description: eventDetails(ev, opts.siteUrl),
+      location: eventPlace(ev),
+      colorId: gcalColor(ev),
+      ...eventTiming(ev),
       source: pageUrl ? { title: 'VTES Italy', url: pageUrl } : undefined,
     };
     const hash = createHash('sha256').update(JSON.stringify(body)).digest('hex').slice(0, 16);

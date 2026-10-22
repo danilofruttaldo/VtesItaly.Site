@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import type { CalendarEvent } from '../../src/utils/calendar';
-import { GCAL_SOURCE, gcalId, parseTime, planSync, toGcalEvents, type GcalEvent } from '../../src/utils/gcal';
+import { GCAL_SOURCE, gcalColor, gcalId, planSync, toGcalEvents, type GcalEvent } from '../../src/utils/gcal';
+import { parseTime } from '../../src/utils/gcal-event';
 
 const OPTS = { siteUrl: 'https://vtesitaly.com', startsPrefix: 'Inizia' };
 
@@ -130,6 +131,7 @@ describe('planSync', () => {
   const ev = (id: string, hash: string): GcalEvent => ({
     id,
     summary: id,
+    colorId: '7',
     start: { date: '2026-01-01' },
     end: { date: '2026-01-02' },
     extendedProperties: { private: { source: GCAL_SOURCE, hash } },
@@ -151,5 +153,18 @@ describe('planSync', () => {
 
   it('updates an event without a stored hash', () => {
     expect(planSync([ev('a', 'h')], [{ id: 'a' }]).update).toHaveLength(1);
+  });
+});
+
+describe('gcalColor', () => {
+  it('maps the site categories to the closest Google colors', () => {
+    expect(gcalColor({ category: 'grand-prix' })).toBe('11');
+    expect(gcalColor({ category: 'tour' })).toBe('10');
+    expect(gcalColor({ category: 'nazionale' })).toBe('5');
+    expect(gcalColor({ category: 'local' })).toBe('7');
+    expect(gcalColor({ category: 'comunita' })).toBe('7');
+    expect(gcalColor({ category: 'comunita', tags: ['prerelease'] })).toBe('3');
+    expect(gcalColor({ category: 'comunita', tags: ['contest'] })).toBe('3');
+    expect(gcalColor({ category: 'altro' })).toBe('3');
   });
 });

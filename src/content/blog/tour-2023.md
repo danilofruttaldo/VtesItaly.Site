@@ -16,7 +16,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Magic Maze'
-    location: 'Via Francesco Ferrucci 95g, Prato (PO)'
+    location: 'Via Francesco Ferrucci 95g, 59100 Prato (PO)'
     image: '/images/headers/header-prato.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-e342-70db-89fd-2e286e413dc0'
 
@@ -68,7 +68,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Asgard Aldeno'
-    location: 'Via Roma 1, Aldeno (TN)'
+    location: 'Via Roma 1, 38060 Aldeno (TN)'
     image: '/images/headers/header-verona.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-fb33-7259-9c0d-82e4fe0d9fad'
 
@@ -81,7 +81,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Asgard Aldeno'
-    location: 'Via Roma 1, Aldeno (TN)'
+    location: 'Via Roma 1, 38060 Aldeno (TN)'
     image: '/images/headers/header-trento.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-fb3c-701b-8134-ddd4146d6965'
 
@@ -120,7 +120,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Secret Base'
-    location: 'Via Roma 62/c, Paderno Dugnano (MI)'
+    location: 'Via Roma 62/c, 20037 Paderno Dugnano (MI)'
     image: '/images/headers/header-milano.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-0919-77d3-a948-7cdbb828700f'
 

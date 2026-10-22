@@ -25,7 +25,7 @@ events:
     date: 2023-12-08
     time: '10:00'
     venue: 'Secret Base'
-    location: 'Via Roma 62/c, Paderno Dugnano (MI)'
+    location: 'Via Roma 62/c, 20037 Paderno Dugnano (MI)'
     format: 'Standard'
     proxies: true
     rounds: 2

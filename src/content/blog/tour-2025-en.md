@@ -15,7 +15,7 @@ stages:
     format: 'Standard'
     proxies: true
     rounds: 2
-    location: 'Via Roma 1, Aldeno (TN)'
+    location: 'Via Roma 1, 38060 Aldeno (TN)'
     image: '/tour/tour-2025/tour-2025-001.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-7209-77f1-a1e9-e6e5ed3a4965'
     description: 'The first stage of the Italian Tour 2025 opens the season with an intense tournament and the first points toward the overall ranking, featuring fierce matches and great attendance.'
@@ -127,7 +127,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Circolo Barbanera'
-    location: 'Via Camillo Ranzani 13/2C, Bologna (BO)'
+    location: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
     image: '/tour/tour-2025/tour-2025-009.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-b1c0-768b-83ca-29e5c346e0da'
     description: "The ninth and final stage of the Italian Tour 2025 takes place in Bologna, closing an intense and hard-fought season. A concluding event that celebrates the players' journey throughout the year, awards the last ranking points, and crowns the Tour champions."

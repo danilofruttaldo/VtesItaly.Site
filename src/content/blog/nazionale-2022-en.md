@@ -19,7 +19,7 @@ gallerySections:
       - '/nc/nc-2022/nc-2022-finale-01.webp'
 venue:
   name: 'Circolo Barbanera'
-  address: 'Via Camillo Ranzani 13/2C, Bologna (BO)'
+  address: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
   siteUrl: 'https://www.facebook.com/circolobarbanera/'
   mapUrl: 'https://maps.google.com/?q=Circolo+Barbanera+Via+Camillo+Ranzani+13/2C+Bologna'
 events:

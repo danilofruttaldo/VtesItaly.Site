@@ -8,7 +8,7 @@ poster: ''
 featuredImage: '/images/headers/header-grand-prix.webp'
 venue:
   name: 'Circolo Arci Benassi'
-  address: 'Viale Sergio Cavina 4, Bologna (BO)'
+  address: 'Viale Sergio Cavina 4, 40139 Bologna (BO)'
   siteUrl: 'https://circolobenassi.wixsite.com/arci-benassi'
   mapUrl: 'https://maps.google.com/?q=Circolo+Arci+Benassi+Viale+Sergio+Cavina+4+Bologna'
 events:

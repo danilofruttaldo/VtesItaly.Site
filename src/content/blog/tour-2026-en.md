@@ -61,7 +61,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Fumetteria Safarà'
-    location: 'Via Piave 26, Pordenone (PN)'
+    location: 'Via Piave 26, 33170 Pordenone (PN)'
     image: '/tour/tour-2026/tour-2026-003.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-ddb5-7400-b0f6-0bed94cf37b2'
     description: "Wrath doesn't plan: it explodes. Quick decisions, direct clashes, tables on fire. Only those who can channel their fury survive."
@@ -117,7 +117,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Game'
-    location: 'Via Francesco Baracca 168/R, Firenze (FI)'
+    location: 'Via Francesco Baracca 168/R, 50127 Firenze (FI)'
     image: '/tour/tour-2026/tour-2026-007.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/01a0e225-0aad-7493-a9b5-179abc978600'
     description: 'Pride closes the circle. Here the marks collected and the valor shown are displayed. Only those who have come this far can claim their name.'

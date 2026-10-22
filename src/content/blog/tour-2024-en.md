@@ -33,7 +33,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Magic Maze'
-    location: 'Via Francesco Ferrucci 95g, Prato (PO)'
+    location: 'Via Francesco Ferrucci 95g, 59100 Prato (PO)'
     image: '/images/headers/header-prato.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-31f8-72bb-80a9-904641a719b6'
     status: 'completed'
@@ -47,7 +47,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Fumetteria Safarà'
-    location: 'Via Piave 26, Pordenone (PN)'
+    location: 'Via Piave 26, 33170 Pordenone (PN)'
     image: '/images/headers/header-pordenone.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-377e-74e4-abc4-4f6778b7d43c'
     status: 'completed'
@@ -131,7 +131,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Circolo Arci Benassi'
-    location: 'Viale Sergio Cavina 4, Bologna (BO)'
+    location: 'Viale Sergio Cavina 4, 40139 Bologna (BO)'
     image: '/images/headers/header-bologna.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-4cdd-7195-928a-2640808ddd33'
     status: 'completed'
@@ -145,7 +145,7 @@ stages:
     proxies: true
     rounds: 2
     venue: 'Game'
-    location: 'Via Francesco Baracca 168/R, Firenze (FI)'
+    location: 'Via Francesco Baracca 168/R, 50127 Firenze (FI)'
     image: '/images/headers/header-firenze.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-6129-7464-841f-8897fe23593c'
     status: 'completed'

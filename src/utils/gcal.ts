@@ -1,6 +1,15 @@
 import { createHash } from 'node:crypto';
 import type { CalendarEvent } from './calendar';
-import { eventDetails, eventPageUrl, eventPlace, eventSummary, eventTiming, type GcalTime } from './gcal-event.ts';
+import {
+  EVENT_COLORS,
+  eventColorKey,
+  eventDetails,
+  eventPageUrl,
+  eventPlace,
+  eventSummary,
+  eventTiming,
+  type GcalTime,
+} from './gcal-event.ts';
 
 /**
  * Mapping from the site calendar (dist/api/calendar-events-it.json) to Google
@@ -47,21 +56,9 @@ export function gcalId(siteId: string): string {
   return createHash('sha256').update(siteId).digest('hex').slice(0, 32);
 }
 
-/**
- * Google's event palette (`colorId`, no custom hex) closest to the site
- * calendar colors (eventColor in Calendar.astro): Tomato for GP, Basil for
- * the Tour, Banana for the NC, Peacock for tournaments, Grape for the rest.
- */
+/** Google colour of an event: the same `EVENT_COLORS` entry the site calendar uses. */
 export function gcalColor(ev: Pick<CalendarEvent, 'category' | 'tags'>): string {
-  if (ev.category === 'grand-prix') return '11';
-  if (ev.category === 'tour') return '10';
-  if (ev.category === 'nazionale') return '5';
-  if (ev.category === 'local') return '7';
-  if (ev.category === 'comunita') {
-    const tags = ev.tags ?? [];
-    return tags.includes('contest') || tags.includes('prerelease') ? '3' : '7';
-  }
-  return '3';
+  return EVENT_COLORS[eventColorKey(ev)].colorId;
 }
 
 /**

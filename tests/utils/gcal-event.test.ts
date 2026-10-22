@@ -1,13 +1,17 @@
 import { describe, it, expect } from 'vitest';
 import {
+  EVENT_COLORS,
   GCAL_SUBSCRIBE_GOOGLE,
-  GCAL_SUBSCRIBE_ICAL,
+  GCAL_ICAL_URL,
+  GCAL_SUBSCRIBE_APPLE,
+  eventColorKey,
   googleTemplateUrl,
   rangeStart,
   type GcalSource,
 } from '../../src/utils/gcal-event';
 
-const OPTS = { siteUrl: 'https://vtesitaly.com', startsPrefix: 'Inizia' };
+const PREFIXES = { startsPrefix: 'Inizia', endsPrefix: 'Fine' };
+const OPTS = { siteUrl: 'https://vtesitaly.com', ...PREFIXES };
 
 function params(url: string): URLSearchParams {
   expect(url.startsWith('https://calendar.google.com/calendar/render?')).toBe(true);
@@ -19,15 +23,22 @@ const end: GcalSource = { date: '2026-11-09', endDate: '2026-11-09', time: '', t
 
 describe('rangeStart', () => {
   it('maps the end cell of a multi-day event to its start cell', () => {
-    expect(rangeStart(end, [start, end])).toBe(start);
+    expect(rangeStart(end, [start, end], PREFIXES)).toBe(start);
+  });
+
+  it('pairs the end cell with the start of the same event when a post has two', () => {
+    const main: GcalSource = { ...start, date: '2026-11-07', title: 'Inizia: Main' };
+    const side: GcalSource = { ...start, date: '2026-11-08', title: 'Inizia: Side' };
+    const sideEnd: GcalSource = { ...end, title: 'Fine: Side' };
+    expect(rangeStart(sideEnd, [main, side, sideEnd], PREFIXES)).toBe(side);
   });
 
   it('returns the event itself otherwise', () => {
-    expect(rangeStart(start, [start, end])).toBe(start);
+    expect(rangeStart(start, [start, end], PREFIXES)).toBe(start);
     const single: GcalSource = { date: '2026-11-01', title: 'X' };
-    expect(rangeStart(single, [single])).toBe(single);
+    expect(rangeStart(single, [single], PREFIXES)).toBe(single);
     // An end cell whose start is not in the list.
-    expect(rangeStart(end, [end])).toBe(end);
+    expect(rangeStart(end, [end], PREFIXES)).toBe(end);
   });
 });
 
@@ -75,8 +86,21 @@ describe('googleTemplateUrl', () => {
 describe('subscribe links', () => {
   it('point to the public vtesitaly calendar', () => {
     expect(GCAL_SUBSCRIBE_GOOGLE).toBe('https://calendar.google.com/calendar/u/0?cid=dnRlc2l0YWx5QGdtYWlsLmNvbQ');
-    expect(GCAL_SUBSCRIBE_ICAL).toBe(
+    expect(GCAL_ICAL_URL).toBe('https://calendar.google.com/calendar/ical/vtesitaly%40gmail.com/public/basic.ics');
+    expect(GCAL_SUBSCRIBE_APPLE).toBe(
       'webcal://calendar.google.com/calendar/ical/vtesitaly%40gmail.com/public/basic.ics',
     );
+  });
+});
+
+describe('eventColorKey', () => {
+  it('picks the colour of each kind of event', () => {
+    expect(eventColorKey({ category: 'grand-prix' })).toBe('grand-prix');
+    expect(eventColorKey({ category: 'tour' })).toBe('tour');
+    expect(eventColorKey({ category: 'nazionale' })).toBe('nazionale');
+    expect(eventColorKey({ category: 'comunita', tags: ['firenze', 'torneo'] })).toBe('tournament');
+    expect(eventColorKey({ category: 'comunita', tags: ['prerelease'] })).toBe('other');
+    expect(eventColorKey({ category: 'altro' })).toBe('other');
+    expect(EVENT_COLORS.tournament).toEqual({ hex: '#4A90D9', colorId: '7' });
   });
 });

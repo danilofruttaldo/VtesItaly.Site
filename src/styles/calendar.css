@@ -528,6 +528,13 @@
   flex-wrap: wrap;
   margin-top: 12px;
 }
+.cal__subscribe-hint {
+  flex-basis: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: var(--font-size-3xs);
+  color: var(--color-muted);
+}
 .cal__subscribe-label {
   font-size: var(--font-size-3xs);
   font-weight: 600;

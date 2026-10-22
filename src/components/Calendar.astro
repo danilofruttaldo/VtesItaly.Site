@@ -1,7 +1,7 @@
 ---
 import '../styles/calendar.css';
 import { getLocaleFromUrl, useTranslations } from '../utils/i18n';
-import { GCAL_SUBSCRIBE_GOOGLE, GCAL_SUBSCRIBE_ICAL } from '../utils/gcal-event';
+import { EVENT_COLORS, GCAL_ICAL_URL, GCAL_SUBSCRIBE_APPLE, GCAL_SUBSCRIBE_GOOGLE } from '../utils/gcal-event';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
@@ -20,6 +20,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   data-no-events={t.calendar.no_events_month}
   data-add-google={t.calendar.add_google}
   data-starts={t.calendar.starts}
+  data-ends={t.calendar.ends}
+  data-site={Astro.site?.origin}
   data-read-cta={t.post.read_cta}
   data-close-label={t.calendar.close}
   data-prev-event={t.calendar.prev_event}
@@ -29,7 +31,6 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     tour: t.calendar.cat_tour,
     nazionale: t.calendar.cat_nc,
     comunita: t.calendar.cat_community,
-    local: t.calendar.cat_local,
     altro: t.calendar.legend_other,
   })}
   data-prev-year={t.calendar.prev_year}
@@ -106,20 +107,20 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   {/* Legend */}
   <div class="cal__legend">
     <span class="cal__legend-item">
-      <span class="cal__legend-dot" style="background:#CE2B37"></span>GP
+      <span class="cal__legend-dot" style={`background:${EVENT_COLORS['grand-prix'].hex}`}></span>GP
     </span>
     <span class="cal__legend-item">
-      <span class="cal__legend-dot" style="background:#F0E6D3"></span>NC
+      <span class="cal__legend-dot" style={`background:${EVENT_COLORS.nazionale.hex}`}></span>NC
     </span>
     <span class="cal__legend-item">
-      <span class="cal__legend-dot" style="background:#009246"></span>Tour
+      <span class="cal__legend-dot" style={`background:${EVENT_COLORS.tour.hex}`}></span>Tour
     </span>
     <span class="cal__legend-item">
-      <span class="cal__legend-dot" style="background:#4A90D9"></span>
+      <span class="cal__legend-dot" style={`background:${EVENT_COLORS.tournament.hex}`}></span>
       {t.calendar.legend_events}
     </span>
     <span class="cal__legend-item">
-      <span class="cal__legend-dot" style="background:#9B59B6"></span>
+      <span class="cal__legend-dot" style={`background:${EVENT_COLORS.other.hex}`}></span>
       {t.calendar.legend_other}
     </span>
   </div>
@@ -136,9 +137,13 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       </svg>
       Google Calendar
     </a>
-    <a href={GCAL_SUBSCRIBE_ICAL} class="cal__popup-btn">
-      Apple / Outlook (iCal)
+    <a href={GCAL_SUBSCRIBE_APPLE} class="cal__popup-btn">
+      Apple
     </a>
+    <a href={GCAL_ICAL_URL} class="cal__popup-btn">
+      {t.calendar.ical_link}
+    </a>
+    <p class="cal__subscribe-hint">{t.calendar.ical_hint}</p>
   </div>
 </div>
 
@@ -149,7 +154,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
   // by the same amount without changing visual behavior (the calendar body is
   // still built from JS on load, never SSG'd).
   import { todayLocalIso } from '../utils/today';
-  import { googleTemplateUrl } from '../utils/gcal-event';
+  import { EVENT_COLORS, eventColorKey, googleTemplateUrl } from '../utils/gcal-event';
 
   type CalEvent = {
     date: string;
@@ -178,6 +183,10 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     var monthNames: string[] = JSON.parse(cal.getAttribute('data-months-json') || '[]');
     var addGoogle = cal.getAttribute('data-add-google') || '';
     var startsPrefix = cal.getAttribute('data-starts') || '';
+    var endsPrefix = cal.getAttribute('data-ends') || '';
+    // Canonical origin, not location.origin: the saved event links to the
+    // live site whatever host served the page.
+    var siteUrl = cal.getAttribute('data-site') || location.origin;
     var readCta = cal.getAttribute('data-read-cta') || '';
     var closeLabel = cal.getAttribute('data-close-label') || 'Close';
     var prevEventLabel = cal.getAttribute('data-prev-event') || '';
@@ -213,7 +222,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     // Same timing, title, place and description as the event the sync puts on
     // the public Google calendar (utils/gcal-event).
     function googleUrl(ev: CalEvent) {
-      return googleTemplateUrl(ev, events, { siteUrl: location.origin, startsPrefix: startsPrefix });
+      return googleTemplateUrl(ev, events, { siteUrl: siteUrl, startsPrefix: startsPrefix, endsPrefix: endsPrefix });
     }
 
     // The day cell that opened the popup gets the focus back on close.
@@ -390,17 +399,9 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
       else if (e.key === 'ArrowRight') pageBy(1);
     });
 
+    // Same table as the legend and the Google sync (utils/gcal-event).
     function eventColor(ev: CalEvent) {
-      if (ev.category === 'grand-prix') return '#CE2B37';
-      if (ev.category === 'tour') return '#009246';
-      if (ev.category === 'nazionale') return '#F0E6D3';
-      if (ev.category === 'local') return '#4A90D9';
-      if (ev.category === 'comunita') {
-        var t = ev.tags || [];
-        if (t.indexOf('contest') !== -1 || t.indexOf('prerelease') !== -1) return '#9B59B6';
-        return '#4A90D9';
-      }
-      return '#9B59B6';
+      return EVENT_COLORS[eventColorKey(ev)].hex;
     }
 
     function render() {

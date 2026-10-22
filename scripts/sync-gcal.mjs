@@ -7,7 +7,8 @@
  * hand on the Google calendar are left alone.
  *
  * Auth: a service account (JSON key in GCAL_CREDENTIALS) to which the
- * calendar GCAL_CALENDAR_ID is shared with "Make changes to events". The
+ * calendar GCAL_PUBLIC_CALENDAR (src/utils/gcal-event.ts, the same id as the
+ * site's subscribe links) is shared with "Make changes to events". The
  * OAuth JWT is signed here with node:crypto, no googleapis dependency.
  *
  * Usage: node scripts/sync-gcal.mjs [--dry-run]
@@ -15,6 +16,7 @@
 import { createSign } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { GCAL_SOURCE, planSync, toGcalEvents } from '../src/utils/gcal.ts';
+import { GCAL_PUBLIC_CALENDAR } from '../src/utils/gcal-event.ts';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const SITE_URL = 'https://vtesitaly.com';
@@ -24,14 +26,14 @@ const events = JSON.parse(readFileSync('dist/api/calendar-events-it.json', 'utf8
 const it = JSON.parse(readFileSync('src/i18n/it.json', 'utf8'));
 const desired = toGcalEvents(events, { siteUrl: SITE_URL, startsPrefix: it.calendar.starts });
 
-const { GCAL_CREDENTIALS, GCAL_CALENDAR_ID } = process.env;
-if (!GCAL_CREDENTIALS || !GCAL_CALENDAR_ID) {
+const { GCAL_CREDENTIALS } = process.env;
+if (!GCAL_CREDENTIALS) {
   if (DRY_RUN) {
     console.log(`${desired.length} eventi da pubblicare (dry run, nessuna credenziale):`);
     for (const e of desired) console.log(`  ${e.start.date ?? e.start.dateTime}  ${e.summary}`);
     process.exit(0);
   }
-  console.log('::warning::GCAL_CREDENTIALS o GCAL_CALENDAR_ID non impostati: sync del Google Calendar saltato.');
+  console.log('::warning::GCAL_CREDENTIALS non impostato: sync del Google Calendar saltato.');
   process.exit(0);
 }
 // An empty list would delete every synced event: a broken build, not a real state.
@@ -66,7 +68,7 @@ async function accessToken(key) {
 }
 
 const token = await accessToken(JSON.parse(GCAL_CREDENTIALS));
-const base = `${API}/calendars/${encodeURIComponent(GCAL_CALENDAR_ID)}/events`;
+const base = `${API}/calendars/${encodeURIComponent(GCAL_PUBLIC_CALENDAR)}/events`;
 
 /** One API call; retries rate limits and 5xx with backoff. Returns the Response. */
 async function call(method, url, body, okStatuses = []) {

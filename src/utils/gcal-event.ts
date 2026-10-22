@@ -7,15 +7,41 @@
 
 export const GCAL_TIMEZONE = 'Europe/Rome';
 
-/** The public Google calendar the deploy keeps in sync (GCAL_CALENDAR_ID in CI). */
+/**
+ * Colour of each kind of event, in one place: `hex` for the site calendar
+ * (cells and legend), `colorId` for Google, whose palette takes no custom hex:
+ * Tomato, Basil, Banana, Peacock and Grape are the closest of its 11 colours.
+ */
+export const EVENT_COLORS = {
+  'grand-prix': { hex: '#CE2B37', colorId: '11' },
+  tour: { hex: '#009246', colorId: '10' },
+  nazionale: { hex: '#F0E6D3', colorId: '5' },
+  tournament: { hex: '#4A90D9', colorId: '7' },
+  other: { hex: '#9B59B6', colorId: '3' },
+} as const;
+
+/** Which `EVENT_COLORS` entry an event takes: community contests and pre-releases are "other". */
+export function eventColorKey(ev: { category: string; tags?: string[] }): keyof typeof EVENT_COLORS {
+  if (ev.category === 'grand-prix' || ev.category === 'tour' || ev.category === 'nazionale') return ev.category;
+  if (ev.category === 'comunita') {
+    const tags = ev.tags ?? [];
+    return tags.includes('contest') || tags.includes('prerelease') ? 'other' : 'tournament';
+  }
+  return 'other';
+}
+
+/** The public Google calendar: the sync (scripts/sync-gcal.mjs) writes to it, the subscribe links point at it. */
 export const GCAL_PUBLIC_CALENDAR = 'vtesitaly@gmail.com';
 
 /** "Add this calendar" on Google: `cid` is the calendar id in base64, unpadded. */
 export const GCAL_SUBSCRIBE_GOOGLE =
   'https://calendar.google.com/calendar/u/0?cid=' + btoa(GCAL_PUBLIC_CALENDAR).replace(/=+$/, '');
 
-/** Google's public iCal feed of the same calendar, for Apple Calendar and Outlook. */
-export const GCAL_SUBSCRIBE_ICAL = `webcal://calendar.google.com/calendar/ical/${encodeURIComponent(GCAL_PUBLIC_CALENDAR)}/public/basic.ics`;
+/** Google's public iCal feed of the same calendar: the address to paste into Outlook and other apps. */
+export const GCAL_ICAL_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(GCAL_PUBLIC_CALENDAR)}/public/basic.ics`;
+
+/** The same feed as webcal://, which Apple Calendar opens as a subscription in one click. */
+export const GCAL_SUBSCRIBE_APPLE = GCAL_ICAL_URL.replace(/^https:/, 'webcal:');
 
 /** Single-day events with a start time but no end: Google needs one. */
 const DEFAULT_HOURS = 6;
@@ -86,7 +112,7 @@ export function eventSummary(ev: GcalSource, startsPrefix: string): string {
   return ev.endDate && ev.title.startsWith(prefix) ? ev.title.slice(prefix.length) : ev.title;
 }
 
-/** Absolute page URL, undefined for calendar-only (local) events. */
+/** Absolute page URL, undefined when the event has no page of its own. */
 export function eventPageUrl(ev: GcalSource, siteUrl: string): string | undefined {
   return ev.url ? siteUrl + ev.url : undefined;
 }
@@ -101,14 +127,25 @@ export function eventDetails(ev: GcalSource, siteUrl: string): string | undefine
   return lines.filter(Boolean).join('\n') || undefined;
 }
 
+/** Localized "Starts" / "Ends" prefixes of the two cells of a multi-day event. */
+export interface RangePrefixes {
+  startsPrefix: string;
+  endsPrefix: string;
+}
+
 /**
  * The site splits a multi-day event into a start cell and an "Ends:" cell
- * (endDate === date). For an end cell, its start cell in `events`; for any
- * other event, the event itself.
+ * (endDate === date). For an end cell, its start cell in `events`: same page,
+ * same last day and same name, so two multi-day events of one post ending on
+ * the same day stay apart. For any other event, the event itself.
  */
-export function rangeStart<T extends GcalSource>(ev: T, events: T[]): T {
-  if (!ev.endDate || ev.endDate !== ev.date) return ev;
-  return events.find((e) => e.url === ev.url && e.endDate === ev.endDate && e.date < ev.date) ?? ev;
+export function rangeStart<T extends GcalSource>(ev: T, events: T[], prefixes: RangePrefixes): T {
+  const ends = `${prefixes.endsPrefix}: `;
+  if (!ev.endDate || ev.endDate !== ev.date || !ev.title.startsWith(ends)) return ev;
+  const title = `${prefixes.startsPrefix}: ${ev.title.slice(ends.length)}`;
+  return (
+    events.find((e) => e.url === ev.url && e.endDate === ev.endDate && e.date < ev.date && e.title === title) ?? ev
+  );
 }
 
 /** "20261101T103000" / "20261101": the `dates` format of Google's template link. */
@@ -123,9 +160,9 @@ function compact(t: GcalTime): string {
 export function googleTemplateUrl<T extends GcalSource>(
   ev: T,
   events: T[],
-  opts: { siteUrl: string; startsPrefix: string },
+  opts: RangePrefixes & { siteUrl: string },
 ): string {
-  const src = rangeStart(ev, events);
+  const src = rangeStart(ev, events, opts);
   const { start, end } = eventTiming(src);
   const p = new URLSearchParams({
     action: 'TEMPLATE',

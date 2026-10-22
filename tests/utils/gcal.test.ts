@@ -161,7 +161,6 @@ describe('gcalColor', () => {
     expect(gcalColor({ category: 'grand-prix' })).toBe('11');
     expect(gcalColor({ category: 'tour' })).toBe('10');
     expect(gcalColor({ category: 'nazionale' })).toBe('5');
-    expect(gcalColor({ category: 'local' })).toBe('7');
     expect(gcalColor({ category: 'comunita' })).toBe('7');
     expect(gcalColor({ category: 'comunita', tags: ['prerelease'] })).toBe('3');
     expect(gcalColor({ category: 'comunita', tags: ['contest'] })).toBe('3');

@@ -36,8 +36,8 @@ describe('status: computeTourStatus', () => {
   it('returns null when every stage is cancelled', () => {
     expect(
       computeTourStatus([
-        { date: new Date('2026-03-01'), status: 'cancelled' },
-        { date: new Date('2026-05-01'), status: 'cancelled' },
+        { date: new Date('2026-03-01'), cancelled: true },
+        { date: new Date('2026-05-01'), cancelled: true },
       ]),
     ).toBeNull();
   });
@@ -47,7 +47,7 @@ describe('status: computeTourStatus', () => {
       computeTourStatus([
         { date: new Date('2026-01-15') },
         { date: new Date('2026-02-15') },
-        { date: new Date('2026-06-01'), status: 'cancelled' },
+        { date: new Date('2026-06-01'), cancelled: true },
       ]),
     ).toBe('past');
   });
@@ -154,7 +154,7 @@ describe('status: computeStageDisplayImages', () => {
   it('never hides a cancelled stage cover', () => {
     const stages = [
       { date: new Date('2026-06-01'), image: '/tour/2026/001.webp' },
-      { date: new Date('2026-07-01'), image: '/tour/2026/002.webp', status: 'cancelled' },
+      { date: new Date('2026-07-01'), image: '/tour/2026/002.webp', cancelled: true },
     ];
     expect(stageRevealDates(stages)).toEqual(['', '']);
   });
@@ -224,9 +224,7 @@ describe('status: tourStatusOn / eventStatusOn (shared with the browser script)'
   });
 
   it('serializes stages for the page as days plus a cancelled flag', () => {
-    expect(
-      toStageDays([{ date: new Date('2026-03-01') }, { date: new Date('2026-04-01'), status: 'cancelled' }]),
-    ).toEqual([
+    expect(toStageDays([{ date: new Date('2026-03-01') }, { date: new Date('2026-04-01'), cancelled: true }])).toEqual([
       { date: '2026-03-01', cancelled: false },
       { date: '2026-04-01', cancelled: true },
     ]);

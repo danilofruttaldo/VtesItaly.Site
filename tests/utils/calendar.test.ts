@@ -345,7 +345,7 @@ describe('getCommunityTimeline', () => {
         category: 'tour',
         excerpt: 'tour excerpt',
         stages: [
-          { name: 'STAGE A', number: 1, cities: ['x'], date: new Date('2026-04-10'), time: '10:00', status: 'future' },
+          { name: 'STAGE A', number: 1, cities: ['x'], date: new Date('2026-04-10'), time: '10:00' },
           {
             name: 'STAGE B',
             number: 2,
@@ -353,7 +353,6 @@ describe('getCommunityTimeline', () => {
             date: new Date('2026-06-20'),
             time: '10:00',
             description: 'Specific desc',
-            status: 'future',
           },
         ],
       } as Partial<BlogEntry['data']> & { date: Date }),
@@ -433,7 +432,6 @@ describe('extractCalendarEvents: tour stages', () => {
     number: 1,
     date: new Date(date),
     cities: ['milano'],
-    status: 'future',
     ...extra,
   });
   const tour = mkPost('tour-2027', {

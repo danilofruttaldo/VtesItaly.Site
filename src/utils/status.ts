@@ -3,7 +3,7 @@ import { isoDay } from './date';
 
 interface Stage {
   date: Date;
-  status?: string;
+  cancelled?: boolean;
 }
 
 export type TourStatus = 'past' | 'live' | 'upcoming';
@@ -71,7 +71,7 @@ export function stageStatusesOn(
 
 /** Stages as `StageDay`, the shape the page hands to the browser. */
 export function toStageDays(stages: Stage[]): StageDay[] {
-  return stages.map((s) => ({ date: isoDay(s.date), cancelled: s.status === 'cancelled' }));
+  return stages.map((s) => ({ date: isoDay(s.date), cancelled: !!s.cancelled }));
 }
 
 /**
@@ -91,7 +91,7 @@ export function computeEventStatus(eventDate: Date, endDate?: string): EventStat
   return eventStatusOn(isoDay(eventDate), todayLocalIso(), endDate);
 }
 
-type DisplayStage = { date: Date; image?: string; status?: string; hideDate?: boolean };
+type DisplayStage = { date: Date; image?: string; cancelled?: boolean; hideDate?: boolean };
 
 /**
  * Day (YYYY-MM-DD) from which each stage shows its real cover instead of the
@@ -106,7 +106,7 @@ export function stageRevealDates(stages: DisplayStage[]): (string | null)[] {
   let earlierHidden = false;
   let earlierMax = '';
   return stages.map((s) => {
-    if (s.status === 'cancelled') return '';
+    if (s.cancelled) return '';
     const asNext = earlierHidden ? null : earlierMax;
     if (s.hideDate) {
       earlierHidden = true;

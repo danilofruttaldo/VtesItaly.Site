@@ -51,7 +51,7 @@ const stagePosition = (image: string | undefined) => {
 };
 const stageStates = stages.map((s) => ({
   date: isoDay(s.date),
-  cancelled: s.status === 'cancelled',
+  cancelled: !!s.cancelled,
   hidden: !!s.hideDate,
 }));
 const stageStatuses = stageStatusesOn(stageStates, todayLocalIso());

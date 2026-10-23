@@ -72,7 +72,9 @@ const stageSchema = z.object({
   image: z.string().optional(),
   description: z.string().optional(),
   hideDate: z.boolean().optional(),
-  status: z.enum(['completed', 'upcoming', 'future', 'cancelled']).default('future'),
+  // The other states (completed, upcoming, future) come from the date: see
+  // stageStatusesOn in src/utils/status.ts.
+  cancelled: z.boolean().optional(),
 });
 
 const pricingSchema = z.object({

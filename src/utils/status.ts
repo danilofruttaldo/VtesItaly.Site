@@ -69,6 +69,12 @@ export function stageStatusesOn(
   return out;
 }
 
+/** The tour is over (its podium lit) once every stage is played or cancelled,
+ *  at least one played: the same rule as tourStatusOn's 'past'. */
+export function tourIsOver(statuses: StageStatus[]): boolean {
+  return statuses.some((s) => s === 'completed') && statuses.every((s) => s === 'completed' || s === 'cancelled');
+}
+
 /** Stages as `StageDay`, the shape the page hands to the browser. */
 export function toStageDays(stages: Stage[]): StageDay[] {
   return stages.map((s) => ({ date: isoDay(s.date), cancelled: !!s.cancelled }));

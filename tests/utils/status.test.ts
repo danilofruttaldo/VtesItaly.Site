@@ -11,6 +11,7 @@ import {
   tourStatusOn,
   eventStatusOn,
   toStageDays,
+  tourIsOver,
 } from '../../src/utils/status';
 
 // All tests pin "now" to a specific instant so date comparisons are
@@ -255,5 +256,15 @@ describe('status: stageStatusesOn', () => {
         '2026-04-21',
       ),
     ).toEqual(['cancelled', 'upcoming', 'future']);
+  });
+});
+
+describe('tourIsOver', () => {
+  it('needs every stage played or cancelled, and at least one played', () => {
+    expect(tourIsOver(['completed', 'completed'])).toBe(true);
+    expect(tourIsOver(['completed', 'cancelled'])).toBe(true);
+    expect(tourIsOver(['completed', 'upcoming'])).toBe(false);
+    expect(tourIsOver(['cancelled', 'cancelled'])).toBe(false);
+    expect(tourIsOver([])).toBe(false);
   });
 });

@@ -131,7 +131,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
         if (!stage.date) continue;
-        if (stage.hideDate) continue;
+        if (stage.hideDate || stage.cancelled) continue;
         const d = new Date(stage.date);
         // Skip placeholder dates (1st of month without confirmed time)
         if (d.getUTCDate() === 1 && (!stage.time || stage.time === TIME_TBD)) continue;
@@ -308,7 +308,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
       const display = stageDisplay(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
-        if (!stage.date || stage.hideDate) continue;
+        if (!stage.date || stage.hideDate || stage.cancelled) continue;
         const d = new Date(stage.date);
         if (d.getUTCDate() === 1 && (!stage.time || stage.time === TIME_TBD)) continue;
         const yearShort = String(d.getUTCFullYear()).slice(2);

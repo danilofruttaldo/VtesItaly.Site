@@ -7,7 +7,13 @@ import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../utils/i18n';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
-import { resolvePlatformLabel, computeStageDisplayImages, stagePlaceholder, stageStatusesOn } from '../utils/status';
+import {
+  resolvePlatformLabel,
+  computeStageDisplayImages,
+  stagePlaceholder,
+  stageStatusesOn,
+  tourIsOver,
+} from '../utils/status';
 import { imageFocus, responsiveImage } from '../utils/image';
 import Zoomable from './Zoomable.astro';
 import { anonymizeName } from '../utils/anonymize';
@@ -82,7 +88,7 @@ interface TourStanding {
 const tourStandings = loadStandings<TourStanding>(post.data.standingsUrl);
 const stageCount = tourStandings.length > 0 ? stages.length : 0;
 const hasGw = tourStandings.some((s) => (s as any).gw != null);
-const tourFinished = computedStages.length > 0 && computedStages.every((s) => s.status === 'completed');
+const tourFinished = tourIsOver(stageStatuses);
 
 function formatStage(val: unknown, isAway: boolean): string {
   if (val == null) return '-';
@@ -320,7 +326,7 @@ function formatStage(val: unknown, isAway: boolean): string {
 </div>
 
 <script>
-  import { stageStatusesOn } from '../utils/status';
+  import { stageStatusesOn, tourIsOver } from '../utils/status';
   import { todayLocalIso } from '../utils/today';
 
   document.querySelectorAll('.te-card--clickable').forEach((card) => {
@@ -359,6 +365,10 @@ function formatStage(val: unknown, isAway: boolean): string {
         badge.textContent = badge.dataset['label' + status.charAt(0).toUpperCase() + status.slice(1)] || status;
       }
 
+      // The registration button takes the stage's colour too (not the "coming soon" one)
+      const cta = card.querySelector<HTMLElement>('.te-cta:not(.te-cta--soon)');
+      if (cta) cta.className = 'te-cta te-cta--' + status;
+
       // Swap cover: show real image for non-future, placeholder for future.
       // srcset first: with one set, the browser ignores src.
       const img = card.querySelector<HTMLImageElement>('.te-card-image img');
@@ -375,7 +385,7 @@ function formatStage(val: unknown, isAway: boolean): string {
     });
 
     // Podium: lit once every stage is over, even if the build ran before the last one
-    if (statuses.length > 0 && statuses.every((s) => s === 'completed')) {
+    if (tourIsOver(statuses)) {
       document.querySelectorAll<HTMLElement>('.te-standings-table tr[data-rank]').forEach((row) => {
         const rank = Number(row.dataset.rank);
         if (rank <= 1) row.classList.add('te-standings-winner');

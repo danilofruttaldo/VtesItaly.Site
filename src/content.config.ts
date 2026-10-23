@@ -57,25 +57,29 @@ const eventSchema = z.object({
   type: z.string().optional(),
 });
 
-const stageSchema = z.object({
-  name: z.string(),
-  number: z.number(),
-  date: z.coerce.date(),
-  cities: z.array(z.string()),
-  time: z.string().optional(),
-  venue: z.string().optional(),
-  location: z.string().optional(),
-  format: z.string().optional(),
-  proxies: z.boolean().optional(),
-  rounds: z.number().optional(),
-  archonUrl: httpUrl.optional(),
-  image: z.string().optional(),
-  description: z.string().optional(),
-  hideDate: z.boolean().optional(),
-  // The other states (completed, upcoming, future) come from the date: see
-  // stageStatusesOn in src/utils/status.ts.
-  cancelled: z.boolean().optional(),
-});
+const stageSchema = z
+  .object({
+    name: z.string(),
+    number: z.number(),
+    date: z.coerce.date(),
+    cities: z.array(z.string()),
+    time: z.string().optional(),
+    venue: z.string().optional(),
+    location: z.string().optional(),
+    format: z.string().optional(),
+    proxies: z.boolean().optional(),
+    rounds: z.number().optional(),
+    archonUrl: httpUrl.optional(),
+    image: z.string().optional(),
+    description: z.string().optional(),
+    hideDate: z.boolean().optional(),
+    // The other states (completed, upcoming, future) come from the date: see
+    // stageStatusesOn in src/utils/status.ts.
+    cancelled: z.boolean().optional(),
+    // Strict: a leftover key (an old `status: 'cancelled'`) stops the build
+    // instead of being dropped without a word.
+  })
+  .strict();
 
 const pricingSchema = z.object({
   label: z.string(),

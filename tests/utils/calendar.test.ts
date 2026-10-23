@@ -51,7 +51,7 @@ describe('composeFormat', () => {
     expect(composeFormat('SuperWeird', false, 3, 'en')).toBe('Special');
   });
 
-  it('labels storyline tournaments as unsanctioned', () => {
+  it('labels storyline tournaments by format and rounds', () => {
     expect(composeFormat('Storyline', undefined, 2, 'it')).toBe('Storyline - 2 Round + Finale');
     expect(composeFormat('Storyline', undefined, 2, 'en')).toBe('Storyline - 2 Rounds + Final');
   });
@@ -444,12 +444,13 @@ describe('extractCalendarEvents: tour stages', () => {
       stage('Orario da definire', '2027-04-14', { time: 'tbd' }),
       stage('Segnaposto', '2027-05-01'),
       stage('Nascosta', '2027-06-14', { hideDate: true }),
+      stage('Annullata', '2027-07-14', { time: '10:00', cancelled: true }),
     ],
   } as Partial<BlogEntry['data']> & { date: Date });
 
   const out = extractCalendarEvents([tour], 'it').filter((e) => e.category === 'tour');
 
-  it('emits one entry per dated, visible stage with the IT<yy> - name title', () => {
+  it('emits one entry per dated, visible, not cancelled stage with the IT<yy> - name title', () => {
     expect(out.map((e) => e.title)).toEqual(['IT27 - Con orario', 'IT27 - Senza orario', 'IT27 - Orario da definire']);
   });
 

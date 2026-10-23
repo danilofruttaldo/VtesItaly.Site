@@ -4,11 +4,11 @@ name: CI
 # Lighthouse and deploy reuse the dist/ artifact uploaded by `ci`, so the
 # whole build pipeline runs only once per push.
 #
-# Pull requests (including Dependabot's) run only the `ci` job: no Lighthouse,
+# Pull requests run only the `ci` job: no Lighthouse,
 # no deploy, no badge commit, and no access to the deploy secrets.
 #
 # Actions are pinned to a full commit SHA (a tag can be moved), with the
-# version in a trailing comment; Dependabot (github-actions) updates both.
+# version in a trailing comment; update both by hand.
 
 on:
   push:

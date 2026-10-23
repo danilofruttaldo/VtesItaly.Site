@@ -36,7 +36,7 @@
     "check:links": "node scripts/check-links.mjs",
     "check:dist": "npm run check:pages && npm run check:links",
     "smoke": "bash scripts/smoke-test.sh",
-    "ci:verify": "npm audit --omit=dev && npm run lint && npm run format:check && npm run check && npm run test:coverage && npm run test:build && npm run check:dist",
+    "ci:verify": "npm audit --audit-level=high && npm run lint && npm run format:check && npm run check && npm run test:coverage && npm run test:build && npm run check:dist",
     "clean": "rimraf dist .astro"
   },
   "dependencies": {

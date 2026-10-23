@@ -3,7 +3,8 @@ title: 'Sins of the Cauchemar'
 date: 2026-03-29
 category: 'comunita'
 tags: ['barga', 'torneo']
-featuredImage: '/images/headers/header-barga.webp'
+featuredImage: '/images/comunita/barga/sins-of-the-cauchemar-2026.webp'
+poster: '/images/comunita/barga/sins-of-the-cauchemar-2026.webp'
 excerpt: 'VTES Standard tournament in Lucca (LU) on Sunday, March 29, 2026: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Lucca Collezionando'

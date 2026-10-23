@@ -3,7 +3,8 @@ title: 'Fee Stake: Florence'
 date: 2025-02-01
 category: 'comunita'
 tags: ['firenze', 'torneo']
-featuredImage: '/images/headers/header-firenze.webp'
+featuredImage: '/images/comunita/firenze-prato/fee-stake-florence-2025.webp'
+poster: '/images/comunita/firenze-prato/fee-stake-florence-2025.webp'
 excerpt: 'VTES Standard tournament in Firenze (FI) on Saturday, February 1, 2025: proxies allowed, 3 rounds and a final.'
 venue:
   name: 'Game'

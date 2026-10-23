@@ -3,7 +3,8 @@ title: 'Truth in Darkness'
 date: 2025-05-10
 category: 'comunita'
 tags: ['firenze', 'torneo']
-featuredImage: '/images/headers/header-firenze.webp'
+featuredImage: '/images/comunita/firenze-prato/truth-in-darkness-2025.webp'
+poster: '/images/comunita/firenze-prato/truth-in-darkness-2025.webp'
 excerpt: 'Torneo VTES Standard a Firenze (FI), sabato 10 maggio 2025: proxy ammesse, 3 round e finale.'
 venue:
   name: 'Game'

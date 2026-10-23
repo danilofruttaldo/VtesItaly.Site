@@ -3,7 +3,8 @@ title: 'Aemilia by Night - Episode 2'
 date: 2024-03-03
 category: 'comunita'
 tags: ['modena', 'torneo']
-featuredImage: '/images/headers/header-modena.webp'
+featuredImage: '/images/comunita/modena/aemilia-by-night-episode-2-2024.webp'
+poster: '/images/comunita/modena/aemilia-by-night-episode-2-2024.webp'
 excerpt: 'Torneo VTES Standard a Modena (MO), domenica 3 marzo 2024: proxy ammesse, 3 round e finale.'
 venue:
   name: 'Polisportiva Sacca'

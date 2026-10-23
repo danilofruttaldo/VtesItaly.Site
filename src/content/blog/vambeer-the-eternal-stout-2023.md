@@ -3,7 +3,8 @@ title: 'Vambeer: the Eternal Stout'
 date: 2023-10-01
 category: 'comunita'
 tags: ['modena', 'torneo']
-featuredImage: '/images/headers/header-modena.webp'
+featuredImage: '/images/comunita/modena/vambeer-the-eternal-stout-2023.webp'
+poster: '/images/comunita/modena/vambeer-the-eternal-stout-2023.webp'
 excerpt: 'Torneo VTES Standard a Manzolino (MO), domenica 1 ottobre 2023: proxy ammesse, 2 round e finale.'
 venue:
   name: 'Wild Rover Irish Pub'

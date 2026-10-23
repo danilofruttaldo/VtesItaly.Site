@@ -3,7 +3,8 @@ title: 'Bleeding for Christmas'
 date: 2025-12-20
 category: 'comunita'
 tags: ['modena', 'torneo']
-featuredImage: '/images/headers/header-modena.webp'
+featuredImage: '/images/comunita/modena/bleeding-for-christmas-2025.webp'
+poster: '/images/comunita/modena/bleeding-for-christmas-2025.webp'
 excerpt: 'VTES Standard tournament in Modena (MO) on Saturday, December 20, 2025: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Polisportiva Sacca'

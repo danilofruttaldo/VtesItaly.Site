@@ -3,7 +3,8 @@ title: 'Festeggiamo Baba Yaga'
 date: 2026-01-05
 category: 'comunita'
 tags: ['trento', 'torneo']
-featuredImage: '/images/headers/header-trento.webp'
+featuredImage: '/images/comunita/trento/festeggiamo-baba-yaga-2026.webp'
+poster: '/images/comunita/trento/festeggiamo-baba-yaga-2026.webp'
 excerpt: 'Torneo VTES Standard a Aldeno (TN), lunedì 5 gennaio 2026: proxy ammesse, 3 round e finale.'
 venue:
   name: 'Asgard Aldeno'

@@ -3,7 +3,8 @@ title: 'Vambeer II'
 date: 2024-10-13
 category: 'comunita'
 tags: ['modena', 'torneo']
-featuredImage: '/images/headers/header-modena.webp'
+featuredImage: '/images/comunita/modena/vambeer-ii-2024.webp'
+poster: '/images/comunita/modena/vambeer-ii-2024.webp'
 excerpt: 'VTES Standard tournament in Manzolino (MO) on Sunday, October 13, 2024: proxies allowed, 3 rounds and a final.'
 venue:
   name: 'Wild Rover Irish Pub'

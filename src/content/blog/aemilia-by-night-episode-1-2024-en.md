@@ -3,7 +3,8 @@ title: 'Aemilia by Night - Episode 1'
 date: 2024-01-28
 category: 'comunita'
 tags: ['modena', 'torneo']
-featuredImage: '/images/headers/header-modena.webp'
+featuredImage: '/images/comunita/modena/aemilia-by-night-episode-1-2024.webp'
+poster: '/images/comunita/modena/aemilia-by-night-episode-1-2024.webp'
 excerpt: 'VTES Standard tournament in Spilamberto (MO) on Sunday, January 28, 2024: proxies allowed, 3 rounds and a final.'
 venue:
   name: 'Alearum Mundus'

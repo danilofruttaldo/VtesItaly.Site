@@ -3,7 +3,8 @@ title: 'Yulearum VTES Event'
 date: 2026-01-25
 category: 'comunita'
 tags: ['modena', 'torneo']
-featuredImage: '/images/headers/header-modena.webp'
+featuredImage: '/images/comunita/modena/yulearum-vtes-event-2026.webp'
+poster: '/images/comunita/modena/yulearum-vtes-event-2026.webp'
 excerpt: 'Torneo VTES Standard a Spilamberto (MO), domenica 25 gennaio 2026: proxy ammesse, 2 round e finale.'
 venue:
   name: 'Alearum Mundus'

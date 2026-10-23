@@ -292,6 +292,7 @@ function formatStage(val: unknown, isAway: boolean): string {
           <tbody>
             {tourStandings.map((s) => (
               <tr
+                data-rank={s.rank}
                 class:list={[
                   tourFinished && s.rank <= 1 && 'te-standings-winner',
                   tourFinished && s.rank >= 2 && s.rank <= 3 && 'te-standings-top',
@@ -372,5 +373,14 @@ function formatStage(val: unknown, isAway: boolean): string {
         img.closest('a.zoomable')?.setAttribute('href', img.src);
       }
     });
+
+    // Podium: lit once every stage is over, even if the build ran before the last one
+    if (statuses.length > 0 && statuses.every((s) => s === 'completed')) {
+      document.querySelectorAll<HTMLElement>('.te-standings-table tr[data-rank]').forEach((row) => {
+        const rank = Number(row.dataset.rank);
+        if (rank <= 1) row.classList.add('te-standings-winner');
+        else if (rank <= 3) row.classList.add('te-standings-top');
+      });
+    }
   })();
 </script>

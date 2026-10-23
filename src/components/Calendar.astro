@@ -207,10 +207,11 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     var popupInner = document.getElementById('cal-popup-inner')!;
     var focusTrapHandler: ((e: KeyboardEvent) => void) | null = null;
 
+    // Also used inside attributes (src, alt, href): innerHTML leaves quotes as they are.
     function esc(s: string | null | undefined): string {
       var d = document.createElement('div');
       d.appendChild(document.createTextNode(s || ''));
-      return d.innerHTML;
+      return d.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     function eventsForDay(y: number, m: number, d: number): CalEvent[] {

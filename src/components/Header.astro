@@ -84,14 +84,19 @@ function isCurrent(href: string): boolean {
     </button>
 
     <div class="lang-dropdown" id="lang-dropdown">
-      <button class="lang-dropdown__trigger nav-link" type="button" aria-expanded="false">
+      <button
+        class="lang-dropdown__trigger nav-link"
+        type="button"
+        aria-expanded="false"
+        aria-controls="lang-dropdown-menu"
+      >
         <Fragment set:html={flags[locale]} />
         {locale.toUpperCase()}
         <svg class="lang-dropdown__arrow" width="10" height="10" viewBox="0 0 10 10">
           <path d="M2 4l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
         </svg>
       </button>
-      <div class="lang-dropdown__menu">
+      <div class="lang-dropdown__menu" id="lang-dropdown-menu">
         {Object.entries(langLabels).map(([loc, label]) => (
           <a
             href={loc === locale ? undefined : getAlternateUrl(Astro.url, loc as Locale)}
@@ -247,7 +252,7 @@ function isCurrent(href: string): boolean {
     transition: transform 0.2s ease;
   }
 
-  .lang-dropdown[aria-expanded='true'] .lang-dropdown__arrow {
+  .lang-dropdown.is-open .lang-dropdown__arrow {
     transform: rotate(180deg);
   }
 
@@ -586,7 +591,6 @@ function isCurrent(href: string): boolean {
   function setLangDropdown(open: boolean) {
     if (!langDropdown) return;
     langDropdown.classList.toggle('is-open', open);
-    langDropdown.setAttribute('aria-expanded', String(open));
     langTrigger?.setAttribute('aria-expanded', String(open));
   }
 

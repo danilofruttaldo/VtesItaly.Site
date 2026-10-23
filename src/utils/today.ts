@@ -15,10 +15,3 @@ export function todayLocalIso(): string {
   const d = String(now.getDate()).padStart(2, '0');
   return `${y}-${m}-${d}`;
 }
-
-/** Local midnight today as a Date, for comparisons against other Date objects. */
-export function todayLocalMidnight(): Date {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  return d;
-}

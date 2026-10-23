@@ -54,7 +54,7 @@ jobs:
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          # Same major as `engines` in package.json; .nvmrc is the single
+          # Same major as `engines` in package.json (>=24); .nvmrc is the single
           # source for local tooling (nvm, fnm) and CI. setup-node caches
           # ~/.npm keyed on the lockfile, which is Node-version agnostic;
           # node_modules is never cached (npm ci rebuilds it).
@@ -233,9 +233,10 @@ jobs:
 
           # 2. Swap it in. The two renames leave public_html missing for a few
           # microseconds, far less than the in-place extraction this replaces.
-          ssh "${SSH_OPTS[@]}" "$REMOTE" bash -s -- "$GITHUB_SHA" <<'REMOTE_SCRIPT'
+          ssh "${SSH_OPTS[@]}" "$REMOTE" bash -s -- "$GITHUB_SHA" "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" <<'REMOTE_SCRIPT'
           set -euo pipefail
           SHA=$1
+          RUN=$2
           NEW=~/releases/$SHA
           [ -f "$NEW/index.html" ] || { echo "Release incompleta: manca index.html"; exit 1; }
           [ -f "$NEW/.htaccess" ] || { echo "Release incompleta: manca .htaccess"; exit 1; }
@@ -267,8 +268,10 @@ jobs:
             echo "Scambio fallito: rimessa la release precedente."
             exit 1
           fi
-          # Marker tied to this commit: the rollback acts only on its own swap.
-          echo "$SHA $PREV" > ~/releases/.ultima-precedente
+          # Marker tied to this run (not the commit: a rebuild asked by
+          # VtesItaly.Foto deploys the same sha again), so the rollback acts
+          # only on its own swap.
+          echo "$RUN $PREV" > ~/releases/.ultima-precedente
           # The list follows its release: the old one goes with $PREV, the new
           # one becomes the live list.
           if [ -f ~/releases/.asset-list ]; then
@@ -302,7 +305,7 @@ jobs:
         # Smoke test passed: the marker is no longer needed. A failure here
         # must not roll back a release that passed the smoke test: a leftover
         # marker is harmless, the next deploy overwrites it and the rollback
-        # acts only when the sha in it matches its own run.
+        # acts only when the run in it is its own.
         continue-on-error: true
         env:
           SSH_USER: ${{ vars.SSH_USER }}
@@ -328,13 +331,13 @@ jobs:
           set -euo pipefail
           [ -f ~/.ssh/deploy_key ] || { echo "Nessuna chiave: il deploy non era partito."; exit 0; }
           ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o StrictHostKeyChecking=yes -o BatchMode=yes \
-            "$SSH_USER@$SSH_HOST" bash -s -- "$GITHUB_SHA" <<'REMOTE_SCRIPT'
+            "$SSH_USER@$SSH_HOST" bash -s -- "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" <<'REMOTE_SCRIPT'
           set -euo pipefail
           [ -f ~/releases/.ultima-precedente ] || { echo "Nessuna release precedente registrata: niente da ripristinare."; exit 0; }
-          read -r SHA PREV < ~/releases/.ultima-precedente
+          read -r RUN PREV < ~/releases/.ultima-precedente
           # A marker from an earlier, successful run must never be undone: if the
           # swap of this run did not happen, the live site is the good one.
-          [ "$SHA" = "$1" ] || { echo "Lo scambio di questo giro non e' avvenuto: niente da ripristinare."; exit 0; }
+          [ "$RUN" = "$1" ] || { echo "Lo scambio di questo giro non e' avvenuto: niente da ripristinare."; exit 0; }
           [ -d "$PREV" ] || { echo "La release precedente $PREV non c'e' piu'."; exit 1; }
           mv ~/public_html ~/releases/"fallita-$(date -u +%Y%m%d%H%M%S)"
           mv "$PREV" ~/public_html

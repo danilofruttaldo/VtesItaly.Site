@@ -17,12 +17,14 @@
  * (`@napi-rs/wasm-runtime`, `@emnapi/*`, `tslib`) are optional and only
  * required by these packages, so npm skips them too: they are resolved from
  * package-lock the way npm would (nested folder first, then the parents) and
- * unpacked the same way. Outside Windows it does nothing. Ported from
+ * unpacked the same way. Each tarball must match the sha512 `integrity` that
+ * package-lock records for it, or the script stops before unpacking it. Outside Windows it does nothing. Ported from
  * danilofruttaldo.Site (compilatore-wasi.mjs).
  *
  * Runs as postinstall, after every `npm install` or `npm ci`.
  */
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
@@ -73,6 +75,19 @@ while (queue.length) {
   const [{ filename }] = JSON.parse(
     execSync(`npm pack ${name}@${version} --json --pack-destination .`, { cwd: dir, encoding: 'utf8' }),
   );
+  // `npm pack` checks the registry's own hash, not the one in package-lock:
+  // without this a republished or tampered tarball would go in unnoticed.
+  const expected = (entry.integrity ?? '').split(/\s+/).find((h) => h.startsWith('sha512-'));
+  const actual = `sha512-${createHash('sha512')
+    .update(readFileSync(path.join(dir, filename)))
+    .digest('base64')}`;
+  if (actual !== expected) {
+    rmSync(dir, { recursive: true, force: true });
+    console.error(
+      `${name}@${version}: tarball ${actual} does not match package-lock integrity ${expected ?? '(none)'}.`,
+    );
+    process.exit(1);
+  }
   execSync(`tar -xzf ${filename} --strip-components=1`, { cwd: dir });
   rmSync(path.join(dir, filename));
 

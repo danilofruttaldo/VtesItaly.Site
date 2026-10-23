@@ -5,7 +5,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
-import { z } from 'zod';
+import { z } from 'astro/zod';
 import { rowSchemaForPath, isStructuralEdgeCase } from '../../src/schemas/standings';
 
 const STANDINGS_ROOT = join(process.cwd(), 'src', 'data', 'standings');

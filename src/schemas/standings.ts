@@ -14,7 +14,7 @@
  * top-level object instead of an array - handled separately by
  * `WosStandings.astro` and intentionally not covered by these schemas.
  */
-import { z } from 'zod';
+import { z } from 'astro/zod';
 
 /** Stage score: tournaments record either a single number or a per-game
  *  breakdown object (eg. { gw, vp }). Pass-through to keep JSON faithful. */

@@ -24,7 +24,9 @@ const snapshot = process.argv.includes('--snapshot');
 
 let data;
 try {
-  const res = await fetch(URL_ALBUMS, { signal: AbortSignal.timeout(20_000) });
+  // A fresh query string misses the Pages CDN cache (max-age=600): a rebuild
+  // asked by VtesItaly.Foto right after its deploy gets the new index.
+  const res = await fetch(`${URL_ALBUMS}?t=${Date.now()}`, { signal: AbortSignal.timeout(20_000) });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   data = await res.json();
 } catch (err) {

@@ -1,0 +1,106 @@
+---
+/**
+ * An event's photos, from its album on foto.vtesitaly.com (`album` in the
+ * post): square thumbs by section, each linking to the full photo, which the
+ * site-wide Lightbox opens in place. Ends with a link to the whole album.
+ * The archive cuts every thumb to 640x640, hence the fixed width and height.
+ */
+import { albumFor, albumSections, sectionLabel } from '../utils/albums';
+import { useTranslations, type Locale } from '../utils/i18n';
+
+interface Props {
+  /** Slug of the album on foto.vtesitaly.com. */
+  slug: string;
+  locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const t = useTranslations(locale);
+const album = albumFor(slug);
+---
+
+{album && (
+  <section class="album-gallery">
+    <h2 class="album-gallery__title">{t.post.gallery}</h2>
+    {albumSections(album).map((section) => (
+      <div class="album-gallery__section">
+        {section.title && <h3 class="album-gallery__section-title">{sectionLabel(section.title, locale)}</h3>}
+        <ul class="album-gallery__grid">
+          {section.photos.map((p, i) => (
+            <li>
+              <a href={p.src} class="album-gallery__item">
+                <img
+                  src={p.thumb}
+                  alt={
+                    p.caption ??
+                    `${section.title ? sectionLabel(section.title, locale) : album.title} - ${t.post.photo} ${i + 1}`
+                  }
+                  width="640"
+                  height="640"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+    <p class="album-gallery__more">
+      <a href={album.url}>{t.post.album_link} &rarr;</a>
+    </p>
+  </section>
+)}
+
+<style>
+  .album-gallery {
+    /* The standings that may follow have no top margin of their own. */
+    margin: 48px 0 32px;
+  }
+  .album-gallery__title {
+    font-size: var(--font-size-xl);
+    margin: 0 0 16px;
+  }
+  .album-gallery__section + .album-gallery__section {
+    margin-top: 24px;
+  }
+  .album-gallery__section-title {
+    font-size: var(--font-size-md);
+    color: var(--color-gold);
+    margin: 0 0 10px;
+  }
+  .album-gallery__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+  .album-gallery__item {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .album-gallery__item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .album-gallery__item:hover img {
+    transform: scale(1.04);
+  }
+  .album-gallery__more {
+    margin: 16px 0 0;
+  }
+  @media (max-width: 640px) {
+    .album-gallery__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+  }
+</style>

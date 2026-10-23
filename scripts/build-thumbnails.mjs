@@ -17,7 +17,7 @@
  * (posters) are cut from the top, where the title is.
  *
  * Allow-list intentionally narrow: card art (`carte/`), twin photos
- * (`gemelli/`), gallery photos, the site logo and OG covers render at sizes
+ * (`gemelli/`), the site logo and OG covers render at sizes
  * >= 400 px or never in a card.
  *
  * Re-run is idempotent: a thumb is regenerated only when the source is newer

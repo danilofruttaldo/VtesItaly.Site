@@ -6,33 +6,6 @@ tags: ['italia', 'pordenone']
 featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: 'Il Campionato Nazionale Italiano VTES 2025 si è tenuto sabato 12 aprile presso la tenuta Gelindo dei Magredi a Vivaro (PN).'
 poster: '/nc/nc-2025/nc-2025-poster.webp'
-gallerySections:
-  - title: 'Preparazione'
-    images:
-      - '/nc/nc-2025/nc-2025-preparazione-01.webp'
-      - '/nc/nc-2025/nc-2025-preparazione-02.webp'
-      - '/nc/nc-2025/nc-2025-preparazione-03.webp'
-    wideImages:
-      - '/nc/nc-2025/nc-2025-preparazione-01.webp'
-  - title: 'Round'
-    images:
-      - '/nc/nc-2025/nc-2025-round-01.webp'
-      - '/nc/nc-2025/nc-2025-round-02.webp'
-      - '/nc/nc-2025/nc-2025-round-03.webp'
-      - '/nc/nc-2025/nc-2025-round-04.webp'
-  - title: 'Finale'
-    images:
-      - '/nc/nc-2025/nc-2025-finale-01.webp'
-      - '/nc/nc-2025/nc-2025-finale-02.webp'
-  - title: 'Bonus'
-    images:
-      - '/nc/nc-2025/nc-2025-bonus-01.webp'
-      - '/nc/nc-2025/nc-2025-bonus-02.webp'
-      - '/nc/nc-2025/nc-2025-bonus-03.webp'
-      - '/nc/nc-2025/nc-2025-bonus-04.webp'
-      - '/nc/nc-2025/nc-2025-bonus-05.webp'
-    wideImages:
-      - '/nc/nc-2025/nc-2025-bonus-01.webp'
 venue:
   name: 'Tenuta Gelindo dei Magredi'
   address: 'Via Roma, 14, 33099 Vivaro (PN)'
@@ -78,6 +51,7 @@ links:
 notes:
   - 'Possibilità di pernottamento e pasti in loco presso la tenuta Gelindo dei Magredi.'
   - 'Contattare direttamente la struttura per prenotare.'
+album: 'nc-2025'
 locale: it
 ---
 

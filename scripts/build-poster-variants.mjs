@@ -13,16 +13,14 @@
  * Tour stage covers (and their `…-000.webp` placeholder) get the same width
  * variants: the tour page shows them in 220 px cards.
  *
- * Gallery photos under `public/{gp,nc,ev,tour}/` get one `-640w.webp`, the
- * size of the grid thumbnails.
- *
  * Page hero headers (`public/images/headers/*.webp`, 1920 px wide) get
  * `<name>-768w.webp` and `<name>-1280w.webp` the same way: `PageHero` lists
  * them in a width `srcset`, so a phone no longer downloads the 1920 px banner.
  *
  * Source of truth is the content itself (the frontmatter), so adding an event
  * needs no edit here: its poster is picked up automatically. Only poster and
- * featured images are touched: gallery/header art used elsewhere is left alone.
+ * featured images are touched: header art used elsewhere is left alone. Event
+ * photos live on foto.vtesitaly.com (repo VtesItaly.Foto), not here.
  *
  * Generated files are git-ignored and rebuilt by `prebuild` (locally and in
  * CI): no derivative binaries are committed. Re-run is idempotent (a variant
@@ -137,38 +135,6 @@ for (const image of ogSources) {
     .jpeg({ quality: 82, mozjpeg: true })
     .toFile(out);
   generated++;
-}
-
-// Gallery photos: one 640w variant each, so the grid thumbnails (~300 px)
-// stop downloading the full photo; the link still opens the original.
-const GALLERY_WIDTH = 640;
-const GALLERY_ROOTS = ['gp', 'nc', 'ev', 'tour'];
-const DERIVED = /-(?:thumb|2x|small|\d+w)\.webp$/i;
-const sized = new Set(posters);
-function walkWebp(dir) {
-  return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
-    const p = join(dir, e.name);
-    if (e.isDirectory()) return walkWebp(p);
-    return /\.webp$/i.test(e.name) && !DERIVED.test(e.name) ? [p] : [];
-  });
-}
-for (const root of GALLERY_ROOTS) {
-  const dir = join(PUBLIC_DIR, root);
-  if (!existsSync(dir)) continue;
-  for (const srcFile of walkWebp(dir)) {
-    const rel = '/' + srcFile.slice(PUBLIC_DIR.length + 1).replace(/\\/g, '/');
-    if (sized.has(rel)) continue; // posters and stage covers have their own set
-    const srcStat = statSync(srcFile);
-    const out = srcFile.replace(/\.webp$/i, `-${GALLERY_WIDTH}w.webp`);
-    if (!isStale(out, srcStat)) {
-      skipped++;
-      continue;
-    }
-    const srcWidth = (await sharp(srcFile).metadata()).width ?? 0;
-    if (GALLERY_WIDTH >= srcWidth) continue;
-    await sharp(srcFile).resize(GALLERY_WIDTH).webp({ quality: 78, effort: 6 }).toFile(out);
-    generated++;
-  }
 }
 
 // Hero header width variants

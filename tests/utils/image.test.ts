@@ -1,16 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { mkdirSync, rmSync, copyFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import {
-  webpSize,
-  responsiveImage,
-  POSTER_WIDTHS,
-  galleryFor,
-  heroSrcset,
-  gallerySrcset,
-  squarestImage,
-  imageFocus,
-} from '../../src/utils/image';
+import { webpSize, responsiveImage, POSTER_WIDTHS, heroSrcset, squarestImage, imageFocus } from '../../src/utils/image';
 
 // Real committed fixtures with known dimensions and WebP variants.
 const VP8_POSTER = '/images/comunita/barga/symposium-italicum-2026.webp'; // simple lossy, 1320x1320
@@ -30,14 +21,10 @@ beforeAll(() => {
   copyFileSync(real, resolve(DIR, 'orig-400w.webp'));
   copyFileSync(real, resolve(DIR, 'orig-800w.webp'));
   copyFileSync(real, resolve(DIR, 'solo.webp')); // no variants alongside
-  // Hero header with its width variants, and a gallery photo with a 640w one
+  // Hero header with its width variants
   copyFileSync(real, resolve(DIR, 'hero.webp'));
   copyFileSync(real, resolve(DIR, 'hero-768w.webp'));
   copyFileSync(real, resolve(DIR, 'hero-1280w.webp'));
-  copyFileSync(real, resolve(DIR, 'orig-640w.webp'));
-  mkdirSync(resolve(DIR, 'sub'), { recursive: true });
-  copyFileSync(real, resolve(DIR, 'sub', 'photo.webp'));
-  copyFileSync(real, resolve(DIR, 'sub', 'photo-thumb.webp'));
 });
 
 afterAll(() => {
@@ -106,31 +93,6 @@ describe('image: heroSrcset', () => {
     expect(heroSrcset(SOLO)).toBeUndefined();
     expect(heroSrcset('/x.jpg')).toBeUndefined();
     expect(heroSrcset(undefined)).toBeUndefined();
-  });
-});
-
-describe('image: gallerySrcset', () => {
-  it('offers the 640w variant next to the original', () => {
-    expect(gallerySrcset(ORIG)).toBe('/__img_test__/orig-640w.webp 640w, /__img_test__/orig.webp 1320w');
-    expect(gallerySrcset(SOLO)).toBeUndefined();
-  });
-});
-
-describe('image: galleryFor', () => {
-  it('reads the folder recursively, without generated variants or the poster', () => {
-    const images = galleryFor({ galleryFolder: '/__img_test__/', poster: ORIG });
-    expect(images).toContain('/__img_test__/sub/photo.webp');
-    expect(images).toContain('/__img_test__/hero.webp');
-    expect(images).not.toContain(ORIG);
-    expect(images.some((i) => /-(thumb|\d+w)\.webp$/.test(i))).toBe(false);
-    expect(images).toEqual([...images].sort());
-  });
-
-  it('prefers the explicit list and tolerates a missing folder', () => {
-    expect(galleryFor({ gallery: ['/a.webp', '/b.webp'], galleryFolder: '__img_test__', poster: '/a.webp' })).toEqual([
-      '/b.webp',
-    ]);
-    expect(galleryFor({ galleryFolder: 'no-such-folder' })).toEqual([]);
   });
 });
 

@@ -81,12 +81,6 @@ const pricingSchema = z.object({
   regular: z.string(),
 });
 
-const gallerySectionSchema = z.object({
-  title: z.string(),
-  images: z.array(z.string()),
-  wideImages: z.array(z.string()).optional().default([]),
-});
-
 const scheduleSchema = z.object({
   label: z.string(),
   time: z.string(),
@@ -118,9 +112,9 @@ const baseFields = {
   // be cropped out of the default centered square. Examples: 'left center',
   // 'top center'. Omitted = browser default (`50% 50%`, i.e. centered).
   imageAnchor: z.string().optional(),
-  gallery: z.array(z.string()).optional().default([]),
-  galleryFolder: z.string().optional(),
-  gallerySections: z.array(gallerySectionSchema).optional().default([]),
+  // Slug of the event's album on foto.vtesitaly.com (repo VtesItaly.Foto):
+  // the page shows its photos from src/data/albums.json.
+  album: z.string().optional(),
   notes: z.array(z.string()).optional().default([]),
   // Judging staff, one entry per judge. Rendered as a bulleted list.
   judges: z.array(z.string()).optional().default([]),

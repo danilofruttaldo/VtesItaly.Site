@@ -5,7 +5,6 @@ category: 'grand-prix'
 tags: ['italia', 'milano']
 excerpt: 'The Italian Grand Prix 2024 of Vampire: The Eternal Struggle was held in Milan in December 2023.'
 featuredImage: '/gp/gp-2024/gp-2024-poster.webp'
-galleryFolder: 'gp-2024'
 poster: '/gp/gp-2024/gp-2024-poster.webp'
 venue:
   name: 'Wipeout'
@@ -39,34 +38,7 @@ contact: 'info@vtesitaly.com'
 hotel: []
 prizes: ''
 links: []
-gallerySections:
-  - title: 'Setup'
-    images:
-      - '/gp/gp-2024/gp-2024-preparazione-01.webp'
-      - '/gp/gp-2024/gp-2024-preparazione-02.webp'
-      - '/gp/gp-2024/gp-2024-preparazione-03.webp'
-    wideImages:
-      - '/gp/gp-2024/gp-2024-preparazione-03.webp'
-  - title: 'Rounds'
-    images:
-      - '/gp/gp-2024/gp-2024-round-01.webp'
-      - '/gp/gp-2024/gp-2024-round-02.webp'
-      - '/gp/gp-2024/gp-2024-round-03.webp'
-      - '/gp/gp-2024/gp-2024-round-04.webp'
-  - title: 'Final'
-    images:
-      - '/gp/gp-2024/gp-2024-finale-01.webp'
-      - '/gp/gp-2024/gp-2024-finale-02.webp'
-      - '/gp/gp-2024/gp-2024-finale-03.webp'
-      - '/gp/gp-2024/gp-2024-finale-04.webp'
-      - '/gp/gp-2024/gp-2024-finale-05.webp'
-      - '/gp/gp-2024/gp-2024-finale-06.webp'
-  - title: 'Bonus'
-    images:
-      - '/gp/gp-2024/gp-2024-bonus-01.webp'
-      - '/gp/gp-2024/gp-2024-bonus-02.webp'
-      - '/gp/gp-2024/gp-2024-bonus-03.webp'
-      - '/gp/gp-2024/gp-2024-bonus-04.webp'
+album: 'gp-2024'
 locale: en
 ---
 

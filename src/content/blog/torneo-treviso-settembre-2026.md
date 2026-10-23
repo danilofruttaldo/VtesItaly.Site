@@ -39,25 +39,8 @@ prizes:
   - 'Estrazione casuale #1: Edge nazionale spagnolo 2024'
   - 'Estrazione casuale #2: token Path del Sabbat (nazionale italiano 2026)'
   - 'Door prize: busta promo VTES Italy'
-gallerySections:
-  - title: 'Premi'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-01-premi.webp'
-  - title: 'Round'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-02-round.webp'
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-03-round.webp'
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-04-round.webp'
-    wideImages:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-04-round.webp'
-  - title: 'Finale'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-05-seating.webp'
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-06-finale.webp'
-  - title: 'Extra'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-07-gadget.webp'
 standingsUrl: '/ev/rise-of-the-nephtali-2026/standings-rise-of-the-nephtali-2026.json'
+album: 'rise-of-the-nephtali-2026'
 locale: it
 ---
 

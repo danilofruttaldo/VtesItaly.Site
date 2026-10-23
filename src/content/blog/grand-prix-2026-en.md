@@ -6,43 +6,6 @@ tags: ['bologna', 'italia']
 excerpt: 'Italian GP 2026 - Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek, Mistlore and TCG Market, presents the GP 2026!'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'
 poster: '/gp/gp-2026/gp-2026-poster.webp'
-gallerySections:
-  - title: 'Setup'
-    images:
-      - '/gp/gp-2026/gp-2026-preparazione-01.webp'
-      - '/gp/gp-2026/gp-2026-preparazione-02.webp'
-      - '/gp/gp-2026/gp-2026-preparazione-03.webp'
-      - '/gp/gp-2026/gp-2026-preparazione-04.webp'
-      - '/gp/gp-2026/gp-2026-preparazione-05.webp'
-      - '/gp/gp-2026/gp-2026-preparazione-06.webp'
-  - title: 'Rounds'
-    images:
-      - '/gp/gp-2026/gp-2026-round-04.webp'
-      - '/gp/gp-2026/gp-2026-round-01.webp'
-      - '/gp/gp-2026/gp-2026-round-02.webp'
-      - '/gp/gp-2026/gp-2026-round-03.webp'
-      - '/gp/gp-2026/gp-2026-round-05.webp'
-      - '/gp/gp-2026/gp-2026-round-06.webp'
-      - '/gp/gp-2026/gp-2026-round-07.webp'
-    wideImages:
-      - '/gp/gp-2026/gp-2026-round-04.webp'
-  - title: 'Final'
-    images:
-      - '/gp/gp-2026/gp-2026-finale-01.webp'
-      - '/gp/gp-2026/gp-2026-finale-02.webp'
-      - '/gp/gp-2026/gp-2026-finale-03.webp'
-      - '/gp/gp-2026/gp-2026-finale-04.webp'
-      - '/gp/gp-2026/gp-2026-finale-05.webp'
-      - '/gp/gp-2026/gp-2026-finale-06.webp'
-  - title: 'Bonus'
-    images:
-      - '/gp/gp-2026/gp-2026-bonus-02.webp'
-      - '/gp/gp-2026/gp-2026-bonus-03.webp'
-      - '/gp/gp-2026/gp-2026-bonus-05.webp'
-      - '/gp/gp-2026/gp-2026-bonus-01.webp'
-      - '/gp/gp-2026/gp-2026-bonus-04.webp'
-    wideImages:
-      - '/gp/gp-2026/gp-2026-bonus-04.webp'
 venue:
   name: 'Hotel Airport Bologna'
   address: 'Via Marco Emilio Lepido, 203/14 – 40132 Bologna (BO)'
@@ -125,6 +88,7 @@ highlightHtml: |
     </div>
     <a href="/gp/gp-2026/superb-owl-winner.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the winner photo full size"><img src="/gp/gp-2026/superb-owl-winner.webp" alt="Lovre, winner of the first Superb Owl Fashion Parade edition" width="220" height="311" loading="lazy" decoding="async" /></a>
   </div>
+album: 'gp-2026'
 locale: en
 ---
 

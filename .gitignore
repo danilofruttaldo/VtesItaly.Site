@@ -14,3 +14,7 @@ public/images/gallery-originals/
 public/**/*-[0-9]*w.webp
 # JPEG og:image variants of posters and featured images (same script, same rule)
 public/**/*-og.jpg
+
+# Archive index fetched by every build (scripts/fetch-albums.mjs); the committed
+# snapshot is src/data/albums.json, refreshed with `npm run albums`.
+src/data/albums.live.json

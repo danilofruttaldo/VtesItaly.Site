@@ -4,3 +4,4 @@ coverage/
 node_modules/
 public/pagefind/
 package-lock.json
+src/data/albums.live.json

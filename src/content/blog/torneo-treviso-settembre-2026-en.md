@@ -39,25 +39,8 @@ prizes:
   - 'Random draw #1: 2024 Spanish Nationals Edge'
   - 'Random draw #2: Path of the Sabbat token (2026 Italian Nationals)'
   - 'Door prize: VTES Italy promo pack'
-gallerySections:
-  - title: 'Prizes'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-01-premi.webp'
-  - title: 'Rounds'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-02-round.webp'
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-03-round.webp'
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-04-round.webp'
-    wideImages:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-04-round.webp'
-  - title: 'Final'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-05-seating.webp'
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-06-finale.webp'
-  - title: 'Extras'
-    images:
-      - '/ev/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-07-gadget.webp'
 standingsUrl: '/ev/rise-of-the-nephtali-2026/standings-rise-of-the-nephtali-2026.json'
+album: 'rise-of-the-nephtali-2026'
 locale: 'en'
 ---
 

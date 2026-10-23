@@ -6,19 +6,6 @@ tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: 'The Italian VTES National Championship 2023 took place on Sunday 30 April in Bologna.'
 poster: ''
-gallerySections:
-  - title: 'Setup'
-    images:
-      - '/nc/nc-2023/nc-2023-preparazione-01.webp'
-      - '/nc/nc-2023/nc-2023-preparazione-02.webp'
-  - title: 'Rounds'
-    images:
-      - '/nc/nc-2023/nc-2023-round-01.webp'
-      - '/nc/nc-2023/nc-2023-round-02.webp'
-      - '/nc/nc-2023/nc-2023-round-03.webp'
-      - '/nc/nc-2023/nc-2023-round-04.webp'
-      - '/nc/nc-2023/nc-2023-round-05.webp'
-      - '/nc/nc-2023/nc-2023-round-06.webp'
 venue:
   name: 'The Sydney Hotel'
   address: 'Via Michelino 73, Bologna (BO)'
@@ -53,6 +40,7 @@ contact: 'info@vtesitaly.com'
 payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
+album: 'nc-2023'
 locale: en
 ---
 

@@ -337,108 +337,6 @@
   text-align: left;
 }
 
-/* Gallery */
-.gp-gallery {
-  margin-top: 32px;
-  /* The standings section that follows carries no top margin of its own:
-     without this the last row of photos touches the CLASSIFICA heading. */
-  margin-bottom: 32px;
-}
-.gp-gallery-title {
-  font-size: var(--font-size-lg);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-widest);
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* Gallery sections with collage */
-.gp-gallery-section {
-  margin-bottom: 28px;
-}
-.gp-gallery-section-title {
-  font-size: var(--font-size-small);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wider);
-  color: var(--color-gold);
-  margin-bottom: 12px;
-  text-align: center;
-}
-.gp-collage {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-}
-.gp-collage-item {
-  display: block;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 4/3;
-}
-.gp-collage-item.wide {
-  grid-column: 1 / -1;
-}
-.gp-collage-item:only-child {
-  grid-column: 1 / -1;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.gp-collage-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-.gp-collage-item:hover img {
-  transform: scale(1.05);
-}
-
-/* Gallery grid (fallback) */
-.gp-gallery-grid {
-  /* Flex rather than a grid auto-fill: when the photos do not fill the last
-     row it stays centred instead of hanging to the left. Columns are therefore
-     explicit, one count per breakpoint. */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  /* The component sets --gallery-cols-max from the number of photos so the
-     rows stay even (7 photos => 4 + 3, not 5 + 2). */
-  --gallery-cols: var(--gallery-cols-max, 5);
-}
-.gp-gallery-item {
-  display: block;
-  flex: 0 0 calc((100% - (var(--gallery-cols) - 1) * 8px) / var(--gallery-cols));
-  /* With one or two photos the computed column would be huge: the cap keeps
-     them at the scale of a full gallery. */
-  max-width: 320px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 4/3;
-}
-.gp-gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-.gp-gallery-item:hover img {
-  transform: scale(1.05);
-}
-
-@media (max-width: 1100px) {
-  .gp-gallery-grid {
-    --gallery-cols: min(4, var(--gallery-cols-max, 5));
-  }
-}
-@media (max-width: 800px) {
-  .gp-gallery-grid {
-    --gallery-cols: min(3, var(--gallery-cols-max, 5));
-  }
-}
-
 @media (max-width: 544px) {
   .gp-info {
     border-left: none;
@@ -460,9 +358,6 @@
   .gp-poster img {
     border-radius: 0;
   }
-  .gp-gallery-grid {
-    --gallery-cols: min(2, var(--gallery-cols-max, 5));
-  }
   .gp-table {
     font-size: var(--font-size-xs);
   }
@@ -479,8 +374,5 @@
   }
   .gp-standings-title {
     font-size: var(--font-size-md);
-  }
-  .gp-collage {
-    grid-template-columns: 1fr;
   }
 }

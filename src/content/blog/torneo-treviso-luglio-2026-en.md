@@ -5,7 +5,6 @@ category: 'comunita'
 tags: ['treviso', 'torneo']
 featuredImage: '/images/comunita/treviso/praxis-seizure.webp'
 poster: '/images/comunita/treviso/praxis-seizure.webp'
-galleryFolder: 'ev/praxis-seizure-2026'
 excerpt: 'Praxis Seizure: Treviso, Standard Constructed VTES tournament on Saturday, July 18, 2026 at GiOlly Comics in Villorba (TV). Proxies allowed, €15 entry.'
 venue:
   name: 'GiOlly Comics'
@@ -36,6 +35,7 @@ prizes:
   - 'Random draw #1: Echoes of Gehenna'
   - 'Random draw #2: 2024 Spanish Nationals Edge'
   - 'Participation: 2 cards from Promo Pack 4 + 5 full-art promos'
+album: 'praxis-seizure-2026'
 locale: 'en'
 ---
 

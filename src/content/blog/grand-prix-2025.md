@@ -59,38 +59,7 @@ links:
   - label: 'Hotel Reservation Form'
     url: '/gp/gp-2025/reservation-form-gp-2025.doc'
     locale: en
-gallerySections:
-  - title: 'Preparazione'
-    images:
-      - '/gp/gp-2025/gp-2025-preparazione-01.webp'
-      - '/gp/gp-2025/gp-2025-preparazione-02.webp'
-      - '/gp/gp-2025/gp-2025-preparazione-03.webp'
-    wideImages:
-      - '/gp/gp-2025/gp-2025-preparazione-03.webp'
-  - title: 'Round'
-    images:
-      - '/gp/gp-2025/gp-2025-round-01.webp'
-      - '/gp/gp-2025/gp-2025-round-02.webp'
-      - '/gp/gp-2025/gp-2025-round-03.webp'
-      - '/gp/gp-2025/gp-2025-round-04.webp'
-      - '/gp/gp-2025/gp-2025-round-05.webp'
-      - '/gp/gp-2025/gp-2025-round-06.webp'
-  - title: 'Finale'
-    images:
-      - '/gp/gp-2025/gp-2025-finale-01.webp'
-      - '/gp/gp-2025/gp-2025-finale-02.webp'
-      - '/gp/gp-2025/gp-2025-finale-03.webp'
-      - '/gp/gp-2025/gp-2025-finale-04.webp'
-      - '/gp/gp-2025/gp-2025-finale-05.webp'
-      - '/gp/gp-2025/gp-2025-finale-06.webp'
-  - title: 'Bonus'
-    images:
-      - '/gp/gp-2025/gp-2025-bonus-01.webp'
-      - '/gp/gp-2025/gp-2025-bonus-02.webp'
-      - '/gp/gp-2025/gp-2025-bonus-03.webp'
-      - '/gp/gp-2025/gp-2025-bonus-04.webp'
-      - '/gp/gp-2025/gp-2025-bonus-05.webp'
-      - '/gp/gp-2025/gp-2025-bonus-06.webp'
+album: 'gp-2025'
 locale: it
 ---
 

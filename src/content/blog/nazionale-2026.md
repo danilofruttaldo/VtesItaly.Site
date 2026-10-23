@@ -7,43 +7,6 @@ featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: "Il Campionato Nazionale Italiano VTES 2026 si è tenuto nel weekend dal 27 febbraio al 1 marzo a Caldonazzo (TN), presso l'Hotel Paoli, immerso nel cuore del Trentino."
 seoDescription: "Il Campionato Nazionale Italiano VTES 2026 si è tenuto dal 27 febbraio al 1 marzo a Caldonazzo (TN), presso l'Hotel Paoli, in Trentino."
 poster: '/nc/nc-2026/nc-2026-poster.webp'
-gallerySections:
-  - title: 'Preparazione'
-    images:
-      - '/nc/nc-2026/nc-2026-preparazione-01.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-02.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-03.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-04.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-05.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-06.webp'
-  - title: 'Round'
-    images:
-      - '/nc/nc-2026/nc-2026-round-01.webp'
-      - '/nc/nc-2026/nc-2026-round-02.webp'
-      - '/nc/nc-2026/nc-2026-round-03.webp'
-      - '/nc/nc-2026/nc-2026-round-04.webp'
-      - '/nc/nc-2026/nc-2026-round-05.webp'
-      - '/nc/nc-2026/nc-2026-round-06.webp'
-      - '/nc/nc-2026/nc-2026-round-07.webp'
-    wideImages:
-      - '/nc/nc-2026/nc-2026-round-01.webp'
-  - title: 'Finale'
-    images:
-      - '/nc/nc-2026/nc-2026-finale-01.webp'
-      - '/nc/nc-2026/nc-2026-finale-02.webp'
-      - '/nc/nc-2026/nc-2026-finale-03.webp'
-      - '/nc/nc-2026/nc-2026-finale-04.webp'
-      - '/nc/nc-2026/nc-2026-finale-05.webp'
-      - '/nc/nc-2026/nc-2026-finale-06.webp'
-  - title: 'Bonus'
-    images:
-      - '/nc/nc-2026/nc-2026-bonus-01.webp'
-      - '/nc/nc-2026/nc-2026-bonus-02.webp'
-      - '/nc/nc-2026/nc-2026-bonus-03.webp'
-      - '/nc/nc-2026/nc-2026-bonus-04.webp'
-      - '/nc/nc-2026/nc-2026-bonus-05.webp'
-    wideImages:
-      - '/nc/nc-2026/nc-2026-bonus-05.webp'
 venue:
   name: 'Hotel Paoli'
   address: 'Località Lochere, 6, 38052 Caldonazzo (TN)'
@@ -105,6 +68,7 @@ links:
 notes:
   - 'Sala disponibile per tutto il weekend. Possibilità di mangiare in struttura a tariffa agevolata.'
   - "Giochi da tavolo e in legno disponibili grazie all'Associazione Asgard Aldeno."
+album: 'nc-2026'
 locale: it
 ---
 

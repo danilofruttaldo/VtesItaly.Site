@@ -91,7 +91,7 @@ export default defineConfig({
     csp: {
       directives: [
         "default-src 'self'",
-        "img-src 'self' data: https://stats.vtesitaly.com https://static.krcg.org",
+        "img-src 'self' data: https://stats.vtesitaly.com https://static.krcg.org https://foto.vtesitaly.com",
         "font-src 'self'",
         "connect-src 'self' https://stats.vtesitaly.com",
         "base-uri 'self'",

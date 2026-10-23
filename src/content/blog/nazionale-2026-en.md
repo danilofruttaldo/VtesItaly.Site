@@ -7,43 +7,6 @@ featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: 'The Italian VTES National Championship 2026 took place on the weekend of February 27 to March 1 in Caldonazzo (TN), at Hotel Paoli, in the heart of Trentino.'
 seoDescription: 'The Italian VTES National Championship 2026 took place from February 27 to March 1 in Caldonazzo (TN), at Hotel Paoli, in Trentino.'
 poster: '/nc/nc-2026/nc-2026-poster.webp'
-gallerySections:
-  - title: 'Setup'
-    images:
-      - '/nc/nc-2026/nc-2026-preparazione-01.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-02.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-03.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-04.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-05.webp'
-      - '/nc/nc-2026/nc-2026-preparazione-06.webp'
-  - title: 'Rounds'
-    images:
-      - '/nc/nc-2026/nc-2026-round-01.webp'
-      - '/nc/nc-2026/nc-2026-round-02.webp'
-      - '/nc/nc-2026/nc-2026-round-03.webp'
-      - '/nc/nc-2026/nc-2026-round-04.webp'
-      - '/nc/nc-2026/nc-2026-round-05.webp'
-      - '/nc/nc-2026/nc-2026-round-06.webp'
-      - '/nc/nc-2026/nc-2026-round-07.webp'
-    wideImages:
-      - '/nc/nc-2026/nc-2026-round-01.webp'
-  - title: 'Final'
-    images:
-      - '/nc/nc-2026/nc-2026-finale-01.webp'
-      - '/nc/nc-2026/nc-2026-finale-02.webp'
-      - '/nc/nc-2026/nc-2026-finale-03.webp'
-      - '/nc/nc-2026/nc-2026-finale-04.webp'
-      - '/nc/nc-2026/nc-2026-finale-05.webp'
-      - '/nc/nc-2026/nc-2026-finale-06.webp'
-  - title: 'Bonus'
-    images:
-      - '/nc/nc-2026/nc-2026-bonus-01.webp'
-      - '/nc/nc-2026/nc-2026-bonus-02.webp'
-      - '/nc/nc-2026/nc-2026-bonus-03.webp'
-      - '/nc/nc-2026/nc-2026-bonus-04.webp'
-      - '/nc/nc-2026/nc-2026-bonus-05.webp'
-    wideImages:
-      - '/nc/nc-2026/nc-2026-bonus-05.webp'
 venue:
   name: 'Hotel Paoli'
   address: 'Località Lochere, 6, 38052 Caldonazzo (TN)'
@@ -105,6 +68,7 @@ links:
 notes:
   - 'Venue available for the whole weekend. Meals available on-site at discounted rates.'
   - 'Board games and wooden games available thanks to Associazione Asgard Aldeno.'
+album: 'nc-2026'
 locale: en
 ---
 

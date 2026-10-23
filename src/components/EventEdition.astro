@@ -1,5 +1,4 @@
 ---
-import { galleryFor, gallerySrcset, GALLERY_SIZES } from '../utils/image';
 import '../styles/prose.css';
 import '../styles/event-edition.css';
 import { render } from 'astro:content';
@@ -12,6 +11,7 @@ import { loadStandings, type Standing } from '../utils/standings';
 import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
 import Zoomable from './Zoomable.astro';
+import AlbumGallery from './AlbumGallery.astro';
 import { todayLocalIso } from '../utils/today';
 import { priceColumns } from '../utils/timeline';
 import { isoDate, lastEventDay } from '../utils/date';
@@ -31,14 +31,6 @@ const { Content } = await render(post);
 const links = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === locale)
   .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
-
-// Gallery: explicit list or the photos in its folder
-const galleryImages = galleryFor(post.data);
-// Spread the photos over as few rows as fit at five per row, then even them
-// out: seven photos read as 4 + 3 rather than 5 + 2 with a half-empty tail.
-const galleryCols = galleryImages.length
-  ? Math.min(5, Math.ceil(galleryImages.length / Math.ceil(galleryImages.length / 5)))
-  : 5;
 
 const postEvents = post.data.events ?? [];
 
@@ -468,57 +460,8 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
 {/* Highlight callout (rendered after streaming) */}
 {post.data.highlightHtml && <div class="gp-content prose" set:html={post.data.highlightHtml} />}
 
-{/* Galleria a sezioni */}
-{post.data.gallerySections.length > 0 && (
-  <section class="gp-gallery">
-    <h2 class="gp-gallery-title">{t.post.gallery}</h2>
-    {post.data.gallerySections.map((section) => (
-      <div class="gp-gallery-section">
-        <h3 class="gp-gallery-section-title">{section.title}</h3>
-        <div class="gp-collage">
-          {section.images.map((img, i) => (
-            <a
-              href={img}
-              class={`gp-collage-item${(section.wideImages || []).includes(img) ? ' wide' : ''}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={img}
-                srcset={gallerySrcset(img)}
-                sizes={GALLERY_SIZES}
-                alt={`${section.title} - ${t.post.photo} ${i + 1}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-          ))}
-        </div>
-      </div>
-    ))}
-  </section>
-)}
-
-{/* Galleria griglia (fallback se no sezioni) */}
-{post.data.gallerySections.length === 0 && galleryImages.length > 0 && (
-  <section class="gp-gallery">
-    <h2 class="gp-gallery-title">{t.post.gallery}</h2>
-    <div class="gp-gallery-grid" style={`--gallery-cols-max:${galleryCols}`}>
-      {galleryImages.map((img, i) => (
-        <a href={img} class="gp-gallery-item" target="_blank" rel="noopener noreferrer">
-          <img
-            src={img}
-            srcset={gallerySrcset(img)}
-            sizes={GALLERY_SIZES}
-            alt={`${post.data.title} - ${t.post.photo} ${i + 1}`}
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-      ))}
-    </div>
-  </section>
-)}
+{/* Foto: l'album dell'evento su foto.vtesitaly.com */}
+{post.data.album && <AlbumGallery slug={post.data.album} locale={locale} />}
 
 {/* Classifica */}
 {standingsBlocks.length > 0 && (

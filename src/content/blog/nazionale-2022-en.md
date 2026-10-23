@@ -6,17 +6,6 @@ tags: ['italia', 'bologna']
 featuredImage: '/images/headers/header-nazionale.webp'
 excerpt: 'The Italian VTES National Championship 2022 took place on Saturday 15 October in Bologna.'
 poster: '/nc/nc-2022/nc-2022-poster.webp'
-gallerySections:
-  - title: 'Setup'
-    images:
-      - '/nc/nc-2022/nc-2022-preparazione-01.webp'
-  - title: 'Final'
-    images:
-      - '/nc/nc-2022/nc-2022-finale-03.webp'
-      - '/nc/nc-2022/nc-2022-finale-02.webp'
-      - '/nc/nc-2022/nc-2022-finale-01.webp'
-    wideImages:
-      - '/nc/nc-2022/nc-2022-finale-01.webp'
 venue:
   name: 'Circolo Barbanera'
   address: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
@@ -36,6 +25,7 @@ contact: 'info@vtesitaly.com'
 payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
+album: 'nc-2022'
 locale: en
 ---
 

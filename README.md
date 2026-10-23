@@ -43,8 +43,9 @@ Node: `>=22.12.0` (`engines` in `package.json`, the minimum Astro 7 accepts). `.
 | `npm run smoke`         | Smoke test against https://vtesitaly.com (or a URL passed as argument)     |
 | `npm run ci:verify`     | Everything the `ci` job runs, in one command                               |
 | `npm run clean`         | Remove `dist/` and `.astro/`                                               |
+| `npm run albums`        | Refresh the committed copy of the photo archive index (foto.vtesitaly.com) |
 
-`prebuild` (auto-run before `npm run build`) executes `scripts/build-thumbnails.mjs` and `scripts/build-poster-variants.mjs`, both idempotent via mtime checks (see [Images](#images)).
+`prebuild` (auto-run before `npm run build`) executes `scripts/fetch-albums.mjs` (event galleries come from the albums of https://foto.vtesitaly.com, repo VtesItaly.Foto: a post names one with `album:`), `scripts/build-thumbnails.mjs` and `scripts/build-poster-variants.mjs`, both idempotent via mtime checks (see [Images](#images)).
 
 `pretest` and `pretest:coverage` (auto-run before `npm test` / `npm run test:coverage`) execute `scripts/warm-content.mjs`, which makes sure `.astro/data-store.json` exists so `getCollection('blog')` returns real entries inside Vitest. Without it, Astro + Vitest report the collection as empty (see [withastro/astro#7051](https://github.com/withastro/astro/issues/7051)). npm only fires `pre<exact-script-name>` hooks, so each test variant needs its own pre-hook entry.
 

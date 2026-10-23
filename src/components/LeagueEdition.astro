@@ -1,5 +1,5 @@
 ---
-import { galleryFor, gallerySrcset, GALLERY_SIZES } from '../utils/image';
+import AlbumGallery from './AlbumGallery.astro';
 import { loadStandings } from '../utils/standings';
 import ResponsiveImage from './ResponsiveImage.astro';
 import Zoomable from './Zoomable.astro';
@@ -30,9 +30,6 @@ const { Content } = await render(post);
 const links = (post.data.links ?? [])
   .filter((l) => !l.locale || l.locale === locale)
   .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
-
-// Gallery (same pattern as EventEdition)
-const galleryImages = galleryFor(post.data);
 
 // League standings, two dialects:
 //   - league shape (full season): { fp?, lp, gw, vp, pp, bp, games }
@@ -423,52 +420,5 @@ function fmt(n: number): string {
   </section>
 )}
 
-{/* Gallery */}
-{post.data.gallerySections.length > 0 && (
-  <section class="le-gallery">
-    <h2 class="le-section-title">{t.post.gallery}</h2>
-    {post.data.gallerySections.map((section) => (
-      <div class="le-gallery-section">
-        <h3 class="le-gallery-section-title">{section.title}</h3>
-        <div class="le-gallery-grid">
-          {section.images.map((img, i) => (
-            <a
-              href={img}
-              class={`le-gallery-item${(section.wideImages || []).includes(img) ? ' wide' : ''}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={img}
-                srcset={gallerySrcset(img)}
-                sizes={GALLERY_SIZES}
-                alt={`${section.title} - ${t.post.photo} ${i + 1}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-          ))}
-        </div>
-      </div>
-    ))}
-  </section>
-)}
-{post.data.gallerySections.length === 0 && galleryImages.length > 0 && (
-  <section class="le-gallery">
-    <h2 class="le-section-title">{t.post.gallery}</h2>
-    <div class="le-gallery-grid">
-      {galleryImages.map((img, i) => (
-        <a href={img} class="le-gallery-item" target="_blank" rel="noopener noreferrer">
-          <img
-            src={img}
-            srcset={gallerySrcset(img)}
-            sizes={GALLERY_SIZES}
-            alt={`${post.data.title} - ${t.post.photo} ${i + 1}`}
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-      ))}
-    </div>
-  </section>
-)}
+{/* Foto: l'album della lega su foto.vtesitaly.com */}
+{post.data.album && <AlbumGallery slug={post.data.album} locale={locale} />}

@@ -4,7 +4,9 @@ name: External links
 # venues, festivals): scripts/check-links.mjs covers only the internal ones.
 # Separate from CI on purpose: a third-party site going down must not block a
 # deploy. A failed run sends GitHub's usual failure e-mail; the job summary
-# lists the broken links.
+# lists the broken links. Root-relative links (/guide/…) resolve against the
+# live site and are then skipped by the vtesitaly.com exclude: check-links.mjs
+# covers them on every build.
 
 on:
   schedule:
@@ -29,6 +31,7 @@ jobs:
           # Google Forms answer 401 and stay as a record of past events.
           args: >-
             --no-progress
+            --base-url https://vtesitaly.com
             --max-concurrency 8
             --accept 200..=299,403,429
             --exclude '^https?://([a-z]+\.)?(facebook|instagram|linkedin)\.com'

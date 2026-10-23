@@ -9,12 +9,16 @@
 // script-src allows by name, and reads the queue from window._paq as usual.
 type MatomoWindow = Window & { _paq?: unknown[][] };
 
-if (import.meta.env.PROD) {
+// Global Privacy Control: the signal browsers send now that Firefox has
+// dropped Do Not Track. Matomo reads only DNT, so GPC is honoured here.
+const gpc = (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
+
+if (import.meta.env.PROD && !gpc) {
   const w = window as MatomoWindow;
   const paq = (w._paq = w._paq || []);
   paq.push(['disableCookies']);
   paq.push(['setCookieDomain', '*.vtesitaly.com']);
-  // The privacy page promises it: a browser sending Do Not Track is not counted.
+  // The privacy page promises it: a browser sending Do Not Track (or GPC, above) is not counted.
   paq.push(['setDoNotTrack', true]);
   paq.push(['trackPageView']);
   paq.push(['enableLinkTracking']);

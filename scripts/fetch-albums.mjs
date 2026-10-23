@@ -12,9 +12,11 @@
  * The index is checked before it is used: every album must have the fields
  * the pages read, and every `album:` a post names must be in it. A broken or
  * incomplete index stops the build instead of dropping galleries silently.
+ * The checks live in src/utils/albums-index.ts, where they are unit-tested.
  */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { albumsIndexProblems } from '../src/utils/albums-index.ts';
 
 const URL_ALBUMS = 'https://foto.vtesitaly.com/albums.json';
 const SNAPSHOT = 'src/data/albums.json';
@@ -36,18 +38,8 @@ try {
   process.exit(0);
 }
 
-const problems = [];
-if (!Array.isArray(data?.albums)) problems.push('manca la lista "albums"');
-for (const a of data?.albums ?? []) {
-  if (!a.slug || !a.title || !a.url) problems.push(`album senza slug, title o url: ${JSON.stringify(a).slice(0, 80)}`);
-  if (!Array.isArray(a.photos) || a.photos.length === 0) problems.push(`${a.slug}: nessuna foto`);
-  else if (a.photos.some((p) => !p.src || !p.thumb)) problems.push(`${a.slug}: foto senza src o thumb`);
-}
-const slugs = new Set((data?.albums ?? []).map((a) => a.slug));
-for (const f of readdirSync(BLOG)) {
-  const m = readFileSync(join(BLOG, f), 'utf8').match(/^album:\s*['"]?([^'"\s]+)/m);
-  if (m && !slugs.has(m[1])) problems.push(`${f} cita l'album "${m[1]}", che sull'archivio non c'è`);
-}
+const posts = readdirSync(BLOG).map((name) => ({ name, text: readFileSync(join(BLOG, name), 'utf8') }));
+const problems = albumsIndexProblems(data, posts);
 if (problems.length) {
   console.error('albums: indice di foto.vtesitaly.com non valido:\n- ' + problems.join('\n- '));
   process.exit(1);

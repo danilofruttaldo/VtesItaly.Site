@@ -36,8 +36,6 @@ notes:
 links:
   - label: 'Registration'
     url: 'https://forms.gle/UtbzKoqJzbGvVW4A8'
-  - label: 'Tournament'
-    url: 'https://is.gd/CuDSbU'
 locale: 'en'
 ---
 

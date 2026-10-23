@@ -36,8 +36,6 @@ notes:
 links:
   - label: 'Iscrizione'
     url: 'https://forms.gle/UtbzKoqJzbGvVW4A8'
-  - label: 'Torneo'
-    url: 'https://is.gd/CuDSbU'
 locale: it
 ---
 

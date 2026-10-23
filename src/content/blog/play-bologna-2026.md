@@ -28,8 +28,6 @@ events:
 links:
   - label: 'Play Festival del Gioco: sito ufficiale'
     url: 'https://www.play-festival.it/'
-  - label: 'Programma Play 2026'
-    url: 'https://www.play-festival.it/2026/programma/'
   - label: 'Orari e contatti'
     url: 'https://www.play-festival.it/informazioni/orari-contatti/'
 locale: it

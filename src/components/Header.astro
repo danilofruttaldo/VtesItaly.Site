@@ -599,12 +599,19 @@ function isCurrent(href: string): boolean {
     document.addEventListener('click', (e) => {
       if (!langDropdown.contains(e.target as Node)) setLangDropdown(false);
     });
+    // Tabbing out of the menu closes it, like a click outside.
+    langDropdown.addEventListener('focusout', (e) => {
+      if (!langDropdown.contains(e.relatedTarget as Node | null)) setLangDropdown(false);
+    });
   }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (mobileMenu?.classList.contains('is-open')) closeMenu();
-      setLangDropdown(false);
+      if (langDropdown?.classList.contains('is-open')) {
+        setLangDropdown(false);
+        langTrigger?.focus(); // back where the menu was opened
+      }
     }
   });
 </script>

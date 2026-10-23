@@ -4,16 +4,11 @@ name: CI
 # Lighthouse and deploy reuse the dist/ artifact uploaded by `ci`, so the
 # whole build pipeline runs only once per push.
 #
-# Pull requests run only the `ci` job: no Lighthouse,
-# no deploy, no badge commit, and no access to the deploy secrets.
-#
 # Actions are pinned to a full commit SHA (a tag can be moved), with the
 # version in a trailing comment; update both by hand.
 
 on:
   push:
-    branches: [main]
-  pull_request:
     branches: [main]
   workflow_dispatch:
   # Sent by VtesItaly.Foto after a Pages deploy: rebuild with the new /albums.json.
@@ -30,7 +25,7 @@ permissions:
 
 jobs:
   ci:
-    # Gate that runs on every push and PR: audit, lint, format, typecheck,
+    # Gate that runs on every push: audit, lint, format, typecheck,
     # tests, build, integration smoke, site-wide checks, size guard.
     # Pinned instead of ubuntu-latest: the -latest label moves to a newer
     # image without notice, and the pipeline breaks for reasons unrelated
@@ -120,10 +115,9 @@ jobs:
           retention-days: 1
 
   lighthouse:
-    # Lighthouse is a deploy gate, so it runs only where a deploy can follow.
+    # Lighthouse is a deploy gate.
     # Reuses the dist artifact from ci so a rerun doesn't redo lint/test/build.
     needs: ci
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     # 8 URLs x 3 runs x devtools throttling (~20-30s each) = 8-12 min.
     # Cushion for runner variance.
@@ -152,7 +146,7 @@ jobs:
     needs: [ci, lighthouse]
     # Only main reaches production. workflow_dispatch on another branch runs
     # ci and lighthouse but stops here.
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     environment:
@@ -357,7 +351,7 @@ jobs:
     # so a Google failure shows red here without touching the deploy or its
     # rollback. Skipped with a warning while the secrets are not set.
     needs: deploy
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     environment:

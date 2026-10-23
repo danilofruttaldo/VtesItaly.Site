@@ -6,7 +6,8 @@
 // visitor's own date wins. The rules come from src/utils/status.ts and
 // src/utils/timeline.ts, the same functions the build uses: there is no
 // second copy to keep in sync.
-import { eventStatusOn, tourStatusOn, type StageDay } from '../utils/status';
+import { eventStatusOn, tourStatusOn } from '../utils/status';
+import { compareIsoDays, copyrightYear, isExpired, isRevealDue, parseStageDays, statusClass } from '../utils/temporal';
 import { todayLocalIso } from '../utils/today';
 import { firstPastIndex, nextEventIndex, priceColumns, timelineWindow } from '../utils/timeline';
 
@@ -20,7 +21,7 @@ function applyStatus(el: HTMLElement, status: string | null) {
   el.textContent = el.getAttribute('data-label-' + status) || status;
   if (el.classList.contains('post__status')) {
     el.classList.remove('post__status--active', 'post__status--finished');
-    el.classList.add(status === 'past' ? 'post__status--finished' : 'post__status--active');
+    el.classList.add(statusClass(status));
   }
 }
 
@@ -32,12 +33,8 @@ document.querySelectorAll<HTMLElement>('[data-event-date]').forEach((el) => {
 
 // Tour (multi-stage)
 document.querySelectorAll<HTMLElement>('[data-tour-stages]').forEach((el) => {
-  try {
-    const stages = JSON.parse(el.getAttribute('data-tour-stages') || '[]') as StageDay[];
-    applyStatus(el, tourStatusOn(stages, todayISO));
-  } catch {
-    /* malformed data */
-  }
+  const stages = parseStageDays(el.getAttribute('data-tour-stages'));
+  if (stages) applyStatus(el, tourStatusOn(stages, todayISO));
 });
 
 // Tour stage covers left on the placeholder by the build: swap in the real one
@@ -45,7 +42,7 @@ document.querySelectorAll<HTMLElement>('[data-tour-stages]').forEach((el) => {
 // Covers parked in the timeline <template> are swapped too.
 function revealCovers(root: ParentNode) {
   root.querySelectorAll<HTMLImageElement>('img[data-reveal-from]').forEach((img) => {
-    if (todayISO >= (img.getAttribute('data-reveal-from') || '')) {
+    if (isRevealDue(img.getAttribute('data-reveal-from'), todayISO)) {
       img.src = img.getAttribute('data-reveal-src') || img.src;
       img.removeAttribute('data-reveal-from');
     }
@@ -80,7 +77,7 @@ document.querySelectorAll('[data-temporal-window]').forEach((container) => {
   const overflow = template ? Array.from(template.content.querySelectorAll('.post-card[data-date]')) : [];
   const all = visible.concat(overflow);
   if (all.length === 0) return;
-  all.sort((a, b) => (dateOf(a) < dateOf(b) ? -1 : dateOf(a) > dateOf(b) ? 1 : 0));
+  all.sort((a, b) => compareIsoDays(dateOf(a), dateOf(b)));
 
   resetHighlight(all);
 
@@ -166,11 +163,11 @@ document.querySelectorAll('[data-temporal-pricing]').forEach((table) => {
 
 // Sign-up links of an event that is over (data-expires = its last day)
 document.querySelectorAll<HTMLElement>('[data-expires]').forEach((el) => {
-  el.hidden = todayISO > (el.getAttribute('data-expires') || '');
+  el.hidden = isExpired(el.getAttribute('data-expires'), todayISO);
 });
 
 // Footer copyright year
 const copy = document.querySelector('.footer-bottom p');
 if (copy && copy.textContent) {
-  copy.textContent = copy.textContent.replace(/–\d{4}/, '–' + new Date().getFullYear());
+  copy.textContent = copyrightYear(copy.textContent, new Date().getFullYear());
 }

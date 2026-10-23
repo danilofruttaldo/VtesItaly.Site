@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { articleJsonLd, eventJsonLd, postDescription, postalAddress } from '../../src/utils/structured-data';
+import {
+  articleJsonLd,
+  eventJsonLd,
+  postDescription,
+  postalAddress,
+  priceAmount,
+  pricingOffers,
+  publishedDay,
+  stageEventsJsonLd,
+} from '../../src/utils/structured-data';
 
 const site = new URL('https://vtesitaly.com');
 const base = {
@@ -158,5 +167,142 @@ describe('structured-data: articleJsonLd', () => {
     const bare = articleJsonLd(base, site);
     expect(bare.keywords).toBeUndefined();
     expect(bare.image).toBeUndefined();
+  });
+});
+
+describe('structured-data: priceAmount', () => {
+  it('reads the first number of a free-text euro price', () => {
+    expect(priceAmount('10 €')).toBe(10);
+    expect(priceAmount('€15 (buffet lunch included)')).toBe(15);
+    expect(priceAmount('65,00 euro')).toBe(65);
+    expect(priceAmount('40.50 euro')).toBe(40.5);
+    expect(priceAmount('~20 €')).toBe(20);
+    expect(priceAmount('torneo 25 € + pranzo 20 €')).toBe(25);
+  });
+
+  it('returns null when there is no number', () => {
+    expect(priceAmount('')).toBeNull();
+    expect(priceAmount('Gratis')).toBeNull();
+    expect(priceAmount(undefined)).toBeNull();
+  });
+});
+
+describe('structured-data: pricingOffers', () => {
+  it('gives one EUR Offer per regular price and skips rows without a number', () => {
+    expect(
+      pricingOffers(
+        {
+          pricing: [
+            { label: 'Iscrizione', regular: '10 €' },
+            { label: 'Vuota', regular: '' },
+          ],
+        },
+        'https://vtesitaly.com/x/',
+      ),
+    ).toEqual([
+      { '@type': 'Offer', name: 'Iscrizione', price: 10, priceCurrency: 'EUR', url: 'https://vtesitaly.com/x/' },
+    ]);
+  });
+
+  it('adds the early price valid through its deadline', () => {
+    const offers = pricingOffers({
+      pricing: [{ label: 'Torneo', early: '50 euro', regular: '60 euro' }],
+      earlyDeadlineDate: new Date('2026-04-10'),
+    });
+    expect(offers).toEqual([
+      { '@type': 'Offer', name: 'Torneo (early)', price: 50, priceCurrency: 'EUR', validThrough: '2026-04-10' },
+      { '@type': 'Offer', name: 'Torneo', price: 60, priceCurrency: 'EUR' },
+    ]);
+  });
+
+  it('leaves out an early price whose deadline is unknown', () => {
+    expect(pricingOffers({ pricing: [{ label: 'T', early: '50', regular: '60' }] })).toHaveLength(1);
+    expect(pricingOffers({})).toEqual([]);
+  });
+});
+
+describe('structured-data: offers on eventJsonLd', () => {
+  const venue = { name: 'Hotel Paoli', address: 'Caldonazzo (TN)' };
+
+  it('attaches the offers from pricing', () => {
+    const ld = eventJsonLd({ ...base, venue, pricing: [{ label: 'Iscrizione', regular: '€15' }] }, site)!;
+    expect(ld.offers).toEqual([{ '@type': 'Offer', name: 'Iscrizione', price: 15, priceCurrency: 'EUR' }]);
+  });
+
+  it('has no offers key without a priced row', () => {
+    expect(eventJsonLd({ ...base, venue, pricing: [] }, site)).not.toHaveProperty('offers');
+  });
+});
+
+describe('structured-data: stageEventsJsonLd', () => {
+  const page = { url: 'https://vtesitaly.com/tour/tour-2026/', locale: 'it' as const };
+  const tour = {
+    title: 'Italian Tour 2026',
+    date: new Date('2026-01-01'),
+    excerpt: 'Il Tour.',
+    featuredImage: '/images/headers/header-tour.webp',
+    stages: [
+      {
+        name: 'AVARIZIA',
+        date: new Date('2026-02-15'),
+        venue: 'Polisportiva Sacca',
+        location: 'Via Alfonso Paltrinieri 80, 41122 Modena (MO)',
+        image: '/tour/tour-2026/tour-2026-001.webp',
+        description: 'Il primo peccato.',
+      },
+      { name: 'IRA', date: new Date('2026-04-12'), location: 'Via Piave 26, 33170 Pordenone (PN)', cancelled: true },
+      { name: 'SENZA LUOGO', date: new Date('2026-05-01') },
+      { name: 'DATA IGNOTA', date: new Date('2026-06-01'), venue: 'Bar', hideDate: true },
+      { name: 'ONLINE', date: new Date('2026-07-01'), location: 'Italia' },
+    ],
+  };
+
+  it('gives one Event per stage with a place and a known date', () => {
+    const lds = stageEventsJsonLd(tour, site, page);
+    expect(lds).toHaveLength(2);
+    expect(lds[0]).toMatchObject({
+      '@type': 'Event',
+      name: 'Italian Tour 2026 – AVARIZIA',
+      startDate: '2026-02-15',
+      endDate: '2026-02-15',
+      description: 'Il primo peccato.',
+      url: page.url,
+      inLanguage: 'it',
+      image: 'https://vtesitaly.com/tour/tour-2026/tour-2026-001.webp',
+      eventStatus: 'https://schema.org/EventScheduled',
+      location: {
+        '@type': 'Place',
+        name: 'Polisportiva Sacca',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'IT',
+          streetAddress: 'Via Alfonso Paltrinieri 80',
+          postalCode: '41122',
+          addressLocality: 'Modena',
+          addressRegion: 'MO',
+        },
+      },
+    });
+  });
+
+  it('marks a cancelled stage EventCancelled, named after its address, with the post image', () => {
+    const ld = stageEventsJsonLd(tour, site)[1];
+    expect(ld.eventStatus).toBe('https://schema.org/EventCancelled');
+    expect((ld.location as { name: string }).name).toBe('Via Piave 26, 33170 Pordenone (PN)');
+    expect(ld.image).toBe('https://vtesitaly.com/images/headers/header-tour.webp');
+    expect(ld.description).toBe('Il Tour.');
+    expect(ld).not.toHaveProperty('url');
+  });
+
+  it('returns nothing for a post without stages', () => {
+    expect(stageEventsJsonLd(base, site)).toEqual([]);
+  });
+});
+
+describe('structured-data: publishedDay default today', () => {
+  it('caps a future post date at the local today', () => {
+    expect(publishedDay(new Date('2999-01-01'), undefined)).toBe(
+      new Date().toLocaleDateString('sv-SE'), // YYYY-MM-DD in the local zone
+    );
   });
 });

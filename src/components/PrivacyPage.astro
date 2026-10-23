@@ -68,6 +68,10 @@ const description = it
             tecnico, valido per tutti e tre i siti.
           </p>
           <div class="privacy__optout" id="optout" hidden>
+            <p id="optout-signal" hidden>
+              Il tuo browser invia <em>Do Not Track</em> o <em>Global Privacy Control</em>: le tue visite non vengono
+              conteggiate.
+            </p>
             <p id="optout-in">Le tue visite vengono conteggiate in forma anonima.</p>
             <p id="optout-out" hidden>
               Le tue visite non vengono conteggiate.
@@ -144,6 +148,9 @@ const description = it
             counted. You can also opt out here: a single technical cookie remembers your choice across all three sites.
           </p>
           <div class="privacy__optout" id="optout" hidden>
+            <p id="optout-signal" hidden>
+              Your browser sends <em>Do Not Track</em> or <em>Global Privacy Control</em>: your visits are not counted.
+            </p>
             <p id="optout-in">Your visits are counted anonymously.</p>
             <p id="optout-out" hidden>
               Your visits are not counted.
@@ -180,7 +187,11 @@ const description = it
 <script>
   // The opt-out control needs the Matomo tracker, which only loads in
   // production: until it calls back, the block stays hidden. A function
-  // pushed onto _paq runs with the tracker as `this` once it is ready.
+  // pushed onto _paq runs with the tracker as `this` once it is ready. A
+  // browser sending DNT or GPC is never counted: the block says so instead,
+  // with no button (Matomo would not load, or would ignore the cookie).
+  import { sendsPrivacySignal } from '../utils/privacy-signal';
+
   type Tracker = { isUserOptedOut(): boolean };
   const w = window as Window & { _paq?: unknown[] };
   const paq = (w._paq = w._paq || []);
@@ -197,15 +208,22 @@ const description = it
     btn.textContent = btn.getAttribute(optedOut ? 'data-label-out' : 'data-label-in');
   }
 
-  paq.push([
-    function (this: Tracker) {
-      render(this.isUserOptedOut());
-      btn?.addEventListener('click', () => {
-        paq.push([this.isUserOptedOut() ? 'forgetUserOptOut' : 'optUserOut']);
+  const signal = document.getElementById('optout-signal');
+  if (sendsPrivacySignal() && box && signal && msgIn && btn) {
+    box.hidden = false;
+    signal.hidden = false;
+    msgIn.hidden = true;
+    btn.hidden = true;
+  } else
+    paq.push([
+      function (this: Tracker) {
         render(this.isUserOptedOut());
-      });
-    },
-  ]);
+        btn?.addEventListener('click', () => {
+          paq.push([this.isUserOptedOut() ? 'forgetUserOptOut' : 'optUserOut']);
+          render(this.isUserOptedOut());
+        });
+      },
+    ]);
 </script>
 
 <style>

@@ -7,11 +7,12 @@
 // A bundled module instead of the usual inline snippet, so the CSP needs no
 // 'unsafe-inline': matomo.js is then loaded from stats.vtesitaly.com, which
 // script-src allows by name, and reads the queue from window._paq as usual.
+import { sendsGpc } from '../utils/privacy-signal';
+
 type MatomoWindow = Window & { _paq?: unknown[][] };
 
-// Global Privacy Control: the signal browsers send now that Firefox has
-// dropped Do Not Track. Matomo reads only DNT, so GPC is honoured here.
-const gpc = (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true;
+// Matomo reads only Do Not Track: Global Privacy Control is honoured here.
+const gpc = sendsGpc();
 
 if (import.meta.env.PROD && !gpc) {
   const w = window as MatomoWindow;

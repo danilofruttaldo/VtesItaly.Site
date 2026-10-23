@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['treviso', 'torneo']
 featuredImage: '/images/comunita/treviso/endless-night.webp'
 poster: '/images/comunita/treviso/endless-night.webp'
-excerpt: 'La Notte senza Fine: torneo VTES Storyline di Halloween a Treviso sabato 7 novembre 2026, da GiOlly Comics. Non sanzionato, aperto anche a chi inizia.'
+excerpt: 'La Notte senza Fine: torneo VTES Storyline di Halloween a Treviso sabato 7 novembre 2026, da GiOlly Comics, aperto anche a chi inizia.'
 venue:
   name: 'GiOlly Comics'
   address: 'Largo I Maggio 5/3, 31020 Villorba (TV)'
@@ -37,7 +37,7 @@ locale: it
 
 _I morti non stanno al loro posto._ I vampiri bruciati tornano in gioco, potete richiamare zombie, mummie e spettri che combattono per voi, e nessun trucco per nascondersi o intercettare.
 
-Torneo **non sanzionato**, aperto anche a chi inizia. Ricchi premi e cotillon.
+Aperto anche a chi inizia. Ricchi premi e cotillon.
 
 ## Regole della storyline
 

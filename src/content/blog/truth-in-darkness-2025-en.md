@@ -13,7 +13,7 @@ venue:
 events:
   - name: 'Truth in Darkness'
     date: 2025-05-10
-    time: '10:00'
+    time: '10:30'
     format: 'Standard'
     proxies: true
     rounds: 2

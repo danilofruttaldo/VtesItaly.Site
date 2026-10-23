@@ -66,7 +66,7 @@ stages:
     time: '09:30'
     format: 'Standard'
     proxies: true
-    rounds: 2
+    rounds: 3
     venue: 'Asgard Aldeno'
     location: 'Via Roma 1, 38060 Aldeno (TN)'
     image: '/images/headers/header-verona.webp'

@@ -54,7 +54,7 @@
     "@astrojs/check": "^0.9.9",
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.71.2",
-    "@typescript-eslint/parser": "^8.57.1",
+    "@typescript-eslint/parser": "^8.71.2",
     "@vitest/coverage-v8": "^5.0.4",
     "astro-eslint-parser": "^3.2.0",
     "esbuild": "npm:esbuild-wasm@0.28.2",

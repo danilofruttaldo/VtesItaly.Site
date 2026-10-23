@@ -13,7 +13,7 @@ venue:
 events:
   - name: 'Super Sloth'
     date: 2026-11-15
-    time: '10:00'
+    time: '09:30 – 18:30'
     format: 'Standard'
     proxies: true
     rounds: 2

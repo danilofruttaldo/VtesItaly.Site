@@ -13,7 +13,7 @@ venue:
 events:
   - name: 'Standard'
     date: 2025-07-13
-    time: '10:00'
+    time: '09:30 – 16:30'
     format: 'Standard'
     proxies: true
     rounds: 2

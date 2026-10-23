@@ -14,7 +14,7 @@ venue:
 events:
   - name: 'MAIN EVENT: Italian Grand Prix 2023'
     date: 2022-12-10
-    time: '09:00'
+    time: '10:00 – 20:30'
     format: 'Standard'
     proxies: false
     rounds: 3

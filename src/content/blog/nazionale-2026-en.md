@@ -56,7 +56,7 @@ events:
     format: 'Single game, VP + Beating Points'
   - name: 'MAIN EVENT: Italian Championship 2026'
     date: 2026-02-28
-    time: '09:15'
+    time: '09:00 – 19:00'
     format: 'Standard'
     proxies: false
     rounds: 3

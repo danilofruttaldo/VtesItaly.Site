@@ -84,7 +84,7 @@ stages:
     number: 5
     date: 2026-10-18
     cities: ['roma']
-    time: '09:30'
+    time: '09:00 – 19:30'
     format: 'Standard'
     proxies: true
     rounds: 2

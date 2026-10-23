@@ -15,7 +15,7 @@ venue:
 events:
   - name: "All'ombra del Castello – Kindred vs Garou"
     date: 2026-06-13
-    time: '10:00'
+    time: '09:00 – 18:00'
     format: 'Standard'
     proxies: true
     rounds: 2

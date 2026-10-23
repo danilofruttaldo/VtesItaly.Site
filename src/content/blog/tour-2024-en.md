@@ -28,7 +28,7 @@ stages:
     number: 2
     date: 2024-03-24
     cities: ['prato']
-    time: '10:00'
+    time: '09:30 – 18:30'
     format: 'Standard'
     proxies: true
     rounds: 2

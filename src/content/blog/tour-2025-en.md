@@ -11,7 +11,7 @@ stages:
     number: 1
     date: 2025-01-11
     cities: ['trento']
-    time: '10:00'
+    time: '09:30 – 18:30'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -24,7 +24,7 @@ stages:
     number: 2
     date: 2025-03-02
     cities: ['modena']
-    time: '09:30'
+    time: '10:00 – 18:30'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -66,7 +66,7 @@ stages:
     number: 5
     date: 2025-05-24
     cities: ['massa']
-    time: '10:00'
+    time: '10:30 – 19:30'
     format: 'Standard'
     proxies: true
     rounds: 2
@@ -108,7 +108,7 @@ stages:
     number: 8
     date: 2025-11-16
     cities: ['milano']
-    time: '10:00'
+    time: '09:30 – 19:00'
     format: 'Standard'
     proxies: true
     rounds: 2

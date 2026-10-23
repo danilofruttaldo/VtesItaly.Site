@@ -475,7 +475,10 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
 
         // Background image (desktop only via CSS)
         if (ev && ev.image) {
-          html += '<div class="cal__cell-bg" role="presentation" style="background-image:url(' + esc(ev.image) + ')">';
+          html +=
+            '<div class="cal__cell-bg" role="presentation" style="background-image:url(&quot;' +
+            esc(ev.image) +
+            '&quot;)">';
           html += '<div class="cal__cell-overlay"></div>';
           html += '</div>';
         }

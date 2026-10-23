@@ -4,7 +4,7 @@ date: 2022-03-06
 category: 'comunita'
 tags: ['bologna', 'torneo']
 featuredImage: '/images/headers/header-bologna.webp'
-excerpt: 'VTES Standard tournament in Bologna (BO) on Sunday, March 6, 2022: proxies allowed, 3 rounds and a final.'
+excerpt: 'VTES Standard tournament in Bologna (BO) on Sunday, March 6, 2022: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Circolo Barbanera'
   address: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
@@ -16,10 +16,10 @@ events:
     time: '10:00'
     format: 'Standard'
     proxies: true
-    rounds: 3
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-b620-7293-8d99-a9ca4f980308'
 standingsUrl: '/ev/foreshadowing-destruction-2-2022/standings-foreshadowing-destruction-2-2022.json'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Bologna (BO) on Sunday, **March 6, 2022**, at **Circolo Barbanera**: 3 rounds and a final, proxies allowed.
+A **Standard** tournament played in Bologna (BO) on Sunday, **March 6, 2022**, at **Circolo Barbanera**: 2 rounds and a final, proxies allowed.

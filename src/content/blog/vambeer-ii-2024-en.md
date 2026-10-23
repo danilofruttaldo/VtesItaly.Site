@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/vambeer-ii-2024.webp'
 poster: '/images/comunita/modena/vambeer-ii-2024.webp'
-excerpt: 'VTES Standard tournament in Manzolino (MO) on Sunday, October 13, 2024: proxies allowed, 3 rounds and a final.'
+excerpt: 'VTES Standard tournament in Manzolino (MO) on Sunday, October 13, 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Wild Rover Irish Pub'
   address: "Via G. d'Annunzio 40, Manzolino, 41013 Castelfranco Emilia (MO), Italy"
@@ -17,10 +17,10 @@ events:
     time: '10:00'
     format: 'Standard'
     proxies: true
-    rounds: 3
+    rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-5a3b-74d0-a60c-53532fddfcc6'
 standingsUrl: '/ev/vambeer-ii-2024/standings-vambeer-ii-2024.json'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Manzolino (MO) on Sunday, **October 13, 2024**, at **Wild Rover Irish Pub**: 3 rounds and a final, proxies allowed.
+A **Standard** tournament played in Manzolino (MO) on Sunday, **October 13, 2024**, at **Wild Rover Irish Pub**: 2 rounds and a final, proxies allowed.

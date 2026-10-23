@@ -109,7 +109,14 @@ function isCurrent(href: string): boolean {
       </div>
     </div>
 
-    <button class="hamburger" id="hamburger-btn" aria-label={t.nav.menu_button} aria-expanded="false" type="button">
+    <button
+      class="hamburger"
+      id="hamburger-btn"
+      aria-label={t.nav.menu_button}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      type="button"
+    >
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>

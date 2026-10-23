@@ -40,6 +40,11 @@ questo l'header non deve mai contenere `script-src`, che senza gli hash della bu
 - Tutto il resto (HTML, `sw.js`, manifest, sitemap, `/api/`): `no-cache`, cioè «ricontrolla prima di riusare». Per
   `sw.js` è indispensabile: in cache, gli utenti non vedrebbero mai la versione nuova del sito.
 
+### Indicizzazione di `/api/`
+
+`X-Robots-Tag: noindex` sulle risposte sotto `/api/`: i JSON del calendario (`calendar-events-it.json`,
+`calendar-events-en.json`) sono dati per gli script delle pagine e non devono comparire nei risultati di ricerca.
+
 ### Compressione
 
 `no-gzip` e `no-brotli` per WebP, AVIF, PNG, JPEG, GIF, WOFF2 e PDF: sono già compressi, ricomprimerli costa CPU e non

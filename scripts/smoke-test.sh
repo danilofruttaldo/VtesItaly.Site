@@ -227,6 +227,19 @@ missing /en/page-that-does-not-exist-smoke-test/ en missing-en
 # A directory without index.html: Apache's 403 page, turned into the site 404.
 missing /api/ it missing-dir
 
+# The calendar JSON under /api/ is data for the page scripts, not a page:
+# X-Robots-Tag keeps it out of search results.
+code=$(fetch "$BASE/api/calendar-events-it.json" api)
+api_robots=$(header api x-robots-tag)
+if [ "$code" != "200" ]; then
+    fail "/api/calendar-events-it.json answered HTTP $code"
+else
+    case "$api_robots" in
+        *noindex*) ok "/api/calendar-events-it.json X-Robots-Tag: $api_robots" ;;
+        *) fail "/api/calendar-events-it.json has X-Robots-Tag '${api_robots:-none}' (expected noindex, see public/.htaccess)" ;;
+    esac
+fi
+
 # Cache headers: HTML must revalidate, hashed assets can be cached for a year.
 html_cc=$(header home cache-control)
 case "$html_cc" in

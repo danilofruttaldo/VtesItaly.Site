@@ -42,11 +42,11 @@ _The dead won't stay put._ Burned vampires come back into play, you can call up 
 ## Storyline rules
 
 - **Banned cards**: _Soul Gem of Etrius_ is not allowed.
-- **Raising the dead**: two face-down piles sit in the middle of the table, one of Zombie and Mummy allies and one of Wraith allies. A ready vampire can take a recruit action to draw the top ally of a pile, removing from the game the top card of their library (Zombie and Mummy) or of their ash heap (Wraith). The card's requirements and costs are ignored; if the ally is burned, it is shuffled back into its pile.
-- **Limit**: you can have as many dead in play as there are Methuselahs still at the table.
-- **The Shroud is thin**: leave torpor and rescue from torpor always cost 1 blood.
-- **Nobody really dies**: burned vampires go back to their owner's uncontrolled region, with no blood.
-- **Night of masks**: stealth and intercept only count when they come from cards already in play; action modifiers and reactions don't provide them.
+- **Raising the dead**: two face-down piles sit in the middle of the table, one of Zombie and Mummy allies and one of Wraith allies. A ready vampire can take a recruit ally action (+1 stealth) to take the top ally of a pile, removing from the game the top card of their library (Zombie and Mummy) or a card of their ash heap (Wraith). The card's requirements and costs are ignored; if the ally leaves play, it is shuffled back into its pile. Each vampire can raise only one dead per turn.
+- **Limit**: you can raise a dead only if you have fewer dead from the piles in play than there are Methuselahs still at the table, yourself included.
+- **The Shroud is thin**: leave torpor and rescue from torpor always cost 1 blood, with no modifiers.
+- **Nobody really dies**: burned vampires, diablerie included, go back to their owner's uncontrolled region, with no blood.
+- **Night of masks**: stealth and intercept only count from cards already in play before the action; on other cards (action modifiers, reactions, combat…) any stealth or intercept bonus is ignored. Stealth from the rules, like the +1 of the recruit ally action, counts.
 - **Outcome**: regular standings. The winner becomes _Keeper of the Endless Night_.
 
 The full rules, including the pile lists, are in the PDF below.

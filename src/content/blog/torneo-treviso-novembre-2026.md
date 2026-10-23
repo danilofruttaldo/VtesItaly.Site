@@ -42,11 +42,11 @@ Torneo **non sanzionato**, aperto anche a chi inizia. Ricchi premi e cotillon.
 ## Regole della storyline
 
 - **Carte vietate**: la _Soul Gem of Etrius_ non è ammessa.
-- **Richiamare i morti**: al centro del tavolo ci sono due pile coperte, una di ally Zombie e Mummy e una di ally Wraith. Un vampiro ready può fare un'azione di recruit per pescare il primo ally di una pila, rimuovendo dal gioco la prima carta della propria library (Zombie e Mummy) o del proprio ash heap (Wraith). Requisiti e costi della carta si ignorano; se l'ally viene bruciato torna mescolato nella sua pila.
-- **Limite**: puoi avere in gioco tanti morti quanti sono i Methuselah ancora al tavolo.
-- **Il Sudario è sottile**: leave torpor e rescue from torpor costano sempre 1 blood.
-- **Nessuno muore davvero**: i vampiri bruciati tornano nella uncontrolled region del proprietario, senza blood.
-- **Notte di maschere**: stealth e intercept contano solo se vengono da carte già in gioco; action modifier e reaction non ne danno.
+- **Richiamare i morti**: al centro del tavolo ci sono due pile coperte, una di ally Zombie e Mummy e una di ally Wraith. Un vampiro ready può fare un'azione di recruit ally (+1 stealth) per prendere il primo ally di una pila, rimuovendo dal gioco la prima carta della propria library (Zombie e Mummy) o una carta del proprio ash heap (Wraith). Requisiti e costi della carta si ignorano; se l'ally esce dal gioco torna mescolato nella sua pila. Ogni vampiro può richiamare un solo morto per turno.
+- **Limite**: puoi richiamare un morto solo se, tra quelli presi dalle pile, ne hai in gioco meno dei Methuselah ancora al tavolo, te compreso.
+- **Il Sudario è sottile**: leave torpor e rescue from torpor costano sempre 1 blood, senza modificatori.
+- **Nessuno muore davvero**: i vampiri bruciati, anche per diablerie, tornano nella uncontrolled region del proprietario, senza blood.
+- **Notte di maschere**: stealth e intercept contano solo da carte già in gioco prima dell'azione; nelle altre carte (action modifier, reaction, combat…) il bonus a stealth o intercept si ignora. Lo stealth da regolamento, come il +1 del recruit ally, conta.
 - **Esito**: classifica normale. Chi vince diventa _Custode della Notte senza Fine_.
 
 Il regolamento completo, con la composizione delle pile, è nel PDF qui sotto.

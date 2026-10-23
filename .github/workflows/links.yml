@@ -1,0 +1,40 @@
+name: External links
+
+# Weekly check of the links to other sites in the content (Archon, forms,
+# venues, festivals): scripts/check-links.mjs covers only the internal ones.
+# Separate from CI on purpose: a third-party site going down must not block a
+# deploy. A failed run sends GitHub's usual failure e-mail; the job summary
+# lists the broken links.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Monday, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # Social networks answer bots with 4xx/999 whatever the page; closed
+          # Google Forms answer 401 and stay as a record of past events.
+          args: >-
+            --no-progress
+            --max-concurrency 8
+            --accept 200..=299,403,429
+            --exclude '^https?://([a-z]+\.)?(facebook|instagram|linkedin)\.com'
+            --exclude '^https?://(forms\.gle|docs\.google\.com/forms)'
+            --exclude '^https?://(localhost|127\.0\.0\.1)'
+            --exclude '^https?://(www\.)?vtesitaly\.com'
+            'src/content/**/*.md'
+            'src/data/**/*.ts'
+          fail: true

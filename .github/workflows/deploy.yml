@@ -16,6 +16,9 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  # Sent by VtesItaly.Foto after a Pages deploy: rebuild with the new /albums.json.
+  repository_dispatch:
+    types: [foto-updated]
 
 permissions:
   contents: read
@@ -56,7 +59,7 @@ jobs:
           # ~/.npm keyed on the lockfile, which is Node-version agnostic;
           # node_modules is never cached (npm ci rebuilds it).
           node-version-file: .nvmrc
-          # The runner caches an older 22.x; Astro wants a recent one (engines).
+          # The runner may cache an older 24.x; Astro wants a recent one (engines).
           check-latest: true
           cache: npm
 
@@ -373,7 +376,7 @@ jobs:
         with:
           # Node >= 22.18 runs the .ts import of the script (type stripping).
           node-version-file: .nvmrc
-          # The runner caches an older 22.x; Astro wants a recent one (engines).
+          # The runner may cache an older 24.x; Astro wants a recent one (engines).
           check-latest: true
 
       - name: Download dist artifact from ci

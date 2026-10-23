@@ -6,7 +6,8 @@ name: External links
 # deploy. A failed run sends GitHub's usual failure e-mail; the job summary
 # lists the broken links. Root-relative links (/guide/…) resolve against the
 # live site and are then skipped by the vtesitaly.com exclude: check-links.mjs
-# covers them on every build.
+# covers them on every build. The archon job catches dead Archon events,
+# which lychee cannot see (see scripts/check-archon-links.mjs).
 
 on:
   schedule:
@@ -28,7 +29,9 @@ jobs:
       - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
           # Social networks answer bots with 4xx/999 whatever the page; closed
-          # Google Forms answer 401 and stay as a record of past events.
+          # Google Forms answer 401 and stay as a record of past events. URLs
+          # with a `$` are template literals in components (`${…}` in share
+          # buttons, issue links): only their prefix is a real address.
           args: >-
             --no-progress
             --base-url https://vtesitaly.com
@@ -38,6 +41,35 @@ jobs:
             --exclude '^https?://(forms\.gle|docs\.google\.com/forms)'
             --exclude '^https?://(localhost|127\.0\.0\.1)'
             --exclude '^https?://(www\.)?vtesitaly\.com'
+            --exclude '\$'
             'src/content/**/*.md'
             'src/data/**/*.ts'
+            'src/components/**/*.astro'
+            'src/layouts/**/*.astro'
+            'src/i18n/*.json'
           fail: true
+
+  archon:
+    # archon.vekn.net is a single-page app: /tournaments/<uid> answers 200 even
+    # for a uid that does not exist, so lychee cannot see a dead one. The
+    # script checks every linked uid against Archon's public snapshot.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: |
+            scripts
+            src/content
+            src/data
+            src/utils
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          # Node >= 22.18 runs the .ts import of the script (type stripping).
+          node-version-file: .nvmrc
+          check-latest: true
+
+      - name: Check Archon uids against the snapshot
+        run: node scripts/check-archon-links.mjs

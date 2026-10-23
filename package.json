@@ -12,7 +12,7 @@
   "homepage": "https://vtesitaly.com",
   "private": true,
   "engines": {
-    "node": ">=22.23.4"
+    "node": ">=24.11.0"
   },
   "scripts": {
     "postinstall": "node scripts/wasi-bindings.mjs",

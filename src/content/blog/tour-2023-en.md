@@ -95,7 +95,7 @@ stages:
     rounds: 2
     venue: 'Associazione A.L.A.'
     location: 'Via San Ginese 15, 54100 Massa (MS)'
-    image: '/images/headers/header-massa.webp'
+    image: '/tour/tour-2023/tour-2023-007.webp'
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-017f-713d-8e7d-82a10a3b6608'
 
   - name: 'Barga'

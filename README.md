@@ -20,30 +20,30 @@ Built with [Astro 7](https://astro.build/): static, fast, multilingual (IT/EN).
 - **GitHub Actions**: single CI workflow: audit, lint, format, typecheck, tests, build, integration smoke, site-wide page and link checks, size guard, Lighthouse, release-directory deploy over SSH with automatic rollback, post-deploy smoke test, coverage badge refresh
 - **Dependencies**: updated by hand (no Dependabot); `audit.yml` runs `npm audit --audit-level=high` every Monday and fails with GitHub's e-mail on a high-severity advisory
 
-Node: `>=22.12.0` (`engines` in `package.json`, the minimum Astro 7 accepts). `.nvmrc` pins the major (22) for nvm/fnm and for CI, which reads it through `setup-node`.
+Node: `>=24.11.0` (`engines` in `package.json`). `.nvmrc` pins the major (24) for nvm/fnm and for CI, which reads it through `setup-node`.
 
 ## Scripts
 
-| Command                 | Description                                                                |
-| ----------------------- | -------------------------------------------------------------------------- |
-| `npm run dev`           | Dev server on port 4322                                                    |
-| `npm run build`         | Thumbnails + poster variants (`prebuild`), Astro build, stamp SW, Pagefind |
-| `npm run preview`       | Preview production build                                                   |
-| `npm run check`         | Astro type checking                                                        |
-| `npm run lint`          | ESLint                                                                     |
-| `npm run format`        | Prettier (write)                                                           |
-| `npm run format:check`  | Prettier (check only)                                                      |
-| `npm test`              | Warm content cache + Vitest (unit, schemas, components)                    |
-| `npm run test:watch`    | Vitest watch mode                                                          |
-| `npm run test:coverage` | Vitest with v8 coverage                                                    |
-| `npm run test:build`    | `npm run build` + integration smoke against `dist/`                        |
-| `npm run check:pages`   | Site-wide checks on every page in `dist/` (`--list` for details)           |
-| `npm run check:links`   | Internal link check on `dist/`, no server needed                           |
-| `npm run check:dist`    | Both of the above                                                          |
-| `npm run smoke`         | Smoke test against https://vtesitaly.com (or a URL passed as argument)     |
-| `npm run ci:verify`     | Everything the `ci` job runs, in one command                               |
-| `npm run clean`         | Remove `dist/` and `.astro/`                                               |
-| `npm run albums`        | Refresh the committed copy of the photo archive index (foto.vtesitaly.com) |
+| Command                 | Description                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| `npm run dev`           | Dev server on port 4322                                                                       |
+| `npm run build`         | `fetch-albums.mjs`, thumbnails, poster variants (`prebuild`), Astro build, stamp SW, Pagefind |
+| `npm run preview`       | Preview production build                                                                      |
+| `npm run check`         | Astro type checking                                                                           |
+| `npm run lint`          | ESLint                                                                                        |
+| `npm run format`        | Prettier (write)                                                                              |
+| `npm run format:check`  | Prettier (check only)                                                                         |
+| `npm test`              | Warm content cache + Vitest (unit, schemas, components)                                       |
+| `npm run test:watch`    | Vitest watch mode                                                                             |
+| `npm run test:coverage` | Vitest with v8 coverage                                                                       |
+| `npm run test:build`    | `npm run build` + integration smoke against `dist/`                                           |
+| `npm run check:pages`   | Site-wide checks on every page in `dist/` (`--list` for details)                              |
+| `npm run check:links`   | Internal link check on `dist/`, no server needed                                              |
+| `npm run check:dist`    | Both of the above                                                                             |
+| `npm run smoke`         | Smoke test against https://vtesitaly.com (or a URL passed as argument)                        |
+| `npm run ci:verify`     | Everything the `ci` job runs, in one command                                                  |
+| `npm run clean`         | Remove `dist/` and `.astro/`                                                                  |
+| `npm run albums`        | Refresh the committed copy of the photo archive index (foto.vtesitaly.com)                    |
 
 `prebuild` (auto-run before `npm run build`) executes `scripts/fetch-albums.mjs` (event galleries come from the albums of https://foto.vtesitaly.com, repo VtesItaly.Foto: a post names one with `album:`), `scripts/build-thumbnails.mjs` and `scripts/build-poster-variants.mjs`, both idempotent via mtime checks (see [Images](#images)).
 
@@ -66,7 +66,7 @@ Required on the `vtesitaly` environment: secrets `SSH_PRIVATE_KEY` and `SSH_KNOW
 
 vtesitaly.com is served by Apache on **SupportHost shared hosting** (cPanel, CloudLinux), as the privacy page states. Matomo (`stats.vtesitaly.com`) and the GP 2025 site have their own document roots outside `public_html`, so the deploy never touches them.
 
-The `.htaccess` is versioned in [`public/.htaccess`](public/.htaccess) and published with the site: edit it there, never on the server, because the next deploy replaces the live copy. It sets the security headers with `Header always set` (so they apply to 301 and 404 responses too), a complementary CSP header, `Cache-Control` (`/_astro/` one year `immutable`, images and PDFs 30 days, everything else `no-cache`), the real 404 pages (`/404.html`, `/en/404/index.html` under `/en/`), and the 301s for retired slugs and for paths of older site versions. Block-by-block explanation in [`docs/htaccess.md`](docs/htaccess.md).
+The `.htaccess` is versioned in [`public/.htaccess`](public/.htaccess) and published with the site: edit it there, never on the server, because the next deploy replaces the live copy. It sets the security headers with `Header always set` (so they apply to 301 and 404 responses too), a complementary CSP header, `Cache-Control` (`/_astro/` one year `immutable`, images and PDFs 7 days (`max-age=604800`), everything else `no-cache`), the real 404 pages (`/404.html`, `/en/404/index.html` under `/en/`), and the 301s for retired slugs and for paths of older site versions. Block-by-block explanation in [`docs/htaccess.md`](docs/htaccess.md).
 
 ### Releases and rollback
 

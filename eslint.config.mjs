@@ -5,7 +5,7 @@ import astroPlugin from 'eslint-plugin-astro';
 import * as astroParser from 'astro-eslint-parser';
 
 export default [
-  { ignores: ['dist/', '.astro/', 'node_modules/', 'public/sw.js', 'public/pagefind/'] },
+  { ignores: ['dist/', '.astro/', 'node_modules/', 'public/pagefind/'] },
   js.configs.recommended,
   {
     files: ['**/*.{ts,tsx}'],
@@ -30,6 +30,21 @@ export default [
     files: ['src/scripts/**/*.js'],
     languageOptions: {
       globals: { document: 'readonly', localStorage: 'readonly', location: 'readonly' },
+    },
+  },
+  {
+    // The service worker: a classic script run in the worker scope, not the page.
+    files: ['public/sw.js'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: {
+        self: 'readonly',
+        caches: 'readonly',
+        clients: 'readonly',
+        fetch: 'readonly',
+        URL: 'readonly',
+        Response: 'readonly',
+      },
     },
   },
   ...astroPlugin.configs.recommended,

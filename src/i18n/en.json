@@ -80,7 +80,6 @@
     "aria_label": "Search",
     "close_label": "Close search",
     "placeholder": "Search articles, events, domains...",
-    "submit": "Search",
     "no_results": "No results found.",
     "dialog_label": "Site search"
   },
@@ -177,12 +176,10 @@
   },
   "gp": {
     "archive": "Archive",
-    "links_label": "Useful links",
     "venue_label": "Venue",
     "program_label": "Program",
     "schedule_label": "Schedule",
     "registration_label": "Registration",
-    "results_label": "Results",
     "contact_label": "Contact",
     "time_prefix": "at",
     "pricing_label": "Pricing",
@@ -196,7 +193,6 @@
     "standings_label": "Standings",
     "streaming_label": "Finals streaming",
     "standings_player": "Player",
-    "winner_label": "Winner",
     "players_label": "players"
   },
   "tour": {
@@ -206,15 +202,12 @@
     "status_upcoming": "Next",
     "status_future": "Scheduled",
     "status_cancelled": "Cancelled",
-    "cta_results": "Results",
-    "cta_register": "Register",
     "coming_soon": "Coming soon",
     "rules": "Rules",
     "standings": "Standings",
     "standings_player": "Player",
     "standings_city": "City",
     "standings_away_note": "* includes away bonus (+20 VEKN points)",
-    "past_editions": "Past editions",
     "archive": "Archive",
     "stages_unit": "stages",
     "cities_unit": "cities"
@@ -224,8 +217,6 @@
     "intro": "Welcome to the <strong>Postcards</strong> section, the ironic gallery of VTES Italy. Cards become photographic souvenirs: shots from events, tournaments and gatherings instead of original illustrations. These are community snapshots: serious, funny or epic moments, transformed into frames familiar to game players.",
     "why_title": "Why Postcards?",
     "why_text": "Like postcards sent from a trip, meant to be shared memories: an alternative album of what makes the VTES community in Italy come alive. Browsing rediscovers friends, games, gags and small legends born around the tables.",
-    "scroll_left": "Scroll left",
-    "scroll_right": "Scroll right",
     "slider_label": "scroll the postcards"
   },
   "twins": {
@@ -242,8 +233,6 @@
     "players": "registered players",
     "games": "game days played",
     "tables": "tables played",
-    "period_label": "Period",
-    "format_label": "Format",
     "rules_title": "Rules & scoring",
     "bonus_title": "Bonus Points",
     "standings_label": "Final standings",
@@ -282,21 +271,12 @@
     "audience_principe": "Prince",
     "audience_judge": "Judge",
     "audience_nuovi": "Newcomer",
-    "categoria_iniziare": "Getting started",
-    "categoria_piattaforme": "Platforms",
-    "categoria_regole_formati": "Rules & Formats",
-    "categoria_organizzare": "Organizing",
     "updated_on": "updated on",
     "version_prefix": "v",
     "toc_title": "In this guide",
     "see_also": "See also",
     "report_issue": "Report an issue",
     "back_to_index": "All guides",
-    "no_results": "No guides for you yet. We're working on it!",
-    "alert_note": "Note",
-    "alert_tip": "Tip",
-    "alert_important": "Important",
-    "alert_warning": "Warning",
-    "alert_caution": "Caution"
+    "no_results": "No guides for you yet. We're working on it!"
   }
 }

@@ -72,7 +72,6 @@
     "aria_label": "Cerca",
     "close_label": "Chiudi ricerca",
     "placeholder": "Cerca articoli, eventi, principati...",
-    "submit": "Cerca",
     "no_results": "Nessun risultato trovato.",
     "dialog_label": "Ricerca nel sito"
   },
@@ -169,12 +168,10 @@
   },
   "gp": {
     "archive": "Archivio",
-    "links_label": "Link utili",
     "venue_label": "Sede",
     "program_label": "Programma",
     "schedule_label": "Orari",
     "registration_label": "Iscrizione",
-    "results_label": "Risultati",
     "contact_label": "Contatti",
     "time_prefix": "ore",
     "pricing_label": "Costi",
@@ -188,7 +185,6 @@
     "standings_label": "Classifica",
     "streaming_label": "Streaming della finale",
     "standings_player": "Giocatore",
-    "winner_label": "Vincitore",
     "players_label": "giocatori"
   },
   "tour": {
@@ -198,15 +194,12 @@
     "status_upcoming": "Prossima",
     "status_future": "In programma",
     "status_cancelled": "Annullata",
-    "cta_results": "Risultati",
-    "cta_register": "Iscriviti",
     "coming_soon": "In arrivo",
     "rules": "Regolamento",
     "standings": "Classifica",
     "standings_player": "Giocatore",
     "standings_city": "Città",
     "standings_away_note": "* include bonus trasferta (+20 punti VEKN)",
-    "past_editions": "Edizioni passate",
     "archive": "Archivio",
     "stages_unit": "tappe",
     "cities_unit": "città"
@@ -216,8 +209,6 @@
     "intro": "Benvenuti nella sezione <strong>Cartoline</strong>, la gallery ironica di VTES Italy. Le carte diventano souvenir fotografici: scatti da eventi, tornei e raduni al posto delle illustrazioni originali. Sono istantanee di community: momenti seri, divertenti o epici, trasformati in cornici familiari ai giocatori.",
     "why_title": "Perché Cartoline?",
     "why_text": "Come cartoline spedite da un viaggio, pensate per essere ricordi condivisi: un album alternativo di ciò che anima la community VTES in Italia. Sfogliando si riscoprono amici, partite, gag e piccole leggende nate attorno ai tavoli.",
-    "scroll_left": "Scorri a sinistra",
-    "scroll_right": "Scorri a destra",
     "slider_label": "scorri le cartoline"
   },
   "twins": {
@@ -234,8 +225,6 @@
     "players": "giocatori iscritti",
     "games": "giornate giocate",
     "tables": "tavoli disputati",
-    "period_label": "Periodo",
-    "format_label": "Formato",
     "rules_title": "Regole e punteggi",
     "bonus_title": "Bonus Point",
     "standings_label": "Classifica finale",
@@ -274,21 +263,12 @@
     "audience_principe": "Principe",
     "audience_judge": "Judge",
     "audience_nuovi": "Nuovi",
-    "categoria_iniziare": "Iniziare",
-    "categoria_piattaforme": "Piattaforme",
-    "categoria_regole_formati": "Regole & Formati",
-    "categoria_organizzare": "Organizzare",
     "updated_on": "aggiornato il",
     "version_prefix": "v",
     "toc_title": "In questa guida",
     "see_also": "Vedi anche",
     "report_issue": "Segnala un errore",
     "back_to_index": "Tutte le guide",
-    "no_results": "Ancora nessuna guida per te. Ci stiamo lavorando!",
-    "alert_note": "Nota",
-    "alert_tip": "Suggerimento",
-    "alert_important": "Importante",
-    "alert_warning": "Attenzione",
-    "alert_caution": "Avvertenza"
+    "no_results": "Ancora nessuna guida per te. Ci stiamo lavorando!"
   }
 }

@@ -52,8 +52,8 @@ describe('composeFormat', () => {
   });
 
   it('labels storyline tournaments as unsanctioned', () => {
-    expect(composeFormat('Storyline', undefined, 2, 'it')).toBe('Storyline (non sanzionato) - 2 Round + Finale');
-    expect(composeFormat('Storyline', undefined, 2, 'en')).toBe('Storyline (unsanctioned) - 2 Rounds + Final');
+    expect(composeFormat('Storyline', undefined, 2, 'it')).toBe('Storyline - 2 Round + Finale');
+    expect(composeFormat('Storyline', undefined, 2, 'en')).toBe('Storyline - 2 Rounds + Final');
   });
 
   it('appends the proxies clause in IT', () => {

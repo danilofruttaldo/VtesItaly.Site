@@ -58,13 +58,6 @@ function pickPostImage(post: CollectionEntry<'blog'>): string | undefined {
 
 const KNOWN_FORMATS = ['Standard', 'V5', 'Limited', 'Draft', 'Storyline', 'TBD'];
 
-/** Formats whose printed name differs from the frontmatter value: storyline
- *  tournaments are never VEKN-sanctioned, so the label says so. */
-function formatLabel(format: string, locale: Locale): string {
-  if (format === 'Storyline') return locale === 'en' ? 'Storyline (unsanctioned)' : 'Storyline (non sanzionato)';
-  return format;
-}
-
 /** "Da definire" / "TBD": the format is not announced yet. */
 function tbd(locale: Locale): string {
   return useTranslations(locale).calendar.tbd;
@@ -79,7 +72,7 @@ export function composeFormat(
   if (!format) return tbd(locale);
   if (!KNOWN_FORMATS.includes(format)) return locale === 'en' ? 'Special' : 'Speciale';
   if (format === 'TBD') return tbd(locale);
-  let s = formatLabel(format, locale);
+  let s = format;
   if (proxies !== undefined) s += `, ${proxiesLabel(proxies, locale)}`;
   if (rounds) s += ` - ${roundsLabel(rounds, locale)}`;
   return s;

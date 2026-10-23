@@ -76,17 +76,16 @@ const cardSize = (src: string) => webpSize(src) ?? { width: 358, height: 500 };
                 .filter((img) => img.highlight)
                 .map((img) => (
                   <figure class="highlight-card">
-                    <img
-                      class="highlight-image"
-                      src={img.src}
-                      alt={img.alt}
-                      width={cardSize(img.src).width}
-                      height={cardSize(img.src).height}
-                      loading="lazy"
-                      decoding="async"
-                      role="button"
-                      tabindex="0"
-                    />
+                    <button type="button" class="highlight-image zoom-trigger">
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        width={cardSize(img.src).width}
+                        height={cardSize(img.src).height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </button>
                     <div class="highlight-text">
                       {img.highlight!.label && <span class="highlight-label">{img.highlight!.label}</span>}
                       {img.highlight!.title && <span class="highlight-title">{img.highlight!.title}</span>}
@@ -103,15 +102,17 @@ const cardSize = (src: string) => webpSize(src) ?? { width: 358, height: 500 };
                 {gallery.images
                   .filter((img) => !img.highlight)
                   .map((img) => (
-                    <figure class="gallery-item" role="button" tabindex="0">
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        width={cardSize(img.src).width}
-                        height={cardSize(img.src).height}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                    <figure class="gallery-item">
+                      <button type="button" class="zoom-trigger">
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          width={cardSize(img.src).width}
+                          height={cardSize(img.src).height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </button>
                     </figure>
                   ))}
               </div>
@@ -124,7 +125,12 @@ const cardSize = (src: string) => webpSize(src) ?? { width: 358, height: 500 };
                     galleries included: 1.6 MB for a page read one card at a
                     time. */}
               <div class="gallery-slider">
-                <div class="slider-track" tabindex="0" aria-label={`${gallery.title}: ${t.postcards.slider_label}`}>
+                <div
+                  class="slider-track"
+                  tabindex="0"
+                  role="region"
+                  aria-label={`${gallery.title}: ${t.postcards.slider_label}`}
+                >
                   {gallery.images
                     .filter((img) => !img.highlight)
                     .map((img, j) => (
@@ -284,11 +290,31 @@ const cardSize = (src: string) => webpSize(src) ?? { width: 358, height: 500 };
     box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.12);
     text-align: center;
   }
-  .highlight-image {
+  /* The images open the lightbox through a <button> around them, reset to
+     look like the bare image. */
+  .zoom-trigger {
+    display: block;
     width: 100%;
-    max-width: 280px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: inherit;
+    border-radius: var(--radius);
+  }
+  .zoom-trigger:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  .zoom-trigger img {
+    display: block;
+    width: 100%;
     height: auto;
     border-radius: var(--radius);
+  }
+  .highlight-image {
+    max-width: 280px;
     flex-shrink: 0;
     cursor: zoom-in;
     transition: opacity 0.2s ease;
@@ -561,22 +587,16 @@ const cardSize = (src: string) => webpSize(src) ?? { width: 358, height: 500 };
       lightbox.setAttribute('aria-hidden', 'true');
     };
 
-    document.querySelectorAll<HTMLElement>('.gallery-item, .highlight-image').forEach((el) => {
-      const img = el.tagName === 'IMG' ? (el as HTMLImageElement) : el.querySelector('img');
+    // Real <button>s: Enter and Space already fire `click`.
+    document.querySelectorAll<HTMLButtonElement>('.zoom-trigger').forEach((el) => {
+      const img = el.querySelector('img');
       if (!img) return;
-      const open = () => {
+      el.addEventListener('click', () => {
         if (isMobile()) return;
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
-      };
-      el.addEventListener('click', open);
-      el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          open();
-        }
       });
     });
 

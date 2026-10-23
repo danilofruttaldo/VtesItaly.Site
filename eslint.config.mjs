@@ -48,6 +48,9 @@ export default [
     },
   },
   ...astroPlugin.configs.recommended,
+  // jsx-a11y rules on the templates, through eslint-plugin-jsx-a11y-x: the
+  // original eslint-plugin-jsx-a11y does not accept ESLint 10 as a peer.
+  ...astroPlugin.configs['jsx-a11y-recommended'],
   {
     files: ['**/*.astro'],
     languageOptions: {
@@ -60,6 +63,13 @@ export default [
       'no-empty': 'off',
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_|^e$' }],
+      // A table wrapper that scrolls sideways is a focusable, labelled region
+      // (tabindex="0" role="region"), as axe's scrollable-region-focusable
+      // asks: keyboard users can scroll it.
+      'astro/jsx-a11y/no-noninteractive-tabindex': ['error', { tags: [], roles: ['tabpanel', 'region'] }],
+      // role="list" on the nav <ul>s is on purpose: Safari/VoiceOver drops the
+      // list semantics of a list with `list-style: none`.
+      'astro/jsx-a11y/no-redundant-roles': ['error', { ul: ['list'] }],
     },
   },
   {

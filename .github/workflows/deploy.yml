@@ -78,6 +78,9 @@ jobs:
       - run: npm run build
         env:
           NODE_ENV: production
+          # Sent by VtesItaly.Foto with foto-updated: fetch-albums waits until
+          # the CDN node this runner hits serves that exact /albums.json.
+          ALBUMS_SHA256: ${{ github.event.client_payload.albums_sha256 }}
 
       - run: npx vitest run --config vitest.integration.config.ts
 

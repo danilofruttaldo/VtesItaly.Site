@@ -38,11 +38,11 @@ Start with **20 pool**, but with a couple of shortcuts compared to the standard 
 
 Suggested seating in turn order:
 
-1. **Nosferatu**: vampire <span class="card-hover">Cedrick Calhoun<img src="https://static.krcg.org/card/cedrickcalhoun.jpg" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-2. **Toreador**: vampire <span class="card-hover">Catalina Vega<img src="https://static.krcg.org/card/catalinavega.jpg" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-3. **Tremere**: vampire <span class="card-hover">Ayelech<img src="https://static.krcg.org/card/ayelech.jpg" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-4. **Malkavian**: vampire <span class="card-hover">Jason "Son" Newberry<img src="https://static.krcg.org/card/jasonsonnewberry.jpg" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-5. **Ventrue**: vampire <span class="card-hover">Alexa Draper<img src="https://static.krcg.org/card/alexadraper.jpg" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Misdirection<img src="https://static.krcg.org/card/misdirection.jpg" alt="" width="358" height="500" loading="lazy" /></span>
+1. **Nosferatu**: vampire <span class="card-hover">Cedrick Calhoun<img src="/images/krcg/cedrickcalhoun.webp" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Blood Doll<img src="/images/krcg/blooddoll.webp" alt="" width="358" height="500" loading="lazy" /></span>
+2. **Toreador**: vampire <span class="card-hover">Catalina Vega<img src="/images/krcg/catalinavega.webp" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Art Museum<img src="/images/krcg/artmuseum.webp" alt="" width="358" height="500" loading="lazy" /></span>
+3. **Tremere**: vampire <span class="card-hover">Ayelech<img src="/images/krcg/ayelech.webp" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Chantry<img src="/images/krcg/chantry.webp" alt="" width="358" height="500" loading="lazy" /></span>
+4. **Malkavian**: vampire <span class="card-hover">Jason "Son" Newberry<img src="/images/krcg/jasonsonnewberry.webp" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">The Barrens<img src="/images/krcg/barrensthe.webp" alt="" width="358" height="500" loading="lazy" /></span>
+5. **Ventrue**: vampire <span class="card-hover">Alexa Draper<img src="/images/krcg/alexadraper.webp" alt="" width="358" height="500" loading="lazy" /></span>, opening master <span class="card-hover">Misdirection<img src="/images/krcg/misdirection.webp" alt="" width="358" height="500" loading="lazy" /></span>
 
 > [!TIP]
 > If nobody has a preference, **the demo runner takes the Nosferatu**: they play first (handy for showing the others what a typical turn looks like) and they're also the first to go out if the game continues, freeing them up to talk with other attendees or start a second demo.
@@ -60,10 +60,10 @@ Each player has **7 cards in hand**. The cards listed below are fixed, to showca
 
 ### Nosferatu
 
-- <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Roundhouse<img src="https://static.krcg.org/card/roundhouse.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Deep Song<img src="https://static.krcg.org/card/deepsong.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Raven Spy<img src="https://static.krcg.org/card/ravenspy.jpg" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Blood Doll<img src="/images/krcg/blooddoll.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Roundhouse<img src="/images/krcg/roundhouse.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Deep Song<img src="/images/krcg/deepsong.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Raven Spy<img src="/images/krcg/ravenspy.webp" alt="" width="358" height="500" loading="lazy" /></span>
 
 </div>
 
@@ -71,12 +71,12 @@ Each player has **7 cards in hand**. The cards listed below are fixed, to showca
 
 ### Toreador
 
-- <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Majesty<img src="https://static.krcg.org/card/majesty.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Kine Resources Contested<img src="https://static.krcg.org/card/kineresourcescontested.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Scalpel Tongue<img src="https://static.krcg.org/card/scalpeltongue.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Voter Captivation<img src="https://static.krcg.org/card/votercaptivation.jpg" alt="" width="358" height="500" loading="lazy" /></span><sup>†</sup>
-- <span class="card-hover">Scorn of Adonis<img src="https://static.krcg.org/card/scornofadonis.jpg" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Art Museum<img src="/images/krcg/artmuseum.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Majesty<img src="/images/krcg/majesty.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Kine Resources Contested<img src="/images/krcg/kineresourcescontested.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Scalpel Tongue<img src="/images/krcg/scalpeltongue.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Voter Captivation<img src="/images/krcg/votercaptivation.webp" alt="" width="358" height="500" loading="lazy" /></span><sup>†</sup>
+- <span class="card-hover">Scorn of Adonis<img src="/images/krcg/scornofadonis.webp" alt="" width="358" height="500" loading="lazy" /></span>
 
 </div>
 
@@ -84,13 +84,13 @@ Each player has **7 cards in hand**. The cards listed below are fixed, to showca
 
 ### Tremere
 
-- <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Sniper Rifle<img src="https://static.krcg.org/card/sniperrifle.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Eyes of Argus<img src="https://static.krcg.org/card/eyesofargus.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Apportation<img src="https://static.krcg.org/card/apportation.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Theft of Vitae<img src="https://static.krcg.org/card/theftofvitae.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Telepathic Tracking<img src="https://static.krcg.org/card/telepathictracking.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Rego Motum<img src="https://static.krcg.org/card/regomotum.jpg" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Chantry<img src="/images/krcg/chantry.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Sniper Rifle<img src="/images/krcg/sniperrifle.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Eyes of Argus<img src="/images/krcg/eyesofargus.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Apportation<img src="/images/krcg/apportation.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Theft of Vitae<img src="/images/krcg/theftofvitae.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Telepathic Tracking<img src="/images/krcg/telepathictracking.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Rego Motum<img src="/images/krcg/regomotum.webp" alt="" width="358" height="500" loading="lazy" /></span>
 
 </div>
 
@@ -98,10 +98,10 @@ Each player has **7 cards in hand**. The cards listed below are fixed, to showca
 
 ### Malkavian
 
-- <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Elder Impersonation<img src="https://static.krcg.org/card/elderimpersonation.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Cloak the Gathering<img src="https://static.krcg.org/card/cloakthegathering.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Threats<img src="https://static.krcg.org/card/threats.jpg" alt="" width="358" height="500" loading="lazy" /></span><sup>‡</sup>
+- <span class="card-hover">The Barrens<img src="/images/krcg/barrensthe.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Elder Impersonation<img src="/images/krcg/elderimpersonation.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Cloak the Gathering<img src="/images/krcg/cloakthegathering.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Threats<img src="/images/krcg/threats.webp" alt="" width="358" height="500" loading="lazy" /></span><sup>‡</sup>
 
 </div>
 
@@ -109,20 +109,20 @@ Each player has **7 cards in hand**. The cards listed below are fixed, to showca
 
 ### Ventrue
 
-- <span class="card-hover">Misdirection<img src="https://static.krcg.org/card/misdirection.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Deflection<img src="https://static.krcg.org/card/deflection.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Freak Drive<img src="https://static.krcg.org/card/freakdrive.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Second Tradition: Domain<img src="https://static.krcg.org/card/secondtraditiondomain.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Political Ally<img src="https://static.krcg.org/card/politicalally.jpg" alt="" width="358" height="500" loading="lazy" /></span>
-- <span class="card-hover">Enchant Kindred<img src="https://static.krcg.org/card/enchantkindred.jpg" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Misdirection<img src="/images/krcg/misdirection.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Deflection<img src="/images/krcg/deflection.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Freak Drive<img src="/images/krcg/freakdrive.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Second Tradition: Domain<img src="/images/krcg/secondtraditiondomain.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Political Ally<img src="/images/krcg/politicalally.webp" alt="" width="358" height="500" loading="lazy" /></span>
+- <span class="card-hover">Enchant Kindred<img src="/images/krcg/enchantkindred.webp" alt="" width="358" height="500" loading="lazy" /></span>
 
 </div>
 
 </div>
 
-<small><sup>†</sup> <span class="card-hover">Voter Captivation<img src="https://static.krcg.org/card/votercaptivation.jpg" alt="" width="358" height="500" loading="lazy" /></span> works better if it isn't in the opening hand: put it on top of the library so it's drawn the moment the Toreador replaces a card after the referendum, for a small surprise effect.<br/>
-<sup>‡</sup> <span class="card-hover">Threats<img src="https://static.krcg.org/card/threats.jpg" alt="" width="358" height="500" loading="lazy" /></span> can likewise be left on top of the library so it's drawn at the right moment.<br/>
-**Note:** the Malkavian must have no intercept in hand, so the Tremere's <span class="card-hover">Sniper Rifle<img src="https://static.krcg.org/card/sniperrifle.jpg" alt="" width="358" height="500" loading="lazy" /></span> equip doesn't get blocked.</small>
+<small><sup>†</sup> <span class="card-hover">Voter Captivation<img src="/images/krcg/votercaptivation.webp" alt="" width="358" height="500" loading="lazy" /></span> works better if it isn't in the opening hand: put it on top of the library so it's drawn the moment the Toreador replaces a card after the referendum, for a small surprise effect.<br/>
+<sup>‡</sup> <span class="card-hover">Threats<img src="/images/krcg/threats.webp" alt="" width="358" height="500" loading="lazy" /></span> can likewise be left on top of the library so it's drawn at the right moment.<br/>
+**Note:** the Malkavian must have no intercept in hand, so the Tremere's <span class="card-hover">Sniper Rifle<img src="/images/krcg/sniperrifle.webp" alt="" width="358" height="500" loading="lazy" /></span> equip doesn't get blocked.</small>
 
 ## 5. Guided play sequence
 
@@ -131,51 +131,51 @@ The first round should run roughly like this. Don't read it as a script, treat i
 <details>
 <summary><strong>Nosferatu</strong>: <em>master economy, bleed, combat</em></summary>
 
-1. Plays <span class="card-hover">Blood Doll<img src="https://static.krcg.org/card/blooddoll.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
-2. Bleeds with base <span class="card-hover">Deep Song<img src="https://static.krcg.org/card/deepsong.jpg" alt="" width="358" height="500" loading="lazy" /></span>; gets blocked.
-3. Plays <span class="card-hover">Roundhouse<img src="https://static.krcg.org/card/roundhouse.jpg" alt="" width="358" height="500" loading="lazy" /></span> as strike; Toreador answers with <span class="card-hover">Majesty<img src="https://static.krcg.org/card/majesty.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
+1. Plays <span class="card-hover">Blood Doll<img src="/images/krcg/blooddoll.webp" alt="" width="358" height="500" loading="lazy" /></span>.
+2. Bleeds with base <span class="card-hover">Deep Song<img src="/images/krcg/deepsong.webp" alt="" width="358" height="500" loading="lazy" /></span>; gets blocked.
+3. Plays <span class="card-hover">Roundhouse<img src="/images/krcg/roundhouse.webp" alt="" width="358" height="500" loading="lazy" /></span> as strike; Toreador answers with <span class="card-hover">Majesty<img src="/images/krcg/majesty.webp" alt="" width="358" height="500" loading="lazy" /></span>.
 
 </details>
 
 <details>
 <summary><strong>Toreador</strong>: <em>voting, deal-making, referendum</em></summary>
 
-1. Plays <span class="card-hover">Art Museum<img src="https://static.krcg.org/card/artmuseum.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
-2. Calls a referendum with <span class="card-hover">Kine Resources Contested<img src="https://static.krcg.org/card/kineresourcescontested.jpg" alt="" width="358" height="500" loading="lazy" /></span>; the Tremere only has <span class="card-hover">Eyes of Argus<img src="https://static.krcg.org/card/eyesofargus.jpg" alt="" width="358" height="500" loading="lazy" /></span> in hand as intercept.
+1. Plays <span class="card-hover">Art Museum<img src="/images/krcg/artmuseum.webp" alt="" width="358" height="500" loading="lazy" /></span>.
+2. Calls a referendum with <span class="card-hover">Kine Resources Contested<img src="/images/krcg/kineresourcescontested.webp" alt="" width="358" height="500" loading="lazy" /></span>; the Tremere only has <span class="card-hover">Eyes of Argus<img src="/images/krcg/eyesofargus.webp" alt="" width="358" height="500" loading="lazy" /></span> in hand as intercept.
 3. Pause to explain the **political phase**: who votes (ready vampires, with extra votes from titles), how the referendum's _terms_ work; then let the players discuss and negotiate.
-4. Then plays <span class="card-hover">Scalpel Tongue<img src="https://static.krcg.org/card/scalpeltongue.jpg" alt="" width="358" height="500" loading="lazy" /></span>, <span class="card-hover">Voter Captivation<img src="https://static.krcg.org/card/votercaptivation.jpg" alt="" width="358" height="500" loading="lazy" /></span>, <span class="card-hover">Scorn of Adonis<img src="https://static.krcg.org/card/scornofadonis.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
+4. Then plays <span class="card-hover">Scalpel Tongue<img src="/images/krcg/scalpeltongue.webp" alt="" width="358" height="500" loading="lazy" /></span>, <span class="card-hover">Voter Captivation<img src="/images/krcg/votercaptivation.webp" alt="" width="358" height="500" loading="lazy" /></span>, <span class="card-hover">Scorn of Adonis<img src="/images/krcg/scornofadonis.webp" alt="" width="358" height="500" loading="lazy" /></span>.
 
 </details>
 
 <details>
 <summary><strong>Tremere</strong>: <em>equip, weapons</em></summary>
 
-1. Plays <span class="card-hover">Chantry<img src="https://static.krcg.org/card/chantry.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
-2. Equips the <span class="card-hover">Sniper Rifle<img src="https://static.krcg.org/card/sniperrifle.jpg" alt="" width="358" height="500" loading="lazy" /></span> with an _equip_ action.
+1. Plays <span class="card-hover">Chantry<img src="/images/krcg/chantry.webp" alt="" width="358" height="500" loading="lazy" /></span>.
+2. Equips the <span class="card-hover">Sniper Rifle<img src="/images/krcg/sniperrifle.webp" alt="" width="358" height="500" loading="lazy" /></span> with an _equip_ action.
 
 </details>
 
 <details>
 <summary><strong>Malkavian</strong>: <em>stealth/intercept, bleed redirect</em></summary>
 
-1. Plays <span class="card-hover">The Barrens<img src="https://static.krcg.org/card/barrensthe.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
+1. Plays <span class="card-hover">The Barrens<img src="/images/krcg/barrensthe.webp" alt="" width="358" height="500" loading="lazy" /></span>.
 2. Bleeds for 2 with 0 stealth; the Ventrue tries to block.
-3. Plays <span class="card-hover">Cloak the Gathering<img src="https://static.krcg.org/card/cloakthegathering.jpg" alt="" width="358" height="500" loading="lazy" /></span> (+1 stealth); the Ventrue answers with <span class="card-hover">Second Tradition: Domain<img src="https://static.krcg.org/card/secondtraditiondomain.jpg" alt="" width="358" height="500" loading="lazy" /></span> (intercept).
-4. Closes with <span class="card-hover">Elder Impersonation<img src="https://static.krcg.org/card/elderimpersonation.jpg" alt="" width="358" height="500" loading="lazy" /></span>, which prevents the Ventrue from blocking this action → the 2-bleed goes through.
-5. Second action: bleed with <span class="card-hover">Threats<img src="https://static.krcg.org/card/threats.jpg" alt="" width="358" height="500" loading="lazy" /></span>; the Ventrue plays <span class="card-hover">Deflection<img src="https://static.krcg.org/card/deflection.jpg" alt="" width="358" height="500" loading="lazy" /></span> and redirects the bleed to the next player.
+3. Plays <span class="card-hover">Cloak the Gathering<img src="/images/krcg/cloakthegathering.webp" alt="" width="358" height="500" loading="lazy" /></span> (+1 stealth); the Ventrue answers with <span class="card-hover">Second Tradition: Domain<img src="/images/krcg/secondtraditiondomain.webp" alt="" width="358" height="500" loading="lazy" /></span> (intercept).
+4. Closes with <span class="card-hover">Elder Impersonation<img src="/images/krcg/elderimpersonation.webp" alt="" width="358" height="500" loading="lazy" /></span>, which prevents the Ventrue from blocking this action → the 2-bleed goes through.
+5. Second action: bleed with <span class="card-hover">Threats<img src="/images/krcg/threats.webp" alt="" width="358" height="500" loading="lazy" /></span>; the Ventrue plays <span class="card-hover">Deflection<img src="/images/krcg/deflection.webp" alt="" width="358" height="500" loading="lazy" /></span> and redirects the bleed to the next player.
 
 </details>
 
 <details>
 <summary><strong>Ventrue</strong>: <em>allies, untap, bleed with bonuses</em></summary>
 
-1. Plays <span class="card-hover">Political Ally<img src="https://static.krcg.org/card/politicalally.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
-2. Untaps with <span class="card-hover">Freak Drive<img src="https://static.krcg.org/card/freakdrive.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
-3. Bleeds with <span class="card-hover">Enchant Kindred<img src="https://static.krcg.org/card/enchantkindred.jpg" alt="" width="358" height="500" loading="lazy" /></span>.
+1. Plays <span class="card-hover">Political Ally<img src="/images/krcg/politicalally.webp" alt="" width="358" height="500" loading="lazy" /></span>.
+2. Untaps with <span class="card-hover">Freak Drive<img src="/images/krcg/freakdrive.webp" alt="" width="358" height="500" loading="lazy" /></span>.
+3. Bleeds with <span class="card-hover">Enchant Kindred<img src="/images/krcg/enchantkindred.webp" alt="" width="358" height="500" loading="lazy" /></span>.
 
 </details>
 
-From here the game can carry on freely: the Nosferatu might equip the <span class="card-hover">Raven Spy<img src="https://static.krcg.org/card/ravenspy.jpg" alt="" width="358" height="500" loading="lazy" /></span>, the Toreador might start voting seriously, and so on. When you sense the group has seen enough, **wrap up the demo**.
+From here the game can carry on freely: the Nosferatu might equip the <span class="card-hover">Raven Spy<img src="/images/krcg/ravenspy.webp" alt="" width="358" height="500" loading="lazy" /></span>, the Toreador might start voting seriously, and so on. When you sense the group has seen enough, **wrap up the demo**.
 
 > [!TIP]
 > When a player makes a "wrong" move (e.g. an impossible block, voting on a referendum they can't participate in), correct it by explaining the **why** of the rule, not just the rule. New players remember the intuition better than the rulebook wording.

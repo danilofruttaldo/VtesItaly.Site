@@ -90,6 +90,8 @@ PostCard, CityCard and prince avatars render at 80 to 120 px but the source post
 
 `scripts/build-poster-variants.mjs` (also `prebuild`) emits `<name>-<w>w.webp` width variants for every image referenced by a `poster:` field in the blog content, and `responsiveImage()` in `src/utils/image.ts` builds a `srcset` from the variants that exist. The same script writes `<name>-og.jpg` (JPEG, at most 1200 px wide) for every poster and `featuredImage`, and `ogImage()` in `src/utils/og.ts` shares that file as `og:image` instead of the WebP, which some link previewers still skip. The variants are git-ignored and rebuilt on every build. `src/components/PageHero.astro` adds AVIF/WebP `<source>` sets for the section headers when the files exist.
 
+The card images of the guides are local WebP copies in `public/images/krcg/` (committed), so the guides don't depend on static.krcg.org and the CSP allows no third-party image origin. `node scripts/fetch-guide-cards.mjs` (by hand, not in the build) downloads every card the guides reference, rewrites any `https://static.krcg.org/card/...` link to the local copy, and refreshes the existing copies from KRCG.
+
 ## PWA & Service Worker
 
 Installable PWA. `public/sw.js` precaches the shell and serves pages network-first (cached fallback offline) and static assets cache-first. `scripts/stamp-sw.mjs` runs at build time and rewrites `CACHE_NAME = 'vtesitaly-__BUILD_TS__'` with the short git SHA, so each commit gets an isolated cache namespace (redeploying the same commit reuses it) and old CSS/JS/images can't leak across releases.

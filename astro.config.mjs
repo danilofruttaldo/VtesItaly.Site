@@ -84,14 +84,14 @@ export default defineConfig({
   // would cancel it.
   //
   // 'wasm-unsafe-eval' is for Pagefind, which runs its search index as
-  // WebAssembly. static.krcg.org serves the card images in the demo guides.
+  // WebAssembly. The guides' card images are local copies (scripts/fetch-guide-cards.mjs).
   // frame-ancestors is absent because a meta CSP cannot carry it: it belongs
   // in the .htaccess header.
   security: {
     csp: {
       directives: [
         "default-src 'self'",
-        "img-src 'self' data: https://stats.vtesitaly.com https://static.krcg.org https://foto.vtesitaly.com",
+        "img-src 'self' data: https://stats.vtesitaly.com https://foto.vtesitaly.com",
         "font-src 'self'",
         "connect-src 'self' https://stats.vtesitaly.com",
         "base-uri 'self'",

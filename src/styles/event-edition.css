@@ -107,6 +107,12 @@
   color: var(--color-muted);
   background: transparent;
 }
+/* Row labels are <th scope="row"> for screen readers, styled as plain cells. */
+.gp-table th[scope='row'] {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
 .gp-table th.gp-price-active,
 .gp-table td.gp-price-active {
   color: var(--color-gold);

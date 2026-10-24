@@ -18,7 +18,8 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
         type="button"
         data-lang="it"
         data-href={locale === 'it' ? '' : altUrl}
-        aria-label="Italiano"
+        aria-label="IT, Italiano"
+        lang="it"
       >
         <svg class="flag-icon" viewBox="0 0 640 480">
           <path fill="#009246" d="M0 0h213.3v480H0z"></path>
@@ -32,7 +33,8 @@ const altUrl = getAlternateUrl(Astro.url, locale === 'it' ? 'en' : 'it');
         type="button"
         data-lang="en"
         data-href={locale === 'en' ? '' : altUrl}
-        aria-label="English"
+        aria-label="EN, English"
+        lang="en"
       >
         <svg class="flag-icon" viewBox="0 0 640 480">
           <path fill="#012169" d="M0 0h640v480H0z"></path>

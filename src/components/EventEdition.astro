@@ -269,7 +269,7 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
           <tbody>
             {post.data.pricing.map((p) => (
               <tr>
-                <td>{p.label}</td>
+                <th scope="row">{p.label}</th>
                 {p.early && (
                   <td class={`gp-price-cell--early ${earlyActive ? 'gp-price-active' : 'gp-price-inactive'}`}>
                     {p.early}

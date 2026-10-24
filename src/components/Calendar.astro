@@ -203,6 +203,8 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
 
     var body = document.getElementById('cal-body')!;
     var titleEl = cal.querySelector('.cal__month-title')!;
+    // The name must contain the visible month (WCAG 2.5.3): "Seleziona mese: ottobre 2026".
+    var selectMonthLabel = titleEl.getAttribute('aria-label') || '';
     var popup = document.getElementById('cal-popup')!;
     var popupInner = document.getElementById('cal-popup-inner')!;
     var focusTrapHandler: ((e: KeyboardEvent) => void) | null = null;
@@ -424,6 +426,7 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
     function render() {
       closePopup();
       titleEl.textContent = monthNames[displayMonth] + ' ' + displayYear;
+      titleEl.setAttribute('aria-label', selectMonthLabel + ': ' + titleEl.textContent);
       var firstDay = new Date(displayYear, displayMonth, 1).getDay();
       var startOffset = (firstDay + 6) % 7;
       var daysInMonth = new Date(displayYear, displayMonth + 1, 0).getDate();
@@ -458,16 +461,25 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
               '" data-cat="' +
               esc(ev.category) +
               '" tabindex="0" aria-label="' +
+              // Same order as the visible text ("18 IT26 - GOLA +1"), month last:
+              // the name must contain what is on screen (WCAG 2.5.3).
               esc(
                 d +
                   ' ' +
-                  (monthNames[displayMonth] || '') +
-                  ': ' +
-                  dayEvts
-                    .map(function (e) {
-                      return e.title;
-                    })
-                    .join(', '),
+                  ev.title +
+                  (dayEvts.length > 1
+                    ? ' +' +
+                      (dayEvts.length - 1) +
+                      ': ' +
+                      dayEvts
+                        .slice(1)
+                        .map(function (e) {
+                          return e.title;
+                        })
+                        .join(', ')
+                    : '') +
+                  ', ' +
+                  (monthNames[displayMonth] || ''),
               ) +
               '"'
             : '') +
@@ -483,7 +495,9 @@ const eventsUrl = `/api/calendar-events-${locale}.json`;
           html += '</div>';
         }
 
-        html += '<span class="cal__cell-day">' + d + '</span>';
+        // The space keeps "18 IT26" apart in the text the accessible name is
+        // checked against; flex layout doesn't render it.
+        html += '<span class="cal__cell-day">' + d + '</span> ';
 
         if (ev) {
           // One dot per event (visible on mobile)

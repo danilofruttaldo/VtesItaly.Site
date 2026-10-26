@@ -26,6 +26,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-c2e1-7184-99f5-01beeaa6e23c'
     standingsUrl: '/nc/nc-2026/standings-nc-2026.json'
   - name: 'SIDE EVENT: Trento the day after...'
+    album: 'trento-the-day-after-2026'
     date: 2026-03-01
     time: '09:30'
     format: 'Standard'

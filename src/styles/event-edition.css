@@ -382,3 +382,12 @@
     font-size: var(--font-size-md);
   }
 }
+
+/* Previews of the side events' albums, after the main event's gallery. */
+.side-albums {
+  margin: 0 0 32px;
+}
+.side-albums__title {
+  font-size: var(--font-size-xl);
+  margin: 0 0 16px;
+}

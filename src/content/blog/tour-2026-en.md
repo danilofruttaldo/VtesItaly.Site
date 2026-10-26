@@ -53,6 +53,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-d8b7-7519-a56c-3d03ff4105a3'
     description: 'Envy watches and learns. Wanting what others have is the first step to taking it. A subtle sin, but lethal, at the heart of competition.'
   - name: 'WRATH'
+    album: 'tour-2026-ira'
     number: 3
     date: 2026-04-12
     cities: ['pordenone', 'treviso']

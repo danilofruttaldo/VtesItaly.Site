@@ -7,7 +7,15 @@ import { albumFor } from '../../src/utils/albums';
 describe('post albums', () => {
   it('names only albums that exist on foto.vtesitaly.com', async () => {
     const posts = await getCollection('blog');
-    const missing = posts.filter((p) => p.data.album && !albumFor(p.data.album)).map((p) => `${p.id}: ${p.data.album}`);
+    // The post's own album and those of its events (side events) and stages.
+    const named = posts.flatMap((p) => {
+      const d = p.data as { album?: string; events?: { album?: string }[]; stages?: { album?: string }[] };
+      return [d.album, ...(d.events ?? []).map((e) => e.album), ...(d.stages ?? []).map((s) => s.album)]
+        .filter((a): a is string => !!a)
+        .map((a) => ({ id: p.id, album: a }));
+    });
+    expect(named.some((n) => n.album === 'tour-2026-ira')).toBe(true);
+    const missing = named.filter((n) => !albumFor(n.album)).map((n) => `${n.id}: ${n.album}`);
     expect(missing).toEqual([]);
   });
 });

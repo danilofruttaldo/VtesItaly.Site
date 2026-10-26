@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { albumsIndexProblems, postAlbumSlug } from '../../src/utils/albums-index';
+import { albumsIndexProblems, postAlbumSlug, postAlbumSlugs } from '../../src/utils/albums-index';
 
 const album = (slug: string, photos = [{ src: '/a.webp', thumb: '/a-thumb.webp' }]) => ({
   slug,
@@ -56,5 +56,32 @@ describe('albums-index: albumsIndexProblems', () => {
     expect(albumsIndexProblems({ albums: [album('gp-2026')] }, [{ name: 'nc.md', text: 'album: nc-2026' }])).toEqual([
       `nc.md cita l'album "nc-2026", che sull'archivio non c'è`,
     ]);
+  });
+});
+
+describe('albums-index: postAlbumSlugs', () => {
+  const post = [
+    '---',
+    "album: 'gp-2026'",
+    'events:',
+    "  - name: 'SIDE EVENT: Asinelli'",
+    "    album: 'le-due-torri-2026'",
+    "  - name: 'SIDE EVENT: Garisenda'",
+    "    album: 'le-due-torri-2026'",
+    'stages:',
+    '  - album: tour-2026-ira',
+    '---',
+    'album: not-frontmatter',
+  ].join('\n');
+
+  it('reads the post album and those of its events and stages, once each', () => {
+    expect(postAlbumSlugs(post)).toEqual(['gp-2026', 'le-due-torri-2026', 'tour-2026-ira']);
+  });
+
+  it('flags a missing event album in the index check', () => {
+    const problems = albumsIndexProblems({ albums: [album('gp-2026'), album('tour-2026-ira')] }, [
+      { name: 'gp.md', text: post },
+    ]);
+    expect(problems).toEqual([`gp.md cita l'album "le-due-torri-2026", che sull'archivio non c'è`]);
   });
 });

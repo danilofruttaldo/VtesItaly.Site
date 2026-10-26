@@ -12,6 +12,8 @@ import { composeEventLine, TIME_TBD } from '../utils/calendar';
 import ResponsiveImage from './ResponsiveImage.astro';
 import Zoomable from './Zoomable.astro';
 import AlbumGallery from './AlbumGallery.astro';
+import AlbumPreview from './AlbumPreview.astro';
+import { albumFor } from '../utils/albums';
 import { todayLocalIso } from '../utils/today';
 import { priceColumns } from '../utils/timeline';
 import { isoDate, lastEventDay } from '../utils/date';
@@ -33,6 +35,11 @@ const links = (post.data.links ?? [])
   .map((l) => ({ ...l, label: resolveLinkLabel(l) }));
 
 const postEvents = post.data.events ?? [];
+// Albums of single tournaments (side events) other than the main event's:
+// one preview each, even when two tournaments share it (Le Due Torri).
+const eventAlbums = [...new Set(postEvents.map((ev) => ev.album).filter((a): a is string => !!a))].filter(
+  (a) => a !== post.data.album && albumFor(a),
+);
 
 // Load standings if available. A page can carry more than one tournament
 // (main event + side events, multi-tournament weekends): the post-level
@@ -462,6 +469,14 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
 
 {/* Foto: l'album dell'evento su foto.vtesitaly.com */}
 {post.data.album && <AlbumGallery slug={post.data.album} locale={locale} />}
+{eventAlbums.length > 0 && (
+  <section class="side-albums">
+    <h2 class="side-albums__title">{t.gp.side_photos}</h2>
+    {eventAlbums.map((slug) => (
+      <AlbumPreview slug={slug} locale={locale} />
+    ))}
+  </section>
+)}
 
 {/* Classifica */}
 {standingsBlocks.length > 0 && (

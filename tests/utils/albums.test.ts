@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { albumFor, albumSections, sectionLabel, type Album } from '../../src/utils/albums';
+import { albumFor, albumSections, previewPhotos, sectionLabel, type Album } from '../../src/utils/albums';
 
 const photo = (n: number, section?: string) => ({
   src: `https://foto.vtesitaly.com/p/x/${n}.webp`,
@@ -43,5 +43,22 @@ describe('albums', () => {
 
   it('reads the archive index', () => {
     expect(albumFor('gp-2026')?.photos.length).toBeGreaterThan(0);
+  });
+});
+
+describe('previewPhotos', () => {
+  const many: Album = { ...album, photos: Array.from({ length: 10 }, (_, i) => photo(i + 1)) };
+
+  it('spreads the preview across the album: first, last and evenly spaced', () => {
+    expect(previewPhotos(many).map((p) => p.src.match(/(\d+)\.webp$/)?.[1])).toEqual(['1', '4', '7', '10']);
+  });
+
+  it('returns every photo of a small album', () => {
+    expect(previewPhotos(album, 6)).toHaveLength(4);
+  });
+
+  it('translates the section titles the archive uses now', () => {
+    expect(sectionLabel('Turni di gioco', 'en')).toBe('Rounds');
+    expect(sectionLabel('Allestimento e premi', 'en')).toBe('Setup and prizes');
   });
 });

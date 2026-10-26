@@ -194,7 +194,8 @@
     "standings_label": "Standings",
     "streaming_label": "Finals streaming",
     "standings_player": "Player",
-    "players_label": "players"
+    "players_label": "players",
+    "side_photos": "Side event photos"
   },
   "tour": {
     "stages_label": "The stages",
@@ -211,7 +212,8 @@
     "standings_away_note": "* includes away bonus (+20 VEKN points)",
     "archive": "Archive",
     "stages_unit": "stages",
-    "cities_unit": "cities"
+    "cities_unit": "cities",
+    "stage_photos": "Stage photos"
   },
   "postcards": {
     "tagline": "A deck of memories, not a game deck",

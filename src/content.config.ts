@@ -55,6 +55,10 @@ const eventSchema = z.object({
   tpLabel: z.string().optional(),
   period: z.string().optional(),
   type: z.string().optional(),
+  // Album of this tournament on foto.vtesitaly.com when it has its own (a side
+  // event): EventEdition shows a preview linking to it, apart from the
+  // post-level `album` of the main event.
+  album: z.string().optional(),
 });
 
 const stageSchema = z
@@ -76,6 +80,8 @@ const stageSchema = z
     // The other states (completed, upcoming, future) come from the date: see
     // stageStatusesOn in src/utils/status.ts.
     cancelled: z.boolean().optional(),
+    // Album of the stage on foto.vtesitaly.com: the stage card links to it.
+    album: z.string().optional(),
     // Strict: a leftover key (an old `status: 'cancelled'`) stops the build
     // instead of being dropped without a word.
   })

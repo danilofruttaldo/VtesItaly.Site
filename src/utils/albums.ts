@@ -54,6 +54,14 @@ export function albumSections(album: Album): { title?: string; photos: AlbumPhot
   return out;
 }
 
+/** A few photos spread across an album, for a preview: the first, the last
+ * and evenly spaced ones in between. */
+export function previewPhotos(album: Album, count = 4): AlbumPhoto[] {
+  const n = album.photos.length;
+  if (n <= count) return album.photos;
+  return Array.from({ length: count }, (_, i) => album.photos[Math.round((i * (n - 1)) / (count - 1))]);
+}
+
 /** English names of the section titles the archive uses (they are written in Italian). */
 const SECTION_EN: Record<string, string> = {
   Preparazione: 'Setup',
@@ -63,6 +71,28 @@ const SECTION_EN: Record<string, string> = {
   Premiazione: 'Awards',
   Bonus: 'Bonus',
   Extra: 'Extras',
+  'A tavola': 'At the table',
+  Accoglienza: 'Registration',
+  'Allestimento e premi': 'Setup and prizes',
+  'Allestimento e staff': 'Setup and staff',
+  Atmosfera: 'Atmosphere',
+  Cene: 'Dinners',
+  'Concorso di stile': 'Style contest',
+  'Finale e premiazione': 'Final and awards',
+  'Finalisti e vincitore': 'Finalists and winner',
+  Giudici: 'Judges',
+  "Il gadget dell'evento": 'The event gadget',
+  'Intorno ai tavoli': 'Around the tables',
+  'Intorno al torneo': 'Around the tournament',
+  'Le carte delle sanzioni': 'The penalty cards',
+  'Main event': 'Main event',
+  'Pausa pranzo': 'Lunch break',
+  'Premi e gadget': 'Prizes and gadgets',
+  'Premi in palio': 'Prizes',
+  Serata: 'Evening',
+  'Tavolo finale': 'Final table',
+  'Trofeo e vincitore': 'Trophy and winner',
+  'Turni di gioco': 'Rounds',
 };
 
 /** A section title in the page's language; unknown titles stay as written. */

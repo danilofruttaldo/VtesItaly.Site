@@ -19,6 +19,7 @@ import Zoomable from './Zoomable.astro';
 import { anonymizeName } from '../utils/anonymize';
 import { cities } from '../data/cities';
 import { todayLocalIso } from '../utils/today';
+import { albumFor } from '../utils/albums';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -276,18 +277,25 @@ function formatStage(val: unknown, isAway: boolean): string {
                     </div>
                   )}
                 </div>
-                {stage.archonUrl ? (
-                  <a
-                    href={stage.archonUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class:list={['te-cta', `te-cta--${stage.status}`]}
-                  >
-                    {resolvePlatformLabel(stage.archonUrl)} &rarr;
-                  </a>
-                ) : (
-                  <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>
-                )}
+                <div class="te-actions">
+                  {stage.archonUrl ? (
+                    <a
+                      href={stage.archonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class:list={['te-cta', `te-cta--${stage.status}`]}
+                    >
+                      {resolvePlatformLabel(stage.archonUrl)} &rarr;
+                    </a>
+                  ) : (
+                    <span class="te-cta te-cta--soon">{t.tour.coming_soon}</span>
+                  )}
+                  {stage.album && albumFor(stage.album) && (
+                    <a href={albumFor(stage.album)!.url} target="_blank" rel="noopener noreferrer" class="te-photos">
+                      {t.tour.stage_photos} ({albumFor(stage.album)!.photos.length}) &rarr;
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>

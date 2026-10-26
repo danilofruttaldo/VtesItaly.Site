@@ -186,7 +186,8 @@
     "standings_label": "Classifica",
     "streaming_label": "Streaming della finale",
     "standings_player": "Giocatore",
-    "players_label": "giocatori"
+    "players_label": "giocatori",
+    "side_photos": "Foto dei side event"
   },
   "tour": {
     "stages_label": "Le tappe",
@@ -203,7 +204,8 @@
     "standings_away_note": "* include bonus trasferta (+20 punti VEKN)",
     "archive": "Archivio",
     "stages_unit": "tappe",
-    "cities_unit": "città"
+    "cities_unit": "città",
+    "stage_photos": "Foto della tappa"
   },
   "postcards": {
     "tagline": "Un mazzo di ricordi, non di gioco",

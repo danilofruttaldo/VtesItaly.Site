@@ -15,6 +15,13 @@ export function postAlbumSlug(text: string): string | undefined {
   return /^album:\s*['"]?([^'"\s]+)/m.exec(text)?.[1];
 }
 
+/** Every `album:` slug of a post's frontmatter: the post's own and those of
+ * its events and stages (indented `album:` keys), without repeats. */
+export function postAlbumSlugs(text: string): string[] {
+  const front = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text)?.[1] ?? text;
+  return [...new Set([...front.matchAll(/^\s*(?:-\s+)?album:\s*['"]?([^'"\s]+)/gm)].map((m) => m[1]))];
+}
+
 /**
  * What is wrong with an albums index, in Italian for the build log: albums
  * without the fields the pages read, albums without photos or with photos
@@ -39,8 +46,8 @@ export function albumsIndexProblems(data: unknown, posts: PostFile[]): string[] 
   }
   const slugs = new Set(list.map((a) => a.slug));
   for (const post of posts) {
-    const slug = postAlbumSlug(post.text);
-    if (slug && !slugs.has(slug)) problems.push(`${post.name} cita l'album "${slug}", che sull'archivio non c'è`);
+    for (const slug of postAlbumSlugs(post.text))
+      if (!slugs.has(slug)) problems.push(`${post.name} cita l'album "${slug}", che sull'archivio non c'è`);
   }
   return problems;
 }

@@ -475,3 +475,24 @@ a.te-city-tag:hover {
     align-self: flex-end;
   }
 }
+
+/* The stage CTA and, when the stage has an album, its photo link under it. */
+.te-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  align-self: flex-end;
+  gap: 8px;
+}
+/* Link to the stage's album on foto.vtesitaly.com, under the stage CTA. */
+.te-photos {
+  font-size: var(--font-size-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-gold);
+  text-decoration: none;
+}
+.te-photos:hover {
+  text-decoration: underline;
+}

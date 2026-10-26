@@ -21,6 +21,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-cfc4-71a5-964a-aaceea47a37d'
     standingsUrl: '/gp/gp-2026/standings-gp-2026.json'
   - name: 'SIDE EVENT: Le Due Torri - Asinelli'
+    album: 'le-due-torri-2026'
     date: 2026-05-03
     time: '09:30'
     format: 'Standard'
@@ -29,6 +30,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-da1e-70e6-a041-c3a0ac03e3d7'
     standingsUrl: '/gp/gp-2026/standings-le-due-torri-asinelli-2026.json'
   - name: 'SIDE EVENT: Le Due Torri - Garisenda'
+    album: 'le-due-torri-2026'
     date: 2026-05-03
     time: '09:30'
     format: 'Standard'

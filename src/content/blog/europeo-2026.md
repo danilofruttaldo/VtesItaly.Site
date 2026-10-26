@@ -29,6 +29,7 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-b729-7374-982e-d4b221292f69'
     standingsUrl: '/ev/ec-2026/standings-ec-2026-day-1.json'
   - name: 'MAIN EVENT: EC 2026 Day 2'
     date: 2026-09-20
@@ -36,6 +37,7 @@ events:
     format: 'Standard'
     proxies: false
     rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-b7a8-7595-be52-c81148960753'
     standingsUrl: '/ev/ec-2026/standings-ec-2026-day-2.json'
   - name: 'SIDE EVENT: Club Torpor'
     date: 2026-09-20

@@ -21,6 +21,9 @@
  * package-lock records for it, or the script stops before unpacking it. Outside Windows it does nothing. Ported from
  * danilofruttaldo.Site (compilatore-wasi.mjs).
  *
+ * On Windows ARM64 it also unpacks pagefind's x64 build, which npm skips
+ * (`cpu: x64`): Smart App Control blocks the arm64 one, see pagefind.mjs.
+ *
  * Runs as postinstall, after every `npm install` or `npm ci`.
  */
 import { execSync } from 'node:child_process';
@@ -29,6 +32,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
 const PACKAGES = ['@astrojs/compiler-binding-wasm32-wasi', '@bruits/satteri-wasm32-wasi'];
+if (process.arch === 'arm64') PACKAGES.push('@pagefind/windows-x64');
 
 if (process.platform !== 'win32') process.exit(0);
 
@@ -91,5 +95,5 @@ while (queue.length) {
   execSync(`tar -xzf ${filename} --strip-components=1`, { cwd: dir });
   rmSync(path.join(dir, filename));
 
-  console.log(`${name}@${version} installed (WebAssembly fallback).`);
+  console.log(`${name}@${version} installed (Smart App Control fallback).`);
 }

@@ -106,10 +106,11 @@ function formatStage(val: unknown, isAway: boolean): string {
 ---
 
 <div class="tour-edition">
-  {(tourStandings.length > 0 || computedStages.length > 0) && (
+  {(tourStandings.length > 0 || nextStageIndex !== -1) && (
     <nav class="te-quicknav">
-      {computedStages.length > 0 && (
-        <a href={`#${nextAnchor}`} class="te-quicknav-link te-quicknav-next" hidden={nextStageIndex === -1}>
+      {/* Only while a stage is ahead: once the tour is over none ever comes back */}
+      {nextStageIndex !== -1 && (
+        <a href={`#${nextAnchor}`} class="te-quicknav-link te-quicknav-next">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9" />
           </svg>

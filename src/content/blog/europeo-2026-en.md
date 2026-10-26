@@ -45,7 +45,6 @@ events:
     format: 'Standard'
     proxies: true
     rounds: 3
-album: 'ec-2026'
 links:
   - label: 'Event website'
     url: 'https://vtes.lt/'

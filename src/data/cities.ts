@@ -99,8 +99,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Le corse pazze di Bologna', en: "Bologna's Wacky Races" },
       text: {
-        it: '<em>Chi guida? Chi passa a prendere chi? Chi è ancora sotto la doccia?</em><br>Per i Matusalemme bolognesi il primo torneo di ogni trasferta si gioca prima di partire: organizzare le macchine. Ecco la griglia di partenza, che vinca il più puntuale.',
-        en: "<em>Who's driving? Who's picking up whom? Who's still in the shower?</em><br>For Bologna's Methuselahs, the first tournament of every away trip is played before leaving: sorting out the cars. Here is the starting grid, may the most punctual win.",
+        it: '<em>Chi guida? Chi passa a prendere chi? Chi è ancora sotto la doccia?</em>Per i Matusalemme bolognesi il primo torneo di ogni trasferta si gioca prima di partire: organizzare le macchine. Ecco la griglia di partenza, che vinca il più puntuale.',
+        en: "<em>Who's driving? Who's picking up whom? Who's still in the shower?</em>For Bologna's Methuselahs, the first tournament of every away trip is played before leaving: sorting out the cars. Here is the starting grid, may the most punctual win.",
       },
       image: '/images/comunita/bologna/corse-pazze.webp',
     },
@@ -167,8 +167,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Il Hobra Hai!', en: 'Il Hobra Hai!' },
       text: {
-        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te, e zero pietà.",
-        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato, and zero mercy.',
+        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te, e zero pietà.",
+        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato, and zero mercy.',
       },
       image: '/images/comunita/firenze-prato/hobra-hai.webp',
     },
@@ -392,8 +392,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Il Hobra Hai!', en: 'Il Hobra Hai!' },
       text: {
-        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te, e zero pietà.",
-        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em><br>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato, and zero mercy.',
+        it: "<em>Bleeda primo. Bleeda sodo. No Archon.</em>Nessun Matusalemme è al sicuro quando gli Hobra Hai siedono al tavolo. Che tu sia un neonato o un anziano, a Firenze e Prato c'è un posto per te, e zero pietà.",
+        en: '<em>Bleeda primo. Bleeda sodo. No Archon.</em>No Methuselah is safe when the Hobra Hai sit at the table. Whether you are a neonate or an elder, there is a seat for you in Firenze and Prato, and zero mercy.',
       },
       image: '/images/comunita/firenze-prato/hobra-hai.webp',
     },

@@ -401,12 +401,17 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
     font-size: var(--font-size-md);
     font-weight: 700;
     color: var(--color-gold);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .highlight-text {
     font-size: var(--font-size-small);
     line-height: var(--leading-normal);
     margin-bottom: 0;
+  }
+  /* A leading <em> is the highlight's subtitle: a line of its own, set apart from the text. */
+  .highlight-text :global(em:first-child) {
+    display: block;
+    margin-bottom: 12px;
   }
   .highlight-link {
     display: inline-block;

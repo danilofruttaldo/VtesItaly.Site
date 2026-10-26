@@ -3298,6 +3298,331 @@
           "section": "Finale"
         }
       ]
+    },
+    {
+      "slug": "ec-2005",
+      "title": "European Championship 2005 - Budapest",
+      "date": "2005-11-06",
+      "city": "budapest",
+      "url": "https://foto.vtesitaly.com/ec-2005/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/budapest-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-staff-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-staff-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Allestimento e staff"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-staff-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-staff-02-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Allestimento e staff"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-staff-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-staff-03-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Allestimento e staff"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-03-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-04-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-05-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-06-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-07-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-08-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-09-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-10-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-11-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-12-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-13.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-13-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-14.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-14-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-15.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-15-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-16.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-torneo-16-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-01-thumb.webp",
+          "width": 1600,
+          "height": 1067,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-03-thumb.webp",
+          "width": 1600,
+          "height": 945,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-04-thumb.webp",
+          "width": 1600,
+          "height": 1170,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-06-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-08-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-09-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-10-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-11-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-12-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-13.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-13-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-14.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-14-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-15.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-15-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-16.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-16-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-17.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-17-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-18.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-18-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-19.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-19-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-20.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-20-thumb.webp",
+          "width": 1600,
+          "height": 1067,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-21.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-21-thumb.webp",
+          "width": 1600,
+          "height": 1067,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-22.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-budapest-22-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-01-thumb.webp",
+          "width": 640,
+          "height": 480,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-02-thumb.webp",
+          "width": 1600,
+          "height": 1067,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-03-thumb.webp",
+          "width": 1600,
+          "height": 1067,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2005/ec-2005-cena-04-thumb.webp",
+          "width": 1600,
+          "height": 1067,
+          "section": "Cene"
+        }
+      ]
     }
   ]
 }

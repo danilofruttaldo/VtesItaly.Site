@@ -34,6 +34,7 @@ events:
     time: 'tbd'
     type: 'altro'
 standingsUrl: '/ev/wos-2025/standings-wos-2025.json'
+album: 'week-of-sabbat-2025'
 locale: en
 links:
   - label: 'Infokit (PDF)'

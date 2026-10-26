@@ -49,6 +49,7 @@ linksAfter:
   - label: 'Event report template (PDF)'
     url: '/ev/wos-2025/report-wos-2025-en.pdf'
     locale: en
+album: 'week-of-sabbat-2025'
 locale: it
 ---
 

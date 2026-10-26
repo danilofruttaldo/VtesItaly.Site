@@ -2081,6 +2081,989 @@
       ]
     },
     {
+      "slug": "tour-2024-barga",
+      "title": "IT24 - Barga",
+      "date": "2024-08-31",
+      "city": "barga",
+      "url": "https://foto.vtesitaly.com/tour-2024-barga/",
+      "event": "https://vtesitaly.com/tour/tour-2024/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/barga-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-atmosfera-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-atmosfera-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Atmosfera"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-atmosfera-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-atmosfera-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Atmosfera"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-06-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-08-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-09-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-torneo-10-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-finale-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-finale-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-finale-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-finale-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-cena-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-cena-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-cena-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-cena-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-cena-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-cena-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-domenica-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-domenica-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-domenica-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-domenica-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-domenica-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-barga/tour-2024-barga-domenica-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        }
+      ]
+    },
+    {
+      "slug": "tour-2024-massa",
+      "title": "IT24 - Massa",
+      "date": "2024-06-15",
+      "city": "massa",
+      "url": "https://foto.vtesitaly.com/tour-2024-massa/",
+      "event": "https://vtesitaly.com/tour/tour-2024/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/massa-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-accoglienza-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-accoglienza-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-accoglienza-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-accoglienza-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-accoglienza-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-accoglienza-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-04-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-intorno-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-04-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-06-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-massa/tour-2024-massa-premiazione-07-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        }
+      ]
+    },
+    {
+      "slug": "unleashing-the-bestial-soul-2024",
+      "title": "Unleashing the Bestial Soul",
+      "date": "2024-05-12",
+      "city": "firenze",
+      "url": "https://foto.vtesitaly.com/unleashing-the-bestial-soul-2024/",
+      "event": "https://vtesitaly.com/comunita/unleashing-the-bestial-soul-2024/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/firenze-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-04-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-06-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-07-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-08-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-09-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-10-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-11-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-12-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-13.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-firenze-13-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/unleashing-the-bestial-soul-2024/unleashing-the-bestial-soul-2024-torneo-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        }
+      ]
+    },
+    {
+      "slug": "nc-2024",
+      "title": "Nazionale 2024",
+      "date": "2024-04-27",
+      "city": "trento",
+      "url": "https://foto.vtesitaly.com/nc-2024/",
+      "event": "https://vtesitaly.com/nazionale/nazionale-2024/",
+      "cover": "https://foto.vtesitaly.com/p/nc-2024/cover-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-accoglienza-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Accoglienza"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-04-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-06-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-08-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-09-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-10-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-11-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-12-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-13.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-13-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-14.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-14-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-15.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-15-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-16.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-16-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-17.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-17-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-18.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-18-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-19.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-torneo-19-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-pranzo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-pranzo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Pausa pranzo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-tavoli-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-tavoli-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno ai tavoli"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-tavoli-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-tavoli-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno ai tavoli"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-01-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-02-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-premiazione-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-04-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-06-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2024/nc-2024-cena-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Cene"
+        }
+      ]
+    },
+    {
+      "slug": "tour-2024-verona",
+      "title": "IT24 - Verona",
+      "date": "2024-02-17",
+      "city": "verona",
+      "url": "https://foto.vtesitaly.com/tour-2024-verona/",
+      "event": "https://vtesitaly.com/tour/tour-2024/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/verona-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-pranzo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-pranzo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Pausa pranzo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-06-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-07-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-08-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-torneo-09-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-carnevale-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-finale-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-premiazione-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-verona/tour-2024-verona-premiazione-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premiazione"
+        }
+      ]
+    },
+    {
+      "slug": "aemilia-by-night-ep1-2024",
+      "title": "Aemilia by Night - Episode 1",
+      "date": "2024-01-28",
+      "city": "modena",
+      "url": "https://foto.vtesitaly.com/aemilia-by-night-ep1-2024/",
+      "event": "https://vtesitaly.com/comunita/aemilia-by-night-episode-1-2024/",
+      "cover": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/cover-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-premi-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-premi-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Premi in palio"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-premi-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-premi-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Premi in palio"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-premi-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-premi-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Premi in palio"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-03-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-06-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-08-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-09-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-10-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-11-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-12-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-13.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-torneo-13-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-pranzo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-pranzo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Pausa pranzo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-pranzo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-pranzo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Pausa pranzo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-finale-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-finale-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-finale-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/aemilia-by-night-ep1-2024/aemilia-by-night-ep1-2024-finale-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Tavolo finale"
+        }
+      ]
+    },
+    {
       "slug": "gp-2024",
       "title": "Grand Prix 2024",
       "date": "2023-12-09",

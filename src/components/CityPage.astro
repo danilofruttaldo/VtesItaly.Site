@@ -382,8 +382,12 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
   :global(.highlight-image-link) {
     flex-shrink: 0;
   }
+  /* Capped on both sides: a landscape image fills the 200px width, a portrait
+   * one stops at the height of a few lines of text instead of towering over them. */
   .highlight-image {
-    width: 200px;
+    width: auto;
+    max-width: 200px;
+    max-height: 160px;
     min-height: 140px;
     object-fit: cover;
     border-radius: 8px;
@@ -440,7 +444,13 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
     :global(.highlight-image-link),
     .highlight-image {
       width: 100%;
+      max-width: none;
       min-height: 160px;
+    }
+    /* Full width, but a portrait image is shown whole within 320px. */
+    .highlight-image {
+      max-height: 320px;
+      object-fit: contain;
     }
     .meetup-table th,
     .meetup-table td {

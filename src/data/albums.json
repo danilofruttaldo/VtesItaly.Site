@@ -14,49 +14,70 @@
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-01-premi-thumb.webp",
           "width": 1600,
           "height": 1204,
-          "section": "Premi"
+          "section": "Premi in palio"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-turni-di-gioco-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-turni-di-gioco-01-thumb.webp",
+          "width": 1600,
+          "height": 648,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-02-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-02-round-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-03-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-03-round-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-04-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-04-round-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-05-seating.webp",
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-05-seating-thumb.webp",
           "width": 900,
           "height": 1051,
-          "section": "Finale"
+          "section": "Tavolo finale"
         },
         {
           "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-06-finale.webp",
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-06-finale-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-premiazione-01-thumb.webp",
+          "width": 1600,
+          "height": 1221,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-premiazione-02-thumb.webp",
+          "width": 1600,
+          "height": 1093,
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-07-gadget.webp",
           "thumb": "https://foto.vtesitaly.com/p/rise-of-the-nephtali-2026/rise-of-the-nephtali-2026-07-gadget-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Extra"
+          "section": "Il gadget dell'evento"
         }
       ]
     },
@@ -73,61 +94,145 @@
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-01-premi.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-01-premi-thumb.webp",
           "width": 1280,
-          "height": 720
+          "height": 720,
+          "section": "Premi in palio"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-02-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-02-round-thumb.webp",
           "width": 1280,
-          "height": 720
+          "height": 720,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-03-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-03-round-thumb.webp",
           "width": 1280,
-          "height": 720
+          "height": 720,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-04-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-04-round-thumb.webp",
           "width": 1280,
-          "height": 720
+          "height": 720,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-05-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-05-round-thumb.webp",
           "width": 1280,
-          "height": 720
+          "height": 720,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-06-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-06-round-thumb.webp",
           "width": 1280,
-          "height": 720
+          "height": 720,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-07-round.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-07-round-thumb.webp",
           "width": 1600,
-          "height": 1200
+          "height": 1200,
+          "section": "Turni di gioco"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-08-finale.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-08-finale-thumb.webp",
           "width": 1600,
-          "height": 1200
+          "height": 1200,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-premiazione-01-thumb.webp",
+          "width": 964,
+          "height": 1280,
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-09-premiazione.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-09-premiazione-thumb.webp",
           "width": 1600,
-          "height": 1200
+          "height": 1200,
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-10-premiazione.webp",
           "thumb": "https://foto.vtesitaly.com/p/praxis-seizure-2026/praxis-seizure-2026-10-premiazione-thumb.webp",
           "width": 1280,
-          "height": 964
+          "height": 964,
+          "section": "Premiazione"
+        }
+      ]
+    },
+    {
+      "slug": "le-due-torri-2026",
+      "title": "Le Due Torri 2026",
+      "date": "2026-05-03",
+      "city": "bologna",
+      "url": "https://foto.vtesitaly.com/le-due-torri-2026/",
+      "event": "https://vtesitaly.com/grand-prix/grand-prix-2026/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/bologna-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 840,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-03-thumb.webp",
+          "width": 1318,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-06-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-torneo-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-premiazione-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Finale e premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/le-due-torri-2026/le-due-torri-2026-premiazione-02-thumb.webp",
+          "width": 1600,
+          "height": 1494,
+          "section": "Finale e premiazione"
         }
       ]
     },
@@ -141,172 +246,376 @@
       "cover": "https://foto.vtesitaly.com/p/gp-2026/cover-thumb.webp",
       "photos": [
         {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bologna-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bologna-01-thumb.webp",
+          "width": 1463,
+          "height": 1600,
+          "section": "Bologna"
+        },
+        {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-01-thumb.webp",
           "width": 900,
           "height": 1600,
-          "section": "Preparazione"
+          "section": "Allestimento e premi"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-02-thumb.webp",
           "width": 900,
           "height": 1600,
-          "section": "Preparazione"
+          "section": "Allestimento e premi"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-03-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Preparazione"
+          "section": "Allestimento e premi"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-04-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Preparazione"
+          "section": "Allestimento e premi"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-05-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Preparazione"
+          "section": "Allestimento e premi"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-06.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-06-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Preparazione"
+          "section": "Allestimento e premi"
         },
         {
-          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-04.webp",
-          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-04-thumb.webp",
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-07-thumb.webp",
           "width": 1600,
-          "height": 900,
-          "section": "Round"
+          "height": 1494,
+          "section": "Allestimento e premi"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-preparazione-08-thumb.webp",
+          "width": 1600,
+          "height": 864,
+          "section": "Accoglienza"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-01-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-02-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-03-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-04-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-05-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-06.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-06-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-07.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-07-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-09-thumb.webp",
+          "width": 1600,
+          "height": 960,
+          "section": "Main event"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-11-thumb.webp",
+          "width": 1428,
+          "height": 1600,
+          "section": "Main event"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-10-thumb.webp",
+          "width": 1600,
+          "height": 1515,
+          "section": "Giudici"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-07-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Giudici"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-01-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-02-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-03-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-04-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-05-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Premiazione"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-06.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-finale-06-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Finale"
+          "section": "Premiazione"
         },
         {
-          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-02.webp",
-          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-02-thumb.webp",
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-serata-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-serata-01-thumb.webp",
           "width": 1600,
-          "height": 900,
-          "section": "Bonus"
+          "height": 1536,
+          "section": "Cene"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-round-12-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno ai tavoli"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-03-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Bonus"
+          "section": "Intorno ai tavoli"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-05-thumb.webp",
           "width": 1600,
           "height": 1200,
-          "section": "Bonus"
+          "section": "Intorno ai tavoli"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-01-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Bonus"
+          "section": "Intorno ai tavoli"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-02-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "section": "Intorno ai tavoli"
         },
         {
           "src": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/gp-2026/gp-2026-bonus-04-thumb.webp",
           "width": 1600,
           "height": 900,
-          "section": "Bonus"
+          "section": "Intorno ai tavoli"
+        }
+      ]
+    },
+    {
+      "slug": "tour-2026-ira",
+      "title": "IT26 - IRA",
+      "date": "2026-04-12",
+      "city": "pordenone",
+      "url": "https://foto.vtesitaly.com/tour-2026-ira/",
+      "event": "https://vtesitaly.com/tour/tour-2026/",
+      "cover": "https://foto.vtesitaly.com/p/tour-2026-ira/cover-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-pordenone-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-pordenone-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Pordenone"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1140,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-torneo-08-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-dettagli-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-dettagli-01-thumb.webp",
+          "width": 1600,
+          "height": 780,
+          "section": "Pausa pranzo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-premiazione-01-thumb.webp",
+          "width": 1363,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-premiazione-02-thumb.webp",
+          "width": 1363,
+          "height": 1600,
+          "section": "Premiazione"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-premiazione-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2026-ira/tour-2026-ira-premiazione-05-thumb.webp",
+          "width": 1363,
+          "height": 1600,
+          "section": "Premiazione"
+        }
+      ]
+    },
+    {
+      "slug": "trento-the-day-after-2026",
+      "title": "Trento the day after... 2026",
+      "date": "2026-03-01",
+      "city": "trento",
+      "url": "https://foto.vtesitaly.com/trento-the-day-after-2026/",
+      "event": "https://vtesitaly.com/nazionale/nazionale-2026/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/trento-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-torneo-03-thumb.webp",
+          "width": 1463,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1020,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-dettagli-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-dettagli-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Le carte delle sanzioni"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-premiazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-premiazione-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Trofeo e vincitore"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-premiazione-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/trento-the-day-after-2026/trento-the-day-after-2026-premiazione-02-thumb.webp",
+          "width": 1080,
+          "height": 1536,
+          "section": "Trofeo e vincitore"
         }
       ]
     },
@@ -320,172 +629,326 @@
       "cover": "https://foto.vtesitaly.com/p/nc-2026/cover-thumb.webp",
       "photos": [
         {
-          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-01.webp",
-          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-01-thumb.webp",
-          "width": 972,
-          "height": 1215,
-          "section": "Preparazione"
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-07-thumb.webp",
+          "width": 1600,
+          "height": 1494,
+          "section": "Allestimento e staff"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-08-thumb.webp",
+          "width": 1600,
+          "height": 1494,
+          "section": "Allestimento e staff"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-02-thumb.webp",
           "width": 1200,
           "height": 628,
-          "section": "Preparazione"
+          "section": "Allestimento e staff"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-01-thumb.webp",
+          "width": 972,
+          "height": 1215,
+          "section": "Premi e gadget"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-03-thumb.webp",
           "width": 1200,
           "height": 1500,
-          "section": "Preparazione"
+          "section": "Premi e gadget"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-04-thumb.webp",
           "width": 1200,
           "height": 1500,
-          "section": "Preparazione"
+          "section": "Premi e gadget"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-05-thumb.webp",
           "width": 1200,
           "height": 800,
-          "section": "Preparazione"
+          "section": "Premi e gadget"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-06.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-preparazione-06-thumb.webp",
           "width": 1200,
           "height": 1500,
-          "section": "Preparazione"
+          "section": "Premi e gadget"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-01-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-02-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-03-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-04-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-05-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-06.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-06-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-07.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-07-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Round"
+          "section": "Main event"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-08-thumb.webp",
+          "width": 1600,
+          "height": 1104,
+          "section": "Main event"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-round-10-thumb.webp",
+          "width": 1600,
+          "height": 744,
+          "section": "A tavola"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-01-thumb.webp",
+          "width": 1230,
+          "height": 1600,
+          "section": "A tavola"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-01-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Finale"
+          "section": "Finalisti e vincitore"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-02-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Finale"
+          "section": "Finalisti e vincitore"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-03-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Finale"
+          "section": "Finalisti e vincitore"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-04-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Finale"
+          "section": "Finalisti e vincitore"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-05-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Finale"
+          "section": "Finalisti e vincitore"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-06.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-finale-06-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Finale"
+          "section": "Finalisti e vincitore"
         },
         {
-          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-01.webp",
-          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-01-thumb.webp",
-          "width": 1200,
-          "height": 900,
-          "section": "Bonus"
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Serata"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-04-thumb.webp",
+          "width": 1363,
+          "height": 1600,
+          "section": "Serata"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-serata-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Serata"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-02.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-02-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Bonus"
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-intorno-al-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-intorno-al-torneo-01-thumb.webp",
+          "width": 1304,
+          "height": 1600,
+          "section": "Intorno al torneo"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-03.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-03-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Bonus"
+          "section": "Intorno al torneo"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-04.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-04-thumb.webp",
           "width": 1200,
           "height": 1600,
-          "section": "Bonus"
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-01-thumb.webp",
+          "width": 1200,
+          "height": 900,
+          "section": "Intorno al torneo"
         },
         {
           "src": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-05.webp",
           "thumb": "https://foto.vtesitaly.com/p/nc-2026/nc-2026-bonus-05-thumb.webp",
           "width": 1200,
           "height": 900,
-          "section": "Bonus"
+          "section": "Intorno al torneo"
+        }
+      ]
+    },
+    {
+      "slug": "taste-of-spritzae-2025",
+      "title": "Taste of Spritzae",
+      "date": "2025-07-05",
+      "city": "treviso",
+      "url": "https://foto.vtesitaly.com/taste-of-spritzae-2025/",
+      "event": "https://vtesitaly.com/comunita/taste-of-spritzae/",
+      "cover": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/cover-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-atmosfera-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-atmosfera-01-thumb.webp",
+          "width": 1126,
+          "height": 1600,
+          "caption": "Spritz o'clock: sottobicchiere e scatola di VTES",
+          "section": "Atmosfera"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-01-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "caption": "Alessandro: un bleed sotto il 6 non è un vero bleed",
+          "section": "Round"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-02-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "caption": "Il tavolo trema davanti a Paffo",
+          "section": "Round"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-03-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "caption": "Thomas sta lanciando una freestyle battle",
+          "section": "Round"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-01-thumb.webp",
+          "width": 900,
+          "height": 1600,
+          "caption": "Fede sorride, ignaro del suo destino",
+          "section": "Finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-02-thumb.webp",
+          "width": 900,
+          "height": 1600,
+          "caption": "Leo ci tiene a ricordare: Maleficia non è una Disciplina",
+          "section": "Finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "caption": "Paolo, vincitore del torneo",
+          "section": "Finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-01-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "caption": "Si calcola lo stile dei finalisti",
+          "section": "Concorso di stile"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-02-thumb.webp",
+          "width": 900,
+          "height": 1600,
+          "caption": "Giulietto, vincitore del premio Migliori accessori",
+          "section": "Concorso di stile"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-03-thumb.webp",
+          "width": 1600,
+          "height": 765,
+          "caption": "I vincitori dei premi stile",
+          "section": "Concorso di stile"
         }
       ]
     },

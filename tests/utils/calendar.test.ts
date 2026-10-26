@@ -93,7 +93,7 @@ describe('pickTimelineWindow', () => {
   const TODAY = '2026-05-12';
 
   it('returns empty window when there are no entries', () => {
-    expect(pickTimelineWindow([], TODAY)).toEqual({ entries: [], highlightIndex: -1 });
+    expect(pickTimelineWindow([], TODAY)).toEqual({ entries: [], highlightIndex: -1, highlightIndices: [] });
   });
 
   it('balanced case: 2 above + next + 2 below, newest at top', () => {

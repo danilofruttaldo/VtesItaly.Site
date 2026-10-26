@@ -9,7 +9,7 @@
 import { eventStatusOn, tourStatusOn } from '../utils/status';
 import { compareIsoDays, copyrightYear, isExpired, isRevealDue, parseStageDays, statusClass } from '../utils/temporal';
 import { todayLocalIso } from '../utils/today';
-import { firstPastIndex, nextEventIndex, priceColumns, timelineWindow } from '../utils/timeline';
+import { firstPastIndex, nextEventIndices, priceColumns, timelineWindow } from '../utils/timeline';
 
 const todayISO = todayLocalIso();
 
@@ -81,9 +81,10 @@ document.querySelectorAll('[data-temporal-window]').forEach((container) => {
 
   resetHighlight(all);
 
-  const { entries: chosen, highlightIndex } = timelineWindow(all, todayISO, spanOf);
-  if (highlightIndex !== -1) {
-    const pivotCard = chosen[highlightIndex];
+  const { entries: chosen, highlightIndices } = timelineWindow(all, todayISO, spanOf);
+  // Every card starting the next event day is highlighted, not just one.
+  for (const i of highlightIndices) {
+    const pivotCard = chosen[i];
     pivotCard.classList.add('post-card--highlight');
     // Already started (data-date <= today): "Oggi" label; else "Prossimo".
     const pivotOngoing = dateOf(pivotCard) <= todayISO;
@@ -130,13 +131,13 @@ document.querySelectorAll('[data-temporal-divider]').forEach((container) => {
 
 // Next-event highlight: cards in [data-temporal-next-event] are sorted
 // future-first then past. Highlight the last future card (just before the
-// first past). If all future, highlight the very last; if all past, none.
+// first past), with any other card starting that same day. If all future,
+// highlight the very last day's cards; if all past, none.
 document.querySelectorAll('[data-temporal-next-event]').forEach((container) => {
   const cards = Array.from(container.querySelectorAll('.post-card[data-date]'));
   resetHighlight(cards);
   if (cards.length === 0) return;
-  const idx = nextEventIndex(cards, todayISO, spanOf);
-  if (idx >= 0) {
+  for (const idx of nextEventIndices(cards, todayISO, spanOf)) {
     cards[idx].classList.add('post-card--highlight');
     const b = cards[idx].querySelector<HTMLElement>('.post-card__highlight-badge');
     if (b) b.hidden = false;

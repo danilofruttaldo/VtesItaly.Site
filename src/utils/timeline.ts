@@ -12,10 +12,11 @@ export interface Span {
 }
 
 /**
- * Pick 5 items centered on the next upcoming (or in-progress) one, from a
- * list sorted by date ascending:
+ * Pick the items around the next upcoming (or in-progress) ones, from a list
+ * sorted by date ascending:
  *   - 2 above (further future, farthest first)
- *   - 1 highlighted (the "next" or "today" item)
+ *   - the highlighted "next" or "today" items: every item starting the same
+ *     day as the first upcoming one, so two events on one day share it
  *   - 2 below (recent past, most recent first)
  * Falls back to the other side when one side is short. The pivot compares
  * against the last day, so a multi-day event stays highlighted for its run.
@@ -24,8 +25,8 @@ export function timelineWindow<T>(
   items: T[],
   today: string,
   span: (item: T) => Span,
-): { entries: T[]; highlightIndex: number } {
-  if (items.length === 0) return { entries: [], highlightIndex: -1 };
+): { entries: T[]; highlightIndex: number; highlightIndices: number[] } {
+  if (items.length === 0) return { entries: [], highlightIndex: -1, highlightIndices: [] };
 
   const pivot = items.findIndex((it) => {
     const s = span(it);
@@ -33,21 +34,26 @@ export function timelineWindow<T>(
   });
   if (pivot === -1) {
     // No upcoming: the 5 most recent past, newest at top, no highlight.
-    return { entries: items.slice(-5).reverse(), highlightIndex: -1 };
+    return { entries: items.slice(-5).reverse(), highlightIndex: -1, highlightIndices: [] };
   }
+  // The pivot and the items after it starting the same day.
+  let groupEnd = pivot + 1;
+  while (groupEnd < items.length && span(items[groupEnd]).date === span(items[pivot]).date) groupEnd++;
+  const group = items.slice(pivot, groupEnd);
 
   const idealAbove = 2;
   const idealBelow = 2;
-  let above = items.slice(pivot + 1, pivot + 1 + idealAbove);
+  let above = items.slice(groupEnd, groupEnd + idealAbove);
   let below = items.slice(Math.max(0, pivot - idealBelow), pivot);
   const aboveShort = idealAbove - above.length;
   const belowShort = idealBelow - below.length;
   if (aboveShort > 0) below = items.slice(Math.max(0, pivot - idealBelow - aboveShort), pivot);
-  if (belowShort > 0) above = items.slice(pivot + 1, pivot + 1 + idealAbove + belowShort);
+  if (belowShort > 0) above = items.slice(groupEnd, groupEnd + idealAbove + belowShort);
 
   return {
-    entries: [...above.slice().reverse(), items[pivot], ...below.slice().reverse()],
+    entries: [...above.slice().reverse(), ...group.slice().reverse(), ...below.slice().reverse()],
     highlightIndex: above.length,
+    highlightIndices: group.map((_, i) => above.length + i),
   };
 }
 
@@ -69,6 +75,19 @@ export function firstPastIndex<T>(items: T[], today: string, span: (item: T) => 
 export function nextEventIndex<T>(items: T[], today: string, span: (item: T) => Span): number {
   const firstPast = firstPastIndex(items, today, span);
   return firstPast === -1 ? items.length - 1 : firstPast - 1;
+}
+
+/**
+ * Every "next event" of a list sorted future first, then past: the item
+ * nextEventIndex picks and the ones just above it starting the same day,
+ * so two events on one day are both highlighted. Empty when all are past.
+ */
+export function nextEventIndices<T>(items: T[], today: string, span: (item: T) => Span): number[] {
+  const idx = nextEventIndex(items, today, span);
+  if (idx === -1) return [];
+  const out = [idx];
+  for (let i = idx - 1; i >= 0 && span(items[i]).date === span(items[idx]).date; i--) out.unshift(i);
+  return out;
 }
 
 /**

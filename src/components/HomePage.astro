@@ -78,10 +78,10 @@ const buildWindowSet = new Set(buildWindow.entries);
               tags={entry.tags}
               excerpt={entry.excerpt}
               locale={locale}
-              highlight={i === buildWindow.highlightIndex}
+              highlight={buildWindow.highlightIndices.includes(i)}
               highlightLabel={t.home.next_event_label}
               ongoingLabel={t.home.ongoing_event_label}
-              ongoing={i === buildWindow.highlightIndex && entry.date <= today}
+              ongoing={buildWindow.highlightIndices.includes(i) && entry.date <= today}
               eager={i === 0}
             />
           ))

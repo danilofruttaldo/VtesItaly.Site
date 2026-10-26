@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { firstPastIndex, nextEventIndex, priceColumns, timelineWindow } from '../../src/utils/timeline';
+import {
+  firstPastIndex,
+  nextEventIndex,
+  nextEventIndices,
+  priceColumns,
+  timelineWindow,
+} from '../../src/utils/timeline';
 
 const span = (s: { date: string; endDate?: string }) => s;
 const day = (date: string, endDate?: string) => ({ date, endDate });
@@ -15,6 +21,20 @@ describe('timeline: timelineWindow', () => {
   it('keeps a multi-day event as the pivot until its last day', () => {
     const items = [day('2026-02-20'), day('2026-02-27', '2026-03-01'), day('2026-04-01')];
     expect(timelineWindow(items, '2026-02-28', span).entries[1].date).toBe('2026-02-27');
+  });
+
+  it('highlights every event starting the next event day', () => {
+    const items = [
+      day('2026-10-24'),
+      day('2026-11-01'),
+      day('2026-11-01'),
+      day('2026-11-07'),
+      day('2026-11-14'),
+      day('2026-11-21'),
+    ];
+    const w = timelineWindow(items, '2026-10-26', span);
+    expect(w.highlightIndices.map((i) => w.entries[i].date)).toEqual(['2026-11-01', '2026-11-01']);
+    expect(w.entries.map((e) => e.date.slice(-5))).toEqual(['11-21', '11-14', '11-07', '11-01', '11-01', '10-24']);
   });
 
   it('shows the latest five without highlight when everything is past', () => {
@@ -39,6 +59,13 @@ describe('timeline: past split and next event', () => {
     expect(nextEventIndex(items, '2026-05-02', span)).toBe(1);
     expect(nextEventIndex(items, '2026-01-01', span)).toBe(2);
     expect(nextEventIndex(items, '2026-12-01', span)).toBe(-1);
+  });
+
+  it('highlights every next event starting the same day', () => {
+    const sameDay = [day('2026-11-07'), day('2026-11-01'), day('2026-11-01'), day('2026-10-24')];
+    expect(nextEventIndices(sameDay, '2026-10-26', span)).toEqual([1, 2]);
+    expect(nextEventIndices(items, '2026-05-02', span)).toEqual([1]);
+    expect(nextEventIndices(items, '2026-12-01', span)).toEqual([]);
   });
 });
 

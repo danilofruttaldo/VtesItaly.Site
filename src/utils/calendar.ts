@@ -351,8 +351,10 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
 export interface TimelineWindow {
   /** Visual order top-down: future-most-distant → next → past-most-recent → past-older. */
   entries: TimelineEntry[];
-  /** Index inside `entries` of the "next event" card (the one to highlight). -1 when no upcoming. */
+  /** Index inside `entries` of the first "next event" card. -1 when no upcoming. */
   highlightIndex: number;
+  /** Indices of every "next event" card: all those starting that same day. Empty when no upcoming. */
+  highlightIndices: number[];
 }
 
 /** The homepage window over the timeline: see `timelineWindow`. */

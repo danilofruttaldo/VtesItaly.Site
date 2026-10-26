@@ -9,7 +9,7 @@ import Zoomable from './Zoomable.astro';
 import type { Locale } from '../utils/i18n';
 import type { CityCardEntry } from '../utils/url';
 import { todayLocalIso } from '../utils/today';
-import { nextEventIndex } from '../utils/timeline';
+import { nextEventIndices } from '../utils/timeline';
 import { thumbFor } from '../utils/image';
 import { cityOgImage } from '../utils/og';
 
@@ -24,7 +24,7 @@ const t = useTranslations(locale);
 
 // Past = over by its last day; the runtime (temporal.ts) re-runs this.
 const today = todayLocalIso();
-const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
+const nextEventIdxs = nextEventIndices(cards, today, (c) => ({ date: c.endDate }));
 ---
 
 <Base title={city.name[locale]} description={city.description[locale]} ogImage={cityOgImage(city.headerImage)}>
@@ -216,7 +216,7 @@ const nextEventIdx = nextEventIndex(cards, today, (c) => ({ date: c.endDate }));
                 tags={card.tags}
                 excerpt={card.excerpt}
                 locale={locale}
-                highlight={i === nextEventIdx}
+                highlight={nextEventIdxs.includes(i)}
                 highlightLabel={t.home.next_event_label}
               />
             ))}

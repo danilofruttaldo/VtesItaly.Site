@@ -9,6 +9,8 @@ import { mainPages } from '../data/pages';
 import { filterByLocale, useTranslations, formatLocalDate, type Locale } from '../utils/i18n';
 import { postUrl } from '../utils/url';
 import { computeTourStatus } from '../utils/status';
+import { loadStandings } from '../utils/standings';
+import { anonymizeName } from '../utils/anonymize';
 import '../styles/edition-page.css';
 
 interface Props {
@@ -26,6 +28,12 @@ const posts = filterByLocale(await getCollection('blog'), locale)
 
 const current = posts[0];
 const pastEditions = posts.filter((p) => p !== current);
+
+// Archive cards: the edition's overall winner, as on the GP/NC archives
+const winnerOf = (post: TourEntry) => {
+  const first = loadStandings(post.data.standingsUrl).find((s) => s.rank === 1);
+  return first ? anonymizeName(first.name) : '';
+};
 
 const tourStatus = computeTourStatus(current?.data.stages || []);
 const tourStagesJson = JSON.stringify(
@@ -76,7 +84,12 @@ const tourStagesJson = JSON.stringify(
         <div class="editions-list">
           {pastEditions.map((post) => (
             <a href={postUrl(post, locale)} class="edition-card">
-              <span class="edition-year">{post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}</span>
+              <div class="edition-card-header">
+                <span class="edition-year">
+                  {post.id.match(/\d{4}/)?.[0] ?? new Date(post.data.date).getFullYear()}
+                </span>
+                {winnerOf(post) && <span class="edition-winner">&#127942; {winnerOf(post)}</span>}
+              </div>
               {post.data.stages &&
                 post.data.stages.length > 0 &&
                 (() => {

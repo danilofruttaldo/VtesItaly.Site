@@ -38,19 +38,6 @@
   padding: 12px 16px 12px 0;
   min-width: 0;
 }
-.edition-card-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.edition-year {
-  flex-shrink: 0;
-}
-.edition-winner {
-  font-size: var(--font-size-sm);
-  color: var(--color-gold);
-  font-weight: 600;
-}
 @media (min-width: 640px) {
   .edition-card-body {
     flex-direction: row;

@@ -33,6 +33,19 @@
   font-weight: 800;
   color: var(--color-gold);
 }
+.edition-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.edition-card-header .edition-year {
+  flex-shrink: 0;
+}
+.edition-winner {
+  font-size: var(--font-size-sm);
+  color: var(--color-gold);
+  font-weight: 600;
+}
 .edition-info {
   font-size: var(--font-size-xs);
   color: var(--color-muted);

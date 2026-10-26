@@ -99,8 +99,8 @@ export const cities: City[] = [
     highlight: {
       title: { it: 'Le corse pazze di Bologna', en: "Bologna's Wacky Races" },
       text: {
-        it: '<em>Chi guida? Chi passa a prendere chi? Chi è ancora sotto la doccia?</em>Per i Matusalemme bolognesi il primo torneo di ogni trasferta si gioca prima di partire: organizzare le macchine. Ecco la griglia di partenza, che vinca il più puntuale. Illustrazione di Enrico, che ringraziamo.',
-        en: "<em>Who's driving? Who's picking up whom? Who's still in the shower?</em>For Bologna's Methuselahs, the first tournament of every away trip is played before leaving: sorting out the cars. Here is the starting grid, may the most punctual win. Artwork by Enrico, with our thanks.",
+        it: '<em>Chi guida? Chi passa a prendere chi? Chi è ancora sotto la doccia?</em>Per i Matusalemme bolognesi il primo torneo di ogni trasferta si gioca prima di partire: organizzare le macchine. Ecco la griglia di partenza, che vinca il più puntuale. Illustrazione di Enrico B., che ringraziamo.',
+        en: "<em>Who's driving? Who's picking up whom? Who's still in the shower?</em>For Bologna's Methuselahs, the first tournament of every away trip is played before leaving: sorting out the cars. Here is the starting grid, may the most punctual win. Artwork by Enrico B., with our thanks.",
       },
       image: '/images/comunita/bologna/corse-pazze.webp',
     },

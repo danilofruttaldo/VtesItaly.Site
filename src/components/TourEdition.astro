@@ -62,8 +62,10 @@ const stageStates = stages.map((s) => ({
 }));
 const stageStatuses = stageStatusesOn(stageStates, todayLocalIso());
 const computedStages = stages.map((s, i) => ({ ...s, dateIso: stageStates[i].date, status: stageStatuses[i] }));
-// Shareable anchor per stage (/tour/#tappa-6); the quick nav points at the upcoming one.
+// Shareable anchors: one per stage (/tour/#tappa-6) and one that always lands on
+// the upcoming stage (/tour/#prossima), moved client-side as the days go by.
 const stageAnchor = (i: number) => `${locale === 'en' ? 'stage' : 'tappa'}-${i + 1}`;
+const nextAnchor = locale === 'en' ? 'next' : 'prossima';
 const nextStageIndex = stageStatuses.indexOf('upcoming');
 
 const statusLabels: Record<string, string> = {
@@ -107,11 +109,7 @@ function formatStage(val: unknown, isAway: boolean): string {
   {(tourStandings.length > 0 || computedStages.length > 0) && (
     <nav class="te-quicknav">
       {computedStages.length > 0 && (
-        <a
-          href={`#${stageAnchor(Math.max(nextStageIndex, 0))}`}
-          class="te-quicknav-link te-quicknav-next"
-          hidden={nextStageIndex === -1}
-        >
+        <a href={`#${nextAnchor}`} class="te-quicknav-link te-quicknav-next" hidden={nextStageIndex === -1}>
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="6 9 12 15 18 9" />
           </svg>
@@ -171,6 +169,7 @@ function formatStage(val: unknown, isAway: boolean): string {
             data-stage-cancelled={stage.status === 'cancelled' ? 'true' : undefined}
             data-stage-hidden-date={stage.hideDate ? 'true' : undefined}
           >
+            {i === nextStageIndex && <span id={nextAnchor} class="te-next-anchor" />}
             {stage.image && (
               <Zoomable href={displayImages[i]} alt={stage.name} class="te-card-image">
                 <img
@@ -402,13 +401,16 @@ function formatStage(val: unknown, isAway: boolean): string {
       }
     });
 
-    // Quick nav: follow the upcoming stage, hidden once none is left
+    // #prossima / #next: move the marker onto today's upcoming stage (the build may
+    // be older), re-scroll if the page was opened on it; hide the link once none is left
+    const upcoming = cards[statuses.indexOf('upcoming')];
     const next = document.querySelector<HTMLAnchorElement>('.te-quicknav-next');
-    if (next) {
-      const card = cards[statuses.indexOf('upcoming')];
-      next.hidden = !card;
-      if (card) next.href = '#' + card.id;
-    }
+    if (next) next.hidden = !upcoming;
+    const marker = document.querySelector<HTMLElement>('.te-next-anchor');
+    if (marker && upcoming && marker.parentElement !== upcoming) {
+      upcoming.prepend(marker);
+      if (location.hash === '#' + marker.id) marker.scrollIntoView();
+    } else if (marker && !upcoming) marker.remove();
 
     // Podium: lit once every stage is over, even if the build ran before the last one
     if (tourIsOver(statuses)) {

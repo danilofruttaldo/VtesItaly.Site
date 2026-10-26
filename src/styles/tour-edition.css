@@ -9,6 +9,12 @@
 .te-quicknav-link[hidden] {
   display: none;
 }
+/* #prossima / #next: an empty marker that sits on the upcoming card */
+.te-next-anchor {
+  position: absolute;
+  top: 0;
+  scroll-margin-top: 80px;
+}
 .te-quicknav-link {
   display: inline-flex;
   align-items: center;
@@ -84,6 +90,7 @@
 
 /* Card */
 .te-card {
+  position: relative;
   scroll-margin-top: 80px;
   display: flex;
   flex-direction: row;

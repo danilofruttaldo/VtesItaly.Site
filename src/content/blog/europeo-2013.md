@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Stoccolma'
 winner: 'Hugh A.'
 excerpt: 'Campionato Europeo di VTES 2013 a Stoccolma (Svezia): campione Hugh A.'
+events:
+  - name: 'Campionato Europeo 2013'
+    date: 2013-10-04
+    endDate: 2013-10-06
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

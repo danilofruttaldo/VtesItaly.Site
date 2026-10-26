@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Genoa'
 winner: 'Pau V.'
 excerpt: '2016 VTES European Championship in Genoa (Italy): champion Pau V.'
+events:
+  - name: 'European Championship 2016'
+    date: 2016-11-11
+    endDate: 2016-11-13
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

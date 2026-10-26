@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Barcelona'
 winner: 'Stefan F.'
 excerpt: '2003 VTES European Championship in Barcelona (Spain): champion Stefan F.'
+events:
+  - name: 'European Championship 2003'
+    date: 2003-10-18
+    endDate: 2003-10-19
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

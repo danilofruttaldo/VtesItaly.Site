@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Paris'
 winner: 'Otso S.'
 excerpt: '2019 VTES European Championship in Paris (France): champion Otso S.'
+events:
+  - name: 'European Championship 2019'
+    date: 2019-08-16
+    endDate: 2019-08-18
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

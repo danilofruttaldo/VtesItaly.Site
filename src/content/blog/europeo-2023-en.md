@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Barcelona'
 winner: 'Jonas S.'
 excerpt: '2023 VTES European Championship in Barcelona (Spain): champion Jonas S.'
+events:
+  - name: 'European Championship 2023'
+    date: 2023-10-13
+    endDate: 2023-10-15
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

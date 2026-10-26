@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Warsaw'
 winner: 'Ivan C.'
 excerpt: '2018 VTES European Championship in Warsaw (Poland): champion Ivan C.'
+events:
+  - name: 'European Championship 2018'
+    date: 2018-08-24
+    endDate: 2018-08-26
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

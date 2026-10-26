@@ -8,6 +8,12 @@ winner: 'Richard G.'
 featuredImage: '/images/comunita/europeo/ec-2005-budapest.webp'
 excerpt: 'November 2005, Vampire: The Eternal Struggle European Championship in Budapest: Mirko A. second at the final table. The photos recovered from the archive.'
 album: 'ec-2005'
+events:
+  - name: 'European Championship 2005'
+    date: 2005-11-05
+    endDate: 2005-11-06
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

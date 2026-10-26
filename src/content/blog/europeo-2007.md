@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Göteborg'
 winner: 'Ferenc V.'
 excerpt: 'Campionato Europeo di VTES 2007 a Göteborg (Svezia): campione Ferenc V.'
+events:
+  - name: 'Campionato Europeo 2007'
+    date: 2007-08-03
+    endDate: 2007-08-05
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

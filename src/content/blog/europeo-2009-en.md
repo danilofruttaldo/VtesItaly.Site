@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Palma de Mallorca'
 winner: 'Martin W.'
 excerpt: '2009 VTES European Championship in Palma de Mallorca (Spain): champion Martin W.'
+events:
+  - name: 'European Championship 2009'
+    date: 2009-11-13
+    endDate: 2009-11-15
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

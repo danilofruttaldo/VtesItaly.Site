@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Paris'
 winner: 'Brian M.'
 excerpt: '2010 VTES European Championship in Paris (France): champion Brian M.'
+events:
+  - name: 'European Championship 2010'
+    date: 2010-10-29
+    endDate: 2010-10-31
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

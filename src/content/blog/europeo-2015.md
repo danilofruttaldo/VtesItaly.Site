@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Varsavia'
 winner: 'Marcin W.'
 excerpt: 'Campionato Europeo di VTES 2015 a Varsavia (Polonia): campione Marcin W.'
+events:
+  - name: 'Campionato Europeo 2015'
+    date: 2015-08-28
+    endDate: 2015-08-30
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

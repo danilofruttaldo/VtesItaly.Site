@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Berlino'
 winner: 'Danilo T.'
 excerpt: 'Campionato Europeo di VTES 2017 a Berlino (Germania): campione Danilo T.'
+events:
+  - name: 'Campionato Europeo 2017'
+    date: 2017-05-12
+    endDate: 2017-05-14
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

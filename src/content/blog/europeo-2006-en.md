@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Turin'
 winner: 'Anthony C.'
 excerpt: '2006 VTES European Championship in Turin (Italy): champion Anthony C.'
+events:
+  - name: 'European Championship 2006'
+    date: 2006-11-24
+    endDate: 2006-11-26
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

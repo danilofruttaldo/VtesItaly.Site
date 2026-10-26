@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Stockholm'
 winner: 'Hugh A.'
 excerpt: '2013 VTES European Championship in Stockholm (Sweden): champion Hugh A.'
+events:
+  - name: 'European Championship 2013'
+    date: 2013-10-04
+    endDate: 2013-10-06
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

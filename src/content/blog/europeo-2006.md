@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Torino'
 winner: 'Anthony C.'
 excerpt: 'Campionato Europeo di VTES 2006 a Torino (Italia): campione Anthony C.'
+events:
+  - name: 'Campionato Europeo 2006'
+    date: 2006-11-24
+    endDate: 2006-11-26
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

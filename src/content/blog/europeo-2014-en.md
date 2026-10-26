@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Mannheim'
 winner: 'Arnaud B.'
 excerpt: '2014 VTES European Championship in Mannheim (Germany): champion Arnaud B.'
+events:
+  - name: 'European Championship 2014'
+    date: 2014-10-03
+    endDate: 2014-10-05
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Warsaw'
 winner: 'Otso S.'
 excerpt: '2011 VTES European Championship in Warsaw (Poland): champion Otso S.'
+events:
+  - name: 'European Championship 2011'
+    date: 2011-11-11
+    endDate: 2011-11-13
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

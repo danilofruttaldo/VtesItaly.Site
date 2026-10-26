@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Warsaw'
 winner: 'Marcin W.'
 excerpt: '2015 VTES European Championship in Warsaw (Poland): champion Marcin W.'
+events:
+  - name: 'European Championship 2015'
+    date: 2015-08-28
+    endDate: 2015-08-30
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

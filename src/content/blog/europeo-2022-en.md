@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Helsinki'
 winner: 'Otso S.'
 excerpt: '2022 VTES European Championship in Helsinki (Finland): champion Otso S.'
+events:
+  - name: 'European Championship 2022'
+    date: 2022-07-29
+    endDate: 2022-07-31
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

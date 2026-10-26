@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Genova'
 winner: 'Pau V.'
 excerpt: 'Campionato Europeo di VTES 2016 a Genova (Italia): campione Pau V.'
+events:
+  - name: 'Campionato Europeo 2016'
+    date: 2016-11-11
+    endDate: 2016-11-13
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

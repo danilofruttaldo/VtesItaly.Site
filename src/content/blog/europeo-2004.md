@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Heidelberg'
 winner: 'Rubén R.'
 excerpt: 'Campionato Europeo di VTES 2004 a Heidelberg (Germania): campione Rubén R.'
+events:
+  - name: 'Campionato Europeo 2004'
+    date: 2004-11-27
+    endDate: 2004-11-28
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

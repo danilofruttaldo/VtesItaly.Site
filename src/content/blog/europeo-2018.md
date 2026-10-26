@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Varsavia'
 winner: 'Ivan C.'
 excerpt: 'Campionato Europeo di VTES 2018 a Varsavia (Polonia): campione Ivan C.'
+events:
+  - name: 'Campionato Europeo 2018'
+    date: 2018-08-24
+    endDate: 2018-08-26
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

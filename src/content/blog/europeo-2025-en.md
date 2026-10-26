@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Aarhus'
 winner: 'Nerijus M.'
 excerpt: '2025 VTES European Championship in Aarhus (Denmark): champion Nerijus M.'
+events:
+  - name: 'European Championship 2025'
+    date: 2025-10-24
+    endDate: 2025-10-26
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

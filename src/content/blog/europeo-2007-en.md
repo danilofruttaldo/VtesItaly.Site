@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Gothenburg'
 winner: 'Ferenc V.'
 excerpt: '2007 VTES European Championship in Gothenburg (Sweden): champion Ferenc V.'
+events:
+  - name: 'European Championship 2007'
+    date: 2007-08-03
+    endDate: 2007-08-05
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

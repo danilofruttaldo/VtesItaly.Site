@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Palma di Maiorca'
 winner: 'Martin W.'
 excerpt: 'Campionato Europeo di VTES 2009 a Palma di Maiorca (Spagna): campione Martin W.'
+events:
+  - name: 'Campionato Europeo 2009'
+    date: 2009-11-13
+    endDate: 2009-11-15
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

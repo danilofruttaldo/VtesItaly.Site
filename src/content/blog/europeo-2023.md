@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Barcellona'
 winner: 'Jonas S.'
 excerpt: 'Campionato Europeo di VTES 2023 a Barcellona (Spagna): campione Jonas S.'
+events:
+  - name: 'Campionato Europeo 2023'
+    date: 2023-10-13
+    endDate: 2023-10-15
+    time: 'tbd'
+    format: 'Standard'
 locale: it
 ---
 

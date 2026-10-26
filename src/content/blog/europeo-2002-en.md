@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Vienna'
 winner: 'Dave B.'
 excerpt: '2002 VTES European Championship in Vienna (Austria): champion Dave B.'
+events:
+  - name: 'European Championship 2002'
+    date: 2002-11-30
+    endDate: 2002-12-01
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

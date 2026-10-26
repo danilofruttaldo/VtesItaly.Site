@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Prague'
 winner: 'Ján H.'
 excerpt: '2008 VTES European Championship in Prague (Czech Republic): champion Ján H.'
+events:
+  - name: 'European Championship 2008'
+    date: 2008-09-19
+    endDate: 2008-09-21
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

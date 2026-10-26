@@ -6,6 +6,12 @@ category: 'europeo'
 city: 'Budapest'
 winner: 'Isak B.'
 excerpt: '2012 VTES European Championship in Budapest (Hungary): champion Isak B.'
+events:
+  - name: 'European Championship 2012'
+    date: 2012-10-26
+    endDate: 2012-10-28
+    time: 'tbd'
+    format: 'Standard'
 locale: 'en'
 ---
 

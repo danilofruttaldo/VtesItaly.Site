@@ -249,7 +249,9 @@
   "lightbox": {
     "open": "Ingrandisci",
     "label": "Foto ingrandita",
-    "close": "Chiudi la foto"
+    "close": "Chiudi la foto",
+    "prev": "Foto precedente",
+    "next": "Foto successiva"
   },
   "sw_update": {
     "title": "È disponibile una nuova versione.",

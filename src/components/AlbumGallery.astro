@@ -20,7 +20,7 @@ const album = albumFor(slug);
 ---
 
 {album && (
-  <section class="album-gallery">
+  <section class="album-gallery" data-gallery>
     <h2 class="album-gallery__title">{t.post.gallery}</h2>
     {albumSections(album).map((section) => (
       <div class="album-gallery__section">

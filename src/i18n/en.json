@@ -257,7 +257,9 @@
   "lightbox": {
     "open": "Enlarge",
     "label": "Enlarged photo",
-    "close": "Close the photo"
+    "close": "Close the photo",
+    "prev": "Previous photo",
+    "next": "Next photo"
   },
   "sw_update": {
     "title": "A new version is available.",

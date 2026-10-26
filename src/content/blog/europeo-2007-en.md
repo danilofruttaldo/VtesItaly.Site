@@ -1,30 +1,40 @@
 ---
 title: 'European Championship 2007'
-date: 2007-08-03
+date: 2007-08-04
 endDate: 2007-08-05
 category: 'europeo'
 city: 'Gothenburg'
+players: 90
 winner: 'Ferenc V.'
 excerpt: '2007 VTES European Championship in Gothenburg (Sweden): champion Ferenc V.'
 events:
-  - name: 'European Championship 2007'
-    date: 2007-08-03
-    endDate: 2007-08-05
-    time: 'tbd'
+  - name: 'MAIN EVENT: EC 2007 Day 1'
+    date: 2007-08-04
+    time: '10:00'
     format: 'Standard'
+    proxies: false
+    rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a06-3ec4-7383-ad7a-945a147309dc'
+    standingsUrl: '/ev/ec-2007/standings-ec-2007-day-1.json'
+  - name: 'MAIN EVENT: EC 2007 Day 2'
+    date: 2007-08-05
+    time: '10:00'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a05-df53-70c5-8036-ddbe7c9890ee'
+    standingsUrl: '/ev/ec-2007/standings-ec-2007-day-2.json'
+highlight:
+  id: 'italiani'
+  label: 'The Italian players'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>The Italian players</h2>
+    <p><strong>Axel Z.</strong> finishes Day 1 in 10th place and <strong>Day 2</strong> in 18th.</p>
+  </div>
 locale: 'en'
 ---
 
-The 2007 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Gothenburg** (Sweden) from 3 to 5 August 2007. European Champion: **Ferenc V.** (Hungary).
+The 2007 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Gothenburg** (Sweden): Day 1 on Saturday 4 August (**90 players**), Day 2 on Sunday 5.
 
-## The final table
-
-| Place    | Player         | Country     | Deck                                          |
-| -------- | -------------- | ----------- | --------------------------------------------- |
-| Champion | Ferenc V.      | Hungary     | Toreador big cap bleed & vote                 |
-| Finalist | Olivier P.     | Switzerland | Imbued                                        |
-| Finalist | József K.      | Hungary     | Inner Circle vote/bleed                       |
-| Finalist | Christoffer A. | Sweden      | Tzimisce wall with War Ghouls                 |
-| Finalist | Erol Ö.        | Germany     | Julio Martinez Vermin Channel stealth & bleed |
-
-_Source: [VTES ONE](https://vtesone.wordpress.com/tournaments/european-championships/). Player names are shortened as elsewhere on the site._
+European Champion: **Ferenc V.** (Hungary), with a Toreador big cap bleed & vote deck. Day 1 was won by **Ruben F.** (Switzerland).

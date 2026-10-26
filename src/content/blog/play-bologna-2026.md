@@ -30,6 +30,7 @@ links:
     url: 'https://www.play-festival.it/'
   - label: 'Orari e contatti'
     url: 'https://www.play-festival.it/informazioni/orari-contatti/'
+album: 'play-bologna-2026'
 locale: it
 ---
 

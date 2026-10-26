@@ -27,6 +27,7 @@ stagesLabel: 'The sins'
 stageItemLabel: 'Sin'
 stages:
   - name: 'GREED'
+    album: 'tour-2026-avarizia'
     number: 1
     date: 2026-02-15
     cities: ['modena', 'parma']

@@ -90,6 +90,7 @@ const SECTION_EN: Record<string, string> = {
   'Premi e gadget': 'Prizes and gadgets',
   'Premi in palio': 'Prizes',
   Serata: 'Evening',
+  'Tavoli demo': 'Demo tables',
   'Tavolo finale': 'Final table',
   'Trofeo e vincitore': 'Trophy and winner',
   'Turni di gioco': 'Rounds',

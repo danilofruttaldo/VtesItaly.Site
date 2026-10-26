@@ -25,6 +25,7 @@ pricing:
     regular: '€10'
 prizes:
   - 'Prize pool based on the number of participants'
+standingsUrl: '/ev/vambeer-iii-2026/standings-vambeer-iii-2026.json'
 locale: 'en'
 ---
 

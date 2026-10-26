@@ -96,6 +96,14 @@ export const cities: City[] = [
       },
     ],
     tagId: 17,
+    highlight: {
+      title: { it: 'Le corse pazze di Bologna', en: "Bologna's Wacky Races" },
+      text: {
+        it: '<em>Chi guida? Chi passa a prendere chi? Chi è ancora sotto la doccia?</em><br>Per i Matusalemme bolognesi il primo torneo di ogni trasferta si gioca prima di partire: organizzare le macchine. Ecco la griglia di partenza, che vinca il più puntuale.',
+        en: "<em>Who's driving? Who's picking up whom? Who's still in the shower?</em><br>For Bologna's Methuselahs, the first tournament of every away trip is played before leaving: sorting out the cars. Here is the starting grid, may the most punctual win.",
+      },
+      image: '/images/comunita/bologna/corse-pazze.webp',
+    },
   },
   {
     slug: { it: 'elba', en: 'elba' },

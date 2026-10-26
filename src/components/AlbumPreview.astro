@@ -28,7 +28,7 @@ const album = albumFor(slug);
     <ul class="album-preview__grid">
       {previewPhotos(album).map((p, i) => (
         <li>
-          <a href={album.url} class="album-preview__item">
+          <a href={album.url} target="_blank" rel="noopener noreferrer" class="album-preview__item">
             <img
               src={p.thumb}
               alt={p.caption ?? `${album.title} - ${t.post.photo} ${i + 1}`}
@@ -42,7 +42,9 @@ const album = albumFor(slug);
       ))}
     </ul>
     <p class="album-preview__more">
-      <a href={album.url}>{t.post.album_link} &rarr;</a>
+      <a href={album.url} target="_blank" rel="noopener noreferrer">
+        {t.post.album_link} &rarr;
+      </a>
     </p>
   </div>
 )}

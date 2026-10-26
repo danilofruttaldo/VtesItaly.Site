@@ -28,7 +28,7 @@ const album = albumFor(slug);
         <ul class="album-gallery__grid">
           {section.photos.map((p, i) => (
             <li>
-              <a href={p.src} class="album-gallery__item">
+              <a href={p.src} target="_blank" rel="noopener noreferrer" class="album-gallery__item">
                 <img
                   src={p.thumb}
                   alt={
@@ -47,7 +47,9 @@ const album = albumFor(slug);
       </div>
     ))}
     <p class="album-gallery__more">
-      <a href={album.url}>{t.post.album_link} &rarr;</a>
+      <a href={album.url} target="_blank" rel="noopener noreferrer">
+        {t.post.album_link} &rarr;
+      </a>
     </p>
   </section>
 )}

@@ -205,7 +205,8 @@
     "archive": "Archivio",
     "stages_unit": "tappe",
     "cities_unit": "città",
-    "stage_photos": "Foto della tappa"
+    "stage_photos": "Foto della tappa",
+    "stage_videos": "Video della tappa"
   },
   "postcards": {
     "tagline": "Un mazzo di ricordi, non di gioco",

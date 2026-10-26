@@ -70,6 +70,9 @@ notes:
   - 'Sala disponibile per tutto il weekend. Possibilità di mangiare in struttura a tariffa agevolata.'
   - "Giochi da tavolo e in legno disponibili grazie all'Associazione Asgard Aldeno."
 album: 'nc-2026'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLeeQTVv2CuEA'
+    label: "L'occhio di Silvia"
 locale: it
 ---
 

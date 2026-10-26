@@ -70,6 +70,9 @@ notes:
   - 'Venue available for the whole weekend. Meals available on-site at discounted rates.'
   - 'Board games and wooden games available thanks to Associazione Asgard Aldeno.'
 album: 'nc-2026'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLeeQTVv2CuEA'
+    label: "L'occhio di Silvia (videos)"
 locale: en
 ---
 

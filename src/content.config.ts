@@ -82,6 +82,8 @@ const stageSchema = z
     cancelled: z.boolean().optional(),
     // Album of the stage on foto.vtesitaly.com: the stage card links to it.
     album: z.string().optional(),
+    // Videos of the stage (a YouTube playlist): the stage card links to it.
+    videos: httpUrl.optional(),
     // Strict: a leftover key (an old `status: 'cancelled'`) stops the build
     // instead of being dropped without a word.
   })

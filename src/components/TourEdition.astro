@@ -295,6 +295,11 @@ function formatStage(val: unknown, isAway: boolean): string {
                       {t.tour.stage_photos} ({albumFor(stage.album)!.photos.length}) &rarr;
                     </a>
                   )}
+                  {stage.videos && (
+                    <a href={stage.videos} target="_blank" rel="noopener noreferrer" class="te-photos">
+                      {t.tour.stage_videos} &rarr;
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

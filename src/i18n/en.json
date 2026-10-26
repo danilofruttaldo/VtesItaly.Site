@@ -213,7 +213,8 @@
     "archive": "Archive",
     "stages_unit": "stages",
     "cities_unit": "cities",
-    "stage_photos": "Stage photos"
+    "stage_photos": "Stage photos",
+    "stage_videos": "Stage videos"
   },
   "postcards": {
     "tagline": "A deck of memories, not a game deck",

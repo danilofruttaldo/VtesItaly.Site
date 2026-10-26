@@ -37,6 +37,9 @@ links:
   - label: 'Iscrizione'
     url: 'https://forms.gle/UtbzKoqJzbGvVW4A8'
 album: 'taste-of-spritzae-2025'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLCQ3pzdmaFOo'
+    label: "L'occhio di Silvia"
 locale: it
 ---
 

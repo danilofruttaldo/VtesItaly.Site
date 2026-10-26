@@ -63,6 +63,8 @@ streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=dy0WvJXhM3w'
     label: 'Prize Reveal'
+  - url: 'https://www.youtube.com/playlist?list=PLbr3h3zFjehg'
+    label: "L'occhio di Silvia"
 contact: 'info@vtesitaly.com'
 notes:
   - 'Sabato primi e secondi a scelta, domenica bis di primi con dolce. Acqua e caffè inclusi.'

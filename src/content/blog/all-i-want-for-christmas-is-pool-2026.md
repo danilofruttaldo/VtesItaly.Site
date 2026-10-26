@@ -35,6 +35,9 @@ pricing:
 payment: 'Contanti sul posto o PayPal (amici e parenti): fedemail83@gmail.com'
 prizes: 'Griglia premi ricca come sempre'
 contact: 'fedemail83@gmail.com'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=tD6qutjxKLc'
+    label: 'Teaser'
 locale: it
 ---
 

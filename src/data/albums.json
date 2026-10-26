@@ -1,6 +1,112 @@
 {
   "albums": [
     {
+      "slug": "ec-2026",
+      "title": "European Championship 2026 - Vilnius",
+      "date": "2026-09-19",
+      "city": "vilnius",
+      "url": "https://foto.vtesitaly.com/ec-2026/",
+      "event": "https://vtesitaly.com/europeo/europeo-2026/",
+      "cover": "https://foto.vtesitaly.com/p/ec-2026/cover-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-atmosfera-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-atmosfera-01-thumb.webp",
+          "width": 1600,
+          "height": 838,
+          "caption": "Tutti i giocatori dell'EC 2026",
+          "section": "Atmosfera"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-atmosfera-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-atmosfera-02-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Atmosfera"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-atmosfera-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-atmosfera-03-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Atmosfera"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-03-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-torneo-05-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-intorno-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-intorno-01-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-intorno-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-intorno-02-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-finalisti-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-finalisti-01-thumb.webp",
+          "width": 1600,
+          "height": 900,
+          "caption": "I finalisti del Day 1",
+          "section": "Finalisti e vincitore"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-finalisti-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-finalisti-02-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "caption": "I finalisti del Day 2: il campione europeo e gli altri quattro",
+          "section": "Finalisti e vincitore"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-finalisti-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2026/ec-2026-finalisti-03-thumb.webp",
+          "width": 1600,
+          "height": 1065,
+          "caption": "I finalisti del Club Torpor",
+          "section": "Finalisti e vincitore"
+        }
+      ]
+    },
+    {
       "slug": "rise-of-the-nephtali-2026",
       "title": "Rise of the Nephtali",
       "date": "2026-09-19",

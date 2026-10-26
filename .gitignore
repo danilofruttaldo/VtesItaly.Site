@@ -16,5 +16,5 @@ public/**/*-[0-9]*w.webp
 public/**/*-og.jpg
 
 # Archive index fetched by every build (scripts/fetch-albums.mjs); the committed
-# snapshot is src/data/albums.json, refreshed with `npm run albums`.
+# snapshot is src/data/albums.json, refreshed by the CI job albums-snapshot.
 src/data/albums.live.json

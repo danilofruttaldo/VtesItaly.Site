@@ -5,7 +5,8 @@
  * network to succeed:
  * - src/data/albums.json, committed: the snapshot tests and `astro check` use,
  *   and the fallback when the archive is unreachable. Refreshed only on
- *   purpose, with `npm run albums` (this script with --snapshot).
+ *   purpose, with `npm run albums` (this script with --snapshot): the CI job
+ *   albums-snapshot does it on main after every Foto update.
  * - src/data/albums.live.json, git-ignored: written by every build (prebuild),
  *   so a deploy shows the photos added since the last snapshot.
  *

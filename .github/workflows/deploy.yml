@@ -392,6 +392,51 @@ jobs:
           GCAL_ALLOW_REMOVALS: ${{ vars.GCAL_ALLOW_REMOVALS }}
         run: node scripts/sync-gcal.mjs
 
+  albums-snapshot:
+    # Keeps src/data/albums.json (the committed copy tests and `astro check`
+    # read) in step with foto.vtesitaly.com, so a post can name a new album
+    # without first running `npm run albums` by hand. VtesItaly.Foto sends
+    # foto-updated whenever /albums.json changes; push and manual runs also
+    # catch any drift. Needs no npm install: fetch-albums only imports
+    # src/utils/albums-index.ts, which has no dependencies.
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    continue-on-error: true
+    permissions:
+      contents: write # push the snapshot commit back to main
+    concurrency:
+      group: albums-snapshot
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # The tip of main, not the commit that triggered the run: if main
+          # moved in the meantime the push would be rejected as non-fast-forward.
+          ref: main
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Commit the snapshot only when the index changed
+        env:
+          # Same wait as the build: retry until the CDN serves Foto's new file.
+          ALBUMS_SHA256: ${{ github.event.client_payload.albums_sha256 }}
+        run: |
+          node scripts/fetch-albums.mjs --snapshot
+          if [ -z "$(git status --porcelain src/data/albums.json)" ]; then
+            echo "albums.json snapshot unchanged, skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/albums.json
+          git commit -m "chore(albums): refresh the albums.json snapshot [skip ci]"
+          # One retry if main moved between checkout and push.
+          git push || { git pull --rebase origin main && git push; }
+
   coverage-badge:
     # Refreshes `.github/coverage-badge.json` (read by the README badge via
     # shields.io) after a successful deploy. Kept out of `ci` so a badge

@@ -5,7 +5,7 @@ categoria: piattaforme
 audience: [giocatore, principe]
 ordine: 10
 versione: '1.0'
-aggiornato: 2026-10-21
+aggiornato: 2026-10-26
 correlate: [archon-judge-en, demo-eventi-en]
 locale: en
 ---
@@ -67,7 +67,7 @@ Three features are documented as online-only but are not:
 
 The cases that come up at every event:
 
-- **Player with no VEKN ID.** Find them under **Community → Members** and press **Sponsor**: it creates their number on the spot. You need to be a VEKN official, so do it yourself at the desk.
+- **New player with no VEKN ID.** First they set **Country: Italy** on their profile. Then find them under **Community → Members** with the **No VEKN** filter (the plain search doesn't show them) and press **Sponsor** (VEKN officials only): the number is assigned automatically, no forum request needed.
 - **Walk-ins.** No need to register them first: checking in someone who never registered **signs them up and checks them in at once**.
 - **Latecomers.** Check-in never closes: you can check someone in mid-round. They become _present but unseated_, and you decide whether to slot them into a table with room (**Seat a player**) or hold them for the next round.
 - **Whoever misses check-in is dropped automatically** when the round starts, but it is reversible: if they turn up, check them in again.

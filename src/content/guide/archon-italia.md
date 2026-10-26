@@ -5,7 +5,7 @@ categoria: piattaforme
 audience: [giocatore, principe]
 ordine: 10
 versione: '1.0'
-aggiornato: 2026-08-10
+aggiornato: 2026-10-26
 correlate: [archon-judge, demo-eventi]
 locale: it
 ---
@@ -67,7 +67,7 @@ Tre funzioni sono documentate come riservate agli eventi online, ma nell'app non
 
 I casi che ricorrono a ogni evento:
 
-- **Giocatore senza VEKN ID.** Cercalo in **Comunità → Membri** e premi **Sponsor**: gli crea il numero sul momento. Serve essere ufficiale VEKN, quindi fallo tu che sei al banco.
+- **Giocatore nuovo, senza VEKN ID.** Prima deve impostare **Paese: Italia** nel suo profilo. Poi lo trovi in **Comunità → Membri** con il filtro **Senza VEKN** (la ricerca normale non lo mostra) e premi **Sponsor** (serve essere ufficiale VEKN): il numero arriva in automatico, senza più passare dal forum.
 - **Walk-in.** Non serve iscriverlo prima: fare il check-in di chi non è iscritto lo **iscrive e registra in un colpo solo**.
 - **Ritardatari.** Il check-in non chiude mai: puoi registrare qualcuno anche a round già iniziato. Diventa _presente ma non seduto_ e lo decidi tu se farlo entrare a un tavolo con posto libero (**Fai sedere un giocatore**) o tenerlo per il round dopo.
 - **Chi non fa il check-in viene droppato automaticamente** quando parte il round, ma è reversibile: se si presenta, rifai il check-in e rientra.

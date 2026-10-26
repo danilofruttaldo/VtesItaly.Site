@@ -47,9 +47,7 @@ const album = albumFor(slug);
       </div>
     ))}
     <p class="album-gallery__more">
-      <a href={album.url} target="_blank" rel="noopener noreferrer">
-        {t.post.album_link} &rarr;
-      </a>
+      <a href={album.url}>{t.post.album_link} &rarr;</a>
     </p>
   </section>
 )}

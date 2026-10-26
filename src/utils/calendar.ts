@@ -157,8 +157,10 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       }
     }
 
-    // Events array (GP, NC, community events). League game days never enter.
-    if (!isLeaguePost(post) && post.data.events && post.data.events.length > 0) {
+    // Events array (GP, NC, community events). League game days never enter,
+    // nor the European Championship: an archive of editions abroad, not a
+    // date on the Italian calendar.
+    if (!isLeaguePost(post) && post.data.category !== 'europeo' && post.data.events && post.data.events.length > 0) {
       for (const ev of post.data.events) {
         // Skip league period entries (they have period set, or date is not parseable)
         if (ev.period) continue;

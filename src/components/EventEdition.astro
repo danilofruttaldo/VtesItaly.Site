@@ -24,7 +24,12 @@ interface Props {
 }
 
 const { post, locale = 'it' } = Astro.props;
-if (post.data.category !== 'grand-prix' && post.data.category !== 'nazionale' && post.data.category !== 'comunita') {
+if (
+  post.data.category !== 'grand-prix' &&
+  post.data.category !== 'nazionale' &&
+  post.data.category !== 'comunita' &&
+  post.data.category !== 'europeo'
+) {
   throw new Error(`EventEdition: unsupported category "${post.data.category}"`);
 }
 const t = useTranslations(locale);
@@ -178,11 +183,11 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
       </span>
     </div>
   )}
-  {post.data.events.length > 0 && (
+  {postEvents.length > 0 && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.program_label}</span>
       <div class="gp-value">
-        {post.data.events.map((ev) => {
+        {postEvents.map((ev) => {
           const isAltro = ev.type === 'altro';
           const hasTime = ev.time && ev.time !== TIME_TBD;
           const formatLine = composeEventLine(ev, locale);
@@ -327,7 +332,7 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
       </div>
     </div>
   )}
-  {(post.data.registration || post.data.events.some((ev) => ev.archonUrl)) && (
+  {(post.data.registration || postEvents.some((ev) => ev.archonUrl)) && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.registration_label}</span>
       <div class="gp-value">
@@ -340,9 +345,9 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
         ) : (
           post.data.registration
         )}
-        {post.data.events.some((ev) => ev.archonUrl) && (
+        {postEvents.some((ev) => ev.archonUrl) && (
           <div class="gp-archon-links">
-            {post.data.events
+            {postEvents
               .filter((ev) => ev.archonUrl)
               .map((ev) => {
                 const platform = resolvePlatformLabel(ev.archonUrl!);
@@ -464,8 +469,11 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
   </div>
 )}
 
-{/* Highlight callout (rendered after streaming) */}
-{post.data.highlightHtml && <div class="gp-content prose" set:html={post.data.highlightHtml} />}
+{/* Highlight callout (rendered after streaming); a European Championship page
+    shows it inside the standings section instead (the Italian players). */}
+{post.data.highlightHtml && post.data.category !== 'europeo' && (
+  <div class="gp-content prose" set:html={post.data.highlightHtml} />
+)}
 
 {/* Foto: l'album dell'evento su foto.vtesitaly.com */}
 {post.data.album && <AlbumGallery slug={post.data.album} locale={locale} />}
@@ -482,6 +490,10 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
 {standingsBlocks.length > 0 && (
   <section id="classifica" class="gp-standings">
     <h2 class="gp-standings-title">{t.gp.standings_label}</h2>
+    {/* European Championship: the Italian players, between the title and the tables. */}
+    {post.data.highlightHtml && post.data.category === 'europeo' && (
+      <div class="prose" set:html={post.data.highlightHtml} />
+    )}
     {standingsCollapsed ? (
       standingsBlocks.map((block) => (
         <details class="gp-standings-group" id={block.id}>

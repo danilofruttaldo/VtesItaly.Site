@@ -61,11 +61,13 @@ const tourStatus = isTourWithStages ? computeTourStatus(post.data.stages!) : nul
 const tourStagesJson = isTourWithStages ? JSON.stringify(toStageDays(post.data.stages!)) : null;
 const isGp = post.data.category === 'grand-prix';
 const isNc = post.data.category === 'nazionale';
+// A European Championship edition with its programme reads like a GP/NC page.
+const isEc = post.data.category === 'europeo' && (post.data.events?.length ?? 0) > 0;
 const forceArticle = post.data.pageLayout === 'article';
 const isLeague = isLeaguePost(post);
 const isCommunityEvent =
   !forceArticle && post.data.category === 'comunita' && !isLeague && !!(post.data.venue || post.data.events.length > 0);
-const isEventPage = isGp || isNc || isCommunityEvent || isLeague;
+const isEventPage = isGp || isNc || isEc || isCommunityEvent || isLeague;
 // Status runs from the first event day (a Friday side event) to the last one.
 const eventDateStr = firstEventDay(post.data.events, isoDay(post.data.date));
 const eventEndStr = lastEventDay(post.data.events, isoDay(post.data.date));

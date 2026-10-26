@@ -11,7 +11,10 @@ locale: 'en'
 
 The 2011 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Warsaw** (Poland) from 11 to 13 November 2011. European Champion: **Otso S.** (Finland).
 
-The final table also had the Italian player **Enrico D.**
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p><strong>Enrico D.</strong> reaches the final table with a Tremere antitribu Rock Cats deck.</p>
+</div>
 
 ## The final table
 

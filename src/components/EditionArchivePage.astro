@@ -42,7 +42,10 @@ const endOf = (p: (typeof posts)[number]) =>
     : lastEventDay(p.data.events, isoDay(p.data.date));
 const startOf = (p: (typeof posts)[number]) => firstEventDay(p.data.events, isoDay(p.data.date));
 const current = isHistory ? posts[0] : posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
-const CurrentContent = isHistory && current ? (await render(current)).Content : null;
+// The latest EC edition with its programme gets the GP/NC event layout; an
+// older one, text only, is shown as its text.
+const CurrentContent =
+  isHistory && current && !(current.data.events?.length ?? 0) ? (await render(current)).Content : null;
 const pastEditions = posts.filter((p) => p !== current);
 
 const status = current ? computeEventStatus(new Date(startOf(current)), endOf(current)) : null;

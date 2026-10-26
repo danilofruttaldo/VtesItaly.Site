@@ -11,7 +11,10 @@ locale: it
 
 L'edizione 2024 del **Campionato Europeo** di _Vampire: The Eternal Struggle_ si è giocata a **Varsavia** (Polonia) dal 27 al 29 settembre 2024. Campione europeo: **Danilo T.** (Italia).
 
-Il titolo è andato a un italiano: **Danilo T.**
+<div id="italiani" class="callout">
+  <h2>Gli italiani</h2>
+  <p><strong>Danilo T.</strong> vince il secondo titolo europeo, sette anni dopo Berlino, con un Malkavian Juliet &amp; Arishat stealth vote: l'unico italiano campione europeo due volte.</p>
+</div>
 
 ## Il tavolo finale
 

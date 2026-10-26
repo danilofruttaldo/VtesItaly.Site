@@ -11,7 +11,10 @@ locale: 'en'
 
 The 2006 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Turin** (Italy) from 24 to 26 November 2006. European Champion: **Anthony C.** (United Kingdom).
 
-One of the two editions played in Italy.
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p>The European Championship comes to Italy for the first time: the 2006 edition is played in <strong>Turin</strong>, with the Italian community as host.</p>
+</div>
 
 ## The final table
 

@@ -11,7 +11,10 @@ locale: 'en'
 
 The 2014 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Mannheim** (Germany) from 3 to 5 October 2014. European Champion: **Arnaud B.** (France).
 
-The final table also had the Italian player **Nicola L.**
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p><strong>Nicola L.</strong> makes the final table with a Giovanni Shambling Hordes deck.</p>
+</div>
 
 ## The final table
 

@@ -15,7 +15,12 @@ In November 2005 a group of Italian players set off for **Budapest**, host of th
 
 The championship was played on **Saturday, November 5 and Sunday, November 6**, in a hall full of tables and of Methuselahs from all over Europe: the Saturday Last Chance Qualifier alone drew **150 players**.
 
-## An Italian on the podium
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p><strong>Mirko A.</strong> finishes <strong>second</strong> at the final table with a Giovanni powerbleed, one step away from the European title.</p>
+</div>
+
+## The final table
 
 The title went to Hungary's **Richard G.** with a Ventrue vote deck, but an Italian came within a step of winning: **Mirko A.**, **second** at the final table with a **Giovanni powerbleed**.
 

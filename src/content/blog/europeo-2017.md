@@ -11,7 +11,10 @@ locale: it
 
 L'edizione 2017 del **Campionato Europeo** di _Vampire: The Eternal Struggle_ si è giocata a **Berlino** (Germania) dal 12 al 14 maggio 2017. Campione europeo: **Danilo T.** (Italia).
 
-Il titolo è andato a un italiano: **Danilo T.**
+<div id="italiani" class="callout">
+  <h2>Gli italiani</h2>
+  <p><strong>Danilo T.</strong> è campione europeo con un Saulot &amp; Friends wall: il primo titolo europeo per un giocatore italiano.</p>
+</div>
 
 ## Il tavolo finale
 

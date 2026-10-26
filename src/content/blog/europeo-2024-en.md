@@ -11,7 +11,10 @@ locale: 'en'
 
 The 2024 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Warsaw** (Poland) from 27 to 29 September 2024. European Champion: **Danilo T.** (Italy).
 
-The title went to an Italian player: **Danilo T.**
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p><strong>Danilo T.</strong> wins a second European title, seven years after Berlin, with a Malkavian Juliet &amp; Arishat stealth vote deck: the only Italian to be European Champion twice.</p>
+</div>
 
 ## The final table
 

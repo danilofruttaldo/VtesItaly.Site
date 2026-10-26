@@ -11,7 +11,10 @@ locale: 'en'
 
 The 2016 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Genoa** (Italy) from 11 to 13 November 2016. European Champion: **Pau V.** (Spain).
 
-One of the two editions played in Italy.
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p>The European Championship returns to Italy ten years after Turin: the 2016 edition is played in <strong>Genoa</strong>.</p>
+</div>
 
 ## The final table
 

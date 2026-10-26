@@ -15,7 +15,12 @@ Nel novembre del 2005 un gruppo di giocatori italiani è partito per **Budapest*
 
 Il campionato si è giocato **sabato 5 e domenica 6 novembre**, in un salone pieno di tavoli e di Methuselah arrivati da tutta Europa: al solo Last Chance Qualifier di sabato hanno partecipato **150 giocatori**.
 
-## Un italiano sul podio
+<div id="italiani" class="callout">
+  <h2>Gli italiani</h2>
+  <p><strong>Mirko A.</strong> arriva <strong>secondo</strong> al tavolo finale con un Giovanni powerbleed, a un passo dal titolo europeo.</p>
+</div>
+
+## Il tavolo finale
 
 Il titolo è andato all'ungherese **Richard G.** con un mazzo Ventrue vote, ma a un passo dalla vittoria c'era un italiano: **Mirko A.**, **secondo** al tavolo finale con un **Giovanni powerbleed**.
 

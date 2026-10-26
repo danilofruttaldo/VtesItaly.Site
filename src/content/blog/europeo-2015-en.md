@@ -11,7 +11,10 @@ locale: 'en'
 
 The 2015 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Warsaw** (Poland) from 28 to 30 August 2015. European Champion: **Marcin W.** (Poland).
 
-The final table also had the Italian players **Danilo T.** and **Giulio D.**
+<div id="italiani" class="callout">
+  <h2>The Italian players</h2>
+  <p>Two Italians at the final table: <strong>Danilo T.</strong> with a Mistress Fanchon/Luna vote deck and <strong>Giulio D.</strong> with a Brujah Obfuscate vote deck.</p>
+</div>
 
 ## The final table
 

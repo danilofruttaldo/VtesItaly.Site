@@ -6,22 +6,60 @@ category: 'europeo'
 city: 'Vilnius'
 players: 196
 winner: 'Héctor O.'
-excerpt: '2026 VTES European Championship in Vilnius (Lithuania): champion Héctor O.'
+featuredImage: '/images/europeo/ec-2026-day-2.webp'
+poster: '/images/europeo/ec-2026-day-2.webp'
+excerpt: "2026 VTES European Championship in Vilnius (Lithuania): champion Héctor O. The weekend's SuperGP goes to an Italian player, Diego D."
+events:
+  - name: 'SIDE EVENT: Week of Nightmares'
+    date: 2026-09-14
+    endDate: 2026-09-17
+    time: 'tbd'
+    format: 'Standard'
+    proxies: true
+    rounds: 3
+  - name: 'SIDE EVENT: Vilnius GP 2026'
+    date: 2026-09-18
+    time: 'tbd'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
+  - name: 'MAIN EVENT: EC 2026 Day 1'
+    date: 2026-09-19
+    time: '09:00'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
+    standingsUrl: '/ev/ec-2026/standings-ec-2026-day-1.json'
+  - name: 'MAIN EVENT: EC 2026 Day 2'
+    date: 2026-09-20
+    time: '09:00'
+    format: 'Standard'
+    proxies: false
+    rounds: 3
+    standingsUrl: '/ev/ec-2026/standings-ec-2026-day-2.json'
+  - name: 'SIDE EVENT: Club Torpor'
+    date: 2026-09-20
+    time: 'tbd'
+    format: 'Standard'
+    proxies: true
+    rounds: 3
+album: 'ec-2026'
+links:
+  - label: 'Event website'
+    url: 'https://vtes.lt/'
+  - label: 'V:EKN report'
+    url: 'https://www.vekn.net/212-events/event-reports/793-hector-javier-ordonez-is-the-2026-european-champion'
+highlight:
+  id: 'italiani'
+  label: 'The Italian players'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>The Italian players</h2>
+    <p>The best Italian is <strong>Alessandro D.</strong>, 6th on Day 1 and 9th on Day 2. <strong>Simone Z.</strong> (22nd) and <strong>Diego D.</strong> (24th) also reach Day 2, and Diego D. wins the weekend's <strong>SuperGP</strong>.</p>
+  </div>
 locale: 'en'
 ---
 
-The 2026 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Vilnius** (Lithuania) from 19 to 20 September 2026. European Champion: **Héctor O.** (Netherlands).
+The **2026 European Championship** of _Vampire: The Eternal Struggle_ was played in **Vilnius**, Lithuania, on Saturday **19** and Sunday **20 September**, closing a week of events that opened on Monday 14 with the Week of Nightmares.
 
-Day 1 drew **196 players**, Day 2 had 80. The weekend's SuperGP was won by an Italian player, **Diego D.**
-
-## The final table
-
-| Place    | Player    | Country     | Deck                      |
-| -------- | --------- | ----------- | ------------------------- |
-| Champion | Héctor O. | Netherlands | Ministry Childe toolbox   |
-| Finalist | Nina N.   | Sweden      | Hecata Corpse toolbox     |
-| Finalist | Lech I.   | Lithuania   | Legionnaire swarm bleed   |
-| Finalist | Tero A.   | Finland     | The Unnamed bleed         |
-| Finalist | Bram S.   | Belgium     | Qawiyya el-Ghaduba combat |
-
-_Source: [VTES ONE](https://vtesone.wordpress.com/tournaments/european-championships/), [V:EKN report](https://www.vekn.net/212-events/event-reports/793-hector-javier-ordonez-is-the-2026-european-champion). Player names are shortened as elsewhere on the site._
+The title went to **Héctor O.** (Netherlands) with a Ministry Childe toolbox, the only player to win a game at the Day 2 final table. Day 1, with **196 players**, was won by **Nikica N.**; 80 players qualified for Day 2.

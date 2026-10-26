@@ -205,10 +205,23 @@ const europeoSchema = z.object({
   winner: z.string().optional(),
   // Only the year is known (the earliest editions): the archive shows it alone.
   dateApprox: z.boolean().optional(),
-  // Shared shape with the other categories, so the pages can read them on any
-  // post; an EC edition leaves them empty.
+  // An edition with a full programme (the latest ones) uses the GP/NC event
+  // page: venue, events with their standings, poster and links. The older
+  // editions leave them empty and read as plain text.
   venue: venueSchema.optional(),
   events: z.array(eventSchema).optional(),
+  schedule: z.array(scheduleSchema).optional().default([]),
+  pricing: z.array(pricingSchema).optional().default([]),
+  hotel: z.array(hotelSchema).optional().default([]),
+  prizes: z.union([z.string(), z.array(z.string())]).optional(),
+  registration: z.string().optional(),
+  contact: z.string().optional(),
+  payment: z.string().optional(),
+  earlyDeadline: z.string().optional(),
+  earlyDeadlineDate: z.coerce.date().optional(),
+  hotelNote: z.string().optional(),
+  streamingUrl: httpUrl.optional(),
+  streamingLabel: z.string().optional(),
   stages: z.array(stageSchema).optional(),
   standingsUrl: z.string().optional(),
 });

@@ -11,6 +11,7 @@ stagesLabel: 'Stages'
 stageItemLabel: 'Stage'
 stages:
   - name: 'Verona'
+    album: 'tour-2024-verona'
     number: 1
     date: 2024-02-17
     cities: ['verona']
@@ -76,6 +77,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-3d32-708b-9705-4cc9037746a1'
 
   - name: 'Massa'
+    album: 'tour-2024-massa'
     number: 6
     date: 2024-06-15
     cities: ['massa']
@@ -102,6 +104,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-441a-73e3-b548-cb62074a127b'
 
   - name: 'Barga'
+    album: 'tour-2024-barga'
     number: 8
     date: 2024-08-31
     cities: ['barga']

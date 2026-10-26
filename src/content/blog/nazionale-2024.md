@@ -33,6 +33,7 @@ contact: 'info@vtesitaly.com'
 payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
+album: 'nc-2024'
 locale: it
 ---
 

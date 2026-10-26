@@ -14,6 +14,7 @@ export const categoryLabels: Record<string, Record<Locale, string>> = {
   tour: { it: 'Tour', en: 'Tour' },
   'grand-prix': { it: 'Grand Prix', en: 'Grand Prix' },
   nazionale: { it: 'Nazionale', en: 'National Championship' },
+  europeo: { it: 'Europeo', en: 'European Championship' },
   contest: { it: 'Contest', en: 'Contest' },
 };
 
@@ -23,5 +24,6 @@ export const categoryUrls: Record<string, Record<Locale, string>> = {
   tour: { it: '/tour/', en: '/en/tour/' },
   'grand-prix': { it: '/grand-prix/', en: '/en/grand-prix/' },
   nazionale: { it: '/nazionale/', en: '/en/national-championship/' },
+  europeo: { it: '/europeo/', en: '/en/european-championship/' },
   contest: { it: '/comunita/', en: '/en/community/' },
 };

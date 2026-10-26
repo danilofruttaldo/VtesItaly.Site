@@ -103,6 +103,29 @@ export const mainPages: PageMeta[] = [
     },
   },
   {
+    slug: { it: 'europeo', en: 'european-championship' },
+    title: { it: 'Europeo', en: 'European Championship' },
+    headerImage: '/images/headers/header-europeo.webp',
+    ogImage: '/images/og/og-europeo.jpg',
+    description: {
+      it: 'Il Campionato Europeo di VTES, edizione per edizione dal 1999: sedi, date, campioni e i risultati dei giocatori italiani.',
+      en: 'The VTES European Championship, edition by edition since 1999: venues, dates, champions and the results of the Italian players.',
+    },
+    category: 'europeo',
+    leadHtml: {
+      it: '<p class="page-lead">Il <strong>Campionato Europeo</strong> di Vampire: The Eternal Struggle riunisce ogni anno i Matusalemme di tutto il continente in una città diversa. Due volte si è giocato in Italia, a <strong>Torino</strong> nel 2006 e a <strong>Genova</strong> nel 2016, e due volte il titolo è andato a un italiano.</p><p>Qui trovi tutte le edizioni, dalla prima di <strong>Vienna</strong> nel 1999 all\'ultima.</p>',
+      en: '<p class="page-lead">The Vampire: The Eternal Struggle <strong>European Championship</strong> gathers Methuselahs from all over the continent every year, in a different city. It was played in Italy twice, in <strong>Turin</strong> in 2006 and <strong>Genoa</strong> in 2016, and twice the title went to an Italian player.</p><p>Here are all the editions, from the first one in <strong>Vienna</strong> in 1999 to the latest.</p>',
+    },
+    editionsTitle: {
+      it: 'Edizioni del Campionato Europeo',
+      en: 'European Championship Editions',
+    },
+    baseUrl: {
+      it: '/europeo/',
+      en: '/en/european-championship/',
+    },
+  },
+  {
     slug: { it: 'cartoline', en: 'postcards' },
     title: { it: 'Cartoline', en: 'Postcards' },
     headerImage: '/images/headers/header-cartoline.webp',

@@ -8,7 +8,7 @@ import ShareButtons from './ShareButtons.astro';
 import EventEdition from './EventEdition.astro';
 import { getCollection } from 'astro:content';
 import { mainPages } from '../data/pages';
-import { filterByLocale, useTranslations } from '../utils/i18n';
+import { filterByLocale, formatLocalDate, useTranslations } from '../utils/i18n';
 import type { Locale } from '../utils/i18n';
 import { computeEventStatus } from '../utils/status';
 import { getCardMeta, type Standing } from '../utils/standings';
@@ -18,7 +18,7 @@ import '../styles/edition-archive.css';
 interface Props {
   locale: Locale;
   /** Italian slug of the archive page, which is also the posts' category. */
-  slug: 'grand-prix' | 'nazionale';
+  slug: 'grand-prix' | 'nazionale' | 'europeo';
 }
 
 const { locale, slug } = Astro.props;
@@ -31,10 +31,13 @@ const posts = filterByLocale(await getCollection('blog'), locale)
 
 // Current edition: the nearest one not over yet (posts are newest first), else
 // the latest. Build-time pick; the status badge is re-run in the browser.
+// The European Championship is a history of past editions: no current one,
+// every edition goes to the list.
 const todayIso = todayLocalIso();
+const isHistory = slug === 'europeo';
 const endOf = (p: (typeof posts)[number]) => lastEventDay(p.data.events, isoDay(p.data.date));
 const startOf = (p: (typeof posts)[number]) => firstEventDay(p.data.events, isoDay(p.data.date));
-const current = posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
+const current = isHistory ? undefined : posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
 const pastEditions = posts.filter((p) => p !== current);
 
 const status = current ? computeEventStatus(new Date(startOf(current)), endOf(current)) : null;
@@ -44,7 +47,23 @@ type StandingsModules = Record<string, { default: Standing[] }>;
 const standingsBySlug: Record<Props['slug'], StandingsModules> = {
   'grand-prix': import.meta.glob('/src/data/standings/gp/standings-gp-*.json', { eager: true }) as StandingsModules,
   nazionale: import.meta.glob('/src/data/standings/nc/standings-nc-*.json', { eager: true }) as StandingsModules,
+  europeo: {},
 };
+
+/** Archive card line of a European Championship edition: host city, dates, players, champion. */
+function historyMeta(post: (typeof posts)[number]) {
+  if (post.data.category !== 'europeo') return null;
+  const { city, endDate, players, winner, dateApprox } = post.data;
+  if (dateApprox)
+    return { city, eventDate: String(post.data.date.getUTCFullYear()), players: players ?? 0, winner: winner ?? '' };
+  const end = formatLocalDate(endDate ?? post.data.date, locale);
+  // "19–20 settembre 2026"; the start keeps its month when the two differ.
+  const sameMonth = endDate && endDate.getUTCMonth() === post.data.date.getUTCMonth();
+  const start = endDate
+    ? formatLocalDate(post.data.date, locale, sameMonth ? { day: 'numeric' } : { day: 'numeric', month: 'long' })
+    : '';
+  return { city, eventDate: start ? `${start}–${end}` : end, players: players ?? 0, winner: winner ?? '' };
+}
 const allStandings = standingsBySlug[slug];
 ---
 
@@ -89,7 +108,8 @@ const allStandings = standingsBySlug[slug];
         <h2 class="page-section-title">{t.gp.archive}</h2>
         <div class="editions-list">
           {pastEditions.map((post) => {
-            const meta = getCardMeta(post, allStandings, locale);
+            const history = historyMeta(post);
+            const meta = history ?? getCardMeta(post, allStandings, locale);
             return (
               <a href={postUrl(post, locale)} class="edition-card">
                 {(post.data.poster || post.data.featuredImage) && (
@@ -115,6 +135,7 @@ const allStandings = standingsBySlug[slug];
                     {meta.winner && <span class="edition-winner">&#127942; {meta.winner}</span>}
                   </div>
                   <span class="edition-info">
+                    {history && <>{history.city}</>}
                     {post.data.tags && post.data.tags.filter((tag) => tag !== 'italia').length > 0 && (
                       <>{post.data.tags.filter((tag) => tag !== 'italia').join(', ')}</>
                     )}

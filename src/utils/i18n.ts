@@ -63,16 +63,26 @@ export function translateSection(section: string, targetLocale: Locale): string 
   return map[section] ?? section;
 }
 
+/** Sections whose post slugs change prefix with the language: [Italian, English]. */
+const POST_SLUG_PREFIXES: Record<string, [string, string]> = {
+  nazionale: ['nazionale', 'nc'],
+  europeo: ['europeo', 'ec'],
+};
+
 /**
  * Post slug in the other language. National Championship posts are
- * `nazionale-2026` in Italian and `nc-2026` in English; every other slug is
- * the same in both. `itSection` is the Italian section the post lives in.
+ * `nazionale-2026` in Italian and `nc-2026` in English, European ones
+ * `europeo-2005` and `ec-2005`; every other slug is the same in both. `itSection` is the Italian section the post lives in.
  * The one mapping used by the EN routes, the EN post URLs and the hreflang
  * alternates, so the three can never disagree.
  */
 export function translatePostSlug(itSection: string, slug: string, targetLocale: Locale): string {
-  if (itSection !== 'nazionale') return slug;
-  return targetLocale === 'en' ? slug.replace(/^nazionale-/, 'nc-') : slug.replace(/^nc-/, 'nazionale-');
+  const prefix = POST_SLUG_PREFIXES[itSection];
+  if (!prefix) return slug;
+  const [it, en] = prefix;
+  return targetLocale === 'en'
+    ? slug.replace(new RegExp(`^${it}-`), `${en}-`)
+    : slug.replace(new RegExp(`^${en}-`), `${it}-`);
 }
 
 /**

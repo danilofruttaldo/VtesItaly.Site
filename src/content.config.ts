@@ -192,6 +192,26 @@ const editionSchema = <C extends 'grand-prix' | 'nazionale'>(category: C) =>
     .superRefine(requireEarlyDeadlineDate);
 
 const grandPrixSchema = editionSchema('grand-prix');
+
+// European Championship: a historical edition, one page per year. No events
+// (they would land in the calendar and the home timeline): the dates, the host
+// city and the result live in plain fields, the final table in the body.
+const europeoSchema = z.object({
+  ...baseFields,
+  category: z.literal('europeo'),
+  endDate: z.coerce.date().optional(),
+  city: z.string(),
+  players: z.number().optional(),
+  winner: z.string().optional(),
+  // Only the year is known (the earliest editions): the archive shows it alone.
+  dateApprox: z.boolean().optional(),
+  // Shared shape with the other categories, so the pages can read them on any
+  // post; an EC edition leaves them empty.
+  venue: venueSchema.optional(),
+  events: z.array(eventSchema).optional(),
+  stages: z.array(stageSchema).optional(),
+  standingsUrl: z.string().optional(),
+});
 const nazionaleSchema = editionSchema('nazionale');
 
 // Tour: multi-stage circuit
@@ -282,6 +302,7 @@ const blog = defineCollection({
   schema: z.discriminatedUnion('category', [
     grandPrixSchema,
     nazionaleSchema,
+    europeoSchema,
     tourSchema,
     comunitaSchema,
     contestSchema,

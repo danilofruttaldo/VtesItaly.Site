@@ -100,8 +100,16 @@ ErrorDocument 404 /404.html
     # si porta all'elenco della comunita' invece di un 404. Vengono prima delle
     # regole generiche su /blog/ e /en/comunita/ qui sotto, che li manderebbero
     # a una pagina inesistente.
-    RewriteRule ^(?:blog|comunita)/(?:7-campionato-milanese-di-vtes|8-campionato-milanese-di-vtes|il-torneo-dello-stile-treviso|lestate-emiliana-si-tinge-di-bleed|litalia-domina-lec-2024-a-varsavia)/?$ https://vtesitaly.com/comunita/ [R=301,L]
-    RewriteRule ^en/(?:blog|comunita|community)/(?:7-campionato-milanese-di-vtes|8-campionato-milanese-di-vtes|il-torneo-dello-stile-treviso|lestate-emiliana-si-tinge-di-bleed|litalia-domina-lec-2024-a-varsavia)/?$ https://vtesitaly.com/en/community/ [R=301,L]
+    RewriteRule ^(?:blog|comunita)/(?:7-campionato-milanese-di-vtes|8-campionato-milanese-di-vtes|il-torneo-dello-stile-treviso|lestate-emiliana-si-tinge-di-bleed)/?$ https://vtesitaly.com/comunita/ [R=301,L]
+    RewriteRule ^en/(?:blog|comunita|community)/(?:7-campionato-milanese-di-vtes|8-campionato-milanese-di-vtes|il-torneo-dello-stile-treviso|lestate-emiliana-si-tinge-di-bleed)/?$ https://vtesitaly.com/en/community/ [R=301,L]
+
+    # Campionato Europeo: gli articoli sugli EC stanno nella sezione /europeo/.
+    # L'articolo sull'EC 2024 (cancellato a marzo 2026) e quello sull'EC 2005
+    # (online per qualche ora in comunita) portano alla pagina della loro edizione.
+    RewriteRule ^(?:blog|comunita)/litalia-domina-lec-2024-a-varsavia/?$ https://vtesitaly.com/europeo/europeo-2024/ [R=301,L]
+    RewriteRule ^en/(?:blog|comunita|community)/litalia-domina-lec-2024-a-varsavia/?$ https://vtesitaly.com/en/european-championship/ec-2024/ [R=301,L]
+    RewriteRule ^comunita/european-championship-2005-budapest/?$ https://vtesitaly.com/europeo/europeo-2005/ [R=301,L]
+    RewriteRule ^en/community/european-championship-2005-budapest/?$ https://vtesitaly.com/en/european-championship/ec-2005/ [R=301,L]
 
     # Articolo della lega di Treviso rinominato: il vecchio slug porta al nuovo,
     # in un solo salto anche dai vecchi percorsi /en/comunita/ e /blog/.

@@ -373,16 +373,18 @@ img {
   color: var(--color-contrast);
 }
 
-/* ===== Category accents (Tour / GP / NC): left strip via ::before pseudo. ===== */
+/* ===== Category accents (Tour / GP / NC / EC): left strip via ::before pseudo. ===== */
 .post-card--tour,
 .post-card--grand-prix,
 .post-card--nazionale,
+.post-card--europeo,
 .post-card--highlight {
   position: relative;
 }
 .post-card--tour::before,
 .post-card--grand-prix::before,
 .post-card--nazionale::before,
+.post-card--europeo::before,
 .post-card--highlight::before {
   content: '';
   position: absolute;
@@ -401,6 +403,9 @@ img {
 }
 .post-card--nazionale::before {
   background: #f0e6d3; /* cream */
+}
+.post-card--europeo::before {
+  background: #003399; /* EU flag blue */
 }
 
 /* ===== "Prossimo" highlight ===== */

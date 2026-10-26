@@ -59,7 +59,7 @@ const {
   revealFrom,
 } = Astro.props;
 
-const RELEVANT_CATEGORIES = new Set(['tour', 'grand-prix', 'nazionale']);
+const RELEVANT_CATEGORIES = new Set(['tour', 'grand-prix', 'nazionale', 'europeo']);
 const categoryAccent = category && RELEVANT_CATEGORIES.has(category) ? `post-card--${category}` : null;
 const t = useTranslations(locale);
 

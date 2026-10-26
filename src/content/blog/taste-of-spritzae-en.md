@@ -36,6 +36,7 @@ notes:
 links:
   - label: 'Registration'
     url: 'https://forms.gle/UtbzKoqJzbGvVW4A8'
+album: 'taste-of-spritzae-2025'
 locale: 'en'
 ---
 

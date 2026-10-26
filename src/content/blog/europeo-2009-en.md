@@ -7,24 +7,25 @@ city: 'Palma de Mallorca'
 winner: 'Martin W.'
 excerpt: '2009 VTES European Championship in Palma de Mallorca (Spain): champion Martin W.'
 events:
-  - name: 'European Championship 2009'
-    date: 2009-11-13
-    endDate: 2009-11-15
-    time: 'tbd'
+  - name: 'MAIN EVENT: EC 2009 Day 2'
+    date: 2009-11-15
+    time: '09:45'
     format: 'Standard'
+    proxies: false
+    rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a07-0c7c-73d8-a77a-9d7b53f76485'
+    standingsUrl: '/ev/ec-2009/standings-ec-2009-day-2.json'
+highlight:
+  id: 'italiani'
+  label: 'The Italian players'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>The Italian players</h2>
+    <p>The best Italians on <strong>Day 2</strong> are <strong>Alessandro D.</strong> (9th) and <strong>Danilo T.</strong> (10th).</p>
+  </div>
 locale: 'en'
 ---
 
-The 2009 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Palma de Mallorca** (Spain) from 13 to 15 November 2009. European Champion: **Martin W.** (Austria).
+The 2009 edition of the _Vampire: The Eternal Struggle_ **European Championship** was played in **Palma de Mallorca** (Spain) from 13 to 15 November 2009; Day 2 on Sunday 15.
 
-## The final table
-
-| Place    | Player        | Country | Deck                                     |
-| -------- | ------------- | ------- | ---------------------------------------- |
-| Champion | Martin W.     | Austria | Toreador antitribu weenie bleed & bounce |
-| Finalist | Joaquim C.    | Spain   | Theo Bell Anarch rush                    |
-| Finalist | Kamel S.      | France  | Toreador Anneke/Anson Grandball          |
-| Finalist | Erol Ö.       | Germany | Stanislava & Friends vote/bleed          |
-| Finalist | Christophe B. | France  | Euro Brujah                              |
-
-_Source: [VTES ONE](https://vtesone.wordpress.com/tournaments/european-championships/). Player names are shortened as elsewhere on the site._
+European Champion: **Martin W.** (Austria), with a Toreador antitribu bleed & bounce deck.

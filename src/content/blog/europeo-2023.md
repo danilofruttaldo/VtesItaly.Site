@@ -32,6 +32,14 @@ events:
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-1aac-737d-8d6d-52727958227c'
     standingsUrl: '/ev/ec-2023/standings-ec-2023-day-2.json'
+highlight:
+  id: 'italiani'
+  label: 'Gli italiani'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>Gli italiani</h2>
+    <p><strong>Gianluca B.</strong> arriva al tavolo finale del <strong>Day 1</strong> e chiude il <strong>Day 2</strong> al 6° posto: il miglior italiano dell'edizione.</p>
+  </div>
 locale: it
 ---
 

@@ -30,7 +30,7 @@ highlight:
 highlightHtml: |
   <div id="italiani" class="callout">
     <h2>The Italian players</h2>
-    <p><strong>Axel Z.</strong> finishes Day 1 in 10th place and <strong>Day 2</strong> in 18th.</p>
+    <p><strong>Alessandro A.</strong> finishes Day 1 in 9th place and <strong>Day 2</strong> in 13th; <strong>Axel Z.</strong> 10th and 18th.</p>
   </div>
 locale: 'en'
 ---

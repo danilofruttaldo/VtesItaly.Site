@@ -32,6 +32,14 @@ events:
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-1aac-737d-8d6d-52727958227c'
     standingsUrl: '/ev/ec-2023/standings-ec-2023-day-2.json'
+highlight:
+  id: 'italiani'
+  label: 'The Italian players'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>The Italian players</h2>
+    <p><strong>Gianluca B.</strong> reaches the <strong>Day 1</strong> final table and finishes <strong>Day 2</strong> in 6th place: the best Italian of the edition.</p>
+  </div>
 locale: 'en'
 ---
 

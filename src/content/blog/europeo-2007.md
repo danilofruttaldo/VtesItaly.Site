@@ -30,7 +30,7 @@ highlight:
 highlightHtml: |
   <div id="italiani" class="callout">
     <h2>Gli italiani</h2>
-    <p><strong>Axel Z.</strong> chiude il Day 1 al 10° posto e il <strong>Day 2</strong> al 18°.</p>
+    <p><strong>Alessandro A.</strong> chiude il Day 1 al 9° posto e il <strong>Day 2</strong> al 13°; <strong>Axel Z.</strong> al 10° e al 18°.</p>
   </div>
 locale: it
 ---

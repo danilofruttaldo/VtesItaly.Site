@@ -31,7 +31,7 @@ highlightHtml: |
   <div id="italiani" class="callout">
     <h2>The Italian players</h2>
     <p><strong>Danilo T.</strong> is European Champion with a Saulot &amp; Friends Anarch wall: the first European title for an Italian player.</p>
-    <p><strong>Carlo D.</strong> also reaches the <strong>Day 1</strong> final table.</p>
+    <p><strong>Gianluca B.</strong> and <strong>Carlo D.</strong> also reach the <strong>Day 1</strong> final table.</p>
   </div>
 locale: 'en'
 ---

@@ -31,7 +31,7 @@ highlightHtml: |
   <div id="italiani" class="callout">
     <h2>Gli italiani</h2>
     <p><strong>Danilo T.</strong> è campione europeo con un Saulot &amp; Friends Anarch wall: il primo titolo europeo per un giocatore italiano.</p>
-    <p>Al tavolo finale del <strong>Day 1</strong> arriva anche <strong>Carlo D.</strong></p>
+    <p>Al tavolo finale del <strong>Day 1</strong> arrivano anche <strong>Gianluca B.</strong> e <strong>Carlo D.</strong></p>
   </div>
 locale: it
 ---

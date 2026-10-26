@@ -30,6 +30,9 @@ prizes:
   - 'Premi per i finalisti in base al numero di partecipanti'
   - 'Promo door prize per tutti'
 contact: 'henry.hinde1973@gmail.com'
+links:
+  - label: 'Sondaggio partecipanti (pranzo, premi, alloggio)'
+    url: 'https://forms.gle/Kvy5cxaLdWCrZymp9'
 locale: it
 ---
 

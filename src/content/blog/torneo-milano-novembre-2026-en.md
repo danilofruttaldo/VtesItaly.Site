@@ -30,6 +30,9 @@ prizes:
   - 'Finalist prizes based on the number of participants'
   - 'Promo door prize for everyone'
 contact: 'henry.hinde1973@gmail.com'
+links:
+  - label: 'Participant survey (lunch, prizes, accommodation)'
+    url: 'https://forms.gle/Kvy5cxaLdWCrZymp9'
 locale: 'en'
 ---
 

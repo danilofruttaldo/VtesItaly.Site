@@ -29,6 +29,7 @@ const ROOT_STORE = '.astro/data-store.json';
 const NODE_MODULES_STORE = 'node_modules/.astro/data-store.json';
 // The collections the data-store holds (src/data is plain modules, not in it).
 const SOURCE_DIRS = ['src/content'];
+const SCHEMA_FILE = 'src/content.config.ts';
 const IS_WIN = process.platform === 'win32';
 
 function log(msg) {
@@ -46,6 +47,9 @@ function newestSourceMtime() {
       if (mtime > newest) newest = mtime;
     }
   }
+  // The schema shapes what the store holds too: a new field in
+  // content.config.ts must rebuild it even when no content file changed.
+  if (existsSync(SCHEMA_FILE)) newest = Math.max(newest, statSync(SCHEMA_FILE).mtimeMs);
   return newest;
 }
 

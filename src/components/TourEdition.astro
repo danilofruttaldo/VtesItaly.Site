@@ -62,6 +62,9 @@ const stageStates = stages.map((s) => ({
 }));
 const stageStatuses = stageStatusesOn(stageStates, todayLocalIso());
 const computedStages = stages.map((s, i) => ({ ...s, dateIso: stageStates[i].date, status: stageStatuses[i] }));
+// Shareable anchor per stage (/tour/#tappa-6); the quick nav points at the upcoming one.
+const stageAnchor = (i: number) => `${locale === 'en' ? 'stage' : 'tappa'}-${i + 1}`;
+const nextStageIndex = stageStatuses.indexOf('upcoming');
 
 const statusLabels: Record<string, string> = {
   completed: t.tour.status_completed,
@@ -101,14 +104,28 @@ function formatStage(val: unknown, isAway: boolean): string {
 ---
 
 <div class="tour-edition">
-  {tourStandings.length > 0 && (
+  {(tourStandings.length > 0 || computedStages.length > 0) && (
     <nav class="te-quicknav">
-      <a href="#classifica" class="te-quicknav-link">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
-        {t.post.jump_standings}
-      </a>
+      {computedStages.length > 0 && (
+        <a
+          href={`#${stageAnchor(Math.max(nextStageIndex, 0))}`}
+          class="te-quicknav-link te-quicknav-next"
+          hidden={nextStageIndex === -1}
+        >
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          {t.post.jump_next_stage}
+        </a>
+      )}
+      {tourStandings.length > 0 && (
+        <a href="#classifica" class="te-quicknav-link">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          {t.post.jump_standings}
+        </a>
+      )}
     </nav>
   )}
 
@@ -139,6 +156,7 @@ function formatStage(val: unknown, isAway: boolean): string {
       <div class="te-stages-list">
         {computedStages.map((stage, i) => (
           <div
+            id={stageAnchor(i)}
             class:list={[
               'te-card',
               {
@@ -383,6 +401,14 @@ function formatStage(val: unknown, isAway: boolean): string {
         img.closest('a.zoomable')?.setAttribute('href', img.src);
       }
     });
+
+    // Quick nav: follow the upcoming stage, hidden once none is left
+    const next = document.querySelector<HTMLAnchorElement>('.te-quicknav-next');
+    if (next) {
+      const card = cards[statuses.indexOf('upcoming')];
+      next.hidden = !card;
+      if (card) next.href = '#' + card.id;
+    }
 
     // Podium: lit once every stage is over, even if the build ran before the last one
     if (tourIsOver(statuses)) {

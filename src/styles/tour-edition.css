@@ -1,8 +1,13 @@
 /* Quick nav */
 .te-quicknav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 8px;
   margin-bottom: 20px;
+}
+.te-quicknav-link[hidden] {
+  display: none;
 }
 .te-quicknav-link {
   display: inline-flex;
@@ -79,6 +84,7 @@
 
 /* Card */
 .te-card {
+  scroll-margin-top: 80px;
   display: flex;
   flex-direction: row;
   border-radius: 8px;

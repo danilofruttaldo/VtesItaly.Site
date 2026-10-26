@@ -19,6 +19,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-a7f6-7018-a823-e43efd4bba6c'
 standingsUrl: '/ev/sabbat-arising-2025/standings-sabbat-arising-2025.json'
+album: 'sabbat-arising-2025'
 locale: it
 ---
 

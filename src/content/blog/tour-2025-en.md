@@ -91,6 +91,7 @@ stages:
     description: 'The sixth stage of the Italian Tour 2025 brings players back to Tuscany for crucial points, with tight matches and an increasingly contested overall ranking.'
 
   - name: 'Roma'
+    album: 'tour-2025-roma'
     number: 7
     date: 2025-10-12
     cities: ['roma']
@@ -119,6 +120,7 @@ stages:
     description: 'The eighth stage of the Italian Tour 2025 arrives in Milan with a high-intensity tournament, where every match weighs on the overall ranking and defines the final positions.'
 
   - name: 'Bologna'
+    album: 'tour-2025-bologna'
     number: 9
     date: 2025-11-29
     cities: ['bologna']

@@ -20,6 +20,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-996d-74fe-b588-f237c4a0c099'
 contact: 'parmeggiani.simone@gmail.com'
 standingsUrl: '/ev/complearum-2025/standings-complearum-2025.json'
+album: 'complearum-2025'
 locale: 'en'
 ---
 

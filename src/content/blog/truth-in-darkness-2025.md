@@ -19,6 +19,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-8fe6-733b-ae12-67fc31ba7af4'
 standingsUrl: '/ev/truth-in-darkness-2025/standings-truth-in-darkness-2025.json'
+album: 'truth-in-darkness-2025'
 locale: it
 ---
 

@@ -6,7 +6,8 @@ import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import ShareButtons from './ShareButtons.astro';
 import EventEdition from './EventEdition.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import AlbumGallery from './AlbumGallery.astro';
 import { mainPages } from '../data/pages';
 import { filterByLocale, formatLocalDate, useTranslations } from '../utils/i18n';
 import type { Locale } from '../utils/i18n';
@@ -31,13 +32,17 @@ const posts = filterByLocale(await getCollection('blog'), locale)
 
 // Current edition: the nearest one not over yet (posts are newest first), else
 // the latest. Build-time pick; the status badge is re-run in the browser.
-// The European Championship is a history of past editions: no current one,
-// every edition goes to the list.
+// The European Championship has no announcement page: its current edition is
+// the latest one, shown with its own text instead of the event layout.
 const todayIso = todayLocalIso();
 const isHistory = slug === 'europeo';
-const endOf = (p: (typeof posts)[number]) => lastEventDay(p.data.events, isoDay(p.data.date));
+const endOf = (p: (typeof posts)[number]) =>
+  p.data.category === 'europeo'
+    ? isoDay(p.data.endDate ?? p.data.date)
+    : lastEventDay(p.data.events, isoDay(p.data.date));
 const startOf = (p: (typeof posts)[number]) => firstEventDay(p.data.events, isoDay(p.data.date));
-const current = isHistory ? undefined : posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
+const current = isHistory ? posts[0] : posts.filter((p) => endOf(p) >= todayIso).at(-1) || posts[0];
+const CurrentContent = isHistory && current ? (await render(current)).Content : null;
 const pastEditions = posts.filter((p) => p !== current);
 
 const status = current ? computeEventStatus(new Date(startOf(current)), endOf(current)) : null;
@@ -96,7 +101,16 @@ const allStandings = standingsBySlug[slug];
             {status === 'live' ? t.status.live : status === 'upcoming' ? t.status.upcoming : t.status.past}
           </span>
         </div>
-        <EventEdition post={current} locale={locale} />
+        {CurrentContent ? (
+          <>
+            <div class="prose">
+              <CurrentContent />
+            </div>
+            {current.data.album && <AlbumGallery slug={current.data.album} locale={locale} />}
+          </>
+        ) : (
+          <EventEdition post={current} locale={locale} />
+        )}
       </div>
     </section>
   )}

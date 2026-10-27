@@ -21,6 +21,9 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-0c01-77f4-bcb9-a5cc5c28c644'
 standingsUrl: '/ev/vambeer-the-eternal-stout-2023/standings-vambeer-the-eternal-stout-2023.json'
 album: 'vambeer-the-eternal-stout-2023'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=u-x0IP4q_J8'
+    label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---
 

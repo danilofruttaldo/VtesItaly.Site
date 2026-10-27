@@ -42,6 +42,9 @@ highlightHtml: |
     <p>Il <strong>Day 1</strong> lo vince un altro italiano, <strong>Simone P.</strong>, con un mazzo dal nome che non lascia dubbi: <em>The queen of æmilia</em>.</p>
   </div>
 album: 'ec-2024'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=8JW4cjRaMsw'
+    label: "L'occhio di Silvia"
 locale: it
 ---
 

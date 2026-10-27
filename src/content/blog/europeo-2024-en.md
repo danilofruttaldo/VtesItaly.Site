@@ -42,6 +42,9 @@ highlightHtml: |
     <p><strong>Day 1</strong> goes to another Italian, <strong>Simone P.</strong>, with a deck whose name says it all: <em>The queen of æmilia</em>.</p>
   </div>
 album: 'ec-2024'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=8JW4cjRaMsw'
+    label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---
 

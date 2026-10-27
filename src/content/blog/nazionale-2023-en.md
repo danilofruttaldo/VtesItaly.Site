@@ -42,6 +42,9 @@ payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 hotel: []
 prizes: ''
 album: 'nc-2023'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=3jZNjUl35TQ'
+    label: "L'occhio di Silvia (videos)"
 locale: en
 ---
 

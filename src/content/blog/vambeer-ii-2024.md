@@ -21,6 +21,9 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-5a3b-74d0-a60c-53532fddfcc6'
 standingsUrl: '/ev/vambeer-ii-2024/standings-vambeer-ii-2024.json'
 album: 'vambeer-ii-2024'
+streamingLinks:
+  - url: 'https://www.youtube.com/watch?v=JlwcLn4TDw4'
+    label: "L'occhio di Silvia"
 locale: it
 ---
 

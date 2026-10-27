@@ -48,6 +48,7 @@ stages:
 
   - name: 'Bologna'
     album: 'tour-2023-bologna'
+    videos: 'https://www.youtube.com/watch?v=un25kycmtjA'
     number: 4
     date: 2023-04-29
     cities: ['bologna']
@@ -62,6 +63,7 @@ stages:
 
   - name: 'Verona'
     album: 'tour-2023-verona'
+    videos: 'https://www.youtube.com/watch?v=kem-Ng66ojw'
     number: 5
     date: 2023-06-02
     cities: ['verona']
@@ -76,6 +78,7 @@ stages:
 
   - name: 'Trento'
     album: 'tour-2023-trento'
+    videos: 'https://www.youtube.com/watch?v=kem-Ng66ojw'
     number: 6
     date: 2023-06-03
     cities: ['trento']
@@ -103,6 +106,7 @@ stages:
 
   - name: 'Barga'
     album: 'tour-2023-barga'
+    videos: 'https://www.youtube.com/watch?v=CnJn7Vk1csA'
     number: 8
     date: 2023-09-03
     cities: ['barga']

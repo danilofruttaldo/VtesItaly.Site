@@ -18,6 +18,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-1a43-77a0-9c29-109b1fcf42e1'
 standingsUrl: '/ev/torneo-del-b-i-p-bleed-in-pordenone-2023/standings-torneo-del-b-i-p-bleed-in-pordenone-2023.json'
+album: 'bip-2023'
 locale: it
 ---
 

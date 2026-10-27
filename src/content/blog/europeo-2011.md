@@ -7,11 +7,11 @@ city: 'Varsavia'
 winner: 'Otso S.'
 excerpt: 'Campionato Europeo di VTES 2011 a Varsavia (Polonia): campione Otso S.'
 events:
-  - name: 'Campionato Europeo 2011'
-    date: 2011-11-11
-    endDate: 2011-11-13
+  - name: 'MAIN EVENT: EC 2011 Day 2'
+    date: 2011-11-13
     time: 'tbd'
     format: 'Standard'
+    archonUrl: 'https://archon.vekn.net/tournaments/01a028a5-3514-7452-9317-98aca1c1d300'
 locale: it
 ---
 

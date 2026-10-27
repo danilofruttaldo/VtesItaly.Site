@@ -3,7 +3,8 @@ title: 'Torneo di Tutti i Morti'
 date: 2026-11-01
 category: 'comunita'
 tags: ['torino', 'torneo']
-featuredImage: '/images/headers/header-torino.webp'
+featuredImage: '/images/comunita/torino/tournaments-of-dead.webp'
+poster: '/images/comunita/torino/tournaments-of-dead.webp'
 excerpt: 'Torneo di Tutti i Morti: torneo VTES Standard domenica 1 novembre 2026 da Gondur a Giaveno (TO): proxy ammesse, 2 round e finale.'
 venue:
   name: 'Gondur'

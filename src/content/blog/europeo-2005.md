@@ -4,6 +4,7 @@ date: 2005-11-05
 endDate: 2005-11-06
 category: 'europeo'
 city: 'Budapest'
+players: 106
 winner: 'Richard G.'
 featuredImage: '/images/comunita/europeo/ec-2005-budapest.webp'
 excerpt: 'Novembre 2005, Campionato Europeo di Vampire: The Eternal Struggle a Budapest: Mirko A. secondo al tavolo finale. Le foto ritrovate in archivio.'
@@ -14,6 +15,16 @@ events:
     endDate: 2005-11-06
     time: 'tbd'
     format: 'Standard'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a06-faf2-7042-97de-f7b3a1f8bd6f'
+    standingsUrl: '/ev/ec-2005/standings-ec-2005.json'
+highlight:
+  id: 'italiani'
+  label: 'Gli italiani'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>Gli italiani</h2>
+    <p><strong>Mirko A.</strong> arriva <strong>secondo</strong> al tavolo finale con un Giovanni powerbleed, a un passo dal titolo europeo.</p>
+  </div>
 locale: it
 ---
 
@@ -21,22 +32,7 @@ Nel novembre del 2005 un gruppo di giocatori italiani è partito per **Budapest*
 
 Il campionato si è giocato **sabato 5 e domenica 6 novembre**, in un salone pieno di tavoli e di Methuselah arrivati da tutta Europa: al solo Last Chance Qualifier di sabato hanno partecipato **150 giocatori**.
 
-<div id="italiani" class="callout">
-  <h2>Gli italiani</h2>
-  <p><strong>Mirko A.</strong> arriva <strong>secondo</strong> al tavolo finale con un Giovanni powerbleed, a un passo dal titolo europeo.</p>
-</div>
-
-## Il tavolo finale
-
 Il titolo è andato all'ungherese **Richard G.** con un mazzo Ventrue vote, ma a un passo dalla vittoria c'era un italiano: **Mirko A.**, **secondo** al tavolo finale con un **Giovanni powerbleed**.
-
-| Posizione | Giocatore             | Mazzo                          |
-| --------- | --------------------- | ------------------------------ |
-| 1°        | Richard G. (Ungheria) | Ventrue Obfuscate vote         |
-| 2°        | **Mirko A. (Italia)** | Giovanni powerbleed            |
-| 3°        | József G. (Ungheria)  | Kindred Spirits bleed          |
-| 4°        | Amiel F. (Svizzera)   | Inner Circle / Huitzilopochtli |
-| 5°        | Brian M. (USA)        | Legacy of Pander vote          |
 
 ## Una settimana a Budapest
 

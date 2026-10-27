@@ -4,6 +4,7 @@ date: 2005-11-05
 endDate: 2005-11-06
 category: 'europeo'
 city: 'Budapest'
+players: 106
 winner: 'Richard G.'
 featuredImage: '/images/comunita/europeo/ec-2005-budapest.webp'
 excerpt: 'November 2005, Vampire: The Eternal Struggle European Championship in Budapest: Mirko A. second at the final table. The photos recovered from the archive.'
@@ -14,6 +15,16 @@ events:
     endDate: 2005-11-06
     time: 'tbd'
     format: 'Standard'
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a06-faf2-7042-97de-f7b3a1f8bd6f'
+    standingsUrl: '/ev/ec-2005/standings-ec-2005.json'
+highlight:
+  id: 'italiani'
+  label: 'The Italian players'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>The Italian players</h2>
+    <p><strong>Mirko A.</strong> finishes <strong>second</strong> at the final table with a Giovanni powerbleed, one step away from the European title.</p>
+  </div>
 locale: 'en'
 ---
 
@@ -21,22 +32,7 @@ In November 2005 a group of Italian players set off for **Budapest**, host of th
 
 The championship was played on **Saturday, November 5 and Sunday, November 6**, in a hall full of tables and of Methuselahs from all over Europe: the Saturday Last Chance Qualifier alone drew **150 players**.
 
-<div id="italiani" class="callout">
-  <h2>The Italian players</h2>
-  <p><strong>Mirko A.</strong> finishes <strong>second</strong> at the final table with a Giovanni powerbleed, one step away from the European title.</p>
-</div>
-
-## The final table
-
 The title went to Hungary's **Richard G.** with a Ventrue vote deck, but an Italian came within a step of winning: **Mirko A.**, **second** at the final table with a **Giovanni powerbleed**.
-
-| Place | Player                 | Deck                           |
-| ----- | ---------------------- | ------------------------------ |
-| 1st   | Richard G. (Hungary)   | Ventrue Obfuscate vote         |
-| 2nd   | **Mirko A. (Italy)**   | Giovanni powerbleed            |
-| 3rd   | József G. (Hungary)    | Kindred Spirits bleed          |
-| 4th   | Amiel F. (Switzerland) | Inner Circle / Huitzilopochtli |
-| 5th   | Brian M. (USA)         | Legacy of Pander vote          |
 
 ## A week in Budapest
 

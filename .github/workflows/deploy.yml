@@ -36,6 +36,8 @@ jobs:
       # A newer commit on the same ref supersedes the in-flight check.
       group: ci-${{ github.ref }}
       cancel-in-progress: true
+    outputs:
+      lighthouse-urls: ${{ steps.lighthouse-urls.outputs.urls }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -57,6 +59,10 @@ jobs:
           # The runner may cache an older 24.x; Astro wants a recent one (engines).
           check-latest: true
           cache: npm
+
+      - name: List the Lighthouse URLs (one lighthouse job each)
+        id: lighthouse-urls
+        run: echo "urls=$(jq -c .ci.collect.url .github/lighthouserc.json)" >> "$GITHUB_OUTPUT"
 
       - run: npm ci
 
@@ -120,13 +126,21 @@ jobs:
   lighthouse:
     # Lighthouse is a deploy gate.
     # Reuses the dist artifact from ci so a rerun doesn't redo lint/test/build.
+    # One job per URL of .github/lighthouserc.json, in parallel: in a single
+    # job the 8 URLs x 3 runs x devtools throttling took ~11 min, most of the
+    # pipeline. Each job still runs 3 times and takes the median.
+    name: lighthouse ${{ matrix.url }}
     needs: ci
     runs-on: ubuntu-24.04
-    # 8 URLs x 3 runs x devtools throttling (~20-30s each) = 8-12 min.
-    # Cushion for runner variance.
-    timeout-minutes: 20
+    # 3 runs x devtools throttling (~20-30s each), plus a cushion for runner variance.
+    timeout-minutes: 10
+    strategy:
+      # Every page reports its scores, even when another one fails the gate.
+      fail-fast: false
+      matrix:
+        url: ${{ fromJSON(needs.ci.outputs.lighthouse-urls) }}
     concurrency:
-      group: lighthouse-${{ github.ref }}
+      group: lighthouse-${{ github.ref }}-${{ matrix.url }}
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -139,11 +153,20 @@ jobs:
           name: dist
           path: dist
 
+      - name: Narrow the config to this job's URL
+        # The action ignores its `urls` input when the config sets
+        # staticDistDir, so the URL list is narrowed in a copy of the config.
+        env:
+          URL: ${{ matrix.url }}
+        run: jq --arg url "$URL" '.ci.collect.url = [$url]' .github/lighthouserc.json > "$RUNNER_TEMP/lighthouserc.json"
+
       - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
         with:
-          configPath: .github/lighthouserc.json
+          configPath: ${{ runner.temp }}/lighthouserc.json
           uploadArtifacts: true
+          # One artifact per job: the default name would clash across the matrix.
+          artifactName: lighthouse-results-${{ strategy.job-index }}
 
   deploy:
     needs: [ci, lighthouse]

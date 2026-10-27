@@ -122,6 +122,7 @@ stages:
 
   - name: 'Bologna'
     album: 'tour-2025-bologna'
+    videos: 'https://www.youtube.com/playlist?list=PLdSJxppuPb0U'
     number: 9
     date: 2025-11-29
     cities: ['bologna']

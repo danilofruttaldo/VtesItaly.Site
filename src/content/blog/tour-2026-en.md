@@ -28,6 +28,7 @@ stageItemLabel: 'Sin'
 stages:
   - name: 'GREED'
     album: 'tour-2026-avarizia'
+    videos: 'https://www.youtube.com/playlist?list=PLVu1wT3CaPag'
     number: 1
     date: 2026-02-15
     cities: ['modena', 'parma']

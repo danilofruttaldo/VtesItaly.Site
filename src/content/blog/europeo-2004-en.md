@@ -16,6 +16,14 @@ events:
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a06-ba0d-7772-a0a3-cbc1020b2d6b'
     standingsUrl: '/ev/ec-2004/standings-ec-2004.json'
+highlight:
+  id: 'italiani'
+  label: 'The Italian players'
+highlightHtml: |
+  <div id="italiani" class="callout">
+    <h2>The Italian players</h2>
+    <p>The best Italian is <strong>Roberto M.</strong>, 16th of 101 players; <strong>Emiliano I.</strong> (81st) and <strong>Simona S.</strong> (99th) are also ranked.</p>
+  </div>
 locale: 'en'
 ---
 

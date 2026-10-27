@@ -24,6 +24,7 @@ highlightHtml: |
   <div id="italiani" class="callout">
     <h2>The Italian players</h2>
     <p><strong>Mirko A.</strong> finishes <strong>second</strong> at the final table with a Giovanni powerbleed, one step away from the European title.</p>
+    <p>Behind him <strong>Andrea R.</strong> (12th), <strong>Alessandro G.</strong> (28th), <strong>Simona S.</strong> (40th) and <strong>Alessandro D.</strong> (51st).</p>
   </div>
 locale: 'en'
 ---

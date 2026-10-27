@@ -24,6 +24,7 @@ highlightHtml: |
   <div id="italiani" class="callout">
     <h2>Gli italiani</h2>
     <p><strong>Mirko A.</strong> arriva <strong>secondo</strong> al tavolo finale con un Giovanni powerbleed, a un passo dal titolo europeo.</p>
+    <p>Dietro di lui <strong>Andrea R.</strong> (12°), <strong>Alessandro G.</strong> (28°), <strong>Simona S.</strong> (40°) e <strong>Alessandro D.</strong> (51°).</p>
   </div>
 locale: it
 ---

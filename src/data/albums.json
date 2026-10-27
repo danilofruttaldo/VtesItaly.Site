@@ -2407,6 +2407,73 @@
       ]
     },
     {
+      "slug": "tour-2024-firenze",
+      "title": "IT24 - Firenze",
+      "date": "2024-11-23",
+      "city": "firenze",
+      "url": "https://foto.vtesitaly.com/tour-2024-firenze/",
+      "event": "https://vtesitaly.com/tour/tour-2024/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/firenze-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-torneo-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-finale-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-finale-01-thumb.webp",
+          "width": 899,
+          "height": 1599,
+          "section": "Tavolo finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-cena-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-cena-01-thumb.webp",
+          "width": 1600,
+          "height": 1600,
+          "section": "Cena"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-cena-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-cena-02-thumb.webp",
+          "width": 1600,
+          "height": 1600,
+          "section": "Cena"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-cena-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/tour-2024-firenze/tour-2024-firenze-cena-03-thumb.webp",
+          "width": 1600,
+          "height": 1600,
+          "section": "Cena"
+        }
+      ]
+    },
+    {
       "slug": "tour-2024-barga",
       "title": "IT24 - Barga",
       "date": "2024-08-31",

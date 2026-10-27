@@ -47,6 +47,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-eeb8-7303-846e-66aa6549e5dc'
 
   - name: 'Bologna'
+    album: 'tour-2023-bologna'
     number: 4
     date: 2023-04-29
     cities: ['bologna']
@@ -60,6 +61,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-f2fb-75c3-a8a4-9d617d801582'
 
   - name: 'Verona'
+    album: 'tour-2023-verona'
     number: 5
     date: 2023-06-02
     cities: ['verona']
@@ -73,6 +75,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-fb33-7259-9c0d-82e4fe0d9fad'
 
   - name: 'Trento'
+    album: 'tour-2023-trento'
     number: 6
     date: 2023-06-03
     cities: ['trento']
@@ -99,6 +102,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-017f-713d-8e7d-82a10a3b6608'
 
   - name: 'Barga'
+    album: 'tour-2023-barga'
     number: 8
     date: 2023-09-03
     cities: ['barga']

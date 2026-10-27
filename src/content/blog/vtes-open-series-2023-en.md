@@ -18,6 +18,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-0b88-75af-91f4-0a797f386f11'
 standingsUrl: '/ev/vtes-open-series-2023/standings-vtes-open-series-2023.json'
+album: 'vtes-open-series-2023'
 locale: 'en'
 ---
 

@@ -121,6 +121,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-52e5-759f-ab78-1aa7223284e2'
 
   - name: 'Bologna'
+    album: 'tour-2024-bologna'
     number: 9
     date: 2024-09-15
     cities: ['bologna']
@@ -134,6 +135,7 @@ stages:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-4cdd-7195-928a-2640808ddd33'
 
   - name: 'Firenze'
+    album: 'tour-2024-firenze'
     number: 10
     date: 2024-11-23
     cities: ['firenze']

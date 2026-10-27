@@ -18,6 +18,7 @@ events:
     rounds: 3
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-4d50-7231-8674-b417edad9a2a'
 standingsUrl: '/ev/from-bologna-to-varsavia-2024/standings-from-bologna-to-varsavia-2024.json'
+album: 'from-bologna-to-varsavia-2024'
 locale: 'en'
 ---
 

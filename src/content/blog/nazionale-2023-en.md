@@ -21,6 +21,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-f2f2-71ee-87b3-39e8a4ccbd86'
     standingsUrl: '/nc/nc-2023/standings-nc-2023.json'
   - name: 'SIDE EVENT: Italian Tour 2023 - Bologna'
+    album: 'tour-2023-bologna'
     date: 2023-04-29
     time: '09:30'
     format: 'Standard'

@@ -41,6 +41,7 @@ highlightHtml: |
     <p><strong>Danilo T.</strong> wins a second European title, seven years after Berlin, with a Malkavian Juliet &amp; Arishat stealth vote deck: the only Italian to be European Champion twice.</p>
     <p><strong>Day 1</strong> goes to another Italian, <strong>Simone P.</strong>, with a deck whose name says it all: <em>The queen of æmilia</em>.</p>
   </div>
+album: 'ec-2024'
 locale: 'en'
 ---
 

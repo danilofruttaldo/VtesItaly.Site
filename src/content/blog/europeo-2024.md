@@ -41,6 +41,7 @@ highlightHtml: |
     <p><strong>Danilo T.</strong> vince il secondo titolo europeo, sette anni dopo Berlino, con un Malkavian Juliet &amp; Arishat stealth vote: l'unico italiano campione europeo due volte.</p>
     <p>Il <strong>Day 1</strong> lo vince un altro italiano, <strong>Simone P.</strong>, con un mazzo dal nome che non lascia dubbi: <em>The queen of æmilia</em>.</p>
   </div>
+album: 'ec-2024'
 locale: it
 ---
 

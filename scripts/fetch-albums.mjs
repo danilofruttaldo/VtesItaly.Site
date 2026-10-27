@@ -41,7 +41,7 @@ async function fetchIndex() {
   return { sha: createHash('sha256').update(bytes).digest('hex'), data: JSON.parse(bytes.toString('utf8')) };
 }
 
-let data;
+let data, sha;
 try {
   let index = await fetchIndex();
   for (let i = 1; expectedSha && index.sha !== expectedSha && i < ATTEMPTS; i++) {
@@ -55,7 +55,7 @@ try {
     console.warn(
       `albums: l'indice non coincide ancora con quello pubblicato da Foto (${expectedSha.slice(0, 12)}), procedo comunque`,
     );
-  data = index.data;
+  ({ data, sha } = index);
 } catch (err) {
   if (snapshot) {
     console.error(`albums: foto.vtesitaly.com non raggiungibile (${err.message})`);
@@ -74,4 +74,6 @@ if (problems.length) {
 
 const json = JSON.stringify(data, null, 2) + '\n';
 writeFileSync(snapshot ? SNAPSHOT : LIVE, json);
+// The sha256 of the bytes served, for a rebuild request (CI job albums-snapshot).
+if (process.env.ALBUMS_SHA_FILE) writeFileSync(process.env.ALBUMS_SHA_FILE, sha + '\n');
 console.log(`albums: ${data.albums.length} album da foto.vtesitaly.com${snapshot ? ` (copia in ${SNAPSHOT})` : ''}`);

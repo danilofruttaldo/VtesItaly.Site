@@ -1,8 +1,8 @@
 name: CI
 
-# Single workflow per commit: ci -> lighthouse -> deploy -> coverage badge.
-# Lighthouse and deploy reuse the dist/ artifact uploaded by `ci`, so the
-# whole build pipeline runs only once per push.
+# Single workflow per commit: test and ci in parallel, then lighthouse ->
+# deploy -> coverage badge. Lighthouse and deploy reuse the dist/ artifact
+# uploaded by `ci`, so the whole build pipeline runs only once per push.
 #
 # Actions are pinned to a full commit SHA (a tag can be moved), with the
 # version in a trailing comment; update both by hand.
@@ -24,12 +24,60 @@ permissions:
 # declares its own group instead (see below).
 
 jobs:
-  ci:
-    # Gate that runs on every push: audit, lint, format, typecheck,
-    # tests, build, integration smoke, site-wide checks, size guard.
+  test:
+    # Gate that runs on every push: audit, lint, format, typecheck, unit
+    # tests. Its own job, in parallel with the build in `ci`: lighthouse
+    # starts as soon as dist/ exists, and deploy waits for both.
     # Pinned instead of ubuntu-latest: the -latest label moves to a newer
     # image without notice, and the pipeline breaks for reasons unrelated
     # to the commit being tested.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      # A newer commit on the same ref supersedes the in-flight check.
+      group: test-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Only the badge job pushes: everywhere else the token is not left
+          # in .git/config for later steps to read.
+          persist-credentials: false
+          # Full history, as in ci: some tests read the `git log` dates of
+          # src/content files (src/utils/git-dates.ts).
+          fetch-depth: 0
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          # Same major as `engines` in package.json (>=24); .nvmrc is the single
+          # source for local tooling (nvm, fnm) and CI. setup-node caches
+          # ~/.npm keyed on the lockfile, which is Node-version agnostic;
+          # node_modules is never cached (npm ci rebuilds it).
+          node-version-file: .nvmrc
+          # The runner may cache an older 24.x; Astro wants a recent one (engines).
+          check-latest: true
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm audit --audit-level=high
+
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run check
+      - run: npm run test:coverage
+
+      - name: Keep the coverage summary for the badge job
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: coverage-summary
+          path: coverage/coverage-summary.json
+          retention-days: 1
+
+  ci:
+    # Gate that runs on every push: build, integration smoke, site-wide
+    # checks, size guard. The static checks and unit tests are in `test`.
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     concurrency:
@@ -65,21 +113,6 @@ jobs:
         run: echo "urls=$(jq -c .ci.collect.url .github/lighthouserc.json)" >> "$GITHUB_OUTPUT"
 
       - run: npm ci
-
-      - run: npm audit --audit-level=high
-
-      - run: npm run lint
-      - run: npm run format:check
-      - run: npm run check
-      - run: npm run test:coverage
-
-      - name: Keep the coverage summary for the badge job
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: coverage-summary
-          path: coverage/coverage-summary.json
-          retention-days: 1
 
       - run: npm run build
         env:
@@ -145,6 +178,8 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          # Only the config is read here.
+          sparse-checkout: .github
           persist-credentials: false
 
       - name: Download dist artifact from ci
@@ -169,7 +204,7 @@ jobs:
           artifactName: lighthouse-results-${{ strategy.job-index }}
 
   deploy:
-    needs: [ci, lighthouse]
+    needs: [test, ci, lighthouse]
     # Only main reaches production. workflow_dispatch on another branch runs
     # ci and lighthouse but stops here.
     if: github.ref == 'refs/heads/main'
@@ -447,6 +482,9 @@ jobs:
         env:
           # Same wait as the build: retry until the CDN serves Foto's new file.
           ALBUMS_SHA256: ${{ github.event.client_payload.albums_sha256 }}
+          ALBUMS_SHA_FILE: ${{ runner.temp }}/albums.sha
+          EVENT: ${{ github.event_name }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           node scripts/fetch-albums.mjs --snapshot
           if [ -z "$(git status --porcelain src/data/albums.json)" ]; then
@@ -459,6 +497,21 @@ jobs:
           git commit -m "chore(albums): refresh the albums.json snapshot [skip ci]"
           # One retry if main moved between checkout and push.
           git push || { git pull --rebase origin main && git push; }
+
+          # Outside a foto-updated run the change is a Foto update the site has
+          # not absorbed: its rebuild was cancelled by a push (they share the ci
+          # group) or never sent, so this release may show the old albums. Ask
+          # for the rebuild Foto would have sent. Never from a foto-updated run,
+          # which is that rebuild: no loop. A dispatch sent with GITHUB_TOKEN
+          # does start a workflow run, unlike a push.
+          if [ "$EVENT" != "repository_dispatch" ]; then
+            curl -fsS -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$GITHUB_REPOSITORY/dispatches" \
+              -d "{\"event_type\":\"foto-updated\",\"client_payload\":{\"albums_sha256\":\"$(cat "$ALBUMS_SHA_FILE")\"}}"
+            echo "Foto update not absorbed yet: rebuild requested."
+          fi
 
   coverage-badge:
     # Refreshes `.github/coverage-badge.json` (read by the README badge via

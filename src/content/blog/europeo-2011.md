@@ -30,7 +30,7 @@ events:
 locale: it
 ---
 
-L'edizione 2011 del **Campionato Europeo** di _Vampire: The Eternal Struggle_ si è giocata a **Varsavia** (Polonia) dal 11 al 13 novembre 2011. Campione europeo: **Otso S.** (Finlandia).
+L'edizione 2011 del **Campionato Europeo** di _Vampire: The Eternal Struggle_ si è giocata a **Varsavia** (Polonia) dall'11 al 13 novembre 2011. Campione europeo: **Otso S.** (Finlandia).
 
 Negli eventi collaterali: il Last Chance Qualifier l'ha vinto **Gyula E.** (Ungheria), il Legendary Vampire **Tomasz I.** (Polonia), il First Chance Qualifier **Djordje B.** (Serbia). Su Archon di questi tornei, come del Day 2, è registrato solo il vincitore.
 

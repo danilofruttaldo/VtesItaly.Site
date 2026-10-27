@@ -14,7 +14,8 @@
 # 301s for retired slugs and for paths of older site versions, and the 404
 # (instead of Apache's 403) on directories without an index.
 #
-# Polite on purpose: about forty requests, one at a time, with a short pause.
+# Polite on purpose: about forty requests, one at a time, with a short pause
+# (0.3s: at 1s the pauses were most of the deploy job's minute).
 # Bounded on purpose too: short per-request timeouts, one retry, and a global
 # time budget, so a deploy job never hangs here (worst case about 3 minutes).
 # If the home does not answer 200 the script stops at once: every other check
@@ -27,7 +28,7 @@ set -uo pipefail
 BASE="${1:-https://vtesitaly.com}"
 BASE="${BASE%/}"
 UA="vtesitaly-smoke-test/1.0 (+https://github.com/danilofruttaldo/VtesItaly.Site)"
-PAUSE=1
+PAUSE=0.3
 FAILED=0
 # Global budget in seconds: past it the run stops and fails.
 BUDGET=170

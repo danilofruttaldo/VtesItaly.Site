@@ -18,10 +18,12 @@ events:
     standingsUrl: '/ev/ec-2016/standings-ec-2016-day-1.json'
   - name: 'MAIN EVENT: EC 2016 Day 2'
     date: 2016-11-13
-    time: 'tbd'
+    time: '10:30'
     format: 'Standard'
     proxies: false
     rounds: 3
+    archonUrl: 'https://archon.vekn.net/tournaments/019f1a19-225f-779e-8d3f-90ee1c318afe'
+    standingsUrl: '/ev/ec-2016/standings-ec-2016-day-2.json'
 highlight:
   id: 'italiani'
   label: 'Gli italiani'
@@ -29,21 +31,9 @@ highlightHtml: |
   <div id="italiani" class="callout">
     <h2>Gli italiani</h2>
     <p>Il Campionato Europeo torna in Italia dieci anni dopo Torino: l'edizione 2016 si gioca a <strong>Genova</strong>.</p>
-    <p><strong>Nicola L.</strong> arriva al tavolo finale del <strong>Day 1</strong>; tra i qualificati al Day 2 anche <strong>Giulio D.</strong> (7°) e <strong>Danilo T.</strong> (11°).</p>
+    <p><strong>Nicola L.</strong> arriva al tavolo finale del <strong>Day 1</strong>. Al <strong>Day 2</strong> il miglior italiano è <strong>Alessandro D.</strong> (6°), seguito da <strong>Vanni B.</strong> (10°).</p>
   </div>
 locale: it
 ---
 
-L'edizione 2016 del **Campionato Europeo** di _Vampire: The Eternal Struggle_ si è giocata a **Genova**: sabato 12 novembre il Day 1 (**89 giocatori**), domenica 13 il Day 2. Campione europeo: **Pau V.** (Spagna).
-
-## Il tavolo finale del Day 2
-
-| Posizione | Giocatore | Paese       | Mazzo                        |
-| --------- | --------- | ----------- | ---------------------------- |
-| Campione  | Pau V.    | Spagna      | Malgorzata & Friends toolbox |
-| Finalista | Jorge D.  | Spagna      | –                            |
-| Finalista | Rolf E.   | Paesi Bassi | Weenie Dominate              |
-| Finalista | Sonam A.  | Stati Uniti | –                            |
-| Finalista | Randal R. | Svezia      | –                            |
-
-_Fonte: [VTES ONE](https://vtesone.wordpress.com/tournaments/european-championships/). I nomi dei giocatori sono abbreviati come nel resto del sito._
+L'edizione 2016 del **Campionato Europeo** di _Vampire: The Eternal Struggle_ si è giocata a **Genova**: sabato 12 novembre il Day 1 (**89 giocatori**), domenica 13 il Day 2 (**40**). Campione europeo: **Pau V.** (Spagna).

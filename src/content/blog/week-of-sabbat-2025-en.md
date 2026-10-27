@@ -45,6 +45,8 @@ linksAfter:
   - label: 'Report (PDF)'
     url: '/ev/wos-2025/report-wos-2025-en.pdf'
     locale: en
+  - label: "L'occhio di Silvia (videos)"
+    url: 'https://www.youtube.com/playlist?list=PLeLDytalEens'
 ---
 
 The new Sabbat expansion marks a special moment: **all of Italy unites** to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city.

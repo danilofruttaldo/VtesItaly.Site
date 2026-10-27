@@ -20,6 +20,9 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-28fd-74d9-b2b1-16d8e7af9eb4'
 standingsUrl: '/ev/aemilia-by-night-episode-1-2024/standings-aemilia-by-night-episode-1-2024.json'
 album: 'aemilia-by-night-ep1-2024'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLG7Ogph3_UYQ'
+    label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---
 

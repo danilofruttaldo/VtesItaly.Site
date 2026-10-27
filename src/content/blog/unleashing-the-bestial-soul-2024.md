@@ -19,6 +19,9 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-3dc2-74cc-b14a-3746e8807b7b'
 standingsUrl: '/ev/unleashing-the-bestial-soul-2024/standings-unleashing-the-bestial-soul-2024.json'
 album: 'unleashing-the-bestial-soul-2024'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLBzawH5FOu_Q'
+    label: "L'occhio di Silvia"
 locale: it
 ---
 

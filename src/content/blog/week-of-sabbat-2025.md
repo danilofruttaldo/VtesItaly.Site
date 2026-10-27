@@ -49,6 +49,8 @@ linksAfter:
   - label: 'Event report template (PDF)'
     url: '/ev/wos-2025/report-wos-2025-en.pdf'
     locale: en
+  - label: "L'occhio di Silvia"
+    url: 'https://www.youtube.com/playlist?list=PLeLDytalEens'
 album: 'week-of-sabbat-2025'
 locale: it
 ---

@@ -31,6 +31,9 @@ links:
   - label: 'Opening hours and contacts'
     url: 'https://www.play-festival.it/informazioni/orari-contatti/'
 album: 'play-bologna-2026'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLa1cYTfG6MSg'
+    label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---
 

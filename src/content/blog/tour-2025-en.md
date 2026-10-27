@@ -92,6 +92,7 @@ stages:
 
   - name: 'Roma'
     album: 'tour-2025-roma'
+    videos: 'https://www.youtube.com/playlist?list=PLNVfQdKvikO4'
     number: 7
     date: 2025-10-12
     cities: ['roma']

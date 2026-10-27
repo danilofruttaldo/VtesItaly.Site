@@ -26,6 +26,9 @@ highlightHtml: |
     <p><strong>Mirko A.</strong> finishes <strong>second</strong> at the final table with a Giovanni powerbleed, one step away from the European title.</p>
     <p>Behind him <strong>Andrea R.</strong> (12th), <strong>Alessandro G.</strong> (28th), <strong>Simona S.</strong> (40th) and <strong>Alessandro D.</strong> (51st).</p>
   </div>
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLF5Q3Z4uqS3Y'
+    label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---
 

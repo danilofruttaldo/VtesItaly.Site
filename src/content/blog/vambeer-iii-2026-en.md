@@ -26,6 +26,9 @@ pricing:
 prizes:
   - 'Prize pool based on the number of participants'
 standingsUrl: '/ev/vambeer-iii-2026/standings-vambeer-iii-2026.json'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLNz_PiyRL8cE'
+    label: 'Short'
 locale: 'en'
 ---
 

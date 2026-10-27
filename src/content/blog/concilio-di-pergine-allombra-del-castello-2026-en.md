@@ -28,6 +28,9 @@ prizes:
   - 'Finalists prize'
 contact: 'asgard.aldeno@gmail.com'
 standingsUrl: '/ev/concilio-pergine-2026/standings-concilio-pergine-2026.json'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLWGZ2NW0TqhU'
+    label: 'Live streams'
 locale: 'en'
 ---
 

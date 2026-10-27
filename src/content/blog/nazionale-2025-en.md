@@ -52,6 +52,9 @@ notes:
   - 'Overnight stay and meals available on-site at Tenuta Gelindo dei Magredi.'
   - 'Contact the venue directly to book.'
 album: 'nc-2025'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLN8XZ-N-NXT0'
+    label: 'Short: Zombamba!'
 locale: en
 ---
 

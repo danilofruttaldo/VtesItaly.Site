@@ -52,6 +52,9 @@ notes:
   - 'Possibilità di pernottamento e pasti in loco presso la tenuta Gelindo dei Magredi.'
   - 'Contattare direttamente la struttura per prenotare.'
 album: 'nc-2025'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLN8XZ-N-NXT0'
+    label: 'Short: Zombamba!'
 locale: it
 ---
 

@@ -32,6 +32,7 @@ highlightHtml: |
     <h2>The Italian players</h2>
     <p><strong>Gianluca S.</strong> reaches the <strong>Day 1</strong> final table and qualifies for Day 2, where <strong>Danilo T.</strong> also plays.</p>
   </div>
+album: 'ec-2010'
 locale: 'en'
 ---
 

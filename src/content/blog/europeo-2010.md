@@ -32,6 +32,7 @@ highlightHtml: |
     <h2>Gli italiani</h2>
     <p><strong>Gianluca S.</strong> arriva al tavolo finale del <strong>Day 1</strong> e si qualifica per il Day 2, dove gioca anche <strong>Danilo T.</strong></p>
   </div>
+album: 'ec-2010'
 locale: it
 ---
 

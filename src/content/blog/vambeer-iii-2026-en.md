@@ -29,7 +29,7 @@ standingsUrl: '/ev/vambeer-iii-2026/standings-vambeer-iii-2026.json'
 album: 'vambeer-iii-2026'
 streamingLinks:
   - url: 'https://www.youtube.com/playlist?list=PLNz_PiyRL8cE'
-    label: 'Short'
+    label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---
 

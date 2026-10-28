@@ -26,6 +26,9 @@ highlightHtml: |
   </div>
 standingsUrl: '/ev/french-grand-prix-2026/standings-french-grand-prix-2026.json'
 album: 'french-grand-prix-2026'
+streamingLinks:
+  - url: 'https://www.youtube.com/playlist?list=PLcS_fhKK_x0c'
+    label: "L'occhio di Silvia"
 locale: it
 ---
 

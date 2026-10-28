@@ -92,7 +92,7 @@ stages:
 
   - name: 'Roma'
     album: 'tour-2025-roma'
-    videos: 'https://www.youtube.com/playlist?list=PLNVfQdKvikO4'
+    videos: 'https://www.youtube.com/watch?v=pe-4-I5MlUQ'
     number: 7
     date: 2025-10-12
     cities: ['roma']
@@ -122,7 +122,7 @@ stages:
 
   - name: 'Bologna'
     album: 'tour-2025-bologna'
-    videos: 'https://www.youtube.com/playlist?list=PLdSJxppuPb0U'
+    videos: 'https://www.youtube.com/watch?v=maRcC70lefM'
     number: 9
     date: 2025-11-29
     cities: ['bologna']

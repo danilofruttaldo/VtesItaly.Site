@@ -22,7 +22,7 @@ events:
 standingsUrl: '/ev/vambeer-the-eternal-stout-2023/standings-vambeer-the-eternal-stout-2023.json'
 album: 'vambeer-the-eternal-stout-2023'
 streamingLinks:
-  - url: 'https://www.youtube.com/watch?v=u-x0IP4q_J8'
+  - url: 'https://www.youtube.com/playlist?list=PLRXtGi6bU-9w'
     label: "L'occhio di Silvia"
 locale: it
 ---

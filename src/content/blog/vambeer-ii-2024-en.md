@@ -22,7 +22,7 @@ events:
 standingsUrl: '/ev/vambeer-ii-2024/standings-vambeer-ii-2024.json'
 album: 'vambeer-ii-2024'
 streamingLinks:
-  - url: 'https://www.youtube.com/watch?v=JlwcLn4TDw4'
+  - url: 'https://www.youtube.com/playlist?list=PLQr2uOy6Z1PY'
     label: "L'occhio di Silvia (videos)"
 locale: 'en'
 ---

@@ -43,7 +43,7 @@ highlightHtml: |
   </div>
 album: 'ec-2024'
 streamingLinks:
-  - url: 'https://www.youtube.com/watch?v=8JW4cjRaMsw'
+  - url: 'https://www.youtube.com/playlist?list=PLCi9vLoaXbA4'
     label: "L'occhio di Silvia"
 locale: it
 ---

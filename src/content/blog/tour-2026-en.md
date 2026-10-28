@@ -28,7 +28,7 @@ stageItemLabel: 'Sin'
 stages:
   - name: 'GREED'
     album: 'tour-2026-avarizia'
-    videos: 'https://www.youtube.com/playlist?list=PLVu1wT3CaPag'
+    videos: 'https://www.youtube.com/watch?v=GBa5WHVkNcs'
     number: 1
     date: 2026-02-15
     cities: ['modena', 'parma']
@@ -56,7 +56,7 @@ stages:
     description: 'Envy watches and learns. Wanting what others have is the first step to taking it. A subtle sin, but lethal, at the heart of competition.'
   - name: 'WRATH'
     album: 'tour-2026-ira'
-    videos: 'https://www.youtube.com/playlist?list=PLVuKRm6t69AI'
+    videos: 'https://www.youtube.com/watch?v=beGJWLIzGCg'
     number: 3
     date: 2026-04-12
     cities: ['pordenone', 'treviso']

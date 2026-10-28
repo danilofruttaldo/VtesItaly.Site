@@ -1,6 +1,150 @@
 {
   "albums": [
     {
+      "slug": "vambeer-iii-2026",
+      "title": "Vambeer III",
+      "date": "2026-10-24",
+      "city": "modena",
+      "url": "https://foto.vtesitaly.com/vambeer-iii-2026/",
+      "event": "https://vtesitaly.com/comunita/vambeer-iii-2026/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/modena-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-arrivo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-arrivo-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Arrivo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-arrivo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-arrivo-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Arrivo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Medium Ævum"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Medium Ævum"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Medium Ævum"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-04-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Medium Ævum"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-05-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Medium Ævum"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-medium-aevum-06-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Medium Ævum"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-01-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-02-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-05-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-06-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-turni-di-gioco-07-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-01-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Oasi di Manzolino"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-02-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Oasi di Manzolino"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-03-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Oasi di Manzolino"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/vambeer-iii-2026/vambeer-iii-2026-oasi-di-manzolino-04-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Oasi di Manzolino"
+        }
+      ]
+    },
+    {
       "slug": "rise-of-the-nephtali-2026",
       "title": "Rise of the Nephtali",
       "date": "2026-09-19",
@@ -5756,6 +5900,227 @@
           "width": 643,
           "height": 482,
           "section": "Finale"
+        }
+      ]
+    },
+    {
+      "slug": "ec-2010",
+      "title": "European Championship 2010 - Parigi",
+      "date": "2010-10-30",
+      "city": "parigi",
+      "url": "https://foto.vtesitaly.com/ec-2010/",
+      "event": "https://vtesitaly.com/europeo/europeo-2010/",
+      "cover": "https://foto.vtesitaly.com/p/_covers/parigi-thumb.webp",
+      "photos": [
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-01-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-02-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-03-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-04-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-05-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-06-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-07-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-08-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-torneo-09-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Turni di gioco"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-01-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-02-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-03.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-03-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-04-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-05-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-06-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-07.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-07-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-08.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-08-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-09.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-09-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-10.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-10-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-11.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-11-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-12.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-12-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-13.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-13-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-14.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-14-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-15.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-15-thumb.webp",
+          "width": 360,
+          "height": 270,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-16.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-16-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-17.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-17-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-18.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-18-thumb.webp",
+          "width": 270,
+          "height": 360,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-19.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-19-thumb.webp",
+          "width": 1600,
+          "height": 1200,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-20.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-20-thumb.webp",
+          "width": 1077,
+          "height": 1600,
+          "section": "Intorno al torneo"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-21.webp",
+          "thumb": "https://foto.vtesitaly.com/p/ec-2010/ec-2010-parigi-21-thumb.webp",
+          "width": 1200,
+          "height": 1600,
+          "section": "Intorno al torneo"
         }
       ]
     },

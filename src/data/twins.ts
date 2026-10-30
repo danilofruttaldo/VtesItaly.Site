@@ -7,6 +7,15 @@ export interface Twin {
 
 export const twins: Twin[] = [
   {
+    card: 'Tharmas',
+    person: { it: 'Idris Elba', en: 'Idris Elba' },
+    image: '/images/gemelli/idris-elba.webp',
+    description: {
+      it: "L'indipendente appena uscito ricorda l'attore britannico. Stesso pizzetto, stesso giaccone di pelle nera e stessa aria da duro che non ha bisogno di alzare la voce.",
+      en: 'The newly released independent recalls the British actor. Same goatee, same black leather coat, and same tough-guy air that never needs to raise its voice.',
+    },
+  },
+  {
     card: 'Whisper',
     person: { it: 'Achille Lauro', en: 'Achille Lauro' },
     image: '/images/gemelli/achille-lauro.webp',

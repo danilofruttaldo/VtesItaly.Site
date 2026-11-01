@@ -2525,6 +2525,13 @@
           "section": "Atmosfera"
         },
         {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-atmosfera-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-atmosfera-02-thumb.webp",
+          "width": 1280,
+          "height": 720,
+          "section": "Atmosfera"
+        },
+        {
           "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-01-thumb.webp",
           "width": 1600,
@@ -2549,6 +2556,30 @@
           "section": "Round"
         },
         {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-04-thumb.webp",
+          "width": 1400,
+          "height": 788,
+          "caption": "Niccolò sembra pensare: oh no... Lasombra!",
+          "section": "Round"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-05-thumb.webp",
+          "width": 1400,
+          "height": 788,
+          "caption": "Dreeno: siamo così alleati che giochiamo esattamente lo stesso mazzo",
+          "section": "Round"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-round-06-thumb.webp",
+          "width": 1400,
+          "height": 788,
+          "caption": "Walt non è per niente divertito",
+          "section": "Round"
+        },
+        {
           "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-01.webp",
           "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-01-thumb.webp",
           "width": 900,
@@ -2562,6 +2593,14 @@
           "width": 900,
           "height": 1600,
           "caption": "Leo ci tiene a ricordare: Maleficia non è una Disciplina",
+          "section": "Finale"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-finale-04-thumb.webp",
+          "width": 1134,
+          "height": 800,
+          "caption": "Nana e Nangila entrambe in torpore",
           "section": "Finale"
         },
         {
@@ -2595,6 +2634,41 @@
           "height": 765,
           "caption": "I vincitori dei premi stile",
           "section": "Concorso di stile"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-04.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-04-thumb.webp",
+          "width": 788,
+          "height": 1400,
+          "section": "Concorso di stile"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-05.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-05-thumb.webp",
+          "width": 720,
+          "height": 1280,
+          "section": "Concorso di stile"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-06.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-concorso-di-stile-06-thumb.webp",
+          "width": 1000,
+          "height": 1134,
+          "section": "Concorso di stile"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-segnalini-01.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-segnalini-01-thumb.webp",
+          "width": 788,
+          "height": 1400,
+          "section": "Segnalini"
+        },
+        {
+          "src": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-segnalini-02.webp",
+          "thumb": "https://foto.vtesitaly.com/p/taste-of-spritzae-2025/taste-of-spritzae-2025-segnalini-02-thumb.webp",
+          "width": 788,
+          "height": 1400,
+          "section": "Segnalini"
         }
       ]
     },

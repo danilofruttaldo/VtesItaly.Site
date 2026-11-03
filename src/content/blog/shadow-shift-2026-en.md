@@ -18,6 +18,7 @@ events:
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a1025f-dd3a-73c5-ac8c-e2e890fc259a'
 contact: 'Vtesfirenze@gmail.com'
+standingsUrl: '/ev/shadow-shift-2026/standings-shadow-shift-2026.json'
 locale: 'en'
 ---
 

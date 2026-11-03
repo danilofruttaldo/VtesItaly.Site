@@ -25,3 +25,5 @@ locale: it
 Aspettando le nuove carte ci si diverte in quel di **Giaveno**: torneo **Standard** domenica **1 novembre 2026** da **Gondur**: 2 round e finale, proxy ammesse.
 
 Organizza **Paolo Pasqualin**, Principe di Torino.
+
+**Il torneo non si è svolto.**

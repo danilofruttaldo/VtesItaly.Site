@@ -25,3 +25,5 @@ locale: 'en'
 Waiting for the new cards, we have some fun in **Giaveno**: a **Standard** tournament on Sunday, **November 1, 2026** at **Gondur**: 2 rounds and a final, proxies allowed.
 
 Organized by **Paolo Pasqualin**, Prince of Torino.
+
+**The tournament did not take place.**

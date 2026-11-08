@@ -1,0 +1,10 @@
+[
+  { "rank": 1, "name": "Matteo Ferrari", "gw": 0, "vp": 1.5, "fvp": 1.5, "tp": 84 },
+  { "rank": 2, "name": "Marco Lombardo", "gw": 1, "vp": 4, "fvp": 0.5, "tp": 108 },
+  { "rank": 2, "name": "Matteo Sandrin", "gw": 0, "vp": 1.5, "fvp": 0.5, "tp": 84 },
+  { "rank": 2, "name": "Danilo Fruttaldo", "gw": 0, "vp": 0.5, "fvp": 0.5, "tp": 54 },
+  { "rank": 2, "name": "Eleonora Basso", "gw": 2, "vp": 6, "fvp": 0, "tp": 120 },
+  { "rank": 6, "name": "Nicola De Nadai", "gw": 0, "vp": 0.5, "fvp": null, "tp": 54 },
+  { "rank": 7, "name": "Giorgio Schiavon", "gw": 0, "vp": 0, "fvp": null, "tp": 36 },
+  { "rank": 7, "name": "Gioele Rubinato", "gw": 0, "vp": 0, "fvp": null, "tp": 36 }
+]

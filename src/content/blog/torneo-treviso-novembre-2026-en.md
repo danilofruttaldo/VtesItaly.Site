@@ -19,6 +19,8 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a15b68-f83e-7518-a186-9c63a0cb5058'
+standingsUrl: '/ev/endless-night-2026/standings-endless-night-2026.json'
+album: 'endless-night-2026'
 schedule:
   - time: '09:30'
     label: 'Doors open'

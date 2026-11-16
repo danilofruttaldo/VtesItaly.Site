@@ -18,6 +18,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a1600d-95b7-72d7-a31b-af6488aaa220'
+    cancelled: true
 contact: 'wraith70@tiscali.it'
 locale: it
 ---
@@ -25,5 +26,3 @@ locale: it
 Aspettando le nuove carte ci si diverte in quel di **Giaveno**: torneo **Standard** domenica **1 novembre 2026** da **Gondur**: 2 round e finale, proxy ammesse.
 
 Organizza **Paolo Pasqualin**, Principe di Torino.
-
-**Il torneo non si è svolto.**

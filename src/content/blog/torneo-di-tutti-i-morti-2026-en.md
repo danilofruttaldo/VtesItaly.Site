@@ -18,6 +18,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a1600d-95b7-72d7-a31b-af6488aaa220'
+    cancelled: true
 contact: 'wraith70@tiscali.it'
 locale: 'en'
 ---
@@ -25,5 +26,3 @@ locale: 'en'
 Waiting for the new cards, we have some fun in **Giaveno**: a **Standard** tournament on Sunday, **November 1, 2026** at **Gondur**: 2 rounds and a final, proxies allowed.
 
 Organized by **Paolo Pasqualin**, Prince of Torino.
-
-**The tournament did not take place.**

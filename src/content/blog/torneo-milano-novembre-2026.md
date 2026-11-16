@@ -18,6 +18,7 @@ events:
     proxies: true
     rounds: 2
     archonUrl: 'https://archon.vekn.net/tournaments/01a138f2-3daa-70f8-b851-ff0f9e8811bb'
+    cancelled: true
 schedule:
   - time: '09:30'
     label: 'Check-in'
@@ -45,5 +46,3 @@ Sede raggiungibile con la **Metro 1 Rossa**, fermata _Villa San Giovanni_ (direz
 All'interno della struttura c'è un **bar** per le consumazioni.
 
 Il pranzo è previsto **tra il primo e il secondo round**, indicativamente dalle **12:00/12:30** fino alle **13:30/13:45**. È possibile pranzare in pizzeria/trattoria con un **menu a prezzo fisso** (primo + secondo + contorno) a circa **15 €**, prenotando la mattina del torneo.
-
-**Il torneo non si è svolto.**

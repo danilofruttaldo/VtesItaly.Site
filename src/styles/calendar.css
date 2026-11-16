@@ -181,6 +181,12 @@
   font-weight: 400;
 }
 
+/* Tournament called off: grey instead of the category colour (set inline,
+   hence !important), the "[ANNULLATO]" tag is already in the title. */
+.cal__cell-label--cancelled {
+  color: var(--color-muted) !important;
+}
+
 /* Event label - shown on desktop */
 .cal__cell-label {
   position: relative;

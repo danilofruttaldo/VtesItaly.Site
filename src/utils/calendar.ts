@@ -1,7 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './i18n';
 import { useTranslations } from './i18n';
-import { resolvePlatformLabel, stageDisplay } from './status';
+import { allEventsCancelled, resolvePlatformLabel, stageDisplay } from './status';
 import { postUrl } from './url';
 import { imageFocus, squarestImage } from './image';
 import { isoDate } from './date';
@@ -29,6 +29,10 @@ export interface CalendarEvent {
   // `object-position` of a filled image: its point of interest (utils/image imageFocus).
   imagePosition?: string;
   archonUrl?: string; // Archon or BCN Crisis link
+  // Called off (events[].cancelled, stages[].cancelled): it stays on the
+  // calendar, its title tagged "[ANNULLATO]" (cancelledTag), greyed out and
+  // with no sign-up or add-to-calendar button in the popup.
+  cancelled?: boolean;
   platform?: string; // label of the archonUrl button ("Archon", "BCN Crisis")
   tags?: string[]; // post tags for sub-category coloring
   // Tour stage still on the placeholder at build time: the real cover and the
@@ -108,12 +112,23 @@ export function roundsLabel(rounds: number, locale: Locale): string {
 }
 
 /**
+ * "[ANNULLATO] " / "[CANCELLED] ": the tag in front of the title of a
+ * tournament called off, on the calendar, the Google calendar and the
+ * homepage timeline. In the title because that is the one thing every
+ * calendar app shows.
+ */
+export function cancelledTag(locale: Locale): string {
+  return `[${useTranslations(locale).status.cancelled.toUpperCase()}] `;
+}
+
+/**
  * Extract a flat list of calendar events from blog posts.
  * Handles: stages (tour) and the events array (GP/NC/community). League posts
  * are skipped entirely (see `isLeaguePost`).
  */
 export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: Locale): CalendarEvent[] {
   const t = useTranslations(locale);
+  const tag = cancelledTag(locale);
   const events: CalendarEvent[] = [];
 
   for (const post of posts) {
@@ -131,7 +146,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
         if (!stage.date) continue;
-        if (stage.hideDate || stage.cancelled) continue;
+        if (stage.hideDate) continue;
         const d = new Date(stage.date);
         // Skip placeholder dates (1st of month without confirmed time)
         if (d.getUTCDate() === 1 && (!stage.time || stage.time === TIME_TBD)) continue;
@@ -140,7 +155,8 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           id: `${category}/${post.id}/${isoDate(d)}`,
           date: isoDate(d),
           time: stage.time && stage.time !== TIME_TBD ? stage.time : CAL_TIME_TBD,
-          title: `IT${yearShort} - ${stage.name}`,
+          title: `${stage.cancelled ? tag : ''}IT${yearShort} - ${stage.name}`,
+          cancelled: stage.cancelled || undefined,
           postTitle,
           category,
           url,
@@ -189,6 +205,7 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
           imageFill,
           imagePosition: imageFill ? imageFocus(image) : undefined,
           archonUrl: ev.archonUrl,
+          cancelled: ev.cancelled || undefined,
         };
 
         // Start date entry. For community posts, use the post title when:
@@ -198,7 +215,9 @@ export function extractCalendarEvents(posts: CollectionEntry<'blog'>[], locale: 
         const allSameName =
           post.data.events!.length > 1 && post.data.events!.every((e) => e.name === post.data.events![0].name);
         const useTitle = category === 'comunita' && (post.data.events!.length === 1 || allSameName);
-        const displayName = useTitle ? postTitle : ev.name;
+        // The tag goes after the "Inizia:"/"Fine:" prefix, which the
+        // Google sync and the add-to-calendar link strip off the start.
+        const displayName = (ev.cancelled ? tag : '') + (useTitle ? postTitle : ev.name);
         const startTitle = hasEndDate ? `${t.calendar.starts}: ${displayName}` : displayName;
         events.push({
           ...baseEvent,
@@ -310,13 +329,13 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
       const display = stageDisplay(post.data.stages);
       for (let si = 0; si < post.data.stages.length; si++) {
         const stage = post.data.stages[si];
-        if (!stage.date || stage.hideDate || stage.cancelled) continue;
+        if (!stage.date || stage.hideDate) continue;
         const d = new Date(stage.date);
         if (d.getUTCDate() === 1 && (!stage.time || stage.time === TIME_TBD)) continue;
         const yearShort = String(d.getUTCFullYear()).slice(2);
         out.push({
           date: isoDate(d),
-          title: `IT${yearShort} - ${stage.name}`,
+          title: `${stage.cancelled ? cancelledTag(locale) : ''}IT${yearShort} - ${stage.name}`,
           url,
           category,
           image: display[si].image || baseImage,
@@ -336,7 +355,7 @@ export function getCommunityTimeline(posts: CollectionEntry<'blog'>[], locale: L
     out.push({
       date: startIso,
       endDate: pickTimelineEndDate(post, startIso),
-      title: post.data.title,
+      title: (allEventsCancelled(post.data.events) ? cancelledTag(locale) : '') + post.data.title,
       url,
       category,
       image: baseImage,

@@ -232,6 +232,27 @@ describe('getCommunityTimeline', () => {
     expect(out[0].excerpt).toBe('shared excerpt');
   });
 
+  it('tags a post whose every tournament was cancelled, not one with a played tournament', () => {
+    const posts = [
+      mkPost('off', {
+        date: new Date('2026-11-01'),
+        category: 'comunita',
+        events: [{ name: 'Off', date: new Date('2026-11-01'), time: '10:00', cancelled: true }],
+      } as Partial<BlogEntry['data']> & { date: Date }),
+      mkPost('half', {
+        date: new Date('2026-11-14'),
+        category: 'comunita',
+        events: [
+          { name: 'Main', date: new Date('2026-11-14'), time: '09:30' },
+          { name: 'Side', date: new Date('2026-11-15'), time: '09:30', cancelled: true },
+        ],
+      } as Partial<BlogEntry['data']> & { date: Date }),
+    ];
+    const out = getCommunityTimeline(posts, 'it');
+    expect(out.find((e) => e.url.includes('off'))?.title).toBe('[ANNULLATO] Post off');
+    expect(out.find((e) => e.url.includes('half'))?.title).toBe('Post half');
+  });
+
   it('sets endDate spanning the last event date for a multi-day post', () => {
     const posts = [
       mkPost('play', {
@@ -420,6 +441,45 @@ describe("extractCalendarEvents: time 'tbd'", () => {
     expect(out.find((e) => e.id === 'grand-prix/gp/2026-10-18')?.time).toBe('TBD');
   });
 
+  it('keeps a cancelled tournament, tagged and flagged, next to the others of the post', () => {
+    const p = mkPost('weekend', {
+      date: new Date('2026-11-14'),
+      category: 'comunita',
+      events: [
+        { name: 'Main', date: new Date('2026-11-14'), time: '09:30' },
+        { name: 'Side', date: new Date('2026-11-15'), time: '09:30', cancelled: true },
+      ],
+    } as Partial<BlogEntry['data']> & { date: Date });
+    const out = extractCalendarEvents([p], 'it');
+    const main = out.find((e) => e.id === 'comunita/weekend/2026-11-14');
+    const side = out.find((e) => e.id === 'comunita/weekend/2026-11-15');
+    expect(main?.title).toBe('Main');
+    expect(main?.cancelled).toBeUndefined();
+    expect(side?.title).toBe('[ANNULLATO] Side');
+    expect(side?.cancelled).toBe(true);
+    expect(extractCalendarEvents([p], 'en').find((e) => e.id === side?.id)?.title).toBe('[CANCELLED] Side');
+  });
+
+  it('puts the tag after the Inizia/Fine prefix of a multi-day event', () => {
+    const p = mkPost('long', {
+      date: new Date('2026-11-14'),
+      category: 'grand-prix',
+      events: [
+        {
+          name: 'GP',
+          date: new Date('2026-11-14'),
+          endDate: new Date('2026-11-15'),
+          time: '09:30',
+          cancelled: true,
+        },
+      ],
+    } as Partial<BlogEntry['data']> & { date: Date });
+    expect(extractCalendarEvents([p], 'it').map((e) => e.title)).toEqual([
+      'Inizia: [ANNULLATO] GP',
+      'Fine: [ANNULLATO] GP',
+    ]);
+  });
+
   it('skips a first-of-month placeholder without a real time', () => {
     const p = mk('placeholder', 'comunita', [{ name: 'X', date: new Date('2026-11-01'), time: 'tbd' }]);
     expect(extractCalendarEvents([p], 'it').some((e) => e.id === 'comunita/placeholder/2026-11-01')).toBe(false);
@@ -450,12 +510,18 @@ describe('extractCalendarEvents: tour stages', () => {
 
   const out = extractCalendarEvents([tour], 'it').filter((e) => e.category === 'tour');
 
-  it('emits one entry per dated, visible, not cancelled stage with the IT<yy> - name title', () => {
-    expect(out.map((e) => e.title)).toEqual(['IT27 - Con orario', 'IT27 - Senza orario', 'IT27 - Orario da definire']);
+  it('emits one entry per dated, visible stage with the IT<yy> - name title, a cancelled one tagged', () => {
+    expect(out.map((e) => e.title)).toEqual([
+      'IT27 - Con orario',
+      'IT27 - Senza orario',
+      'IT27 - Orario da definire',
+      '[ANNULLATO] IT27 - Annullata',
+    ]);
+    expect(out.map((e) => !!e.cancelled)).toEqual([false, false, false, true]);
   });
 
   it('keeps a real time and marks missing or tbd times as TBD for the browser script', () => {
-    expect(out.map((e) => e.time)).toEqual(['10:00', 'TBD', 'TBD']);
+    expect(out.map((e) => e.time)).toEqual(['10:00', 'TBD', 'TBD', '10:00']);
   });
 
   it('localizes an unannounced format', () => {

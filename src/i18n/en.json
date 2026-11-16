@@ -156,7 +156,8 @@
   "status": {
     "upcoming": "Scheduled",
     "live": "Ongoing",
-    "past": "Closed"
+    "past": "Closed",
+    "cancelled": "Cancelled"
   },
   "post": {
     "gallery": "Gallery",

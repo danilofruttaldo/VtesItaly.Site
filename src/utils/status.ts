@@ -41,6 +41,16 @@ export function eventStatusOn(date: string, today: string, endDate: string = dat
   return today > (endDate || date) ? 'past' : 'live';
 }
 
+/**
+ * A post whose every tournament was called off (`events[].cancelled`): its
+ * page shows "Annullato" in place of the date-driven status, and it leaves
+ * the calendar and the homepage timeline. A post with no events is never
+ * cancelled; with some cancelled, only those leave the calendar.
+ */
+export function allEventsCancelled(events: { cancelled?: boolean }[] | undefined): boolean {
+  return !!events && events.length > 0 && events.every((e) => e.cancelled);
+}
+
 export type StageStatus = 'completed' | 'upcoming' | 'future' | 'cancelled';
 
 /**

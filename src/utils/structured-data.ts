@@ -1,5 +1,6 @@
 import { firstEventDay, isoDate, lastEventDay } from './date';
 import { todayLocalIso } from './today';
+import { allEventsCancelled } from './status';
 
 /** Page facts the post data does not carry: its URL, language and git days. */
 export interface JsonLdPage {
@@ -20,7 +21,7 @@ export interface JsonLdPost {
   poster?: string;
   featuredImage?: string;
   venue?: { name: string; address?: string };
-  events?: { date: Date; endDate?: Date; period?: string }[];
+  events?: { date: Date; endDate?: Date; period?: string; cancelled?: boolean }[];
   pricing?: { label: string; early?: string; regular: string }[];
   earlyDeadlineDate?: Date;
   stages?: JsonLdStage[];
@@ -79,7 +80,10 @@ export function eventJsonLd(data: JsonLdPost, site: URL, page?: JsonLdPage): Rec
     ...(image ? { image: new URL(image, site).href } : {}),
     ...(offers.length ? { offers } : {}),
     organizer: { '@type': 'Organization', name: 'VTES Italy', url: site.href },
-    eventStatus: 'https://schema.org/EventScheduled',
+    // Every tournament called off: EventCancelled, as for a tour stage.
+    eventStatus: allEventsCancelled(data.events)
+      ? 'https://schema.org/EventCancelled'
+      : 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   };
 }

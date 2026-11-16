@@ -87,6 +87,18 @@
   font-size: var(--font-size-xs);
   color: var(--color-muted);
 }
+/* A tournament called off (events[].cancelled): the same pill as the page status. */
+.gp-cancelled {
+  margin-left: 8px;
+  font-size: var(--font-size-3xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  padding: 2px 8px;
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  background: rgba(155, 155, 155, 0.1);
+}
 .gp-hotel-note {
   margin-top: 6px;
 }

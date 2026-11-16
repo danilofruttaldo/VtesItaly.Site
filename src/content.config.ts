@@ -55,6 +55,10 @@ const eventSchema = z.object({
   tpLabel: z.string().optional(),
   period: z.string().optional(),
   type: z.string().optional(),
+  // The tournament was called off (or simply not played): off the calendar,
+  // "Annullato" on the page, EventCancelled in the structured data. The page
+  // stays, like a cancelled tour stage. See allEventsCancelled in status.ts.
+  cancelled: z.boolean().optional(),
   // Album of this tournament on foto.vtesitaly.com when it has its own (a side
   // event): EventEdition shows a preview linking to it, apart from the
   // post-level `album` of the main event.

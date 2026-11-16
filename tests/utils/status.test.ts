@@ -12,7 +12,17 @@ import {
   eventStatusOn,
   toStageDays,
   tourIsOver,
+  allEventsCancelled,
 } from '../../src/utils/status';
+
+describe('allEventsCancelled', () => {
+  it('is true only when there are events and all are cancelled', () => {
+    expect(allEventsCancelled(undefined)).toBe(false);
+    expect(allEventsCancelled([])).toBe(false);
+    expect(allEventsCancelled([{ cancelled: true }, {}])).toBe(false);
+    expect(allEventsCancelled([{ cancelled: true }, { cancelled: true }])).toBe(true);
+  });
+});
 
 // All tests pin "now" to a specific instant so date comparisons are
 // deterministic regardless of when CI runs. The helpers internally call

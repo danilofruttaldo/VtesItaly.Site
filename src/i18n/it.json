@@ -147,7 +147,8 @@
   "status": {
     "upcoming": "In programma",
     "live": "In corso",
-    "past": "Concluso"
+    "past": "Concluso",
+    "cancelled": "Annullato"
   },
   "post": {
     "gallery": "Galleria",

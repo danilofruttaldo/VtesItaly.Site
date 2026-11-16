@@ -66,6 +66,26 @@ describe('structured-data: eventJsonLd', () => {
   });
 });
 
+describe('structured-data: cancelled event', () => {
+  const venue = { name: 'Gondur', address: 'Giaveno (TO)' };
+  it('is EventCancelled when every tournament was called off', () => {
+    const ld = eventJsonLd({ ...base, venue, events: [{ date: new Date('2026-11-01'), cancelled: true }] }, site)!;
+    expect(ld.eventStatus).toBe('https://schema.org/EventCancelled');
+  });
+
+  it('stays EventScheduled when only a side event was called off', () => {
+    const ld = eventJsonLd(
+      {
+        ...base,
+        venue,
+        events: [{ date: new Date('2026-11-14') }, { date: new Date('2026-11-15'), cancelled: true }],
+      },
+      site,
+    )!;
+    expect(ld.eventStatus).toBe('https://schema.org/EventScheduled');
+  });
+});
+
 describe('structured-data: event start and page', () => {
   it('starts on a Friday side event before the post date and carries url and language', () => {
     const ld = eventJsonLd(

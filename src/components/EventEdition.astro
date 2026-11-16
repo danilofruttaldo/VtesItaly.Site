@@ -213,6 +213,7 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
               {formatLocalDate(startDate, locale, startOpts)}
               {ev.endDate && <> → {formatLocalDate(ev.endDate, locale, endOpts)}</>}
               {hasTime && <>, {`${t.gp.time_prefix} ${ev.time}`}</>}
+              {ev.cancelled && <span class="gp-cancelled">{t.status.cancelled}</span>}
               {showFormat && (
                 <>
                   <br />

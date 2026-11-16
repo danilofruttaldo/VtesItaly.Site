@@ -18,7 +18,13 @@ import { categoryLabels, categoryUrls, typeTagLabels as typeTagLabelsMap } from 
 import { cities } from '../data/cities';
 import { useTranslations, formatLocalDate } from '../utils/i18n';
 import type { Locale } from '../utils/i18n';
-import { computeTourStatus, computeEventStatus, resolveLinkLabel, toStageDays } from '../utils/status';
+import {
+  allEventsCancelled,
+  computeTourStatus,
+  computeEventStatus,
+  resolveLinkLabel,
+  toStageDays,
+} from '../utils/status';
 import { firstEventDay, isoDay, lastEventDay } from '../utils/date';
 import { isLeaguePost } from '../utils/post';
 import { contentGitDates } from '../utils/git-dates';
@@ -72,6 +78,9 @@ const isEventPage = isGp || isNc || isEc || isCommunityEvent || isLeague;
 const eventDateStr = firstEventDay(post.data.events, isoDay(post.data.date));
 const eventEndStr = lastEventDay(post.data.events, isoDay(post.data.date));
 const gpStatus = isEventPage ? computeEventStatus(new Date(eventDateStr), eventEndStr) : null;
+// Every tournament called off: a fixed "Annullato", no date-driven status
+// (no data-event-date, so the browser script leaves it alone).
+const eventCancelled = isEventPage && allEventsCancelled(post.data.events);
 const communityCity = isCommunityEvent || isLeague ? cities.find((c) => post.data.tags.includes(c.slug.it)) : null;
 const usePageHero = isTourWithStages || isEventPage;
 // On an event page the poster, not the banner above it, is the LCP image.
@@ -167,7 +176,8 @@ const pageMeta =
               {tourStatus === 'past' ? t.status.past : tourStatus === 'live' ? t.status.live : t.status.upcoming}
             </span>
           )}
-          {isEventPage && !isLeague && gpStatus && (
+          {eventCancelled && !isLeague && <span class="post__status post__status--finished">{t.status.cancelled}</span>}
+          {isEventPage && !isLeague && !eventCancelled && gpStatus && (
             <span
               class:list={['post__status', gpStatus === 'past' ? 'post__status--finished' : 'post__status--active']}
               data-event-date={eventDateStr}

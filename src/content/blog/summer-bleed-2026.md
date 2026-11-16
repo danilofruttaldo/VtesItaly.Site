@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/summer-bleed.webp'
 poster: '/images/comunita/modena/summer-bleed.webp'
-excerpt: 'Torneo VTES a Spilamberto (MO) sabato 1 agosto 2026, 20 € con pranzo incluso, door prize custom del principato.'
+excerpt: 'Torneo VTES che si è giocato a Spilamberto (MO) sabato 1 agosto 2026, 20 € con pranzo incluso, door prize custom del principato.'
 venue:
   name: 'Alearum Mundus'
   address: 'Via Castelnuovo R. 796, 41057 Spilamberto (MO)'
@@ -29,10 +29,10 @@ standingsUrl: '/ev/summer-bleed-2026/standings-summer-bleed-2026.json'
 locale: it
 ---
 
-Agosto è alle porte e con lui quella certa **setina** di sangue: sabato **1 agosto 2026** si rimedia a Spilamberto con **Summer Bleed**, all'**Alearum Mundus**, dalle 9:30 fino alla finale di fine pomeriggio.
+Agosto era alle porte e con lui quella certa **setina** di sangue: sabato **1 agosto 2026** si è rimediato a Spilamberto con **Summer Bleed**, all'**Alearum Mundus**, dalle 9:30 fino alla finale di fine pomeriggio.
 
-Venti euro di iscrizione con **pranzo incluso** (pizza o piadina e bibita o birra), così tra un round e l'altro non si esce a cercare da mangiare. Si gioca **deck singolo** e la **decklist è obbligatoria**.
+Venti euro di iscrizione con **pranzo incluso** (pizza o piadina e bibita o birra), così tra un round e l'altro non si usciva a cercare da mangiare. Si giocava **deck singolo** e la **decklist era obbligatoria**.
 
 Il torneo era **sanzionato dai 14 giocatori in su**: sotto quella soglia si giocava lo stesso, ma senza ranking.
 
-Non è il periodo ideale, lo sappiamo. Ma il sole fa male alla pelle, e in sala ci sono l'aria condizionata e un tavolo di avversari da svuotare.
+Non era il periodo ideale, lo sapevamo. Ma il sole fa male alla pelle, e in sala c'erano l'aria condizionata e un tavolo di avversari da svuotare.

@@ -3,7 +3,7 @@ title: 'Grand Prix 2026'
 date: 2026-05-02
 category: 'grand-prix'
 tags: ['bologna', 'italia']
-excerpt: 'Italian GP 2026 - Bologna. The Italian V:TES Community, in collaboration with Ultra-Pro, Card Game Geek, Mistlore and TCG Market, presents the GP 2026!'
+excerpt: 'The Italian Grand Prix 2026 was held in Bologna on Saturday 2 May 2026. Andrea P. wins! Congratulations to the finalists.'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'
 poster: '/gp/gp-2026/gp-2026-poster.webp'
 venue:
@@ -40,12 +40,12 @@ events:
     standingsUrl: '/gp/gp-2026/standings-le-due-torri-garisenda-2026.json'
 pricing:
   - label: 'Main Event + lunch'
-    early: '60.00 euro'
-    regular: '65.00 euro'
+    early: '€60'
+    regular: '€65'
   - label: 'Side Event + lunch'
-    early: '35.00 euro'
-    regular: '40.00 euro'
-earlyDeadline: 'April 10'
+    early: '€35'
+    regular: '€40'
+earlyDeadline: '10 April'
 earlyDeadlineDate: 2026-04-10
 payment: 'PayPal (friends and family): info@vtesitaly.com'
 hotel:
@@ -58,7 +58,6 @@ prizes:
   - 'Door prize'
   - 'Ranking prizes'
   - 'Raffle prizes'
-  - 'More to be announced'
 streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=dy0WvJXhM3w'
@@ -84,7 +83,7 @@ highlightHtml: |
     <a href="/gp/gp-2026/superb-owl-poster.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the Superb Owl Fashion Parade poster full size"><img src="/gp/gp-2026/superb-owl-poster.webp" alt="Superb Owl Fashion Parade poster: the owl wants you" width="220" height="311" loading="lazy" decoding="async" /></a>
     <div class="callout-body">
       <h2>Superb Owl Fashion Parade</h2>
-      <p>On Saturday May 2, during the Main Event, the first edition of the <strong>Superb Owl Fashion Parade</strong> took place: the most improvised fashion contest of the European circuit. The most <em>unsettling, flashy and fun</em> outfit of the day was crowned.</p>
+      <p>On Saturday 2 May, during the Main Event, the first edition of the <strong>Superb Owl Fashion Parade</strong> took place: the most improvised fashion contest of the European circuit. The most <em>unsettling, flashy and fun</em> outfit of the day was crowned.</p>
       <div class="callout-footer">
         <a class="callout-action" href="/gp/gp-2026/superb-owl-fashion-parade-gp-2026-en.pdf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>Rules, jury and prizes (PDF)</a>
         <p class="callout-winner">🏆 Winner: <strong>Lovre</strong></p>
@@ -96,6 +95,6 @@ album: 'gp-2026'
 locale: en
 ---
 
-The **Italian V:TES Community**, in collaboration with **Ultra-Pro**, **Card Game Geek**, **Mistlore** and **TCG Market**, is proud to announce the **GP 2026**!
+The **Italian VTES Community**, in collaboration with **Ultra-Pro**, **Card Game Geek**, **Mistlore** and **TCG Market**, hosted the **GP 2026** in **Bologna**.
 
 The venue is close to the airport and the motorway, with private parking and bus connection to the central train station.

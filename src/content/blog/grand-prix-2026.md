@@ -3,7 +3,7 @@ title: 'Grand Prix 2026'
 date: 2026-05-02
 category: 'grand-prix'
 tags: ['bologna', 'italia']
-excerpt: 'IT GP 2026 - Bologna. La Comunità Italiana di V:TES, in collaborazione con Ultra-Pro, Card Game Geek, Mistlore e TCG Market, presenta il GP 2026!'
+excerpt: 'Il Grand Prix Italiano 2026 si è tenuto a Bologna, sabato 2 maggio 2026. Vince Andrea P.! Complimenti ai finalisti.'
 featuredImage: '/gp/gp-2026/gp-2026-featured.webp'
 poster: '/gp/gp-2026/gp-2026-poster.webp'
 venue:
@@ -40,12 +40,12 @@ events:
     standingsUrl: '/gp/gp-2026/standings-le-due-torri-garisenda-2026.json'
 pricing:
   - label: 'Main Event + pranzo'
-    early: '60,00 euro'
-    regular: '65,00 euro'
+    early: '60 €'
+    regular: '65 €'
   - label: 'Side Event + pranzo'
-    early: '35,00 euro'
-    regular: '40,00 euro'
-earlyDeadline: '10 Aprile'
+    early: '35 €'
+    regular: '40 €'
+earlyDeadline: '10 aprile'
 earlyDeadlineDate: 2026-04-10
 payment: 'PayPal (amici e parenti): info@vtesitaly.com'
 hotel:
@@ -58,7 +58,6 @@ prizes:
   - 'Door prize'
   - 'Premi per classifica'
   - 'Premi ad estrazione'
-  - 'Altre formule in arrivo'
 streamingUrl: 'https://www.youtube.com/watch?v=UCHhWUVSDVQ'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=dy0WvJXhM3w'
@@ -96,6 +95,6 @@ album: 'gp-2026'
 locale: it
 ---
 
-La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, **Card Game Geek**, **Mistlore** e **TCG Market**, è felice di annunciare il **GP 2026**!
+La **Comunità Italiana di VTES**, in collaborazione con **Ultra-Pro**, **Card Game Geek**, **Mistlore** e **TCG Market**, ha organizzato il **GP 2026** a **Bologna**.
 
 La struttura è vicina all'aeroporto e all'autostrada, con parcheggio interno e collegamento in bus alla Stazione FS.

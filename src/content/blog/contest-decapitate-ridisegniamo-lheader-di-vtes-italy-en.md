@@ -6,7 +6,7 @@ tags: ['italia', 'contest']
 featuredImage: '/images/comunita/decapitate/decapitate-hero.webp'
 poster: '/images/comunita/decapitate/old-header.webp'
 posterCaption: 'The old header to "decapitate"'
-excerpt: 'The VTES Italy community is invited to participate in Decapitate!, a creative contest to design the new site header. The goal is to create a graphic proposal that represents the spirit of the game and the Italian community. The selected graphic will become the new official site header.'
+excerpt: 'Decapitate!, the creative contest for the new VTES Italy site header, is over: the winning entry by Eleonora is now the official header.'
 seoDescription: 'Decapitate! is a creative contest to design the new VTES Italy site header: the selected graphic will become the official site header.'
 venue:
   name: 'Italy'
@@ -26,12 +26,7 @@ notes:
   - 'Theme: Vampire: The Eternal Struggle and the Italian community'
   - "Atmosphere: consistent with the game's identity, readable and suitable for an informational site"
   - 'Format: horizontal banner 1920×400 / 1920×500 px, JPG or PNG, sources optional (PSD, AI, SVG, PDF)'
-links:
-  - label: 'Submit'
-    url: 'https://forms.gle/JmC581Jy13Y9Bq837'
 locale: 'en'
----
-
 ---
 
 ## The contest is over!

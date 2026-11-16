@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['trento', 'torneo']
 featuredImage: '/images/comunita/trento/concilio-di-pergine.webp'
 poster: '/images/comunita/trento/concilio-di-pergine.webp'
-excerpt: "Asgard Aldeno è lieta di invitarvi all'evento Nazionale del gioco di carte di V:TES, all'interno della manifestazione Pergine Comics."
+excerpt: "Il torneo VTES di Asgard Aldeno si è tenuto a Pergine Valsugana, all'interno della manifestazione Pergine Comics. Vince Ivan C.!"
 venue:
   name: 'Pergine Comics'
   siteUrl: 'https://www.perginecomics.it/'
@@ -24,6 +24,6 @@ standingsUrl: '/ev/concilio-pergine-2025/standings-concilio-pergine-2025.json'
 locale: it
 ---
 
-Asgard Aldeno è lieta di invitarvi all'evento Nazionale del gioco di carte di V:TES.
+Asgard Aldeno ha organizzato un torneo nazionale del gioco di carte VTES.
 
 All'interno della manifestazione Pergine Comics abbiamo avuto il piacere di farvi giocare nella caratteristica cittadina di Pergine Valsugana, dove voi e le vostre famiglie avete potuto godere delle varie attività presenti tutto il weekend.

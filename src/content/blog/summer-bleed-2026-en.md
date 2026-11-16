@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/summer-bleed.webp'
 poster: '/images/comunita/modena/summer-bleed.webp'
-excerpt: 'VTES tournament in Spilamberto (MO) on Saturday, August 1, 2026, €20 with lunch included, custom door prizes from the principality.'
+excerpt: 'VTES tournament played in Spilamberto (MO) on Saturday 1 August 2026, €20 with lunch included, custom door prizes from the domain.'
 venue:
   name: 'Alearum Mundus'
   address: 'Via Castelnuovo R. 796, 41057 Spilamberto (MO), Italy'
@@ -23,16 +23,16 @@ pricing:
     regular: '€20 (lunch included)'
 payment: 'PayPal: parmeggiani.simone@gmail.com'
 prizes:
-  - 'Custom door prizes provided by the principality'
+  - 'Custom door prizes provided by the domain'
   - 'Final prizes based on the number of participants'
 standingsUrl: '/ev/summer-bleed-2026/standings-summer-bleed-2026.json'
 locale: 'en'
 ---
 
-August is at the door, and so is a certain **thirst**: Saturday, **August 1, 2026** is the cure: **Summer Bleed** at **Alearum Mundus** in Spilamberto, from 9:30 am through to the late-afternoon final.
+August was at the door, and so was a certain **thirst**: Saturday **1 August 2026** was the cure: **Summer Bleed** at **Alearum Mundus** in Spilamberto, from 9:30 am through to the late-afternoon final.
 
-Twenty euros to enter, **lunch included** (pizza or piadina with a soft drink or a beer), so nobody has to go hunting for food between rounds. **Single deck**, and a **decklist is required**.
+Twenty euros to enter, **lunch included** (pizza or piadina with a soft drink or a beer), so nobody had to go hunting for food between rounds. **Single deck**, and a **decklist was required**.
 
 The tournament was **sanctioned from 14 players up**: below that we still played, just without ranking points.
 
-Not the ideal time of year, we know. But sunbathing is bad for your skin, and indoors there's air conditioning and a table of opponents to drain.
+Not the ideal time of year, we knew. But sunbathing is bad for your skin, and indoors there was air conditioning and a table of opponents to drain.

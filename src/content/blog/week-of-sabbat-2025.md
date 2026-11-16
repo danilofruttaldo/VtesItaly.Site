@@ -23,7 +23,7 @@ tags:
     'prerelease',
   ]
 featuredImage: '/images/headers/header-week-of-sabbat.webp'
-excerpt: "Dal 18 al 26 ottobre, tutta l'Italia celebra il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
+excerpt: "Dal 18 al 26 ottobre 2025 tutta l'Italia ha celebrato il lancio dei nuovi mazzi Sabbat in un evento nazionale Sealed."
 venue:
   name: 'Italia'
   address: 'Italia'
@@ -55,7 +55,7 @@ album: 'week-of-sabbat-2025'
 locale: it
 ---
 
-La nuova espansione Sabbat segna un momento speciale: **l'Italia intera si unisce** per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città.
+La nuova espansione Sabbat ha segnato un momento speciale: **l'Italia intera si è unita** per celebrare il gioco che amiamo. Quattro mazzi, quattro vie, infinite storie che prendono vita ai tavoli di club e negozi in ogni città.
 
 Non è solo una competizione, ma una settimana di **incontro, scoperta e divertimento condiviso**, in puro spirito cainita.
 
@@ -63,7 +63,7 @@ Non è solo una competizione, ma una settimana di **incontro, scoperta e diverti
 
 ## Cos'è
 
-La Week of Sabbat è l'evento nazionale dedicato al lancio dei nuovi mazzi Sabbat. Dal **18 al 26 ottobre**, i giocatori di tutta Italia si sfidano in formato **Sealed**, aprendo e giocando mazzi prerelease in contemporanea.
+La Week of Sabbat è l'evento nazionale dedicato al lancio dei nuovi mazzi Sabbat. Dal **18 al 26 ottobre 2025** i giocatori di tutta Italia si sono sfidati in formato **Sealed**, aprendo e giocando mazzi prerelease in contemporanea.
 
 È un'occasione per provare le nuove carte, incontrare altri cainiti e partecipare a una classifica condivisa a livello nazionale, in un clima di divertimento e scoperta.
 

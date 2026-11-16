@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['barga', 'torneo']
 featuredImage: '/images/comunita/barga/symposium-italicum-2026.webp'
 poster: '/images/comunita/barga/symposium-italicum-2026.webp'
-excerpt: "La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare, in collaborazione con l'Associazione Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana e sponsorizzato da Mistlore, TheCardGameGeek e The Pot Still, la nuova edizione del Symposium Italicum!"
+excerpt: 'Il Symposium Italicum 2026 si è tenuto a Barga (LU) dal 4 al 6 settembre, con Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana. Vince il torneo principale Federico N.!'
 seoDescription: 'Nuova edizione del Symposium Italicum a Barga (LU), dal 4 al 6 settembre 2026, in collaborazione con Garfaludica APS – Tana dei Goblin.'
 venue:
   name: 'Agriturismo Il Musaccio'
@@ -60,6 +60,6 @@ locale: it
   <p>Per cause indipendenti dall'organizzazione, <strong>sabato 5 settembre</strong> l'evento si è svolto interamente presso l'<strong>Agriturismo Il Musaccio</strong>, invece che allo Stadio Comunale; per il pranzo era previsto un catering alla medesima cifra.</p>
 </div>
 
-La Comunità Italiana di Vampire: The Eternal Struggle ha il piacere di annunciare, in collaborazione con l'Associazione **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** e sponsorizzato da **Mistlore**, **TheCardGameGeek** e **The Pot Still**, la nuova edizione del **Symposium Italicum**!
+La Comunità Italiana di Vampire: The Eternal Struggle ha organizzato, in collaborazione con l'Associazione **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** e sponsorizzato da **Mistlore**, **Card Game Geek** e **The Pot Still**, la nuova edizione del **Symposium Italicum**!
 
 Tre giorni di VTES a **Barga (LU)**, interamente all'**Agriturismo Il Musaccio**: **Bloodbath** il venerdì, il torneo principale il sabato e il **Pool Party** la domenica. Sabato Garfaludica era presente con tavoli da gioco per tutti gli accompagnatori, bambini e non; Mistlore con i prodotti Black Chantry e The Pot Still con il punto ristoro per tutta la durata dell'evento.

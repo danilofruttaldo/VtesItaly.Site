@@ -1,11 +1,11 @@
 ---
-title: "Concilio di Pergine – All'ombra del Castello (2nd Edition)"
+title: "Concilio di Pergine – All'ombra del Castello (2ª edizione)"
 date: 2026-06-13
 category: 'comunita'
 tags: ['trento', 'torneo']
 featuredImage: '/images/comunita/trento/concilio-di-pergine-2026.webp'
 poster: '/images/comunita/trento/concilio-di-pergine-2026.webp'
-excerpt: "All'ombra del Castello 2nd Edition – Kindred vs Garou. Tappa di Pergine Valsugana (TN) sabato 13 giugno 2026 nell'ambito di Pergine Comics."
+excerpt: "All'ombra del Castello, 2ª edizione – Kindred vs Garou: si è giocato a Pergine Valsugana (TN) sabato 13 giugno 2026, nell'ambito di Pergine Comics. Vince Adriano A.!"
 seoTitle: 'Concilio di Pergine 2026 – Kindred vs Garou'
 venue:
   name: 'Pergine Comics'
@@ -34,6 +34,6 @@ streamingLinks:
 locale: it
 ---
 
-Asgard Aldeno è lieta di invitarvi alla **2ª edizione di All'ombra del Castello – Kindred vs Garou**, all'interno della manifestazione **Pergine Comics 2026**.
+Asgard Aldeno ha organizzato la **2ª edizione di All'ombra del Castello – Kindred vs Garou**, all'interno della manifestazione **Pergine Comics 2026**.
 
-Appuntamento a **Pergine Valsugana (TN)** sabato **13 giugno 2026**.
+Si è giocato a **Pergine Valsugana (TN)** sabato **13 giugno 2026**.

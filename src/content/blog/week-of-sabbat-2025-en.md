@@ -23,7 +23,7 @@ tags:
     'prerelease',
   ]
 featuredImage: '/images/headers/header-week-of-sabbat.webp'
-excerpt: 'From October 18 to 26, all of Italy celebrates the launch of the new Sabbat decks in a national Sealed event.'
+excerpt: 'From 18 to 26 October 2025, all of Italy celebrated the launch of the new Sabbat decks in a national Sealed event.'
 venue:
   name: 'Italy'
   address: 'Italy'
@@ -49,7 +49,7 @@ linksAfter:
     url: 'https://www.youtube.com/playlist?list=PLeLDytalEens'
 ---
 
-The new Sabbat expansion marks a special moment: **all of Italy unites** to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city.
+The new Sabbat expansion marked a special moment: **all of Italy came together** to celebrate the game we love. Four decks, four paths, endless stories coming to life at club and game store tables in every city.
 
 Not just competition, but a week of **gathering, discovery and shared fun**, in true Cainite spirit.
 
@@ -57,7 +57,7 @@ Not just competition, but a week of **gathering, discovery and shared fun**, in 
 
 ## What is it
 
-The Week of Sabbat is the national event dedicated to the launch of the new Sabbat decks. From **October 18 to 26**, players across Italy compete in **Sealed format**, opening and playing prerelease decks simultaneously.
+The Week of Sabbat is the national event dedicated to the launch of the new Sabbat decks. From **18 to 26 October 2025**, players across Italy competed in **Sealed format**, opening and playing prerelease decks simultaneously.
 
 An opportunity to try new cards, meet other Cainites, and participate in a shared national ranking in a fun atmosphere.
 

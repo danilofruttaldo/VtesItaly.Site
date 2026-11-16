@@ -5,8 +5,8 @@ category: 'comunita'
 tags: ['barga', 'torneo']
 featuredImage: '/images/comunita/barga/symposium-italicum-2026.webp'
 poster: '/images/comunita/barga/symposium-italicum-2026.webp'
-excerpt: 'The Italian Vampire: The Eternal Struggle community is pleased to announce the new edition of the Symposium Italicum, in partnership with Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana and sponsored by Mistlore, TheCardGameGeek and The Pot Still!'
-seoDescription: 'New edition of the Symposium Italicum in Barga (LU), September 4-6, 2026, in partnership with Garfaludica APS – Tana dei Goblin.'
+excerpt: 'The Symposium Italicum 2026 was held in Barga (LU) from 4 to 6 September, with Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana. Federico N. wins the main tournament!'
+seoDescription: 'New edition of the Symposium Italicum in Barga (LU), 4-6 September 2026, in partnership with Garfaludica APS – Tana dei Goblin.'
 venue:
   name: 'Agriturismo Il Musaccio'
   address: 'Località Pian di Gragno 15, 55051 Barga (LU)'
@@ -60,6 +60,6 @@ locale: 'en'
   <p>Due to circumstances beyond the organisers' control, on <strong>Saturday 5 September</strong> the event took place entirely at the <strong>Agriturismo Il Musaccio</strong>, instead of the Stadio Comunale; lunch was planned with a catering service at the same price.</p>
 </div>
 
-The Italian Vampire: The Eternal Struggle community is pleased to announce the new edition of the **Symposium Italicum**, in partnership with **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** and sponsored by **Mistlore**, **TheCardGameGeek** and **The Pot Still**!
+The Italian Vampire: The Eternal Struggle community hosted the new edition of the **Symposium Italicum**, in partnership with **Garfaludica APS – Tana dei Goblin di Castelnuovo di Garfagnana** and sponsored by **Mistlore**, **Card Game Geek** and **The Pot Still**!
 
 Three days of VTES in **Barga (LU)**, held entirely at the **Agriturismo Il Musaccio**: **Bloodbath** on Friday, the main tournament on Saturday and the **Pool Party** on Sunday. On Saturday Garfaludica ran game tables for all companions, children and adults alike; Mistlore was there with Black Chantry products and The Pot Still with the refreshment point for the whole event.

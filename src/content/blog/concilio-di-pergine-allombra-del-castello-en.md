@@ -1,11 +1,11 @@
 ---
-title: 'Concilio di Pergine – In the Shadow of the Castle'
+title: "Concilio di Pergine – In the Castle's Shadow"
 date: 2025-06-21
 category: 'comunita'
 tags: ['trento', 'torneo']
 featuredImage: '/images/comunita/trento/concilio-di-pergine.webp'
 poster: '/images/comunita/trento/concilio-di-pergine.webp'
-excerpt: 'Asgard Aldeno is pleased to invite you to the National V:TES event, inside the Pergine Comics convention.'
+excerpt: 'The Asgard Aldeno VTES tournament was held in Pergine Valsugana, inside the Pergine Comics convention. Ivan C. wins!'
 seoTitle: "Concilio di Pergine – In the Castle's Shadow"
 venue:
   name: 'Pergine Comics'
@@ -25,6 +25,6 @@ standingsUrl: '/ev/concilio-pergine-2025/standings-concilio-pergine-2025.json'
 locale: 'en'
 ---
 
-Asgard Aldeno is pleased to invite you to the National V:TES card game event.
+Asgard Aldeno hosted a national tournament of the VTES card game.
 
 Inside the Pergine Comics convention, we had the pleasure of hosting you in the charming town of Pergine Valsugana, where you and your families could enjoy the various activities throughout the weekend.

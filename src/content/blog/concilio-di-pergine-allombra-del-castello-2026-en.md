@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['trento', 'torneo']
 featuredImage: '/images/comunita/trento/concilio-di-pergine-2026.webp'
 poster: '/images/comunita/trento/concilio-di-pergine-2026.webp'
-excerpt: "All'ombra del Castello 2nd Edition – Kindred vs Garou. Pergine Valsugana (TN), Saturday June 13, 2026, within Pergine Comics."
+excerpt: "All'ombra del Castello, 2nd edition – Kindred vs Garou: played in Pergine Valsugana (TN) on Saturday 13 June 2026, within Pergine Comics. Adriano A. wins!"
 seoTitle: 'Concilio di Pergine 2026 – Kindred vs Garou'
 venue:
   name: 'Pergine Comics'
@@ -22,7 +22,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/019f1a1a-e664-716c-afe5-84de6ab05e4d'
 pricing:
   - label: 'Registration'
-    regular: '5 €'
+    regular: '€5'
 prizes:
   - 'Door prize'
   - 'Finalists prize'
@@ -34,6 +34,6 @@ streamingLinks:
 locale: 'en'
 ---
 
-Asgard Aldeno is pleased to invite you to the **2nd edition of All'ombra del Castello – Kindred vs Garou**, within the **Pergine Comics 2026** event.
+Asgard Aldeno hosted the **2nd edition of All'ombra del Castello – Kindred vs Garou**, within the **Pergine Comics 2026** event.
 
-See you in **Pergine Valsugana (TN)** on Saturday, **June 13, 2026**.
+It was played in **Pergine Valsugana (TN)** on Saturday **13 June 2026**.

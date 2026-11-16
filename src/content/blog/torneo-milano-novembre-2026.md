@@ -45,3 +45,5 @@ Sede raggiungibile con la **Metro 1 Rossa**, fermata _Villa San Giovanni_ (direz
 All'interno della struttura c'è un **bar** per le consumazioni.
 
 Il pranzo è previsto **tra il primo e il secondo round**, indicativamente dalle **12:00/12:30** fino alle **13:30/13:45**. È possibile pranzare in pizzeria/trattoria con un **menu a prezzo fisso** (primo + secondo + contorno) a circa **15 €**, prenotando la mattina del torneo.
+
+**Il torneo non si è svolto.**

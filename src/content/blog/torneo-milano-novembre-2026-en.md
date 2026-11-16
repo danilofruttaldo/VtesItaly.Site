@@ -45,3 +45,5 @@ Easy to reach by **Metro 1 (Red Line)**, stop _Villa San Giovanni_ (direction Se
 Inside the venue there is a **bar** for food and drinks.
 
 Lunch is planned **between the first and second round**, roughly from **12:00/12:30** to **13:30/13:45**. A **fixed-price menu** (first course + main + side) is available at a nearby pizzeria/trattoria for about **€15**, booking on the morning of the tournament.
+
+**The tournament did not take place.**

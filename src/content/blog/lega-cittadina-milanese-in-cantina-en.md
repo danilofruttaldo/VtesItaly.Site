@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['milano', 'lega']
 featuredImage: '/images/comunita/milano/lega-milanese-in-cantina.webp'
 poster: '/images/comunita/milano/lega-milanese-in-cantina.webp'
-excerpt: 'The first Milan city league of Vampire the Eternal Struggle: 4 Sundays of gaming, food and vampires at Cantina e Coscienza in Sesto San Giovanni.'
+excerpt: 'The first Milan city league of Vampire: The Eternal Struggle: 4 Sundays of gaming, food and vampires at Cantina e Coscienza in Sesto San Giovanni.'
 events:
   - name: 'Lega Milano 2026: Game Day 1'
     date: 2026-05-17
@@ -30,7 +30,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/01a06e4a-b1b8-7182-9018-f4bf14c17ac2'
   - name: 'Lega Milano 2026: Game Day 4'
     date: 2026-05-17
-    period: 'TBD'
+    period: 'Date to be announced'
     time: '14:00'
     format: 'Standard'
     proxies: true
@@ -38,7 +38,7 @@ events:
 schedule:
   - time: '14:00/14:30'
     label: 'Round 1'
-  - time: 'Following'
+  - time: 'Afterwards'
     label: 'Round 2'
   - time: '20:00/20:30'
     label: 'Apericena + Final'
@@ -72,6 +72,6 @@ The first Milan city league of _Vampire: The Eternal Struggle_! Four Sundays of 
 
 Game days are open to anyone from the Italian Community, with a maximum of 15 players per game day. The first 2 rounds are played with the **same deck** posted on Archon, while for the final you can switch decks freely to add variety and unpredictability to the game.
 
-Mandatory apericena featuring Valdostane delicacies prepared by Manlio, who provides his wine bar and his refined cooking skills. Pre-registration closes 7 days before each game day (May 10 for the first) and you will receive the menu to choose what to eat.
+Mandatory apericena featuring Valdostane delicacies prepared by Manlio, who provides his wine bar and his refined cooking skills. Pre-registration closes 7 days before each game day (10 May for the first) and you will receive the menu to choose what to eat.
 
 A partial standing is compiled for each game day (final excluded). After 4 game days, the top 5 players qualify for the **GRAND FINAL** to compete for the **CANTINERO** title of the Milan Community.

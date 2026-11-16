@@ -4,8 +4,8 @@ description: "What the official guides don't say: translation traps, common case
 categoria: piattaforme
 audience: [giocatore, principe]
 ordine: 10
-versione: '1.0'
-aggiornato: 2026-10-26
+versione: '1.1'
+aggiornato: 2026-11-16
 correlate: [archon-judge-en, demo-eventi-en]
 locale: en
 ---
@@ -56,9 +56,9 @@ Three features are documented as online-only but are not:
 
 ## 4. Before the tournament (for Princes)
 
-- **Create the event on Archon, not on `vekn.net`.** It reaches the VEKN calendar by itself. Creating it in both places produces a duplicate that is painful to untangle: if it happens, tell your National Coordinator straight away.
-- **Mind the fields that lock immediately.** Format, rank, start time, proxies, round count and open rounds freeze the moment the event hits the calendar, which is when you create it. This is the expensive mistake: the only fix is deleting and recreating the event.
-- **Only Princes, NCs and ICs can create tournaments.** Anyone can no longer spin up a Demo or unsanctioned event: if you are running a demo, have a Prince create it (see [Running a V:TES demo](/en/guides/demo-eventi/)).
+- **Create the event on Archon, not on `vekn.net`.** It reaches the VEKN calendar by itself within a few hours: the calendar syncs with Archon periodically. Creating it in both places produces a duplicate that is painful to untangle: if it happens, tell your National Coordinator straight away.
+- **Mind the fields that lock immediately.** Format, rank, start time, proxies, round count and open rounds freeze the moment the event hits the calendar, a few hours after you create it: check them before you save. This is the expensive mistake: the only fix is deleting and recreating the event.
+- **Only Princes, NCs and ICs can create tournaments.** Anyone can no longer spin up a Demo or unsanctioned event: if you are running a demo, have a Prince create it (see [Running a VTES demo](/en/guides/demo-eventi/)).
 - **Judges are co-organizers.** There is no per-tournament judge role: add them from **Tools → Organizers** and they get your powers.
 - **The banner matters.** Upload one from **Tools → Set up** (1200 × 630): it is the link preview when you paste the event into WhatsApp or Discord, and without it the link reads as spam.
 - The VEKN requirement to **announce the event at least 28 days ahead**, with date, time and place, still stands.

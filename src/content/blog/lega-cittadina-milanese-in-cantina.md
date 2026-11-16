@@ -1,11 +1,11 @@
 ---
-title: '1° Lega Cittadina Milanese in Cantina'
+title: '1ª Lega Cittadina Milanese in Cantina'
 date: 2026-05-17
 category: 'comunita'
 tags: ['milano', 'lega']
 featuredImage: '/images/comunita/milano/lega-milanese-in-cantina.webp'
 poster: '/images/comunita/milano/lega-milanese-in-cantina.webp'
-excerpt: 'La prima lega cittadina milanese di Vampire the Eternal Struggle: 4 domeniche di gioco, cibo e vampiri alla Cantina e Coscienza di Sesto San Giovanni.'
+excerpt: 'La prima lega cittadina milanese di Vampire: The Eternal Struggle: 4 domeniche di gioco, cibo e vampiri alla Cantina e Coscienza di Sesto San Giovanni.'
 events:
   - name: 'Lega Milano 2026: Giornata 1'
     date: 2026-05-17
@@ -30,7 +30,7 @@ events:
     archonUrl: 'https://archon.vekn.net/tournaments/01a06e4a-b1b8-7182-9018-f4bf14c17ac2'
   - name: 'Lega Milano 2026: Giornata 4'
     date: 2026-05-17
-    period: 'TBD'
+    period: 'Data da definire'
     time: '14:00'
     format: 'Standard'
     proxies: true
@@ -70,7 +70,7 @@ locale: it
 
 La prima lega cittadina milanese di _Vampire: The Eternal Struggle_! Quattro domeniche di gioco, cibo e vampiri, perché lo scopo è in primis stare insieme e divertirci, e con il piccolo contributo di partecipazione sostenere la Comunità Milanese per l'acquisto di premi, supporti promozionali e amenità varie.
 
-Le giornate sono aperte a chiunque voglia partecipare della Comunità Italiana con il massimo di 15 partecipanti per giornata. I primi 2 round saranno disputati con lo **stesso mazzo** postato su Archon, mentre per la finale si potrà cambiare mazzo a propria scelta in maniera da dare varietà e imprevedibilità al gioco.
+Le giornate sono aperte a chiunque nella Comunità Italiana voglia partecipare, fino a un massimo di 15 partecipanti per giornata. I primi 2 round saranno disputati con lo **stesso mazzo** postato su Archon, mentre per la finale si potrà cambiare mazzo a propria scelta in maniera da dare varietà e imprevedibilità al gioco.
 
 Apericena obbligatoria con prelibatezze valdostane preparate da Manlio, che mette a disposizione la sua enoteca e le sue raffinate manine. Le preiscrizioni chiudono 7 giorni prima di ogni giornata (il 10 maggio per la prima) e vi verrà inviato il menù per poter scegliere cosa mangiare.
 

@@ -36,15 +36,15 @@ events:
     standingsUrl: '/nc/nc-2026/standings-trento-the-day-after-2026.json'
 pricing:
   - label: 'Pacchetto weekend (Main + Side)'
-    early: '50 euro'
-    regular: '60 euro'
+    early: '50 €'
+    regular: '60 €'
   - label: 'Solo Main Event'
-    early: '38 euro'
-    regular: '45 euro'
+    early: '38 €'
+    regular: '45 €'
   - label: 'Solo Side Event'
-    early: '15 euro'
-    regular: '18 euro'
-earlyDeadline: '31 Gennaio'
+    early: '15 €'
+    regular: '18 €'
+earlyDeadline: '31 gennaio'
 earlyDeadlineDate: 2026-01-31
 payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 hotel:

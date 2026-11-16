@@ -4,7 +4,7 @@ date: 2021-11-14
 category: 'comunita'
 tags: ['milano', 'torneo']
 featuredImage: '/images/headers/header-milano.webp'
-excerpt: 'VTES Standard tournament in Paderno Dugnano (MI) on Sunday, November 14, 2021: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Paderno Dugnano (MI) on Sunday 14 November 2021: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Secret Base'
   address: 'Via Roma 62/c, 20037 Paderno Dugnano (MI)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/concert-tour-2021/standings-concert-tour-2021.json'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Paderno Dugnano (MI) on Sunday, **November 14, 2021**, at **Secret Base**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Paderno Dugnano (MI) on Sunday **14 November 2021**, at **Secret Base**: 2 rounds and a final, proxies allowed.

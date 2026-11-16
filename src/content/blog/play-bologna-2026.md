@@ -6,7 +6,7 @@ tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2026-featured.webp'
 poster: '/images/comunita/bologna/play-2026-poster.webp'
 excerpt: 'Il 22, 23 e 24 maggio 2026 VTES Italy era al Play – Festival del Gioco di BolognaFiere (Padiglione 18, area Vampiri La Masquerade) con tavoli demo aperti a tutti per provare Vampire: The Eternal Struggle.'
-seoDescription: 'Il 22, 23 e 24 maggio 2026 VTES Italy era al Play di BolognaFiere, Padiglione 18, con tavoli demo aperti a tutti per provare V:TES.'
+seoDescription: 'Il 22, 23 e 24 maggio 2026 VTES Italy era al Play di BolognaFiere, Padiglione 18, con tavoli demo aperti a tutti per provare VTES.'
 venue:
   name: 'BolognaFiere - Play, Festival del Gioco (Padiglione 18, J11–J13)'
   address: 'Viale della Fiera 20, 40127 Bologna (BO)'
@@ -15,15 +15,15 @@ venue:
 events:
   - name: 'Tavoli demo'
     date: 2026-05-22
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Tavoli demo'
     date: 2026-05-23
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Tavoli demo'
     date: 2026-05-24
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
 links:
   - label: 'Play Festival del Gioco: sito ufficiale'

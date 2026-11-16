@@ -5,8 +5,8 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/vambeer-iii-2026.webp'
 poster: '/images/comunita/modena/vambeer-iii-2026.webp'
-excerpt: 'Vambeer III: VTES Standard tournament on Saturday, October 24, 2026 at the Wild Rover Irish Pub in Castelfranco Emilia (MO). €10 entry, on-site lunch with a set menu.'
-seoDescription: 'Vambeer III: VTES Standard tournament on Saturday, October 24, 2026 at the Wild Rover Irish Pub, Castelfranco Emilia (MO). €10 entry, lunch on site.'
+excerpt: 'Vambeer III: VTES Standard tournament on Saturday 24 October 2026 at the Wild Rover Irish Pub in Castelfranco Emilia (MO). €10 entry, on-site lunch with a set menu.'
+seoDescription: 'Vambeer III: VTES Standard tournament on Saturday 24 October 2026 at the Wild Rover Irish Pub, Castelfranco Emilia (MO). €10 entry, lunch on site.'
 venue:
   name: 'Wild Rover Irish Pub'
   address: "Via G. d'Annunzio 40, Manzolino, 41013 Castelfranco Emilia (MO), Italy"
@@ -33,7 +33,7 @@ streamingLinks:
 locale: 'en'
 ---
 
-**Vambeer** is back for its third edition: on Saturday, **October 24, 2026** we play at the **Wild Rover Irish Pub** in Manzolino, Castelfranco Emilia, from **9:30** until the late-afternoon final.
+**Vambeer** is back for its third edition: on Saturday **24 October 2026** we play at the **Wild Rover Irish Pub** in Manzolino, Castelfranco Emilia, from **9:30** until the late-afternoon final.
 
 **Standard** tournament with proxies allowed, **€10** entry and prizes based on the number of participants.
 

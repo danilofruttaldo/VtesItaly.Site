@@ -67,7 +67,7 @@ export const mainPages: PageMeta[] = [
     },
     category: 'grand-prix',
     leadHtml: {
-      it: '<p class="page-lead">Il <strong>Grand Prix italiano</strong> di Vampire: The Eternal Struggle è il <strong>torneo più atteso</strong> della stagione italiana. Appuntamento fisso del circuito europeo, aperto a tutti i Matusalemme pronti a mettersi alla prova tra <strong>intrighi</strong>, <strong>fragili alleanze</strong> e <strong>colpi di scena</strong>.</p><p>Porta il tuo mazzo, affila le strategie… e preparati a conquistare il potere nella <strong>lotta eterna per il dominio</strong>.</p>',
+      it: '<p class="page-lead">Il <strong>Grand Prix italiano</strong> di Vampire: The Eternal Struggle è il <strong>torneo più atteso</strong> della stagione italiana. Appuntamento fisso del circuito europeo, aperto a tutti i Methuselah pronti a mettersi alla prova tra <strong>intrighi</strong>, <strong>fragili alleanze</strong> e <strong>colpi di scena</strong>.</p><p>Porta il tuo mazzo, affila le strategie… e preparati a conquistare il potere nella <strong>lotta eterna per il dominio</strong>.</p>',
       en: '<p class="page-lead">The <strong>Italian Grand Prix</strong> of Vampire: The Eternal Struggle is the <strong>most anticipated tournament event</strong> of the Italian season. A key fixture in the European circuit, open to all Methuselahs ready to test themselves through <strong>intrigue</strong>, <strong>fragile alliances</strong> and <strong>plot twists</strong>.</p><p>Bring your deck, sharpen your strategies… and prepare to claim power in the <strong>eternal struggle for domination</strong>.</p>',
     },
     editionsTitle: {
@@ -113,7 +113,7 @@ export const mainPages: PageMeta[] = [
     },
     category: 'europeo',
     leadHtml: {
-      it: '<p class="page-lead">Il <strong>Campionato Europeo</strong> di Vampire: The Eternal Struggle riunisce ogni anno i Matusalemme di tutto il continente in una città diversa. Due volte si è giocato in Italia, a <strong>Torino</strong> nel 2006 e a <strong>Genova</strong> nel 2016, e due volte il titolo è andato a un italiano.</p><p>Qui trovi tutte le edizioni, dalla prima di <strong>Vienna</strong> nel 1999 all\'ultima.</p>',
+      it: '<p class="page-lead">Il <strong>Campionato Europeo</strong> di Vampire: The Eternal Struggle riunisce ogni anno i Methuselah di tutto il continente in una città diversa. Due volte si è giocato in Italia, a <strong>Torino</strong> nel 2006 e a <strong>Genova</strong> nel 2016, e due volte il titolo è andato a un italiano.</p><p>Qui trovi tutte le edizioni, dalla prima di <strong>Vienna</strong> nel 1999 all\'ultima.</p>',
       en: '<p class="page-lead">The Vampire: The Eternal Struggle <strong>European Championship</strong> gathers Methuselahs from all over the continent every year, in a different city. It was played in Italy twice, in <strong>Turin</strong> in 2006 and <strong>Genoa</strong> in 2016, and twice the title went to an Italian player.</p><p>Here are all the editions, from the first one in <strong>Vienna</strong> in 1999 to the latest.</p>',
     },
     editionsTitle: {

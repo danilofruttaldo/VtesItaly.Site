@@ -4,7 +4,7 @@ date: 2022-06-26
 category: 'comunita'
 tags: ['massa', 'torneo']
 featuredImage: '/images/headers/header-massa.webp'
-excerpt: 'VTES Standard tournament in Massa (MS) on Sunday, June 26, 2022: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Massa (MS) on Sunday 26 June 2022: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Bagno Punto Mare'
   address: 'Lungomare di Levante 138, 54100 Massa (MS)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/praxis-seizure-miami-2022/standings-praxis-seizure-miami-2022
 locale: 'en'
 ---
 
-A **Standard** tournament played in Massa (MS) on Sunday, **June 26, 2022**, at **Bagno Punto Mare**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Massa (MS) on Sunday **26 June 2022**, at **Bagno Punto Mare**: 2 rounds and a final, proxies allowed.

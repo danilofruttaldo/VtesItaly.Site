@@ -4,7 +4,7 @@ date: 2026-12-19
 category: 'comunita'
 tags: ['bologna', 'torneo']
 featuredImage: '/images/headers/header-bologna.webp'
-excerpt: 'Christmas VTES tournament in Bologna on Saturday, December 19, 2026 at Circolo Barbanera: Standard, proxies allowed, 2 rounds and a final. €10 entry.'
+excerpt: 'Christmas VTES tournament in Bologna on Saturday 19 December 2026 at Circolo Barbanera: Standard, proxies allowed, 2 rounds and a final. €10 entry.'
 venue:
   name: 'Circolo Barbanera'
   address: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
@@ -41,7 +41,7 @@ streamingLinks:
 locale: 'en'
 ---
 
-**ALL I WANT FOR CHRISTMAS IS POOL**: a Christmas VTES tournament on Saturday, **December 19, 2026** at **Circolo Barbanera** in Bologna (BO).
+**ALL I WANT FOR CHRISTMAS IS POOL**: a Christmas VTES tournament on Saturday **19 December 2026** at **Circolo Barbanera** in Bologna (BO).
 
 **Standard** format with **proxies allowed**, **2 rounds and a final**. €10 entry, cash on site or via PayPal. A rich prize pool, as always.
 

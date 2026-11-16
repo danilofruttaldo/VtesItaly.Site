@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['torneo']
 featuredImage: '/images/headers/header-marsiglia.webp'
 cityHeader: '/images/headers/header-marsiglia.webp'
-excerpt: 'French Grand Prix 2026 in Vitrolles (Marseille) on Saturday, May 30, 2026: a small Italian contingent, with Simone P. sixth, one step from the final.'
+excerpt: 'French Grand Prix 2026 in Vitrolles (Marseille) on Saturday 30 May 2026: a small Italian contingent, with Simone P. sixth, one step from the final.'
 venue:
   name: 'Ibis Styles Marseille Provence Aéroport'
   address: '24 Rue de Madrid, 13127 Vitrolles (France)'
@@ -32,6 +32,6 @@ streamingLinks:
 locale: 'en'
 ---
 
-The **French Grand Prix 2026** was played on Saturday, **May 30, 2026**, in **Vitrolles**, just outside Marseille: 24 players and a win for **Jean-Baptiste B.** of France.
+The **French Grand Prix 2026** was played on Saturday **30 May 2026**, in **Vitrolles**, just outside Marseille: 24 players and a win for **Jean-Baptiste B.** of France.
 
 A small Italian contingent made the trip, which was also a chance to spend a few days in Marseille, between the Panier, Notre-Dame de la Garde and the MuCEM.

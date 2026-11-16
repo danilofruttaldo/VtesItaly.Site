@@ -4,7 +4,7 @@ date: 2020-02-09
 category: 'comunita'
 tags: ['verona', 'torneo']
 featuredImage: '/images/headers/header-verona.webp'
-excerpt: 'VTES Standard tournament in Parona (VR) on Sunday, February 9, 2020: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Parona (VR) on Sunday 9 February 2020: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Ludica Scaligera'
   address: 'Piazza della Vittoria 10, 37124 Parona (VR)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/blood-of-valentine-2020/standings-blood-of-valentine-2020.jso
 locale: 'en'
 ---
 
-A **Standard** tournament played in Parona (VR) on Sunday, **February 9, 2020**, at **Ludica Scaligera**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Parona (VR) on Sunday **9 February 2020**, at **Ludica Scaligera**: 2 rounds and a final, proxies allowed.

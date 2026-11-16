@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['torino', 'torneo']
 featuredImage: '/images/comunita/torino/tournaments-of-dead.webp'
 poster: '/images/comunita/torino/tournaments-of-dead.webp'
-excerpt: 'Torneo di Tutti i Morti: VTES Standard tournament on Sunday, November 1, 2026 at Gondur in Giaveno (TO): proxies allowed, 2 rounds and a final.'
+excerpt: 'Torneo di Tutti i Morti: VTES Standard tournament on Sunday 1 November 2026 at Gondur in Giaveno (TO): proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Gondur'
   address: 'Via XX Settembre 21, 10094 Giaveno (TO)'
@@ -23,6 +23,6 @@ contact: 'wraith70@tiscali.it'
 locale: 'en'
 ---
 
-Waiting for the new cards, we have some fun in **Giaveno**: a **Standard** tournament on Sunday, **November 1, 2026** at **Gondur**: 2 rounds and a final, proxies allowed.
+Waiting for the new cards, we have some fun in **Giaveno**: a **Standard** tournament on Sunday **1 November 2026** at **Gondur**: 2 rounds and a final, proxies allowed.
 
-Organized by **Paolo Pasqualin**, Prince of Torino.
+Organized by **Paolo Pasqualin**, Prince of Turin.

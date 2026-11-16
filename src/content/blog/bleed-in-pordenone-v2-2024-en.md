@@ -4,7 +4,7 @@ date: 2024-11-03
 category: 'comunita'
 tags: ['pordenone', 'torneo']
 featuredImage: '/images/headers/header-pordenone.webp'
-excerpt: 'VTES Standard tournament in Pordenone (PN) on Sunday, November 3, 2024: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Pordenone (PN) on Sunday 3 November 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Fumetteria Safarà'
   address: 'Via Piave 26, 33170 Pordenone (PN)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/bleed-in-pordenone-v2-2024/standings-bleed-in-pordenone-v2-20
 locale: 'en'
 ---
 
-A **Standard** tournament played in Pordenone (PN) on Sunday, **November 3, 2024**, at **Fumetteria Safarà**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Pordenone (PN) on Sunday **3 November 2024**, at **Fumetteria Safarà**: 2 rounds and a final, proxies allowed.

@@ -74,7 +74,7 @@ leagueBonusPoints:
     description: 'Get ousted while controlling The Coven.'
 pricing:
   - label: 'Fee'
-    regular: '10 €'
+    regular: '€10'
 prizes:
   - '1st place: 30th Anniversary'
   - '2nd place: 25th Anniversary'

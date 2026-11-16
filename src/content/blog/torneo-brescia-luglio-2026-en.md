@@ -6,7 +6,7 @@ tags: ['brescia', 'torneo']
 featuredImage: '/images/comunita/brescia/smudge-is-back-to-town.webp'
 poster: '/images/comunita/brescia/smudge-is-back-to-town.webp'
 cityHeader: '/images/headers/header-brescia.webp'
-excerpt: 'VTES tournament in Rezzato (BS) on Saturday, July 4, 2026: proxies and multideck, 3 rounds and a final, €15 with buffet lunch included.'
+excerpt: 'VTES tournament in Rezzato (BS) on Saturday 4 July 2026: proxies and multideck, 3 rounds and a final, €15 with buffet lunch included.'
 venue:
   name: 'Osteria da Silvia'
   address: 'Via Manzoni 12, 25086 Rezzato (BS), Italy'
@@ -30,4 +30,4 @@ locale: 'en'
 
 No breaks between rounds: when you finish, you eat at the communal table (buffet lunch included in the €15) and you're straight back in, which is how we fit three rounds plus a final.
 
-Saturday, **July 4, 2026**, **Osteria da Silvia**. Bring your best method: the rest is decided at the table.
+Saturday **4 July 2026**, **Osteria da Silvia**. Bring your best method: the rest is decided at the table.

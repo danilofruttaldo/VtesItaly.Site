@@ -4,7 +4,7 @@ date: 2021-07-11
 category: 'comunita'
 tags: ['prato', 'torneo']
 featuredImage: '/images/headers/header-firenze.webp'
-excerpt: 'VTES Standard tournament in Prato (PO) on Sunday, July 11, 2021: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Prato (PO) on Sunday 11 July 2021: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Magic Maze'
   address: 'Via Francesco Ferrucci 95g, 59100 Prato (PO)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/psychomachia-2021/standings-psychomachia-2021.json'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Prato (PO) on Sunday, **July 11, 2021**, at **Magic Maze**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Prato (PO) on Sunday **11 July 2021**, at **Magic Maze**: 2 rounds and a final, proxies allowed.

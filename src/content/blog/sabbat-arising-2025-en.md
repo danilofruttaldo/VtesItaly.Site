@@ -4,7 +4,7 @@ date: 2025-09-27
 category: 'comunita'
 tags: ['bologna', 'torneo']
 featuredImage: '/images/headers/header-bologna.webp'
-excerpt: 'VTES Standard tournament in Bologna (BO) on Saturday, September 27, 2025: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Bologna (BO) on Saturday 27 September 2025: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Circolo Barbanera'
   address: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
@@ -23,4 +23,4 @@ album: 'sabbat-arising-2025'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Bologna (BO) on Saturday, **September 27, 2025**, at **Circolo Barbanera**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Bologna (BO) on Saturday **27 September 2025**, at **Circolo Barbanera**: 2 rounds and a final, proxies allowed.

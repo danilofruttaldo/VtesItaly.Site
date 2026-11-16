@@ -9,7 +9,7 @@ excerpt: 'La prima lega di Vampire the Eternal Struggle a Treviso: 8 giocatori, 
 events:
   - name: 'Lega Constructed'
     date: 2025-04-01
-    period: 'Aprile – Luglio 2025'
+    period: 'Aprile – luglio 2025'
     time: 'serale'
     format: 'Standard'
     proxies: true

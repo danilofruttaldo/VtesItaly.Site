@@ -4,7 +4,7 @@ date: 2021-12-19
 category: 'comunita'
 tags: ['milano', 'torneo']
 featuredImage: '/images/headers/header-milano.webp'
-excerpt: 'VTES Limited tournament in Paderno Dugnano (MI) on Sunday, December 19, 2021: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Limited tournament in Paderno Dugnano (MI) on Sunday 19 December 2021: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Secret Base'
   address: 'Via Roma 62/c, 20037 Paderno Dugnano (MI)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/the-new-arrived-2021/standings-the-new-arrived-2021.json'
 locale: 'en'
 ---
 
-A **Limited** tournament played in Paderno Dugnano (MI) on Sunday, **December 19, 2021**, at **Secret Base**: 2 rounds and a final, proxies allowed.
+A **Limited** tournament played in Paderno Dugnano (MI) on Sunday **19 December 2021**, at **Secret Base**: 2 rounds and a final, proxies allowed.

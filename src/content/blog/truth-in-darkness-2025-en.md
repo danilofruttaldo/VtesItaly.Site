@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['firenze', 'torneo']
 featuredImage: '/images/comunita/firenze-prato/truth-in-darkness-2025.webp'
 poster: '/images/comunita/firenze-prato/truth-in-darkness-2025.webp'
-excerpt: 'VTES Standard tournament in Firenze (FI) on Saturday, May 10, 2025: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Florence (FI) on Saturday 10 May 2025: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Game'
   address: 'Via Francesco Baracca 168/R, 50127 Firenze (FI)'
@@ -23,4 +23,4 @@ album: 'truth-in-darkness-2025'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Firenze (FI) on Saturday, **May 10, 2025**, at **Game**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Florence (FI) on Saturday **10 May 2025**, at **Game**: 2 rounds and a final, proxies allowed.

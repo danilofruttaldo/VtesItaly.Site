@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['milano', 'torneo']
 featuredImage: '/images/comunita/milano/super-sloth-2026.webp'
 poster: '/images/comunita/milano/super-sloth-2026.webp'
-excerpt: 'Super Sloth: side event of the 6th stage of the Italian Tour 2026, on Sunday, November 15 at Casa dei Giochi in Milan. Standard, 2 rounds + final, 10€ entry.'
+excerpt: 'Super Sloth: side event of the 6th stage of the Italian Tour 2026, on Sunday 15 November at Casa dei Giochi in Milan. Standard, 2 rounds + final, 10€ entry.'
 venue:
   name: 'UESM Ludoteca "Casa dei Giochi"'
   address: "Via Sant'Uguzzone 8, 20126 Milano (MI), Italy"
@@ -37,7 +37,7 @@ links:
 locale: 'en'
 ---
 
-**Super Sloth**: _They came for the Sloth. Now they're here for…_ The side event of the **6th stage of the [Italian Tour 2026](/en/tour/)** (Sloth), on Sunday, **November 15, 2026** at **Casa dei Giochi** in Milan, the day after the stage.
+**Super Sloth**: _They came for the Sloth. Now they're here for…_ The side event of the **6th stage of the [Italian Tour 2026](/en/tour/)** (Sloth), on Sunday **15 November 2026** at **Casa dei Giochi** in Milan, the day after the stage.
 
 Easy to reach by **Metro 1 (Red Line)**, stop _Villa San Giovanni_ (direction Sesto San Giovanni).
 

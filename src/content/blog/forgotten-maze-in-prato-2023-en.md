@@ -4,7 +4,7 @@ date: 2023-11-12
 category: 'comunita'
 tags: ['prato', 'torneo']
 featuredImage: '/images/headers/header-prato.webp'
-excerpt: 'VTES Standard tournament in Prato (PO) on Sunday, November 12, 2023: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Prato (PO) on Sunday 12 November 2023: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Magic Maze'
   address: 'Via Francesco Ferrucci 95g, 59100 Prato (PO)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/forgotten-maze-in-prato-2023/standings-forgotten-maze-in-prat
 locale: 'en'
 ---
 
-A **Standard** tournament played in Prato (PO) on Sunday, **November 12, 2023**, at **Magic Maze**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Prato (PO) on Sunday **12 November 2023**, at **Magic Maze**: 2 rounds and a final, proxies allowed.

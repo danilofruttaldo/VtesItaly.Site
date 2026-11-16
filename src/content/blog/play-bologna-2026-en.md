@@ -5,8 +5,8 @@ category: 'comunita'
 tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2026-featured.webp'
 poster: '/images/comunita/bologna/play-2026-poster.webp'
-excerpt: 'On May 22-24, 2026 VTES Italy was at Play – Festival del Gioco at BolognaFiere (Hall 18, Vampire: The Masquerade area) with open demo tables for anyone who wanted to try Vampire: The Eternal Struggle.'
-seoDescription: 'On May 22-24, 2026 VTES Italy was at Play in BolognaFiere, Hall 18, with open demo tables for anyone who wanted to try V:TES.'
+excerpt: 'On 22-24 May 2026 VTES Italy was at Play – Festival del Gioco at BolognaFiere (Hall 18, Vampire: The Masquerade area) with open demo tables for anyone who wanted to try Vampire: The Eternal Struggle.'
+seoDescription: 'On 22-24 May 2026 VTES Italy was at Play in BolognaFiere, Hall 18, with open demo tables for anyone who wanted to try VTES.'
 venue:
   name: 'BolognaFiere - Play, Festival del Gioco (Hall 18, J11–J13)'
   address: 'Viale della Fiera 20, 40127 Bologna (BO), Italy'
@@ -15,15 +15,15 @@ venue:
 events:
   - name: 'Demo tables'
     date: 2026-05-22
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Demo tables'
     date: 2026-05-23
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Demo tables'
     date: 2026-05-24
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
 links:
   - label: 'Play Festival del Gioco: official site'
@@ -37,7 +37,7 @@ streamingLinks:
 locale: 'en'
 ---
 
-On **May 22, 23 and 24, 2026** the Italian community of _Vampire: The Eternal Struggle_ was at **Play – Festival del Gioco** at **BolognaFiere** with **open demo tables** for anyone who wants to step into the longest-running political card game in the hobby.
+On **22, 23 and 24 May 2026** the Italian community of _Vampire: The Eternal Struggle_ was at **Play – Festival del Gioco** at **BolognaFiere** with **open demo tables** for anyone who wants to step into the longest-running political card game in the hobby.
 
 Three days, one invitation: **come and try VTES**. We were in **Hall 18**, in the **Vampire: The Masquerade area** (booth **J11 - Camarilla Italia** / **J13 - Area Vampiri**). Whether you had never seen the game or had only heard about it, you found a table ready, the decks already set up, and players from the Italian community to walk you through a 30–45 minute taster round. No registration, no deck to bring: you just sat down.
 

@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['treviso', 'torneo']
 featuredImage: '/images/comunita/treviso/rise-of-the-nephtali.webp'
 poster: '/images/comunita/treviso/rise-of-the-nephtali.webp'
-excerpt: 'Rise of the Nephtali: VTES tournament in Treviso on Saturday, September 19, 2026, hosted at Treviso Play. Standings and photos.'
+excerpt: 'Rise of the Nephtali: VTES tournament in Treviso on Saturday 19 September 2026, hosted at Treviso Play. Standings and photos.'
 venue:
   name: 'Treviso Play'
   address: 'Parco dei Moreri, Via Giuseppe Mazzini, 31057 Silea (TV), Italy'
@@ -44,6 +44,6 @@ album: 'rise-of-the-nephtali-2026'
 locale: 'en'
 ---
 
-**Rise of the Nephtali**: VTES tournament in Treviso on Saturday, **September 19, 2026**.
+**Rise of the Nephtali**: VTES tournament in Treviso on Saturday **19 September 2026**.
 
 The tournament is hosted at **Treviso Play**, the fair dedicated to local gaming associations. The venue is set in the park, with **food trucks available on site**.

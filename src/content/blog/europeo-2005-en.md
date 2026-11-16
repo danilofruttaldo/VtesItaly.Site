@@ -34,13 +34,13 @@ locale: 'en'
 
 In November 2005 a group of Italian players set off for **Budapest**, host of the _Vampire: The Eternal Struggle_ **European Championship**.
 
-The championship was played on **Saturday, November 5 and Sunday, November 6**, in a hall full of tables and of Methuselahs from all over Europe: the Saturday Last Chance Qualifier alone drew **150 players**.
+The championship was played on **Saturday 5 November and Sunday 6 November**, in a hall full of tables and of Methuselahs from all over Europe: the Saturday Last Chance Qualifier alone drew **150 players**.
 
 The title went to Hungary's **Richard G.** with a Ventrue vote deck, but an Italian came within a step of winning: **Mirko A.**, **second** at the final table with a **Giovanni powerbleed**.
 
 ## A week in Budapest
 
-Around the tournament, a week of travel from November 2 to 7: the **Parliament** on the Danube, the **Chain Bridge**, the **Fisherman's Bastion**, the **Central Market Hall**, **Heroes' Square**, the labyrinth beneath Buda Castle and, in the evenings, dinners of goulash and beer halls.
+Around the tournament, a week of travel from 2 to 7 November: the **Parliament** on the Danube, the **Chain Bridge**, the **Fisherman's Bastion**, the **Central Market Hall**, **Heroes' Square**, the labyrinth beneath Buda Castle and, in the evenings, dinners of goulash and beer halls.
 
 Twenty years later we found the photos of those days: you can browse them below and in the community photo archive.
 

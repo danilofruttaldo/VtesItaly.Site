@@ -5,9 +5,9 @@ category: 'comunita'
 tags: ['treviso', 'lega']
 featuredImage: '/images/comunita/treviso/church-of-st-blaise.webp'
 poster: '/images/comunita/treviso/church-of-st-blaise.webp'
-excerpt: 'Second edition of the Treviso V:TES league: 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.'
+excerpt: 'Second edition of the Treviso VTES league: 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.'
 seoTitle: 'Church of St. Blaise – Treviso League'
-seoDescription: 'Second edition of the Treviso V:TES league: 10 Methuselahs, fragile alliances, calculated betrayals and low blows at the table.'
+seoDescription: 'Second edition of the Treviso VTES league: 10 Methuselahs, fragile alliances, calculated betrayals and low blows at the table.'
 events:
   - name: 'Constructed League'
     date: 2026-03-02
@@ -75,6 +75,6 @@ standingsUrl: 'standings-church-of-st-blaise-2026'
 locale: 'en'
 ---
 
-Second edition of the Treviso _Vampire: The Eternal Struggle_ league. The **Principato di Treviso** is back with 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.
+Second edition of the Treviso _Vampire: The Eternal Struggle_ league. The **Domain of Treviso** is back with 10 Methuselahs ready to clash with no mercy: fragile alliances, calculated betrayals and low blows at the table.
 
 Each player must complete **10 valid games**: the league has no fixed duration in days but continues until everyone has reached the quota. Points earned beyond the tenth game do not count toward the standings. Once all players have 10 games, the total sum of GW, VP and BP determines the **League Point** and the **top 5 finalists**.

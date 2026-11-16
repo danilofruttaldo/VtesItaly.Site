@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['brescia', 'torneo']
 featuredImage: '/images/headers/header-brescia.webp'
 cityHeader: '/images/headers/header-brescia.webp'
-excerpt: 'VTES Standard tournament in Brescia (BS) on Sunday, November 7, 2021: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Brescia (BS) on Sunday 7 November 2021: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Mana Flask'
   address: 'Via Orzinuovi 48/d, 25125 Brescia (BS)'
@@ -22,4 +22,4 @@ standingsUrl: '/ev/powerbase-brescia-2021/standings-powerbase-brescia-2021.json'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Brescia (BS) on Sunday, **November 7, 2021**, at **Mana Flask**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Brescia (BS) on Sunday **7 November 2021**, at **Mana Flask**: 2 rounds and a final, proxies allowed.

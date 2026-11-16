@@ -5,13 +5,13 @@ category: 'comunita'
 tags: ['treviso', 'lega']
 featuredImage: '/images/comunita/treviso/church-of-st-blaise.webp'
 poster: '/images/comunita/treviso/church-of-st-blaise.webp'
-excerpt: 'Seconda edizione della lega trevigiana di V:TES: 10 Methuselah pronti a sfidarsi senza tregua tra alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.'
+excerpt: 'Seconda edizione della lega trevigiana di VTES: 10 Methuselah pronti a sfidarsi senza tregua tra alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.'
 seoTitle: 'Church of St. Blaise – Lega Treviso'
-seoDescription: 'Seconda edizione della lega trevigiana di V:TES: 10 Methuselah, alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.'
+seoDescription: 'Seconda edizione della lega trevigiana di VTES: 10 Methuselah, alleanze fragili, tradimenti calcolati e colpi bassi al tavolo.'
 events:
   - name: 'Lega Constructed'
     date: 2026-03-02
-    period: 'Marzo – Maggio 2026'
+    period: 'Marzo – maggio 2026'
     time: '10:00'
     format: 'Standard'
     proxies: true

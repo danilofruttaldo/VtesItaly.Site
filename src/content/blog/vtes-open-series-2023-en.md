@@ -4,7 +4,7 @@ date: 2023-07-23
 category: 'comunita'
 tags: ['bologna', 'torneo']
 featuredImage: '/images/headers/header-bologna.webp'
-excerpt: 'VTES Standard tournament in Bologna (BO) on Sunday, July 23, 2023: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Bologna (BO) on Sunday 23 July 2023: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Circolo Arci "Benassi"'
   address: 'Viale Sergio Cavina 4, 40139 Bologna (BO)'
@@ -22,4 +22,4 @@ album: 'vtes-open-series-2023'
 locale: 'en'
 ---
 
-A **Standard** tournament played in Bologna (BO) on Sunday, **July 23, 2023**, at **Circolo Arci "Benassi"**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Bologna (BO) on Sunday **23 July 2023**, at **Circolo Arci "Benassi"**: 2 rounds and a final, proxies allowed.

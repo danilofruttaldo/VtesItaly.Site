@@ -3,7 +3,7 @@ title: 'Grand Prix 2023'
 date: 2022-12-10
 category: 'grand-prix'
 tags: ['italia', 'bologna']
-excerpt: 'The Italian Grand Prix 2023 was held in Bologna on Saturday 10 December 2022. Danilo Torrisi wins! Congratulations to the finalists.'
+excerpt: 'The Italian Grand Prix 2023 was held in Bologna on Saturday 10 December 2022. Danilo T. wins! Congratulations to the finalists.'
 featuredImage: '/gp/gp-2023/gp-2023-poster.webp'
 poster: '/gp/gp-2023/gp-2023-poster.webp'
 venue:
@@ -31,4 +31,4 @@ links: []
 locale: en
 ---
 
-The **Italian V:TES Community** is proud to present the **GP 2023** in **Bologna**. A day of challenges, alliances and betrayals among the fiercest Methuselahs of the Old World.
+The **Italian VTES Community** is proud to present the **GP 2023** in **Bologna**. A day of challenges, alliances and betrayals among the fiercest Methuselahs of the Old World.

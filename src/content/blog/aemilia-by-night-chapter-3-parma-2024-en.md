@@ -4,7 +4,7 @@ date: 2024-06-30
 category: 'comunita'
 tags: ['parma', 'torneo']
 featuredImage: '/images/headers/header-parma.webp'
-excerpt: 'VTES Standard tournament in Parma (PR) on Sunday, June 30, 2024: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Parma (PR) on Sunday 30 June 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Comelasfoglia Studios'
   address: 'Via Giovanni Spadolini 7, 43123 Parma (PR)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/aemilia-by-night-chapter-3-parma-2024/standings-aemilia-by-ni
 locale: 'en'
 ---
 
-A **Standard** tournament played in Parma (PR) on Sunday, **June 30, 2024**, at **Comelasfoglia Studios**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Parma (PR) on Sunday **30 June 2024**, at **Comelasfoglia Studios**: 2 rounds and a final, proxies allowed.

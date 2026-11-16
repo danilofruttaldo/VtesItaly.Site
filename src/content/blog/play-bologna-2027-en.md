@@ -5,8 +5,8 @@ category: 'comunita'
 tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2027-featured.webp'
 poster: '/images/comunita/bologna/play-2027-poster.webp'
-excerpt: 'On April 23-25, 2027 VTES Italy is back at Play – Festival del Gioco at BolognaFiere with open demo tables for anyone who wants to try Vampire: The Eternal Struggle.'
-seoDescription: 'On April 23-25, 2027 VTES Italy is back at Play in BolognaFiere with open demo tables for anyone who wants to try V:TES.'
+excerpt: 'On 23-25 April 2027 VTES Italy is back at Play – Festival del Gioco at BolognaFiere with open demo tables for anyone who wants to try Vampire: The Eternal Struggle.'
+seoDescription: 'On 23-25 April 2027 VTES Italy is back at Play in BolognaFiere with open demo tables for anyone who wants to try VTES.'
 venue:
   name: 'BolognaFiere - Play, Festival del Gioco'
   address: 'Viale della Fiera 20, 40127 Bologna (BO), Italy'
@@ -15,15 +15,15 @@ venue:
 events:
   - name: 'Demo tables'
     date: 2027-04-23
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Demo tables'
     date: 2027-04-24
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Demo tables'
     date: 2027-04-25
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
 links:
   - label: 'Play Festival del Gioco: official site'
@@ -33,7 +33,7 @@ links:
 locale: 'en'
 ---
 
-On **April 23, 24 and 25, 2027** the Italian community of _Vampire: The Eternal Struggle_ is back at **Play – Festival del Gioco** at **BolognaFiere** with **open demo tables** for anyone who wants to step into the longest-running political card game in the hobby.
+On **23, 24 and 25 April 2027** the Italian community of _Vampire: The Eternal Struggle_ is back at **Play – Festival del Gioco** at **BolognaFiere** with **open demo tables** for anyone who wants to step into the longest-running political card game in the hobby.
 
 Three days, one invitation: **come and try VTES**. Whether you've never seen the game or you've only heard about it, you'll find a table ready, the decks already set up, and players from the Italian community to walk you through a 30–45 minute taster round. No registration, no deck to bring: just sit down.
 

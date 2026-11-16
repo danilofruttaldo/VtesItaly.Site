@@ -1,11 +1,11 @@
 ---
 title: 'Schemi riassuntivi delle regole'
-description: "Diagrammi di riferimento per le fasi chiave di V:TES: le fasi del turno, la sequenza di un'azione e quella di un round di combattimento."
+description: "Diagrammi di riferimento per le fasi chiave di VTES: le fasi del turno, la sequenza di un'azione e quella di un round di combattimento."
 categoria: regole-formati
 audience: [giocatore, nuovi, judge]
 ordine: 20
-versione: '0.1'
-aggiornato: 2026-06-07
+versione: '0.2'
+aggiornato: 2026-11-16
 correlate: [demo-eventi]
 locale: it
 ---
@@ -21,7 +21,7 @@ Il turno di ogni giocatore (**Methuselah**) scorre attraverso **cinque fasi** fi
 
 <figure class="schema-figure">
   <a href="/guide/regole/turno.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema delle fasi del turno a dimensione piena">
-    <img src="/guide/regole/turno.webp" alt="Schema verticale delle cinque fasi del turno in V:TES: Unlock, Master, Minion, Influence, Discard, più il nodo End of turn e il ritorno al turno del Methuselah successivo." width="800" height="560" loading="lazy" decoding="async" />
+    <img src="/guide/regole/turno.webp" alt="Schema verticale delle cinque fasi del turno in VTES: Unlock, Master, Minion, Influence, Discard, più il nodo End of turn e il ritorno al turno del Methuselah successivo." width="800" height="560" loading="lazy" decoding="async" />
   </a>
   <figcaption>Le fasi del turno</figcaption>
 </figure>
@@ -45,7 +45,7 @@ Dall'annuncio di un'azione fino a dopo la sua risoluzione: i tentativi di blocco
 
 <figure class="schema-figure">
   <a href="/guide/regole/azione.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema dell'azione a dimensione piena">
-    <img src="/guide/regole/azione.webp" alt="Schema della sequenza di un'azione in V:TES: annuncio, tentativi di blocco, risoluzione (azione non bloccata o bloccata), combattimento in coda e ritorno al ciclo dell'azione." width="1320" height="730" loading="lazy" decoding="async" />
+    <img src="/guide/regole/azione.webp" alt="Schema della sequenza di un'azione in VTES: annuncio, tentativi di blocco, risoluzione (azione non bloccata o bloccata), combattimento in coda e ritorno al ciclo dell'azione." width="1320" height="730" loading="lazy" decoding="async" />
   </a>
   <figcaption>Sequenza di un'azione</figcaption>
 </figure>
@@ -65,7 +65,7 @@ Un round di combattimento (**round of combat**) si svolge in **sette step**. Al 
 
 <figure class="schema-figure">
   <a href="/guide/regole/combat.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema del combattimento a dimensione piena">
-    <img src="/guide/regole/combat.webp" alt="Schema della sequenza di un round di combattimento in V:TES: before range, determine range, before strikes, strikes, damage resolution, press, end of round; con loop dei colpi addizionali e del press, il ramo «combat ends» che salta a fine combattimento e Psyche! che fa ripartire un combat che starebbe per finire." width="960" height="810" loading="lazy" decoding="async" />
+    <img src="/guide/regole/combat.webp" alt="Schema della sequenza di un round di combattimento in VTES: before range, determine range, before strikes, strikes, damage resolution, press, end of round; con loop dei colpi addizionali e del press, il ramo «combat ends» che salta a fine combattimento e Psyche! che fa ripartire un combat che starebbe per finire." width="960" height="810" loading="lazy" decoding="async" />
   </a>
   <figcaption>Sequenza di un round di combattimento</figcaption>
 </figure>

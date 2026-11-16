@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['trento', 'torneo']
 featuredImage: '/images/comunita/trento/festeggiamo-baba-yaga-2026.webp'
 poster: '/images/comunita/trento/festeggiamo-baba-yaga-2026.webp'
-excerpt: 'VTES Standard tournament in Aldeno (TN) on Monday, January 5, 2026: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Aldeno (TN) on Monday 5 January 2026: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Asgard Aldeno'
   address: 'Via Roma 1, 38060 Aldeno (TN)'
@@ -22,4 +22,4 @@ standingsUrl: '/ev/festeggiamo-baba-yaga-2026/standings-festeggiamo-baba-yaga-20
 locale: 'en'
 ---
 
-A **Standard** tournament played in Aldeno (TN) on Monday, **January 5, 2026**, at **Asgard Aldeno**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Aldeno (TN) on Monday **5 January 2026**, at **Asgard Aldeno**: 2 rounds and a final, proxies allowed.

@@ -1,23 +1,23 @@
 ---
-title: 'Running a V:TES demo'
+title: 'Running a VTES demo'
 description: 'Run a demo at an event: table setup, prepared hands, guided sequence of a first round with the First Blood decks.'
 categoria: organizzare
 audience: [principe]
 ordine: 30
-versione: '0.3'
-aggiornato: 2026-08-10
+versione: '0.4'
+aggiornato: 2026-11-16
 correlate: [archon-italia-en, archon-judge-en]
 locale: en
 ---
 
-The **First Blood** decks are the fastest way to put V:TES in front of new players. This guide covers how to set up a demo at an event (convention, store, GP, meetup) and how to run a ~30-minute guided round that hooks people in without trying to teach the whole game.
+The **First Blood** decks are the fastest way to put VTES in front of new players. This guide covers how to set up a demo at an event (convention, store, GP, meetup) and how to run a ~30-minute guided round that hooks people in without trying to teach the whole game.
 
 > [!NOTE]
 > First Blood decks **are not tournament legal**: they're for learning the mechanics. To play a real game they need to be integrated with at least one V5 deck of the same clan. V5 decks, by contrast, are tournament legal (60-card library minimum), although they're not especially competitive out of the box.
 
 ## 1. Goal of the demo
 
-The goal isn't to teach V:TES end to end (to really appreciate it you need roughly **ten games**) but to show how a turn flows, how the core interactions feel, and to let players taste the political game, so they leave wanting to come back.
+The goal isn't to teach VTES end to end (to really appreciate it you need roughly **ten games**) but to show how a turn flows, how the core interactions feel, and to let players taste the political game, so they leave wanting to come back.
 
 Keep the demo to **30–45 minutes**. A full game runs much longer and loses the showcase effect.
 
@@ -199,21 +199,21 @@ From here the game can carry on freely: the Nosferatu might equip the <span clas
 **Posters, flyers and artwork**: to print (for booth display, props such as the Edge token) or share digitally (social posts, online flyers). Click to enlarge:
 
 <div class="image-grid-3plus2">
-  <a href="/guide/demo/locandina-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the first poster full size"><img src="/guide/demo/locandina-1-small.webp" alt="V:TES demo poster 1" height="220" width="87" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/locandina-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the second poster full size"><img src="/guide/demo/locandina-2-small.webp" alt="V:TES demo poster 2" height="220" width="155" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/locandina-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the first poster full size"><img src="/guide/demo/locandina-1-small.webp" alt="VTES demo poster 1" height="220" width="87" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/locandina-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the second poster full size"><img src="/guide/demo/locandina-2-small.webp" alt="VTES demo poster 2" height="220" width="155" loading="lazy" decoding="async" /></a>
   <a href="/guide/demo/vtes-flyer-generic.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the generic VEKN flyer full size"><img src="/guide/demo/vtes-flyer-generic-small.webp" alt="Generic VEKN flyer: game pitch" height="220" width="170" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the V:TES 5th cover by Samuel Araya full size"><img src="/guide/demo/vtes-5th-araya-cover-small.webp" alt="V:TES 5th Edition cover, illustration by Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the Edge artwork full size"><img src="/guide/demo/edge-small.webp" alt="Edge artwork, the contested token in V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the VTES 5th cover by Samuel Araya full size"><img src="/guide/demo/vtes-5th-araya-cover-small.webp" alt="VTES 5th Edition cover, illustration by Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the Edge artwork full size"><img src="/guide/demo/edge-small.webp" alt="Edge artwork, the contested token in VTES" height="220" width="159" loading="lazy" decoding="async" /></a>
 </div>
 
 **Game quick-reference sheets**: combat, politics, actions, and more; to consult during the demo or hand out to anyone who wants to dig deeper (click to enlarge):
 
 <div class="image-grid-feature">
-  <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 0 full size"><img src="/guide/demo/schema-0-small.webp" alt="V:TES quick-reference sheet (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 1 full size"><img src="/guide/demo/schema-1-small.webp" alt="V:TES quick-reference sheet (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 2 full size"><img src="/guide/demo/schema-2-small.webp" alt="V:TES quick-reference sheet (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-3.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 3 full size"><img src="/guide/demo/schema-3-small.webp" alt="V:TES quick-reference sheet (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-4.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 4 full size"><img src="/guide/demo/schema-4-small.webp" alt="V:TES quick-reference sheet (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 0 full size"><img src="/guide/demo/schema-0-small.webp" alt="VTES quick-reference sheet (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 1 full size"><img src="/guide/demo/schema-1-small.webp" alt="VTES quick-reference sheet (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 2 full size"><img src="/guide/demo/schema-2-small.webp" alt="VTES quick-reference sheet (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-3.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 3 full size"><img src="/guide/demo/schema-3-small.webp" alt="VTES quick-reference sheet (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-4.webp" target="_blank" rel="noopener noreferrer" aria-label="Open quick-reference sheet 4 full size"><img src="/guide/demo/schema-4-small.webp" alt="VTES quick-reference sheet (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
 </div>
 
 **Printable handouts (PDF):**

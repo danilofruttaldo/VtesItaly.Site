@@ -3,7 +3,7 @@ title: 'Grand Prix 2023'
 date: 2022-12-10
 category: 'grand-prix'
 tags: ['italia', 'bologna']
-excerpt: 'Il Grand Prix Italiano 2023 si è tenuto a Bologna, sabato 10 dicembre 2022. Vince Danilo Torrisi! Complimenti ai finalisti.'
+excerpt: 'Il Grand Prix Italiano 2023 si è tenuto a Bologna, sabato 10 dicembre 2022. Vince Danilo T.! Complimenti ai finalisti.'
 featuredImage: '/gp/gp-2023/gp-2023-poster.webp'
 poster: '/gp/gp-2023/gp-2023-poster.webp'
 venue:
@@ -31,4 +31,4 @@ links: []
 locale: it
 ---
 
-La **Comunità Italiana di V:TES** è felice di presentare il **GP 2023** a **Bologna**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.
+La **Comunità Italiana di VTES** è felice di presentare il **GP 2023** a **Bologna**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

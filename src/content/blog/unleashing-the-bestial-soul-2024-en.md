@@ -4,7 +4,7 @@ date: 2024-05-12
 category: 'comunita'
 tags: ['firenze', 'torneo']
 featuredImage: '/images/headers/header-firenze.webp'
-excerpt: 'VTES Standard tournament in Firenze (FI) on Sunday, May 12, 2024: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Florence (FI) on Sunday 12 May 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Game'
   address: 'Via Francesco Baracca 168/R, 50127 Firenze (FI)'
@@ -25,4 +25,4 @@ streamingLinks:
 locale: 'en'
 ---
 
-A **Standard** tournament played in Firenze (FI) on Sunday, **May 12, 2024**, at **Game**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Florence (FI) on Sunday **12 May 2024**, at **Game**: 2 rounds and a final, proxies allowed.

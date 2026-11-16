@@ -31,9 +31,9 @@ events:
     standingsUrl: '/gp/gp-2025/standings-gp-redemption-2025.json'
 pricing:
   - label: 'Main Event + lunch'
-    regular: '60.00 euro'
+    regular: '€60'
   - label: 'Side Event + lunch'
-    regular: '35.00 euro'
+    regular: '€35'
 payment: 'PayPal (friends and family): info@vtesitaly.com'
 hotel:
   - room: 'Hotel Baia del Re **** (event venue)'
@@ -63,4 +63,4 @@ album: 'gp-2025'
 locale: en
 ---
 
-The **Italian V:TES Community**, in collaboration with **Ultra-Pro**, **Kraken Nest**, **Card Game Geek** and **Mistlore**, is proud to present the **GP 2025** in **Modena** at **Hotel Baia del Re**. A day of challenges, alliances and betrayals among the fiercest Methuselahs of the Old World.
+The **Italian VTES Community**, in collaboration with **Ultra-Pro**, **Kraken Nest**, **Card Game Geek** and **Mistlore**, is proud to present the **GP 2025** in **Modena** at **Hotel Baia del Re**. A day of challenges, alliances and betrayals among the fiercest Methuselahs of the Old World.

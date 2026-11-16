@@ -4,7 +4,7 @@ date: 2026-11-01
 category: 'comunita'
 tags: ['firenze', 'torneo']
 featuredImage: '/images/headers/header-firenze.webp'
-excerpt: 'VTES Standard tournament in Firenze (FI) on Sunday, November 1, 2026: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Florence (FI) on Sunday 1 November 2026: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Game'
   address: 'Via Francesco Baracca 168/R, 50127 Firenze (FI)'
@@ -22,4 +22,4 @@ standingsUrl: '/ev/shadow-shift-2026/standings-shadow-shift-2026.json'
 locale: 'en'
 ---
 
-A **Standard** tournament in Firenze (FI) on Sunday, **November 1, 2026**, at **Game**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament in Florence (FI) on Sunday **1 November 2026**, at **Game**: 2 rounds and a final, proxies allowed.

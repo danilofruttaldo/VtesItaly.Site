@@ -6,7 +6,7 @@ tags: ['bologna', 'italia']
 featuredImage: '/images/comunita/bologna/play-2027-featured.webp'
 poster: '/images/comunita/bologna/play-2027-poster.webp'
 excerpt: 'Il 23, 24 e 25 aprile 2027 VTES Italy torna al Play – Festival del Gioco di BolognaFiere con tavoli demo aperti a tutti per provare Vampire: The Eternal Struggle.'
-seoDescription: 'Il 23, 24 e 25 aprile 2027 VTES Italy torna al Play di BolognaFiere con tavoli demo aperti a tutti per provare V:TES.'
+seoDescription: 'Il 23, 24 e 25 aprile 2027 VTES Italy torna al Play di BolognaFiere con tavoli demo aperti a tutti per provare VTES.'
 venue:
   name: 'BolognaFiere - Play, Festival del Gioco'
   address: 'Viale della Fiera 20, 40127 Bologna (BO)'
@@ -15,15 +15,15 @@ venue:
 events:
   - name: 'Tavoli demo'
     date: 2027-04-23
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Tavoli demo'
     date: 2027-04-24
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
   - name: 'Tavoli demo'
     date: 2027-04-25
-    time: '9:00 – 19:00'
+    time: '09:00 – 19:00'
     type: 'altro'
 links:
   - label: 'Play Festival del Gioco: sito ufficiale'

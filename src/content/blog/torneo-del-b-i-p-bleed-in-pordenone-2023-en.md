@@ -4,7 +4,7 @@ date: 2023-11-19
 category: 'comunita'
 tags: ['pordenone', 'torneo']
 featuredImage: '/images/headers/header-pordenone.webp'
-excerpt: 'VTES Standard tournament in Pordenone (PN) on Sunday, November 19, 2023: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Pordenone (PN) on Sunday 19 November 2023: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Fumetteria Safarà'
   address: 'Via Piave 26, 33170 Pordenone (PN)'
@@ -25,4 +25,4 @@ streamingLinks:
 locale: 'en'
 ---
 
-A **Standard** tournament played in Pordenone (PN) on Sunday, **November 19, 2023**, at **Fumetteria Safarà**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Pordenone (PN) on Sunday **19 November 2023**, at **Fumetteria Safarà**: 2 rounds and a final, proxies allowed.

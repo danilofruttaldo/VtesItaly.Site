@@ -1,16 +1,16 @@
 ---
-title: 'Torneo V:TES Asgard Aldeno'
+title: 'Torneo VTES Asgard Aldeno'
 date: 2021-12-12
 category: 'comunita'
 tags: ['trento', 'torneo']
 featuredImage: '/images/headers/header-trento.webp'
-excerpt: 'VTES Standard tournament in Aldeno (TN) on Sunday, December 12, 2021: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Aldeno (TN) on Sunday 12 December 2021: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Asgard Aldeno'
   address: 'Via Roma 1, 38060 Aldeno (TN)'
   mapUrl: 'https://maps.google.com/?q=Via+Roma+1+Aldeno+TN'
 events:
-  - name: 'Torneo V:TES Asgard Aldeno'
+  - name: 'Torneo VTES Asgard Aldeno'
     date: 2021-12-12
     time: '10:00'
     format: 'Standard'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/torneo-v-tes-asgard-aldeno-2021/standings-torneo-v-tes-asgard
 locale: 'en'
 ---
 
-A **Standard** tournament played in Aldeno (TN) on Sunday, **December 12, 2021**, at **Asgard Aldeno**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Aldeno (TN) on Sunday **12 December 2021**, at **Asgard Aldeno**: 2 rounds and a final, proxies allowed.

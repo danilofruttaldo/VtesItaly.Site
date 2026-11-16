@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/yulearum-vtes-event-2026.webp'
 poster: '/images/comunita/modena/yulearum-vtes-event-2026.webp'
-excerpt: 'VTES Standard tournament in Spilamberto (MO) on Sunday, January 25, 2026: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Spilamberto (MO) on Sunday 25 January 2026: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Alearum Mundus'
   address: 'Via Castelnuovo R. 796, 41057 Spilamberto (MO), Italy'
@@ -22,4 +22,4 @@ standingsUrl: '/ev/yulearum-vtes-event-2026/standings-yulearum-vtes-event-2026.j
 locale: 'en'
 ---
 
-A **Standard** tournament played in Spilamberto (MO) on Sunday, **January 25, 2026**, at **Alearum Mundus**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Spilamberto (MO) on Sunday **25 January 2026**, at **Alearum Mundus**: 2 rounds and a final, proxies allowed.

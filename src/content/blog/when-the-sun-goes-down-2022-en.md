@@ -4,7 +4,7 @@ date: 2022-09-04
 category: 'comunita'
 tags: ['milano', 'torneo']
 featuredImage: '/images/headers/header-milano.webp'
-excerpt: 'VTES Standard tournament in Paderno Dugnano (MI) on Sunday, September 4, 2022: proxies allowed, 3 rounds and a final.'
+excerpt: 'VTES Standard tournament in Paderno Dugnano (MI) on Sunday 4 September 2022: proxies allowed, 3 rounds and a final.'
 venue:
   name: 'Secret Base'
   address: 'Via Roma 62/c, 20037 Paderno Dugnano (MI)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/when-the-sun-goes-down-2022/standings-when-the-sun-goes-down-
 locale: 'en'
 ---
 
-A **Standard** tournament played in Paderno Dugnano (MI) on Sunday, **September 4, 2022**, at **Secret Base**: 3 rounds and a final, proxies allowed.
+A **Standard** tournament played in Paderno Dugnano (MI) on Sunday **4 September 2022**, at **Secret Base**: 3 rounds and a final, proxies allowed.

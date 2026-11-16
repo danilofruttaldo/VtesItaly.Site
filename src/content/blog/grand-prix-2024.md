@@ -32,7 +32,7 @@ events:
     standingsUrl: '/gp/gp-2024/standings-tour-milano-2023.json'
 pricing:
   - label: 'Iscrizione'
-    regular: '25,00 euro'
+    regular: '25 €'
 payment: 'PayPal (amici e parenti): vtesitaly@gmail.com'
 contact: 'info@vtesitaly.com'
 hotel: []
@@ -42,4 +42,4 @@ album: 'gp-2024'
 locale: it
 ---
 
-La **Comunità Italiana di V:TES**, in collaborazione con **Ultra-Pro**, è felice di presentare il **GP 2024** a **Milano**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.
+La **Comunità Italiana di VTES**, in collaborazione con **Ultra-Pro**, è felice di presentare il **GP 2024** a **Milano**. Una giornata di sfide, alleanze e tradimenti tra i Methuselah più agguerriti del Vecchio Mondo.

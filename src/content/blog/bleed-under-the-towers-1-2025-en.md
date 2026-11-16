@@ -4,7 +4,7 @@ date: 2025-02-22
 category: 'comunita'
 tags: ['bologna', 'torneo']
 featuredImage: '/images/headers/header-bologna.webp'
-excerpt: 'VTES Standard tournament in Bologna (BO) on Saturday, February 22, 2025: proxies allowed, 3 rounds and a final.'
+excerpt: 'VTES Standard tournament in Bologna (BO) on Saturday 22 February 2025: proxies allowed, 3 rounds and a final.'
 venue:
   name: 'Circolo Barbanera'
   address: 'Via Camillo Ranzani 13/2C, 40127 Bologna (BO)'
@@ -41,6 +41,6 @@ standingsUrl: '/ev/bleed-under-the-towers-1-2025/standings-bleed-under-the-tower
 locale: 'en'
 ---
 
-A **Standard** tournament played in Bologna (BO) on Saturday, **February 22, 2025**, at **Circolo Barbanera**: 3 rounds and a final, proxies allowed. Organizer: **Arturo Parise**.
+A **Standard** tournament played in Bologna (BO) on Saturday **22 February 2025**, at **Circolo Barbanera**: 3 rounds and a final, proxies allowed. Organizer: **Arturo Parise**.
 
 Entry to the club required an AICS membership card, which could be issued on the spot. Lunch on site for €10: lasagne, a triple cheeseburger or a cured-meat flatbread, with a drink (beer included).

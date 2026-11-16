@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['milano', 'torneo']
 featuredImage: '/images/comunita/milano/milano-awakening.webp'
 poster: '/images/comunita/milano/milano-awakening.webp'
-excerpt: 'Milano Awakening: VTES tournament on Saturday, June 27, 2026 at UESM Casa dei Giochi. Standard, 2 rounds + final, 10€ entry.'
+excerpt: 'Milano Awakening: VTES tournament on Saturday 27 June 2026 at UESM Casa dei Giochi. Standard, 2 rounds + final, 10€ entry.'
 venue:
   name: 'UESM Ludoteca "Casa dei Giochi"'
   address: "Via Sant'Uguzzone 8, 20126 Milano (MI)"
@@ -34,7 +34,7 @@ standingsUrl: '/ev/milano-giugno-2026/standings-milano-giugno-2026.json'
 locale: 'en'
 ---
 
-**Milano Awakening**: the first Milan city tournament after a 3-year hiatus, on Saturday, **June 27, 2026** at **UESM Casa dei Giochi**.
+**Milano Awakening**: the first Milan city tournament after a 3-year hiatus, on Saturday **27 June 2026** at **UESM Casa dei Giochi**.
 
 Easy to reach by **Metro 1 (Red Line)**, stop _Villa San Giovanni_ (direction Sesto San Giovanni).
 

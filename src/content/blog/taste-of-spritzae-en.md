@@ -19,7 +19,7 @@ events:
     rounds: 2
 pricing:
   - label: 'Fee'
-    regular: '10 €'
+    regular: '€10'
 payment: 'PayPal recommended: vtes.treviso@gmail.com'
 registration: 'Pre-registration required via Google Form. Limited to 25–26 participants.'
 contact: 'vtes.treviso@gmail.com'

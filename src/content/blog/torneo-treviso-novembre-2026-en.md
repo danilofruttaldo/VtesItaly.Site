@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['treviso', 'torneo']
 featuredImage: '/images/comunita/treviso/endless-night.webp'
 poster: '/images/comunita/treviso/endless-night.webp'
-excerpt: 'Endless Night: VTES Halloween Storyline tournament in Treviso on Saturday, November 7, 2026, at GiOlly Comics, newcomers welcome.'
+excerpt: 'Endless Night: VTES Halloween Storyline tournament in Treviso on Saturday 7 November 2026, at GiOlly Comics, newcomers welcome.'
 venue:
   name: 'GiOlly Comics'
   address: 'Largo I Maggio 5/3, 31020 Villorba (TV), Italy'
@@ -35,7 +35,7 @@ links:
 locale: 'en'
 ---
 
-**Endless Night** (_La Notte senza Fine_): VTES tournament on the Treviso Principality's **Halloween storyline**, Saturday, **November 7, 2026**, at **GiOlly Comics** in Villorba.
+**Endless Night** (_La Notte senza Fine_): VTES tournament on the Treviso domain's **Halloween storyline**, Saturday **7 November 2026**, at **GiOlly Comics** in Villorba.
 
 _The dead won't stay put._ Burned vampires come back into play, you can call up zombies, mummies and ghosts to fight for you, and there are no tricks to hide or intercept.
 

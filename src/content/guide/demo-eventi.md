@@ -4,20 +4,20 @@ description: 'Allestire e condurre una demo a un evento: tavolo, mani preparate,
 categoria: organizzare
 audience: [principe]
 ordine: 30
-versione: '0.3'
-aggiornato: 2026-08-10
+versione: '0.4'
+aggiornato: 2026-11-16
 correlate: [archon-italia, archon-judge]
 locale: it
 ---
 
-I mazzi **First Blood** sono il modo più rapido per far provare V:TES a tavolo. Questa guida descrive come allestire la demo a un evento (fiera, negozio, GP, raduno) e come condurre un round guidato di ~30 minuti che incuriosisca i partecipanti senza pretendere di spiegare tutto il gioco.
+I mazzi **First Blood** sono il modo più rapido per far provare VTES a tavolo. Questa guida descrive come allestire la demo a un evento (fiera, negozio, GP, raduno) e come condurre un round guidato di ~30 minuti che incuriosisca i partecipanti senza pretendere di spiegare tutto il gioco.
 
 > [!NOTE]
 > I **First Blood** non sono mazzi legali: servono solo a imparare le meccaniche. Per giocare davvero una partita vanno integrati con almeno un mazzo V5 dello stesso clan. I mazzi V5 invece sono legali in torneo (60 carte minimo di library), anche se non particolarmente competitivi.
 
 ## 1. Obiettivo della demo
 
-L'obiettivo non è insegnare V:TES nella sua interezza (per apprezzarlo davvero servono indicativamente **una decina di partite**) ma far vedere il flusso di un turno, le interazioni base e la sensazione del gioco politico, lasciando il partecipante con la voglia di tornare a sedersi al tavolo.
+L'obiettivo non è insegnare VTES nella sua interezza (per apprezzarlo davvero servono indicativamente **una decina di partite**) ma far vedere il flusso di un turno, le interazioni base e la sensazione del gioco politico, lasciando il partecipante con la voglia di tornare a sedersi al tavolo.
 
 Tieni la demo entro **30–45 minuti**. Una partita completa dura molto di più e perde l'effetto vetrina.
 
@@ -202,18 +202,18 @@ Da qui la partita può proseguire liberamente: per esempio il Nosferatu si equip
   <a href="/guide/demo/locandina-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la prima locandina a dimensione piena"><img src="/guide/demo/locandina-1-small.webp" alt="Locandina 1 per la demo VTES" height="220" width="87" loading="lazy" decoding="async" /></a>
   <a href="/guide/demo/locandina-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la seconda locandina a dimensione piena"><img src="/guide/demo/locandina-2-small.webp" alt="Locandina 2 per la demo VTES" height="220" width="155" loading="lazy" decoding="async" /></a>
   <a href="/guide/demo/vtes-flyer-generic.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri il flyer generico VEKN a dimensione piena"><img src="/guide/demo/vtes-flyer-generic-small.webp" alt="Flyer generico VEKN: presentazione del gioco" height="220" width="170" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la cover di V:TES 5th di Samuel Araya a dimensione piena"><img src="/guide/demo/vtes-5th-araya-cover-small.webp" alt="Cover di V:TES 5th Edition, illustrazione di Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri l'illustrazione dell'Edge a dimensione piena"><img src="/guide/demo/edge-small.webp" alt="Illustrazione dell'Edge, il token conteso di V:TES" height="220" width="159" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/vtes-5th-araya-cover.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri la cover di VTES 5th di Samuel Araya a dimensione piena"><img src="/guide/demo/vtes-5th-araya-cover-small.webp" alt="Cover di VTES 5th Edition, illustrazione di Samuel Araya" height="220" width="206" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/edge.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri l'illustrazione dell'Edge a dimensione piena"><img src="/guide/demo/edge-small.webp" alt="Illustrazione dell'Edge, il token conteso di VTES" height="220" width="159" loading="lazy" decoding="async" /></a>
 </div>
 
 **Schemi riassuntivi** da consultare durante la demo o consegnare a chi vuole approfondire (combat, politica, azioni, ecc.). Clicca per ingrandire:
 
 <div class="image-grid-feature">
-  <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 0 a dimensione piena"><img src="/guide/demo/schema-0-small.webp" alt="Schema riassuntivo V:TES (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 1 a dimensione piena"><img src="/guide/demo/schema-1-small.webp" alt="Schema riassuntivo V:TES (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 2 a dimensione piena"><img src="/guide/demo/schema-2-small.webp" alt="Schema riassuntivo V:TES (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-3.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 3 a dimensione piena"><img src="/guide/demo/schema-3-small.webp" alt="Schema riassuntivo V:TES (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
-  <a href="/guide/demo/schema-4.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 4 a dimensione piena"><img src="/guide/demo/schema-4-small.webp" alt="Schema riassuntivo V:TES (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-0.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 0 a dimensione piena"><img src="/guide/demo/schema-0-small.webp" alt="Schema riassuntivo VTES (0)" height="180" width="254" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-1.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 1 a dimensione piena"><img src="/guide/demo/schema-1-small.webp" alt="Schema riassuntivo VTES (1)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-2.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 2 a dimensione piena"><img src="/guide/demo/schema-2-small.webp" alt="Schema riassuntivo VTES (2)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-3.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 3 a dimensione piena"><img src="/guide/demo/schema-3-small.webp" alt="Schema riassuntivo VTES (3)" height="180" width="127" loading="lazy" decoding="async" /></a>
+  <a href="/guide/demo/schema-4.webp" target="_blank" rel="noopener noreferrer" aria-label="Apri lo schema riassuntivo 4 a dimensione piena"><img src="/guide/demo/schema-4-small.webp" alt="Schema riassuntivo VTES (4)" height="180" width="127" loading="lazy" decoding="async" /></a>
 </div>
 
 **Stampabili (PDF):**

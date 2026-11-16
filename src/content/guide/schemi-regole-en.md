@@ -1,11 +1,11 @@
 ---
 title: 'Rule summary diagrams'
-description: 'Reference diagrams for the key phases of V:TES: the turn phases, the sequence of an action and that of a round of combat.'
+description: 'Reference diagrams for the key phases of VTES: the turn phases, the sequence of an action and that of a round of combat.'
 categoria: regole-formati
 audience: [giocatore, nuovi, judge]
 ordine: 20
-versione: '0.1'
-aggiornato: 2026-06-07
+versione: '0.2'
+aggiornato: 2026-11-16
 correlate: [demo-eventi-en]
 locale: en
 ---
@@ -21,7 +21,7 @@ Each player's (**Methuselah's**) turn runs through **five fixed phases**, always
 
 <figure class="schema-figure schema-figure--en">
   <a href="/guide/regole/turno.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the turn-phases diagram full size">
-    <img src="/guide/regole/turno.webp" alt="Vertical diagram of the five turn phases in V:TES: Unlock, Master, Minion, Influence, Discard, plus an End of turn node and the handover to the next Methuselah's turn." width="800" height="560" loading="lazy" decoding="async" />
+    <img src="/guide/regole/turno.webp" alt="Vertical diagram of the five turn phases in VTES: Unlock, Master, Minion, Influence, Discard, plus an End of turn node and the handover to the next Methuselah's turn." width="800" height="560" loading="lazy" decoding="async" />
   </a>
   <figcaption>The turn phases</figcaption>
 </figure>
@@ -45,7 +45,7 @@ From the announcement of an action to after it resolves: block attempts, the two
 
 <figure class="schema-figure schema-figure--en">
   <a href="/guide/regole/azione.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the action diagram full size">
-    <img src="/guide/regole/azione.webp" alt="Diagram of the sequence of an action in V:TES: announcement, block attempts, resolution (successful or blocked action), queued combat and return to the action cycle." width="1320" height="730" loading="lazy" decoding="async" />
+    <img src="/guide/regole/azione.webp" alt="Diagram of the sequence of an action in VTES: announcement, block attempts, resolution (successful or blocked action), queued combat and return to the action cycle." width="1320" height="730" loading="lazy" decoding="async" />
   </a>
   <figcaption>Sequence of an action</figcaption>
 </figure>
@@ -65,7 +65,7 @@ A round of combat runs through **seven steps**. At the end of the round, combat 
 
 <figure class="schema-figure schema-figure--en">
   <a href="/guide/regole/combat.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the combat diagram full size">
-    <img src="/guide/regole/combat.webp" alt="Diagram of the sequence of a round of combat in V:TES: before range, determine range, before strikes, strikes, damage resolution, press, end of round; with the additional-strikes and press loops, the «combat ends» branch that skips to end of combat, and Psyche! restarting a combat about to end." width="960" height="810" loading="lazy" decoding="async" />
+    <img src="/guide/regole/combat.webp" alt="Diagram of the sequence of a round of combat in VTES: before range, determine range, before strikes, strikes, damage resolution, press, end of round; with the additional-strikes and press loops, the «combat ends» branch that skips to end of combat, and Psyche! restarting a combat about to end." width="960" height="810" loading="lazy" decoding="async" />
   </a>
   <figcaption>Sequence of a round of combat</figcaption>
 </figure>
@@ -93,4 +93,4 @@ Two interactions break the sequence (references **1** and **2** in the diagram):
 
 - [VEKN Rulebook](https://www.vekn.net/rulebook): the official rules.
 - [Official VEKN New Player Guide](/guide/demo/vtes-new-player-guide-en.pdf) _(A3, English)_: illustrated overview of zones, turn phases, combat, clans and disciplines.
-- [Running a V:TES demo](/en/guides/demo-eventi/): to use these diagrams during a demonstration.
+- [Running a VTES demo](/en/guides/demo-eventi/): to use these diagrams during a demonstration.

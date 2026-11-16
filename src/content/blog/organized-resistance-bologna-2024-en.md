@@ -4,7 +4,7 @@ date: 2024-04-14
 category: 'comunita'
 tags: ['bologna', 'torneo']
 featuredImage: '/images/headers/header-bologna.webp'
-excerpt: 'VTES Standard tournament in Bologna (BO) on Sunday, April 14, 2024: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Bologna (BO) on Sunday 14 April 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Circolo Arci "Benassi"'
   address: 'Viale Sergio Cavina 4, 40139 Bologna (BO)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/organized-resistance-bologna-2024/standings-organized-resista
 locale: 'en'
 ---
 
-A **Standard** tournament played in Bologna (BO) on Sunday, **April 14, 2024**, at **Circolo Arci "Benassi"**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Bologna (BO) on Sunday **14 April 2024**, at **Circolo Arci "Benassi"**: 2 rounds and a final, proxies allowed.

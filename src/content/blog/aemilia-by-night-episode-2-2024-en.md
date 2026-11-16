@@ -5,7 +5,7 @@ category: 'comunita'
 tags: ['modena', 'torneo']
 featuredImage: '/images/comunita/modena/aemilia-by-night-episode-2-2024.webp'
 poster: '/images/comunita/modena/aemilia-by-night-episode-2-2024.webp'
-excerpt: 'VTES Standard tournament in Modena (MO) on Sunday, March 3, 2024: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Modena (MO) on Sunday 3 March 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Polisportiva Sacca'
   address: 'Via Alfonso Paltrinieri 80, 41122 Modena (MO)'
@@ -22,4 +22,4 @@ standingsUrl: '/ev/aemilia-by-night-episode-2-2024/standings-aemilia-by-night-ep
 locale: 'en'
 ---
 
-A **Standard** tournament played in Modena (MO) on Sunday, **March 3, 2024**, at **Polisportiva Sacca**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Modena (MO) on Sunday **3 March 2024**, at **Polisportiva Sacca**: 2 rounds and a final, proxies allowed.

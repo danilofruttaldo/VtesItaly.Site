@@ -4,8 +4,8 @@ date: 2026-02-27
 category: 'nazionale'
 tags: ['italia', 'trento']
 featuredImage: '/images/headers/header-nazionale.webp'
-excerpt: 'The Italian VTES National Championship 2026 took place on the weekend of February 27 to March 1 in Caldonazzo (TN), at Hotel Paoli, in the heart of Trentino.'
-seoDescription: 'The Italian VTES National Championship 2026 took place from February 27 to March 1 in Caldonazzo (TN), at Hotel Paoli, in Trentino.'
+excerpt: 'The Italian VTES National Championship 2026 took place on the weekend of 27 February to 1 March in Caldonazzo (TN), at Hotel Paoli, in the heart of Trentino.'
+seoDescription: 'The Italian VTES National Championship 2026 took place from 27 February to 1 March in Caldonazzo (TN), at Hotel Paoli, in Trentino.'
 poster: '/nc/nc-2026/nc-2026-poster.webp'
 venue:
   name: 'Hotel Paoli'
@@ -36,21 +36,21 @@ events:
     standingsUrl: '/nc/nc-2026/standings-trento-the-day-after-2026.json'
 pricing:
   - label: 'Weekend package (Main + Side)'
-    early: '50 euro'
-    regular: '60 euro'
+    early: '€50'
+    regular: '€60'
   - label: 'Main Event only'
-    early: '38 euro'
-    regular: '45 euro'
+    early: '€38'
+    regular: '€45'
   - label: 'Side Event only'
-    early: '15 euro'
-    regular: '18 euro'
-earlyDeadline: 'January 31'
+    early: '€15'
+    regular: '€18'
+earlyDeadline: '31 January'
 earlyDeadlineDate: 2026-01-31
 payment: 'PayPal (friends and family): vtesitaly@gmail.com'
 hotel:
   - room: 'Discounted rate at Hotel Paoli (event venue)'
     price: 'book by calling the hotel'
-hotelNote: 'Mention you are booking for the Asgard Aldeno event on February 28. Pick-up service from Trento station available upon request.'
+hotelNote: 'Mention you are booking for the Asgard Aldeno event on 28 February. Pick-up service from Trento station available upon request.'
 prizes:
   - 'Prizes for Main Event top 10'
   - 'Raffle prizes'
@@ -76,6 +76,6 @@ streamingLinks:
 locale: en
 ---
 
-The **Italian VTES National Championship 2026** took place on the weekend of **February 27 to March 1** in **Caldonazzo (TN)**, at **Hotel Paoli**, in the heart of Trentino.
+The **Italian VTES National Championship 2026** took place on the weekend of **27 February to 1 March** in **Caldonazzo (TN)**, at **Hotel Paoli**, in the heart of Trentino.
 
 Saturday was dedicated to the **Main Event**, crowning the new **2026 National Champion**, while the entire weekend featured side events, free play and community gatherings.

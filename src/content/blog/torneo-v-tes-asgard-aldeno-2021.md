@@ -1,5 +1,5 @@
 ---
-title: 'Torneo V:TES Asgard Aldeno'
+title: 'Torneo VTES Asgard Aldeno'
 date: 2021-12-12
 category: 'comunita'
 tags: ['trento', 'torneo']
@@ -10,7 +10,7 @@ venue:
   address: 'Via Roma 1, 38060 Aldeno (TN)'
   mapUrl: 'https://maps.google.com/?q=Via+Roma+1+Aldeno+TN'
 events:
-  - name: 'Torneo V:TES Asgard Aldeno'
+  - name: 'Torneo VTES Asgard Aldeno'
     date: 2021-12-12
     time: '10:00'
     format: 'Standard'

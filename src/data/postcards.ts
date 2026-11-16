@@ -18,7 +18,7 @@ export interface PostcardGallery {
 export const postcardGalleries: PostcardGallery[] = [
   {
     title: { it: 'Symposium Italicum MMXXVI', en: 'Symposium Italicum MMXXVI' },
-    subtitle: { it: 'Barga, Settembre 2026', en: 'Barga, September 2026' },
+    subtitle: { it: 'Barga, settembre 2026', en: 'Barga, September 2026' },
     images: [
       { src: '/images/carte/library-kiss-of-cathari.webp', alt: 'Kiss of Cathari' },
       { src: '/images/carte/library-awe.webp', alt: 'Awe' },
@@ -27,7 +27,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Praxis Seizure: Treviso', en: 'Praxis Seizure: Treviso' },
-    subtitle: { it: 'Treviso, Luglio 2026', en: 'Treviso, July 2026' },
+    subtitle: { it: 'Treviso, luglio 2026', en: 'Treviso, July 2026' },
     images: [
       { src: '/images/carte/library-taste-of-vitae.webp', alt: 'Taste of Vitae' },
       { src: '/images/carte/library-hide-the-mind.webp', alt: 'Hide the Mind' },
@@ -36,7 +36,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Grand Prix 2026', en: 'Grand Prix 2026' },
-    subtitle: { it: 'Bologna, Maggio 2026', en: 'Bologna, May 2026' },
+    subtitle: { it: 'Bologna, maggio 2026', en: 'Bologna, May 2026' },
     images: [
       { src: '/images/carte/library-aching-beauty.webp', alt: 'Aching Beauty' },
       { src: '/images/carte/library-chameleon.webp', alt: 'Chameleon' },
@@ -67,8 +67,8 @@ export const postcardGalleries: PostcardGallery[] = [
     ],
   },
   {
-    title: { it: 'IT26 - Wrath', en: 'IT26 - Wrath' },
-    subtitle: { it: 'Pordenone, Aprile 2026', en: 'Pordenone, April 2026' },
+    title: { it: 'IT26 - Ira', en: 'IT26 - Wrath' },
+    subtitle: { it: 'Pordenone, aprile 2026', en: 'Pordenone, April 2026' },
     images: [
       { src: '/images/carte/library-agent-baton.webp', alt: 'Agent Baton' },
       { src: '/images/carte/library-courier.webp', alt: 'Courier' },
@@ -77,7 +77,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Nazionale 2026', en: 'National Championship 2026' },
-    subtitle: { it: 'Trento, Febbraio 2026', en: 'Trento, February 2026' },
+    subtitle: { it: 'Trento, febbraio 2026', en: 'Trento, February 2026' },
     images: [
       { src: '/images/carte/library-brothers-grimm.webp', alt: 'Brothers Grimm' },
       { src: '/images/carte/library-derange.webp', alt: 'Derange' },
@@ -87,7 +87,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Week of Sabbat', en: 'Week of Sabbat' },
-    subtitle: { it: 'Italia, Ottobre 2025', en: 'Italy, October 2025' },
+    subtitle: { it: 'Italia, ottobre 2025', en: 'Italy, October 2025' },
     images: [
       { src: '/images/carte/crypt-crossbreaker.webp', alt: 'Crossbreaker' },
       { src: '/images/carte/library-dia-de-los-muertos.webp', alt: 'Dia de los Muertos' },
@@ -96,7 +96,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Iubilaeum Sabbaticum', en: 'Iubilaeum Sabbaticum' },
-    subtitle: { it: 'Roma, Ottobre 2025', en: 'Roma, October 2025' },
+    subtitle: { it: 'Roma, ottobre 2025', en: 'Rome, October 2025' },
     images: [
       { src: '/images/carte/library-on-the-qui-vive.webp', alt: 'On the Qui Vive' },
       { src: '/images/carte/library-organized-resistance.webp', alt: 'Organized Resistance' },
@@ -104,7 +104,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Symposium Italicum MMXXV', en: 'Symposium Italicum MMXXV' },
-    subtitle: { it: 'Barga, Agosto 2025', en: 'Barga, August 2025' },
+    subtitle: { it: 'Barga, agosto 2025', en: 'Barga, August 2025' },
     images: [
       { src: '/images/carte/library-canine-horde.webp', alt: 'Canine Horde' },
       { src: '/images/carte/library-coordinate-attacks.webp', alt: 'Coordinate Attacks' },
@@ -114,7 +114,7 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Concilio di Pergine', en: 'Concilio di Pergine' },
-    subtitle: { it: 'Trento, Giugno 2025', en: 'Trento, June 2025' },
+    subtitle: { it: 'Trento, giugno 2025', en: 'Trento, June 2025' },
     images: [
       { src: '/images/carte/crypt-anneke.webp', alt: 'Anneke' },
       { src: '/images/carte/library-filchware-pawn-shop.webp', alt: 'Filchware Pawn Shop' },
@@ -128,12 +128,12 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Truth in Darkness', en: 'Truth in Darkness' },
-    subtitle: { it: 'Firenze, Maggio 2025', en: 'Firenze, May 2025' },
+    subtitle: { it: 'Firenze, maggio 2025', en: 'Florence, May 2025' },
     images: [{ src: '/images/carte/library-quicksilver-contemplation.webp', alt: 'Quicksilver Contemplation' }],
   },
   {
     title: { it: 'Nazionale 2025', en: 'National Championship 2025' },
-    subtitle: { it: 'Pordenone, Aprile 2025', en: 'Pordenone, April 2025' },
+    subtitle: { it: 'Pordenone, aprile 2025', en: 'Pordenone, April 2025' },
     images: [
       { src: '/images/carte/library-frico-drive.webp', alt: 'Frico Drive' },
       { src: '/images/carte/library-walk-of-caine.webp', alt: 'Walk of Caine' },
@@ -141,17 +141,17 @@ export const postcardGalleries: PostcardGallery[] = [
   },
   {
     title: { it: 'Grand Prix 2025', en: 'Grand Prix 2025' },
-    subtitle: { it: 'Modena, Marzo 2025', en: 'Modena, March 2025' },
+    subtitle: { it: 'Modena, marzo 2025', en: 'Modena, March 2025' },
     images: [{ src: '/images/carte/library-seduction.webp', alt: 'Seduction' }],
   },
   {
     title: { it: 'Fee Stake: Florence', en: 'Fee Stake: Florence' },
-    subtitle: { it: 'Firenze, Febbraio 2025', en: 'Firenze, February 2025' },
+    subtitle: { it: 'Firenze, febbraio 2025', en: 'Florence, February 2025' },
     images: [{ src: '/images/carte/library-dual-form.webp', alt: 'Dual Form' }],
   },
   {
     title: { it: 'Grand Prix 2024', en: 'Grand Prix 2024' },
-    subtitle: { it: 'Milano, Dicembre 2023', en: 'Milano, December 2023' },
+    subtitle: { it: 'Milano, dicembre 2023', en: 'Milan, December 2023' },
     images: [{ src: '/images/carte/library-mind-rape.webp', alt: 'Mind Rape' }],
   },
 ];

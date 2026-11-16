@@ -65,7 +65,7 @@ export const twins: Twin[] = [
     person: { it: 'Maila Nurmi', en: 'Maila Nurmi' },
     image: '/images/gemelli/maila-nurmi.webp',
     description: {
-      it: "La Toreador primogena della Camarilla richiama l'icona horror Vampira. Stesso taglio rasato, stesso sguardo magnetico in total black.",
+      it: "La primogen Toreador della Camarilla richiama l'icona horror Vampira. Stesso taglio rasato, stesso sguardo magnetico in total black.",
       en: 'The Toreador Camarilla primogen recalls horror icon Vampira. Same shaved cut, same magnetic gaze in total black.',
     },
   },

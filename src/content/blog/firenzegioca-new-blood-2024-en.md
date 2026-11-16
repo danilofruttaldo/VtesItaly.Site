@@ -4,7 +4,7 @@ date: 2024-08-03
 category: 'comunita'
 tags: ['firenze', 'torneo']
 featuredImage: '/images/headers/header-firenze.webp'
-excerpt: 'VTES Standard tournament in Firenze (FI) on Saturday, August 3, 2024: proxies allowed, 2 rounds and a final.'
+excerpt: 'VTES Standard tournament in Florence (FI) on Saturday 3 August 2024: proxies allowed, 2 rounds and a final.'
 venue:
   name: 'Firenze Gioca c/o LUMEN'
   address: 'Via del Guarlone 25, 50135 Firenze (FI)'
@@ -21,4 +21,4 @@ standingsUrl: '/ev/firenzegioca-new-blood-2024/standings-firenzegioca-new-blood-
 locale: 'en'
 ---
 
-A **Standard** tournament played in Firenze (FI) on Saturday, **August 3, 2024**, at **Firenze Gioca c/o LUMEN**: 2 rounds and a final, proxies allowed.
+A **Standard** tournament played in Florence (FI) on Saturday **3 August 2024**, at **Firenze Gioca c/o LUMEN**: 2 rounds and a final, proxies allowed.

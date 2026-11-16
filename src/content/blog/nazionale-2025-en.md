@@ -30,7 +30,7 @@ events:
     standingsUrl: '/nc/nc-2025/standings-tour-pordenone-2025.json'
 pricing:
   - label: 'Entry fee'
-    regular: '30 euro'
+    regular: '€30'
 contact: 'info@vtesitaly.com'
 payment: 'PayPal (friends and family): pordenonevtes@gmail.com'
 hotel:

@@ -186,6 +186,7 @@
     "program_label": "Program",
     "schedule_label": "Schedule",
     "registration_label": "Registration",
+    "organizer_label": "Organizer",
     "contact_label": "Contact",
     "time_prefix": "at",
     "pricing_label": "Pricing",

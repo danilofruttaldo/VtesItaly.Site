@@ -369,6 +369,12 @@ const isSignupUrl = (url: string) => /^https:\/\/(forms\.gle\/|docs\.google\.com
       </div>
     </div>
   )}
+  {'organizer' in post.data && post.data.organizer && (
+    <div class="gp-row">
+      <span class="gp-label">{t.gp.organizer_label}</span>
+      <span class="gp-value">{post.data.organizer}</span>
+    </div>
+  )}
   {post.data.contact && (
     <div class="gp-row">
       <span class="gp-label">{t.gp.contact_label}</span>

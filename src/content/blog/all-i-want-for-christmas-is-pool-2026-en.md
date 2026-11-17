@@ -35,6 +35,7 @@ pricing:
     regular: '€10'
 payment: 'Cash on site or PayPal (friends and family): fedemail83@gmail.com'
 prizes: 'A rich prize pool, as always'
+organizer: 'Federico Ferrarini'
 contact: 'fedemail83@gmail.com'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=tD6qutjxKLc'
@@ -44,8 +45,21 @@ locale: 'en'
 
 **ALL I WANT FOR CHRISTMAS IS POOL**: a Christmas VTES tournament on Saturday **19 December 2026** at **Circolo Barbanera** in Bologna (BO).
 
+With Christmas coming, the Bologna community gets ready to celebrate with the whole city and with guests from the other principalities, in full holiday tradition: the meetup includes a **gift exchange** among the players, straight from the hands of **Santa Claus** himself!
+
 **Standard** format with **proxies allowed**, **2 rounds and a final**. €10 entry, cash on site or via PayPal. A rich prize pool, as always.
 
 Lunch break on site with an à la carte menu, ordered on the day and not included in the entry fee.
 
-Organizer: **Federico Ferrarini**.
+<div class="callout">
+
+## Gift exchange
+
+- **Bring a small gift**: it is mandatory, otherwise one player will go without!
+- It can be VTES-themed (a card, a token, a gadget or other material you already have at home) or something fun, nice or handmade: a little something to raise a smile.
+- **Maximum value €5**, so nobody is put on the spot.
+- All gifts go into Santa's sack and each player draws one at random.
+- The principality adds **bonus prizes** to some of the gifts: sealed product, promos and more.
+- Souvenir photo with Santa "NC" Claus himself and his elf helper.
+
+</div>

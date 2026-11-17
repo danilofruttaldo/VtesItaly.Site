@@ -35,7 +35,6 @@ pricing:
     regular: '€10'
 payment: 'Cash on site or PayPal (friends and family): fedemail83@gmail.com'
 prizes: 'A rich prize pool, as always'
-organizer: 'Federico Ferrarini'
 contact: 'fedemail83@gmail.com'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=tD6qutjxKLc'

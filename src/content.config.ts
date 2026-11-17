@@ -266,7 +266,6 @@ const comunitaSchema = z
     hotelNote: z.string().optional(),
     prizes: z.union([z.string(), z.array(z.string())]).optional(),
     registration: z.string().optional(),
-    organizer: z.string().optional(),
     contact: z.string().optional(),
     streamingUrl: httpUrl.optional(),
     streamingLabel: z.string().optional(),

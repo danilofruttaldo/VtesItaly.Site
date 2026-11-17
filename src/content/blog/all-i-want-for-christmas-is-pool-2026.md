@@ -35,7 +35,6 @@ pricing:
     regular: '10 €'
 payment: 'Contanti sul posto o PayPal (amici e parenti): fedemail83@gmail.com'
 prizes: 'Griglia premi ricca come sempre'
-organizer: 'Federico Ferrarini'
 contact: 'fedemail83@gmail.com'
 streamingLinks:
   - url: 'https://www.youtube.com/watch?v=tD6qutjxKLc'

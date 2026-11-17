@@ -3,7 +3,8 @@ title: 'ALL I WANT FOR CHRISTMAS IS POOL'
 date: 2026-12-19
 category: 'comunita'
 tags: ['bologna', 'torneo']
-featuredImage: '/images/headers/header-bologna.webp'
+featuredImage: '/images/comunita/bologna/all-i-want-for-christmas-is-pool-2026.webp'
+poster: '/images/comunita/bologna/all-i-want-for-christmas-is-pool-2026.webp'
 excerpt: 'Christmas VTES tournament in Bologna on Saturday 19 December 2026 at Circolo Barbanera: Standard, proxies allowed, 2 rounds and a final. €10 entry.'
 venue:
   name: 'Circolo Barbanera'

@@ -32,11 +32,14 @@ jobs:
           # Google Forms answer 401 and stay as a record of past events. URLs
           # with a `$` are template literals in components (`${…}` in share
           # buttons, issue links): only their prefix is a real address.
+          # 5xx and timeouts mean the remote server is down (vekn.net outage of
+          # 2026-11-23), not that the link is dead: only 4xx/DNS errors fail.
           args: >-
             --no-progress
             --base-url https://vtesitaly.com
             --max-concurrency 8
-            --accept 200..=299,403,429
+            --accept 200..=299,403,429,500..=599
+            --accept-timeouts
             --exclude '^https?://([a-z]+\.)?(facebook|instagram|linkedin)\.com'
             --exclude '^https?://(forms\.gle|docs\.google\.com/forms)'
             --exclude '^https?://(localhost|127\.0\.0\.1)'
